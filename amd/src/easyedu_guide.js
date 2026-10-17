@@ -1721,6 +1721,80 @@ const stopDiscoveryScene = root => {
   }
 };
 
+// K17-28, K17-45: one common return to rest for every demonstration. The element fades out briefly, the
+// resting (or final) state is applied while it is invisible, then it fades back in: nothing jumps. 'reduced'
+// keeps a single 120 ms fade each way; 'minimal' applies the state at once. Resolves false when cancelled.
+const FLASH_OUT_MS = 140;
+const FLASH_IN_MS = 200;
+const flashReturn = async(root, element, mutate = null) => {
+  const level = getMotionLevel(root);
+  if (level === 'minimal' || !element || typeof element.animate !== 'function') {
+    if (mutate) {
+      mutate();
+    }
+    return true;
+  }
+  const fade = (from, to, duration) => element.animate([{opacity: from}, {opacity: to}], {
+    duration: level === 'reduced' ? Math.min(REDUCED_FADE_MS, duration) : duration,
+    easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+  const out = fade(1, 0, FLASH_OUT_MS);
+  try {
+    await out.finished;
+  } catch (error) {
+    return false;
+  }
+  if (mutate) {
+    mutate();
+  }
+  const back = fade(0, 1, FLASH_IN_MS);
+  out.cancel();
+  try {
+    await back.finished;
+  } catch (error) {
+    return false;
+  } finally {
+    back.cancel();
+  }
+  return true;
+};
+
+// Same rules as the quick-create parser of the course (ajax.php): names are separated by a comma, a
+// semicolon, a vertical bar or a line break, a part ending in "#*N" or "@*N" expands to a numbered or
+// lettered series, duplicates are dropped. Returns null when the result is empty or longer than the limit.
+const expandCreateNames = (text, limit = Infinity) => {
+  const names = [];
+  const letters = number => {
+    let result = '';
+    for (let rest = number; rest > 0; rest = Math.floor((rest - 1) / 26)) {
+      result = String.fromCharCode(65 + ((rest - 1) % 26)) + result;
+    }
+    return result;
+  };
+  for (const raw of String(text || '').split(/[\r\n,;|]+/u)) {
+    const part = raw.trim();
+    if (part === '') {
+      continue;
+    }
+    const series = part.match(/^(.*?)([#@])\s*\*\s*(\d+)$/u);
+    if (series) {
+      const count = Math.min(200, Number(series[3]));
+      if (count > limit) {
+        return null;
+      }
+      for (let index = 1; index <= count; index++) {
+        names.push(`${series[1].trimEnd()} ${series[2] === '#' ? index : letters(index)}`.trim());
+      }
+    } else {
+      names.push(part);
+    }
+    if (names.length > limit) {
+      return null;
+    }
+  }
+  const unique = [...new Set(names)];
+  return unique.length && unique.length <= limit ? unique : null;
+};
+
 // E4 (K5): three-phase mini demonstration of a group card's search loupe (about 6.5 s). Fictional
 // members, no Moodle call. Phase changes use Motion.enter, so the animation level applies; at the
 // minimal level the same phases change without movement.
@@ -1765,6 +1839,14 @@ const runLoupeDemo = (root, demo) => {
     }
   };
   root.easyeduGuideLoupeStop = () => finish(false);
+  // K17-28: the end of the demonstration returns to rest through the common short fade.
+  const finishWithFlash = async() => {
+    timers.splice(0).forEach(clearTimeout);
+    const completed = await flashReturn(root, card || demo, reset);
+    if (completed && active) {
+      finish(true);
+    }
+  };
   reset();
   demo.dataset.guideLoupeState = 'running';
   button.disabled = true;
@@ -1795,7 +1877,7 @@ const runLoupeDemo = (root, demo) => {
       }
     });
   });
-  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1] + LOUPE_PHASE_MS[2], () => finish(true));
+  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1] + LOUPE_PHASE_MS[2], finishWithFlash);
 };
 
 // Names are generated locally from the exercise input, never through Moodle APIs.
@@ -2160,10 +2242,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const animate = async(element, frames, duration, retain = true) => {
     await gate();
     assertActive();
-    if (reduced) { return; }
+    if (reduced) {
+      return null;
+    }
     const shown = fadeLevel ? toFadeFrames(frames) : frames;
     if (!shown) {
-      return;
+      return null;
     }
     const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
       easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
@@ -2172,6 +2256,39 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
     if (!retain) { animation.cancel(); animations.delete(animation); }
     assertActive();
+    return animation;
+  };
+  // K17-28, K17-45: the common return to rest. The stage fades out briefly, every retained transform or
+  // opacity animation inside it is cancelled and the resting (or final) state is applied while it is
+  // invisible, then the stage fades back in. On the same pausable clock as the rest of the demonstration;
+  // 'reduced' keeps one 120 ms fade each way, 'minimal' applies the state at once.
+  const restFlash = async mutate => {
+    await gate();
+    assertActive();
+    const cancelRetained = () => animations.forEach(animation => {
+      const node = animation.effect?.target;
+      if (node && node !== stage && stage.contains(node)) {
+        animation.cancel();
+        animations.delete(animation);
+      }
+    });
+    if (reduced) {
+      cancelRetained();
+      mutate();
+      return;
+    }
+    const out = await animate(stage, [{opacity: 1}, {opacity: 0}], FLASH_OUT_MS);
+    cancelRetained();
+    mutate();
+    const back = await animate(stage, [{opacity: 0}, {opacity: 1}], FLASH_IN_MS);
+    out?.cancel();
+    back?.cancel();
+    if (out) {
+      animations.delete(out);
+    }
+    if (back) {
+      animations.delete(back);
+    }
   };
   // Illustrated pointer placed at its destination without travel ('minimal'), or faded in there ('reduced').
   const placeCursor = async(cursorEl, transform) => {
@@ -2620,10 +2737,13 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       if (controller.signal.aborted) { return; }
       if (compact) { await touchPointer.tap(cursor); }
       await hidePointer();
-      await disclose(false);
+      // K17-28: the card returns to its resting size behind the common short fade.
+      await restFlash(() => {
+        panel.hidden = true;
+        input.value = '';
+        chips.hidden = true;
+      });
       if (controller.signal.aborted) { return; }
-      input.value = '';
-      chips.hidden = true;
       result.textContent = result.dataset.inspection || scene.easyeduGuideResultOriginal;
       await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
       if (controller.signal.aborted) { return; }
@@ -2818,28 +2938,40 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
           travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
         if (controller.signal.aborted) { return; }
         cancelAnimationFrame(dropFrame); dropFrame = null;
-        member.hidden = false;
+        // K17-43: the participant card stays where it was dropped and only fades out; it no longer
+        // travels back to the left.
         await wait(220);
         destinationNode.classList.remove('is-guide-drop-target');
-        await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
-          {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
-        await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
+        await animate(ghost, [{opacity: 1}, {opacity: 0}], 220);
         ghost.remove();
       }
     }
     if (controller.signal.aborted) { return; }
-    member.hidden = false;
     await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
     if (controller.signal.aborted) { return; }
     cursor.hidden = true;
     cancelAnimationFrame(cursorVisibilityFrame);
     cursor.style.visibility = cursorVisibility;
-    stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
-    stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = false; });
-    if (mode !== 'add') {
-      stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => { node.hidden = true; });
-      const empty = stage.querySelector('[data-guide-source-empty]');
-      if (empty) { empty.hidden = false; }
+    // K17-28, K17-45: the final state (member shown in the destination, moved cards gone) replaces the
+    // animated one behind the common short fade, so the destination group no longer jumps.
+    await restFlash(() => {
+      member.hidden = false;
+      stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
+      stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => {
+        node.checked = false;
+      });
+      if (mode !== 'add') {
+        stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => {
+          node.hidden = true;
+        });
+        const empty = stage.querySelector('[data-guide-source-empty]');
+        if (empty) {
+          empty.hidden = false;
+        }
+      }
+    });
+    if (controller.signal.aborted) {
+      return;
     }
     if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
