@@ -1,0 +1,33 @@
+{{!
+    @template guide_specimen_participant
+
+    Illustration only: one participant card drawn with the real card classes of the
+    product (rail, selector, headline, badge, eye), without any data-easystud-* hook,
+    link or form control, so no product handler can attach to it.
+
+    Example context (json):
+    {
+        "name": "Inès Garnier",
+        "badge": "EMLV",
+        "email": "ines.garnier@example.test",
+        "selected": true,
+        "pointer": false
+    }
+}}
+<div class="local-groupimport-easystud-user{{#selected}} is-selected{{/selected}}">
+    <span class="local-groupimport-easystud-selector" aria-hidden="true">
+        <input type="checkbox" tabindex="-1" aria-hidden="true"{{#selected}} checked{{/selected}}>
+        <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
+    </span>
+    <div class="local-groupimport-easystud-user__rail"><div class="local-groupimport-easystud-user__avatar"></div></div>
+    <div class="local-groupimport-easystud-user__main easyedu-person-card__main">
+        <div class="local-groupimport-easystud-user__headline easyedu-person-card__headline">
+            <div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main">
+                <strong class="local-groupimport-easystud-user__name">{{name}}</strong>
+                {{#badge}}<span class="local-groupimport-easystud-user__primary-badge">{{badge}}</span>{{/badge}}
+            </div>
+            {{#email}}<span class="local-groupimport-easystud-user__email easyedu-person-card__email">{{email}}</span>{{/email}}
+            <span class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button{{#selected}} is-easyedu-guide-highlight-target{{/selected}}{{#pointer}} is-guide-pointed{{/pointer}}"><span class="fa fa-eye" aria-hidden="true"></span></span>
+        </div>
+    </div>
+</div>
