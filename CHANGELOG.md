@@ -1,5 +1,7 @@
 - 2026-10-17 [N0] L1/L2 page CSS: consolidate duplicate Guide roots with effective specificity preserved; remove 142721 CSS bytes with exact cascade and offline rendering parity.
 
+- 2026-10-17 [N0] TRI38: validate existing portable Node22.11.0 across 11 AMD builders and conservative CSS; 106 generated files match fcf11a6f.
+
 - 2026-10-17 [N0] Repin P2 parity to the current compiled cascade and exercise current shared pill rendering; keep historical legacy-module input configurable.
 
 - 2026-10-17 [N0] P2: remove dormant legacy tutorial JS binder/call/navigation selectors while preserving shared Guide targets, markup and styles.

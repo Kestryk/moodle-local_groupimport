@@ -1854,5 +1854,14 @@
     "report": "docs/testing/l1l2-guide-page-css-2026-10-17.md",
     "removedBytes": 142721,
     "validation": "3795 ordered-rule proof and 12 offline FR/EN portal cases / 1295 elements"
+  },
+  "codex1Node2220261017": {
+    "status": "node22-build-parity-pass-not-published",
+    "base": "fcf11a6f",
+    "report": "docs/testing/node22-build-parity-2026-10-17.md",
+    "node": "22.11.0",
+    "builds": 12,
+    "comparedFiles": 106,
+    "differences": 0
   }
 }
