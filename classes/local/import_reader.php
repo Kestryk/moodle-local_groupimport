@@ -269,7 +269,19 @@ final class import_reader {
                  * @param string $worksheetname Sheet.
                  * @return bool
                  */
-                public function readCell(string $columnaddress, int $row, string $worksheetname = ''): bool {
+                public function readCell($columnaddress, $row, $worksheetname = ''): bool {
+                    // Moodle 4.5 supplies the untyped IReadFilter interface. Keep the same
+                    // weak PHP scalar validation as the newer typed interface at this boundary.
+                    return $this->accept_cell($columnaddress, $row, $worksheetname);
+                }
+                /**
+                 * Preserve the typed reader contract behind both interface versions.
+                 * @param string $columnaddress Column.
+                 * @param int $row Row.
+                 * @param string $worksheetname Sheet.
+                 * @return bool
+                 */
+                private function accept_cell(string $columnaddress, int $row, string $worksheetname): bool {
                     if (
                         $row > import_preview::MAX_ROWS + 1 ||
                             Coordinate::columnIndexFromString($columnaddress) > import_reader::MAX_COLUMNS

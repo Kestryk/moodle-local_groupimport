@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Prepare isolated Moodle4.5 read-filter and hidden-label compatibility adapters; retain the current minimum requirement until phase8.
+
 - 2026-10-17 [N0] K16-15: allow explicit member selection from compact group details and retain dialog keyboard focus after member removal or deferred section refresh.
 
 - 2026-10-17 [N0] Resync the Guide mirror to db964f08, combining accepted tooltip accessibility and Codex2 cue/docking/narration fixes; preserve runtime assets.
