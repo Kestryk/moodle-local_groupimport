@@ -1170,3 +1170,6 @@ $string['importeffectivefilelimit'] = 'The file exceeds the permitted upload siz
 
 $string['importlegacyxlsunavailable'] = 'This Moodle installation does not provide the legacy XLS reader. Save the file as XLSX or CSV.';
 $string['eventreportexported'] = 'EasyStud import report generated';
+
+$string['bulkactionlimit'] = 'This request exceeds the limit of {$a} items. No changes were made. Select fewer items and try again.';
+$string['bulkitemsskipped'] = 'Items not added: {$a}.';

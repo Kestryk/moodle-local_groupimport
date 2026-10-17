@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] R6: bound four bulk group actions to 500 items, raise execution time, batch enrolment/group reads and transactionally apply native writes with explicit skipped counts; browser chunking remains for Claude.
+
 # Changelog
 
 - 2026-10-17 [N1] S2: expose subject-scoped import history through Privacy user lists/export/erasure; add configurable 365-day retention and daily history-only purge.

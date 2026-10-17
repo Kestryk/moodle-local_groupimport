@@ -23,6 +23,7 @@
  */
 
 use local_groupimport\local\ajax_security;
+use local_groupimport\local\bulk_action;
 
 define('AJAX_SCRIPT', true);
 
@@ -480,38 +481,56 @@ try {
     } else if ($action === 'addusers') {
         $groupid = required_param('groupid', PARAM_INT);
         $userids = required_param_array('userids', PARAM_INT);
+        bulk_action::validate_size(count($userids));
         $group = groups_get_group($groupid);
 
         if (!$group || (int)$group->courseid !== (int)$course->id) {
             throw new moodle_exception('invalidgroupid', 'error');
         }
 
+        $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
         $added = 0;
+        $skipped = 0;
         $existing = 0;
-        foreach (array_unique($userids) as $userid) {
-            if (!is_enrolled($context, $userid)) {
-                continue;
+        bulk_action::run(count($userids), static function () use (
+            $course,
+            $groupid,
+            $userids,
+            $enrolledusers,
+            &$added,
+            &$skipped,
+            &$existing,
+        ) {
+            foreach (array_unique($userids) as $userid) {
+                if (!isset($enrolledusers[$userid])) {
+                    $skipped++;
+                    continue;
+                }
+                if (
+                    \local_groupimport\service\membership_assignment::add_user_to_group(
+                        (int)$course->id,
+                        $groupid,
+                        $userid
+                    )
+                ) {
+                    $added++;
+                } else {
+                    $existing++;
+                }
             }
-            if (
-                \local_groupimport\service\membership_assignment::add_user_to_group(
-                    (int)$course->id,
-                    $groupid,
-                    $userid
-                )
-            ) {
-                $added++;
-            } else {
-                $existing++;
-            }
-        }
+        });
 
         $response['success'] = true;
         $response['added'] = $added;
         $response['existing'] = $existing;
+        $response['skipped'] = $skipped;
         $response['message'] = get_string('usersaddsummary', 'local_groupimport', (object)[
             'added' => $added,
             'existing' => $existing,
         ]);
+        if ($skipped > 0) {
+            $response['message'] .= ' ' . get_string('bulkitemsskipped', 'local_groupimport', $skipped);
+        }
     } else if ($action === 'movemembers') {
         if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
             throw new moodle_exception('invaliddata', 'error');
@@ -546,42 +565,58 @@ try {
         }
 
         $tokens = local_groupimport_extract_user_tokens($rawemails);
+        bulk_action::validate_size(count($tokens));
         $addedusers = [];
         $existing = 0;
         $missing = [];
 
         $resolvedusers = local_groupimport_find_users_by_identifiers($tokens);
         $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
-        foreach ($tokens as $token) {
-            $user = $resolvedusers[$token] ?? null;
-            if (!$user || !isset($enrolledusers[$user->id])) {
-                $missing[] = $token;
-                continue;
+        bulk_action::run(count($tokens), static function () use (
+            $course,
+            $groupid,
+            $tokens,
+            $resolvedusers,
+            $enrolledusers,
+            &$addedusers,
+            &$existing,
+            &$missing,
+        ) {
+            foreach ($tokens as $token) {
+                $user = $resolvedusers[$token] ?? null;
+                if (!$user || !isset($enrolledusers[$user->id])) {
+                    $missing[] = $token;
+                    continue;
+                }
+                if (
+                    \local_groupimport\service\membership_assignment::add_user_to_group(
+                        (int)$course->id,
+                        $groupid,
+                        (int)$user->id
+                    )
+                ) {
+                    $addedusers[] = [
+                        'id' => (int)$user->id,
+                        'fullname' => fullname($user),
+                    ];
+                } else {
+                    $existing++;
+                }
             }
-            if (
-                \local_groupimport\service\membership_assignment::add_user_to_group(
-                    (int)$course->id,
-                    $groupid,
-                    (int)$user->id
-                )
-            ) {
-                $addedusers[] = [
-                    'id' => (int)$user->id,
-                    'fullname' => fullname($user),
-                ];
-            } else {
-                $existing++;
-            }
-        }
+        });
 
         $response['success'] = true;
         $response['users'] = $addedusers;
         $response['existing'] = $existing;
         $response['missing'] = $missing;
+        $response['skipped'] = count($missing);
         $response['message'] = get_string('usersaddsummary', 'local_groupimport', (object)[
             'added' => count($addedusers),
             'existing' => $existing,
         ]);
+        if ($missing) {
+            $response['message'] .= ' ' . get_string('bulkitemsskipped', 'local_groupimport', count($missing));
+        }
     } else if ($action === 'addgroups') {
         global $DB;
 
@@ -672,23 +707,36 @@ try {
     } else if ($action === 'removemembers') {
         $groupids = required_param_array('groupids', PARAM_INT);
         $userids = required_param_array('userids', PARAM_INT);
-        $removed = ajax_security::remove_members((int)$course->id, $groupids, $userids);
+        $removed = bulk_action::run(
+            max(count($groupids), count($userids)),
+            static function () use ($course, $groupids, $userids) {
+                return ajax_security::remove_members((int)$course->id, $groupids, $userids);
+            }
+        );
 
         $response['success'] = true;
         $response['message'] = local_groupimport_count_string('membersremoved', (int)$removed);
     } else if ($action === 'deletegroups') {
         $groupids = required_param_array('groupids', PARAM_INT);
+        bulk_action::validate_size(count($groupids));
         $deleted = 0;
 
-        foreach (array_unique($groupids) as $groupid) {
-            $group = groups_get_group($groupid);
-            if (!$group || (int)$group->courseid !== (int)$course->id) {
-                continue;
+        $groups = \local_groupimport\local\batch_reader::records(
+            'groups',
+            $groupids,
+            ['courseid' => $course->id]
+        );
+        bulk_action::run(count($groupids), static function () use ($groupids, $groups, &$deleted) {
+            foreach (array_unique($groupids) as $groupid) {
+                if (!isset($groups[$groupid])) {
+                    continue;
+                }
+                if (!groups_delete_group($groupid)) {
+                    throw new moodle_exception('ajaxunexpectederror', 'local_groupimport');
+                }
+                $deleted++;
             }
-
-            groups_delete_group($groupid);
-            $deleted++;
-        }
+        });
 
         $response['success'] = true;
         $response['message'] = local_groupimport_count_string('groupsdeleted', (int)$deleted);

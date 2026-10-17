@@ -1,4 +1,11 @@
 {
+  "codex1R620261017": {
+    "status": "server-pass-client-chunking-pending-not-published",
+    "base": "4110785e",
+    "branch": "work/codex1/easystud-r6-20261017",
+    "report": "docs/testing/r6-bulk-actions-2026-10-17.md",
+    "validation": "31 isolated actual-handler assertions; no runtime access"
+  },
   "codex1SecurityS220261017": {
     "status": "source-isolated-pass-not-published-phpunit-pending",
     "base": "6c3ac95f",
