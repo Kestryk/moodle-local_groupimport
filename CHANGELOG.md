@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Report des cinq correctifs Guide/bulle acceptés dans le Kit canonique, référence817dea20 ; consommateur inchangé, parité T037/T038/aller-retour PASS et oracle Light actualisé sans changer les douze valeurs de référence.
+
 - 2026-10-17 [N0] A10 : signature IReadFilter compatible avec les interfaces 4.5/5.1/5.3, validation interne des cellules et bornes conservées ; sondes de déclaration et tests XLSX isolés PASS, sans changement du minimum Moodle.
 
 - 2026-10-17 [N1] R6 (4537aad7) : ajout du module navigateur pur de découpage en lots de 500 éléments au maximum, avec agrégation des réponses et suivi des éléments traités en cas d’échec partiel.
