@@ -22,11 +22,17 @@
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
 }
-define('CLI_SCRIPT', true);
 $options = getopt('', ['moodle-root:', 'manifest:', 'before-root:', 'after-root:', 'output:']);
 foreach (['moodle-root', 'manifest', 'before-root', 'after-root', 'output'] as $key) {
     if (empty($options[$key])) {
@@ -71,7 +77,7 @@ function perf_edge_load(string $root, string $entry, string $prefix): void {
             $code .= is_array($token) ? $token[1] : $token;
         }
     }
-    eval($code);
+    require(\local_groupimport_fixture_source_file($code));
 }
 foreach (['before', 'after'] as $variant) {
     foreach (['ajax.php', 'index.php'] as $entry) {

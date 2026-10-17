@@ -15,7 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated production presentation adapter; no Moodle bootstrap or database.
 
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 require(__DIR__ . '/../../lang/' . (($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en') . '/local_groupimport.php');
 /**
  * Perform isolated fixture operation get_string.
@@ -41,7 +47,7 @@ if ($start === false || $end === false) {
 $slide = ['index' => 0, 'title' => $string['tutorialkeyboardtitle'],
     'description' => $string['tutorialkeyboardcontent']];
 $templatedata = $string;
-eval(substr($manage, $start, $end - $start));
+require(\local_groupimport_fixture_source_file(substr($manage, $start, $end - $start)));
 echo json_encode(['slides' => [$slide], 'slidecount' => 1,
     'discoverypresentation' => true,
     'rootclass' => 'local-groupimport-easystud-easyedu-guide easyedu-guide--discovery',

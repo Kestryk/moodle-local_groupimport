@@ -15,7 +15,12 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated semantic-role audit. Never load Moodle config or touch its database.
 
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $roleconfig = [];
 /**
  * Perform isolated fixture operation get_config.
@@ -33,7 +38,7 @@ function get_config(string $component, string $key) {
     return $roleconfig[$key] ?? false;
 }
 
-require dirname(__DIR__, 2) . '/lib.php';
+require(dirname(__DIR__, 2) . '/lib.php');
 
 $defaults = [
     'primary' => ['themeprimarycolor', '#0f6cbf'],

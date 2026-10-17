@@ -24,6 +24,10 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
 
 $options = ['moodle-root' => null, 'action' => null, 'manifest' => null, 'run-id' => null, 'help' => false];
 for ($index = 1; $index < count($argv); $index++) {
@@ -105,7 +109,7 @@ function fixture_cleanup_course(int $courseid): array {
     }
     $CFG->forced_plugin_settings['tool_recyclebin']['categorybinenable'] = 0;
     $CFG->forced_plugin_settings['tool_recyclebin']['coursebinenable'] = 0;
-    $cleanupError = null;
+    $cleanuperror = null;
     if ($DB->record_exists('course', ['id' => $courseid])) {
         try {
             delete_course($courseid, false);
@@ -113,14 +117,14 @@ function fixture_cleanup_course(int $courseid): array {
             // Moodle's backup/controller teardown can throw after the course
             // has already been removed. Re-check the exact fixture before
             // reporting failure, and preserve the error when it persists.
-            $cleanupError = $exception->getMessage();
+            $cleanuperror = $exception->getMessage();
         }
     }
     $complete = !$DB->record_exists('course', ['id' => $courseid]);
     return [
         'complete' => $complete,
         'courseId' => $courseid,
-        'error' => $complete ? null : $cleanupError,
+        'error' => $complete ? null : $cleanuperror,
     ];
 }
 

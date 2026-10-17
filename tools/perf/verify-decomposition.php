@@ -22,7 +22,12 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 require_once(__DIR__ . '/decompose.php');
 $member = '<ul data-easystud-group-members="1"><li data-easystud-member-id="2">Élève</li></ul>';
 $card = '<div data-easystud-user="1" data-user-detail="{&quot;description&quot;:&quot;&lt;p&gt;Texte&lt;/p&gt;&quot;}">' .

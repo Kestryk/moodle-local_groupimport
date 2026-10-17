@@ -22,8 +22,14 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $lib = $argv[1] ?? '';
-require $lib . '/mustache/src/Mustache/Autoloader.php';
+require($lib . '/mustache/src/Mustache/Autoloader.php');
 Mustache_Autoloader::register();
 $root = dirname(__DIR__, 3);
 $proc = proc_open(
@@ -49,40 +55,7 @@ if (proc_close($proc) !== 0) {
 }
 $before = str_replace("\r\n", "\n", $before);
 $after = str_replace("\r\n", "\n", file_get_contents($root . '/templates/manage.mustache'));
-$loader = new
-/**
- * Isolated fixture double for __construct.
- */
-class ($root) implements Mustache_Loader {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param private $root Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct(
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        private $root
-    ) {
-    }
-    /**
-     * Perform isolated fixture operation load.
-     * @param mixed $name Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function load($name) {
-        $name = preg_replace('~^local_groupimport/~', '', $name);
-        if (!preg_match('~^[a-zA-Z0-9_/-]+$~', $name) || str_contains($name, '..')) {
-            throw new RuntimeException('Invalid partial');
-        }
-        $p = $this->root . '/templates/' . $name . '.mustache';
-        if (!is_file($p)) {
-            throw new RuntimeException('Missing partial ' . $name);
-        }
-        return file_get_contents($p);
-    }
-};
+$loader = new fixture_p2_current_template_isolated_anonymous_1($root);
 $mustache = new Mustache_Engine(['partials_loader' => $loader]);
 $checks = 0;
 /**

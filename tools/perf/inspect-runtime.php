@@ -22,6 +22,11 @@
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
 
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
@@ -32,7 +37,6 @@ $root = realpath($options['moodle-root'] ?? '');
 if (!$root || !is_file($root . '/config.php')) {
     throw new RuntimeException('An explicit Moodle root is required.');
 }
-define('CLI_SCRIPT', true);
 require($root . '/config.php');
 if (!in_array(parse_url($CFG->wwwroot, PHP_URL_HOST), ['localhost', '127.0.0.1', '::1'], true)) {
     throw new RuntimeException('Local runtime only.');

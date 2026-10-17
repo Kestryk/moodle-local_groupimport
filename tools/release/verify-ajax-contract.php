@@ -14,10 +14,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
+/**
+ * Standalone CLI test fixture and release validation.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 /** Isolated AJAX surface verification: actual dispatch, no Moodle bootstrap or database.  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 define('PARAM_INT', 'int');
 define('MUST_EXIST', true);
 define('SQL_PARAMS_NAMED', true);
@@ -34,144 +53,18 @@ $dispatch = substr($source, $start, $end - $start);
 $checks = [];
 $injected = null;
 $created = null;
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends RuntimeException {
-}
-/**
- * Isolated fixture double for dml_exception.
- */
-class dml_exception extends moodle_exception {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public $debuginfo = 'synthetic SQL detail';
-}
-/**
- * Isolated fixture double for moodle_url.
- */
-class moodle_url {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $path Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($path, $params) {
-    }
-    /**
-     * Perform isolated fixture operation out.
-     * @param mixed $escape Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function out($escape) {
-        return '/synthetic';
-    }
-}
-/**
- * Isolated fixture double for core_text.
- */
-class core_text {
-    /**
-     * Perform isolated fixture operation strtolower.
-     * @param mixed $value Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function strtolower($value) {
-        return strtolower($value);
-    }
-}
-/**
- * Isolated fixture double for fixture_database.
- */
-class fixture_database {
-    /**
-     * Perform isolated fixture operation get_records.
-     * @param mixed $table Fixture argument.
-     * @param mixed $conditions Fixture argument.
-     * @param mixed $sort Fixture argument.
-     * @param mixed $fields Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_records($table, $conditions, $sort, $fields) {
-        return [];
-    }
-    /**
-     * Perform isolated fixture operation get_record.
-     * @param mixed $table Fixture argument.
-     * @param mixed $conditions Fixture argument.
-     * @param mixed $fields Fixture argument.
-     * @param mixed $strict Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_record($table, $conditions, $fields, $strict = false) {
-        return (object)['id' => 11, 'courseid' => 123, 'name' => 'Synthetic grouping'];
-    }
-}
-/**
- * Isolated fixture double for identifier_database.
- */
-class identifier_database {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public $fields = [];
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public $users;
-    /**
-     * Perform isolated fixture operation __construct.
-     * @return mixed Fixture result.
-     */
-    public function __construct() {
-        $this->users = [(object)['id' => 42, 'deleted' => 0, 'firstname' => 'SyntheticFirst',
-            'lastname' => 'SyntheticLast', 'username' => 'synthetic-user', 'email' => 'synthetic@example.test',
-            'idnumber' => 'SYN-42']];
-    }
-    /**
-     * Perform isolated fixture operation get_record.
-     * @param mixed $table Fixture argument.
-     * @param mixed $conditions Fixture argument.
-     * @param mixed $fields Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_record($table, $conditions, $fields) {
-        $this->fields[] = array_keys($conditions)[0];
-        foreach ($this->users as $user) {
-            if (
-                count(array_filter($conditions, static fn($value, $field) =>
-                    !isset($user->$field) || $user->$field != $value, ARRAY_FILTER_USE_BOTH)) === 0
-            ) {
-                return $user;
-            }
-        }
-        return null;
-    }
-    /**
-     * Perform isolated fixture operation get_in_or_equal.
-     * @param mixed $fields Fixture argument.
-     * @param mixed $style Fixture argument.
-     * @param mixed $prefix Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_in_or_equal($fields, $style, $prefix) {
-        return ['IN (:field0)', ['field0' => $fields[0]]];
-    }
-    /**
-     * Perform isolated fixture operation get_records_sql.
-     * @param mixed $sql Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @param mixed $start Fixture argument.
-     * @param mixed $limit Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_records_sql($sql, $params, $start, $limit) {
-        $this->fields[] = 'profile_field_' . $params['field0'];
-        return $params['data'] === 'SyntheticSchool' && $params['field0'] === 'School' ? $this->users : [];
-    }
-}
+require_once(__DIR__ . '/doubles/verify_ajax_contract/global/fixture_verify_ajax_contract_moodle_exception.php');
+class_alias('fixture_verify_ajax_contract_moodle_exception', 'moodle_exception');
+require_once(__DIR__ . '/doubles/verify_ajax_contract/global/fixture_verify_ajax_contract_dml_exception.php');
+class_alias('fixture_verify_ajax_contract_dml_exception', 'dml_exception');
+require_once(__DIR__ . '/doubles/verify_ajax_contract/global/fixture_verify_ajax_contract_moodle_url.php');
+class_alias('fixture_verify_ajax_contract_moodle_url', 'moodle_url');
+require_once(__DIR__ . '/doubles/verify_ajax_contract/global/fixture_verify_ajax_contract_core_text.php');
+class_alias('fixture_verify_ajax_contract_core_text', 'core_text');
+require_once(__DIR__ . '/doubles/verify_ajax_contract/global/fixture_verify_ajax_contract_fixture_database.php');
+class_alias('fixture_verify_ajax_contract_fixture_database', 'fixture_database');
+require_once(__DIR__ . '/doubles/verify_ajax_contract/global/fixture_verify_ajax_contract_identifier_database.php');
+class_alias('fixture_verify_ajax_contract_identifier_database', 'identifier_database');
 /**
  * Perform isolated fixture operation get_config.
  * @param mixed $component Fixture argument.
@@ -266,8 +159,8 @@ function check($name, $condition) {
         throw new RuntimeException('Failed: ' . $name);
     }
 }
-require $root . '/classes/local/guide_discovery.php';
-require $root . '/classes/local/guide_specimen.php';
+require($root . '/classes/local/guide_discovery.php');
+require($root . '/classes/local/guide_specimen.php');
 $DB = new fixture_database();
 $course = (object)['id' => 123];
 check(
@@ -279,7 +172,7 @@ foreach (['en', 'fr'] as $language) {
     $langsource = file_get_contents($root . '/lang/' . $language . '/local_groupimport.php');
     preg_match_all('/^\$string\[\x27([^\x27]+)\x27\]\s*=/m', $langsource, $keys);
     check($language . ' unique language keys', count($keys[1]) === count(array_unique($keys[1])));
-    require $root . '/lang/' . $language . '/local_groupimport.php';
+    require($root . '/lang/' . $language . '/local_groupimport.php');
     foreach (
         ['discovery_addselect',
          'discovery_adddrop',
@@ -317,7 +210,7 @@ foreach (['en', 'fr'] as $language) {
     foreach (['duplicategroup' => 'group', 'duplicategrouping' => 'grouping'] as $action => $kind) {
         $response = ['success' => false];
         $created = null;
-        eval($dispatch);
+        require(\local_groupimport_fixture_source_file($dispatch));
         $suffix = $language === 'fr' ? ' (copie)' : ' (copy)';
         check($language . ' ' . $action, $response['success'] &&
             $created->name === 'Synthetic ' . $kind . $suffix &&
@@ -329,7 +222,7 @@ foreach (['en', 'fr'] as $language) {
     ) {
         $action = 'duplicategroup';
         $response = ['success' => false];
-        eval($dispatch);
+        require(\local_groupimport_fixture_source_file($dispatch));
         $human = $injected instanceof moodle_exception && !($injected instanceof dml_exception);
         check($language . ' safe ' . get_class($injected), !$response['success'] &&
             $response['error'] === ($human ? $injected->getMessage() : $string['ajaxunexpectederror']));
@@ -363,7 +256,7 @@ foreach (['rollbackhistoryid' => $index, 'confirmimport' => $index, 'action' => 
             $guardcalls = 0;
             $$variable = 1;
             try {
-                eval('if (' . $match[1] . ') { require_sesskey(); }');
+                require(\local_groupimport_fixture_source_file('if (' . $match[1] . ') { require_sesskey(); }'));
                 check(
                     $variable . ' ' . ($submitted ? 'POST' : 'GET') . ' key' . (int)$validkey,
                     $guardcalls === (int)$submitted && (!$submitted || $validkey)
@@ -377,7 +270,7 @@ foreach (['rollbackhistoryid' => $index, 'confirmimport' => $index, 'action' => 
 $resolverstart = strpos($source, 'function local_groupimport_find_user_by_identifier(');
 $resolverend = strpos($source, "\n/**", $resolverstart);
 check('Bounded actual identifier resolver', $resolverstart !== false && $resolverend > $resolverstart);
-eval(substr($source, $resolverstart, $resolverend - $resolverstart));
+require(\local_groupimport_fixture_source_file(substr($source, $resolverstart, $resolverend - $resolverstart)));
 $DB = new identifier_database();
 foreach (['email', 'username', 'idnumber', 'profile_field_School', ''] as $allowedfields) {
     $DB->fields = [];

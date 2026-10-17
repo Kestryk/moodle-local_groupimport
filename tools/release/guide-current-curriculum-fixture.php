@@ -22,7 +22,18 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 $language = ($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en';
 require(__DIR__ . '/../../lang/' . $language . '/local_groupimport.php');
 /**
@@ -50,20 +61,8 @@ function get_string($key, $component, $a = null) {
 function s($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
-/**
- * Isolated fixture double for html_writer.
- */
-class html_writer {
-    /**
-     * Perform isolated fixture operation tag.
-     * @param mixed $name Fixture argument.
-     * @param mixed $value Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function tag($name, $value) {
-        return '<' . $name . '>' . $value . '</' . $name . '>';
-    }
-}
+require_once(__DIR__ . '/doubles/guide_current_curriculum_fixture/global/fixture_guide_current_curriculum_fixture_html_writer.php');
+class_alias('fixture_guide_current_curriculum_fixture_html_writer', 'html_writer');
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 require(__DIR__ . '/../../classes/local/guide_specimen.php');
 $source = file_get_contents(__DIR__ . '/../../manage.php');
@@ -88,7 +87,7 @@ $array = substr(
     $end - $start - strlen("        'tutorialsteps' => ")
 );
 // Only the existing literal steps array is evaluated; never bootstrap manage.php.
-$templatedata['tutorialsteps'] = eval('return ' . rtrim($array, ", \r\n\t") . ';');
+$templatedata['tutorialsteps'] = require(\local_groupimport_fixture_source_file('return ' . rtrim($array, ", \r\n\t") . ';'));
 foreach (['local_groupimport_build_easyedu_guide_template_data'] as $name) {
     $start = strpos($source, 'function ' . $name . '(');
     if ($start === false) {
@@ -123,7 +122,7 @@ foreach (['local_groupimport_build_easyedu_guide_template_data'] as $name) {
     if (!$opened || $depth !== 0) {
         throw new RuntimeException('Unbounded Guide function extraction');
     }
-    eval($body);
+    require(\local_groupimport_fixture_source_file($body));
 }
 $start = strpos($source, "        'paths' => [");
 $end = strpos($source, "        'labels' => [", $start);
@@ -135,7 +134,7 @@ $array = substr(
     $start + strlen("        'paths' => "),
     $end - $start - strlen("        'paths' => ")
 );
-$paths = eval('return ' . rtrim($array, ", \r\n\t") . ';');
+$paths = require(\local_groupimport_fixture_source_file('return ' . rtrim($array, ", \r\n\t") . ';'));
 $data = local_groupimport_build_easyedu_guide_template_data($templatedata);
 $moderncontract = \local_groupimport\local\guide_discovery::modern_reading_contract();
 $active = array_column($data['slides'], 'id') === $moderncontract['slideIds'];

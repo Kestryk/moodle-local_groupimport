@@ -22,23 +22,20 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-require __DIR__ . '/spreadsheet-libraries.php';
-define('MOODLE_INTERNAL', true);
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends RuntimeException {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $key Fixture argument.
-     * @param mixed $component Fixture argument.
-     * @param mixed $rest Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($key, $component = '', ...$rest) {
-        parent::__construct($key);
-    }
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
 }
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require(__DIR__ . '/spreadsheet-libraries.php');
+require_once(__DIR__ . '/doubles/security_s6_isolated/global/fixture_security_s6_isolated_moodle_exception.php');
+class_alias('fixture_security_s6_isolated_moodle_exception', 'moodle_exception');
 /**
  * Perform isolated fixture operation make_request_directory.
  * @return mixed Fixture result.
@@ -47,8 +44,8 @@ function make_request_directory() {
     return $GLOBALS['requestdir'];
 }
 $root = dirname(__DIR__, 3);
-require $root . '/classes/local/import_preview.php';
-require $root . '/classes/local/import_reader.php';
+require($root . '/classes/local/import_preview.php');
+require($root . '/classes/local/import_reader.php');
 use local_groupimport\local\import_reader as reader;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

@@ -22,6 +22,8 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+defined('MOODLE_INTERNAL') || die();
+
 $libraryroot = $argv[1] ?? '';
 if (!is_dir($libraryroot . '/phpspreadsheet/phpspreadsheet/src/PhpSpreadsheet')) {
     throw new RuntimeException('Pass the path of the Moodle lib directory (read-only libraries).');
@@ -40,7 +42,7 @@ spl_autoload_register(static function (string $class) use ($libraryroot): void {
         if (str_starts_with($class, $prefix)) {
             $file = $libraryroot . $relative . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
             if (is_file($file)) {
-                require $file;
+                require($file);
             }
             return;
         }

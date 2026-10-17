@@ -23,6 +23,11 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $options = getopt('', ['moodle-root:', 'manifest:', 'action:', 'existing:', 'multi:']);
 require($options['moodle-root'] . '/config.php');
 require_once($CFG->dirroot . '/group/lib.php');

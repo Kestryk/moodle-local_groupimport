@@ -22,7 +22,18 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 require(__DIR__ . '/../../lang/' . (($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en') . '/local_groupimport.php');
 /**
  * Perform isolated fixture operation get_string.
@@ -45,20 +56,8 @@ function get_string($key, $component) {
 function s($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
-/**
- * Isolated fixture double for html_writer.
- */
-class html_writer {
-    /**
-     * Perform isolated fixture operation tag.
-     * @param mixed $name Fixture argument.
-     * @param mixed $value Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function tag($name, $value) {
-        return '<' . $name . '>' . $value . '</' . $name . '>';
-    }
-}
+require_once(__DIR__ . '/doubles/guide_discovery_fixture/global/fixture_guide_discovery_fixture_html_writer.php');
+class_alias('fixture_guide_discovery_fixture_html_writer', 'html_writer');
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 require(__DIR__ . '/../../classes/local/guide_specimen.php');
 $reference = [];
@@ -83,7 +82,7 @@ foreach (['participant', 'group', 'grouping'] as $type) {
         'visualcarddetail' => ['retainedStaticFixture' => true]];
     $cardtype = $type;
     // Execute only the exact bounded presentation branch; never bootstrap manage.php.
-    eval($inspectionadapter);
+    require(\local_groupimport_fixture_source_file($inspectionadapter));
     $cardlessons[] = $slide;
 }
 $cardlessonsbytype = array_column($cardlessons, null, 'type');

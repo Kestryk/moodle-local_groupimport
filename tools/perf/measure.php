@@ -23,7 +23,13 @@
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
 
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
@@ -390,7 +396,7 @@ try {
         $_POST = ['userid' => $userid];
         $action = 'userdetails';
         $response = ['success' => false];
-        eval(substr($source, $start, $end - $start));
+        require(\local_groupimport_fixture_source_file(substr($source, $start, $end - $start)));
         $checks['native-source-dispatch'] = !empty($response['success']) && $response['details'] === $details;
         $checks['existing-sesskey-course-capability-gates-retained'] =
             str_contains(substr($source, 0, $start), 'require_sesskey();') &&
@@ -432,7 +438,7 @@ try {
                     $rewritten .= is_array($token) ? $token[1] : $token;
                 }
             }
-            eval($rewritten);
+            require(\local_groupimport_fixture_source_file($rewritten));
         }
         if ($case === 'manage') {
             $outcome = ['passed' => true];
