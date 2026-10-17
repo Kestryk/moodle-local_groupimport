@@ -27,7 +27,6 @@ require_once(__DIR__ . '/lib.php');
 require_once($CFG->dirroot . '/group/lib.php'); // Fonctions groups_*.
 
 use local_groupimport\form\import_form;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**
  * Clean an import cell value (handles BOM, NBSP, zero-width chars, trims).
@@ -81,51 +80,12 @@ function local_groupimport_detect_delimiter_line(string $line): string {
  * @return array{header: array, rows: array} Parsed data.
  */
 function local_groupimport_parse_csv_content(string $content, array &$errors): array {
-    $lines = preg_split("/\r\n|\n|\r/", $content);
-
-    // Find the first non-empty line to detect the delimiter.
-    $headerline = null;
-    foreach ($lines as $line) {
-        if (trim($line) !== '') {
-            $headerline = $line;
-            break;
-        }
-    }
-
-    if ($headerline === null) {
-        $errors[] = get_string('csvempty', 'local_groupimport');
+    try {
+        return \local_groupimport\local\import_reader::csv($content);
+    } catch (moodle_exception $exception) {
+        $errors[] = $exception->getMessage();
         return ['header' => [], 'rows' => []];
     }
-
-    $delimiter = local_groupimport_detect_delimiter_line($headerline);
-
-    // Parse header.
-    $header = str_getcsv($headerline, $delimiter);
-    $header = array_map('trim', $header);
-
-    // Parse rows.
-    $rows = [];
-    $started = false;
-
-    foreach ($lines as $line) {
-        if (!$started) {
-            // Skip the first occurrence of the header line.
-            if (trim($line) === trim($headerline)) {
-                $started = true;
-            }
-            continue;
-        }
-
-        if (trim($line) === '') {
-            continue;
-        }
-
-        $data = str_getcsv($line, $delimiter);
-        $data = array_map('trim', $data);
-        $rows[] = $data;
-    }
-
-    return ['header' => $header, 'rows' => $rows];
 }
 
 /**
@@ -137,61 +97,13 @@ function local_groupimport_parse_csv_content(string $content, array &$errors): a
  * @return array{header: array, rows: array} Parsed data.
  */
 function local_groupimport_parse_excel_content(string $content, string $filename, array &$errors): array {
-    $tempdir = make_temp_directory('local_groupimport');
-    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    $extension = in_array($extension, ['xls', 'xlsx'], true) ? $extension : 'xlsx';
-    $tempfile = $tempdir . DIRECTORY_SEPARATOR . uniqid('import_', true) . '.' . $extension;
-
-    if (file_put_contents($tempfile, $content) === false) {
-        $errors[] = get_string('csvloaderror', 'local_groupimport', get_string('csvemptyfiledetail', 'local_groupimport'));
-        return ['header' => [], 'rows' => []];
-    }
-
     try {
-        $reader = IOFactory::createReaderForFile($tempfile);
-        $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($tempfile);
-        $worksheet = $spreadsheet->getActiveSheet();
-        $rawrows = $worksheet->toArray('', false, false, false);
+        return \local_groupimport\local\import_reader::excel($content, $filename);
     } catch (Throwable $exception) {
-        $errors[] = get_string('spreadsheetreaderror', 'local_groupimport');
-        @unlink($tempfile);
+        $errors[] = $exception instanceof moodle_exception ? $exception->getMessage() :
+            get_string('spreadsheetreaderror', 'local_groupimport');
         return ['header' => [], 'rows' => []];
     }
-
-    @unlink($tempfile);
-
-    $header = [];
-    $rows = [];
-    $headerfound = false;
-
-    foreach ($rawrows as $rawrow) {
-        $row = array_map(static function ($value): string {
-            return local_groupimport_clean_cell((string)$value);
-        }, $rawrow);
-
-        $hascontent = array_filter($row, static function (string $value): bool {
-            return $value !== '';
-        });
-
-        if (empty($hascontent)) {
-            continue;
-        }
-
-        if (!$headerfound) {
-            $header = $row;
-            $headerfound = true;
-            continue;
-        }
-
-        $rows[] = $row;
-    }
-
-    if (!$headerfound) {
-        $errors[] = get_string('csvempty', 'local_groupimport');
-    }
-
-    return ['header' => $header, 'rows' => $rows];
 }
 
 /**
@@ -209,6 +121,10 @@ function local_groupimport_parse_import_content(string $content, string $filenam
         return local_groupimport_parse_excel_content($content, $filename, $errors);
     }
 
+    if ($extension !== 'csv') {
+        $errors[] = get_string('importformatinvalid', 'local_groupimport');
+        return ['header' => [], 'rows' => []];
+    }
     return local_groupimport_parse_csv_content($content, $errors);
 }
 
@@ -1038,7 +954,10 @@ $PAGE->requires->js_call_amd('local_groupimport/csv_import', 'init', [
     ],
 ]);
 
-$mform = new import_form(null, ['courseid' => $course->id]);
+$maximportbytes = \local_groupimport\local\import_reader::max_bytes(
+    get_max_upload_file_size($CFG->maxbytes, $course->maxbytes ?? 0)
+);
+$mform = new import_form(null, ['courseid' => $course->id, 'maxbytes' => $maximportbytes]);
 $allowedimportfields = local_groupimport_get_allowed_import_userfields();
 
 $success = [];
@@ -1162,8 +1081,8 @@ if ($confirmimport && data_submitted()) {
 
     if ($content === false || $content === null || $content === '') {
         $errors[] = get_string('csvloaderror', 'local_groupimport', get_string('csvemptyfiledetail', 'local_groupimport'));
-    } else if (strlen($content) > \local_groupimport\local\import_preview::MAX_BYTES) {
-        $errors[] = get_string('importfilelimit', 'local_groupimport', 5);
+    } else if (strlen($content) > $maximportbytes) {
+        $errors[] = get_string('importeffectivefilelimit', 'local_groupimport', display_size($maximportbytes));
     } else {
         $filehash = hash('sha256', $content);
         $parsed = local_groupimport_parse_import_content($content, $filename, $errors);
@@ -1191,6 +1110,7 @@ if ($confirmimport && data_submitted()) {
 }
 
 $mform = new import_form(null, [
+    'maxbytes' => $maximportbytes,
     'courseid' => $course->id,
     'submitlabel' => $preview !== null
         ? get_string('replacefile', 'local_groupimport')

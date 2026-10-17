@@ -1154,3 +1154,11 @@ $string['longlistaddedmembers'] = '{$a} more members displayed';
 $string['longlistaddedmembers_one'] = '{$a} more member displayed';
 $string['longlistaddedgroups'] = '{$a} more groups displayed';
 $string['longlistaddedgroups_one'] = '{$a} more group displayed';
+
+$string['importencodingerror'] = 'The CSV encoding is invalid or contains unsupported binary data.';
+$string['importcsvinvalid'] = 'The CSV contains invalid or unclosed quoted fields.';
+$string['importformatinvalid'] = 'Only genuine CSV, XLS or XLSX files are supported.';
+$string['importstructurelimit'] = 'The file exceeds the supported worksheet, column, row or cell limits.';
+$string['importeffectivefilelimit'] = 'The file exceeds the permitted upload size: {$a}.';
+
+$string['importlegacyxlsunavailable'] = 'This Moodle installation does not provide the legacy XLS reader. Save the file as XLSX or CSV.';
