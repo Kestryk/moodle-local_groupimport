@@ -13,7 +13,7 @@
                     <span class="easyedu-guide-modal__hero-icon fa fa-compass" aria-hidden="true"></span>
                     <div>
                         {{#guideeyebrow}}<p class="easyedu-guide-modal__eyebrow">{{guideeyebrow}}</p>{{/guideeyebrow}}
-                        {{#guidemodaltitle}}<h2>{{guidemodaltitle}}</h2>{{/guidemodaltitle}}
+                        {{#guidemodaltitle}}<h2>{{#guideeyebrow}}<span class="easyedu-guide-modal__title-full">{{/guideeyebrow}}{{guidemodaltitle}}{{#guideeyebrow}}</span><span class="easyedu-guide-modal__title-short">{{guideeyebrow}}</span>{{/guideeyebrow}}</h2>{{/guidemodaltitle}}
                         {{^guidemodaltitle}}<h2>{{guidetitle}}</h2>{{/guidemodaltitle}}
                         {{^guideeyebrow}}<p>{{guidesubtitle}}</p>{{/guideeyebrow}}
                     </div>
@@ -87,7 +87,7 @@
                                     {{/navcategorymanaged}}
                                     {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                                 </span>
-                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
+                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}<span class="easyedu-guide-nav-item__number">{{navnumber}}</span><span class="easyedu-guide-nav-item__sep"> · </span>{{/navnumber}}<span class="easyedu-guide-nav-item__text">{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span></span>
                             </span>
                             {{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                             {{#requires}}
@@ -169,7 +169,7 @@
                             {{/requires}}
                             {{#discoveryscene}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-submit="{{mobileaddsubmit}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
-                                <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example">{{caption}}</p>
+                                <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example"><span class="easyedu-guide-scene__caption-full">{{caption}}</span><span class="easyedu-guide-scene__caption-short">{{captionshort}}</span></p>
                             {{^concepts}}{{^creation}}
                             <header class="easyedu-guide-scene__header{{^membership}} easyedu-guide-scene__header--single{{/membership}}" data-guide-scene-header data-step-label="{{steplabel}}" data-ready-label="{{readylabel}}" data-paused-label="{{pausedlabel}}" data-add-label="{{addmodelabel}}" data-move-label="{{movemodelabel}}">
                                 <div class="easyedu-guide-scene__header-controls">
@@ -191,8 +191,7 @@
                                 <span class="easyedu-guide-scene__live-content">
                                     <span class="fa fa-check-circle" data-guide-live-complete aria-hidden="true" hidden></span>
                                     <span class="sr-only" data-guide-live-announcement aria-live="polite">{{initiallabel}}</span>
-                                    <span data-guide-live-copy aria-hidden="true">{{initiallabel}}</span>
-                                    <span class="easyedu-guide-scene__activity" data-guide-activity aria-hidden="true" hidden><span></span><span></span><span></span></span>
+                                    <span data-guide-live-copy aria-hidden="true">{{initiallabel}}</span><span class="easyedu-guide-scene__activity" data-guide-activity aria-hidden="true" hidden><span></span><span></span><span></span></span>
                                 </span>
                                 <span class="easyedu-guide-scene__playback" aria-live="off">
                                     <button type="button" class="easyedu-guide-scene__playback-button" data-guide-playback="pause" data-pause-label="{{pauselabel}}" data-resume-label="{{resumelabel}}" aria-label="{{pauselabel}}" aria-pressed="false" disabled><span class="fa fa-pause" aria-hidden="true"></span></button>
@@ -231,7 +230,8 @@
                                 <div data-guide-names class="easyedu-guide-scene__results" aria-live="polite" data-invalid="{{invalidlabel}}"></div>
                                 <template data-guide-name-card><span class="easyedu-guide-scene__card"><span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong data-guide-name></strong><small>{{emptymembers}}</small></span></span></template>
                                 {{/creation}}
-                                {{^concepts}}{{^creation}}
+                                {{#simplecreate}}{{> guide_simplecreate}}{{/simplecreate}}
+                                {{^concepts}}{{^creation}}{{^simplecreate}}
                                 {{#inspection}}
                                 <div class="easyedu-guide-scene__creation-controls easyedu-guide-scene__inspection-stage" data-guide-stage>
                                     <div class="easyedu-guide-scene__inspection-card{{#grouping}} easyedu-guide-scene__inspection-card--grouping{{/grouping}}" data-guide-inspection-card>
@@ -318,7 +318,7 @@
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>
-                                {{/inspection}}{{/creation}}{{/concepts}}
+                                {{/inspection}}{{/simplecreate}}{{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
                             {{#hasvisualflow}}
@@ -656,11 +656,11 @@
                 <button type="button" class="btn btn-link easyedu-guided-panel__minimize" data-easyedu-guide-checklist-minimize="1" aria-label="{{guideminimizelabel}}" aria-expanded="true">
                     <span class="fa fa-minus" aria-hidden="true"></span>
                 </button>
+                {{#discoverypresentation}}<button type="button" class="btn btn-outline-secondary easyedu-guided-panel__restore" data-easyedu-guide-checklist-restore="1" aria-expanded="false" hidden><span class="fa fa-expand" aria-hidden="true"></span><span class="sr-only">{{guiderestorelabel}}</span></button>{{/discoverypresentation}}
                 <button type="button" class="btn btn-link easyedu-guided-panel__close" data-easyedu-guide-checklist-close="1" aria-label="{{guidecloselabel}}">
                     {{#discoverypresentation}}<span aria-hidden="true">&times;</span>{{/discoverypresentation}}
                     {{^discoverypresentation}}<span class="fa fa-times" aria-hidden="true"></span>{{/discoverypresentation}}
                 </button>
-                {{#discoverypresentation}}<button type="button" class="btn btn-outline-secondary easyedu-guided-panel__restore" data-easyedu-guide-checklist-restore="1" aria-expanded="false" hidden><span class="fa fa-expand" aria-hidden="true"></span><span>{{guiderestorelabel}}</span></button>{{/discoverypresentation}}
             </div>
         </div>
         <div class="easyedu-guide-checklist__items easyedu-guided-panel__steps" data-easyedu-guide-checklist-items></div>

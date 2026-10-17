@@ -5,36 +5,51 @@
 // Foundations / Card quick actions / Overflow trigger (desktop).
 // Source-preserving extraction: responsive positioning and 44px touch-target
 // composition remain with mobile-card-menu-trigger and the consumer adapter.
+// Shared hover/pressed disc of every card header action: 24 px, radial paint,
+// so borders and the 44 px touch target never resize it.
+@mixin card-action-disc($color) {
+  background: radial-gradient(circle, $color 0 0.75rem, transparent calc(0.75rem + 0.6px));
+}
+
+// Foundations / Card quick actions / Overflow trigger. Same visual states as the
+// direct icon (24 px radial disc, no ring, K16-55); the box (32 px desktop, 44 px
+// touch target on mobile) stays with the consumer, so only colour and paint are set here.
 @mixin card-overflow-trigger {
   align-items: center;
   background: transparent;
   border: 0;
-  border-radius: 0.4rem;
-  color: #607487;
+  border-radius: 999px;
+  color: var(--easyedu-primary);
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   height: 1.85rem;
   justify-content: center;
   line-height: 1;
   width: 1.85rem;
 
-  &:hover {
-    background: #f8fafc;
-    border-color: #bdc9d5;
-    color: #40566c;
-    text-decoration: none;
-  }
+  &,
+  &.btn {
+    &:hover,
+    &:focus-visible {
+      @include card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
+      border-color: transparent;
+      color: var(--easyedu-primary-strong);
+      text-decoration: none;
+    }
 
-  &:focus-visible {
-    background: #f8fafc;
-    color: #40566c;
-    text-decoration: none;
-    @include focus.ring($border-color: #bdc9d5);
-  }
+    &[aria-expanded="true"] {
+      @include card-action-disc(var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)));
+      color: var(--easyedu-primary-strong);
+    }
 
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    }
+
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
   }
 }
 
@@ -77,11 +92,7 @@
     &:focus-visible {
       // K16-55 (Kevin 16/10: the circles had grown too big): a 24 px disc inside the unchanged
       // hit target, without the outline ring. A radial paint, so .p-0 / borders cannot resize it.
-      background: radial-gradient(
-        circle,
-        var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)) 0 0.75rem,
-        transparent calc(0.75rem + 0.6px)
-      );
+      @include card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
       border-color: transparent;
       color: var(--easyedu-primary-strong);
       text-decoration: none;
@@ -91,11 +102,7 @@
     &[aria-pressed="true"],
     &[aria-expanded="true"],
     &.is-active {
-      background: radial-gradient(
-        circle,
-        var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)) 0 0.75rem,
-        transparent calc(0.75rem + 0.6px)
-      );
+      @include card-action-disc(var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)));
       border-color: transparent;
       color: var(--easyedu-primary-strong);
     }

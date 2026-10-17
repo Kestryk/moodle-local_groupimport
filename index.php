@@ -27,7 +27,6 @@ require_once(__DIR__ . '/lib.php');
 require_once($CFG->dirroot . '/group/lib.php'); // Fonctions groups_*.
 
 use local_groupimport\form\import_form;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**
  * Clean an import cell value (handles BOM, NBSP, zero-width chars, trims).
@@ -81,51 +80,12 @@ function local_groupimport_detect_delimiter_line(string $line): string {
  * @return array{header: array, rows: array} Parsed data.
  */
 function local_groupimport_parse_csv_content(string $content, array &$errors): array {
-    $lines = preg_split("/\r\n|\n|\r/", $content);
-
-    // Find the first non-empty line to detect the delimiter.
-    $headerline = null;
-    foreach ($lines as $line) {
-        if (trim($line) !== '') {
-            $headerline = $line;
-            break;
-        }
-    }
-
-    if ($headerline === null) {
-        $errors[] = get_string('csvempty', 'local_groupimport');
+    try {
+        return \local_groupimport\local\import_reader::csv($content);
+    } catch (moodle_exception $exception) {
+        $errors[] = $exception->getMessage();
         return ['header' => [], 'rows' => []];
     }
-
-    $delimiter = local_groupimport_detect_delimiter_line($headerline);
-
-    // Parse header.
-    $header = str_getcsv($headerline, $delimiter);
-    $header = array_map('trim', $header);
-
-    // Parse rows.
-    $rows = [];
-    $started = false;
-
-    foreach ($lines as $line) {
-        if (!$started) {
-            // Skip the first occurrence of the header line.
-            if (trim($line) === trim($headerline)) {
-                $started = true;
-            }
-            continue;
-        }
-
-        if (trim($line) === '') {
-            continue;
-        }
-
-        $data = str_getcsv($line, $delimiter);
-        $data = array_map('trim', $data);
-        $rows[] = $data;
-    }
-
-    return ['header' => $header, 'rows' => $rows];
 }
 
 /**
@@ -137,61 +97,13 @@ function local_groupimport_parse_csv_content(string $content, array &$errors): a
  * @return array{header: array, rows: array} Parsed data.
  */
 function local_groupimport_parse_excel_content(string $content, string $filename, array &$errors): array {
-    $tempdir = make_temp_directory('local_groupimport');
-    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    $extension = in_array($extension, ['xls', 'xlsx'], true) ? $extension : 'xlsx';
-    $tempfile = $tempdir . DIRECTORY_SEPARATOR . uniqid('import_', true) . '.' . $extension;
-
-    if (file_put_contents($tempfile, $content) === false) {
-        $errors[] = get_string('csvloaderror', 'local_groupimport', get_string('csvemptyfiledetail', 'local_groupimport'));
-        return ['header' => [], 'rows' => []];
-    }
-
     try {
-        $reader = IOFactory::createReaderForFile($tempfile);
-        $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($tempfile);
-        $worksheet = $spreadsheet->getActiveSheet();
-        $rawrows = $worksheet->toArray('', false, false, false);
+        return \local_groupimport\local\import_reader::excel($content, $filename);
     } catch (Throwable $exception) {
-        $errors[] = get_string('spreadsheetreaderror', 'local_groupimport');
-        @unlink($tempfile);
+        $errors[] = $exception instanceof moodle_exception ? $exception->getMessage() :
+            get_string('spreadsheetreaderror', 'local_groupimport');
         return ['header' => [], 'rows' => []];
     }
-
-    @unlink($tempfile);
-
-    $header = [];
-    $rows = [];
-    $headerfound = false;
-
-    foreach ($rawrows as $rawrow) {
-        $row = array_map(static function ($value): string {
-            return local_groupimport_clean_cell((string)$value);
-        }, $rawrow);
-
-        $hascontent = array_filter($row, static function (string $value): bool {
-            return $value !== '';
-        });
-
-        if (empty($hascontent)) {
-            continue;
-        }
-
-        if (!$headerfound) {
-            $header = $row;
-            $headerfound = true;
-            continue;
-        }
-
-        $rows[] = $row;
-    }
-
-    if (!$headerfound) {
-        $errors[] = get_string('csvempty', 'local_groupimport');
-    }
-
-    return ['header' => $header, 'rows' => $rows];
 }
 
 /**
@@ -209,6 +121,10 @@ function local_groupimport_parse_import_content(string $content, string $filenam
         return local_groupimport_parse_excel_content($content, $filename, $errors);
     }
 
+    if ($extension !== 'csv') {
+        $errors[] = get_string('importformatinvalid', 'local_groupimport');
+        return ['header' => [], 'rows' => []];
+    }
     return local_groupimport_parse_csv_content($content, $errors);
 }
 
@@ -345,43 +261,13 @@ function local_groupimport_build_preview_rows(array $parsed, array &$errors): ar
  *
  * @param string $identifier User identifier.
  * @param string $userfield Identification field.
+ * @param context_course $context Authorized course.
  * @return array User records.
  */
-function local_groupimport_find_import_users_by_field(string $identifier, string $userfield): array {
-    global $DB;
-
-    if ($userfield === 'email') {
-        $identifier = strtolower(preg_replace('/\s+/u', '', $identifier));
-    }
-
-    if ($userfield === 'username') {
-        return $DB->get_records('user', ['username' => $identifier, 'deleted' => 0], '', '*', 0, 2);
-    }
-
-    if ($userfield === 'email') {
-        return $DB->get_records('user', ['email' => $identifier, 'deleted' => 0], '', '*', 0, 2);
-    }
-
-    if ($userfield === 'idnumber') {
-        return $DB->get_records('user', ['idnumber' => $identifier, 'deleted' => 0], '', '*', 0, 2);
-    }
-
-    if (strpos($userfield, 'profile_field_') === 0) {
-        $shortname = substr($userfield, strlen('profile_field_'));
-        $sql = "SELECT u.*
-                  FROM {user} u
-                  JOIN {user_info_data} d ON d.userid = u.id
-                  JOIN {user_info_field} f ON f.id = d.fieldid
-                 WHERE f.shortname = :shortname
-                   AND d.data = :data
-                   AND u.deleted = 0";
-        return $DB->get_records_sql($sql, [
-            'shortname' => $shortname,
-            'data' => $identifier,
-        ], 0, 2);
-    }
-
-    return [];
+function local_groupimport_find_import_users_by_field(
+    string $identifier, string $userfield, context_course $context
+): array {
+    return \local_groupimport\local\import_user_lookup::by_field($identifier, $userfield, $context);
 }
 
 /**
@@ -389,15 +275,16 @@ function local_groupimport_find_import_users_by_field(string $identifier, string
  *
  * @param string $identifier User identifier.
  * @param array $errors Errors array (by reference).
- * @return stdClass|null User record, if exactly one user is matched.
+ * @param context_course $context Authorized course.
+ * @return stdClass|null Enrolled user id, if exactly one user is matched.
  */
-function local_groupimport_find_import_user(string $identifier, array &$errors): ?stdClass {
+function local_groupimport_find_import_user(string $identifier, array &$errors, context_course $context): ?stdClass {
     $allowedfields = local_groupimport_get_allowed_import_userfields();
     $matches = [];
     $matchedlabels = [];
 
     foreach ($allowedfields as $fieldkey => $fieldlabel) {
-        $fieldmatches = local_groupimport_find_import_users_by_field($identifier, $fieldkey);
+        $fieldmatches = local_groupimport_find_import_users_by_field($identifier, $fieldkey, $context);
         foreach ($fieldmatches as $userid => $user) {
             $matches[$userid] = $user;
             $matchedlabels[$userid][] = $fieldlabel;
@@ -409,18 +296,18 @@ function local_groupimport_find_import_user(string $identifier, array &$errors):
     }
 
     if (count($matches) > 1) {
-        $errors[] = get_string('userautomaticmultiplematches', 'local_groupimport', $identifier);
+        $errors[] = \local_groupimport\local\import_user_lookup::unavailable_message($identifier);
         return null;
     }
 
-    $errors[] = get_string('userautomaticnotfound', 'local_groupimport', $identifier);
+    $errors[] = \local_groupimport\local\import_user_lookup::unavailable_message($identifier);
     return null;
 }
 
 /**
  * Batch import matching; unlike pasted IDs, import compares every enabled field.
  */
-function local_groupimport_find_import_users(array $identifiers): array {
+function local_groupimport_find_import_users(array $identifiers, context_course $context): array {
     $identifiers = array_values(array_unique($identifiers));
     $matches = array_fill_keys($identifiers, []);
     foreach (local_groupimport_get_allowed_import_userfields() as $field => $label) {
@@ -433,14 +320,15 @@ function local_groupimport_find_import_users(array $identifiers): array {
         $fieldmatches = \local_groupimport\local\batch_reader::users(
             array_values($values),
             $custom ? 'profile' : $field,
-            $custom ? [substr($field, strlen('profile_field_'))] : []
+            $custom ? [substr($field, strlen('profile_field_'))] : [],
+            $context
         );
         foreach ($values as $identifier => $value) {
             $users = $fieldmatches[$value] ?? [];
             // Retain the original two-row limit and database first-row behavior
             // for exceptional non-unique core/profile values.
             if (count($users) > 1) {
-                $users = local_groupimport_find_import_users_by_field((string)$identifier, $field);
+                $users = local_groupimport_find_import_users_by_field((string)$identifier, $field, $context);
             }
             foreach ($users as $user) {
                 $matches[$identifier][$user->id] = $user;
@@ -451,8 +339,7 @@ function local_groupimport_find_import_users(array $identifiers): array {
     foreach ($matches as $identifier => $users) {
         $result[$identifier] = ['user' => count($users) === 1 ? reset($users) : null, 'errors' => []];
         if (count($users) !== 1) {
-            $result[$identifier]['errors'][] = get_string(count($users) > 1
-                ? 'userautomaticmultiplematches' : 'userautomaticnotfound', 'local_groupimport', $identifier);
+            $result[$identifier]['errors'][] = \local_groupimport\local\import_user_lookup::unavailable_message($identifier);
         }
     }
     return $result;
@@ -481,7 +368,7 @@ function local_groupimport_validate_preview_rows(array $rows, context_course $co
             $groupingnames[] = local_groupimport_clean_cell((string)($row['groupingname'] ?? ''));
         }
     }
-    $resolved = local_groupimport_find_import_users($identifiers);
+    $resolved = local_groupimport_find_import_users($identifiers, $context);
     $enrolled = \local_groupimport\local\batch_reader::enrolled($context);
     $groups = \local_groupimport\local\batch_reader::names('groups', (int)$context->instanceid, $groupnames);
     $groupings = \local_groupimport\local\batch_reader::names(
@@ -505,7 +392,7 @@ function local_groupimport_validate_preview_rows(array $rows, context_course $co
             if (!$user) {
                 $rowmessages = array_merge($rowmessages, $lookupmessages);
             } else if (!isset($enrolled[$user->id])) {
-                $rowmessages[] = get_string('usernotenrolled', 'local_groupimport', $identifier);
+                $rowmessages[] = \local_groupimport\local\import_user_lookup::unavailable_message($identifier);
             } else {
                 $groupmatches = $groups[$groupname] ?? [];
                 $groupid = count($groupmatches) > 1 ? groups_get_group_by_name($context->instanceid, $groupname) :
@@ -593,7 +480,12 @@ function local_groupimport_record_import_history(
         'changesjson' => json_encode($changes, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR),
         'timecreated' => time(),
     ];
-    return (int)$DB->insert_record('local_groupimport_history', $record);
+    $historyid = (int)$DB->insert_record('local_groupimport_history', $record);
+    \local_groupimport\event\import_applied::create([
+        'objectid' => $historyid,
+        'context' => context_course::instance($courseid),
+    ])->trigger();
+    return $historyid;
 }
 
 /**
@@ -694,7 +586,7 @@ function local_groupimport_process_import_rows(
         }
 
         $errorcount = count($errors);
-        $user = local_groupimport_find_import_user($identifier, $errors);
+        $user = local_groupimport_find_import_user($identifier, $errors, $context);
         if (!$user) {
             $reportrow['status'] = 'error';
             $reportrow['messages'] = array_slice($errors, $errorcount);
@@ -702,8 +594,11 @@ function local_groupimport_process_import_rows(
             continue;
         }
 
+        // Bind report rows to the subject even when no membership is applied (Privacy S2).
+        $reportrow['userid'] = (int)$user->id;
+
         if (!is_enrolled($context, $user->id)) {
-            $message = get_string('usernotenrolled', 'local_groupimport', $identifier);
+            $message = \local_groupimport\local\import_user_lookup::unavailable_message($identifier);
             $errors[] = $message;
             $reportrow['status'] = 'error';
             $reportrow['messages'][] = $message;
@@ -833,7 +728,12 @@ function local_groupimport_process_import_rows(
                 if (isset($expectedmembers[(int)$currentmember->userid])) {
                     continue;
                 }
-                groups_remove_member((int)$groupid, (int)$currentmember->userid);
+                if (!groups_remove_member_allowed((int)$groupid, (int)$currentmember->userid)) {
+                    throw new moodle_exception('invaliddata', 'error');
+                }
+                if (!groups_remove_member((int)$groupid, (int)$currentmember->userid)) {
+                    throw new moodle_exception('invaliddata', 'error');
+                }
                 $changes['removedmembers'][] = [
                     'groupid' => (int)$groupid,
                     'userid' => (int)$currentmember->userid,
@@ -886,121 +786,135 @@ function local_groupimport_rollback_import(stdClass $history, int $userid): stdC
 
     $context = context_course::instance((int)$history->courseid);
     $transaction = $DB->start_delegated_transaction();
+    try {
 
-    $result = (object)[
-        'members' => 0,
-        'assignments' => 0,
-        'groups' => 0,
-        'groupings' => 0,
-        'removedmembers' => 0,
-        'unassigned' => 0,
-        'skipped' => 0,
-    ];
+        $result = (object)[
+            'members' => 0,
+            'assignments' => 0,
+            'groups' => 0,
+            'groupings' => 0,
+            'removedmembers' => 0,
+            'unassigned' => 0,
+            'skipped' => 0,
+        ];
 
-    $targetmembers = [];
-    $targetgroupings = [];
-    $memberids = array_map(static fn(array $row): int => (int)($row['userid'] ?? 0), $desiredstate);
-    $existingusers = \local_groupimport\local\batch_reader::records('user', $memberids, [], 'id');
-    $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
-    $groupnames = array_map(static fn(array $row): string =>
-        clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT), $desiredstate);
-    $groupingnames = array_map(static fn(array $row): string =>
-        clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT), $desiredstate);
-    $groups = \local_groupimport\local\batch_reader::names('groups', (int)$history->courseid, $groupnames);
-    $groupings = \local_groupimport\local\batch_reader::names('groupings', (int)$history->courseid, $groupingnames);
-    [$members, $assignments] = \local_groupimport\local\batch_reader::relationships((int)$history->courseid);
-    $createdgroups = false;
-    $createdgroupings = false;
-    foreach ($desiredstate as $row) {
-        $memberid = (int)($row['userid'] ?? 0);
-        $groupname = clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT);
-        $groupingname = clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT);
-        if (
-            !$memberid || $groupname === '' || !isset($existingusers[$memberid]) ||
-                !isset($enrolledusers[$memberid])
-        ) {
-            $result->skipped++;
-            continue;
-        }
-
-        $groupmatches = $groups[$groupname] ?? [];
-        $groupid = count($groupmatches) > 1 ? groups_get_group_by_name((int)$history->courseid, $groupname) :
-            ($groupmatches[0]->id ?? false);
-        // Native group lookup uses PHP equality, including numeric-name aliases.
-        // Newly created names were absent from the original snapshot.
-        if (!$groupid && $createdgroups) {
-            $groupid = groups_get_group_by_name((int)$history->courseid, $groupname);
-        }
-        if (!$groupid) {
-            $groupid = groups_create_group((object)[
-                'courseid' => (int)$history->courseid,
-                'name' => $groupname,
-            ]);
-            $result->groups++;
-            $createdgroups = true;
-        }
-        $groups[$groupname] = [(object)['id' => $groupid]];
-        $targetmembers[$groupid][$memberid] = true;
-
-        if (!isset($members[$groupid][$memberid])) {
-            if (groups_add_member($groupid, $memberid)) {
-                $members[$groupid][$memberid] = true;
+        $targetmembers = [];
+        $targetgroupings = [];
+        $memberids = array_map(static fn(array $row): int => (int)($row['userid'] ?? 0), $desiredstate);
+        $existingusers = \local_groupimport\local\batch_reader::records('user', $memberids, [], 'id');
+        $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
+        $groupnames = array_map(static fn(array $row): string =>
+            clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT), $desiredstate);
+        $groupingnames = array_map(static fn(array $row): string =>
+            clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT), $desiredstate);
+        $groups = \local_groupimport\local\batch_reader::names('groups', (int)$history->courseid, $groupnames);
+        $groupings = \local_groupimport\local\batch_reader::names('groupings', (int)$history->courseid, $groupingnames);
+        [$members, $assignments] = \local_groupimport\local\batch_reader::relationships((int)$history->courseid);
+        $createdgroups = false;
+        $createdgroupings = false;
+        foreach ($desiredstate as $row) {
+            $memberid = (int)($row['userid'] ?? 0);
+            $groupname = clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT);
+            $groupingname = clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT);
+            if (
+                !$memberid || $groupname === '' || !isset($existingusers[$memberid]) ||
+                    !isset($enrolledusers[$memberid])
+            ) {
+                $result->skipped++;
+                continue;
             }
-            $result->members++;
-        }
 
-        if ($groupingname === '') {
-            continue;
-        }
-        $groupingmatches = $groupings[$groupingname] ?? [];
-        $groupingid = count($groupingmatches) > 1 ? $DB->get_field('groupings', 'id', [
-            'courseid' => (int)$history->courseid,
-            'name' => $groupingname,
-        ]) : ($groupingmatches[0]->id ?? false);
-        if (!$groupingid && $createdgroupings) {
-            $groupingid = $DB->get_field('groupings', 'id', ['courseid' => (int)$history->courseid, 'name' => $groupingname]);
-        }
-        if (!$groupingid) {
-            $groupingid = groups_create_grouping((object)[
+            $groupmatches = $groups[$groupname] ?? [];
+            $groupid = count($groupmatches) > 1 ? groups_get_group_by_name((int)$history->courseid, $groupname) :
+                ($groupmatches[0]->id ?? false);
+            // Native group lookup uses PHP equality, including numeric-name aliases.
+            // Newly created names were absent from the original snapshot.
+            if (!$groupid && $createdgroups) {
+                $groupid = groups_get_group_by_name((int)$history->courseid, $groupname);
+            }
+            if (!$groupid) {
+                $groupid = groups_create_group((object)[
+                    'courseid' => (int)$history->courseid,
+                    'name' => $groupname,
+                ]);
+                $result->groups++;
+                $createdgroups = true;
+            }
+            $groups[$groupname] = [(object)['id' => $groupid]];
+            $targetmembers[$groupid][$memberid] = true;
+
+            if (!isset($members[$groupid][$memberid])) {
+                if (groups_add_member($groupid, $memberid)) {
+                    $members[$groupid][$memberid] = true;
+                }
+                $result->members++;
+            }
+
+            if ($groupingname === '') {
+                continue;
+            }
+            $groupingmatches = $groupings[$groupingname] ?? [];
+            $groupingid = count($groupingmatches) > 1 ? $DB->get_field('groupings', 'id', [
                 'courseid' => (int)$history->courseid,
                 'name' => $groupingname,
-            ]);
-            $result->groupings++;
-            $createdgroupings = true;
-        }
-        $groupings[$groupingname] = [(object)['id' => $groupingid]];
-        $targetgroupings[$groupid][$groupingid] = true;
-        if (!isset($assignments[$groupid][$groupingid])) {
-            groups_assign_grouping($groupingid, $groupid);
-            $assignments[$groupid][$groupingid] = true;
-            $result->assignments++;
-        }
-    }
-
-    if (($history->replacepolicy ?? 'keep') === 'replace') {
-        foreach ($targetmembers as $groupid => $expectedmembers) {
-            $members = $DB->get_records('groups_members', ['groupid' => $groupid], '', 'id,userid');
-            foreach ($members as $member) {
-                if (!isset($expectedmembers[(int)$member->userid])) {
-                    groups_remove_member((int)$groupid, (int)$member->userid);
-                    $result->removedmembers++;
-                }
+            ]) : ($groupingmatches[0]->id ?? false);
+            if (!$groupingid && $createdgroupings) {
+                $groupingid = $DB->get_field('groupings', 'id', ['courseid' => (int)$history->courseid, 'name' => $groupingname]);
             }
-            $assignments = $DB->get_records('groupings_groups', ['groupid' => $groupid], '', 'id,groupingid');
-            foreach ($assignments as $assignment) {
-                if (!isset($targetgroupings[$groupid][(int)$assignment->groupingid])) {
-                    groups_unassign_grouping((int)$assignment->groupingid, (int)$groupid);
-                    $result->unassigned++;
-                }
+            if (!$groupingid) {
+                $groupingid = groups_create_grouping((object)[
+                    'courseid' => (int)$history->courseid,
+                    'name' => $groupingname,
+                ]);
+                $result->groupings++;
+                $createdgroupings = true;
+            }
+            $groupings[$groupingname] = [(object)['id' => $groupingid]];
+            $targetgroupings[$groupid][$groupingid] = true;
+            if (!isset($assignments[$groupid][$groupingid])) {
+                groups_assign_grouping($groupingid, $groupid);
+                $assignments[$groupid][$groupingid] = true;
+                $result->assignments++;
             }
         }
+
+        if (($history->replacepolicy ?? 'keep') === 'replace') {
+            foreach ($targetmembers as $groupid => $expectedmembers) {
+                $members = $DB->get_records('groups_members', ['groupid' => $groupid], '', 'id,userid');
+                foreach ($members as $member) {
+                    if (!isset($expectedmembers[(int)$member->userid])) {
+                        if (!groups_remove_member_allowed((int)$groupid, (int)$member->userid)) {
+                            throw new moodle_exception('invaliddata', 'error');
+                        }
+                        if (!groups_remove_member((int)$groupid, (int)$member->userid)) {
+                            throw new moodle_exception('invaliddata', 'error');
+                        }
+                        $result->removedmembers++;
+                    }
+                }
+                $assignments = $DB->get_records('groupings_groups', ['groupid' => $groupid], '', 'id,groupingid');
+                foreach ($assignments as $assignment) {
+                    if (!isset($targetgroupings[$groupid][(int)$assignment->groupingid])) {
+                        groups_unassign_grouping((int)$assignment->groupingid, (int)$groupid);
+                        $result->unassigned++;
+                    }
+                }
+            }
+        }
+
+        $DB->set_field('local_groupimport_history', 'rollbackuserid', $userid, ['id' => $history->id]);
+        $DB->set_field('local_groupimport_history', 'timerolledback', time(), ['id' => $history->id]);
+        \local_groupimport\event\import_rolled_back::create([
+            'objectid' => (int)$history->id,
+            'context' => context_course::instance((int)$history->courseid),
+        ])->trigger();
+        $transaction->allow_commit();
+
+        return $result;
+    } catch (Throwable $exception) {
+        $transaction->rollback($exception);
+        throw $exception;
     }
-
-    $DB->set_field('local_groupimport_history', 'rollbackuserid', $userid, ['id' => $history->id]);
-    $DB->set_field('local_groupimport_history', 'timerolledback', time(), ['id' => $history->id]);
-    $transaction->allow_commit();
-
-    return $result;
 }
 
 // Try to retrieve the course id via GET or POST.
@@ -1038,7 +952,10 @@ $PAGE->requires->js_call_amd('local_groupimport/csv_import', 'init', [
     ],
 ]);
 
-$mform = new import_form(null, ['courseid' => $course->id]);
+$maximportbytes = \local_groupimport\local\import_reader::max_bytes(
+    get_max_upload_file_size($CFG->maxbytes, $course->maxbytes ?? 0)
+);
+$mform = new import_form(null, ['courseid' => $course->id, 'maxbytes' => $maximportbytes]);
 $allowedimportfields = local_groupimport_get_allowed_import_userfields();
 
 $success = [];
@@ -1162,8 +1079,8 @@ if ($confirmimport && data_submitted()) {
 
     if ($content === false || $content === null || $content === '') {
         $errors[] = get_string('csvloaderror', 'local_groupimport', get_string('csvemptyfiledetail', 'local_groupimport'));
-    } else if (strlen($content) > \local_groupimport\local\import_preview::MAX_BYTES) {
-        $errors[] = get_string('importfilelimit', 'local_groupimport', 5);
+    } else if (strlen($content) > $maximportbytes) {
+        $errors[] = get_string('importeffectivefilelimit', 'local_groupimport', display_size($maximportbytes));
     } else {
         $filehash = hash('sha256', $content);
         $parsed = local_groupimport_parse_import_content($content, $filename, $errors);
@@ -1191,6 +1108,7 @@ if ($confirmimport && data_submitted()) {
 }
 
 $mform = new import_form(null, [
+    'maxbytes' => $maximportbytes,
     'courseid' => $course->id,
     'submitlabel' => $preview !== null
         ? get_string('replacefile', 'local_groupimport')

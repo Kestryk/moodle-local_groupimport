@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..', '..');
-const kit = path.resolve(root, '..', 'easyedu-ui-kit-phase0-mass-admin-20260927');
+const kit = path.resolve(process.argv[2] || path.join(root, '../easyedu-ui-kit-phase0-mass-admin-20260927'));
 const checks = [];
 
 const read = file => fs.readFileSync(file, 'utf8');
@@ -61,8 +61,8 @@ for (const [language, recap] of Object.entries({en: 'Recap', fr: 'Bilan'})) {
 }
 
 const expected = {
-    en: ['The guide', 'Landmarks', 'Structure', 'Participant', 'Group', 'Grouping', 'Organise', 'Filter', 'Identifiers', 'Actions', 'Group assignment', 'Ready'],
-    fr: ['Le guide', 'Repères', 'Structure', 'Participant', 'Groupe', 'Groupement', 'Organiser', 'Filtrer', 'Identifiants', 'Actions', 'Devoir de groupe', 'Prêt'],
+    en: ['The guide', 'Landmarks', 'Create', 'Batch', 'Participant', 'Group', 'Grouping', 'Organise', 'Filter', 'Identifiers', 'Actions', 'Group assignment', 'Ready'],
+    fr: ['Le guide', 'Repères', 'Créer', 'En lot', 'Participant', 'Groupe', 'Groupement', 'Organiser', 'Filtrer', 'Identifiants', 'Actions', 'Devoir de groupe', 'Prêt'],
 };
 for (const [language, labels] of Object.entries(expected)) {
     const languageFile = read(path.join(root, 'lang', language, 'local_groupimport.php'));

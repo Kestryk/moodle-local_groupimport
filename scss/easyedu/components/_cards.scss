@@ -40,14 +40,12 @@
   transition:
     background-color var(--easyedu-motion-fast) ease,
     border-color var(--easyedu-motion-fast) ease,
-    box-shadow var(--easyedu-motion-fast) ease,
-    transform var(--easyedu-motion-fast) ease;
+    box-shadow var(--easyedu-motion-fast) ease;
 
   &:hover {
     background: $background;
     border-color: $border;
     box-shadow: $shadow;
-    transform: translateY(-1px);
   }
 }
 

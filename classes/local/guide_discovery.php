@@ -275,7 +275,7 @@ final class guide_discovery {
             foreach (
                 ['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',
                 'emptymembers', 'sourceempty', 'sourcecaption', 'destinationcaption', 'menutitle', 'removeaction',
-                'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu',
+                'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu', 'compactvalidate',
                 'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody',
                 'syntaxnumbers', 'syntaxletters', 'syntaxcount', 'destinationname',
                 'mobileparticipants', 'mobileaddaction', 'mobileaddconsequence', 'mobileaddselect',

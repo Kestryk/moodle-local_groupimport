@@ -1,4 +1,42 @@
 {
+  "codex1SecurityS220261017": {
+    "status": "source-isolated-pass-not-published-phpunit-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s2-20261017",
+    "scope": "Privacy history user lists, subject-only export, scoped erasure and adjustable retention (default 365 days), daily history-only task",
+    "report": "docs/testing/security-s2-history-2026-10-17.md",
+    "validation": "43 in-memory checks, PHP syntax 12/12, security-escaping and filter-engine PASS; no Moodle database/runtime access"
+  },
+  "codex1SecurityS420261017": {
+    "status": "source-isolated-pass-not-published-native-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s4-20261017",
+    "report": "docs/testing/security-s4-2026-10-17.md",
+    "validation": "44 isolated checks for each server parser; lint, helper MoodleCS, escaping/filter PASS; no runtime access"
+  },
+  "codex1SecurityS520261017": {
+    "status": "source-isolated-pass-not-published-phpunit-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s5-20261017",
+    "report": "docs/testing/security-s5-2026-10-17.md",
+    "validation": "61 isolated checks, lint 9/9, new-file MoodleCS 0/0, escaping/filter PASS; native PHPUnit not run; no runtime access"
+  },
+  "codex1SecurityS620261017": {
+    "status": "source-isolated-pass-not-published-native-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s6-20261017",
+    "report": "docs/testing/security-s6-2026-10-17.md",
+    "validation": "37 CSV/real-XLSX checks, B1 17 checks, B2 transaction/1000 cap, lint 7/7, new-helper MoodleCS 0/0, escaping/filter PASS",
+    "limits": "Legacy XLS class absent in supplied Moodle package; controlled conversion error; no real XLS proof. Parser 3000 rows, confirmation remains 1000."
+  },
+  "codex1SecurityS7M520261017": {
+    "status": "source-isolated-real-xlsx-pass-not-published-native-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s7-m5-20261017",
+    "report": "docs/testing/security-s7-m5-2026-10-17.md",
+    "validation": "355 real export/FR-EN/XLSX checks; zero formula XML nodes; all populated cells text; native blank/newline semantics; PHP lint 7/7; helper/event MoodleCS 0/0; escaping/filter PASS",
+    "publication": "Not published; no Moodle bootstrap, runtime or database access"
+  },
   "codex1GuideCG720261016": {
     "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
     "base": "ee870566",

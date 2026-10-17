@@ -891,38 +891,14 @@
   // actions. Keep that trigger at the logical end of the header: the card
   // title remains first priority and lower-priority actions can collapse.
   &-group.is-groupings-summary-hidden > &-group__header > &-card-menu {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-radius: 0.4rem;
-    color: var(--local-groupimport-easystud-primary);
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 1.85rem;
-    justify-content: center;
+    // K16-55: the Kit overflow trigger (24 px disc), only placed here.
+    @include easyedu.card-overflow-trigger;
+
     margin: 0;
     margin-inline-start: auto;
     order: 2;
     padding: 0;
     position: static;
-    width: 1.85rem;
-
-    &:hover,
-    &:focus {
-      background: #f7fbff;
-      border-color: #bdd0e5;
-      color: var(--local-groupimport-easystud-primary-strong);
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
-
-    &:focus:not(:focus-visible) {
-      box-shadow: none;
-    }
   }
 
   &-group__mail-button,
