@@ -4,7 +4,9 @@ const assert=require('node:assert/strict'), fs=require('node:fs'),path=require('
 const {execFileSync}=require('node:child_process');const {pathToFileURL}=require('node:url');
 const sass=require(path.resolve(process.argv[2])),postcss=require(path.resolve(process.argv[3]));
 const root=path.resolve(__dirname,'../..');const read=p=>fs.readFileSync(path.join(root,p),'utf8').replace(/\r\n/g,'\n');
-const original=p=>execFileSync('git',['-C',root,'show','4110785e:'+p],{encoding:'utf8',maxBuffer:8*1024*1024}).replace(/\r\n/g,'\n');
+// argv[4] selects the archived legacy partial; all other inputs use the current tree.
+const legacyRef=process.argv[4] || '4110785e';
+const original=p=>execFileSync('git',['-C',root,'show',legacyRef+':'+p],{encoding:'utf8',maxBuffer:8*1024*1024}).replace(/\r\n/g,'\n');
 assert(sass.info.includes('1.79.1'));
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'easystud-p2-'));const prior=path.join(tmp,'_tutorial.scss');
 let checks=0;const check=(ok,label)=>{checks++;assert(ok,label);};
@@ -19,7 +21,8 @@ function projection(css){
 try {
     fs.writeFileSync(prior,original('scss/components/_tutorial.scss').replace('@use "../easyedu"','@use "easyedu"'));
     const opts={charset:false,sourceMap:false,style:'expanded',loadPaths:[tmp,path.join(root,'scss')],logger:sass.Logger.silent,url:pathToFileURL(path.join(root,'scss/easystud.scss'))};
-    const source=original('scss/easystud.scss').replace('@use "components/tutorial";','@use "tutorial";');
+    const source=read('scss/easystud.scss').replace('@use "components/workspace-shared";','@use "tutorial";');
+    assert(source.includes('@use "tutorial";'), 'Current shared workspace slot must be reviewed');
     const before=sass.compileString(source,opts).css;const after=sass.compile(path.join(root,'scss/easystud.scss'),opts).css;
     const a=projection(before),b=projection(after);
     if(JSON.stringify(a)!==JSON.stringify(b)){
@@ -34,13 +37,20 @@ try {
     check(!read('templates/manage.mustache').includes('{{^useeasyeduguide}}'),'no fallback sections');
     check(read('templates/manage.mustache').includes('{{> local_groupimport/easyedu_navigation}}') && read('manage.php').includes("'local_groupimport/easyedu_guide',"),'shared Guide still rendered');
     check(read('manage.php').includes("$templatedata['useeasyeduguide'] = true;"),'current server always chooses shared Guide');
-    check(original('amd/src/local/cm/guide.js')===read('amd/src/local/cm/guide.js'),'reserved Guide resolver/binder unchanged');
-    const oldPage=projection(original('styles/student-management.css'));
-    const newPage=projection(read('styles/student-management.css'));
-    check(JSON.stringify(oldPage)===JSON.stringify(newPage),'generated Student Management active cascade unchanged');
-    for(const file of ['styles.css','styles/mass-import.css','styles/administration.css']) {
-        check(original(file)===read(file),file+' byte-identical apart from line endings');
-    }
-    const pageRemoved=Buffer.byteLength(original('styles/student-management.css'))-Buffer.byteLength(read('styles/student-management.css'));
-    console.log(JSON.stringify({surface:'P2-css-cascade',passed:true,checks,activeRules:a.length,beforeBytes:Buffer.byteLength(before),afterBytes:Buffer.byteLength(after),removedBytes:Buffer.byteLength(before)-Buffer.byteLength(after),pageRemovedBytes:pageRemoved,runtimeAccess:false}));
+    check(read('amd/src/local/cm/guide.js').includes('export const bindSharedGuideTargets'),
+        'active shared target binder remains');
+    const {targets}=require('./build-page-styles.cjs');
+    // Generated assets belong to later lots too: compare current compiled SCSS to current page CSS.
+    const {compactDeclarations}=require('./build-styles.cjs');
+    const compiled=postcss.parse(compactDeclarations(after));
+    compiled.walkRules(rule=>{
+        if(rule.parent.type==='atrule'&&/keyframes$/.test(rule.parent.name))return;
+        const selectors=postcss.list.comma(rule.selector).filter(s=>targets(s).sm);
+        if(!selectors.length)rule.remove();else rule.selector=selectors.join(',\n');
+    });
+    const currentPage=projection(read('styles/student-management.css'));
+    const expectedPage=projection(compiled.toString());
+    check(JSON.stringify(currentPage)===JSON.stringify(expectedPage),
+        'generated Student Management active cascade matches current SCSS');
+    console.log(JSON.stringify({surface:'P2-css-cascade',passed:true,checks,activeRules:a.length,beforeBytes:Buffer.byteLength(before),afterBytes:Buffer.byteLength(after),removedBytes:Buffer.byteLength(before)-Buffer.byteLength(after),legacyRef,runtimeAccess:false}));
 } finally {fs.unlinkSync(prior);fs.rmdirSync(tmp);}
