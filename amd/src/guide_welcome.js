@@ -31,7 +31,9 @@ define([], function() {
             } catch (error) {
                 // Preference failure never interrupts the guide or course work.
                 // Do not log request/configuration data; a later opening retries.
-            } finally { pending = false; }
+            } finally {
+ pending = false;
+}
         }, {signal: lifecycle.signal});
         // "Later" hides the invitation until the next login (session only, the guide stays unseen).
         // The shared Guide owns the button; the adapter only listens to its click.
