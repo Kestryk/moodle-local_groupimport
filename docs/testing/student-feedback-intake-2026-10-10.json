@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "oldCAdminTaggedChoices20261019": {
     "base": "5dc4215c",
     "scope": "OLD-C / K17-10: opt-in native multiple choices with selected-value chips in administration",
@@ -70,6 +71,8 @@
       "Pre-existing Intl/M3 controller differences preserved; tagged helper and full SCSS match canonical Kit"
     ]
   },
+=======
+>>>>>>> 388f921e ([N1] K17-79 space participant filters with Kit tokens)
   "k1779ParticipantFilterSpacing20261017": {
     "base": "4474ffde",
     "scope": "K17-79: participant filter spacing shared across Complete and Participants/groups views",
@@ -255,6 +258,7 @@
     "humanAccepted": false,
     "proofDirectory": "C:/dev/artifacts/codex1-k17-79-20261017"
   },
+<<<<<<< HEAD
   "a10InlineIcon20261017": {
     "base": "4474ffde",
     "scope": "A10 Bootstrap 4/5 inline icon spacing in two native add forms",
@@ -298,6 +302,8 @@
     "humanAccepted": false,
     "proofDirectory": "C:/dev/artifacts/codex1-a10-inline-icon-20261017"
   },
+=======
+>>>>>>> 388f921e ([N1] K17-79 space participant filters with Kit tokens)
   "k1780ParticipantGrouping20261017": {
     "base": "71a8f0cd",
     "scope": "K17-80: expose the existing participant grouping select in Complete view and apply its values in every view",
