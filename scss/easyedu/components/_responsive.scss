@@ -319,9 +319,9 @@
   align-items: center;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: var(--easyedu-control-radius);
-  // Keep the canonical action glyph identifiable before interaction.
-  color: var(--easyedu-primary-strong);
+  // K17-53: round target (22 px radius on the 44 px touch target), blue horizontal ellipsis.
+  border-radius: 999px;
+  color: var(--easyedu-primary);
   display: inline-flex;
   flex: 0 0 var(--easyedu-touch-target-min);
   height: var(--easyedu-touch-target-min);
@@ -343,6 +343,8 @@
       background-color var(--easyedu-motion-fast) ease,
       color var(--easyedu-motion-fast) ease;
     width: 1.82rem;
+
+    @include card-actions.overflow-ellipsis-glyph;
   }
 
   // K16-55: same 24 px hover disc as every card action (Kit card-action-disc), painted on the
@@ -352,7 +354,7 @@
   &:focus-visible {
     @include card-actions.card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
     border-color: transparent;
-    color: var(--easyedu-primary-strong);
+    color: var(--easyedu-primary);
   }
 
   &:focus-visible {
@@ -361,9 +363,9 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    color: var(--easyedu-text-subtle);
+    color: var(--easyedu-field-disabled-text);
     cursor: default;
-    opacity: 0.58;
+    opacity: 0.62;
 
     > :first-child {
       background: transparent;

@@ -12,6 +12,21 @@
   background: radial-gradient(circle, $color 0 0.75rem, transparent calc(0.75rem + 0.6px));
 }
 
+// K17-53 (Foundations "Autres actions", horizontal ellipsis): the ONE glyph of every overflow
+// trigger. Three 3 px dots, 6 px apart (15 x 3 px), painted in currentColor on the glyph's
+// ::before so it is exactly centred by the trigger's flex box (no font metrics) and needs no
+// icon font or raster. Applied by card-overflow-trigger and mobile-card-menu-trigger.
+@mixin overflow-ellipsis-glyph {
+  &::before {
+    background: radial-gradient(circle, currentColor 0 1.5px, transparent calc(1.5px + 0.6px)) 0 0 / 6px 3px repeat-x;
+    content: "";
+    display: block;
+    font-size: 0;
+    height: 3px;
+    width: 15px;
+  }
+}
+
 // Foundations / Card quick actions / Overflow trigger. Same visual states as the
 // direct icon (24 px radial disc, no ring, K16-55); the box (32 px desktop, 44 px
 // touch target on mobile) stays with the consumer, so only colour and paint are set here.
@@ -24,10 +39,14 @@
   display: inline-flex;
   flex: 0 0 auto;
   font-size: 0.95rem;
-  height: 1.85rem;
+  height: 2rem;
   justify-content: center;
   line-height: 1;
-  width: 1.85rem;
+  width: 2rem;
+
+  > .fa {
+    @include overflow-ellipsis-glyph;
+  }
 
   &,
   &.btn {
@@ -35,13 +54,13 @@
     &:focus-visible {
       @include card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
       border-color: transparent;
-      color: var(--easyedu-primary-strong);
+      color: var(--easyedu-primary);
       text-decoration: none;
     }
 
     &[aria-expanded="true"] {
       @include card-action-disc(var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)));
-      color: var(--easyedu-primary-strong);
+      color: var(--easyedu-primary);
     }
 
     &:focus-visible {

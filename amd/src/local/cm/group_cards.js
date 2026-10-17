@@ -418,10 +418,10 @@ export const normaliseCardMenuButton = (button, root) => {
         button.setAttribute('aria-label',
             root.getAttribute('data-easystud-mobile-card-actions') || getLabels(root).mobilecardactions || '');
     }
-    const icon = button.querySelector(':scope > .local-groupimport-easystud-card-menu__icon.fa-bars');
+    const icon = button.querySelector(':scope > .local-groupimport-easystud-card-menu__icon.fa-ellipsis');
     if (!icon || button.children.length !== 1) {
         button.innerHTML =
-            '<span class="fa fa-bars local-groupimport-easystud-card-menu__icon" aria-hidden="true"></span>';
+            '<span class="fa fa-ellipsis local-groupimport-easystud-card-menu__icon" aria-hidden="true"></span>';
     }
 };
 
