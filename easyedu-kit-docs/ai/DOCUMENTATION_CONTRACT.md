@@ -1121,3 +1121,7 @@ Mirror and namespace-adapt them atomically with the engine/specimen SCSS; retain
 all six exports, translated consumer labels and unchanged product programs.
 Disabled segmented choices remain dimmed and native toggle inputs are contained
 by the positioned toggle root. Source parity does not certify native behavior.
+
+ANIM uses the single preferences-classes recipe and generic display_preferences
+composition. Guide entry buttons dispatch the consumer adapter; translated labels,
+Moodle preference persistence and lifecycle stay outside the generic Guide engine.

@@ -1,4 +1,5 @@
 {
+"animGuideKitRaccord20261017":{"base":"abf3c636","anim":"88d8e83d","mirror":"dd986649","status":"isolated six cases and exact mirror PASS; no runtime publication"},
 "animG1PersonalPreference20261017":{"base":"bc3f48f8","branch":"work/codex1/easystud-anim-20261017","nativeCases":6,"isolatedCases":6,"matrix":"FR/EN 1600/768/390","consoleErrors":0,"maxFooterDxPx":0,"maxFooterDyPx":0.046875,"footerHeightPx":[37.59375],"perCaseFooterHeightDeltaPx":0,"horizontalOverflowPx":0,"preferenceRestored":true,"humanAccepted":false,"publishedToLocalhost":false},
 
 "guideMirrorE1E420261017":{"base":"abf3c636","status":"source parity PASS; no runtime publication","t037Checks":14,"t038Checks":47,"roundtrip":{"exports":6,"scss":4,"templates":7},"canonicalKitBase":"67f4010","runtimeAssetsChanged":false},
