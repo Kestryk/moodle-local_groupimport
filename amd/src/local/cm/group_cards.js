@@ -256,17 +256,7 @@ export const syncGroupMembersCollapsible = group => {
     list.classList.toggle('is-expanded', expanded);
     syncGroupMembersHeight(list, members, visibleCount, cancollapse);
     group.classList.toggle('has-collapsible-members', cancollapse);
-    // K17-51: the fold chevron of every group card lives in the header, as for the groups without
-    // grouping. A card with nothing to fold keeps the slot (aligned titles) without an active control.
-    const header = group.querySelector(':scope > .local-groupimport-easystud-group__header');
-    if (header && toggle.parentElement !== header) {
-        header.prepend(toggle);
-        group.classList.add('local-groupimport-easystud-group--header-fold');
-    }
-    toggle.hidden = false;
-    toggle.classList.toggle('is-fold-inert', !cancollapse);
-    toggle.setAttribute('aria-hidden', cancollapse ? 'false' : 'true');
-    toggle.tabIndex = cancollapse ? 0 : -1;
+    toggle.hidden = !cancollapse;
     toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     toggle.classList.toggle('is-expanded', expanded);
     // K16-70: the fold control names what it does ("See all 23 members" / "Show less").

@@ -54,7 +54,7 @@ export const bindGroupSelectAll = root => {
         const deselect = !searching && isGroupFullySelected(group);
         // A folded card unfolds, as with its members toggle, to show what was selected.
         const membersToggle = group.querySelector('[data-easystud-group-members-toggle]');
-        if (!deselect && membersToggle && !membersToggle.hidden && !membersToggle.classList.contains('is-fold-inert')) {
+        if (!deselect && membersToggle && !membersToggle.hidden) {
             setGroupMembersExpanded(root, group, true);
         }
         const model = getOnDemandModel(root);

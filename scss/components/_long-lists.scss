@@ -89,19 +89,24 @@
   // K16-51: in the header the fold control is the same Kit card direct action as the search, @, copy,
   // gear and pen buttons of the row (card-direct-action: round hit area, hover and focus states). Its
   // 2rem target and block margin come from the shared header-action rule of _card-labels.scss.
-  //
-  // K17-51 (Kevin 17/10): this is now the fold chevron of every group card (one Kit definition,
-  // card-fold-chevron); the card marker is --header-fold, the long-list marker only keeps the folded
-  // behaviour of the groups without grouping.
-  &-long-list__foldable &-group__header > &-group__members-toggle,
-  &-group--header-fold &-group__header > &-group__members-toggle {
-    @include easyedu.card-fold-chevron;
+  &-long-list__foldable &-group__header > &-group__members-toggle {
+    @include easyedu.card-direct-action;
+
+    margin-inline: 0;
   }
 
   // K16-70: in the header the fold control stays an icon button; the footer label is not shown.
-  &-long-list__foldable &-group__header &-group__members-toggle-label,
-  &-group--header-fold &-group__header &-group__members-toggle-label {
+  &-long-list__foldable &-group__header &-group__members-toggle-label {
     display: none;
+  }
+
+  &-long-list__foldable &-group__header > &-group__members-toggle:not([aria-expanded="true"]) .fa {
+    transform: rotate(-90deg);
+  }
+
+  // Unfolded: the chevron points down (the footer's 180deg turn is the footer's own semantics).
+  &-long-list__foldable &-group__header > &-group__members-toggle[aria-expanded="true"] .fa {
+    transform: none;
   }
 }
 
