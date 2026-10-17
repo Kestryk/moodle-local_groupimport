@@ -73,7 +73,7 @@
                             {{#hasguidedpath}}data-easyedu-guided-label="{{guidebadgelabel}}"{{/hasguidedpath}}
                             {{#requires}}data-easyedu-guide-requires="{{requires}}"{{/requires}}
                             {{#requireslabel}}data-easyedu-guide-requires-label="{{requireslabel}}"{{/requireslabel}}
-                            title="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}"
+                            data-easyedu-guide-bubble="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}" data-easyedu-guide-bubble-when="truncated"
                         >
                             <span class="easyedu-guide-nav-item__icon" aria-hidden="true">
                                 <span class="fa {{navicon}}" aria-hidden="true"></span>
@@ -142,7 +142,7 @@
                                         {{#showopendelay}}data-easyedu-guide-show-open-delay="{{showopendelay}}"{{/showopendelay}}
                                         {{#showafteropen}}data-easyedu-guide-show-after-open="{{showafteropen}}"{{/showafteropen}}
                                         {{#showafteropendelay}}data-easyedu-guide-show-after-open-delay="{{showafteropendelay}}"{{/showafteropendelay}}
-                                        {{#discoverypresentation}}title="{{guideinterfacecuelabel}}"{{/discoverypresentation}}
+                                        {{#discoverypresentation}}data-easyedu-guide-bubble="{{guideinterfacecuelabel}}"{{/discoverypresentation}}
                                     >
                                         <span class="fa {{#discoverypresentation}}fa-eye{{/discoverypresentation}}{{^discoverypresentation}}fa-location-arrow{{/discoverypresentation}}" aria-hidden="true"></span>
                                         <span class="easyedu-guide-slide__show-label">{{guideshowinterfacelabel}}</span>
@@ -170,7 +170,7 @@
                             {{#discoveryscene}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-submit="{{mobileaddsubmit}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
                                 <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example"><span class="easyedu-guide-scene__caption-full">{{caption}}</span><span class="easyedu-guide-scene__caption-short">{{captionshort}}</span></p>
-                            {{^concepts}}{{^creation}}
+                            {{^concepts}}{{^creationstatic}}
                             <header class="easyedu-guide-scene__header{{^membership}} easyedu-guide-scene__header--single{{/membership}}" data-guide-scene-header data-step-label="{{steplabel}}" data-ready-label="{{readylabel}}" data-paused-label="{{pausedlabel}}" data-add-label="{{addmodelabel}}" data-move-label="{{movemodelabel}}">
                                 <div class="easyedu-guide-scene__header-controls">
                                 <div class="easyedu-guide-scene__header-controls-inner">
@@ -210,7 +210,7 @@
                             </div>
                             </div>
                             </header>
-                            {{/creation}}{{/concepts}}
+                            {{/creationstatic}}{{/concepts}}
                                 {{#concepts}}
                                 <div class="easyedu-guide-scene__concepts">
                                     <div><div class="easyedu-guide-scene__person"><span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong>Alex Dupont</strong><small>{{participanttitle}}</small></span></div><p>{{participantlabel}}</p><span class="easyedu-guide-scene__concept-arrow fa fa-arrow-right" aria-hidden="true"></span></div>
@@ -219,8 +219,12 @@
                                 </div>
                                 {{/concepts}}
                                 {{#creation}}
+                                <div class="easyedu-guide-scene__creation-stage" data-guide-stage
+                                    data-guide-phase-1-label="{{creationphase1}}" data-guide-phase-2-label="{{creationphase2}}"
+                                    data-guide-phase-3-label="{{creationphase3}}" data-guide-creation-list="{{creationlist}}"
+                                    data-guide-creation-formula="{{creationformula}}" data-guide-creation-groupings="{{creationgroupings}}">
                                 <div class="easyedu-guide-scene__creation-controls">
-                                    <label class="easyedu-guide-scene__field"><span>{{patternlabel}}</span>
+                                    <label class="easyedu-guide-scene__field"><span data-guide-pattern-label data-grouping-label="{{creationgroupinglabel}}">{{patternlabel}}</span>
                                         <input type="text" data-guide-pattern value="{{patternvalue}}" autocomplete="off">
                                     </label>
                                 </div>
@@ -238,7 +242,14 @@
                                     </div>
                                 </div>
                                 <div data-guide-names class="easyedu-guide-scene__results" aria-live="polite" data-invalid="{{invalidlabel}}"></div>
+                                <div class="easyedu-guide-scene__grouping-block" data-guide-grouping-block hidden>
+                                    <div class="easyedu-guide-scene__result-heading"><span>{{creationgroupingresult}}</span></div>
+                                    <div data-guide-grouping-names class="easyedu-guide-scene__results" aria-live="polite"></div>
+                                </div>
+                                <template data-guide-grouping-card><span class="easyedu-guide-scene__grouping"><span class="easyedu-guide-scene__identity fa fa-layer-group" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong data-guide-name></strong><small>{{emptygroups}}</small></span></span></template>
+                                <span class="easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"><span class="fa fa-mouse-pointer easyedu-guide-scene__cursor-mouse"></span><span class="easyedu-guide-scene__cursor-touch" data-guide-cursor-touch><span class="easyedu-guide-scene__cursor-ripple" data-guide-cursor-ripple></span></span></span>
                                 <template data-guide-name-card><span class="easyedu-guide-scene__card"><span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong data-guide-name></strong><small>{{emptymembers}}</small></span></span></template>
+                                </div>
                                 {{/creation}}
                                 {{#simplecreate}}{{> guide_simplecreate}}{{/simplecreate}}
                                 {{^concepts}}{{^creation}}{{^simplecreate}}
@@ -248,7 +259,7 @@
                                         <span class="easyedu-guide-scene__identity fa {{cardicon}}" aria-hidden="true"></span>
                                         <div class="easyedu-guide-scene__inspection-header">
                                             <span class="easyedu-guide-scene__card-copy"><strong>{{cardtitle}}</strong><small>{{cardmeta}}</small></span>
-                                            <span class="easyedu-guide-scene__inspection-desktop-trigger" data-guide-inspection-trigger title="{{actionlabel}}" aria-hidden="true"><span class="fa {{actionicon}}" aria-hidden="true"></span></span>
+                                            <span class="easyedu-guide-scene__inspection-desktop-trigger" data-guide-inspection-trigger data-easyedu-guide-bubble="{{actionlabel}}" aria-hidden="true"><span class="fa {{actionicon}}" aria-hidden="true"></span></span>
                                             <span class="easyedu-guide-scene__inspection-mobile-trigger" data-guide-inspection-mobile-trigger hidden aria-hidden="true"><span class="fa fa-bars" aria-hidden="true"></span></span>
                                         </div>
                                         <div class="easyedu-guide-scene__inspection-menu" data-guide-inspection-menu hidden aria-hidden="true"><span>{{menutitle}}</span><strong><span class="fa {{actionicon}}" aria-hidden="true"></span> {{actionlabel}}</strong></div>
@@ -267,6 +278,32 @@
                                 <div class="easyedu-guide-scene__context"><p class="easyedu-guide-scene__result" data-guide-result data-inspection="{{resultlabel}}" aria-live="polite">{{initiallabel}}</p><p>{{note}}</p></div>
                                 <div class="easyedu-guide-scene__actions"><div class="easyedu-guide-scene__utilities">{{^manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button>{{/manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button></div></div>
                                 {{/inspection}}
+                                {{#filtersdemo}}
+                                <div class="easyedu-guide-spec easyedu-guide-spec--filters easyedu-guide-scene__filters-stage" data-guide-stage aria-hidden="true"
+                                    data-guide-phase-1-label="{{filtersstep1}}" data-guide-phase-2-label="{{filtersstep2}}"
+                                    data-guide-phase-3-label="{{filtersstep3}}" data-guide-phase-4-label="{{filtersstep4}}"
+                                    data-guide-filters-query="TD" data-guide-count-all="{{filterscountall}}" data-guide-count-filtered="{{filterscountfiltered}}"
+                                    data-guide-select-label="{{filtersselect}}" data-guide-deselect-label="{{filtersdeselect}}">
+                                    <div class="easyedu-guide-spec__surface">
+                                        <span class="easyedu-search-field"><span class="fa fa-search" aria-hidden="true"></span><input type="search" class="form-control" value="" readonly tabindex="-1" aria-hidden="true" data-guide-filters-input></span>
+                                        <div class="easyedu-guide-spec__filter is-spacer" data-guide-filters-role aria-hidden="true"><span class="easyedu-guide-spec__filter-label">{{filtersrole}}</span><span class="local-groupimport-easystud-token local-groupimport-easystud-token--role">{{filtersrolevalue}}</span></div>
+                                        <div class="easyedu-guide-spec__bar"><span class="btn btn-sm btn-outline-secondary easyedu-guide-spec__select" data-guide-filters-select>{{filtersselect}}</span><span class="easyedu-guide-spec__count" data-guide-filters-count>{{filterscountall}}</span></div>
+                                        <div class="easyedu-guide-spec__list">
+                                        <div data-guide-filters-card data-guide-filters-match="1"><div class="local-groupimport-easystud-user"><span class="local-groupimport-easystud-selector" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true"><span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span></span><div class="local-groupimport-easystud-user__rail"><div class="local-groupimport-easystud-user__avatar"></div></div><div class="local-groupimport-easystud-user__main easyedu-person-card__main"><div class="local-groupimport-easystud-user__headline easyedu-person-card__headline"><div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main"><strong class="local-groupimport-easystud-user__name">Alice Martin</strong><span class="local-groupimport-easystud-user__primary-badge">TD 1</span></div><span class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button"><span class="fa fa-eye" aria-hidden="true"></span></span></div></div></div></div>
+                                        <div data-guide-filters-card data-guide-filters-match="0"><div class="local-groupimport-easystud-user"><span class="local-groupimport-easystud-selector" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true"><span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span></span><div class="local-groupimport-easystud-user__rail"><div class="local-groupimport-easystud-user__avatar"></div></div><div class="local-groupimport-easystud-user__main easyedu-person-card__main"><div class="local-groupimport-easystud-user__headline easyedu-person-card__headline"><div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main"><strong class="local-groupimport-easystud-user__name">Chloé Bernard</strong><span class="local-groupimport-easystud-user__primary-badge">IIM 2</span></div><span class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button"><span class="fa fa-eye" aria-hidden="true"></span></span></div></div></div></div>
+                                        <div data-guide-filters-card data-guide-filters-match="1"><div class="local-groupimport-easystud-user"><span class="local-groupimport-easystud-selector" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true"><span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span></span><div class="local-groupimport-easystud-user__rail"><div class="local-groupimport-easystud-user__avatar"></div></div><div class="local-groupimport-easystud-user__main easyedu-person-card__main"><div class="local-groupimport-easystud-user__headline easyedu-person-card__headline"><div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main"><strong class="local-groupimport-easystud-user__name">Ben Leroy</strong><span class="local-groupimport-easystud-user__primary-badge">TD 1</span></div><span class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button"><span class="fa fa-eye" aria-hidden="true"></span></span></div></div></div></div>
+                                        <div data-guide-filters-card data-guide-filters-match="0"><div class="local-groupimport-easystud-user"><span class="local-groupimport-easystud-selector" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true"><span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span></span><div class="local-groupimport-easystud-user__rail"><div class="local-groupimport-easystud-user__avatar"></div></div><div class="local-groupimport-easystud-user__main easyedu-person-card__main"><div class="local-groupimport-easystud-user__headline easyedu-person-card__headline"><div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main"><strong class="local-groupimport-easystud-user__name">Hugo Petit</strong><span class="local-groupimport-easystud-user__primary-badge">IIM 2</span></div><span class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button"><span class="fa fa-eye" aria-hidden="true"></span></span></div></div></div></div>
+                                        <div data-guide-filters-card data-guide-filters-match="1"><div class="local-groupimport-easystud-user"><span class="local-groupimport-easystud-selector" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true"><span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span></span><div class="local-groupimport-easystud-user__rail"><div class="local-groupimport-easystud-user__avatar"></div></div><div class="local-groupimport-easystud-user__main easyedu-person-card__main"><div class="local-groupimport-easystud-user__headline easyedu-person-card__headline"><div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main"><strong class="local-groupimport-easystud-user__name">Zoé Dubois</strong><span class="local-groupimport-easystud-user__primary-badge">TD 2</span></div><span class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button"><span class="fa fa-eye" aria-hidden="true"></span></span></div></div></div></div>
+                                        </div>
+                                        <div class="easyedu-guide-spec__selection" data-guide-filters-selection hidden>
+                                            <span class="easyedu-guide-spec__selection-count">{{filtersselection}}</span>
+                                            <span class="btn btn-outline-secondary btn-sm foundation-selection-action easyedu-selection-recovery-action" data-guide-filters-clear><span class="fa fa-times-circle" aria-hidden="true"></span><span>{{filtersclear}}</span></span>
+                                        </div>
+                                    </div>
+                                    <span class="easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"><span class="fa fa-mouse-pointer easyedu-guide-scene__cursor-mouse"></span><span class="easyedu-guide-scene__cursor-touch" data-guide-cursor-touch><span class="easyedu-guide-scene__cursor-ripple" data-guide-cursor-ripple></span></span></span>
+                                </div>
+                                {{/filtersdemo}}
+                                {{^filtersdemo}}
                                 {{^inspection}}
                                 {{#membership}}{{^introalreadyexplained}}<p class="easyedu-guide-scene__intro">{{note}}</p>{{/introalreadyexplained}}{{/membership}}
                                 <div class="easyedu-guide-scene__stage" data-guide-stage>
@@ -328,10 +365,10 @@
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>
-                                {{/inspection}}{{/simplecreate}}{{/creation}}{{/concepts}}
+                                {{/inspection}}{{/filtersdemo}}{{/simplecreate}}{{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
-                            {{#guidespecimen}}{{> guide_specimen}}{{/guidespecimen}}
+                            {{#guidespecimen}}{{#filtersdemo}}<div class="easyedu-guide-spec-recap" data-guide-filters-recap hidden>{{/filtersdemo}}{{> guide_specimen}}{{#filtersdemo}}</div>{{/filtersdemo}}{{/guidespecimen}}
                             {{^guidespecimen}}{{#anatomy}}{{> guide_anatomy}}{{/anatomy}}{{/guidespecimen}}
                             {{#hasvisualflow}}
                                 <div class="easyedu-guide-visual easyedu-guide-visual--flow" aria-hidden="true">
@@ -534,7 +571,7 @@
                                             {{#previewlabel}}<small class="easyedu-guide-introduction__specimen-caption">{{previewlabel}}</small>{{/previewlabel}}
                                             {{#navigation}}
                                             <div class="easyedu-guide-nav easyedu-guide-introduction__navigation">
-                                                <span class="easyedu-guide-nav-item is-active" title="{{label}}">
+                                                <span class="easyedu-guide-nav-item is-active" data-easyedu-guide-bubble="{{label}}">
                                                     <span class="easyedu-guide-nav-item__icon"><span class="fa fa-compass" aria-hidden="true"></span></span>
                                                     <span class="easyedu-guide-nav-copy"><span>{{label}}</span></span>
                                                 </span>
@@ -598,7 +635,7 @@
                                 </div>
                             {{/guidedpath}}
                             {{#discoveryscene}}{{#concepts}}
-                            <aside class="easyedu-guide-guided-card easyedu-guide-scene__example"><span class="easyedu-guide-guided-card__icon fa fa-route" aria-hidden="true"></span><div class="easyedu-guide-guided-card__body"><strong>{{exampletitle}}</strong><span>{{examplebody}}</span></div></aside>
+                            <div class="easyedu-ui easyedu-guide-scene__example"><aside class="easyedu-notice"><span class="fa fa-info-circle" aria-hidden="true"></span><div><strong>{{exampletitle}}</strong><p>{{examplebody}}</p></div></aside></div>
                             {{/concepts}}{{/discoveryscene}}
                             {{#discoveryscene}}{{#concepts}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/concepts}}{{/discoveryscene}}
                         </div>
@@ -635,7 +672,7 @@
         </div>
         <div class="easyedu-guide-interface-return__actions">
             <button type="button" class="btn btn-primary btn-sm easyedu-guide-interface-return__button" data-easyedu-guide-interface-return-button="1">
-                <span class="fa {{#discoverypresentation}}fa-compass{{/discoverypresentation}}{{^discoverypresentation}}fa-question-circle{{/discoverypresentation}}" aria-hidden="true"></span>
+                <span class="fa fa-route" aria-hidden="true"></span>
                 <span>{{guidereturnbutton}}</span>
             </button>
             <button
@@ -700,7 +737,7 @@
                 <span>{{displaypreferenceslabel}}</span>
             </button>
             <button type="button" class="btn btn-outline-primary btn-sm easyedu-guided-panel__return" data-easyedu-guide-checklist-return="1">
-                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="fa fa-route" aria-hidden="true"></span>
                 <span>{{guidechecklistreturnlabel}}</span>
             </button>
             <button type="button" class="btn btn-primary btn-sm easyedu-guided-panel__end-close" data-easyedu-guide-checklist-close="1">{{guidechecklistendclose}}</button>

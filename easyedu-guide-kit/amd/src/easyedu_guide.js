@@ -1599,6 +1599,80 @@ const stopDiscoveryScene = root => {
   }
 };
 
+// K17-28, K17-45: one common return to rest for every demonstration. The element fades out briefly, the
+// resting (or final) state is applied while it is invisible, then it fades back in: nothing jumps. 'reduced'
+// keeps a single 120 ms fade each way; 'minimal' applies the state at once. Resolves false when cancelled.
+const FLASH_OUT_MS = 140;
+const FLASH_IN_MS = 200;
+const flashReturn = async(root, element, mutate = null) => {
+  const level = getMotionLevel(root);
+  if (level === 'minimal' || !element || typeof element.animate !== 'function') {
+    if (mutate) {
+      mutate();
+    }
+    return true;
+  }
+  const fade = (from, to, duration) => element.animate([{opacity: from}, {opacity: to}], {
+    duration: level === 'reduced' ? Math.min(REDUCED_FADE_MS, duration) : duration,
+    easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+  const out = fade(1, 0, FLASH_OUT_MS);
+  try {
+    await out.finished;
+  } catch (error) {
+    return false;
+  }
+  if (mutate) {
+    mutate();
+  }
+  const back = fade(0, 1, FLASH_IN_MS);
+  out.cancel();
+  try {
+    await back.finished;
+  } catch (error) {
+    return false;
+  } finally {
+    back.cancel();
+  }
+  return true;
+};
+
+// Same rules as the quick-create parser of the course (ajax.php): names are separated by a comma, a
+// semicolon, a vertical bar or a line break, a part ending in "#*N" or "@*N" expands to a numbered or
+// lettered series, duplicates are dropped. Returns null when the result is empty or longer than the limit.
+const expandCreateNames = (text, limit = Infinity) => {
+  const names = [];
+  const letters = number => {
+    let result = '';
+    for (let rest = number; rest > 0; rest = Math.floor((rest - 1) / 26)) {
+      result = String.fromCharCode(65 + ((rest - 1) % 26)) + result;
+    }
+    return result;
+  };
+  for (const raw of String(text || '').split(/[\r\n,;|]+/u)) {
+    const part = raw.trim();
+    if (part === '') {
+      continue;
+    }
+    const series = part.match(/^(.*?)([#@])\s*\*\s*(\d+)$/u);
+    if (series) {
+      const count = Math.min(200, Number(series[3]));
+      if (count > limit) {
+        return null;
+      }
+      for (let index = 1; index <= count; index++) {
+        names.push(`${series[1].trimEnd()} ${series[2] === '#' ? index : letters(index)}`.trim());
+      }
+    } else {
+      names.push(part);
+    }
+    if (names.length > limit) {
+      return null;
+    }
+  }
+  const unique = [...new Set(names)];
+  return unique.length && unique.length <= limit ? unique : null;
+};
+
 // E4 (K5): three-phase mini demonstration of a group card's search loupe (about 6.5 s). Fictional
 // members, no Moodle call. Phase changes use Motion.enter, so the animation level applies; at the
 // minimal level the same phases change without movement.
@@ -1618,9 +1692,13 @@ const runLoupeDemo = (root, demo) => {
   const after = (ms, fn) => {
     timers.push(setTimeout(fn, ms));
   };
+  const card = demo.querySelector('.easyedu-guide-anatomy__card');
+  const members = demo.querySelector('.easyedu-guide-anatomy__members');
+  let active = true;
   const reset = () => {
     trigger.classList.remove('is-pointed');
-    panel.hidden = true;
+    // K17-39: a closed panel keeps its place (invisible, not removed from the layout).
+    panel.toggleAttribute('data-guide-loupe-closed', true);
     input.textContent = '';
     rows.forEach(row => {
       row.hidden = false;
@@ -1628,8 +1706,11 @@ const runLoupeDemo = (root, demo) => {
     });
   };
   const finish = done => {
+    active = false;
     timers.splice(0).forEach(clearTimeout);
     reset();
+    // K17-39: the list keeps its full height only while the demonstration runs.
+    members?.style.removeProperty('min-block-size');
     root.easyeduGuideLoupeStop = null;
     demo.dataset.guideLoupeState = done ? 'done' : 'idle';
     button.disabled = false;
@@ -1643,7 +1724,20 @@ const runLoupeDemo = (root, demo) => {
     }
   };
   root.easyeduGuideLoupeStop = () => finish(false);
+  // K17-28: the end of the demonstration returns to rest through the common short fade.
+  const finishWithFlash = async() => {
+    timers.splice(0).forEach(clearTimeout);
+    const completed = await flashReturn(root, card || demo, reset);
+    if (completed && active) {
+      finish(true);
+    }
+  };
   reset();
+  // K17-39: the list keeps its full height while it narrows, so the page below never moves (the panel's
+  // place is reserved by the stylesheet).
+  if (members) {
+    members.style.minBlockSize = `${members.getBoundingClientRect().height}px`;
+  }
   demo.dataset.guideLoupeState = 'running';
   button.disabled = true;
   button.setAttribute('aria-busy', 'true');
@@ -1655,7 +1749,7 @@ const runLoupeDemo = (root, demo) => {
   after(LOUPE_PHASE_MS[0], () => {
     caption.textContent = demo.dataset.phase2;
     trigger.classList.remove('is-pointed');
-    panel.hidden = false;
+    panel.toggleAttribute('data-guide-loupe-closed', false);
     enter(panel);
     [...query].forEach((char, index) => after(450 + index * 330, () => {
       input.textContent += char;
@@ -1673,7 +1767,7 @@ const runLoupeDemo = (root, demo) => {
       }
     });
   });
-  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1] + LOUPE_PHASE_MS[2], () => finish(true));
+  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1] + LOUPE_PHASE_MS[2], finishWithFlash);
 };
 
 // Names are generated locally from the exercise input, never through Moodle APIs.
@@ -1685,7 +1779,8 @@ const renderDiscoveryNames = (root, scene, command) => {
   if (command === 'letters') {
     input.value = input.value.replace(/[#@]/, value => value === '#' ? '@' : '#');
   }
-  const match = input.value.match(/^(.*?)([#@])\*([1-9]\d*)$/);
+  // K17-36: the preview follows the real parser: lists separated by a comma or a semicolon, and formulas.
+  const names = expandCreateNames(input.value, 6);
   const template = scene.querySelector('[data-guide-name-card]');
   const warning = scene.querySelector('[data-guide-warning-host]');
   const warningText = scene.querySelector('[data-guide-warning-text]');
@@ -1727,7 +1822,7 @@ const renderDiscoveryNames = (root, scene, command) => {
     const initialHeight = output.getBoundingClientRect().height;
     output.replaceChildren();
     if (command !== 'clear') {
-      if (!match || Number(match[3]) > 6) {
+      if (!names) {
         input.setAttribute('aria-invalid', 'true');
         if (warning && warningText) {
           warningText.textContent = output.getAttribute('data-invalid') || '';
@@ -1735,8 +1830,7 @@ const renderDiscoveryNames = (root, scene, command) => {
           await animate(warning, [{opacity: 0}, {opacity: 1}], 220);
         }
       } else {
-        for (let index = 0; index < Number(match[3]); index++) {
-          const name = match[1] + (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
+        for (const name of names) {
           const card = template?.content.firstElementChild?.cloneNode(true) || document.createElement('span');
           const label = card.querySelector('[data-guide-name]');
           if (label) { label.textContent = name; } else { card.textContent = name; }
@@ -1760,16 +1854,22 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   if (!scene) { return; }
   const kind = scene.getAttribute('data-easyedu-guide-scene');
   if (kind === 'concepts') { return; }
+  // K17-36: with a demonstration entry, the plain preview is the resting state of the creation stage.
+  const hasStart = !!scene.querySelector('[data-guide-scene-command="start"]');
   if (kind === 'creation') {
     if (!scene.easyeduGuideNamesInitialized) {
       scene.easyeduGuideNamesInitialized = true;
       renderDiscoveryNames(root, scene, 'preview');
     }
-    return;
+    if (!hasStart) {
+      return;
+    }
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection', 'simplecreate'].includes(kind)) { return; }
+  if (!['membership', 'actions', 'inspection', 'simplecreate', 'creation', 'filters'].includes(kind)) {
+    return;
+  }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
@@ -1777,7 +1877,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
   // J-G4: the simple-creation scene has no result line; every other kind needs one.
-  if (!stage || (!result && kind !== 'simplecreate')) { return; }
+  if (!stage || (!result && !['simplecreate', 'creation', 'filters'].includes(kind))) {
+    return;
+  }
   if (!scene.easyeduGuideStageOriginal) {
     scene.easyeduGuideStageOriginal = stage.innerHTML;
     scene.easyeduGuideResultOriginal = result ? result.textContent : '';
@@ -1800,7 +1902,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const compact = guideModality().touch;
   // Count the applicable explanation phases, not animation frames or timers.
   // J-G4: the simple-creation scene reads its four phases from its root's labels.
-  const applicablePhases = kind === 'simplecreate' ? [1, 2, 3, 4].map(n => ({dataset: {guidePhase: String(n)}})) :
+  const labelledPhases = {simplecreate: 4, creation: 3, filters: 4}[kind];
+  const applicablePhases = labelledPhases ?
+    Array.from({length: labelledPhases}, (unused, n) => ({dataset: {guidePhase: String(n + 1)}})) :
     [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
     !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
@@ -1855,7 +1959,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       startControl.querySelector('[data-guide-start-label]').textContent = busy ?
         startControl.dataset.runningLabel : state === 'finished' ?
           startControl.dataset.replayLabel : startControl.dataset.startLabel;
-      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
+      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
+        '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
+        '[data-guide-scene-command="clear"]').forEach(button => {
         button.disabled = busy;
       });
     }
@@ -1874,7 +1980,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
     if (liveAnnouncement) { liveAnnouncement.textContent = scene.easyeduGuideResultOriginal; }
-    liveCopy.title = liveCopy.textContent;
+    liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.removeAttribute('data-guide-live-state');
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = true; }
@@ -1882,6 +1989,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
   if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
+  // K17-44: the four renderings of the filter slide are the recap shown once its demonstration ends.
+  const filtersRecap = kind === 'filters' ?
+    scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
+  if (filtersRecap) {
+    filtersRecap.hidden = true;
+  }
   const origin = scene.querySelector('[data-guide-membership-origin]');
   const target = scene.querySelector('[data-guide-membership-target]');
   if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }
@@ -1920,7 +2033,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
     if (liveCopy) {
       liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
-      liveCopy.title = liveCopy.textContent;
+      liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+      liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     }
     // A phone may not fit title, introduction and the complete ready header at
     // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
@@ -2036,10 +2150,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const animate = async(element, frames, duration, retain = true) => {
     await gate();
     assertActive();
-    if (reduced) { return; }
+    if (reduced) {
+      return null;
+    }
     const shown = fadeLevel ? toFadeFrames(frames) : frames;
     if (!shown) {
-      return;
+      return null;
     }
     const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
       easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
@@ -2048,6 +2164,39 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
     if (!retain) { animation.cancel(); animations.delete(animation); }
     assertActive();
+    return animation;
+  };
+  // K17-28, K17-45: the common return to rest. The stage fades out briefly, every retained transform or
+  // opacity animation inside it is cancelled and the resting (or final) state is applied while it is
+  // invisible, then the stage fades back in. On the same pausable clock as the rest of the demonstration;
+  // 'reduced' keeps one 120 ms fade each way, 'minimal' applies the state at once.
+  const restFlash = async mutate => {
+    await gate();
+    assertActive();
+    const cancelRetained = () => animations.forEach(animation => {
+      const node = animation.effect?.target;
+      if (node && node !== stage && stage.contains(node)) {
+        animation.cancel();
+        animations.delete(animation);
+      }
+    });
+    if (reduced) {
+      cancelRetained();
+      mutate();
+      return;
+    }
+    const out = await animate(stage, [{opacity: 1}, {opacity: 0}], FLASH_OUT_MS);
+    cancelRetained();
+    mutate();
+    const back = await animate(stage, [{opacity: 0}, {opacity: 1}], FLASH_IN_MS);
+    out?.cancel();
+    back?.cancel();
+    if (out) {
+      animations.delete(out);
+    }
+    if (back) {
+      animations.delete(back);
+    }
   };
   // Illustrated pointer placed at its destination without travel ('minimal'), or faded in there ('reduced').
   const placeCursor = async(cursorEl, transform) => {
@@ -2159,7 +2308,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (liveAnnouncement) { liveAnnouncement.textContent = text; }
     liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
       text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
-    liveCopy.title = text;
+    liveCopy.dataset.easyeduGuideBubble = text;
+    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.dataset.guideLiveState = state;
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = state !== 'finished'; }
@@ -2282,18 +2432,14 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
-    if (kind === 'simplecreate') {
-      // J-G4 (P-G5, validated 16/10): create ONE group, then ONE grouping, then rename the group.
-      // Illustration only: readonly fields and disabled buttons, never a Moodle command.
+    if (['simplecreate', 'creation', 'filters'].includes(kind)) {
+      // J-G4 (P-G5), K17-36, K17-44: illustration only. Readonly fields and disabled buttons, never a Moodle
+      // command. Pointer, typing, narration and reading clock are shared by the three demonstrations.
       const pick = selector => stage.querySelector(selector);
       const cursor = pick('[data-guide-cursor]');
       const field = role => pick(`[data-guide-simplecreate-input="${role}"]`);
       const submit = role => pick(`[data-guide-simplecreate-submit="${role}"]`);
       const created = role => pick(`[data-guide-simplecreate-result="${role}"]`);
-      const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
-      const cardName = pick('[data-guide-simplecreate-card-name]');
-      const edit = pick('[data-guide-simplecreate-edit]');
-      const rename = pick('[data-guide-simplecreate-rename]');
       const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
       const pointAt = async element => {
         assertActive();
@@ -2312,17 +2458,24 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         if (!cursor || cursor.hidden) { return; }
         if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
         cursor.hidden = true;
+        // The retained travel animations of a hidden pointer are released with it.
+        animations.forEach(animation => {
+          if (animation.effect?.target === cursor) {
+            animation.cancel();
+            animations.delete(animation);
+          }
+        });
       };
       const press = element => element ? Promise.all([compact ? touchPointer.tap(cursor) : Promise.resolve(),
         animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'}, {transform: 'scale(1)'}], 220, false)]) :
         Promise.resolve();
-      const type = async(input, text) => {
+      const type = async(input, text, step = 45) => {
         if (!input) { return; }
         input.value = '';
         for (const character of text) {
           assertActive();
           input.value += character;
-          await wait(still ? 0 : 45);
+          await wait(still ? 0 : step);
         }
         input.value = text;
       };
@@ -2352,35 +2505,188 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
         await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
       };
-      await reveal(stage);
-      await pointAt(field('group'));
-      await say(1);
-      if (compact) { await touchPointer.tap(cursor); }
-      await type(field('group'), sample('name'));
-      await pointAt(submit('group'));
-      await say(2);
-      await press(submit('group'));
-      if (field('group')) { field('group').value = ''; }
-      await show(created('group'));
-      await show(groupingStage);
-      await pointAt(field('grouping'));
-      await say(3);
-      if (compact) { await touchPointer.tap(cursor); }
-      await type(field('grouping'), sample('grouping'));
-      if (compact) { await pointAt(submit('grouping')); }
-      await press(submit('grouping'));
-      if (field('grouping')) { field('grouping').value = ''; }
-      await show(created('grouping'));
-      await pointAt(edit);
-      await say(4);
-      await press(edit);
-      if (cardName && rename) {
-        cardName.hidden = true;
-        rename.hidden = false;
-        await type(rename, sample('renamed'));
-        cardName.textContent = sample('renamed');
-        rename.hidden = true;
-        cardName.hidden = false;
+      if (kind === 'simplecreate') {
+        // Create ONE group, then ONE grouping, then rename the group.
+        const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
+        const cardName = pick('[data-guide-simplecreate-card-name]');
+        const edit = pick('[data-guide-simplecreate-edit]');
+        const rename = pick('[data-guide-simplecreate-rename]');
+        await reveal(stage);
+        await pointAt(field('group'));
+        await say(1);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(field('group'), sample('name'));
+        await pointAt(submit('group'));
+        await say(2);
+        await press(submit('group'));
+        if (field('group')) {
+          field('group').value = '';
+        }
+        await show(created('group'));
+        await show(groupingStage);
+        await pointAt(field('grouping'));
+        await say(3);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(field('grouping'), sample('grouping'));
+        if (compact) {
+          await pointAt(submit('grouping'));
+        }
+        await press(submit('grouping'));
+        if (field('grouping')) {
+          field('grouping').value = '';
+        }
+        await show(created('grouping'));
+        await pointAt(edit);
+        await say(4);
+        await press(edit);
+        if (cardName && rename) {
+          // K17-32: the rename is slow enough to be read (pause, typing at about 2.5 times the former pace,
+          // pause), then the title returns through the common fade.
+          cardName.hidden = true;
+          rename.hidden = false;
+          await wait(still ? 0 : 600);
+          await type(rename, sample('renamed'), 115);
+          await wait(still ? 0 : 1000);
+          await restFlash(() => {
+            cardName.textContent = sample('renamed');
+            rename.hidden = true;
+            cardName.hidden = false;
+          });
+        }
+      } else if (kind === 'creation') {
+        // K17-36: names separated by a comma or a semicolon, then a formula, then the same for groupings.
+        const input = pick('[data-guide-pattern]');
+        const label = pick('[data-guide-pattern-label]');
+        const groupOut = pick('[data-guide-names]');
+        const groupingBlock = pick('[data-guide-grouping-block]');
+        const groupingOut = pick('[data-guide-grouping-names]');
+        const warning = pick('[data-guide-warning-host]');
+        const attr = name => stage.getAttribute(`data-guide-creation-${name}`) || '';
+        const fill = (out, selector, names) => {
+          const template = pick(selector);
+          out.replaceChildren();
+          names.forEach(name => {
+            const card = template.content.firstElementChild.cloneNode(true);
+            const title = card.querySelector('[data-guide-name]');
+            if (title) {
+              title.textContent = name;
+            }
+            card.style.opacity = '0';
+            out.appendChild(card);
+          });
+          return [...out.children];
+        };
+        const appear = async cards => {
+          for (const card of cards) {
+            await animate(card, [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}],
+              200, false);
+            card.style.removeProperty('opacity');
+          }
+        };
+        input.readOnly = true;
+        input.value = '';
+        input.removeAttribute('aria-invalid');
+        groupOut.replaceChildren();
+        groupingOut.replaceChildren();
+        groupingBlock.hidden = true;
+        if (warning) {
+          warning.hidden = true;
+        }
+        if (label && !label.dataset.original) {
+          label.dataset.original = label.textContent;
+        }
+        await reveal(stage);
+        await pointAt(input);
+        await say(1);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(input, attr('list'));
+        let cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
+        await reveal(groupOut);
+        await appear(cards);
+        await say(2);
+        await type(input, attr('formula'));
+        cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
+        await appear(cards);
+        await say(3);
+        if (label) {
+          label.textContent = label.dataset.groupingLabel || label.textContent;
+        }
+        await type(input, attr('groupings'));
+        groupingBlock.hidden = false;
+        cards = fill(groupingOut, '[data-guide-grouping-card]', expandCreateNames(input.value) || []);
+        await reveal(groupingBlock);
+        await appear(cards);
+        input.readOnly = false;
+      } else {
+        // K17-44: search "TD", add the role filter, select the results, clear the selection.
+        const input = pick('[data-guide-filters-input]');
+        const role = pick('[data-guide-filters-role]');
+        const select = pick('[data-guide-filters-select]');
+        const count = pick('[data-guide-filters-count]');
+        const selection = pick('[data-guide-filters-selection]');
+        const clear = pick('[data-guide-filters-clear]');
+        const cards = [...stage.querySelectorAll('[data-guide-filters-card]')];
+        const attr = name => stage.getAttribute(`data-guide-${name}`) || '';
+        const isMatch = card => card.dataset.guideFiltersMatch === '1';
+        const setSelected = on => cards.forEach(card => {
+          const selected = on && isMatch(card);
+          card.querySelector('.local-groupimport-easystud-user')?.classList.toggle('is-selected', selected);
+          const box = card.querySelector('input[type="checkbox"]');
+          if (box) {
+            box.checked = selected;
+          }
+        });
+        const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
+        await reveal(stage);
+        await pointAt(input);
+        await say(1);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(input, attr('filters-query'), 170);
+        await Promise.all(cards.filter(card => !isMatch(card)).map(card => animate(card, [{opacity: 1}, {opacity: 0}], 220)));
+        cards.filter(card => !isMatch(card)).forEach(card => {
+          card.hidden = true;
+        });
+        count.textContent = attr('count-filtered');
+        await say(2);
+        role.classList.remove('is-spacer');
+        role.removeAttribute('aria-hidden');
+        await animate(role, [{opacity: 0}, {opacity: 1}], 240);
+        await say(3);
+        await pointAt(select);
+        ring(select, true);
+        await press(select);
+        setSelected(true);
+        select.textContent = attr('deselect-label');
+        selection.hidden = false;
+        await animate(selection, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}], 200);
+        await say(4);
+        ring(select, false);
+        await pointAt(clear);
+        ring(clear, true);
+        await press(clear);
+        await hidePointer();
+        // K17-28: the list returns to its resting state behind the common short fade.
+        await restFlash(() => {
+          input.value = '';
+          cards.forEach(card => {
+            card.hidden = false;
+          });
+          setSelected(false);
+          count.textContent = attr('count-all');
+          role.classList.add('is-spacer');
+          role.setAttribute('aria-hidden', 'true');
+          select.textContent = attr('select-label');
+          selection.hidden = true;
+          ring(clear, false);
+        });
       }
       await hidePointer();
       if (controller.signal.aborted) { return; }
@@ -2390,6 +2696,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       advancing = false;
       syncPlayback('finished');
       await settleHeader();
+      if (controller.signal.aborted) {
+        return;
+      }
+      const specimenRecap = kind === 'filters' ?
+        scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
+      if (specimenRecap) {
+        specimenRecap.style.opacity = '0';
+        specimenRecap.hidden = false;
+        await reveal(specimenRecap);
+        await animate(specimenRecap, [{opacity: 0}, {opacity: 1}], 280);
+        specimenRecap.style.removeProperty('opacity');
+      }
       if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
       return;
     }
@@ -2495,10 +2813,13 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       if (controller.signal.aborted) { return; }
       if (compact) { await touchPointer.tap(cursor); }
       await hidePointer();
-      await disclose(false);
+      // K17-28: the card returns to its resting size behind the common short fade.
+      await restFlash(() => {
+        panel.hidden = true;
+        input.value = '';
+        chips.hidden = true;
+      });
       if (controller.signal.aborted) { return; }
-      input.value = '';
-      chips.hidden = true;
       result.textContent = result.dataset.inspection || scene.easyeduGuideResultOriginal;
       await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
       if (controller.signal.aborted) { return; }
@@ -2693,28 +3014,40 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
           travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
         if (controller.signal.aborted) { return; }
         cancelAnimationFrame(dropFrame); dropFrame = null;
-        member.hidden = false;
+        // K17-43: the participant card stays where it was dropped and only fades out; it no longer
+        // travels back to the left.
         await wait(220);
         destinationNode.classList.remove('is-guide-drop-target');
-        await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
-          {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
-        await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
+        await animate(ghost, [{opacity: 1}, {opacity: 0}], 220);
         ghost.remove();
       }
     }
     if (controller.signal.aborted) { return; }
-    member.hidden = false;
     await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
     if (controller.signal.aborted) { return; }
     cursor.hidden = true;
     cancelAnimationFrame(cursorVisibilityFrame);
     cursor.style.visibility = cursorVisibility;
-    stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
-    stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = false; });
-    if (mode !== 'add') {
-      stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => { node.hidden = true; });
-      const empty = stage.querySelector('[data-guide-source-empty]');
-      if (empty) { empty.hidden = false; }
+    // K17-28, K17-45: the final state (member shown in the destination, moved cards gone) replaces the
+    // animated one behind the common short fade, so the destination group no longer jumps.
+    await restFlash(() => {
+      member.hidden = false;
+      stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
+      stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => {
+        node.checked = false;
+      });
+      if (mode !== 'add') {
+        stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => {
+          node.hidden = true;
+        });
+        const empty = stage.querySelector('[data-guide-source-empty]');
+        if (empty) {
+          empty.hidden = false;
+        }
+      }
+    });
+    if (controller.signal.aborted) {
+      return;
     }
     if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
@@ -2807,7 +3140,8 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   }
 
   const slides = Array.from(root.querySelectorAll(SELECTORS.slide));
-  const direction = index < getActiveSlideIndex(root) ? -1 : 1;
+  const previousIndex = getActiveSlideIndex(root);
+  const direction = index < previousIndex ? -1 : 1;
   const safeIndex = config && !options.allowLocked ?
     findAvailableSlideIndex(root, config, index, direction) :
     Math.max(0, Math.min(index, slides.length - 1));
@@ -2847,6 +3181,14 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   });
 
   root.setAttribute('data-easyedu-guide-current-slide', String(safeIndex));
+  // K17-40: a new slide always starts at its top, whatever the previous reading position.
+  if (safeIndex !== previousIndex) {
+    [root.querySelector(SELECTORS.modal + ' .easyedu-guide-modal__body'), slides[safeIndex]].forEach(scroller => {
+      if (scroller) {
+        scroller.scrollTop = 0;
+      }
+    });
+  }
   if (config && options.persistReading) saveGuideReadingPosition(config, safeIndex);
   syncInterfaceCue(root, slides[safeIndex]);
   stopDiscoveryScene(root);
@@ -3094,6 +3436,21 @@ const expandCompleteChecklist = checklist => {
   checklist.setAttribute('data-easyedu-guide-checklist-expanded', '');
 };
 
+// K17-30: the end box replaces the step list in one frame. Keep the former height and
+// let the panel grow or shrink to the new one while the message fades in; the minimal
+// level applies the end box at once (Motion.resize and Motion.enter are then instant).
+const animateChecklistCompletion = (checklist, fromHeight, message) => {
+  if (!checklist || checklist.hidden || !(fromHeight > 0)) {
+    return;
+  }
+  checklist.classList.add('is-completing');
+  void Motion.resize(checklist, () => checklist, {fromHeight, duration: Motion.timing.slow})
+    .then(() => checklist.classList.remove('is-completing'));
+  [message, checklist.querySelector('.easyedu-guided-panel__done')].filter(Boolean).forEach(element => {
+    void Motion.enter(element, {fromOpacity: 0, distance: '0.25rem', duration: Motion.timing.slow});
+  });
+};
+
 const renderChecklist = (root, config, pathName) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const list = root.querySelector(SELECTORS.checklistItems);
@@ -3107,6 +3464,9 @@ const renderChecklist = (root, config, pathName) => {
   const previousItems = Array.from(list.children);
   const reusable = checklist.getAttribute('data-easyedu-guide-path') === pathName ?
     new Map(previousItems.map(item => [item.getAttribute('data-easyedu-guide-step-id'), item])) : new Map();
+  const wasHidden = checklist.hidden;
+  const wasComplete = checklist.classList.contains('is-complete');
+  const fromHeight = wasHidden ? 0 : checklist.getBoundingClientRect().height;
   checklist.hidden = false;
   hideInterfaceReturn(root, true);
   const wasMinimized = checklist.classList.contains('is-minimized');
@@ -3202,6 +3562,9 @@ const renderChecklist = (root, config, pathName) => {
     message.classList.toggle('is-complete', allComplete);
     if (allComplete) {
       expandCompleteChecklist(checklist);
+      if (!wasComplete) {
+        animateChecklistCompletion(checklist, fromHeight, message);
+      }
     }
     if (icon) {
       icon.classList.toggle('fa-check-circle', allComplete);
@@ -3231,11 +3594,16 @@ const updateChecklistMessage = (root, config, activeStep) => {
   const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
   const activeMessage = getStepText(activeStep, 'feedback') || config.labels.hint || '';
 
+  const wasComplete = checklist.classList.contains('is-complete');
+  const fromHeight = checklist.hidden ? 0 : checklist.getBoundingClientRect().height;
   checklist.classList.toggle('is-complete', complete);
   message.classList.toggle('is-complete', complete);
   if (complete) {
     expandCompleteChecklist(checklist);
     syncChecklistMinimizeControl(root);
+    if (!wasComplete) {
+      animateChecklistCompletion(checklist, fromHeight, message);
+    }
   }
   if (icon) {
     icon.classList.toggle('fa-location-arrow', !complete);
@@ -3525,13 +3893,24 @@ const bindHighlightAutoRefresh = root => {
 
 };
 
-// The full navigation label remains the button's accessible name. This visual
-// enhancement reveals ellipsised copy only, without repeating its name to AT.
-const bindNavigationTooltips = root => {
-  if (!root.classList.contains('easyedu-guide--discovery')) return;
+// K17-21 to K17-26 (Guide part): the Guide never shows a native browser bubble. Every
+// element that needs one carries data-easyedu-guide-bubble="text"; this single Kit-styled
+// bubble replaces the native title (no double bubble). data-easyedu-guide-bubble-when="truncated"
+// limits it to copy that is actually clipped. The bubble fades in and out through Motion
+// (instant at the minimal level). The accessible name stays on the control itself.
+const GUIDE_BUBBLE = '[data-easyedu-guide-bubble]';
+const GUIDE_BUBBLE_CLASS = 'local-groupimport-easystud-hover-popover';
+const isClipped = element => element.scrollWidth > element.clientWidth + 1 ||
+  element.scrollHeight > element.clientHeight + 1;
+// A pill is clipped when its title or its chapter line is; any other element, when it is itself.
+const isClippedCopy = element => [element, ...element.querySelectorAll(
+  '.easyedu-guide-nav-item__label, .easyedu-guide-nav-item__meta small')].some(isClipped);
+
+const bindGuideBubbles = root => {
   const modal = root.querySelector(SELECTORS.modal);
-  const nav = root.querySelector(SELECTORS.nav);
-  if (!modal || !nav) return;
+  if (!root.classList.contains('easyedu-guide--discovery') || !modal) {
+    return;
+  }
   let tooltip = null;
   let target = null;
   let refreshFrame = null;
@@ -3540,42 +3919,50 @@ const bindNavigationTooltips = root => {
     if (graceTimer !== null) window.clearTimeout(graceTimer);
     graceTimer = null;
   };
-  const hide = () => {
+  const hide = (immediate = true) => {
     cancelGrace();
     if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
     refreshFrame = null;
-    tooltip?.remove();
+    const leaving = tooltip;
     tooltip = null;
-    // Restore the native pill title (K1) once the full-label tooltip is gone.
-    if (target && target.dataset.easyeduGuideTitle !== undefined) {
-      target.setAttribute('title', target.dataset.easyeduGuideTitle);
-      delete target.dataset.easyeduGuideTitle;
-    }
     target = null;
-  };
-  root.easyeduGuideTooltipHide = hide;
-  const show = button => {
-    const label = button?.querySelector('.easyedu-guide-nav-item__label');
-    if (!label || modal.hidden || label.scrollWidth <= label.clientWidth + 1) {
-      hide();
+    if (!leaving) {
       return;
     }
-    if (target === button) {
+    if (immediate) {
+      Motion.cancel(leaving);
+      leaving.remove();
+      return;
+    }
+    leaving.style.pointerEvents = 'none';
+    void Motion.exit(leaving, {duration: Motion.timing.normal, distance: '0rem'}).then(() => leaving.remove());
+  };
+  root.easyeduGuideTooltipHide = hide;
+  const show = element => {
+    const text = (element?.getAttribute('data-easyedu-guide-bubble') || '').trim();
+    if (!text || modal.hidden ||
+        (element.dataset.easyeduGuideBubbleWhen === 'truncated' && !isClippedCopy(element))) {
+      hide(false);
+      return;
+    }
+    if (target === element) {
       cancelGrace();
       return;
     }
     hide();
-    target = button;
-    // One tooltip at a time: park the native title while this one is shown.
-    if (button.hasAttribute('title')) {
-      button.dataset.easyeduGuideTitle = button.getAttribute('title');
-      button.removeAttribute('title');
-    }
+    target = element;
+    // The same Kit bubble as the rest of EasyStud (bindHoverPopovers): same classes, markup and fade.
     tooltip = modal.ownerDocument.createElement('div');
-    tooltip.className = 'easyedu-guide-label-tooltip';
-    tooltip.setAttribute('aria-hidden', 'true');
-    tooltip.textContent = label.textContent.trim();
-    // WCAG 1.4.13: the pointer may move onto the tooltip, which then stays visible.
+    tooltip.className = 'popover ' + GUIDE_BUBBLE_CLASS + ' ' + GUIDE_BUBBLE_CLASS + '--top show';
+    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--long', text.length > 110);
+    tooltip.setAttribute('role', 'tooltip');
+    const arrow = modal.ownerDocument.createElement('div');
+    arrow.className = 'popover-arrow';
+    const body = modal.ownerDocument.createElement('div');
+    body.className = 'popover-body';
+    body.textContent = text;
+    tooltip.append(arrow, body);
+    // WCAG 1.4.13: the pointer may move onto the bubble, which then stays visible.
     tooltip.addEventListener('pointerenter', cancelGrace);
     tooltip.addEventListener('pointerleave', event => {
       if (!target?.contains(event.relatedTarget)) {
@@ -3584,57 +3971,51 @@ const bindNavigationTooltips = root => {
     });
     // Append inside the actual fullscreen element, not a global body portal.
     modal.appendChild(tooltip);
-    const margin = 12;
-    const gap = 10;
-    const anchor = button.getBoundingClientRect();
-    let size = tooltip.getBoundingClientRect();
-    if (size.height > 34.5) {
-      tooltip.classList.add('is-multiline');
-      size = tooltip.getBoundingClientRect();
-    }
+    const margin = 8;
+    const anchor = element.getBoundingClientRect();
+    const size = tooltip.getBoundingClientRect();
     const viewport = modal.ownerDocument.defaultView;
+    const below = anchor.top - size.height - 10 < margin;
     const left = Math.max(margin, Math.min(anchor.left + (anchor.width - size.width) / 2,
       viewport.innerWidth - size.width - margin));
-    const above = anchor.bottom + gap + size.height > viewport.innerHeight - margin;
-    const top = Math.max(margin, Math.min(above ? anchor.top - size.height - gap : anchor.bottom + gap,
-      viewport.innerHeight - size.height - margin));
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
-    tooltip.style.setProperty('--easyedu-tooltip-anchor',
-      `${Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, size.width - 12))}px`);
-    tooltip.classList.toggle('is-above', above);
+    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--top', !below);
+    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--bottom', below);
+    tooltip.style.position = 'fixed';
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = (below ? anchor.bottom + 10 : anchor.top - size.height - 10) + 'px';
+    void Motion.enter(tooltip, {distance: '0rem', duration: Motion.timing.normal});
   };
   const scheduleHide = () => {
     cancelGrace();
-    graceTimer = window.setTimeout(hide, 220);
+    graceTimer = window.setTimeout(() => hide(false), 220);
   };
-  const buttonFor = element => element?.closest?.(SELECTORS.navItem);
-  addTrackedListener(root, nav, 'pointerover', event => {
+  const bubbleFor = element => element?.closest?.(GUIDE_BUBBLE);
+  addTrackedListener(root, modal, 'pointerover', event => {
     if (event.pointerType !== 'mouse') return;
-    const button = buttonFor(event.target);
-    if (button && !button.contains(event.relatedTarget)) show(button);
+    const element = bubbleFor(event.target);
+    if (element && !element.contains(event.relatedTarget)) show(element);
   });
-  addTrackedListener(root, nav, 'pointerout', event => {
-    const button = buttonFor(event.target);
-    if (button === target && !button?.contains(event.relatedTarget)) {
+  addTrackedListener(root, modal, 'pointerout', event => {
+    const element = bubbleFor(event.target);
+    if (element && element === target && !element.contains(event.relatedTarget)) {
       if (tooltip?.contains(event.relatedTarget)) {
         return;
       }
       scheduleHide();
     }
   });
-  addTrackedListener(root, nav, 'focusin', event => {
-    const button = buttonFor(event.target);
-    if (button?.matches(':focus-visible')) show(button);
+  addTrackedListener(root, modal, 'focusin', event => {
+    const element = bubbleFor(event.target);
+    if (element?.matches(':focus-visible')) show(element);
   });
-  addTrackedListener(root, nav, 'focusout', hide);
-  addTrackedListener(root, root, 'pointerdown', hide, true);
-  addTrackedListener(root, root, 'click', hide, true);
+  addTrackedListener(root, modal, 'focusout', () => hide(false));
+  addTrackedListener(root, root, 'pointerdown', () => hide(), true);
+  addTrackedListener(root, root, 'click', () => hide(), true);
   addTrackedListener(root, root, 'keydown', event => {
     if (event.key !== 'Escape') {
       return;
     }
-    // WCAG 1.4.13: dismissing the label tooltip must not also close the Guide.
+    // WCAG 1.4.13: dismissing the bubble must not also close the Guide.
     const wasOpen = tooltip !== null;
     hide();
     if (wasOpen) {
@@ -3642,12 +4023,13 @@ const bindNavigationTooltips = root => {
       event.stopPropagation();
     }
   }, true);
+  const nav = root.querySelector(SELECTORS.nav);
   addTrackedListener(root, modal.ownerDocument, 'scroll', event => {
-    const focused = buttonFor(modal.ownerDocument.activeElement);
+    const focused = bubbleFor(modal.ownerDocument.activeElement);
     // Native keyboard focus can scroll the horizontal navigation after focusin.
-    // Re-anchor its label on the next paint instead of losing keyboard help.
+    // Re-anchor its bubble on the next paint instead of losing keyboard help.
     // Other scrolling still dismisses it, and every teardown cancels this frame.
-    if (event.target === nav && focused?.matches(':focus-visible')) {
+    if (nav && event.target === nav && focused?.matches(':focus-visible')) {
       hide();
       refreshFrame = window.requestAnimationFrame(() => {
         refreshFrame = null;
@@ -3657,8 +4039,8 @@ const bindNavigationTooltips = root => {
       hide();
     }
   }, true);
-  addTrackedListener(root, modal.ownerDocument, 'fullscreenchange', hide);
-  addTrackedListener(root, window, 'resize', hide);
+  addTrackedListener(root, modal.ownerDocument, 'fullscreenchange', () => hide());
+  addTrackedListener(root, window, 'resize', () => hide());
 };
 
 const bindGuide = (root, config) => {
@@ -3667,7 +4049,7 @@ const bindGuide = (root, config) => {
     return;
   }
   root.dataset.easyeduGuideBound = '1';
-  bindNavigationTooltips(root);
+  bindGuideBubbles(root);
   const responsiveSteps = window.matchMedia ? window.matchMedia(GUIDE_NARROW_QUERY) : null;
   if (responsiveSteps && responsiveSteps.addEventListener) {
     addTrackedListener(root, responsiveSteps, 'change', () => refreshResponsiveChecklist(root));
@@ -3686,7 +4068,7 @@ const bindGuide = (root, config) => {
       fullscreenButton.setAttribute('aria-pressed', state.active ? 'true' : 'false');
       fullscreenButton.setAttribute('aria-label', state.active ?
         fullscreenButton.dataset.exitLabel : fullscreenButton.dataset.enterLabel);
-      fullscreenButton.title = fullscreenButton.getAttribute('aria-label');
+      fullscreenButton.dataset.easyeduGuideBubble = fullscreenButton.getAttribute('aria-label');
       const glyph = fullscreenButton.querySelector('[data-easyedu-guide-fullscreen-glyph]');
       if (glyph) {
         glyph.setAttribute('d', state.active ? glyph.dataset.exitPath : glyph.dataset.enterPath);

@@ -40,8 +40,17 @@ assert(discoveryScss.includes('text-overflow: clip;') && discoveryScss.includes(
 assert(template.includes('data-easyedu-guided-label="{{guidebadgelabel}}"'), 'legacy accessible path label contract is retained');
 assert(template.includes('<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>')
     && !template.includes('nav-item__path fa'), 'guided navigation renders the Guide text badge, not a second pictogram');
-assert(template.includes('title="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}"'), 'navigation pills always carry a localized title, including tooltip fallback');
-assert(template.includes('class="easyedu-guide-nav-item is-active" title="{{label}}"'), 'introduction specimen pill carries its localized title');
+// K17-21/26 (GNAV) replaces native titles with the single Kit bubble.
+assert(template.includes('data-easyedu-guide-bubble="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}"'),
+    'navigation pills retain their localized bubble text, including the label fallback');
+assert(template.includes('class="easyedu-guide-nav-item is-active" data-easyedu-guide-bubble="{{label}}"'),
+    'introduction specimen pill carries its localized Kit bubble');
+assert(template.includes('data-easyedu-guide-bubble-when="truncated"'),
+    'navigation bubbles follow the accepted truncation policy');
+const navStart = template.indexOf('class="easyedu-guide-nav-item{{#hasguidedpath}}');
+const navEnd = template.indexOf('\n                        >', navStart);
+assert(navStart >= 0 && navEnd > navStart && !/\stitle=/.test(template.slice(navStart, navEnd)),
+    'navigation pills do not restore a second native tooltip');
 assert(template.includes('{{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}'),
     'the accessible pill name keeps the Guide marker');
 assert(discovery.includes("$slide['navtitle'] = get_string('guide_nav_' . ($index + 1), 'local_groupimport');"),

@@ -1130,3 +1130,10 @@ by the positioned toggle root. Source parity does not certify native behavior.
 ANIM uses the single preferences-classes recipe and generic display_preferences
 composition. Guide entry buttons dispatch the consumer adapter; translated labels,
 Moodle preference persistence and lifecycle stay outside the generic Guide engine.
+
+
+Guide mirror synchronization on 01872080 preserves the consumer engine, builds,
+templates and SCSS. The current navigation uses the single localized Kit bubble
+when truncated; do not restore duplicate native title tooltips. Retain T037,
+T038 and exact roundtrip checks, plus a separate canonical main integration gate.
+See docs/testing/guide-mirror-01872080-2026-10-17.md.

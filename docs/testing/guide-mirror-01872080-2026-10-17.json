@@ -1,0 +1,51 @@
+{
+  "base": "01872080",
+  "unchangedProductFiles": [
+    "amd/src/easyedu_guide.js",
+    "amd/build/easyedu_guide.min.js",
+    "amd/build/easyedu_guide.min.js.map",
+    "templates/easyedu_guide.mustache",
+    "templates/guide_anatomy.mustache",
+    "templates/guide_simplecreate.mustache",
+    "templates/guide_specimen.mustache",
+    "templates/guide_specimen_group.mustache",
+    "templates/guide_specimen_grouping.mustache",
+    "templates/guide_specimen_participant.mustache",
+    "templates/guide_welcome_reset.mustache",
+    "scss/easyedu/components/_guide.scss",
+    "scss/easyedu/components/_guide-discovery.scss",
+    "scss/easyedu/components/_guide-specimen.scss",
+    "scss/easyedu/components/_animations.scss"
+  ],
+  "productParityAfterGitLineEndings": true,
+  "productTrackedDiffEmpty": true,
+  "published": false,
+  "kitBase": "79d7639",
+  "t037": {
+    "passed": true,
+    "checks": 14
+  },
+  "t038": {
+    "passed": true,
+    "checks": 49
+  },
+  "roundtrip": {
+    "passed": true,
+    "amdExports": 6,
+    "scss": 4,
+    "templates": 7
+  },
+  "sass": {
+    "passed": true,
+    "mixins": 5,
+    "cssBytes": 328839,
+    "sha256": "2e8cd7ab1d9a1e8d802fd6037a61f726b20ad0111b8a3e27dbc0db7238230625",
+    "runtimeAccess": false
+  },
+  "guideSyncDryRun": "all aligned; no Apply",
+  "runtimeAccess": false,
+  "testContractChange": "native title replaced by accepted localized Kit bubble; no duplicate native tooltip",
+  "humanAccepted": false,
+  "mainMerged": false,
+  "kitCommit": "697313979508fed35127794b79d3b35d41144b9a"
+}
