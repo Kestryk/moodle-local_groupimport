@@ -1808,12 +1808,21 @@
       padding-block-start: 0.75rem;
       &-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between;
         strong { @include typography.type-control-label; color: var(--easyedu-text); }
-        .btn { @include buttons.button-size(small); }
-        .btn .fa { margin: 0; }
+        // K17-39: the Kit selection action (its icon-to-label gap), like every other demonstration button.
+        .btn { @include buttons.selection-action; @include buttons.button-size(small); }
+        .btn .fa { margin: 0; line-height: 1; }
       }
+      // K17-39: the caption keeps room for its longest line count (two lines on a phone), so the page below
+      // never moves when the narration changes.
       &-caption { @include typography.type-caption; margin: 0; min-block-size: 1.5em; }
+      @media (max-width: 40rem) {
+        &-caption { min-block-size: calc(2 * 1.4em); }
+      }
       .easyedu-guide-anatomy__specimen { padding-block-start: 0; }
-      .easyedu-guide-anatomy__card { max-inline-size: 28rem; padding-block-start: 0.75rem; }
+      // K17-39: the mini demonstration is centred in the slide, and its search panel keeps its place while
+      // hidden, so the card never grows when it opens.
+      .easyedu-guide-anatomy__card { max-inline-size: 28rem; padding-block-start: 0.75rem; margin-inline: auto; inline-size: 100%; }
+      [data-guide-loupe-closed] { visibility: hidden; }
     }
     &__search {
       align-items: center;
@@ -1843,6 +1852,9 @@
     }
     @media (max-width: 40rem) {
       &__legend { grid-template-columns: minmax(0, 1fr); }
+      // K17-39: the demonstration button takes its own full row on a phone, whatever its label, so the bar
+      // keeps one height while the label changes.
+      &__loupe-bar .btn { flex: 1 1 100%; }
       &__avatar { height: 2.25rem; width: 2.25rem; }
       &__action { height: 1.5rem; width: 1.5rem; font-size: 0.8125rem; }
       // 390: the counter closes the title row; the actions take their own row beneath it.

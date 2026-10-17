@@ -1814,9 +1814,13 @@ const runLoupeDemo = (root, demo) => {
   const after = (ms, fn) => {
     timers.push(setTimeout(fn, ms));
   };
+  const card = demo.querySelector('.easyedu-guide-anatomy__card');
+  const members = demo.querySelector('.easyedu-guide-anatomy__members');
+  let active = true;
   const reset = () => {
     trigger.classList.remove('is-pointed');
-    panel.hidden = true;
+    // K17-39: a closed panel keeps its place (invisible, not removed from the layout).
+    panel.toggleAttribute('data-guide-loupe-closed', true);
     input.textContent = '';
     rows.forEach(row => {
       row.hidden = false;
@@ -1824,8 +1828,11 @@ const runLoupeDemo = (root, demo) => {
     });
   };
   const finish = done => {
+    active = false;
     timers.splice(0).forEach(clearTimeout);
     reset();
+    // K17-39: the list keeps its full height only while the demonstration runs.
+    members?.style.removeProperty('min-block-size');
     root.easyeduGuideLoupeStop = null;
     demo.dataset.guideLoupeState = done ? 'done' : 'idle';
     button.disabled = false;
@@ -1848,6 +1855,11 @@ const runLoupeDemo = (root, demo) => {
     }
   };
   reset();
+  // K17-39: the list keeps its full height while it narrows, so the page below never moves (the panel's
+  // place is reserved by the stylesheet).
+  if (members) {
+    members.style.minBlockSize = `${members.getBoundingClientRect().height}px`;
+  }
   demo.dataset.guideLoupeState = 'running';
   button.disabled = true;
   button.setAttribute('aria-busy', 'true');
@@ -1859,7 +1871,7 @@ const runLoupeDemo = (root, demo) => {
   after(LOUPE_PHASE_MS[0], () => {
     caption.textContent = demo.dataset.phase2;
     trigger.classList.remove('is-pointed');
-    panel.hidden = false;
+    panel.toggleAttribute('data-guide-loupe-closed', false);
     enter(panel);
     [...query].forEach((char, index) => after(450 + index * 330, () => {
       input.textContent += char;
