@@ -1,4 +1,4 @@
-- 2026-10-17 [N0] Align empty group rows through the shared Kit selection/text tracks; retain the grouping model and tree rule.
+- 2026-10-17 [N1] Align empty group rows through the shared Kit selection/text tracks; retain the grouping model and tree rule.
 
 - 2026-10-17 [N0] Audit all tracked PHP and AMD sources with Moodle rules; apply token-preserving PHP formatting and JavaScript documentation fixes, and merge duplicate intake evidence without product behavior changes.
 
