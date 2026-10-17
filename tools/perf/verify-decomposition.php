@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Local-supervised T052-bis attribution oracle; no Moodle or database bootstrap.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 require_once(__DIR__ . '/decompose.php');
 $member = '<ul data-easystud-group-members="1"><li data-easystud-member-id="2">Élève</li></ul>';

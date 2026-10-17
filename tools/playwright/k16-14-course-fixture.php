@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Reuse the exact-owner setup and cleanup of the existing sorting fixture.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('EASYSTUD_K16_SMALL_FIXTURE', true);
 define('EASYSTUD_K16_COPY_GROUP_NAMES', [
     'QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma', 'QA Unrelated Delta',

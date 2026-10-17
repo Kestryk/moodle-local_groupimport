@@ -17,7 +17,14 @@
 
 define('MOODLE_INTERNAL', true);
 $roleconfig = [];
-
+/**
+ * Perform isolated fixture operation get_config.
+ * @param string $component Fixture argument.
+ * @param string $key Fixture argument.
+ * @return mixed Fixture result.
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 function get_config(string $component, string $key) {
     global $roleconfig;
     if ($component !== 'local_groupimport') {

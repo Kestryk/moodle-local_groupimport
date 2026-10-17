@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Disposable K16 sorting and membership-copy replay, restricted to the dedicated Perf DB.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('CLI_SCRIPT', true);
 $options = [];
 for ($i = 1; $i < count($argv); $i += 2) {
@@ -37,11 +44,22 @@ $file = $options['manifest'] ?? '';
 if (!$file || !is_dir(dirname($file))) {
     throw new RuntimeException('External manifest directory required');
 }
+/**
+ * Perform isolated fixture operation guide_fixture_save.
+ * @param string $file Fixture argument.
+ * @param array $data Fixture argument.
+ * @return void Fixture result.
+ */
 function guide_fixture_save(string $file, array $data): void {
     if (file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), LOCK_EX) === false) {
         throw new RuntimeException('Cannot persist fixture ownership');
     }
 }
+/**
+ * Perform isolated fixture operation guide_fixture_cleanup.
+ * @param array $data Fixture argument.
+ * @return array Fixture result.
+ */
 function guide_fixture_cleanup(array $data): array {
     global $DB, $CFG;
     $courseid = (int)($data['courseId'] ?? 0);
@@ -121,18 +139,33 @@ try {
         throw new RuntimeException('Manual enrollment required');
     }
     $full = !defined('EASYSTUD_K16_SMALL_FIXTURE');
-    $names = $full ? array_merge(['One', 'Two'], array_map(static fn($i) => sprintf('Member %02d', $i), range(1, 16))) : ['One', 'Two'];
+    $names = $full ? array_merge(
+        ['One',
+         'Two'],
+        array_map(
+            static fn($i) =>
+             sprintf(
+                 'Member %02d',
+                 $i
+             ),
+            range(
+                1,
+                16
+            )
+        )
+    ) : ['One',
+         'Two'];
     foreach ($names as $name) {
         $id = user_create_user((object)['username' => 'eed-guide-write-' . $suffix . '-' . str_replace(' ', '-', strtolower($name)),
             'firstname' => 'QA Guided', 'lastname' => $name,
             'email' => $suffix . '-' . str_replace(' ', '-', strtolower($name)) . '@example.invalid',
             'auth' => 'nologin', 'confirmed' => 1, 'mnethostid' => $CFG->mnet_localhost_id], false, false);
-        $data['userIds'][] = (int)$id;
-        guide_fixture_save($file, $data);
-        enrol_get_plugin('manual')->enrol_user($manual, $id, $role->id);
+             $data['userIds'][] = (int)$id;
+             guide_fixture_save($file, $data);
+             enrol_get_plugin('manual')->enrol_user($manual, $id, $role->id);
     }
-    $data['groupIds'] = [];
-    $names = ['QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma'];
+         $data['groupIds'] = [];
+         $names = ['QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma'];
     if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) {
         $names = EASYSTUD_K16_COPY_GROUP_NAMES;
     }
@@ -142,10 +175,10 @@ try {
     foreach ($names as $name) {
         $data['groupIds'][] = (int)groups_create_group((object)['courseid' => $course->id, 'name' => $name]);
     }
-    groups_add_member($data['groupIds'][0], $data['userIds'][0]);
-    groups_add_member($data['groupIds'][1], $data['userIds'][1]);
-    $data['groupingIds'] = [];
-    $names = ['QA Source Structure', 'QA Activity Destination'];
+         groups_add_member($data['groupIds'][0], $data['userIds'][0]);
+         groups_add_member($data['groupIds'][1], $data['userIds'][1]);
+         $data['groupingIds'] = [];
+         $names = ['QA Source Structure', 'QA Activity Destination'];
     if ($full) {
         $names = array_merge($names, array_map(static fn($i) => sprintf('QA Grouping %02d', $i), range(1, 10)));
     }
@@ -155,9 +188,9 @@ try {
     foreach ($data['groupIds'] as $id) {
         groups_assign_grouping($data['groupingIds'][0], $id);
     }
-    $data['managerUrl'] = $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $course->id . '&lang=fr';
-    guide_fixture_save($file, $data);
-    echo json_encode($data, JSON_UNESCAPED_SLASHES) . PHP_EOL;
+         $data['managerUrl'] = $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $course->id . '&lang=fr';
+         guide_fixture_save($file, $data);
+         echo json_encode($data, JSON_UNESCAPED_SLASHES) . PHP_EOL;
 } catch (Throwable $error) {
     guide_fixture_cleanup($data);
     throw $error;

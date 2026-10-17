@@ -46,7 +46,20 @@ use local_groupimport\local\state_version;
 use local_groupimport\service\course_state;
 use local_groupimport\service\course_structure;
 
-[$options] = cli_get_params(['moodle-root' => '', 'courseid' => 0, 'write-test' => false, 'output' => '', 'help' => false], ['h' => 'help']);
+[$options] = cli_get_params(
+    ['moodle-root' =>
+         '',
+         'courseid' =>
+         0,
+         'write-test' =>
+         false,
+         'output' =>
+         '',
+         'help' =>
+         false],
+    ['h' =>
+    'help']
+);
 if ($options['help'] || empty($options['courseid'])) {
     cli_writeln('Usage: php tools/sm/check-state.php [--moodle-root=PATH] --courseid=ID [--write-test] [--output=FILE]');
     exit(0);

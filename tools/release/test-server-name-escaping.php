@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Read-only native Moodle renderer check; no records or configuration are written.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('CLI_SCRIPT', true);
 require($argv[1] . '/config.php');
 require_once(($argv[2] ?? $CFG->dirroot . '/local/groupimport') . '/lib.php');

@@ -15,8 +15,21 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated renderer input: no Moodle bootstrap, session or database.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 require(__DIR__ . '/../../lang/' . (($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en') . '/local_groupimport.php');
+/**
+ * Perform isolated fixture operation get_string.
+ * @param mixed $key Fixture argument.
+ * @param mixed $component Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_string($key, $component) {
     global $string;
     if (!isset($string[$key])) {
@@ -24,10 +37,24 @@ function get_string($key, $component) {
     }
     return $string[$key];
 }
+/**
+ * Perform isolated fixture operation s.
+ * @param mixed $value Fixture argument.
+ * @return mixed Fixture result.
+ */
 function s($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
+/**
+ * Isolated fixture double for html_writer.
+ */
 class html_writer {
+    /**
+     * Perform isolated fixture operation tag.
+     * @param mixed $name Fixture argument.
+     * @param mixed $value Fixture argument.
+     * @return mixed Fixture result.
+     */
     public static function tag($name, $value) {
         return '<' . $name . '>' . $value . '</' . $name . '>';
     }
