@@ -93,7 +93,8 @@
       gap: 0;
       inline-size: min(100%, 18.75rem);
       margin-inline-start: auto;
-      padding: 0.875rem;
+      // Penpot strokes are inside the 300 x 144 frame: content starts 14 px from the outer edge.
+      padding: calc(0.875rem - 1px);
       position: static;
       > strong {
         color: var(--easyedu-card-title-ink);
@@ -105,6 +106,7 @@
         font-size: 0.625rem;
         font-weight: var(--easyedu-font-weight-semibold);
         line-height: 1.2;
+        margin-block-end: 0.25rem;
       }
     }
     &__facts { display: grid; margin: 0.625rem 0 0; }

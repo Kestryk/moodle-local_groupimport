@@ -5845,11 +5845,11 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__eyebrow {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-eyebrow);font-weight: var(--easyedu-font-weight-strong);line-height: 1.3;text-transform: uppercase;color: var(--easyedu-text-muted);font-size: 0.68rem;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover {background: var(--easyedu-surface);border: 1px solid var(--easyedu-card-border);border-radius: 0.75rem;box-shadow: none;box-sizing: border-box;display: grid;gap: 0;inline-size: min(100%, 18.75rem);margin-inline-start: auto;padding: 0.875rem;position: static;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover {background: var(--easyedu-surface);border: 1px solid var(--easyedu-card-border);border-radius: 0.75rem;box-shadow: none;box-sizing: border-box;display: grid;gap: 0;inline-size: min(100%, 18.75rem);margin-inline-start: auto;padding: calc(0.875rem - 1px);position: static;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover > strong {color: var(--easyedu-card-title-ink);font: 600 1rem/1.5 var(--easyedu-font-family-ui);
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover .easyedu-guide-spec__eyebrow {color: var(--easyedu-primary);font-size: 0.625rem;font-weight: var(--easyedu-font-weight-semibold);line-height: 1.2;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover .easyedu-guide-spec__eyebrow {color: var(--easyedu-primary);font-size: 0.625rem;font-weight: var(--easyedu-font-weight-semibold);line-height: 1.2;margin-block-end: 0.25rem;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__facts {display: grid;margin: 0.625rem 0 0;
 }
