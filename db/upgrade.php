@@ -36,38 +36,7 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     global $DB;
 
     if ($oldversion < 2026010503) {
-        if (class_exists('\tool_usertours\manager')) {
-            $tours = [
-                [
-                    'key' => 'teacher',
-                    'name' => 'tour_groupimport_teacher_name,local_groupimport',
-                    'pathmatch' => '/local/groupimport/index.php%',
-                    'json' => __DIR__ . '/tours/local_groupimport_teacher_guide.json',
-                ],
-                [
-                    'key' => 'coursehome',
-                    'name' => 'tour_groupimport_coursehome_name,local_groupimport',
-                    'pathmatch' => '/course/view.php%',
-                    'json' => __DIR__ . '/tours/local_groupimport_course_home_hint.json',
-                ],
-            ];
-
-            foreach ($tours as $tour) {
-                if ($DB->record_exists('tool_usertours_tours', ['name' => $tour['name'], 'pathmatch' => $tour['pathmatch']])) {
-                    continue;
-                }
-                if (!file_exists($tour['json'])) {
-                    continue;
-                }
-                $json = file_get_contents($tour['json']);
-                if ($json === false || trim($json) === '') {
-                    continue;
-                }
-                $imported = \tool_usertours\manager::import_tour_from_json($json);
-                \local_groupimport\local\tour_preservation::remember_import($tour['key'], (int)$imported->get_id());
-            }
-        }
-
+        // K18-08: the plugin no longer imports Moodle user tours (see 2026101800).
         upgrade_plugin_savepoint(true, 2026010503, 'local', 'groupimport');
     }
 
@@ -166,9 +135,6 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     }
 
     if ($oldversion < 2026071300) {
-        // K17-11: unknown provenance and any local change preserve the entire tour.
-        \local_groupimport\local\tour_preservation::upgrade('teacher');
-
         upgrade_plugin_savepoint(true, 2026071300, 'local', 'groupimport');
     }
 
@@ -196,8 +162,6 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     }
 
     if ($oldversion < 2026101500) {
-        // Apply staff-only defaults only to a proven, completely unchanged import.
-        \local_groupimport\local\tour_preservation::upgrade('coursehome');
         upgrade_plugin_savepoint(true, 2026101500, 'local', 'groupimport');
     }
 
@@ -222,9 +186,7 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     }
 
     if ($oldversion < 2026101701) {
-        // Never adopt historical unmarked tours, even if their text matches.
-        \local_groupimport\local\tour_preservation::upgrade('teacher');
-        \local_groupimport\local\tour_preservation::upgrade('coursehome');
+        // K18-08: tours are no longer updated by the plugin (see 2026101800).
         upgrade_plugin_savepoint(true, 2026101701, 'local', 'groupimport');
     }
 
@@ -247,6 +209,13 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
             $dbman->create_table($table);
         }
         upgrade_plugin_savepoint(true, 2026101702, 'local', 'groupimport');
+    }
+
+    if ($oldversion < 2026101800) {
+        // K18-08: Moodle user tours shipped by the plugin are superseded by the EasyEdu Guide.
+        // Disable (never delete) only unmodified plugin tours; institution tours stay untouched.
+        \local_groupimport\local\tour_retirement::retire_all();
+        upgrade_plugin_savepoint(true, 2026101800, 'local', 'groupimport');
     }
 
     return true;
