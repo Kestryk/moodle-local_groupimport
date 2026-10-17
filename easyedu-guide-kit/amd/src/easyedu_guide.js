@@ -1760,16 +1760,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   if (!scene) { return; }
   const kind = scene.getAttribute('data-easyedu-guide-scene');
   if (kind === 'concepts') { return; }
-  if (kind === 'creation') {
-    if (!scene.easyeduGuideNamesInitialized) {
-      scene.easyeduGuideNamesInitialized = true;
-      renderDiscoveryNames(root, scene, 'preview');
-    }
-    return;
-  }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection', 'simplecreate'].includes(kind)) { return; }
+  if (!['creation', 'membership', 'actions', 'inspection', 'simplecreate'].includes(kind)) { return; }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
@@ -1777,7 +1770,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
   // J-G4: the simple-creation scene has no result line; every other kind needs one.
-  if (!stage || (!result && kind !== 'simplecreate')) { return; }
+  if (!stage || (!result && !['creation', 'simplecreate'].includes(kind))) { return; }
   if (!scene.easyeduGuideStageOriginal) {
     scene.easyeduGuideStageOriginal = stage.innerHTML;
     scene.easyeduGuideResultOriginal = result ? result.textContent : '';
@@ -1938,7 +1931,10 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
     if (compactTrigger) { compactTrigger.hidden = !compact; }
   }
-  if (requestedMode === 'reset' || !start) { return; }
+  if (requestedMode === 'reset' || !start) {
+    if (kind === 'creation') { renderDiscoveryNames(root, scene, 'preview'); }
+    return;
+  }
 
   const controller = new AbortController();
   const animations = new Set();
@@ -1983,7 +1979,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const wait = async duration => {
     await gate();
     assertActive();
-    if (skipping) { return; }
+    // K17-17: these three demonstrations are a single still image at Minimal,
+    // not a timed slideshow. Other scenes retain their existing reading clock.
+    if (skipping || (level === 'minimal' && scene.dataset.guideStaticMinimal === 'true' &&
+        ['creation', 'membership', 'actions'].includes(kind))) {
+      return;
+    }
     await new Promise(resolve => {
       resolveWait = resolve; waitRemaining = duration; scheduleWait();
     });
@@ -2282,6 +2283,53 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
+    if (kind === 'creation') {
+      // K17-17: use the common pausable scene clock and existing Kit header.
+      // Formula expansion is local illustration data, never a Moodle command.
+      const input = stage.querySelector('[data-guide-pattern]');
+      const output = scene.querySelector('[data-guide-names]');
+      const template = scene.querySelector('[data-guide-name-card]');
+      const sample = input.value;
+      const match = sample.match(/^(.*?)([#@])\*([1-6])$/);
+      if (!match || !template || !output) {
+        return;
+      }
+      output.replaceChildren();
+      input.value = '';
+      await reveal(input);
+      await phase('pattern');
+      if (level === 'full') {
+        for (const character of sample) {
+          input.value += character;
+          await wait(45);
+        }
+      } else {
+        input.value = sample;
+      }
+      await phase('preview');
+      for (let index = 0; index < Number(match[3]); index++) {
+        const card = template.content.firstElementChild.cloneNode(true);
+        card.querySelector('[data-guide-name]').textContent = match[1] +
+          (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
+        output.appendChild(card);
+        await reveal(card);
+        await animate(card, [{opacity: 0, transform: 'translateY(8px)'},
+          {opacity: 1, transform: 'translateY(0)'}], 260);
+      }
+      await phase('result');
+      await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+      if (controller.signal.aborted) {
+        return;
+      }
+      finished = true;
+      advancing = false;
+      syncPlayback('finished');
+      await settleHeader();
+      if (!controller.signal.aborted) {
+        scene.dataset.guideSceneFinished = 'true';
+      }
+      return;
+    }
     if (kind === 'simplecreate') {
       // J-G4 (P-G5, validated 16/10): create ONE group, then ONE grouping, then rename the group.
       // Illustration only: readonly fields and disabled buttons, never a Moodle command.

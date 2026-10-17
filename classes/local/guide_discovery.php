@@ -308,8 +308,9 @@ final class guide_discovery {
                 'replay' => get_string('discovery_replay', 'local_groupimport'),
                 'reset' => get_string('discovery_reset', 'local_groupimport'),
             ];
-            if (in_array($kind, ['membership', 'actions'], true)) {
+            if (in_array($kind, ['creation', 'membership', 'actions'], true)) {
                 $scene += self::demonstration_entry();
+                $scene['staticminimal'] = true;
             }
             // The preceding membership paragraph already names Add/Move,
             // source/destination and preserved memberships. Keep one explanation.
