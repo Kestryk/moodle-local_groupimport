@@ -23,6 +23,9 @@
 
 import {countLabel} from '../sm/index';
 import {
+    postInBatches, progressNotifier, addSummaryMessage, splitIdentifierTokens, bulkMaxItems,
+} from './bulk_batches';
+import {
     selectedClass, disabledSelectionClass, draggingClass, dropTargetClass, requestGuideHighlightRefresh,
     formatCountMessage, getLabels, showNotification,
 } from './shared';
@@ -110,6 +113,88 @@ export const postAction = data => {
         scheduleOnDemandStateRefresh(root);
         return result;
     }));
+};
+
+// R6: send a bulk list in batches the server accepts, with a toast per finished batch. A failed batch
+// rejects with doneItems / failedItems so the caller applies what was done and keeps the rest selected.
+export const postActionInBatches = (root, items, payload) => {
+    const labels = getLabels(root);
+    return postInBatches({
+        post: postAction, items, payload, labels,
+        onProgress: progressNotifier(labels, (message, type) => showNotification(root, message, type)),
+    });
+};
+
+// R6: add participants (elements or {id}) to a group in batches. applyDone(users) updates the cards for the
+// users whose batch the server committed, also when a later batch fails; the rest stays selected.
+export const postAddUsersInBatches = (root, courseId, groupid, users, applyDone) => {
+    const idOf = user => (user.getAttribute ? user.getAttribute('data-user-id') : user.id);
+    const seen = new Set();
+    const unique = users.filter(user => !seen.has(String(idOf(user))) && seen.add(String(idOf(user))));
+    const labels = getLabels(root);
+    return postActionInBatches(root, unique, batch => ({
+        courseid: courseId,
+        action: 'addusers',
+        groupid,
+        userids: batch.map(idOf),
+    })).then(({response, items}) => {
+        applyDone(items, response);
+        if ((response.batches || 1) > 1) {
+            response.message = addSummaryMessage(labels, response);
+        }
+        return response;
+    }, error => {
+        if (error.doneItems && error.doneItems.length) {
+            applyDone(error.doneItems, error.response);
+        }
+        throw error;
+    });
+};
+
+// R6: add participants to a group from pasted identifiers, in batches of tokens. The pasted text is sent
+// unchanged when it fits in one request.
+export const postAddEmailsInBatches = (root, courseId, groupid, text) => {
+    const labels = getLabels(root);
+    const tokens = splitIdentifierTokens(text);
+    if (tokens.length <= bulkMaxItems) {
+        return postAction({courseid: courseId, action: 'addemails', groupid, emails: text});
+    }
+    return postActionInBatches(root, tokens, batch => ({
+        courseid: courseId,
+        action: 'addemails',
+        groupid,
+        emails: batch.join('\n'),
+    })).then(({response}) => {
+        response.message = addSummaryMessage(labels, response);
+        return response;
+    }, error => {
+        if (error.response && error.response.users && error.response.users.length) {
+            appendUsersToGroupCopies(root, groupid, error.response.users, labels);
+        }
+        throw error;
+    });
+};
+
+// R6: delete groups in batches; removeDone(groupids) updates the cards of the groups really deleted.
+export const postDeleteGroupsInBatches = (root, courseId, groupids, removeDone) => {
+    const labels = getLabels(root);
+    const unique = [...new Set(groupids)];
+    return postActionInBatches(root, unique, batch => ({
+        courseid: courseId,
+        action: 'deletegroups',
+        groupids: batch,
+    })).then(({response, items}) => {
+        removeDone(items);
+        if ((response.batches || 1) > 1) {
+            response.message = formatCountMessage(labels.groupsdeletedcount, response.deleted || 0);
+        }
+        return response;
+    }, error => {
+        if (error.doneItems && error.doneItems.length) {
+            removeDone(error.doneItems);
+        }
+        throw error;
+    });
 };
 
 // Move an existing group element into a grouping section.
@@ -335,20 +420,15 @@ export const removeMembers = (root, courseId, members) => {
 
     const payload = {
         courseid: courseId,
-        action: validmembers.length > 1 ? 'removemembers' : 'removeuser',
+        action: 'removeuser',
+        groupid: groupids[0],
+        userid: userids[0],
     };
 
-    if (validmembers.length > 1) {
-        payload.groupids = groupids;
-        payload.userids = userids;
-    } else {
-        payload.groupid = groupids[0];
-        payload.userid = userids[0];
-    }
-
-    return postAction(payload).then(response => {
-        applyMembersRemovedFromState(root, groupids.map((groupid, index) => ({groupid, userid: userids[index]})));
-        validmembers.forEach(member => {
+    // R6: the DOM follows the server batch by batch: only members really removed leave the cards.
+    const applyRemoved = (doneMembers, donepairs) => {
+        applyMembersRemovedFromState(root, donepairs);
+        doneMembers.forEach(member => {
             const group = member.closest('[data-easystud-group-id]');
             const groupid = group ? group.getAttribute('data-easystud-group-id') : '';
             const userid = member.getAttribute('data-easystud-member-id');
@@ -368,7 +448,44 @@ export const removeMembers = (root, courseId, members) => {
         rehydrateParticipantMembershipDetails(root);
         applyFilters(root);
         updateSelectionActions(root);
+    };
+
+    if (validmembers.length === 1) {
+        return postAction(payload).then(response => {
+            applyRemoved(validmembers, groupids.map((groupid, index) => ({groupid, userid: userids[index]})));
+            return response;
+        });
+    }
+
+    const entries = validmembers.map(member => {
+        const group = member.closest('[data-easystud-group-id]');
+        return {
+            member,
+            groupid: group ? group.getAttribute('data-easystud-group-id') : '',
+            userid: member.getAttribute('data-easystud-member-id'),
+        };
+    }).filter(entry => entry.groupid && entry.userid);
+    const labels = getLabels(root);
+    const applyEntries = done => applyRemoved(
+        done.map(entry => entry.member),
+        done.map(({groupid, userid}) => ({groupid, userid}))
+    );
+    return postActionInBatches(root, entries, batch => ({
+        courseid: courseId,
+        action: 'removemembers',
+        groupids: batch.map(entry => entry.groupid),
+        userids: batch.map(entry => entry.userid),
+    })).then(({response, items}) => {
+        applyEntries(items);
+        if (items.length === entries.length && (response.batches || 1) > 1) {
+            response.message = formatCountMessage(labels.removeuserscount, response.removed || 0);
+        }
         return response;
+    }, error => {
+        if (error.doneItems && error.doneItems.length) {
+            applyEntries(error.doneItems);
+        }
+        throw error;
     });
 };
 

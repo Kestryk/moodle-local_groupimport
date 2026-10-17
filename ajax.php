@@ -734,6 +734,7 @@ try {
         );
 
         $response['success'] = true;
+        $response['removed'] = (int)$removed;
         $response['message'] = local_groupimport_count_string('membersremoved', (int)$removed);
     } else if ($action === 'deletegroups') {
         $groupids = required_param_array('groupids', PARAM_INT);
@@ -758,6 +759,7 @@ try {
         });
 
         $response['success'] = true;
+        $response['deleted'] = (int)$deleted;
         $response['message'] = local_groupimport_count_string('groupsdeleted', (int)$deleted);
     } else if ($action === 'deletegroupings') {
         global $DB;

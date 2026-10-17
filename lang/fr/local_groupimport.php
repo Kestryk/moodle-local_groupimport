@@ -1270,6 +1270,8 @@ $string['eventreportexported'] = 'Rapport d’import EasyStud généré';
 
 $string['bulkactionlimit'] = 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.';
 $string['bulkitemsskipped'] = 'Éléments non ajoutés : {$a}.';
+$string['bulkbatchprogress'] = 'Lot {$a->done} sur {$a->total} terminé.';
+$string['bulkpartialfailure'] = 'Arrêt : {$a->done} éléments sur {$a->total} ont été traités et {$a->remaining} ne l’ont pas été. {$a->reason} Relancez l’action sur les éléments restants ; ceux déjà traités ne seront pas dupliqués.';
 
 $string['selectparticipantnamed'] = 'Sélectionner le participant {$a}';
 $string['selectgroupnamed'] = 'Sélectionner le groupe {$a}';

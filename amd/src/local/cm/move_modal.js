@@ -41,7 +41,8 @@ import {
 import {syncGroupMembersState} from './group_cards';
 import {applyFilters, updateSelectionActions} from './workspace';
 import {
-    handleActionError, postAction, moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
+    handleActionError, postAction, postAddUsersInBatches,
+    moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
 } from './actions';
 
 export const bindMoveModal = (root, courseId) => {
@@ -303,12 +304,7 @@ export const bindMoveModal = (root, courseId) => {
             const users = [...new Map(pairs.map(pair => [pair.userid, {
                 id: pair.userid, fullname: pair.fullname,
             }])).values()];
-            const payload = keepOrigin ? {
-                courseid: courseId,
-                action: 'addusers',
-                groupid: value,
-                userids: users.map(user => user.id),
-            } : {
+            const payload = {
                 courseid: courseId,
                 action: 'movemembers',
                 destinationid: value,
@@ -317,9 +313,14 @@ export const bindMoveModal = (root, courseId) => {
             };
             chooser.close();
             setMemberBusy(true);
-            postAction(payload).then(response => {
-                appendUsersToGroupCopies(root, value, users, labels,
-                    keepOrigin ? [] : pairs.filter(pair => pair.groupid !== value));
+            // R6: copying is bounded by the server and sent in batches; moving stays one native transaction.
+            (keepOrigin ?
+                postAddUsersInBatches(root, courseId, value, users, done => appendUsersToGroupCopies(root, value, done, labels)) :
+                postAction(payload)
+            ).then(response => {
+                if (!keepOrigin) {
+                    appendUsersToGroupCopies(root, value, users, labels, pairs.filter(pair => pair.groupid !== value));
+                }
                 pairs.forEach(pair => {
                     if (keepOrigin || pair.groupid === value) {
                         return;
@@ -356,14 +357,9 @@ export const bindMoveModal = (root, courseId) => {
             }
             const moveToken = tryActionsToken;
 
-            postAction({
-                courseid: courseId,
-                action: 'addusers',
-                groupid: value,
-                userids: users.map(user => user.getAttribute('data-user-id')),
-            }).then(response => {
-                appendUsersToGroupCopies(root, value, users, labels);
-                users.forEach(user => {
+            postAddUsersInBatches(root, courseId, value, users, done => {
+                appendUsersToGroupCopies(root, value, done, labels);
+                done.forEach(user => {
                     const groupids = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
                     if (groupids.indexOf(value) === -1) {
                         groupids.push(value);
@@ -371,6 +367,7 @@ export const bindMoveModal = (root, courseId) => {
                     }
                 });
                 applyFilters(root);
+            }).then(response => {
                 closeModal();
                 clearSelectionState(root);
                 updateSelectionActions(root);

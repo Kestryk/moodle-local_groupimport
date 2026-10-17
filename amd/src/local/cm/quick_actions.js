@@ -38,7 +38,8 @@ import {
 import {ensureGroupEmailPanel, ensureInlinePanelCancelButtons} from './group_cards';
 import {updateSelectionActions} from './workspace';
 import {
-    handleActionError, postAction, moveGroupElementToGrouping, removeGroupsFromGroupings, deleteGroupElement,
+    handleActionError, postAction, postAddEmailsInBatches, postDeleteGroupsInBatches,
+    moveGroupElementToGrouping, removeGroupsFromGroupings, deleteGroupElement,
     deleteGroupingElement, removeMembers, appendUsersToGroupCopies, insertGroupData, insertGroupingData,
 } from './actions';
 import {getSelectedMessageUserIds, openParticipantMessageModal} from './messaging';
@@ -240,12 +241,7 @@ export const bindGroupMemberActions = (root, courseId) => {
             if (!group || !box) {
                 return;
             }
-            postAction({
-                courseid: courseId,
-                action: 'addemails',
-                groupid,
-                emails: box.value,
-            }).then(response => {
+            postAddEmailsInBatches(root, courseId, groupid, box.value).then(response => {
                 appendUsersToGroupCopies(root, groupid, response.users || [], labels);
                 if (result) {
                     const missing = response.missing && response.missing.length ? ' - ' + response.missing.join(', ') : '';
@@ -428,12 +424,9 @@ export const bindBulkActions = (root, courseId) => {
 
             const hasmembers = selectedGroups.some(group => group.querySelector('[data-easystud-member-id]'));
             const runDelete = () => {
-                postAction({
-                    courseid: courseId,
-                    action: 'deletegroups',
-                    groupids,
+                postDeleteGroupsInBatches(root, courseId, groupids, done => {
+                    done.forEach(groupid => deleteGroupElement(root, groupid));
                 }).then(response => {
-                    groupids.forEach(groupid => deleteGroupElement(root, groupid));
                     clearSelectionState(root);
                     updateSelectionActions(root);
                     showNotification(root, response.message || '', 'success');

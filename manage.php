@@ -406,6 +406,22 @@ function local_groupimport_build_manage_template_data(
             'groups' => '__groups__',
         ]),
         'removeuserscount' => local_groupimport_count_template('membersremoved'),
+        'groupsdeletedcount' => local_groupimport_count_template('groupsdeleted'),
+        'bulkbatchprogress' => get_string('bulkbatchprogress', 'local_groupimport', (object)[
+            'done' => '__done__',
+            'total' => '__total__',
+        ]),
+        'bulkpartialfailure' => get_string('bulkpartialfailure', 'local_groupimport', (object)[
+            'done' => '__done__',
+            'total' => '__total__',
+            'remaining' => '__remaining__',
+            'reason' => '__reason__',
+        ]),
+        'bulkaddsummary' => get_string('usersaddsummary', 'local_groupimport', (object)[
+            'added' => '__added__',
+            'existing' => '__existing__',
+        ]),
+        'bulkitemsskipped' => get_string('bulkitemsskipped', 'local_groupimport', '__count__'),
         'groupsmovedcount' => get_string('groupsmovedcount', 'local_groupimport', '__count__'),
         'groupsremovedfromgroupingscount' => get_string('groupsremovedfromgroupingscount', 'local_groupimport', '__count__'),
         'groupsmovesummary' => get_string('groupsmovesummary', 'local_groupimport', (object)[

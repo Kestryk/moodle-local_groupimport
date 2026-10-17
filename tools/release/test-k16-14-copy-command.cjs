@@ -15,8 +15,9 @@ for(const checked of [false,true]){
     });
     const payload=JSON.parse(JSON.stringify(result.payload));
     if(checked){
-        assert.deepEqual(payload,{courseid:7,action:'addusers',groupid:'13',userids:['21','22']});
-        assert(!('groupids' in payload),'Copies must never submit source-removal pairs');
+        // R6: copies leave the move payload unused and go through the 500-item batch helper (addusers, distinct users).
+        assert(source.includes('postAddUsersInBatches(root, courseId, value, users,'),'Copies use the batched addusers command');
+        assert.equal(result.users.map(user=>user.id).join(','),'21,22');
     }else{
         assert.deepEqual(payload,{courseid:7,action:'movemembers',destinationid:'13',
             groupids:['11','12','12'],userids:['21','21','22']});

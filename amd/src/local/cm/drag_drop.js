@@ -37,7 +37,8 @@ import {
 } from './guide_hooks';
 import {applyFilters, updateSelectionActions} from './workspace';
 import {
-    handleActionError, postAction, moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
+    handleActionError, postAction, postAddUsersInBatches,
+    moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
 } from './actions';
 
 export const bindResponsiveDragGuard = root => {
@@ -304,14 +305,9 @@ export const bindUserDragDrop = (root, courseId) => {
 
     const addUsersToGroup = (users, dropTarget) => {
         const groupid = dropTarget.getAttribute('data-easystud-user-drop');
-        return postAction({
-            courseid: courseId,
-            action: 'addusers',
-            groupid,
-            userids: users.map(user => user.getAttribute('data-user-id')),
-        }).then(response => {
-            appendUsersToGroupCopies(root, groupid, users, labels);
-            users.forEach(user => {
+        return postAddUsersInBatches(root, courseId, groupid, users, done => {
+            appendUsersToGroupCopies(root, groupid, done, labels);
+            done.forEach(user => {
                 const groupids = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
                 if (groupids.indexOf(groupid) === -1) {
                     groupids.push(groupid);
@@ -319,7 +315,6 @@ export const bindUserDragDrop = (root, courseId) => {
                 }
             });
             applyFilters(root);
-            return response;
         });
     };
 

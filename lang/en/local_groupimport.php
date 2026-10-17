@@ -1273,6 +1273,8 @@ $string['eventreportexported'] = 'EasyStud import report generated';
 
 $string['bulkactionlimit'] = 'This request exceeds the limit of {$a} items. No changes were made. Select fewer items and try again.';
 $string['bulkitemsskipped'] = 'Items not added: {$a}.';
+$string['bulkbatchprogress'] = 'Batch {$a->done} of {$a->total} completed.';
+$string['bulkpartialfailure'] = 'Stopped: {$a->done} of {$a->total} items were processed and {$a->remaining} were not. {$a->reason} Run the action again on the remaining items; the processed ones will not be duplicated.';
 
 $string['selectparticipantnamed'] = 'Select participant {$a}';
 $string['selectgroupnamed'] = 'Select group {$a}';

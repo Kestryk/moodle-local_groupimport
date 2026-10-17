@@ -38,7 +38,8 @@ import {emitGuidedCompletion, emitTryActionsCompletion} from './guide_hooks';
 import {ensureGroupMemberSearchControls, normaliseCardMenuButton, ensureGroupEmailPanel} from './group_cards';
 import {getGroupsInGrouping, selectGroupingGroups, updateSelectionActions} from './workspace';
 import {
-    handleActionError, postAction, copyGroupElementToGrouping, removeGroupsFromGroupings, removeMembers,
+    handleActionError, postAction, postAddEmailsInBatches,
+    copyGroupElementToGrouping, removeGroupsFromGroupings, removeMembers,
     appendUsersToGroupCopies,
 } from './actions';
 import {getSelectedMessageUserIds, openParticipantMessageModal} from './messaging';
@@ -437,12 +438,7 @@ export const bindContextMenu = (root, courseId) => {
         }
         const labels = getLabels(root);
         const groupid = group.getAttribute('data-easystud-group-id');
-        return navigator.clipboard.readText().then(text => postAction({
-            courseid: courseId,
-            action: 'addemails',
-            groupid,
-            emails: text,
-        })).then(response => {
+        return navigator.clipboard.readText().then(text => postAddEmailsInBatches(root, courseId, groupid, text)).then(response => {
             appendUsersToGroupCopies(root, groupid, response.users || [], labels);
             clearSelectionState(root);
             updateSelectionActions(root);
