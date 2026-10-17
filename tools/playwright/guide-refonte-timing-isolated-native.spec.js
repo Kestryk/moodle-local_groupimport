@@ -1,0 +1,1 @@
+const {test}=require('@playwright/test');const run=require('./guide-refonte-membership-timing-helper.cjs');test('Guide refonte isolated membership timing native',async({page,browser},info)=>run({page,browser},info,[['fr',1600]],['full']));

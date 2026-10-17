@@ -1,0 +1,1 @@
+const {test}=require('@playwright/test'); const run=require('./guide-refonte-native-helper-v4.cjs'); test('Guide refonte touch-levels v4 native',async({page,browser},info)=>run({page,browser},info,[["fr",390]],["reduced","minimal"]));

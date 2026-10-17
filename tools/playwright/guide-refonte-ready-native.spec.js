@@ -1,0 +1,1 @@
+const {test}=require('@playwright/test'); const run=require('./guide-refonte-native-helper-v3.cjs'); test('Guide refonte ready diagnostic native',async({page,browser},info)=>run({page,browser},info,[['fr',390]],['full']));

@@ -1,0 +1,1 @@
+const {test}=require('@playwright/test');const run=require('./guide-refonte-paths-helper-v5.cjs');test('Guide refonte compact active-step capture native',async({page,browser},info)=>run({page,browser},info,[['fr',390]],['actions'],['full']));

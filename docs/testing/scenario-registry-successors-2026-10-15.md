@@ -119,6 +119,28 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 - K16-54 run20261016T143857644Z-8628 PASS:pilot plus12matrix cases;2-member control absence/chevron preserved,8/8and12/12selected then0; four long-footer visibility round trips;0errors/writes, exact fixture restoration. Candidate AMD only in browser response; branch remains unpublished.
 
 
+## Guide refonte native receipt, 2026-10-17
+
+`guide-refonte-ready-native.spec.js`, the `guide-refonte-*-v4-native.spec.js`
+successors, `guide-refonte-paths-v2-native.spec.js` and
+`guide-refonte-geometry-native.spec.js` target own8051 pinned to d44585d8.
+The disposable fixture has two synthetic learners, three groups and two
+groupings; all business writes outside its native Add operation are refused.
+FR/EN1600/1280/768/390, touch context at390, Full/Reduced/Minimal through the
+public Motion API. Demo observation is continuous at100ms. Three real paths
+cover group settings, grouping settings and try-actions; no fabricated step
+completion. No product edits, builds, other runtimes or persisted Motion
+preferences. Raw runs stay external, at most six captures; see
+`recette-guide-17-10-2026.md` for actual coverage and findings. Interrupted
+predecessors are retained, including the initial incomplete file-list pilot.
+
+Final receipt:24 locale/width/Motion cells,13 slides,six complete demo modes,
+144 painted-pointer successor checks PASS,0page/console errors,16 owned
+fixture cleanups and five pinned screenshots. Three paths complete on desktop;
+compact actions remains blocked. Open findings:C-G3 short badge,J-G2 full
+demo timing,J-G3 checklist overlap/hidden try-selection highlight. See the
+receipt for source pins,raw-vs-corrected oracles and isolated timing evidence.
+
 ## K16-13 sorting Z to A, 2026-10-16
 
 Local-supervised `k16-13-sort-za-native.spec.js` uses disposable own8051 `k16-sort-copy-fixture.php`: FR/EN1600/390, three lists, all pages, active/inactive states and round trip alpha -> alpha-desc -> alpha. At most two screenshots, assertions/values in JSON, all product writes blocked. Production comparator unit covers stable ties and unknown-mode fallback. No styles or other runtime ports.

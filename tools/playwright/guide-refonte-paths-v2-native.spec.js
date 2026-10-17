@@ -1,0 +1,1 @@
+const {test}=require('@playwright/test'); const run=require('./guide-refonte-paths-helper-v2.cjs'); test('Guide refonte three paths v2 native',async({page,browser},info)=>run({page,browser},info,[['fr',1600],['fr',1280],['fr',768],['fr',390],['en',1600],['en',1280],['en',768],['en',390]]));

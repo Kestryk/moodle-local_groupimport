@@ -1,0 +1,1 @@
+const {test}=require('@playwright/test');const run=require('./guide-refonte-paths-helper-v3.cjs');test('Guide refonte desktop actions v3 native',async({page,browser},info)=>run({page,browser},info,[['fr',1600],['fr',1280],['en',1600],['en',1280]],['actions']));
