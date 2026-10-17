@@ -1,0 +1,45 @@
+'use strict';
+// Compare every unrelated top-level body byte-for-byte using the existing
+// toolchain parser. No new dependency or product/build-checkout writes.
+const fs=require('node:fs'),cp=require('node:child_process'),path=require('node:path'),assert=require('node:assert/strict');
+const repo=path.resolve(__dirname,'../..');
+const acorn=require(path.join(process.argv[2],'acorn'));
+const allowed=new Set(['showEasyStudModal','hideEasyStudModal','bindCardModalKeyboard','openConfirmModal','bindMoveModal','bindOptionalTools']);
+const added=new Set(['modalKeyboardState','modalFocusVisible','modalTabStops']);
+const parse=s=>acorn.parse(s,{sourceType:'module',ecmaVersion:'latest'});
+const name=n=>n.type==='VariableDeclaration'?n.declarations[0].id.name:null;
+function stripMove(s){return s
+    .replace(/^[ \t]*const focusMoveModal = bindCardModalKeyboard\(modal, closeModal\);\r?\n/m,'')
+    .replace(/^[ \t]*focusMoveModal\(\);\r?\n/m,'')
+    .replace(/    modal\.addEventListener\('keydown', event => \{\r?\n        if \(event\.key === 'Escape'\) \{\r?\n            event\.preventDefault\(\);\r?\n            event\.stopPropagation\(\);\r?\n            closeModal\(\);\r?\n        \}\r?\n    \}\);\r?\n\r?\n/,'');}
+function stripClipboard(s){return s.replace(/^[ \t]*bindCardModalKeyboard\(modal, \(\) => hideEasyStudModal\(modal, restoreClipboardFocus\)\);\r?\n/m,'');}
+const checked=[];
+for(const file of ['amd/src/course_manager.js','amd/src/csv_import.js']){
+    const before=cp.execFileSync('git',['-C',repo,'show','cbccc7e:'+file],{encoding:'utf8'}).replace(/\r\n/g,'\n');
+    const after=fs.readFileSync(path.join(repo,file),'utf8').replace(/\r\n/g,'\n');
+    const a=parse(before).body,b=parse(after).body;
+    const map=new Map(b.filter(n=>!added.has(name(n))).map((n,i)=>[name(n)||'statement-'+i,after.slice(n.start,n.end)]));
+    a.forEach((n,i)=>{
+        const key=name(n)||'statement-'+i,old=before.slice(n.start,n.end),current=map.get(key);
+        assert.notEqual(current,undefined,key);
+        if(file.endsWith('csv_import.js') && key==='initHistoryModal')return;
+        if(file.endsWith('course_manager.js') && allowed.has(key)){
+            if(key==='bindMoveModal')assert.equal(stripMove(current),stripMove(old),'Move business/data body');
+            if(key==='bindOptionalTools')assert.equal(stripClipboard(current),stripClipboard(old),'Density/optional tools body');
+            return;
+        }
+        assert.equal(current,old,'Unrelated source changed: '+key);checked.push(key);
+    });
+    assert.equal(b.filter(n=>!added.has(name(n))).length,a.length,'Unrelated statement count');
+}
+for (const [file, needles, source] of [
+    ['amd/build/course_manager.min.js', ['modalKeyboardState', 'bindCardModalKeyboard', 'modalTabStops'], '../src/course_manager.js'],
+    ['amd/build/csv_import.min.js', ['initHistoryModal', 'tabindex'], '../src/csv_import.js'],
+]) {
+    const built = fs.readFileSync(path.join(repo, file), 'utf8');
+    needles.forEach(needle => assert.ok(built.includes(needle), `Generated AMD is missing ${needle}: ${file}`));
+    const map = JSON.parse(fs.readFileSync(path.join(repo, `${file}.map`), 'utf8'));
+    assert.deepEqual(map.sources, [source], `Generated AMD source map drift: ${file}`);
+}
+console.log(JSON.stringify({lot:'T058-focus',scope:'PASS',unrelatedBodiesIdentical:checked.length,
+    moveBusinessUnchanged:true,clipboardDensityUnchanged:true,historyOnly:true}));

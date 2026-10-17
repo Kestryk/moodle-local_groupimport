@@ -1,45 +1,45 @@
+/* eslint-env node */
 'use strict';
-// Compare every unrelated top-level body byte-for-byte using the existing
-// toolchain parser. No new dependency or product/build-checkout writes.
-const fs=require('node:fs'),cp=require('node:child_process'),path=require('node:path'),assert=require('node:assert/strict');
-const repo=path.resolve(__dirname,'../..');
-const acorn=require(path.join(process.argv[2],'acorn'));
-const allowed=new Set(['showEasyStudModal','hideEasyStudModal','bindCardModalKeyboard','openConfirmModal','bindMoveModal','bindOptionalTools']);
-const added=new Set(['modalKeyboardState','modalFocusVisible','modalTabStops']);
-const parse=s=>acorn.parse(s,{sourceType:'module',ecmaVersion:'latest'});
-const name=n=>n.type==='VariableDeclaration'?n.declarations[0].id.name:null;
-function stripMove(s){return s
-    .replace(/^[ \t]*const focusMoveModal = bindCardModalKeyboard\(modal, closeModal\);\r?\n/m,'')
-    .replace(/^[ \t]*focusMoveModal\(\);\r?\n/m,'')
-    .replace(/    modal\.addEventListener\('keydown', event => \{\r?\n        if \(event\.key === 'Escape'\) \{\r?\n            event\.preventDefault\(\);\r?\n            event\.stopPropagation\(\);\r?\n            closeModal\(\);\r?\n        \}\r?\n    \}\);\r?\n\r?\n/,'');}
-function stripClipboard(s){return s.replace(/^[ \t]*bindCardModalKeyboard\(modal, \(\) => hideEasyStudModal\(modal, restoreClipboardFocus\)\);\r?\n/m,'');}
-const checked=[];
-for(const file of ['amd/src/course_manager.js','amd/src/csv_import.js']){
-    const before=cp.execFileSync('git',['-C',repo,'show','cbccc7e:'+file],{encoding:'utf8'}).replace(/\r\n/g,'\n');
-    const after=fs.readFileSync(path.join(repo,file),'utf8').replace(/\r\n/g,'\n');
-    const a=parse(before).body,b=parse(after).body;
-    const map=new Map(b.filter(n=>!added.has(name(n))).map((n,i)=>[name(n)||'statement-'+i,after.slice(n.start,n.end)]));
-    a.forEach((n,i)=>{
-        const key=name(n)||'statement-'+i,old=before.slice(n.start,n.end),current=map.get(key);
-        assert.notEqual(current,undefined,key);
-        if(file.endsWith('csv_import.js') && key==='initHistoryModal')return;
-        if(file.endsWith('course_manager.js') && allowed.has(key)){
-            if(key==='bindMoveModal')assert.equal(stripMove(current),stripMove(old),'Move business/data body');
-            if(key==='bindOptionalTools')assert.equal(stripClipboard(current),stripClipboard(old),'Density/optional tools body');
-            return;
-        }
-        assert.equal(current,old,'Unrelated source changed: '+key);checked.push(key);
-    });
-    assert.equal(b.filter(n=>!added.has(name(n))).length,a.length,'Unrelated statement count');
-}
-for (const [file, needles, source] of [
-    ['amd/build/course_manager.min.js', ['modalKeyboardState', 'bindCardModalKeyboard', 'modalTabStops'], '../src/course_manager.js'],
-    ['amd/build/csv_import.min.js', ['initHistoryModal', 'tabindex'], '../src/csv_import.js'],
-]) {
-    const built = fs.readFileSync(path.join(repo, file), 'utf8');
-    needles.forEach(needle => assert.ok(built.includes(needle), `Generated AMD is missing ${needle}: ${file}`));
-    const map = JSON.parse(fs.readFileSync(path.join(repo, `${file}.map`), 'utf8'));
-    assert.deepEqual(map.sources, [source], `Generated AMD source map drift: ${file}`);
-}
-console.log(JSON.stringify({lot:'T058-focus',scope:'PASS',unrelatedBodiesIdentical:checked.length,
-    moveBusinessUnchanged:true,clipboardDensityUnchanged:true,historyOnly:true}));
+// Current modular modal keyboard authority, executed with isolated DOM/Motion doubles.
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'../..');
+const modules=path.resolve(process.argv[2] || 'C:/dev/moodle51-build-501/node_modules');
+const acorn=require(path.join(modules,'acorn'));
+const read=f=>fs.readFileSync(path.join(root,f),'utf8').replace(/\r\n/g,'\n');
+const source=read('amd/src/local/cm/modal.js');
+acorn.parse(source,{sourceType:'module',ecmaVersion:'latest'});
+const start=source.indexOf('const modalKeyboardState ='),end=source.indexOf('export const openConfirmModal =');
+assert(start>=0&&end>start);
+const doc={body:{},activeElement:null};const listeners={};let stops=[],hidden=false,closed=0,focuses=0;
+const classes=new Set();const opener={isConnected:true,disabled:false,tabIndex:0,matches:()=>false,closest:()=>null,
+    getClientRects:()=>[{}],focus:()=>{focuses++;doc.activeElement=opener;}};
+const control=(name,close=false)=>({name,isConnected:true,disabled:false,tabIndex:0,
+    matches:s=>s===':disabled'?false:close,closest:()=>null,getClientRects:()=>[{}],
+    focus:()=>{doc.activeElement=stops.find(x=>x.name===name);}});
+const first=control('close',true),last=control('last');stops=[first,last];
+const modal={get hidden(){return hidden;},set hidden(v){hidden=v;},classList:{contains:n=>classes.has(n),add:n=>classes.add(n),remove:n=>classes.delete(n)},
+    contains:n=>stops.includes(n),querySelectorAll:()=>stops,querySelector:()=>null,
+    addEventListener:(name,fn)=>{assert(!listeners[name],'No duplicate owned listener');listeners[name]=fn;},
+    setAttribute(){},focus:()=>{doc.activeElement=modal;}};
+let exitResolve;const exits=[];
+const api=vm.runInNewContext(source.slice(start,end).replace(/^export /gm,'')+
+    '\n({showEasyStudModal,hideEasyStudModal,bindCardModalKeyboard});',{
+    document:doc,getComputedStyle:()=>({visibility:'visible'}),window:{requestAnimationFrame:f=>f()},
+    Motion:{cancel(){},timing:{fast:80},exit:()=>{exits.push('exit');return new Promise(r=>{exitResolve=r;});}}});
+(async()=>{
+ doc.activeElement=opener;api.showEasyStudModal(modal);assert.equal(modal.hidden,false);
+ const focus=api.bindCardModalKeyboard(modal,()=>{closed++;});api.bindCardModalKeyboard(modal,()=>{closed++;});focus();assert.equal(doc.activeElement,first);
+ let prevented=0;const event=(key,shiftKey=false,defaultPrevented=false)=>({key,shiftKey,defaultPrevented,preventDefault(){prevented++;},stopPropagation(){}});
+ doc.activeElement=last;listeners.keydown(event('Tab'));assert.equal(doc.activeElement,first);
+ doc.activeElement=first;listeners.keydown(event('Tab',true));assert.equal(doc.activeElement,last);
+ listeners.keydown(event('Escape',false,true));assert.equal(closed,0,'Nested controls retain first refusal');
+ classes.add('is-closing');listeners.keydown(event('Escape'));assert.equal(closed,0);classes.delete('is-closing');
+ listeners.keydown(event('Escape'));assert.equal(closed,1);
+ doc.activeElement=first;const pending=api.hideEasyStudModal(modal);assert.equal(modal.hidden,false);assert.equal(focuses,0,'Never restore focus before Motion ends');
+ exitResolve(true);assert.equal(await pending,true);assert.equal(modal.hidden,true);assert.equal(doc.activeElement,opener);assert.equal(focuses,1);
+ api.showEasyStudModal(modal);doc.activeElement=last;const cancelled=api.hideEasyStudModal(modal);exitResolve(false);assert.equal(await cancelled,false);assert.equal(modal.hidden,false);assert.equal(focuses,1);
+ stops=[];listeners.keydown(event('Tab'));assert.equal(doc.activeElement,modal,'Empty dialogs retain keyboard focus');assert(prevented>=4);
+ for(const f of ['amd/src/local/cm/move_modal.js','amd/src/local/cm/optional_tools.js'])assert(read(f).includes('bindCardModalKeyboard'));
+ const built=read('amd/build/local/cm/modal.min.js');for(const name of ['bindCardModalKeyboard','showEasyStudModal','hideEasyStudModal'])assert(built.includes(name));
+ console.log(JSON.stringify({passed:true,contract:'current modular keyboard containment, Escape refusal, completed/cancelled Motion and focus return',runtimeAccess:false}));
+})().catch(e=>{console.error(e);process.exitCode=1;});
