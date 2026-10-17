@@ -408,6 +408,13 @@
       display: grid;
     }
 
+    // Compact Groups owns this existing Kit field even without desktop
+    // Structure focus. Keep its native search input and canonical field paint.
+    &--responsive-workspace[data-easystud-mobile-view-active="groups"]
+      &__search-field--structure {
+      display: flex;
+    }
+
     &__layout {
       gap: 1rem;
       grid-template-columns: minmax(0, 1fr);

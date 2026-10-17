@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Responsive Groups owns its existing Structure-search field even after the
+compact controller clears desktop Structure focus. Restore visibility only in
+the active Groups workspace; preserve canonical Kit field geometry and native
+search handlers. See docs/testing/catalog-search-k17-21-2026-10-17.md.
+
 Student Management panel opacity/transform during view swaps belongs to Motion;
 the container keeps only its CSS shadow transition. Focus-state transforms must
 not add another interpolation during the return. This is separate from shared
