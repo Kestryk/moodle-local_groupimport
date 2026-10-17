@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Apply approved FR/EN participant, clipboard membership, import-space and guided-path wording; preserve role names, examples and unconsumed historical counters.
+
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
 
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.
