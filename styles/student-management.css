@@ -6946,6 +6946,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-import__header-actions.easyedu-admin-primary-nav--balanced > [class*=easyedu-guide] {margin-right: 0.35rem;
   }
 }
+
 .local-groupimport-easystud-hover-popover {position: absolute;z-index: 1095;--easyedu-tooltip-bg: linear-gradient(135deg, #183a59 0%, #1f6b57 100%);--easyedu-tooltip-border: rgba(255, 255, 255, 0.28);--easyedu-tooltip-glow: rgba(255, 255, 255, 0.14);--easyedu-tooltip-shadow:
     0 0.7rem 1.6rem rgba(20, 44, 67, 0.2),
     0 0.08rem 0.24rem rgba(12, 28, 44, 0.16);--easyedu-tooltip-text: #fff;--easyedu-tooltip-arrow-bg: #1b4e5a;--easyedu-tooltip-arrow-border: rgba(255, 255, 255, 0.28);background: radial-gradient(circle at 1.2rem 0.6rem, var(--easyedu-tooltip-glow), transparent 5.5rem), var(--easyedu-tooltip-bg);border: 1px solid var(--easyedu-tooltip-border);border-radius: 0.64rem;box-shadow: var(--easyedu-tooltip-shadow);color: var(--easyedu-tooltip-text);font-size: 0.74rem;font-weight: 680;line-height: 1.2;max-width: 14rem;padding: 0.34rem 0.46rem;display: block;max-width: min(22rem, 100vw - 1.5rem);pointer-events: none;transform-origin: bottom center;pointer-events: auto;
