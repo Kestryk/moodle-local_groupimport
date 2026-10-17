@@ -56,31 +56,36 @@ export const syncLongListFooter = (owner, kind, state, paged = false) => {
             return node;
         };
         if (paged) {
-            // K16-01 formula C: the Kit pagination bar (selection, controls, tools), not a local footer.
+            // K16-01 formula C, K17-50: the same pagination bar as the list columns (selection and count,
+            // « ‹ 1 / N › », tools). The EasyStud page hooks give the arrows the one flat style; the Kit
+            // boxed buttons (data-easyedu-page-*) are no longer used anywhere in EasyStud.
             footer.className = 'local-groupimport-easystud-pagination local-groupimport-easystud-pagination--section';
             const selection = document.createElement('span');
             selection.className = 'local-groupimport-easystud-pagination__selection';
             const select = button('select', 'btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select');
             select.appendChild(document.createElement('span'));
-            selection.appendChild(select);
-            const controls = document.createElement('span');
-            controls.className = 'local-groupimport-easystud-pagination__controls';
-            const previous = button('previous', 'btn btn-sm btn-outline-secondary');
-            previous.setAttribute('data-easyedu-page-prev', '1');
-            const next = button('next', 'btn btn-sm btn-outline-secondary');
-            next.setAttribute('data-easyedu-page-next', '1');
-            const label = document.createElement('span');
-            label.setAttribute('data-easyedu-page-label', '1');
-            controls.append(previous, label, next);
-            const tools = document.createElement('span');
-            tools.className = 'local-groupimport-easystud-pagination__tools';
             const count = document.createElement('span');
             count.className = 'local-groupimport-easystud-pagination__count';
             count.setAttribute('data-easystud-long-list-count', '1');
+            selection.append(select, count);
+            const controls = document.createElement('span');
+            controls.className = 'local-groupimport-easystud-pagination__controls';
+            const pageButton = (action, hook) => {
+                const node = button(action, 'btn btn-sm btn-outline-secondary');
+                node.setAttribute(hook, '1');
+                return node;
+            };
+            const label = document.createElement('span');
+            label.setAttribute('data-easystud-page-label', '1');
+            controls.append(pageButton('first', 'data-easystud-page-first'),
+                pageButton('previous', 'data-easystud-page-prev'), label,
+                pageButton('next', 'data-easystud-page-next'), pageButton('last', 'data-easystud-page-last'));
+            const tools = document.createElement('span');
+            tools.className = 'local-groupimport-easystud-pagination__tools';
             const size = document.createElement('span');
             size.className = 'local-groupimport-easystud-long-list__per-page';
             size.setAttribute('data-easystud-long-list-per-page', '1');
-            tools.append(count, size);
+            tools.append(size);
             footer.append(selection, controls, tools);
         } else {
             footer.className = 'local-groupimport-easystud-long-list';
@@ -112,13 +117,20 @@ export const syncLongListFooter = (owner, kind, state, paged = false) => {
             end: Math.min(state.page * state.size, state.total)});
         footer.querySelector('[data-easystud-long-list-per-page]').textContent =
             text(labels.longlistperpage, {size: state.size});
-        footer.querySelector('[data-easyedu-page-label]').textContent = state.page + ' / ' + state.pages;
+        footer.querySelector('[data-easystud-page-label]').textContent = state.page + ' / ' + state.pages;
+        footer.setAttribute('data-pages', state.pages);
+        buttons.first.textContent = '«';
         buttons.previous.textContent = '‹';
         buttons.next.textContent = '›';
+        buttons.last.textContent = '»';
+        buttons.first.setAttribute('aria-label', labels.paginationfirstpage || '');
         buttons.previous.setAttribute('aria-label', labels.longlistprevious || '');
         buttons.next.setAttribute('aria-label', labels.longlistnext || '');
+        buttons.last.setAttribute('aria-label', labels.paginationlastpage || '');
+        buttons.first.disabled = state.page <= 1;
         buttons.previous.disabled = state.page <= 1;
         buttons.next.disabled = state.page >= state.pages;
+        buttons.last.disabled = state.page >= state.pages;
         footer.querySelector('.local-groupimport-easystud-pagination__controls').hidden = state.pages <= 1;
         buttons.select.firstElementChild.textContent = labels.selectall || '';
         buttons.select.hidden = !state.total;
@@ -261,6 +273,10 @@ export const bindLongLists = (root, handlers) => {
             Math.min((owner[prop] || listPolicy[kind].initial) + listPolicy[kind].step, listPolicy[kind].ceiling);
         if (action === 'next' || action === 'previous') {
             owner.easystudGroupPage = (owner.easystudGroupPage || 1) + (action === 'next' ? 1 : -1);
+        } else if (action === 'first') {
+            owner.easystudGroupPage = 1;
+        } else if (action === 'last') {
+            owner.easystudGroupPage = Number(footer.getAttribute('data-pages')) || 1;
         }
         let arrivals = [];
         void Motion.resize(list, () => {

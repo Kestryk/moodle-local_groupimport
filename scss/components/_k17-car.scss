@@ -29,6 +29,21 @@
     @include easyedu.card-focus-context(0 0.5rem 1rem rgba(106, 127, 152, 0.15));
   }
 
+  // K17-50: the pagination bar of a long section reuses the list columns' bar. The selection and
+  // its count take their own width, so the count never runs into the page arrows.
+  @media (min-width: 48.0625rem) {
+    &-pagination--section {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.34rem 0.75rem;
+
+      .local-groupimport-easystud-pagination__tools {
+        margin-inline-start: auto;
+      }
+    }
+  }
+
   // K17-19: the light responsive group card has a 0.75rem inline padding; the empty-slot connector
   // keeps the same 2px inside the content there too.
   &--responsive-workspace &-group {
