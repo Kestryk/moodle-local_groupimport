@@ -113,6 +113,10 @@ final class motion {
      */
     public static function apply_to_page(\moodle_page $page): string {
         $level = self::level();
+        $page->requires->js_call_amd('local_groupimport/display_preferences', 'init', [
+            self::default_level(),
+            get_user_preferences(self::PREFERENCE, self::DEFAULT),
+        ]);
         foreach (self::body_classes($level) as $class) {
             $page->add_body_class($class);
         }

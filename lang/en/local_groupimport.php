@@ -1273,3 +1273,16 @@ $string['paginationnextpage'] = 'Next page';
 $string['paginationlastpage'] = 'Last page';
 $string['paginationnavtop'] = 'List pagination, top';
 $string['paginationnavbottom'] = 'List pagination, bottom';
+
+// G1 personal display preferences (K17-05).
+$string['displaypreferences'] = 'Display and animations';
+$string['displaypreferencesdesc'] = 'Choose how much animation the EasyStud interface uses. This setting only affects you.';
+$string['displaymotionlevel'] = 'Animation level';
+$string['displaymotionfull'] = 'All transitions: slides, fades, shimmering loading placeholders and animated Guide demonstrations.';
+$string['displaymotionreduced'] = 'Short fades only. Static loading placeholders, without blur or animated shadows.';
+$string['displaymotionminimal'] = 'No transitions: everything is static and costly effects are removed.';
+$string['displaymotionrecommended'] = 'Recommended for modest computers';
+$string['displaymotionreading'] = 'Reading times (Guide, messages) and functionality stay the same at all three levels.';
+$string['displaymotiondefault'] = 'Institution default:';
+$string['displaymotionreset'] = 'Return to the institution default';
+$string['displaymotionsaveerror'] = 'Your choice could not be saved. Please try again.';
