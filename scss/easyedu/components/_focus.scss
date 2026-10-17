@@ -46,8 +46,12 @@
   }
 
   @if $preserve-identity-rail {
+    // K17-73 / K17-81: the ring is drawn on all four inner sides, the left one included, so a
+    // card that keeps its identity rail (groups, collapsed "Groups without grouping") shows the
+    // same focus border on the inner left side as every other card.
     $context-shadow:
       inset 0 var(--easyedu-focus-ring-width) 0 $color,
+      inset var(--easyedu-focus-ring-width) 0 0 $color,
       inset calc(var(--easyedu-focus-ring-width) * -1) 0 0 $color,
       inset 0 calc(var(--easyedu-focus-ring-width) * -1) 0 $color;
 
