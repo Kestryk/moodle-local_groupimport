@@ -190,17 +190,18 @@
       padding: 0.68rem;
     }
 
-    &__search-field,
-    &__filter-group .form-select,
-    &__filter-group .custom-select,
-    &__filter-group select,
+    // Card-owned inline creation remains outside this standardisation lot.
     &-create input.form-control,
     &-participant-groups__create input.form-control {
       min-height: 2.65rem;
     }
 
-    &__search-field {
-      padding: 0 0.7rem;
+    // Search sizing/padding already belongs to easyedu-search-field.
+    &__role-select,
+    &__filter-group .form-select,
+    &__filter-group .custom-select,
+    &__filter-group select {
+      @include easyedu.native-select-control(touch, $native-affordance: true);
     }
 
     &-advanced-filters.is-expanded {

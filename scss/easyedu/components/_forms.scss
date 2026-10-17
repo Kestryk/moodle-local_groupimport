@@ -604,8 +604,14 @@
   padding: 0.7rem;
 }
 
-@mixin native-select-control($size: regular) {
-  background: var(--easyedu-surface);
+// The opt-in native-affordance variant keeps the host theme's select arrow.
+// Touch uses the shared target token; regular/large/small defaults stay intact.
+@mixin native-select-control($size: regular, $native-affordance: false) {
+  @if $native-affordance {
+    background-color: var(--easyedu-surface);
+  } @else {
+    background: var(--easyedu-surface);
+  }
   border: 1px solid var(--easyedu-control-border);
   border-radius: var(--easyedu-control-radius);
   box-shadow: none;
@@ -625,7 +631,7 @@
     padding: 0.5rem 0.78rem;
   } @else {
     font-size: 0.9rem;
-    min-height: var(--easyedu-control-height);
+    min-height: if($size == touch, var(--easyedu-touch-target-min), var(--easyedu-control-height));
     padding: 0.45rem 0.65rem;
   }
 
@@ -636,7 +642,11 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    background: var(--easyedu-surface-soft);
+    @if $native-affordance {
+      background-color: var(--easyedu-surface-soft);
+    } @else {
+      background: var(--easyedu-surface-soft);
+    }
     color: var(--easyedu-text-muted);
     cursor: not-allowed;
     opacity: 0.72;
