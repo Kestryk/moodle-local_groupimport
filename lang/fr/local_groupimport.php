@@ -1160,3 +1160,10 @@ $string['taskpurgeimporthistory'] = 'Effacer l’historique EasyStud expiré';
 $string['importuserunavailable'] = 'Participant introuvable ou non disponible dans ce cours : {$a}.';
 $string['eventimportapplied'] = 'Import EasyStud appliqué';
 $string['eventimportrolledback'] = 'Historique d’import EasyStud restauré';
+$string['importencodingerror'] = 'L’encodage du CSV est invalide ou contient des données binaires non prises en charge.';
+$string['importcsvinvalid'] = 'Le CSV contient des champs entre guillemets invalides ou non fermés.';
+$string['importformatinvalid'] = 'Seuls les véritables fichiers CSV, XLS ou XLSX sont pris en charge.';
+$string['importstructurelimit'] = 'Le fichier dépasse les limites de feuilles, colonnes, lignes ou cellules prises en charge.';
+$string['importeffectivefilelimit'] = 'Le fichier dépasse la taille autorisée pour le dépôt : {$a}.';
+
+$string['importlegacyxlsunavailable'] = 'Cette installation Moodle ne fournit pas le lecteur XLS historique. Enregistrez le fichier en XLSX ou en CSV.';

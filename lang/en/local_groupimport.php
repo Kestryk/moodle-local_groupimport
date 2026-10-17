@@ -1162,3 +1162,10 @@ $string['taskpurgeimporthistory'] = 'Delete expired EasyStud import history';
 $string['importuserunavailable'] = 'Participant not found or unavailable in this course: {$a}.';
 $string['eventimportapplied'] = 'EasyStud import applied';
 $string['eventimportrolledback'] = 'EasyStud import history restored';
+$string['importencodingerror'] = 'The CSV encoding is invalid or contains unsupported binary data.';
+$string['importcsvinvalid'] = 'The CSV contains invalid or unclosed quoted fields.';
+$string['importformatinvalid'] = 'Only genuine CSV, XLS or XLSX files are supported.';
+$string['importstructurelimit'] = 'The file exceeds the supported worksheet, column, row or cell limits.';
+$string['importeffectivefilelimit'] = 'The file exceeds the permitted upload size: {$a}.';
+
+$string['importlegacyxlsunavailable'] = 'This Moodle installation does not provide the legacy XLS reader. Save the file as XLSX or CSV.';

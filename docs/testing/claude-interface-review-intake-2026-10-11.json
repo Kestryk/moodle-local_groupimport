@@ -21,6 +21,14 @@
     "report": "docs/testing/security-s5-2026-10-17.md",
     "validation": "61 isolated checks, lint 9/9, new-file MoodleCS 0/0, escaping/filter PASS; native PHPUnit not run; no runtime access"
   },
+  "codex1SecurityS620261017": {
+    "status": "source-isolated-pass-not-published-native-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s6-20261017",
+    "report": "docs/testing/security-s6-2026-10-17.md",
+    "validation": "37 CSV/real-XLSX checks, B1 17 checks, B2 transaction/1000 cap, lint 7/7, new-helper MoodleCS 0/0, escaping/filter PASS",
+    "limits": "Legacy XLS class absent in supplied Moodle package; controlled conversion error; no real XLS proof. Parser 3000 rows, confirmation remains 1000."
+  },
   "codex1GuideCG720261016": {
     "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
     "base": "ee870566",
