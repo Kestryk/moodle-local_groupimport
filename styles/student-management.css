@@ -1364,9 +1364,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud__panel-title-wrap {align-items: center;display: flex;flex-wrap: wrap;gap: 0.5rem;
 }
-.local-groupimport-easystud__panel-badge {background: #e8f1fa !important;border: 1px solid #d0dfef !important;border-radius: 999px;color: #35556f !important;font-weight: 700;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;color: #35556f;display: inline-flex;font-size: 0.78rem;font-weight: 700;line-height: 1.2;padding: 0.2rem 0.55rem;
-}
-.local-groupimport-easystud__panel-badge--accent {background: #edf7f1;border-color: #cee2d6;color: #225842;
+.local-groupimport-easystud__panel-badge {background: #e8f1fa !important;border: 1px solid #d0dfef !important;border-radius: 999px;color: #35556f !important;font-weight: 700;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;
 }
 .local-groupimport-easystud__filters {background: var(--easyedu-surface-soft);border: 1px solid var(--easyedu-filter-border);border-radius: var(--easyedu-radius);box-shadow: var(--easyedu-shadow-soft);min-width: 0;padding: 0.75rem;background: var(--local-groupimport-easystud-surface-soft);border-radius: var(--local-groupimport-easystud-radius);gap: 0.22rem;margin-bottom: 0.9rem;overflow: visible;padding: 0.8rem;
 }
