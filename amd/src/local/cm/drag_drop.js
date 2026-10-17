@@ -64,7 +64,8 @@ export const bindResponsiveDragGuard = root => {
             () => syncResponsiveDragAvailability(root));
     }
     root.addEventListener('pointerdown', guard, true);
-    root.addEventListener('touchstart', guard, true);
+    // The guard never cancels the touch: a passive listener lets the browser start scrolling at once.
+    root.addEventListener('touchstart', guard, {capture: true, passive: true});
     root.addEventListener('focusin', guard, true);
     root.addEventListener('focusout', event => {
         if (!isDragInteractiveTarget(event.target)) {

@@ -510,26 +510,33 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
             !titleTooNarrow(entry.title);
     });
 
-    entries.filter(entry => entry.visible).forEach(entry => {
-        const {header, menu, toggle, actions, cardBounds, title} = entry;
-        if (entry.fits) {
-            toggle.setAttribute('aria-expanded', 'false');
-            return;
-        }
-        const isOutsideCard = button => outsideCard(cardBounds, button);
-        const overflowed = entry.overflowed;
-
-        toggle.hidden = false;
-        for (let index = actions.length - 1;
-            index >= 0 && (header.scrollWidth > header.clientWidth + 1 || actions.some(isOutsideCard) ||
-                titleTooNarrow(title));
-            index--) {
-            const button = actions[index];
-            if (!button.hidden && !overflowed.includes(button)) {
-                overflowed.unshift(button);
+    const visible = entries.filter(entry => entry.visible);
+    visible.filter(entry => entry.fits).forEach(entry => entry.toggle.setAttribute('aria-expanded', 'false'));
+    const pending = visible.filter(entry => !entry.fits);
+    // P1: move the actions of the cards that still overflow one step at a time, all cards together:
+    // a step writes every card, then measures every card. The browser recalculates the styles once
+    // per step (a few) instead of once per moved action (hundreds before the page was ready).
+    const stillOverflows = entry => entry.index >= 0 && (entry.header.scrollWidth > entry.header.clientWidth + 1 ||
+        entry.actions.some(button => outsideCard(entry.cardBounds, button)) || titleTooNarrow(entry.title));
+    pending.forEach(entry => {
+        entry.toggle.hidden = false;
+        entry.index = entry.actions.length - 1;
+    });
+    let overflowing = pending.filter(stillOverflows);
+    while (overflowing.length) {
+        overflowing.forEach(entry => {
+            const button = entry.actions[entry.index];
+            if (!button.hidden && !entry.overflowed.includes(button)) {
+                entry.overflowed.unshift(button);
             }
             button.classList.add('is-easystud-card-action-overflow');
-        }
+            entry.index--;
+        });
+        overflowing = overflowing.filter(stillOverflows);
+    }
+
+    pending.forEach(entry => {
+        const {menu, toggle, overflowed} = entry;
         overflowed.forEach(source => {
             source.classList.add('is-easystud-card-action-overflow');
             const clone = source.cloneNode(true);

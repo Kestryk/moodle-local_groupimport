@@ -622,7 +622,7 @@ export const bindHoverPopovers = root => {
         bubble.hide(false);
     });
     root.addEventListener('click', () => bubble.hide());
-    window.addEventListener('scroll', () => bubble.hide(), true);
+    window.addEventListener('scroll', () => bubble.hide(), {capture: true, passive: true});
 
     // WCAG 1.4.13: Escape dismisses the popover without closing the dialog that holds its trigger.
     // The capture phase runs before every dialog handler, which also honour defaultPrevented.

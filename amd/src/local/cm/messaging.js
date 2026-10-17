@@ -171,15 +171,20 @@ const watchNativeMessageModal = () => {
         });
     };
 
+    // P1: Moodle appends each modal to its own attachment container, a direct child of body
+    // (core/modal attachToDOM). Watch the direct children of body and of those new containers
+    // only, instead of every mutation of the whole page subtree.
     observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
-            mutation.addedNodes.forEach(inspectNode);
+            mutation.addedNodes.forEach(node => {
+                inspectNode(node);
+                if (mutation.target === document.body && node.nodeType === 1 && observer) {
+                    observer.observe(node, {childList: true});
+                }
+            });
         });
     });
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-    });
+    observer.observe(document.body, {childList: true});
     document.body.querySelectorAll('.modal.show').forEach(inspectNode);
 
     const stop = () => {

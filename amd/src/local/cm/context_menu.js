@@ -821,7 +821,7 @@ export const bindContextMenu = (root, courseId) => {
 
     root.addEventListener('pointerup', clearLongPress, true);
     root.addEventListener('pointercancel', clearLongPress, true);
-    root.addEventListener('scroll', clearLongPress, true);
+    root.addEventListener('scroll', clearLongPress, {capture: true, passive: true});
 
     menu.addEventListener('click', event => {
         const maskedPillAction = event.target.closest('[data-easystud-masked-pill-action]');
@@ -1165,5 +1165,5 @@ export const bindContextMenu = (root, courseId) => {
         if (!isResponsiveWorkspace() && !(event.target instanceof Node && menu.contains(event.target))) {
             hideMenu();
         }
-    }, true);
+    }, {capture: true, passive: true});
 };

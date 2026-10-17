@@ -334,7 +334,9 @@ export const placeColumnActions = root => {
 
 export const syncPanelActionOverflow = root => {
     placeColumnActions(root);
-    root.querySelectorAll('.local-groupimport-easystud__panel-actions').forEach(actions => {
+    // P1: reset every panel, measure them all, then move the overflowing buttons one step at a time for all
+    // the panels together: one style recalculation per step instead of one per panel and per moved button.
+    const entries = Array.from(root.querySelectorAll('.local-groupimport-easystud__panel-actions')).map(actions => {
         const {toggle, menu} = ensurePanelActionOverflowControls(root, actions);
         const buttons = getPanelActionButtons(actions);
         const wasExpanded = toggle.getAttribute('aria-expanded') === 'true' && !menu.hidden;
@@ -343,21 +345,31 @@ export const syncPanelActionOverflow = root => {
         toggle.hidden = true;
         menu.hidden = true;
         menu.innerHTML = '';
+        return {actions, toggle, menu, buttons, wasExpanded};
+    });
+    const overflows = entry => entry.index >= 0 && entry.actions.scrollWidth > entry.actions.clientWidth + 1;
+    // Reads only.
+    entries.forEach(entry => {
+        entry.index = entry.buttons.length - 1;
+        entry.measured = !!entry.actions.offsetParent && entry.buttons.length > 0;
+        entry.overflows = entry.measured && overflows(entry);
+    });
+    entries.filter(entry => entry.measured && !entry.overflows)
+        .forEach(entry => entry.toggle.setAttribute('aria-expanded', 'false'));
+    const pending = entries.filter(entry => entry.overflows);
+    pending.forEach(entry => {
+        entry.toggle.hidden = false;
+    });
+    let overflowing = pending.filter(overflows);
+    while (overflowing.length) {
+        overflowing.forEach(entry => {
+            entry.buttons[entry.index].classList.add(panelActionOverflowClass);
+            entry.index--;
+        });
+        overflowing = overflowing.filter(overflows);
+    }
 
-        if (!actions.offsetParent || !buttons.length) {
-            return;
-        }
-
-        if (actions.scrollWidth <= actions.clientWidth + 1) {
-            toggle.setAttribute('aria-expanded', 'false');
-            return;
-        }
-
-        toggle.hidden = false;
-        for (let index = buttons.length - 1; index >= 0 && actions.scrollWidth > actions.clientWidth + 1; index--) {
-            buttons[index].classList.add(panelActionOverflowClass);
-        }
-
+    pending.forEach(({toggle, menu, buttons, wasExpanded}) => {
         const hiddenButtons = buttons.filter(button => button.classList.contains(panelActionOverflowClass) && !button.hidden);
         hiddenButtons.forEach(button => cloneOverflowAction(button, menu, toggle));
         if (!hiddenButtons.length) {
@@ -371,6 +383,15 @@ export const syncPanelActionOverflow = root => {
     });
 };
 
+// P1: requests made before the next frame share one measurement.
+const panelOverflowFrames = new WeakSet();
 export const schedulePanelActionOverflow = root => {
-    window.requestAnimationFrame(() => syncPanelActionOverflow(root));
+    if (panelOverflowFrames.has(root)) {
+        return;
+    }
+    panelOverflowFrames.add(root);
+    window.requestAnimationFrame(() => {
+        panelOverflowFrames.delete(root);
+        syncPanelActionOverflow(root);
+    });
 };

@@ -522,8 +522,17 @@ export const normaliseAllGroupGroupingTags = root => {
         .forEach(container => normaliseGroupGroupingTags(root, container));
 };
 
+// P1: requests made before the next frame share one measurement.
+const groupingOverflowFrames = new WeakSet();
 export const scheduleGroupGroupingOverflow = root => {
-    window.requestAnimationFrame(() => syncGroupGroupingOverflow(root));
+    if (groupingOverflowFrames.has(root)) {
+        return;
+    }
+    groupingOverflowFrames.add(root);
+    window.requestAnimationFrame(() => {
+        groupingOverflowFrames.delete(root);
+        syncGroupGroupingOverflow(root);
+    });
 };
 
 const ensureTagToggle = (container, root) => {
