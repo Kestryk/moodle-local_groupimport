@@ -880,7 +880,15 @@
       align-items: center; gap: 0.5rem; min-inline-size: 0; padding-block-start: 0.75rem;
       transition: padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
     }
-    &__phase-caption { @include typography.type-control-label; font-size: 0.78rem; font-weight: 600; grid-column: 1; grid-row: 1; }
+    // K17-42: one size per level. The step caption is a caption (semibold), like the other small labels of the
+    // step block; the narration is the body role and the choice labels are control labels.
+    &__phase-caption {
+      @include typography.type-caption;
+      color: var(--easyedu-text);
+      font-weight: var(--easyedu-font-weight-semibold);
+      grid-column: 1;
+      grid-row: 1;
+    }
     // E3 (K4): Add/Move are two Kit choice cards (native radios), not a small toggle.
     &__modes {
       @include forms.segmented-choice(compact);
@@ -1150,7 +1158,9 @@
       margin-block: 1rem;
       @include typography.type-caption;
       > span { @include feedback.token-pill(var(--easyedu-accent-soft), var(--easyedu-border), var(--easyedu-text)); }
-      b { font-weight: 600; margin-inline-start: 0.25rem; color: var(--easyedu-accent); }
+      // K17-42: the title is a semibold caption; the pill keeps the Kit weight on its name and its status.
+      > strong { font-weight: var(--easyedu-font-weight-semibold); }
+      b { font-weight: inherit; margin-inline-start: 0.25rem; color: var(--easyedu-accent); }
       .is-absent { background: var(--easyedu-surface); opacity: 0.7; }
       .is-removed { background: var(--easyedu-surface-soft); text-decoration: line-through; }
     }
