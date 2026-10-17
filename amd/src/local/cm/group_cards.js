@@ -1020,7 +1020,7 @@ export const createGroupingElement = (root, groupingdata) => {
         '<div class="local-groupimport-easystud-group-email" data-easystud-grouping-groups-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
             '<textarea class="form-control form-control-sm" rows="3" placeholder="' + escapeHtml(labels.pastegroupsplaceholder || '') + '" data-easystud-grouping-groups-box="' + escapeHtml(groupingdata.id) + '"></textarea>' +
             '<div class="local-groupimport-easystud-inline-actions">' +
-                '<button type="button" class="btn btn-sm btn-outline-primary" data-easystud-add-grouping-groups="' + escapeHtml(groupingdata.id) + '">' +
+                '<button type="button" class="btn btn-sm btn-primary" data-easystud-add-grouping-groups="' + escapeHtml(groupingdata.id) + '">' +
                     '<span class="fa fa-plus" aria-hidden="true"></span><span>' + escapeHtml(labels.addgroups || '') + '</span>' +
                 '</button>' +
                 '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-grouping-groups="1">' + escapeHtml(labels.cancel || '') + '</button>' +
