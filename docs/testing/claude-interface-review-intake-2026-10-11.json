@@ -1835,5 +1835,10 @@
     "base": "05a84c57",
     "canonical": "57b5d7f",
     "report": "docs/testing/tri12-guide-parity-2026-10-17.md"
+  },
+  "codex1Tri1920261017": {
+    "status": "13-isolated-suites-pass-native-phpunit-behat-pending",
+    "base": "05a84c57",
+    "report": "docs/testing/tri19-minimal-test-gate-2026-10-17.md"
   }
 }
