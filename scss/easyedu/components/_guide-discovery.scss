@@ -893,6 +893,11 @@
           grid-row: 1;
           row-gap: 0.25rem;
         }
+        // The later inline flow of the live copy would glue the two spans on one line: each is a block
+        // line, 4px apart (frames 28px apart), whatever the display of its wrapper.
+        .easyedu-guide-scene__finished-title,
+        .easyedu-guide-scene__finished-hint { display: block; }
+        .easyedu-guide-scene__finished-hint { margin-block-start: 0.25rem; }
         .easyedu-guide-scene__finished-title {
           color: var(--easyedu-card-title-ink);
           font: 600 1rem/1.5 var(--easyedu-font-family-ui);

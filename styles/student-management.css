@@ -5295,6 +5295,11 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] [data-guide-live-copy] {display: grid;grid-column: 2;grid-row: 1;row-gap: 0.25rem;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] .easyedu-guide-scene__finished-title,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] .easyedu-guide-scene__finished-hint {display: block;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] .easyedu-guide-scene__finished-hint {margin-block-start: 0.25rem;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] .easyedu-guide-scene__finished-title {color: var(--easyedu-card-title-ink);font: 600 1rem/1.5 var(--easyedu-font-family-ui);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] .easyedu-guide-scene__finished-hint {color: var(--easyedu-text-muted);font: 400 0.875rem/1.5 var(--easyedu-font-family-ui);
