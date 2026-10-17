@@ -22,6 +22,12 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 define('EASYSTUD_K16_SMALL_FIXTURE', true);
 define('EASYSTUD_K16_COPY_GROUP_NAMES', [
     'QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma', 'QA Unrelated Delta',

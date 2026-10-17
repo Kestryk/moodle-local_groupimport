@@ -22,12 +22,16 @@
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
 
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
 }
-define('CLI_SCRIPT', true);
 $options = getopt('', ['moodle-root:', 'manifest:', 'action:', 'run-id:', 'participants:', 'purge', 'help']);
 if (isset($options['help'])) {
     echo "--moodle-root PATH --manifest EXTERNAL.json [--action setup|cleanup|verify] [--participants 1..10000] [--purge]\n";

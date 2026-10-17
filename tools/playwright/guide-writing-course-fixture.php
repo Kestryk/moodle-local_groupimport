@@ -1,6 +1,34 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
+/**
+ * Standalone CLI test fixture and release validation.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 // Disposable native Guide business replay, restricted to the dedicated Perf DB.
 define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $options = [];
 for ($i = 1; $i < count($argv); $i += 2) {
     $options[ltrim($argv[$i], '-')] = $argv[$i + 1] ?? '';
@@ -22,11 +50,22 @@ $file = $options['manifest'] ?? '';
 if (!$file || !is_dir(dirname($file))) {
     throw new RuntimeException('External manifest directory required');
 }
+/**
+ * Execute isolated fixture operation guide_fixture_save.
+ * @param mixed $file Fixture input.
+ * @param mixed $data Fixture input.
+ * @return mixed Fixture result.
+ */
 function guide_fixture_save(string $file, array $data): void {
     if (file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), LOCK_EX) === false) {
         throw new RuntimeException('Cannot persist fixture ownership');
     }
 }
+/**
+ * Execute isolated fixture operation guide_fixture_cleanup.
+ * @param mixed $data Fixture input.
+ * @return mixed Fixture result.
+ */
 function guide_fixture_cleanup(array $data): array {
     global $DB, $CFG;
     $courseid = (int)($data['courseId'] ?? 0);
@@ -55,7 +94,9 @@ function guide_fixture_cleanup(array $data): array {
 $action = $options['action'] ?? '';
 if ($action === 'cleanup') {
     $data = is_file($file) ? json_decode(file_get_contents($file), true) : [];
-    if (!is_array($data)) { throw new RuntimeException('Invalid fixture manifest'); }
+    if (!is_array($data)) {
+        throw new RuntimeException('Invalid fixture manifest');
+    }
     $id = (int)($data['courseId'] ?? 0);
     $course = $id ? $DB->get_record('course', ['id' => $id]) : false;
     if ($course && $course->shortname !== ($data['shortname'] ?? '')) {
@@ -65,9 +106,13 @@ if ($action === 'cleanup') {
     if ($course) {
         $snapshot['groups'] = array_values($DB->get_records('groups', ['courseid' => $id], 'id', 'id,name'));
         $snapshot['memberships'] = array_values($DB->get_records_sql(
-            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?', [$id]));
+            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?',
+            [$id]
+        ));
         $snapshot['groupingAssignments'] = array_values($DB->get_records_sql(
-            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?', [$id]));
+            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?',
+            [$id]
+        ));
     }
     $data['finalCourseState'] = $snapshot;
     guide_fixture_save($file, $data);
@@ -77,14 +122,18 @@ if ($action === 'cleanup') {
 if ($action !== 'setup' || !preg_match('/^[a-zA-Z0-9-]+$/', $options['run-id'] ?? '')) {
     throw new RuntimeException('Explicit setup/cleanup and safe run ID required');
 }
-if (is_file($file)) { throw new RuntimeException('Fresh manifest required'); }
+if (is_file($file)) {
+    throw new RuntimeException('Fresh manifest required');
+}
 $suffix = substr(hash('sha256', $options['run-id']), 0, 12);
 $data = ['schemaVersion' => 1, 'runId' => $options['run-id'], 'courseId' => 0,
     'shortname' => 'eed-guide-write-' . $suffix, 'userIds' => []];
 guide_fixture_save($file, $data);
 try {
     $category = (int)$DB->get_field_sql('SELECT MIN(id) FROM {course_categories}');
-    if (!$category) { throw new RuntimeException('Course category required'); }
+    if (!$category) {
+        throw new RuntimeException('Course category required');
+    }
     $course = create_course((object)['fullname' => 'EasyStud guided write QA ' . $suffix,
         'shortname' => $data['shortname'], 'category' => $category, 'visible' => 1]);
     $data['courseId'] = (int)$course->id;
@@ -92,7 +141,9 @@ try {
     $instances = enrol_get_instances($course->id, true);
     $manual = array_values(array_filter($instances, static fn($instance) => $instance->enrol === 'manual'))[0] ?? null;
     $role = $DB->get_record('role', ['shortname' => 'student'], '*', MUST_EXIST);
-    if (!$manual) { throw new RuntimeException('Manual enrollment required'); }
+    if (!$manual) {
+        throw new RuntimeException('Manual enrollment required');
+    }
     foreach (['One', 'Two'] as $name) {
         $id = user_create_user((object)['username' => 'eed-guide-write-' . $suffix . '-' . strtolower($name),
             'firstname' => 'QA Guided', 'lastname' => $name,
@@ -112,7 +163,9 @@ try {
     foreach (['QA Source Structure', 'QA Activity Destination'] as $name) {
         $data['groupingIds'][] = (int)groups_create_grouping((object)['courseid' => $course->id, 'name' => $name]);
     }
-    foreach ($data['groupIds'] as $id) { groups_assign_grouping($data['groupingIds'][0], $id); }
+    foreach ($data['groupIds'] as $id) {
+        groups_assign_grouping($data['groupingIds'][0], $id);
+    }
     $data['managerUrl'] = $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $course->id . '&lang=fr';
     guide_fixture_save($file, $data);
     echo json_encode($data, JSON_UNESCAPED_SLASHES) . PHP_EOL;

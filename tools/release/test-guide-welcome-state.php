@@ -23,7 +23,16 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
 
 $config = [];
 $preferences = [];
@@ -110,18 +119,8 @@ function require_capability($capability, $context) {
         throw new RuntimeException('Capability required');
     }
 }
-/**
- * Isolated fixture double for context_system.
- */
-class context_system {
-    /**
-     * Perform isolated fixture operation instance.
-     * @return mixed Fixture result.
-     */
-    public static function instance() {
-        return new self();
-    }
-}
+require_once(__DIR__ . '/doubles/test_guide_welcome_state/global/fixture_test_guide_welcome_state_context_system.php');
+class_alias('fixture_test_guide_welcome_state_context_system', 'context_system');
 /**
  * Perform isolated fixture operation check.
  * @param mixed $condition Fixture argument.
@@ -134,7 +133,7 @@ function check($condition, $message) {
     }
 }
 
-require __DIR__ . '/../../classes/local/guide_welcome.php';
+require(__DIR__ . '/../../classes/local/guide_welcome.php');
 use local_groupimport\local\guide_welcome;
 
 $initial = guide_welcome::generation();

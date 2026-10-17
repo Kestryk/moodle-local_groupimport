@@ -13,16 +13,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
-// Read-only context for the managed course5 student recipe; no accounts created.
 
 /**
- * Standalone local_groupimport test fixture or release helper.
+ * Standalone CLI test fixture and release validation.
  *
  * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('CLI_SCRIPT', true);
+
+// Read-only context for the managed course5 student recipe; no accounts created.
+
 require($argv[1] . '/config.php');
 $context = context_course::instance(5);
 $students = get_enrolled_users($context, '', 0, 'u.id, u.username, u.email', 'u.id');

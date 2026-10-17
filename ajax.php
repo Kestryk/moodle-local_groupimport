@@ -785,13 +785,13 @@ try {
     }
 } catch (dml_exception $exception) {
     // Database errors may carry SQL in their debug details: log them, never return them.
-    error_log('local_groupimport ajax ' . $action . ': ' . $exception->getMessage() . ' ' . ($exception->debuginfo ?? ''));
+    debugging('local_groupimport ajax ' . $action . ': ' . $exception->getMessage() . ' ' . ($exception->debuginfo ?? ''), DEBUG_DEVELOPER);
     $response['error'] = get_string('ajaxunexpectederror', 'local_groupimport');
 } catch (moodle_exception $exception) {
     $response['error'] = $exception->getMessage();
 } catch (Throwable $exception) {
     // Unexpected PHP errors are logged server side and reported with a generic message.
-    error_log('local_groupimport ajax ' . $action . ': ' . get_class($exception) . ': ' . $exception->getMessage());
+    debugging('local_groupimport ajax ' . $action . ': ' . get_class($exception) . ': ' . $exception->getMessage(), DEBUG_DEVELOPER);
     $response['error'] = get_string('ajaxunexpectederror', 'local_groupimport');
 }
 
