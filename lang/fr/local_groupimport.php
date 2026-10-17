@@ -1188,3 +1188,16 @@ $string['paginationnextpage'] = 'Page suivante';
 $string['paginationlastpage'] = 'Dernière page';
 $string['paginationnavtop'] = 'Pagination de la liste, en haut';
 $string['paginationnavbottom'] = 'Pagination de la liste, en bas';
+
+// G1 personal display preferences (K17-05).
+$string['displaypreferences'] = 'Affichage et animations';
+$string['displaypreferencesdesc'] = 'Choisissez la quantité d’animations de l’interface EasyStud. Ce réglage ne concerne que vous.';
+$string['displaymotionlevel'] = 'Niveau d’animation';
+$string['displaymotionfull'] = 'Toutes les transitions : glissements, fondus, squelettes qui scintillent, démonstrations animées du Guide.';
+$string['displaymotionreduced'] = 'Fondus courts seulement. Squelettes statiques, sans flou ni ombres animées.';
+$string['displaymotionminimal'] = 'Aucune transition : tout est statique et les effets coûteux sont retirés.';
+$string['displaymotionrecommended'] = 'Recommandé pour les ordinateurs modestes';
+$string['displaymotionreading'] = 'Dans les trois niveaux, les durées de lecture (Guide, messages) et le fonctionnement restent identiques.';
+$string['displaymotiondefault'] = 'Valeur de l’établissement :';
+$string['displaymotionreset'] = 'Revenir à la valeur de l’établissement';
+$string['displaymotionsaveerror'] = 'Votre choix n’a pas pu être enregistré. Veuillez réessayer.';

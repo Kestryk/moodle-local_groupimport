@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+G1 personal animation choice reuses the server M1 resolver and current-user
+Moodle preference repository. Keep Save explicit, Cancel/Escape reversible and
+the underlying Guide open. The embedded Kit owns the preference-window/radio
+recipe; external Kit/Penpot propagation and human acceptance remain separate.
+See `docs/display-preferences-2026-10-17.md` for build and supervised proof.
+
 Student Management panel opacity/transform during view swaps belongs to Motion;
 the container keeps only its CSS shadow transition. Focus-state transforms must
 not add another interpolation during the return. This is separate from shared

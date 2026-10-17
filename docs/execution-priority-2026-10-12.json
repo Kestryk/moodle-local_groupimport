@@ -1,4 +1,11 @@
 {
+  "animG1PersonalPreference20261017": {
+    "decision": "K17-05 validation1",
+    "scope": "G1 personal display and animation preference; desktop icon, drawer and Guide",
+    "record": "docs/display-preferences-2026-10-17.md",
+    "humanAcceptance": "open",
+    "externalKitPenpotPropagation": "open"
+  },
   "steering20261014": {
     "source": "Kevin instruction 2026-10-14",
     "penpotOperator": "Claude only; Codex does no Penpot operation",

@@ -37,6 +37,13 @@
         {{^hasitems}}
         <p class="easyedu-navigation__empty">{{emptylabel}}</p>
         {{/hasitems}}
+        <div class="easyedu-navigation__preferences-source">
+            <button type="button" class="easyedu-direct-icon" data-easyedu-display-open
+                data-easyedu-display-tooltip
+                aria-label="{{#str}}displaypreferences, local_groupimport{{/str}}">
+                <span class="fa fa-sliders" aria-hidden="true"></span>
+            </button>
+        </div>
     </nav>
 
     <div class="easyedu-navigation__trigger-row" data-easyedu-navigation-trigger-row="1">
@@ -102,6 +109,12 @@
             {{/hasitems}}
 
             <div class="easyedu-navigation__guide-slot" data-easyedu-navigation-guide-slot="1"></div>
+            <div class="easyedu-navigation__preferences-drawer">
+                <button type="button" class="easyedu-guide-utility" data-easyedu-display-open>
+                    <span class="fa fa-sliders" aria-hidden="true"></span>
+                    <span>{{#str}}displaypreferences, local_groupimport{{/str}}</span>
+                </button>
+            </div>
 
             {{#hasitems}}
             {{#hasparticipantdropdown}}
