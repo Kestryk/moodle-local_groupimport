@@ -152,7 +152,7 @@
 // Entity-card empty line (K16-77, Kevin 16/10: no dotted frame, Kit styles that respect the card):
 // an empty member row — the related-person-row veil and radius — with a bare entity glyph, the
 // message then the help. Only the drag state marks the drop target (entity-card-empty-drop-target).
-@mixin entity-card-empty-line($color, $selection-aligned: false) {
+@mixin entity-card-empty-line($color, $lane: false) {
   align-items: center;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid transparent;
@@ -170,31 +170,20 @@
   transition:
     background-color var(--easyedu-motion-fast) ease,
     border-color var(--easyedu-motion-fast) ease;
-  @if $selection-aligned {
-    // Same selection/text tracks as selectable-card-header. Cancel only this row's border.
-    --easyedu-empty-selection-track: 2rem;
-    --easyedu-empty-text-track: 2.55rem;
-    grid-template-columns: var(--easyedu-empty-selection-track) minmax(0, 1fr);
-    column-gap: calc(var(--easyedu-empty-text-track) - var(--easyedu-empty-selection-track));
-    margin-inline-start: -1px;
-    padding-inline: 0;
-    overflow: visible;
+  @if $lane {
+    // K17-72: the group's empty row sits in the same connector lane as the grouping's (the
+    // tree__children lane: 0.45rem inset, 2px trait, 0.85rem gap), so both empty states share one
+    // geometry. The trait is drawn on the row itself for hosts that have no lane of their own.
+    margin-inline-start: calc(0.45rem + 2px + 0.85rem);
     position: relative;
     &::before {
       background: #dfe8e2;
       content: "";
       inline-size: 2px;
       inset-block: -0.2rem 0;
-      // K17-19: the connector stays inside the card content (never over the identity rail); the card
-      // publishes its inline padding as --easyedu-empty-card-padding.
-      inset-inline-start: calc(2px - var(--easyedu-empty-card-padding, 0.7rem));
+      inset-inline-start: calc(-0.85rem - 2px);
       position: absolute;
     }
-    @media (max-width: 64rem) {
-      --easyedu-empty-selection-track: 2.35rem;
-      --easyedu-empty-text-track: 3.25rem;
-    }
-    > .easyedu-entity-card-empty__icon { justify-self: center; }
   }
   .easyedu-entity-card-empty__icon {
     align-items: center;

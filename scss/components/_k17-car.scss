@@ -43,10 +43,4 @@
       }
     }
   }
-
-  // K17-19: the light responsive group card has a 0.75rem inline padding; the empty-slot connector
-  // keeps the same 2px inside the content there too.
-  &--responsive-workspace &-group {
-    --easyedu-empty-card-padding: 0.75rem;
-  }
 }

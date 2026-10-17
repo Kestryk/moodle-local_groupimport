@@ -188,7 +188,7 @@
     // The Guide can sit outside the product root (phone drawer), where the root-scoped
     // product rules do not reach. The empty rows use the same Kit recipes as the product.
     .easyedu-entity-card-empty--group {
-      @include feedback.entity-card-empty-line(var(--easyedu-group), $selection-aligned: true);
+      @include feedback.entity-card-empty-line(var(--easyedu-group), $lane: true);
     }
     .easyedu-entity-card-empty--grouping {
       @include feedback.entity-card-empty-line(var(--easyedu-grouping));

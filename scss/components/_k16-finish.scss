@@ -28,7 +28,7 @@
     @include easyedu.card-label;
   }
   .easyedu-entity-card-empty--group {
-    @include easyedu.entity-card-empty-line(var(--easyedu-group), $selection-aligned: true);
+    @include easyedu.entity-card-empty-line(var(--easyedu-group), $lane: true);
     margin-block-start: 0.7rem;
   }
   // K16-25: member rows share the group header grid. The row is pulled back by its own inset
