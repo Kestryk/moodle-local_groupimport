@@ -1,4 +1,4 @@
-# R9 ? formatted empty cells, already implemented by S6
+# R9 — formatted empty cells, already implemented by S6
 
 Base 4110785e already includes the full R9 reader requirements in 8b3810f9
 (original S6 dbaeb9c4): setReadEmptyCells(false), data-only explicit Xlsx/Xls readers,
