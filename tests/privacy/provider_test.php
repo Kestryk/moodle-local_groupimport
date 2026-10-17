@@ -17,12 +17,11 @@
 namespace local_groupimport\privacy;
 
 use context_user;
+use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_contextlist;
 use core_privacy\local\request\writer;
 use core_privacy\tests\provider_testcase;
 use local_groupimport\local\motion;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Privacy provider tests for the animation level preference.
@@ -33,6 +32,22 @@ defined('MOODLE_INTERNAL') || die();
  * @covers \local_groupimport\privacy\provider
  */
 final class provider_test extends provider_testcase {
+    /**
+     * The provider declares the history tables and user preferences it stores.
+     */
+    public function test_metadata_declares_history_and_user_preferences(): void {
+        $metadata = provider::get_metadata(new collection('local_groupimport'))->get_collection();
+        $items = [];
+        foreach ($metadata as $item) {
+            $items[$item->get_name()] = $item->get_summary();
+        }
+
+        $this->assertArrayHasKey('local_groupimport_history', $items);
+        $this->assertArrayHasKey('local_groupimport_jobs', $items);
+        $this->assertArrayHasKey(motion::PREFERENCE, $items);
+        $this->assertArrayHasKey(\local_groupimport\local\guide_welcome::PREFERENCE, $items);
+    }
+
     /**
      * The chosen level is exported with the user's preferences.
      */

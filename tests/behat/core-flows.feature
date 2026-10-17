@@ -77,3 +77,10 @@ Feature: Open and navigate the EasyStud management workspace
     And the "[data-easystud-clear-all-selection]" "css_element" should be visible
     When I click on "[data-easystud-clear-all-selection]" "css_element"
     Then the "[data-easystud-user].is-selected" "css_element" should not exist
+
+  Scenario: Teacher opens Mass Import and sees its upload panels
+    Given I am on the "ES101" "Course" page logged in as "teacher1"
+    When I follow "Mass Import"
+    Then the "#local-groupimport-import" "css_element" should be visible
+    And the ".local-groupimport-import-card--upload" "css_element" should be visible
+    And the ".local-groupimport-import-fields" "css_element" should be visible
