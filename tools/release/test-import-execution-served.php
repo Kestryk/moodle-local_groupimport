@@ -13,16 +13,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
-// Native DB failure proof: only temporary raw fixture rows inside a rolled-back transaction.
 
 /**
- * Standalone local_groupimport test fixture or release helper.
+ * Standalone CLI test fixture and release validation.
  *
  * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('CLI_SCRIPT', true);
+
+// Native DB failure proof: only temporary raw fixture rows inside a rolled-back transaction.
+
 require($argv[1] . '/config.php');
 if ($CFG->wwwroot !== 'http://localhost') {
     throw new RuntimeException('Principal localhost only');

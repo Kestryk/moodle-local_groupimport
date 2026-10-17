@@ -23,6 +23,11 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $options = [];
 for ($i = 1; $i < count($argv); $i += 2) {
     $options[ltrim($argv[$i], '-')] = $argv[$i + 1] ?? '';

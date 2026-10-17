@@ -22,11 +22,16 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
 }
-define('MOODLE_INTERNAL', true);
 define('EASYEDU_TEST_MEMBER_TRANSFER', true);
 $CFG = (object)['dirroot' => __DIR__ . '/fixtures/membership-transfer-mock'];
 require_once(__DIR__ . '/../../classes/local/batch_reader.php');

@@ -18,7 +18,7 @@
  * Static English/French localisation contract for EasyStud.
  *
  * Run from the plugin root with:
- * php tests/localisation_contract_test.php
+ * php tools/release/test-localisation-contract.php
  *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac
@@ -27,13 +27,37 @@
 
 declare(strict_types=1);
 
-define('MOODLE_INTERNAL', true);
-
 /**
  * Load one Moodle language pack in an isolated function scope.
  *
  * @param string $path Language file path.
  * @return array<string, string>
+ */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+/**
+ * Execute isolated fixture operation local_groupimport_test_load_language_pack.
+ * @param mixed $path Fixture input.
+ * @return mixed Fixture result.
  */
 function local_groupimport_test_load_language_pack(string $path): array {
     $string = [];
@@ -65,7 +89,7 @@ function local_groupimport_test_fail(string $message): never {
     exit(1);
 }
 
-$pluginroot = dirname(__DIR__);
+$pluginroot = dirname(__DIR__, 2);
 $paths = [
     'en' => $pluginroot . '/lang/en/local_groupimport.php',
     'fr' => $pluginroot . '/lang/fr/local_groupimport.php',
