@@ -1,4 +1,19 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
 namespace core\event {
     class base {
         const LEVEL_TEACHING = 1;
@@ -35,7 +50,6 @@ namespace {
     class context_course {public int $id;
         public function __construct(public int $instanceid) {
             $this->id = 1000 + $instanceid;
-
         }public static function instance($id) {
             return new self($id);
         }
@@ -51,7 +65,7 @@ namespace {
     }
     function require_capability($capability, $context) {
         $GLOBALS['auth'][] = $capability;
-        if($GLOBALS['denied'])throw new RuntimeException('Denied');
+        if ($GLOBALS['denied'])throw new RuntimeException('Denied');
     }
     function get_string($key, $component) {
         return $GLOBALS['translations'][$GLOBALS['language']][$key] ?? $key;
@@ -71,8 +85,8 @@ namespace {
     class memory_db {
         public object $record;
         public function get_record($table, $conditions, $fields, $strict) {
-            if($GLOBALS['auth'] !== ['login', 'moodle/course:managegroups'])throw new RuntimeException('Lookup before auth');
-            if($table !== 'local_groupimport_history' || $conditions !== ['id' => 7, 'courseid' => 5])throw new RuntimeException('Unscoped history read');
+            if ($GLOBALS['auth'] !== ['login', 'moodle/course:managegroups'])throw new RuntimeException('Lookup before auth');
+            if ($table !== 'local_groupimport_history' || $conditions !== ['id' => 7, 'courseid' => 5])throw new RuntimeException('Unscoped history read');
             return clone $this->record;
         }
     }
@@ -82,53 +96,56 @@ namespace {
         $source = '';
         $skip = false;
         $requires = 0;
-        foreach($tokens as $token){
-            if(is_array($token) && $token[0] === T_OPEN_TAG)continue;
-            if(is_array($token) && $token[0] === T_REQUIRE_ONCE){$skip = true;
+        foreach ($tokens as $token) {
+            if (is_array($token) && $token[0] === T_OPEN_TAG)continue;
+            if (is_array($token) && $token[0] === T_REQUIRE_ONCE) {
+                $skip = true;
                 $requires++;
                 continue;
             }
-            if($skip){if($token === ';')$skip = false;
+            if ($skip) {
+                if ($token === ';')$skip = false;
                 continue;
             }
             $source .= is_array($token) ? $token[1] : $token;
         }
-        if($requires !== 2)throw new RuntimeException('Review changed bootstrap boundary');
+        if ($requires !== 2)throw new RuntimeException('Review changed bootstrap boundary');
         eval($source);
     }
     $checks = 0;
     function check($ok, $label) {
         $GLOBALS['checks']++;
-        if(!$ok)throw new RuntimeException($label);
+        if (!$ok)throw new RuntimeException($label);
     }
     $root = dirname(__DIR__, 3);
     require $root . '/classes/local/report_export.php';
     require $root . '/classes/event/report_exported.php';
     use local_groupimport\local\report_export as policy;
     $translations = [];
-    foreach(['en', 'fr'] as $language){$string = [];
+    foreach (['en', 'fr'] as $language) {
+        $string = [];
         require $root . '/lang/' . $language . '/local_groupimport.php';
         $translations[$language] = $string;
     }
     $unsafe = ['=1+1', '+SUM(1,2)', '-1', '@SUM(A1:A2)', "\tvalue", "\rvalue", "\nvalue", '  =1+1', '＝1+1', '＋1', '－1', '＠name', "\u{FEFF}=1+1"];
     $safe = ['00123', '1E20', '12345678901234567890', '2026-10-17', 'a@example.test', 'Équipe été', '', "'already literal", 'safe = value'];
-    foreach($unsafe as $value)check(policy::text($value) === "'" . $value, 'Executable prefix neutralized');
-    foreach($safe as $value)check(policy::text($value) === $value, 'Safe text unchanged');
+    foreach ($unsafe as $value)check(policy::text($value) === "'" . $value, 'Executable prefix neutralized');
+    foreach ($safe as $value)check(policy::text($value) === $value, 'Safe text unchanged');
     $probe = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $probesheet = $probe->getActiveSheet();
     policy::write_row($probesheet, 1, ['', '=1+1', '00123']);
-    foreach(['A1', 'B1', 'C1'] as $coordinate)check($probesheet->getCell($coordinate)->getDataType() === 's', 'Explicit type before serialization, including empty');
+    foreach (['A1', 'B1', 'C1'] as $coordinate)check($probesheet->getCell($coordinate)->getDataType() === 's', 'Explicit type before serialization, including empty');
     $probe->disconnectWorksheets();
     $values = array_merge($unsafe, $safe);
     $rows = [];
-    foreach($values as $i => $value)$rows[] = ['identifier' => '00123', 'groupname' => $value, 'groupingname' => '00007', 'status' => ['success', 'warning', 'error'][$i % 3], 'messages' => [$value]];
+    foreach ($values as $i => $value)$rows[] = ['identifier' => '00123', 'groupname' => $value, 'groupingname' => '00007', 'status' => ['success', 'warning', 'error'][$i % 3], 'messages' => [$value]];
     $DB = new memory_db();
     $DB->record = (object)['id' => 7, 'courseid' => 5, 'filename' => 'original.csv', 'changesjson' => json_encode(['reportrows' => $rows])];
     $requestdir = sys_get_temp_dir() . '/easystud-s7-' . bin2hex(random_bytes(8));
     mkdir($requestdir);
     $files = [];
-    try{
-        foreach(['en', 'fr'] as $language){
+    try {
+        foreach (['en', 'fr'] as $language) {
             $auth = [];
             $events = [];
             $download = null;
@@ -153,10 +170,11 @@ namespace {
             $book = $reader->load($path);
             $sheet = $book->getActiveSheet();
             check($sheet->getCell('A1')->getValue() === "'=HEADER" && $sheet->getCell('A1')->getDataType() === 's', 'Header explicitly neutralized text');
-            foreach($values as $i => $value){$r = $i + 2;
+            foreach ($values as $i => $value) {
+                $r = $i + 2;
                 check((string)$sheet->getCell('B' . $r)->getValue() === str_replace(["\r\n", "\r"], "\n", policy::text($value)), 'Group literal XLSX roundtrip index ' . $i . ' actual=' . bin2hex((string)$sheet->getCell('B' . $r)->getValue()) . ' expected=' . bin2hex(policy::text($value)));
                 check($sheet->getCell('A' . $r)->getValue() === '00123' && $sheet->getCell('C' . $r)->getValue() === '00007', 'Leading zero ids preserved');
-                foreach(['A', 'B', 'C', 'D', 'E'] as $c){
+                foreach (['A', 'B', 'C', 'D', 'E'] as $c) {
                     $cell = $sheet->getCell($c . $r);
                     check($cell->getDataType() === 's' || ($cell->getValue() === null && in_array($c, ['B', 'E'], true) && $value === ''), 'Every populated report cell is text (native blank reload may be null)');
                 }
@@ -168,16 +186,20 @@ namespace {
         $events = [];
         $download = null;
         $denied = true;
-        try{run_export($root . '/export.php');
+        try {
+            run_export($root . '/export.php');
             throw new RuntimeException('Expected denial');
-        }catch(RuntimeException$e){check($e->getMessage() === 'Denied' && $download === null && $events === [], 'Denied requests create no report/event');
+        } catch (RuntimeException$e) {
+            check($e->getMessage() === 'Denied' && $download === null && $events === [], 'Denied requests create no report/event');
         }
         $denied = false;
         $auth = [];
         $DB->record->changesjson = 'broken';
-        try{run_export($root . '/export.php');
+        try {
+            run_export($root . '/export.php');
             throw new RuntimeException('Expected invalid history');
-        }catch(moodle_exception$e){check($download === null && $events === [] && glob($requestdir . '/report_*') === [], 'Invalid history no output/event');
+        } catch (moodle_exception$e) {
+            check($download === null && $events === [] && glob($requestdir . '/report_*') === [], 'Invalid history no output/event');
         }
         $auth = [];
         $DB->record->changesjson = json_encode(['desiredstate' => [['identifier' => '00042', 'groupname' => '=1+1', 'groupingname' => 'G']]]);
@@ -186,8 +208,9 @@ namespace {
         $source = file_get_contents($root . '/export.php');
         check(!str_contains($source, '->fromArray(') && substr_count($source, 'report_export::write_row(') === 2, 'All header/body paths explicit');
         echo json_encode(['suite' => 'S7-M5-real-export-isolated', 'passed' => true, 'checks' => $checks, 'locales' => ['en', 'fr'], 'formulaNodes' => 0, 'databaseConnections' => 0, 'runtimeAccess' => false]) . PHP_EOL;
-    }finally{foreach($files as $p)if(is_file($p))unlink($p);
-        foreach(glob($requestdir . '/report_*') as $p)if(is_file($p))unlink($p);
+    } finally {
+        foreach ($files as $p)if (is_file($p))unlink($p);
+        foreach (glob($requestdir . '/report_*') as $p)if (is_file($p))unlink($p);
         rmdir($requestdir);
     }
 }

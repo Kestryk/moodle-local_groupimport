@@ -1,5 +1,20 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Real XLSX serialization/read, private request fixtures, no Moodle bootstrap/runtime/DB.
+
 require __DIR__ . '/spreadsheet-libraries.php';
 define('MOODLE_INTERNAL', true);
 class moodle_exception extends RuntimeException {public function __construct($key, ...$rest) {
@@ -18,7 +33,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $checks = 0;
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if(!$ok)throw new RuntimeException($label);
+    if (!$ok)throw new RuntimeException($label);
 }
 $requestdir = sys_get_temp_dir() . '/easystud-r9-' . bin2hex(random_bytes(8));
 mkdir($requestdir);
@@ -28,7 +43,7 @@ function amended(string $bytes, callable $patch): string {
     $GLOBALS['owned'][] = $path;
     file_put_contents($path, $bytes);
     $zip = new ZipArchive();
-    if($zip->open($path) !== true)throw new RuntimeException('ZIP open');
+    if ($zip->open($path) !== true)throw new RuntimeException('ZIP open');
     $xml = $zip->getFromName('xl/worksheets/sheet1.xml');
     $changed = $patch($xml);
     check($changed !== $xml, 'fixture amendment applied');
@@ -37,8 +52,10 @@ function amended(string $bytes, callable $patch): string {
     return file_get_contents($path);
 }
 function rejected(string $bytes, string $name, string $expected): void {
-    try{import_reader::excel($bytes, $name);
-    }catch(moodle_exception $e){check($e->getMessage() === $expected, 'controlled ' . $expected);
+    try {
+        import_reader::excel($bytes, $name);
+    } catch (moodle_exception $e) {
+        check($e->getMessage() === $expected, 'controlled ' . $expected);
         check(glob($GLOBALS['requestdir'] . '/import_*') === [], 'request cleanup after rejection');
         return;
     }
@@ -78,7 +95,7 @@ try {
     check(glob($requestdir . '/import_*') === [], 'successful request cleanup');
     echo json_encode(['surface' => 'r9-formatted-xlsx', 'passed' => true, 'checks' => $checks, 'maxTestedRow' => 1048576, 'maxTestedColumn' => 16384, 'peakMemoryBytes' => memory_get_peak_usage(true), 'runtimeAccess' => false, 'databaseConnections' => 0]), "\n";
 } finally {
-    foreach($owned as $path)if(is_file($path))unlink($path);
-    foreach(glob($requestdir . '/import_*') as $path)if(is_file($path))unlink($path);
+    foreach ($owned as $path)if (is_file($path))unlink($path);
+    foreach (glob($requestdir . '/import_*') as $path)if (is_file($path))unlink($path);
     rmdir($requestdir);
 }

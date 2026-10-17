@@ -1,6 +1,21 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated contract harness: no Moodle bootstrap, database, credentials or runtime.
 // Complements (does not replace) the real advanced_testcase candidate.
+
 define('MOODLE_INTERNAL', true);
 
 $config = [];
@@ -34,7 +49,8 @@ function isguestuser() {
     return $guest;
 }
 function require_login($course = null, $autologin = true) {
-    if (!isloggedin()) { throw new RuntimeException('Login required');
+    if (!isloggedin()) {
+        throw new RuntimeException('Login required');
     }
 }
 function require_capability($capability, $context) {
@@ -48,7 +64,8 @@ class context_system { public static function instance() {
 }
 }
 function check($condition, $message) {
-    if (!$condition) { throw new RuntimeException($message);
+    if (!$condition) {
+        throw new RuntimeException($message);
     }
 }
 
@@ -66,10 +83,11 @@ $guest = true;
 check(!guide_welcome::should_offer(), 'Guest not offered');
 check(!guide_welcome::mark_opened($initial), 'Guest not acknowledged');
 $guest = false;
-try { guide_welcome::reset();
+try {
+    guide_welcome::reset();
     throw new LogicException('Unauthorized reset accepted');
-}
-catch (RuntimeException $error) { check($error->getMessage() === 'Capability required', 'Capability guard');
+} catch (RuntimeException $error) {
+    check($error->getMessage() === 'Capability required', 'Capability guard');
 }
 $before = $preferences;
 $admin = true;

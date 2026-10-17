@@ -1,4 +1,19 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
 /** Isolated AJAX surface verification: actual dispatch, no Moodle bootstrap or database. */
 define('MOODLE_INTERNAL', true);
 define('PARAM_INT', 'int');
@@ -77,7 +92,8 @@ function required_param($name, $type) {
 }
 function groups_get_group($id) {
     global $injected;
-    if ($injected) { throw $injected;
+    if ($injected) {
+        throw $injected;
     }
     return (object)['id' => $id, 'courseid' => 123, 'name' => 'Synthetic group'];
 }
@@ -99,14 +115,16 @@ function format_string($value) {
 }
 function get_string($key, $component, $a = null) {
     global $string;
-    if (!isset($string[$key])) { throw new RuntimeException('Missing string: ' . $key);
+    if (!isset($string[$key])) {
+        throw new RuntimeException('Missing string: ' . $key);
     }
     return is_scalar($a) ? str_replace('{$a}', (string)$a, $string[$key]) : $string[$key];
 }
 function check($name, $condition) {
     global $checks;
     $checks[$name] = (bool)$condition;
-    if (!$condition) { throw new RuntimeException('Failed: ' . $name);
+    if (!$condition) {
+        throw new RuntimeException('Failed: ' . $name);
     }
 }
 require $root . '/classes/local/guide_discovery.php';
@@ -243,7 +261,8 @@ $report = json_encode(
     'checks' => $checks, 'scope' => 'Actual dispatch with isolated service doubles; no native course writes'],
     JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
 ) . PHP_EOL;
-if (!empty($argv[1])) { file_put_contents($argv[1], $report);
+if (!empty($argv[1])) {
+    file_put_contents($argv[1], $report);
 }
 echo $report;
 
@@ -254,6 +273,7 @@ function data_submitted() {
 function require_sesskey() {
     global $validkey, $guardcalls;
     $guardcalls++;
-    if (!$validkey) { throw new moodle_exception('Invalid session key');
+    if (!$validkey) {
+        throw new moodle_exception('Invalid session key');
     }
 }

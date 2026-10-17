@@ -1,4 +1,19 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
 namespace core\event {
     class base {
         const LEVEL_TEACHING = 1;
@@ -36,7 +51,6 @@ namespace {
     class context_course { public int $id;
         public function __construct(public int $instanceid) {
             $this->id = 1000 + $instanceid;
-
         }public static function instance($id) {
             return new self($id);
         }
@@ -71,7 +85,8 @@ namespace {
         return (object)['groups' => $GLOBALS['DB']->groups];
     }
     function groups_get_group_by_name($course, $name) {
-        foreach($GLOBALS['DB']->groups as $g){if($g->courseid == $course && $g->name == $name)return $g->id;
+        foreach ($GLOBALS['DB']->groups as $g) {
+            if ($g->courseid == $course && $g->name == $name)return $g->id;
         }return false;
     }
     function groups_is_member($gid, $uid) {
@@ -119,51 +134,53 @@ namespace {
         }
         public function get_in_or_equal(array $values, $mode, $prefix = 'value') {
             $params = [];
-            foreach($values as $i => $v)$params[$prefix . $i] = $v;
+            foreach ($values as $i => $v)$params[$prefix . $i] = $v;
             return ['IN (' . implode(',', array_map(fn($k)=>':' . $k, array_keys($params))) . ')', $params];
         }
         public function sql_null_from_clause() {
             return '';
         }
         private function matches($u, $field, $value, $params): bool {
-            if($u->deleted || !in_array($u->id, $GLOBALS['enrolled'][$params['enrolcourse']] ?? [], true))return false;
-            if($field === 'profile')return ($u->profile ?? '') === $value;
+            if ($u->deleted || !in_array($u->id, $GLOBALS['enrolled'][$params['enrolcourse']] ?? [], true))return false;
+            if ($field === 'profile')return ($u->profile ?? '') === $value;
             return strcasecmp((string)$u->$field, (string)$value) === 0;
         }
         public function get_records_sql($sql, $params, $offset = 0, $limit = 0) {
             $this->queries[] = $sql;
-            if(!isset($params['enrolcourse']) || !str_contains($sql, 'JOIN (SELECT userid AS id'))throw new RuntimeException('Unscoped user read');
-            if(!str_starts_with($sql, 'SELECT DISTINCT u.id ') && !str_starts_with($sql, 'SELECT u.id '))throw new RuntimeException('Excess user fields');
+            if (!isset($params['enrolcourse']) || !str_contains($sql, 'JOIN (SELECT userid AS id'))throw new RuntimeException('Unscoped user read');
+            if (!str_starts_with($sql, 'SELECT DISTINCT u.id ') && !str_starts_with($sql, 'SELECT u.id '))throw new RuntimeException('Excess user fields');
             $result = [];
-            foreach($this->users as $u){
+            foreach ($this->users as $u) {
                 $field = str_contains($sql, 'd.data') ? 'profile' : (preg_match('/u\.(email|username|idnumber) = :lookupvalue/', $sql, $m) ? $m[1] : '');
                 $match = $field !== '' ? $this->matches($u, $field, $params['lookupvalue'], $params) : in_array($u->id, $GLOBALS['enrolled'][$params['enrolcourse']] ?? [], true);
-                if($match && !$u->deleted)$result[$u->id] = (object)['id' => $u->id];
+                if ($match && !$u->deleted)$result[$u->id] = (object)['id' => $u->id];
             }return $limit ? array_slice($result, 0, $limit, true) : $result;
         }
         public function get_recordset_sql($sql, $params) {
-            if(str_contains($sql, 'FROM {groupings}'))return new rows([]);
-            if(str_contains($sql, 'FROM {groups_members}'))return new rows(array_values(array_map(fn($r)=>(object)$r, $this->members)));
-            if(str_contains($sql, 'FROM {groupings_groups}'))return new rows([]);
-            if(!str_starts_with($sql, 'SELECT r.id, inputs.inputindex') || !str_contains($sql, 'JOIN (SELECT userid AS id') || !isset($params['enrolcourse']))throw new RuntimeException('Unscoped or excessive batch query');
+            if (str_contains($sql, 'FROM {groupings}'))return new rows([]);
+            if (str_contains($sql, 'FROM {groups_members}'))return new rows(array_values(array_map(fn($r)=>(object)$r, $this->members)));
+            if (str_contains($sql, 'FROM {groupings_groups}'))return new rows([]);
+            if (!str_starts_with($sql, 'SELECT r.id, inputs.inputindex') || !str_contains($sql, 'JOIN (SELECT userid AS id') || !isset($params['enrolcourse']))throw new RuntimeException('Unscoped or excessive batch query');
             $this->queries[] = $sql;
             $field = str_contains($sql, 'd.data') ? 'profile' : (preg_match('/r\.(email|username|idnumber) = inputs/', $sql, $m) ? $m[1] : '');
             $result = [];
-            foreach($params as $key => $value){if(!preg_match('/^input(\d+)$/', $key, $m))continue;
-                foreach($this->users as $u){if($this->matches($u, $field, $value, $params))$result[] = (object)['id' => $u->id, 'batchinputindex' => (int)$m[1]];
+            foreach ($params as $key => $value) {
+                if (!preg_match('/^input(\d+)$/', $key, $m))continue;
+                foreach ($this->users as $u) {
+                    if ($this->matches($u, $field, $value, $params))$result[] = (object)['id' => $u->id, 'batchinputindex' => (int)$m[1]];
                 }
             }return new rows($result);
         }
         public function get_records_select($table, $where, $params, $sort, $fields) {
             $out = [];
-            foreach($this->users as $id => $u)if(in_array($id, $params, true))$out[$id] = (object)['id' => $id];
+            foreach ($this->users as $id => $u)if (in_array($id, $params, true))$out[$id] = (object)['id' => $id];
             return $out;
         }
         public function get_records($table, $conditions, $sort = '', $fields = '*') {
-            if($table === 'groupings_groups')return [];
-            if($table !== 'groups_members')throw new RuntimeException('Unexpected records');
+            if ($table === 'groupings_groups')return [];
+            if ($table !== 'groups_members')throw new RuntimeException('Unexpected records');
             $out = [];
-            foreach($this->members as $key => $row)if($row['groupid'] === $conditions['groupid'])$out[$key] = (object)$row;
+            foreach ($this->members as $key => $row)if ($row['groupid'] === $conditions['groupid'])$out[$key] = (object)$row;
             return $out;
         }
         public function get_field($table, $field, $conditions) {
@@ -173,7 +190,7 @@ namespace {
             return false;
         }
         public function insert_record($table, $record) {
-            if($this->failhistory)throw new RuntimeException('forced history failure');
+            if ($this->failhistory)throw new RuntimeException('forced history failure');
             $id = count($this->history) + 1;
             $record = clone$record;
             $record->id = $id;
@@ -185,29 +202,35 @@ namespace {
         }
     }
     function load_functions($file, $names) {
-        $tokens = token_get_all(file_get_contents($file));for($i = 0; $i < count($tokens); $i++){if(!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION)continue;
-            $name = '';for($j = $i + 1; $j < count($tokens); $j++){if(is_array($tokens[$j]) && $tokens[$j][0] === T_STRING){$name = $tokens[$j][1];
+        $tokens = token_get_all(file_get_contents($file));for ($i = 0; $i < count($tokens); $i++) {
+            if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION)continue;
+            $name = '';for ($j = $i + 1; $j < count($tokens); $j++) {
+                if (is_array($tokens[$j]) && $tokens[$j][0] === T_STRING) {
+                    $name = $tokens[$j][1];
                     break;
-            }if($tokens[$j] === '(')break;
-            }if(!in_array($name, $names, true))continue;
+                }if ($tokens[$j] === '(')break;
+            }if (!in_array($name, $names, true))continue;
             $body = '';
             $depth = 0;
-            $started = false;for($j = $i; $j < count($tokens); $j++){$t = $tokens[$j];
+            $started = false;for ($j = $i; $j < count($tokens); $j++) {
+                $t = $tokens[$j];
                 $body .= is_array($t) ? $t[1] : $t;
-                if($t === '{'){$depth++;
+                if ($t === '{') {
+                    $depth++;
                     $started = true;
-                }if($t === '}' && --$depth === 0 && $started)break;
+                }if ($t === '}' && --$depth === 0 && $started)break;
             }eval($body);
         }
     }
     $checks = 0;
     function check($ok, $label) {
         $GLOBALS['checks']++;
-        if(!$ok)throw new RuntimeException($label);
+        if (!$ok)throw new RuntimeException($label);
     }
     $root = dirname(__DIR__, 3);
     $translations = [];
-    foreach(['en', 'fr'] as $language){$string = [];
+    foreach (['en', 'fr'] as $language) {
+        $string = [];
         require $root . '/lang/' . $language . '/local_groupimport.php';
         $translations[$language] = $string;
     }
@@ -228,14 +251,15 @@ namespace {
     $USER = (object)['id' => 777];
     $enrolled = [5 => [1, 3], 6 => [2]];
     $fields = ['email' => 'Email'];
-    foreach([1, 2, 3] as $id)$DB->users[$id] = (object)['id' => $id, 'email' => "u$id@example.test", 'username' => "user$id", 'idnumber' => "n$id", 'profile' => "p$id", 'deleted' => 0, 'password' => 'NEVER-RETURN-THIS'];
+    foreach ([1, 2, 3] as $id)$DB->users[$id] = (object)['id' => $id, 'email' => "u$id@example.test", 'username' => "user$id", 'idnumber' => "n$id", 'profile' => "p$id", 'deleted' => 0, 'password' => 'NEVER-RETURN-THIS'];
     $DB->groups = [10 => (object)['id' => 10, 'courseid' => 5, 'name' => 'G']];
     $context = new context_course(5);
-    foreach(['en', 'fr'] as $language){
-        foreach(['email' => 'u2@example.test', 'username' => 'user2', 'idnumber' => 'n2', 'profile_field_code' => 'p2'] as $field => $identifier){
+    foreach (['en', 'fr'] as $language) {
+        foreach (['email' => 'u2@example.test', 'username' => 'user2', 'idnumber' => 'n2', 'profile_field_code' => 'p2'] as $field => $identifier) {
             $fields = [$field => $field];
             $errors = [];
-            $known = match($field){'email'=>'u1@example.test', 'username'=>'user1', 'idnumber'=>'n1', default=>'p1'
+            $known = match ($field) {
+                'email'=>'u1@example.test', 'username'=>'user1', 'idnumber'=>'n1', default=>'p1'
             };
             $found = local_groupimport_find_import_user($known, $errors, $context);
             check($found->id === 1 && $errors === [], "$language enrolled $field");
@@ -286,13 +310,14 @@ namespace {
     $before = serialize($DB->members);
     $success = [];
     $errors = [];
-    try{\local_groupimport\local\import_execution::run($input, function () use ($input, $context, &$success, &$errors) {
-        local_groupimport_process_import_rows($input, (object)['id' => 5], $context, $success, $errors, 'replace');
-        return 1;
-
-    });
+    try {
+        \local_groupimport\local\import_execution::run($input, function () use ($input, $context, &$success, &$errors) {
+                local_groupimport_process_import_rows($input, (object)['id' => 5], $context, $success, $errors, 'replace');
+                return 1;
+        });
         throw new RuntimeException('Expected managed refusal');
-    }catch(moodle_exception$e){check(serialize($DB->members) === $before && $rollbacks === 1, 'Replace rolls back earlier manual removal');
+    } catch (moodle_exception$e) {
+        check(serialize($DB->members) === $before && $rollbacks === 1, 'Replace rolls back earlier manual removal');
     }
     check($events === [] && $DB->history === [], 'No committed failure event/history');
     $protected = [];
@@ -300,7 +325,6 @@ namespace {
     $id = \local_groupimport\local\import_execution::run($input, function () use ($input, $context, &$success, &$errors) {
         $changes = local_groupimport_process_import_rows($input, (object)['id' => 5], $context, $success, $errors, 'replace');
         return local_groupimport_record_import_history(5, 777, 'x.csv', 'abc', 1, count($success), count($errors), 'replace', $changes);
-
     });
     check($id === 1 && $events === [\local_groupimport\event\import_applied::class], 'Applied event committed with history');
     $history = $DB->history[1];
@@ -309,9 +333,11 @@ namespace {
     $protected = ['10:9' => true];
     $before = serialize($DB->members);
     $beforeevents = $events;
-    try{local_groupimport_rollback_import($history, 777);
+    try {
+        local_groupimport_rollback_import($history, 777);
         throw new RuntimeException('Expected managed restore refusal');
-    }catch(moodle_exception$e){check(serialize($DB->members) === $before && $events === $beforeevents, 'Restore fails atomically, no event');
+    } catch (moodle_exception$e) {
+        check(serialize($DB->members) === $before && $events === $beforeevents, 'Restore fails atomically, no event');
     }
     $protected = [];
     unset($DB->members['10:9']);
@@ -320,13 +346,14 @@ namespace {
     check($closed > 10, 'Batch recordsets closed');
     $DB->failhistory = true;
     $before = serialize([$DB->members, $DB->history, $events]);
-    try{\local_groupimport\local\import_execution::run($input, function () {
-        groups_add_member(10, 3);
-        return local_groupimport_record_import_history(5, 777, 'x', 'abc', 1, 1, 0, 'keep', []);
-
-    });
+    try {
+        \local_groupimport\local\import_execution::run($input, function () {
+                groups_add_member(10, 3);
+                return local_groupimport_record_import_history(5, 777, 'x', 'abc', 1, 1, 0, 'keep', []);
+        });
         throw new RuntimeException('Expected history failure');
-    }catch(RuntimeException$e){check(serialize([$DB->members, $DB->history, $events]) === $before, 'History failure rolls back memberships/event');
+    } catch (RuntimeException$e) {
+        check(serialize([$DB->members, $DB->history, $events]) === $before, 'History failure rolls back memberships/event');
     }
     echo json_encode(['suite' => 'S5-isolated', 'passed' => true, 'checks' => $checks, 'databaseConnections' => 0, 'runtimeAccess' => false]) . PHP_EOL;
 }

@@ -1,4 +1,19 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
 /** AP-E7: execute both actual functions against deterministic Moodle DML doubles. */
 define('SQL_PARAMS_NAMED', 2);
 $options = getopt('', ['before:', 'after:']);
@@ -30,7 +45,7 @@ class profile_chunk_db {
         return $rows;
     }
     public function get_recordset_sql($sql, $params) {
-        return new class($this->rows($params), $this) extends ArrayIterator {
+        return new class ($this->rows($params), $this) extends ArrayIterator {
             public function __construct(array $rows, public profile_chunk_db $db) {
                 parent::__construct($rows);
             }
@@ -42,7 +57,8 @@ class profile_chunk_db {
     public function get_records_sql($sql, $params) {
         $rows = [];
         // Preserve the historical userid-first-column collision, not a redesign.
-        foreach ($this->rows($params) as $row) { $rows[$row->userid] = $row;
+        foreach ($this->rows($params) as $row) {
+            $rows[$row->userid] = $row;
         }
         return $rows;
     }
@@ -55,7 +71,8 @@ foreach (['before', 'after'] as $variant) {
     foreach (['local_groupimport_load_custom_user_field_values', 'local_groupimport_enrich_users_with_copy_fields'] as $name) {
         $start = strpos($source, 'function ' . $name . '(');
         $end = strpos($source, "\n}\n", $start) + 3;
-        if ($start === false || $end < $start) { throw new RuntimeException('Function boundary missing.');
+        if ($start === false || $end < $start) {
+            throw new RuntimeException('Function boundary missing.');
         }
         eval(str_replace(
             'function ' . $name . '(',
@@ -66,7 +83,8 @@ foreach (['before', 'after'] as $variant) {
 }
 foreach ([0, 1, 999, 1000, 1001, 3000, 10000] as $size) {
     $users = [];
-    for ($i = 1; $i <= $size; $i++) { $users[$i] = ['username' => 'u-' . $i];
+    for ($i = 1; $i <= $size; $i++) {
+        $users[$i] = ['username' => 'u-' . $i];
     }
     foreach (
         ['local_groupimport_load_custom_user_field_values' => ['profile_field_alpha', 'profile_field_beta'],

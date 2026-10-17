@@ -1,5 +1,20 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Source-only S2 execution: no Moodle bootstrap, network or database connection.
+
 namespace core_privacy\local\metadata { interface provider {
 }
 }
@@ -17,7 +32,8 @@ namespace core_privacy\local\request {
         private array $ids = [];
         public function add_from_sql(string $sql, array $params): self {
             foreach ($params as $key => $value) {
-                if ($key !== 'contextlevel') { $this->ids[] = \context_course::instance((int)$value)->id;
+                if ($key !== 'contextlevel') {
+                    $this->ids[] = \context_course::instance((int)$value)->id;
                 }
             }
             return $this;
@@ -132,12 +148,14 @@ namespace {
         public array $history = [];
         public array $writes = [];
         public function get_record(string $table, array $conditions, string $fields, int $strict): mixed {
-            if ($table !== 'user') { throw new \RuntimeException('Unexpected read');
+            if ($table !== 'user') {
+                throw new \RuntimeException('Unexpected read');
             }
             return $this->users[$conditions['id']] ?? false;
         }
         public function get_recordset(string $table, array $conditions = [], string $sort = ''): records {
-            if ($table !== 'local_groupimport_history') { throw new \RuntimeException('Unexpected read');
+            if ($table !== 'local_groupimport_history') {
+                throw new \RuntimeException('Unexpected read');
             }
             return new records(array_map(fn($r) => clone $r, array_filter(
                 $this->history,
@@ -146,43 +164,51 @@ namespace {
         }
         public function get_in_or_equal(array $values, int $mode, string $prefix = 'param'): array {
             $params = [];
-            foreach ($values as $i => $v) { $params[$prefix . $i] = $v;
+            foreach ($values as $i => $v) {
+                $params[$prefix . $i] = $v;
             }
             return ['IN (' . implode(',', array_map(fn($k) => ':' . $k, array_keys($params))) . ')', $params];
         }
         public function get_records_select(string $table, string $select, array $params, string $sort, string $fields): array {
-            if ($table !== 'user' || !preg_match('/LOWER\((email|username|idnumber)\)/', $select, $m)) { throw new \RuntimeException('Unexpected SQL');
+            if ($table !== 'user' || !preg_match('/LOWER\((email|username|idnumber)\)/', $select, $m)) {
+                throw new \RuntimeException('Unexpected SQL');
             }
             return array_filter($this->users, fn($u) => in_array(core_text::strtolower($u->{$m[1]}), $params, true));
         }
         public function delete_records(string $table, array $conditions): void {
             $this->writes[] = $table;
             foreach ($this->history as $id => $row) {
-                if (array_all_local($conditions, fn($key, $value) => $row->$key == $value)) { unset($this->history[$id]);
+                if (array_all_local($conditions, fn($key, $value) => $row->$key == $value)) {
+                    unset($this->history[$id]);
                 }
             }
         }
         public function update_record(string $table, object $row): void {
             $this->writes[] = $table;
-            foreach ((array)$row as $key => $value) { $this->history[$row->id]->$key = $value;
+            foreach ((array)$row as $key => $value) {
+                $this->history[$row->id]->$key = $value;
             }
         }
         public function delete_records_select(string $table, string $sql, array $params): void {
-            if ($sql !== 'timecreated < :cutoff') { throw new \RuntimeException('Unexpected cutoff');
+            if ($sql !== 'timecreated < :cutoff') {
+                throw new \RuntimeException('Unexpected cutoff');
             }
             $this->writes[] = $table;
             $this->history = array_filter($this->history, fn($r) => $r->timecreated >= $params['cutoff']);
         }
     }
     function array_all_local(array $values, callable $predicate): bool {
-        foreach ($values as $key => $value) { if (!$predicate($key, $value)) { return false;
-        }
+        foreach ($values as $key => $value) {
+            if (!$predicate($key, $value)) {
+                return false;
+            }
         } return true;
     }
     $checks = 0;
     function check(bool $condition, string $label): void {
         $GLOBALS['checks']++;
-        if (!$condition) { throw new \RuntimeException($label);
+        if (!$condition) {
+            throw new \RuntimeException($label);
         }
     }
     $root = dirname(__DIR__, 3);
@@ -194,7 +220,8 @@ namespace {
     $preferences = [];
     $closed = 0;
     $clock = 1800000000;
-    foreach ([1, 2, 3, 4, 5] as $id) { $DB->users[$id] = (object)['id' => $id, 'email' => "user$id@example.test", 'username' => "u$id", 'idnumber' => "number$id"];
+    foreach ([1, 2, 3, 4, 5] as $id) {
+        $DB->users[$id] = (object)['id' => $id, 'email' => "user$id@example.test", 'username' => "u$id", 'idnumber' => "number$id"];
     }
     $payload = ['desiredstate' => [['userid' => 2, 'identifier' => 'old@example.test', 'groupname' => 'G'], ['userid' => 3, 'identifier' => 'user3@example.test', 'groupname' => 'G']],
         'addedmembers' => [['userid' => 2, 'groupid' => 1], ['userid' => 3, 'groupid' => 1]], 'removedmembers' => [['userid' => 2, 'groupid' => 2]],
@@ -207,7 +234,8 @@ namespace {
     $provider = \local_groupimport\privacy\provider::class;
     $helper = \local_groupimport\local\history_privacy::class;
     check($provider::get_contexts_for_userid(0)->get_contextids() === [], 'Invalid subject rejected');
-    foreach ([1, 2, 3, 4] as $id) { check($provider::get_contexts_for_userid($id)->get_contextids() === [1010, 1011], "Contexts user$id");
+    foreach ([1, 2, 3, 4] as $id) {
+        check($provider::get_contexts_for_userid($id)->get_contextids() === [1010, 1011], "Contexts user$id");
     }
     check($provider::get_contexts_for_userid(5)->get_contextids() === [], 'Unrelated user has no history');
     $list = new \core_privacy\local\request\userlist($ctx);
@@ -255,10 +283,12 @@ namespace {
     check(empty($preferences[2]) && $preferences[3]['motion'] === 'reduced', 'Both subject preferences cleared');
     $task = new \local_groupimport\task\purge_import_history();
     check($task::retention_days() === 365, 'Default retention');
-    foreach ([0, -1, 'invalid', '1.5', 36501] as $invalid) { $config['historyretentiondays'] = $invalid;
+    foreach ([0, -1, 'invalid', '1.5', 36501] as $invalid) {
+        $config['historyretentiondays'] = $invalid;
         check($task::retention_days() === 365, 'Invalid retention fallback');
     }
-    foreach ([1, 30, 365, 730, 36500] as $valid) { $config['historyretentiondays'] = $valid;
+    foreach ([1, 30, 365, 730, 36500] as $valid) {
+        $config['historyretentiondays'] = $valid;
         check($task::retention_days() === $valid, 'Adjustable days');
     }
     $config['historyretentiondays'] = 30;
