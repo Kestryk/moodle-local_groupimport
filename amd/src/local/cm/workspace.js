@@ -33,7 +33,7 @@ import {refreshModel, applyParticipantFilters, sortParticipantIds, renderPartici
 import {getTreeSectionGroupIds, renderTreeSection, groupingSearchText, treeGroupSearchText} from '../sm/groups';
 import {matchesText, matchesOccupancy} from '../sm/filter_engine';
 import {
-    compactClass, structureFocusClass, participantFocusClass, isResponsiveWorkspace, requestGuideHighlightRefresh,
+    compactClass, structureFocusClass, isResponsiveWorkspace, requestGuideHighlightRefresh,
     normalise, getLabels,
 } from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
@@ -424,9 +424,7 @@ export const applyFilters = (root, options = {}) => {
     // V2 n°6: role ids (option values), matched against the course role ids of the state.
     const selectedroles = getSelectedFilterValues(roleControl);
     const selectedgroups = getSelectedFilterValues(groupControl);
-    const selectedgroupings = (root.classList.contains(participantFocusClass) ||
-        root.getAttribute('data-easystud-mobile-view-active') === 'participants') ?
-        getSelectedFilterValues(groupingControl) : [];
+    const selectedgroupings = getSelectedFilterValues(groupingControl);
 
     const model = getOnDemandModel(root);
     if (model) {

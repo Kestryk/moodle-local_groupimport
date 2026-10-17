@@ -1,3 +1,5 @@
+- 2026-10-17 [N1] K17-80: expose the shared participant Grouping filter in Complete view; preserve the same selection and filter engine across workspace views, without new styling.
+
 - 2026-10-17 [N0] A10 : recette partagée de masquage accessible terminée sur la parité817dea20 ; ajout CSS exact,51partiels Kit identiques, T037/T038/aller-retour/Light PASS ; aucune modification des contrôleurs, templates ou valeurs visuelles du Guide.
 
 - 2026-10-17 [N0] Report des cinq correctifs Guide/bulle acceptés dans le Kit canonique, référence817dea20 ; consommateur inchangé, parité T037/T038/aller-retour PASS et oracle Light actualisé sans changer les douze valeurs de référence.
