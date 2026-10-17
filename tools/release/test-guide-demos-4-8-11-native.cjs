@@ -33,7 +33,11 @@ fs.mkdirSync(output, {recursive: true});
                     const Motion = await new Promise(resolve => require(['local_groupimport/motion'], resolve));
                     Motion.setLevel(document.querySelector('#local-groupimport-easystud'), 'minimal');
                 });
-                await page.locator('.easyedu-guide__launcher[data-easyedu-guide-open]').click();
+                const launcher = page.locator('.easyedu-guide__launcher[data-easyedu-guide-open]:visible');
+                if (!await launcher.count()) {
+                    await page.locator('[data-easyedu-navigation-open]:visible').click();
+                }
+                await page.locator('.easyedu-guide__launcher[data-easyedu-guide-open]:visible').click();
                 for (const [index, kind] of [[3, 'creation'], [7, 'membership'], [10, 'actions']]) {
                     await page.locator(`[data-easyedu-guide-nav-item="${index}"]`).click();
                     const scene = page.locator(`[data-easyedu-guide-slide="${index}"] [data-easyedu-guide-scene="${kind}"]`);

@@ -1,4 +1,5 @@
 {
+"k1717GuideDemos20261017":{"prerequisite":"56627fda","kit":"a9cc96f","isolatedCases":54,"nativeCases":18,"matrix":"FR/EN1600/768/390","consoleErrors":0,"businessWrites":0,"maxCentreDeltaPx":0.0078125,"buttonHeights":[30.390625],"phpcsErrors":0,"runtimeRestored":true,"published":false,"humanAccepted":false},
 "animGuideKitRaccord20261017":{"base":"abf3c636","anim":"88d8e83d","mirror":"dd986649","status":"isolated six cases and exact mirror PASS; no runtime publication"},
 "animG1PersonalPreference20261017":{"base":"bc3f48f8","branch":"work/codex1/easystud-anim-20261017","nativeCases":6,"isolatedCases":6,"matrix":"FR/EN 1600/768/390","consoleErrors":0,"maxFooterDxPx":0,"maxFooterDyPx":0.046875,"footerHeightPx":[37.59375],"perCaseFooterHeightDeltaPx":0,"horizontalOverflowPx":0,"preferenceRestored":true,"humanAccepted":false,"publishedToLocalhost":false},
 
