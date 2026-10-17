@@ -94,6 +94,7 @@ const DEFAULTS = {
     guidedPath: '',
     guidedPathSeparator: ': ',
     completedSteps: '',
+    completeTitle: '',
     visited: '',
     stepCompleted: 'Completed',
     stepLocked: 'Locked',
@@ -3111,11 +3112,11 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
 
   if (title) {
     title.textContent = complete ?
-      (config.labels.complete || config.labels.guidedPath || '') :
+      (config.labels.completeTitle || config.labels.complete || config.labels.guidedPath || '') :
       `${config.labels.guidedPath || ''}${config.labels.guidedPathSeparator || ': '}${getStepText(step, 'title') || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
-    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || ''}`;
+    subtitle.textContent = `${completeCount} / ${steps.length} ${config.labels.completedSteps || ''}`;
   }
   scrollActiveChecklistItemIntoView(root);
 };
@@ -3143,6 +3144,13 @@ const syncChecklistMinimizeControl = root => {
     icon.classList.toggle('fa-minus', !minimized);
     icon.classList.toggle('fa-expand', minimized);
   }
+};
+
+// E2 (K9): a finished path always opens its full end box, also on compact viewports where
+// in-progress paths start reduced. The user can still reduce it afterwards.
+const expandCompleteChecklist = checklist => {
+  checklist.classList.remove('is-minimized');
+  checklist.setAttribute('data-easyedu-guide-checklist-expanded', '');
 };
 
 const renderChecklist = (root, config, pathName) => {
@@ -3251,6 +3259,9 @@ const renderChecklist = (root, config, pathName) => {
     const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
     checklist.classList.toggle('is-complete', allComplete);
     message.classList.toggle('is-complete', allComplete);
+    if (allComplete) {
+      expandCompleteChecklist(checklist);
+    }
     if (icon) {
       icon.classList.toggle('fa-check-circle', allComplete);
       icon.classList.toggle('fa-location-arrow', !allComplete);
@@ -3281,6 +3292,10 @@ const updateChecklistMessage = (root, config, activeStep) => {
 
   checklist.classList.toggle('is-complete', complete);
   message.classList.toggle('is-complete', complete);
+  if (complete) {
+    expandCompleteChecklist(checklist);
+    syncChecklistMinimizeControl(root);
+  }
   if (icon) {
     icon.classList.toggle('fa-location-arrow', !complete);
     icon.classList.toggle('fa-check-circle', complete);
@@ -4151,12 +4166,12 @@ const bindGuide = (root, config) => {
     });
   });
 
-  const closeChecklist = root.querySelector(SELECTORS.checklistClose);
-  if (closeChecklist) {
+  // The header cross and the end box "Close" button share one command.
+  root.querySelectorAll(SELECTORS.checklistClose).forEach(closeChecklist => {
     addTrackedListener(root, closeChecklist, 'click', () => {
       hideChecklist(root, config, false, true);
     });
-  }
+  });
 
   const returnFromInterface = root.querySelector(SELECTORS.interfaceReturnButton);
   if (returnFromInterface) {

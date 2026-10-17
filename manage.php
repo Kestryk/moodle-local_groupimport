@@ -1529,6 +1529,8 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guideresetpathlabel' => get_string('discovery_reset_path', 'local_groupimport'),
         'guidechecklisthint' => $templatedata['tutorialguidedpanelhint'],
         'guidechecklistdonelabel' => $templatedata['tutorialguidedpanelcomplete'],
+        'guidechecklistreturnlabel' => get_string('tutorialguidedpanelreturn', 'local_groupimport'),
+        'guidechecklistendclose' => get_string('tutorialguidedpanelendclose', 'local_groupimport'),
         'guidesteplabel' => $templatedata['tutorialstepof'],
         'slides' => $slides,
         'slidecount' => $slidecount,
@@ -1757,6 +1759,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
         'labels' => [
             'hint' => get_string('tutorialguidedpanelhint', 'local_groupimport'),
             'complete' => get_string('tutorialguidedpanelcomplete', 'local_groupimport'),
+            'completeTitle' => get_string('tutorialguidedpanelcompletetitle', 'local_groupimport'),
             'guidedPath' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
             'guidedPathSeparator' => get_string('tutorialguidedpanelseparator', 'local_groupimport'),
             'completedSteps' => get_string('tutorialguidedpanelcompletedsteps', 'local_groupimport'),

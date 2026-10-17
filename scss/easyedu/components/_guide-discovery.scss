@@ -1315,6 +1315,52 @@
       > span:not(.fa) { @include typography.type-caption; }
       .easyedu-guided-panel__message-compact { display: none; }
     }
+    // E2 (K9): end box of a guided path: green check, "All set", "6 / 6 steps done", message,
+    // then "Back to the Guide" (secondary) and "Close" (primary). The cross stays the Kit close.
+    .easyedu-guided-panel__done,
+    .easyedu-guided-panel__end-close { display: none; }
+    &.is-complete {
+      text-align: start;
+      .easyedu-guided-panel__done {
+        align-items: center;
+        background: var(--easyedu-success);
+        border-radius: 50%;
+        color: #fff;
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 2rem;
+        justify-content: center;
+        // The check leads the header; it follows the title block in the DOM so title and subtitle keep their grid.
+        order: -1;
+        width: 2rem;
+      }
+      .easyedu-guided-panel__steps { display: none; }
+      .easyedu-guided-panel__message.is-complete {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        > .fa { display: none; }
+      }
+      .easyedu-guided-panel__footer {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+      .easyedu-guided-panel__return .fa { display: none; }
+      // Penpot end box: only the Kit cross closes from the header (the end box is already compact).
+      &:not(.is-minimized) .easyedu-guided-panel__minimize { display: none; }
+      // Reduced by the user: the compact bar keeps its own check-less layout.
+      &.is-minimized .easyedu-guided-panel__done,
+      &.is-minimized .easyedu-guided-panel__end-close { display: none; }
+      // Core action M (38 px): the two end box buttons share one height.
+      .easyedu-guided-panel__footer .btn { min-height: 2.375rem; padding-inline: 1rem; width: auto; }
+      .easyedu-guided-panel__end-close {
+        @include buttons.selection-action($solid: true);
+        @include buttons.button-size(small);
+        display: inline-flex;
+        min-width: 0;
+      }
+    }
     &[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
       max-height: min(19rem, 45dvh);
       scrollbar-gutter: stable;
