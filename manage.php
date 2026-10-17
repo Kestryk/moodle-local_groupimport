@@ -3128,6 +3128,10 @@ function local_groupimport_render_meta_tags(string $label, array $items, string 
  * @return array
  */
 function local_groupimport_extract_create_names(string $text): array {
+    if (core_text::strlen($text) > 131072) {
+        throw new moodle_exception('invaliddata', 'error');
+    }
+    $total = 0;
     $parts = preg_split('/[\r\n,;|]+/u', $text);
     $names = [];
     foreach ($parts ?: [] as $part) {
@@ -3140,6 +3144,10 @@ function local_groupimport_extract_create_names(string $text): array {
             $prefix = rtrim($matches[1]);
             $marker = $matches[2];
             $count = max(0, min(200, (int)$matches[3]));
+            $total += $count;
+            if ($total > \local_groupimport\local\ajax_security::MAX_NAMES) {
+                throw new moodle_exception('invaliddata', 'error');
+            }
             for ($index = 1; $index <= $count; $index++) {
                 $suffix = $marker === '#' ? (string)$index : local_groupimport_number_to_letters($index);
                 $names[] = trim($prefix . ' ' . $suffix);
@@ -3147,9 +3155,15 @@ function local_groupimport_extract_create_names(string $text): array {
             continue;
         }
 
+        if (++$total > \local_groupimport\local\ajax_security::MAX_NAMES) {
+            throw new moodle_exception('invaliddata', 'error');
+        }
         $names[] = $part;
     }
 
+    foreach ($names as $name) {
+        \local_groupimport\local\ajax_security::validate_name($name);
+    }
     return array_values(array_unique($names));
 }
 
