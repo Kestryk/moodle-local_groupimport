@@ -360,12 +360,20 @@ const getDialogMemberItem = (root, item, userid) => {
         item.getAttribute('data-easystud-sm-catalog') || 'structure') : null;
 };
 
+// Member sections are replaced after a native write; the close control remains attached.
+const focusDialogMemberFallback = modal => {
+    if (modal.isConnected && !modal.hidden && !modal.classList.contains('is-closing')) {
+        modal.querySelector('[data-easystud-close-advanced-settings]')?.focus({preventScroll: true});
+    }
+};
+
 const refreshDialogMembers = (root, item, modal) => {
     const current = modal.querySelector('.local-groupimport-easystud-entity__relation--members');
     if (!current) {
         return;
     }
     const wasOpen = current.open;
+    const restoreFocus = current.contains(document.activeElement);
     const holder = document.createElement('div');
     const rows = getAdvancedGroupMemberRows(root, item);
     const template = getLabels(root).memberscounttemplate || '';
@@ -376,6 +384,9 @@ const refreshDialogMembers = (root, item, modal) => {
     current.replaceWith(next);
     bindAnimatedDetails(next, next.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
         'data-easystud-settings-list-state');
+    if (restoreFocus) {
+        focusDialogMemberFallback(modal);
+    }
     const context = modal.querySelector('.local-groupimport-easystud-entity__context');
     if (context && countText) {
         context.textContent = [countText, context.textContent.split(' · ')[1] || ''].filter(Boolean).join(' · ');
@@ -413,10 +424,14 @@ const bindDialogMembers = (root, item, modal) => {
             return;
         }
         const member = getDialogMemberItem(root, item, input.getAttribute('data-easystud-entity-select'));
-        if (!member || (input.checked && !member.classList.contains('is-selected') &&
-                !areSelectionTypesCompatible(getActiveSelectionType(root), 'member'))) {
+        if (!member) {
             input.checked = false;
             return;
+        }
+        if (input.checked && !areSelectionTypesCompatible(getActiveSelectionType(root), 'member')) {
+            // A compact card menu selects its group. An explicit member choice starts member selection,
+            // through the shared authority, without mixing incompatible workspace selection types.
+            clearSelectionState(root);
         }
         setItemSelected(member, input.checked);
         updateSelectionActions(root);
@@ -433,6 +448,7 @@ const bindDialogMembers = (root, item, modal) => {
     });
     observer.observe(root, {attributes: true, attributeFilter: ['data-easystud-sm-version']});
     const removeThen = members => {
+        const restoreFocus = modal.contains(document.activeElement);
         const ids = members.map(member => String(member.getAttribute('data-easystud-member-id')));
         return removeMembers(root, courseId, members).then(response => {
             clearSelectionState(root);
@@ -445,6 +461,9 @@ const bindDialogMembers = (root, item, modal) => {
                 }
             });
             syncDialogBulk(root, item, modal);
+            if (restoreFocus && document.activeElement === document.body) {
+                focusDialogMemberFallback(modal);
+            }
             return response;
         }).catch(error => handleActionError(root, error));
     };

@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] K16-15: allow explicit member selection from compact group details and retain dialog keyboard focus after member removal or deferred section refresh.
+
 - 2026-10-17 [N0] Resync the Guide mirror to db964f08, combining accepted tooltip accessibility and Codex2 cue/docking/narration fixes; preserve runtime assets.
 
 - 2026-10-17 [N0] Restore missing MoodleCS documentation on the repaired membership-transfer fixture; preserve all executable tokens and batched-reader test behavior.
