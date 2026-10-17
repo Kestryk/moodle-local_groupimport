@@ -1311,7 +1311,7 @@
       "humanAccepted": false
     }
   ],
-"testsCrlf20261017":{"base": "8129aef7", "scope": "Five historical tests repinned to modular production behavior; normalized LF/CRLF; no product changes", "humanAccepted": false},
-"testsCrlf20261017":{"base": "8129aef7", "proof": "5 tests PASS with LF and CRLF reads; modular disclosure, typed move context, responsive availability/density, 13-slide member path", "productChanges": false, "humanAccepted": false},
+"testsCrlf20261017":{"base": "8129aef7", "scope": "Five historical tests repinned to modular production behavior; normalized LF/CRLF; no product changes", "humanAccepted": false, "proof": "5 tests PASS with LF and CRLF reads; modular disclosure, typed move context, responsive availability/density, 13-slide member path", "productChanges": false},
+
 "l1HistoricalCleanup20261017":{"base": "8129aef7", "proof": "exact 3-selector/1-priority allowlist; 3797 retained rules; offline FR/EN 4 widths page/body 16 cases; T037/T038/roundtrip PASS", "runtimeAccess": false, "humanAccepted": false}
 }
