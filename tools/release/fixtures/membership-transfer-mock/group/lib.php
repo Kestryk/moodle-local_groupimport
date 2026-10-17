@@ -35,9 +35,46 @@ class transfer_mock_database {
             $this->groups[$id] = (object)['id' => $id, 'courseid' => $id === 5 ? 99 : 20];
         }
     }
+    public int $closed = 0;
+    public function get_records_sql(string $sql, array $params): array {
+        if (!str_contains($sql, 'SELECT u.id FROM {user}')) {
+            throw new RuntimeException('Unexpected enrolled-user query.');
+        }
+        return array_combine($this->enrolled, array_map(static fn($id) => (object)['id' => $id], $this->enrolled));
+    }
+    public function get_recordset_sql(string $sql, array $params): transfer_mock_recordset {
+        $rows = [];
+        if (str_contains($sql, '{groups_members}')) {
+            foreach ($this->members as $groupid => $users) {
+                if ($this->groups[$groupid]->courseid !== $params['courseid']) {
+                    continue;
+                }
+                foreach ($users as $userid) {
+                    $rows[] = (object)['groupid' => $groupid, 'userid' => $userid];
+                }
+            }
+        } else if (!str_contains($sql, '{groupings_groups}')) {
+            throw new RuntimeException('Unexpected relationship query.');
+        }
+        return new transfer_mock_recordset($rows, $this);
+    }
     public function start_delegated_transaction(): transfer_mock_transaction {
         return new transfer_mock_transaction($this);
     }
+}
+class transfer_mock_recordset extends ArrayIterator {
+    public function __construct(array $rows, private transfer_mock_database $db) {
+        parent::__construct($rows);
+    }
+    public function close(): void {
+        $this->db->closed++;
+    }
+}
+function get_enrolled_sql(context_course $context): array {
+    return ['isolated_enrolments', ['courseid' => $context->id]];
+}
+function isguestuser(int $userid): bool {
+    return false;
 }
 class transfer_mock_transaction {
     private transfer_mock_database $db;

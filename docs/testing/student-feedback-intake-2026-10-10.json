@@ -1315,5 +1315,6 @@
 
 "l1HistoricalCleanup20261017":{"base": "8129aef7", "proof": "exact 3-selector/1-priority allowlist; 3797 retained rules; offline FR/EN 4 widths page/body 16 cases; T037/T038/roundtrip PASS", "runtimeAccess": false, "humanAccepted": false},
 "codecheckerPreaudit20261017":{"base": "c752f775", "proof": "44 PHP/3 JS executable token equality; lint and targeted tests PASS; no executable AMD changes", "phpErrorsBefore": 10215, "phpErrorsAfter": 1231, "phpWarningsBefore": 156, "phpWarningsAfter": 124, "eslintErrorsBefore": 23522, "eslintErrorsAfter": 23518, "eslintWarningsBefore": 622, "eslintWarningsAfter": 621, "remainingFindings": true, "runtimeAccess": false, "humanAccepted": false},
-"emptyCardAlign20261017":{"base": "108f0b2c", "proof": "FR/EN1600/768/390 native page + reversible nested DOM fixture:24 samples, icon<=0.328125,text<=0.015625; exact group2208 absent", "published": false, "humanAccepted": false}
+"emptyCardAlign20261017":{"base": "108f0b2c", "proof": "FR/EN1600/768/390 native page + reversible nested DOM fixture:24 samples, icon<=0.328125,text<=0.015625; exact group2208 absent", "published": false, "humanAccepted": false},
+"membershipTransferHarness20261017":{"base": "108f0b2c", "proof": "PHP isolated transfer positive/negative/rollback cases and recordset closure PASS; product service unchanged", "published": false, "humanAccepted": false}
 }
