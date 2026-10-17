@@ -574,6 +574,28 @@ export const bindPanelActionOverflow = root => {
     });
 
     schedulePanelActionOverflow(root);
+
+    // K17-48: the action bars were measured on a layout swap only. Any width change of a bar (window
+    // resize from the responsive layout back to the desktop one, drawer opening, a panel becoming
+    // visible) measures them again, so the buttons never keep the previous width's overflow state.
+    if (window.ResizeObserver) {
+        const widths = new WeakMap();
+        const observer = new window.ResizeObserver(entries => {
+            const changed = entries.some(entry => {
+                const width = Math.round(entry.contentRect.width * 10) / 10;
+                const previous = widths.get(entry.target);
+                widths.set(entry.target, width);
+                return previous !== undefined && previous !== width;
+            });
+            if (changed) {
+                schedulePanelActionOverflow(root);
+            }
+        });
+        root.querySelectorAll('.local-groupimport-easystud__panel-actions').forEach(actions => {
+            observer.observe(actions);
+        });
+        root.easystudPanelActionObserver = observer;
+    }
 };
 
 export const bindGuideBottomObstruction = root => {
