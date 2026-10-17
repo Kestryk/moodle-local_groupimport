@@ -2976,7 +2976,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-modal.is-opening {animation: local-groupimport-easystud-modal-backdrop-in 0.22s ease both;
 }
-.local-groupimport-easystud-modal.is-closing {animation: local-groupimport-easystud-modal-backdrop-out 0.18s ease both;pointer-events: none;
+.local-groupimport-easystud-modal.is-closing {animation: local-groupimport-easystud-modal-backdrop-out var(--easyedu-motion-fast) ease both;pointer-events: none;
 }
 .local-groupimport-easystud-modal.is-opening .local-groupimport-easystud-modal__dialog--tutorial {animation: easyedu-modal-in var(--easyedu-motion-slow) var(--easyedu-motion-ease) both;
 }

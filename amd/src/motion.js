@@ -459,10 +459,12 @@ export const exit = (element, options = {}) => {
         return Promise.resolve();
     }
     setWillChange(element, getLevel(element), 'opacity, transform');
+    // Optional end scale (Kit modal exit mirrors the entrance); ignored by the reduced level (fade only).
+    const scale = options.scale ? ' scale(' + options.scale + ')' : '';
     return play(element, [
-        {opacity: 1, transform: 'translateY(0)'},
+        {opacity: 1, transform: 'translateY(0)' + (scale ? ' scale(1)' : '')},
         {opacity: options.toOpacity === undefined ? 0 : options.toOpacity,
-            transform: 'translateY(' + (options.distance || '-0.12rem') + ')'},
+            transform: 'translateY(' + (options.distance || '-0.12rem') + ')' + scale},
     ], {
         duration: options.duration || durations.fast,
         easing: options.easing || easing,

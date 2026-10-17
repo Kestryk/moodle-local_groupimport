@@ -49,7 +49,8 @@
   }
 
   &-modal.is-closing {
-    animation: local-groupimport-easystud-modal-backdrop-out 0.18s ease both;
+    // Same duration as the dialog exit (Motion.timing.fast): the backdrop never outlives the dialog.
+    animation: local-groupimport-easystud-modal-backdrop-out var(--easyedu-motion-fast) ease both;
     pointer-events: none;
   }
 

@@ -114,7 +114,9 @@ export const hideEasyStudModal = (modal, callback = null) => {
     }
     const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog') || modal;
     modal.classList.add('is-closing');
-    return Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.28rem'}).then(completed => {
+    // K16-41: one Kit exit for every dialog, the mirror of easyedu-modal-in (same keyframe as
+    // easyedu-modal-out: 0.35rem down, 0.99 scale), Motion.timing.fast, which also times the backdrop fade.
+    return Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.35rem', scale: '0.99'}).then(completed => {
         if (!completed) {
             return false;
         }
