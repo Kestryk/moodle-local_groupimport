@@ -1433,12 +1433,9 @@
     bottom: auto;
   }
 
-  // A native dialog needs clearance for its fields and Close, even on desktop.
-  // Reuse the compact dialog's scrollable checklist budget at every width.
-  &[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) {
-    max-height: min(20rem, 35dvh);
-    .easyedu-guided-panel__steps { max-height: 6rem; }
-  }
+  // K17-29: no intermediate auto-reduced checklist (shorter list, 35dvh budget) for
+  // a target inside a native dialog. When room is needed the checklist folds into
+  // the classic reduced state of the Reduce button (current step only).
 
   // C-G2 (768, P-G1): use the screen height, stack the path card, 2-column explanations
   // (container query above), 16px scene padding. Footer buttons keep their intrinsic width.
