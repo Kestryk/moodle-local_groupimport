@@ -1169,3 +1169,4 @@ $string['importstructurelimit'] = 'The file exceeds the supported worksheet, col
 $string['importeffectivefilelimit'] = 'The file exceeds the permitted upload size: {$a}.';
 
 $string['importlegacyxlsunavailable'] = 'This Moodle installation does not provide the legacy XLS reader. Save the file as XLSX or CSV.';
+$string['eventreportexported'] = 'EasyStud import report generated';

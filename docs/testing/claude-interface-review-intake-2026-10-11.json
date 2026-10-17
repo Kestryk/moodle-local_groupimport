@@ -29,6 +29,14 @@
     "validation": "37 CSV/real-XLSX checks, B1 17 checks, B2 transaction/1000 cap, lint 7/7, new-helper MoodleCS 0/0, escaping/filter PASS",
     "limits": "Legacy XLS class absent in supplied Moodle package; controlled conversion error; no real XLS proof. Parser 3000 rows, confirmation remains 1000."
   },
+  "codex1SecurityS7M520261017": {
+    "status": "source-isolated-real-xlsx-pass-not-published-native-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s7-m5-20261017",
+    "report": "docs/testing/security-s7-m5-2026-10-17.md",
+    "validation": "355 real export/FR-EN/XLSX checks; zero formula XML nodes; all populated cells text; native blank/newline semantics; PHP lint 7/7; helper/event MoodleCS 0/0; escaping/filter PASS",
+    "publication": "Not published; no Moodle bootstrap, runtime or database access"
+  },
   "codex1GuideCG720261016": {
     "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
     "base": "ee870566",

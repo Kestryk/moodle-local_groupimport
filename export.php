@@ -25,6 +25,7 @@
 require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/lib.php');
 
+use local_groupimport\local\report_export;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
@@ -67,13 +68,13 @@ if (empty($reportrows)) {
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->setTitle(core_text::substr(get_string('importexportsheet', 'local_groupimport'), 0, 31));
-$sheet->fromArray([[
+report_export::write_row($sheet, 1, [
     get_string('templatecolumnidentifier', 'local_groupimport'),
     get_string('templatecolumngroup', 'local_groupimport'),
     get_string('templatecolumngrouping', 'local_groupimport'),
     get_string('importexportstatus', 'local_groupimport'),
     get_string('importexportdetails', 'local_groupimport'),
-]], null, 'A1');
+]);
 
 $statuslabels = [
     'success' => get_string('importexportstatussuccess', 'local_groupimport'),
@@ -94,13 +95,13 @@ foreach ($reportrows as $row) {
     if (!is_array($messages)) {
         $messages = [(string)$messages];
     }
-    $sheet->fromArray([[
+    report_export::write_row($sheet, $rownumber, [
         (string)($row['identifier'] ?? ''),
         (string)($row['groupname'] ?? ''),
         (string)($row['groupingname'] ?? ''),
         $statuslabels[$status],
         implode(' | ', array_filter(array_map('strval', $messages))),
-    ]], null, 'A' . $rownumber);
+    ]);
     $sheet->getStyle('A' . $rownumber . ':E' . $rownumber)->getFill()
         ->setFillType(Fill::FILL_SOLID)
         ->getStartColor()->setRGB($rowcolours[$status]);
@@ -130,18 +131,29 @@ $sheet->getStyle('A2:E' . $lastrow)->applyFromArray([
 
 $basename = pathinfo((string)$history->filename, PATHINFO_FILENAME);
 $filename = clean_filename(($basename !== '' ? $basename : 'easystud_import') . '_report.xlsx');
-$tempdir = make_temp_directory('local_groupimport');
-$tempfile = $tempdir . DIRECTORY_SEPARATOR . uniqid('report_', true) . '.xlsx';
-$writer = new Xlsx($spreadsheet);
-$writer->save($tempfile);
-$spreadsheet->disconnectWorksheets();
-$content = file_get_contents($tempfile);
-if (file_exists($tempfile)) {
-    unlink($tempfile);
+$tempfile = tempnam(make_request_directory(), 'report_');
+try {
+    if ($tempfile === false) {
+        throw new moodle_exception('cannotcreatetempfile', 'error');
+    }
+    $writer = new Xlsx($spreadsheet);
+    $writer->setPreCalculateFormulas(false);
+    $writer->save($tempfile);
+    $content = file_get_contents($tempfile);
+    if ($content === false) {
+        throw new moodle_exception('cannotcreatetempfile', 'error');
+    }
+} finally {
+    $spreadsheet->disconnectWorksheets();
+    if (is_string($tempfile) && is_file($tempfile)) {
+        unlink($tempfile);
+    }
 }
-if ($content === false) {
-    throw new moodle_exception('cannotcreatetempfile', 'error');
-}
+
+\local_groupimport\event\report_exported::create([
+    'objectid' => (int)$history->id,
+    'context' => $context,
+])->trigger();
 
 send_file(
     $content,

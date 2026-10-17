@@ -1167,3 +1167,4 @@ $string['importstructurelimit'] = 'Le fichier dépasse les limites de feuilles, 
 $string['importeffectivefilelimit'] = 'Le fichier dépasse la taille autorisée pour le dépôt : {$a}.';
 
 $string['importlegacyxlsunavailable'] = 'Cette installation Moodle ne fournit pas le lecteur XLS historique. Enregistrez le fichier en XLSX ou en CSV.';
+$string['eventreportexported'] = 'Rapport d’import EasyStud généré';
