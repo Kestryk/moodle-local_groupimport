@@ -204,9 +204,30 @@ const hasFocusedDragControl = item => {
     return !!(active && item.contains(active) && isDragInteractiveTarget(active));
 };
 
+/**
+ * Empty-state hint of a group or grouping card: the drag wording only while dragging is available.
+ *
+ * @param {HTMLElement} help Hint element (Kit empty-state help).
+ * @param {String} dragText Text when dragging is enabled.
+ * @param {String} touchText Text when dragging is disabled.
+ */
+export const setEmptyHelp = (help, dragText, touchText) => {
+    help.setAttribute('data-easystud-empty-help', '');
+    help.setAttribute('data-drag-text', dragText || '');
+    help.setAttribute('data-touch-text', touchText || '');
+    help.textContent = (isResponsiveDragSuppressed() && touchText ? touchText : dragText) || '';
+};
+
 export const syncResponsiveDragAvailability = root => {
     const disabled = isResponsiveDragSuppressed();
     root.classList.toggle('local-groupimport-easystud--touch-drag-disabled', disabled);
+    root.querySelectorAll('[data-easystud-empty-help]').forEach(help => {
+        const text = disabled && help.getAttribute('data-touch-text') ?
+            help.getAttribute('data-touch-text') : help.getAttribute('data-drag-text');
+        if (text && help.textContent !== text) {
+            help.textContent = text;
+        }
+    });
     root.querySelectorAll('[data-easystud-user], [data-easystud-group-id]').forEach(item => {
         item.setAttribute('draggable', disabled || hasFocusedDragControl(item) ? 'false' : 'true');
     });

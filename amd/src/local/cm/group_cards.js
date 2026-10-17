@@ -28,7 +28,7 @@ import {getTreeSectionGroupIds, renderMissingMemberRows} from '../sm/groups';
 import {matchesText, elementSearchText} from '../sm/filter_engine';
 import {isResponsiveWorkspace, requestGuideHighlightRefresh, normalise, getLabels, escapeHtml} from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
-import {isResponsiveDragSuppressed} from './drag_support';
+import {isResponsiveDragSuppressed, setEmptyHelp} from './drag_support';
 import {
     renderGroupGroupingTags, setAdvancedAttributes, getGroupMemberCount, syncGroupSelectAll, groupSelectAllRowHtml,
     syncGroupCardSelection,
@@ -804,7 +804,7 @@ export const syncGroupMembersState = (group, labels) => {
         message.textContent = labels.nogroupmembers || '';
         const help = document.createElement('small');
         help.className = 'easyedu-entity-card-empty__help';
-        help.textContent = labels.nogroupmembershelp || '';
+        setEmptyHelp(help, labels.nogroupmembershelp, labels.nogroupmembershelptouch);
         copy.append(message, help);
         empty.append(icon, copy);
         list.appendChild(empty);

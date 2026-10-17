@@ -33,6 +33,7 @@ import {
 import {getOnDemandModel} from './state';
 import {prepareInlinePanelFocus, restoreInlinePanelFocus} from './modal';
 import {scheduleCompleteListAlignment} from './layout';
+import {setEmptyHelp} from './drag_support';
 import {syncTagWindow, normaliseTagValue} from './long_lists';
 
 export const getGroupName = group => {
@@ -709,7 +710,7 @@ export const syncGroupingChildrenState = (section, labels) => {
         message.textContent = labels.nogroupsingrouping || '';
         const help = document.createElement('small');
         help.className = 'easyedu-entity-card-empty__help';
-        help.textContent = labels.nogroupsingroupinghelp || '';
+        setEmptyHelp(help, labels.nogroupsingroupinghelp, labels.nogroupsingroupinghelptouch);
         copy.append(message, help);
         empty.append(icon, copy);
         children.appendChild(empty);

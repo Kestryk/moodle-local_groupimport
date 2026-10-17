@@ -57,6 +57,11 @@ export const bindResponsiveDragGuard = root => {
         card.setAttribute('draggable', 'false');
     };
 
+    // The drag mode follows the viewport (1024 px, pointer type): keep the classes and hints in step.
+    if (window.matchMedia) {
+        window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1024px)').addEventListener('change',
+            () => syncResponsiveDragAvailability(root));
+    }
     root.addEventListener('pointerdown', guard, true);
     root.addEventListener('touchstart', guard, true);
     root.addEventListener('focusin', guard, true);
