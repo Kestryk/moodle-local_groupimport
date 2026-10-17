@@ -913,6 +913,7 @@ const renderOnDemandParticipantPage = (root, list, config) => {
 };
 
 let onDemandRefreshTimer = null;
+let onDemandRefreshSeq = 0;
 
 /**
  * Rebuild lookups and redraw the lists, the tree sections and the badges from the model.
@@ -1068,8 +1069,10 @@ export const scheduleOnDemandStateRefresh = root => {
     window.clearTimeout(onDemandRefreshTimer);
     onDemandRefreshTimer = window.setTimeout(() => {
         const {model, courseId} = getOnDemandParticipants();
+        const seq = ++onDemandRefreshSeq;
         fetchState(courseId).then(raw => {
-            if (getOnDemandModel(root) !== model) {
+            // A newer reload is on its way (another action followed): this answer is already stale.
+            if (getOnDemandModel(root) !== model || seq !== onDemandRefreshSeq) {
                 return null;
             }
             const userids = new Set(raw.users.map(user => user.id));
@@ -1101,7 +1104,7 @@ export const scheduleOnDemandStateRefresh = root => {
             return raw;
         }).catch(error => {
             Log.error(error);
-            if (getOnDemandModel(root) === model) {
+            if (getOnDemandModel(root) === model && seq === onDemandRefreshSeq) {
                 rollbackOptimisticMembership(root, model);
             }
         });
