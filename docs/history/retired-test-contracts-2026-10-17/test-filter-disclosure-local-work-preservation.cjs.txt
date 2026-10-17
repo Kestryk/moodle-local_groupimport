@@ -1,10 +1,17 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'../..'),read=f=>fs.readFileSync(path.join(root,f),'utf8').replace(/\r\n/g,'\n');
-const previous=f=>execFileSync('git',['show','f00d4855902000d9d5dba24820de766c9d30a4aa:'+f],{cwd:root,maxBuffer:32*1024*1024}).toString().replace(/\r\n/g,'\n');
+const
+ previous=f=>execFileSync('git',['show','f00d4855902000d9d5dba24820de766c9d30a4aa:'+f],{cwd:root,maxBuffer:32*1024*1024}).toString()
+.replace(/\r\n/g,'\n');
 const code=read('amd/src/course_manager.js');
-const current='        // Disclosure changes only its own panel. Its completion callbacks\n        // already refresh alignment and Guide targets; unrelated card/tag\n        // scans force synchronous layout and block compact Motion frames.\n';
-const old='        // Disclosure changes no result order, page or filtering scope. Keep\n        // the live lists attached while Motion measures their ancestors.\n        scheduleResponsiveUiRefresh(root, {pagination: false});\n';
+const current='        // Disclosure changes only its own panel. Its completion callbacks\n        // already refresh alignment and
+ Guide targets; unrelated card/tag\n        // scans force synchronous layout and block compact Motion frames.\n';
+const old='        // Disclosure changes no result order, page or filtering scope. Keep\n        // the live lists attached while
+ Motion measures their ancestors.\n        scheduleResponsiveUiRefresh(root, {pagination: false});\n';
 assert.equal(code.split(current).length,2);assert.equal(code.replace(current,old),previous('amd/src/course_manager.js'));
-for(const f of ['amd/src/motion.js','amd/src/easyedu_guide.js','styles.css','templates/manage.mustache','lib.php','manage.php','index.php','settings.php'])assert.equal(read(f),previous(f),f+' unchanged');
-console.log('PASS filter-only scheduling correction; tag algorithm, predicates, all unrelated controllers and shared Motion/CSS unchanged');
+for(const f of
+ ['amd/src/motion.js','amd/src/easyedu_guide.js','styles.css','templates/manage.mustache','lib.php','manage.php','index.php','settin
+gs.php'])assert.equal(read(f),previous(f),f+' unchanged');
+console.log('PASS filter-only scheduling correction; tag algorithm, predicates, all unrelated controllers and shared Motion/CSS
+ unchanged');

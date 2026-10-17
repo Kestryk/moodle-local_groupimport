@@ -23,23 +23,28 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             'Rechercher et choisir le groupe de destination']) {
             const page = await browser.newPage({viewport:{width, height:700}});
             await page.setContent('<style>' + css + '</style>' +
-                '<div class="local-groupimport-easystud easyedu-ui"><div class="local-groupimport-easystud-easyedu-guide easyedu-guide easyedu-guide--discovery" id="root">' +
+                '<div class="local-groupimport-easystud easyedu-ui"><div class="local-groupimport-easystud-easyedu-guide
+ easyedu-guide easyedu-guide--discovery" id="root">' +
                 '<div data-easyedu-guide-modal style="position:fixed;inset:0;background:white">' +
                 '<nav data-easyedu-guide-nav style="position:absolute;top:30px;left:12px;width:150px">' +
-                '<button data-easyedu-guide-nav-item="0"><span class="easyedu-guide-nav-copy"><span id="label"></span></span></button>' +
+                '<button data-easyedu-guide-nav-item="0"><span class="easyedu-guide-nav-copy"><span
+ id="label"></span></span></button>' +
                 '<button data-easyedu-guide-nav-item="1"><span class="easyedu-guide-nav-copy"><span>OK</span></span></button>' +
                 '</nav><button id="fullscreen" style="position:absolute;bottom:30px">Fullscreen</button></div></div></div>' +
                 '<style>[data-easyedu-guide-nav-item]{width:130px}.easyedu-guide-nav-copy{display:block!important}' +
                 '.easyedu-guide-nav-copy>span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}</style>');
             await page.evaluate(({helper, listeners, copy}) => {
                 document.querySelector('#label').textContent = copy;
-                window.bindTooltipTest = Function('const SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
+                window.bindTooltipTest = Function('const
+ SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
                     'navItem:"[data-easyedu-guide-nav-item]"};' + listeners + helper +
                     'return {bind:bindNavigationTooltips,clear:clearTrackedListeners};')();
                 window.bindTooltipTest.bind(document.querySelector('#root'));
-                document.querySelector('#fullscreen').onclick = () => document.querySelector('[data-easyedu-guide-modal]').requestFullscreen();
+                document.querySelector('#fullscreen').onclick = () =>
+ document.querySelector('[data-easyedu-guide-modal]').requestFullscreen();
             }, {helper, listeners, copy});
-            if (copy === 'Participants') await page.locator('[data-easyedu-guide-nav-item="0"]').evaluate(node => { node.style.width = '50px'; });
+            if (copy === 'Participants') await page.locator('[data-easyedu-guide-nav-item="0"]').evaluate(node => { node.style.width
+ = '50px'; });
             const button = page.locator('[data-easyedu-guide-nav-item="0"]');
             const tip = page.locator('.easyedu-guide-label-tooltip');
             console.log(width + ': hover');
@@ -100,7 +105,8 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             await tip.waitFor({state:'visible'});
             assert.ok(await tip.evaluate(node => document.fullscreenElement.contains(node)), 'Actual fullscreen ownership');
             await page.evaluate(() => document.exitFullscreen());
-            await page.waitForFunction(() => !document.fullscreenElement && !document.querySelector('.easyedu-guide-label-tooltip'));
+            await page.waitForFunction(() => !document.fullscreenElement &&
+ !document.querySelector('.easyedu-guide-label-tooltip'));
             assert.equal(await tip.count(), 0);
             console.log(width + ': fullscreen exited');
             await page.mouse.move(width - 20, 400);
@@ -127,6 +133,7 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             assert.ok(edge.x >= 11 && edge.x + edge.width <= width - 11 && edge.y >= 11 && edge.y + edge.height <= 689);
             await page.close(); cases++;
         }
-        console.log('PASS ' + cases + ' localized/width cases: paint, hover, keyboard, click/Escape/scroll, actual fullscreen, teardown/rebind.');
+        console.log('PASS ' + cases + ' localized/width cases: paint, hover, keyboard, click/Escape/scroll, actual fullscreen,
+ teardown/rebind.');
     } finally { await browser.close(); }
 })().catch(error => {console.error(error.message);process.exitCode=1;});

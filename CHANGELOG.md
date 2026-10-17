@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] K17-12: physically wrap eight retired test transcripts within the native text-file limit; preserve exact original bytes through reconstruction hashes.
+
 - 2026-10-17 [N0] K17-12: document the two Guide specimen label helpers without changing their executable tokens.
 
 - 2026-10-17 [N0] K17-12: give isolated PHP fixtures named, documented doubles and a guarded CLI bootstrap; use Moodle developer debugging for AJAX failures. No presentation change.

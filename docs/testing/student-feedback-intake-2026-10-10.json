@@ -1,4 +1,5 @@
 {
+"codecheckerTranscriptWraps20261017":{"base":"2827b7c7","archives":8,"originalBytesReconstructable":true,"nonPhpErrorsBefore":14,"nonPhpErrorsAfter":0,"rulesSuppressed":false,"runtimePublished":false},
 "codecheckerGuideDocs20261017":{"base":"2827b7c7","scope":"two private Guide specimen helper docblocks only","productLogicChanged":false,"runtimePublished":false},
 "codecheckerZero20261017":{"base":"bc3f48f8","moodleCsBeforeErrors":280,"moodleCsAfterErrors":0,"moodleCsWarnings":43,"phpLintFiles":186,"isolatedChecks":13,"localCodecheckerNative":"pending final package proof","runtime":"8054 leased copy only","published":false,"humanAccepted":false},
 "p2OracleCleanPackage20261017":{"base":"a5d0ffab","status":"isolated and static PASS; native installation not run","historicalAssertions":17,"currentAssertions":16,"negativeMutations":6,"cssAssertions":10,"staticZipChecks":409,"zipMissing":0,"phpLintFiles":43,"productChanged":false,"runtimeAccess":false,"published":false,"humanAccepted":false},
