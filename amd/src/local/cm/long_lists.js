@@ -199,10 +199,6 @@ export const syncMemberWindow = group => {
     syncLongListFooter(group, 'members', state);
     if (ungrouped && toggle) {
         group.classList.add('local-groupimport-easystud-long-list__foldable');
-        const header = group.querySelector('.local-groupimport-easystud-group__header');
-        if (header && toggle.parentElement !== header) {
-            header.prepend(toggle);
-        }
         toggle.hidden = false;
         const footer = group.querySelector(':scope > [data-easystud-long-list-footer]');
         footer.hidden = !!folded || state.total <= listPolicy.members.initial;

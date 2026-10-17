@@ -43,7 +43,8 @@
     > .easyedu-related-person-row__selector { margin-right: 0; }
     // K16-81: the header row now ends with its labels; the "−" shares that right edge.
     > .easyedu-related-person-row__remove {
-      margin-inline-end: calc((2rem - var(--easyedu-related-person-remove-size)) / 2 - 2px);
+      // The Kit square (1.45rem) shares the header's right edge, whatever its size.
+      margin-inline-end: 0;
     }
   }
   // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and

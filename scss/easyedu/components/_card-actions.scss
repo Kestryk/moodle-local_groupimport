@@ -1,6 +1,7 @@
 // Foundations / Card quick actions / Direct icon. Layout-only placement stays
 // with the consumer; this recipe owns the five measured visual states.
 @use "focus";
+@use "buttons";
 
 // Foundations / Card quick actions / Overflow trigger (desktop).
 // Source-preserving extraction: responsive positioning and 44px touch-target
@@ -50,6 +51,25 @@
     &:focus:not(:focus-visible) {
       box-shadow: none;
     }
+  }
+}
+
+// K17-51 (Kevin 17/10): the one fold chevron of every group card (validated K16-76 look: icon only,
+// the Kit recovery-action target, chevron down that turns up when unfolded). The consumer supplies
+// the native button, its accessible name and the fold behaviour; it stays at the foot of the card.
+@mixin card-fold-chevron {
+  @include buttons.selection-recovery-action;
+
+  margin: 0.35rem 0 0;
+  width: fit-content;
+
+  .fa {
+    transition: transform var(--easyedu-motion-fast) ease;
+  }
+
+  &.is-expanded .fa,
+  &[aria-expanded="true"] .fa {
+    transform: rotate(180deg);
   }
 }
 
