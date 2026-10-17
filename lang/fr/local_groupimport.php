@@ -1157,3 +1157,6 @@ $string['longlistaddedgroups_one'] = '{$a} groupe supplémentaire affiché';
 $string['historyretentiondays'] = 'Conservation de l’historique des imports (jours)';
 $string['historyretentiondays_desc'] = 'Conserver l’historique pendant ce nombre de jours (1–36500 ; défaut 365). Une valeur invalide utilise 365 jours. Une tâche quotidienne efface l’historique expiré et ses données de restauration ; les groupes et appartenances existants restent inchangés.';
 $string['taskpurgeimporthistory'] = 'Effacer l’historique EasyStud expiré';
+$string['importuserunavailable'] = 'Participant introuvable ou non disponible dans ce cours : {$a}.';
+$string['eventimportapplied'] = 'Import EasyStud appliqué';
+$string['eventimportrolledback'] = 'Historique d’import EasyStud restauré';

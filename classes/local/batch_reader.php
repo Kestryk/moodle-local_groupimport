@@ -60,7 +60,7 @@ final class batch_reader {
     /**
      * Match enabled core/profile fields; callers retain distinct AJAX/import policies.
      */
-    public static function users(array $values, string $field, array $shortnames = []): array {
+    public static function users(array $values, string $field, array $shortnames = [], ?\context_course $context = null): array {
         global $DB;
         $joins = '';
         $conditions = 'r.deleted = 0';
@@ -72,7 +72,7 @@ final class batch_reader {
             if (count($shortnames) > self::CHUNK_SIZE) {
                 $result = array_fill_keys($values, []);
                 foreach (array_chunk($shortnames, self::CHUNK_SIZE) as $chunk) {
-                    foreach (self::users($values, $field, $chunk) as $value => $records) {
+                    foreach (self::users($values, $field, $chunk, $context) as $value => $records) {
                         $result[$value] = array_merge($result[$value], $records);
                     }
                 }
@@ -88,7 +88,12 @@ final class batch_reader {
             }
             $column = 'r.' . $field;
         }
-        return self::matches($values, 'user', $column, $joins, $conditions, $params);
+        if ($context !== null) {
+            [$enrolledsql, $enrolledparams] = get_enrolled_sql($context);
+            $joins .= " JOIN ($enrolledsql) enrolled ON enrolled.id = r.id";
+            $params += $enrolledparams;
+        }
+        return self::matches($values, 'user', $column, $joins, $conditions, $params, $context ? 'r.id' : 'r.*');
     }
 
     /**
@@ -131,7 +136,8 @@ final class batch_reader {
         string $column,
         string $joins,
         string $conditions,
-        array $fixedparams
+        array $fixedparams,
+        string $fields = 'r.*'
     ): array {
         global $DB;
         $values = array_values(array_unique(array_map('strval', $values)));
@@ -145,7 +151,7 @@ final class batch_reader {
                     $DB->sql_null_from_clause();
                 $params['input' . $index] = $value;
             }
-            $sql = 'SELECT r.*, inputs.inputindex AS batchinputindex FROM {' . $table . '} r ' . $joins .
+            $sql = 'SELECT ' . $fields . ', inputs.inputindex AS batchinputindex FROM {' . $table . '} r ' . $joins .
                 ' JOIN (' . implode(' UNION ALL ', $relation) . ') inputs ON ' . $column . ' = inputs.inputvalue ' .
                 'WHERE ' . $conditions . ' AND ' . $column . ' ' . $insql;
             $records = $DB->get_recordset_sql($sql, $params + $fixedparams);
