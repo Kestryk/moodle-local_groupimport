@@ -1847,5 +1847,14 @@
     "report": "docs/testing/tri38-toolchain-2026-10-17.md",
     "nodeObserved": "20.17.0",
     "nodeRequired": ">=22.11.0 <23"
+  },
+  "codex1Node2220261017": {
+    "status": "node22-build-parity-pass-not-published",
+    "base": "fcf11a6f",
+    "report": "docs/testing/node22-build-parity-2026-10-17.md",
+    "node": "22.11.0",
+    "builds": 12,
+    "comparedFiles": 106,
+    "differences": 0
   }
 }
