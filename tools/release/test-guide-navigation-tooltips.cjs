@@ -10,7 +10,7 @@ const slice = (start, end) => {
     const a = source.indexOf(start), b = source.indexOf(end, a);
     assert.ok(a >= 0 && b > a, start); return source.slice(a, b);
 };
-const helper = slice('const bindNavigationTooltips =', 'const bindGuide =');
+const helper = slice('const isClipped =', 'const bindGuide =');
 const listeners = slice('const addTrackedListener =', 'const setTrackedTimeout =');
 const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'utf8');
 (async() => {
@@ -27,16 +27,18 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
                 '<div class="local-groupimport-easystud easyedu-ui"><div class="local-groupimport-easystud-easyedu-guide easyedu-guide easyedu-guide--discovery" id="root">' +
                 '<div data-easyedu-guide-modal style="position:fixed;inset:0;background:white">' +
                 '<nav data-easyedu-guide-nav style="position:absolute;top:30px;left:12px;width:150px">' +
-                '<button data-easyedu-guide-nav-item="0"><span class="easyedu-guide-nav-copy"><span id="label" class="easyedu-guide-nav-item__label"></span></span></button>' +
-                '<button data-easyedu-guide-nav-item="1"><span class="easyedu-guide-nav-copy"><span class="easyedu-guide-nav-item__label">OK</span></span></button>' +
+                '<button data-easyedu-guide-nav-item="0" data-easyedu-guide-bubble="" data-easyedu-guide-bubble-when="truncated"><span class="easyedu-guide-nav-copy"><span id="label" class="easyedu-guide-nav-item__label"></span></span></button>' +
+                '<button data-easyedu-guide-nav-item="1" data-easyedu-guide-bubble="OK" data-easyedu-guide-bubble-when="truncated"><span class="easyedu-guide-nav-copy"><span class="easyedu-guide-nav-item__label">OK</span></span></button>' +
                 '</nav><button id="fullscreen" style="position:absolute;bottom:30px">Fullscreen</button></div></div></div>' +
                 '<style>[data-easyedu-guide-nav-item]{width:130px}.easyedu-guide-nav-copy{display:block!important}' +
                 '#root .easyedu-guide-nav-copy>span{display:block;width:3ch;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis;white-space:nowrap}</style>');
             await page.evaluate(({helper, listeners, copy}) => {
                 document.querySelector('#label').textContent = copy;
-                window.bindTooltipTest = Function('const SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
-                    'navItem:"[data-easyedu-guide-nav-item]"};' + listeners + helper +
-                    'return {bind:bindNavigationTooltips,clear:clearTrackedListeners};')();
+                document.querySelector('[data-easyedu-guide-nav-item="0"]').setAttribute('data-easyedu-guide-bubble', copy);
+                window.bindTooltipTest = Function('Motion', 'const SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
+                    'navItem:"[data-easyedu-guide-nav-item]"};const GUIDE_BUBBLE="[data-easyedu-guide-bubble]";' + listeners + helper +
+                    'return {bind:bindGuideBubbles,clear:clearTrackedListeners};')({
+                    cancel() {}, enter: () => Promise.resolve(), exit: () => Promise.resolve(), timing: {normal: 160}});
                 window.bindTooltipTest.bind(document.querySelector('#root'));
                 document.querySelector('#fullscreen').onclick = () => document.querySelector('[data-easyedu-guide-modal]').requestFullscreen();
             }, {helper, listeners, copy});

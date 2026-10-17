@@ -1996,7 +1996,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
     if (liveAnnouncement) { liveAnnouncement.textContent = scene.easyeduGuideResultOriginal; }
-    liveCopy.title = liveCopy.textContent;
+    liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.removeAttribute('data-guide-live-state');
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = true; }
@@ -2042,7 +2043,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
     if (liveCopy) {
       liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
-      liveCopy.title = liveCopy.textContent;
+      liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+      liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     }
     // A phone may not fit title, introduction and the complete ready header at
     // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
@@ -2281,7 +2283,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (liveAnnouncement) { liveAnnouncement.textContent = text; }
     liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
       text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
-    liveCopy.title = text;
+    liveCopy.dataset.easyeduGuideBubble = text;
+    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.dataset.guideLiveState = state;
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = state !== 'finished'; }
@@ -3682,13 +3685,22 @@ const bindHighlightAutoRefresh = root => {
 
 };
 
-// The full navigation label remains the button's accessible name. This visual
-// enhancement reveals ellipsised copy only, without repeating its name to AT.
-const bindNavigationTooltips = root => {
+// K17-21 to K17-26 (Guide part): the Guide never shows a native browser bubble. Every
+// element that needs one carries data-easyedu-guide-bubble="text"; this single Kit-styled
+// bubble replaces the native title (no double bubble). data-easyedu-guide-bubble-when="truncated"
+// limits it to copy that is actually clipped. The bubble fades in and out through Motion
+// (instant at the minimal level). The accessible name stays on the control itself.
+const GUIDE_BUBBLE = '[data-easyedu-guide-bubble]';
+const isClipped = element => element.scrollWidth > element.clientWidth + 1 ||
+  element.scrollHeight > element.clientHeight + 1;
+// A pill is clipped when its title or its chapter line is; any other element, when it is itself.
+const isClippedCopy = element => [element, ...element.querySelectorAll(
+  '.easyedu-guide-nav-item__label, .easyedu-guide-nav-item__meta small')].some(isClipped);
+
+const bindGuideBubbles = root => {
   if (!root.classList.contains('easyedu-guide--discovery')) return;
   const modal = root.querySelector(SELECTORS.modal);
-  const nav = root.querySelector(SELECTORS.nav);
-  if (!modal || !nav) return;
+  if (!modal) return;
   let tooltip = null;
   let target = null;
   let refreshFrame = null;
@@ -3697,42 +3709,43 @@ const bindNavigationTooltips = root => {
     if (graceTimer !== null) window.clearTimeout(graceTimer);
     graceTimer = null;
   };
-  const hide = () => {
+  const hide = (immediate = true) => {
     cancelGrace();
     if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
     refreshFrame = null;
-    tooltip?.remove();
+    const leaving = tooltip;
     tooltip = null;
-    // Restore the native pill title (K1) once the full-label tooltip is gone.
-    if (target && target.dataset.easyeduGuideTitle !== undefined) {
-      target.setAttribute('title', target.dataset.easyeduGuideTitle);
-      delete target.dataset.easyeduGuideTitle;
-    }
     target = null;
-  };
-  root.easyeduGuideTooltipHide = hide;
-  const show = button => {
-    const label = button?.querySelector('.easyedu-guide-nav-item__label');
-    if (!label || modal.hidden || label.scrollWidth <= label.clientWidth + 1) {
-      hide();
+    if (!leaving) {
       return;
     }
-    if (target === button) {
+    if (immediate) {
+      Motion.cancel(leaving);
+      leaving.remove();
+      return;
+    }
+    leaving.style.pointerEvents = 'none';
+    void Motion.exit(leaving, {duration: Motion.timing.normal, distance: '0rem'}).then(() => leaving.remove());
+  };
+  root.easyeduGuideTooltipHide = hide;
+  const show = element => {
+    const text = (element?.getAttribute('data-easyedu-guide-bubble') || '').trim();
+    if (!text || modal.hidden ||
+        (element.dataset.easyeduGuideBubbleWhen === 'truncated' && !isClippedCopy(element))) {
+      hide(false);
+      return;
+    }
+    if (target === element) {
       cancelGrace();
       return;
     }
     hide();
-    target = button;
-    // One tooltip at a time: park the native title while this one is shown.
-    if (button.hasAttribute('title')) {
-      button.dataset.easyeduGuideTitle = button.getAttribute('title');
-      button.removeAttribute('title');
-    }
+    target = element;
     tooltip = modal.ownerDocument.createElement('div');
     tooltip.className = 'easyedu-guide-label-tooltip';
     tooltip.setAttribute('aria-hidden', 'true');
-    tooltip.textContent = label.textContent.trim();
-    // WCAG 1.4.13: the pointer may move onto the tooltip, which then stays visible.
+    tooltip.textContent = text;
+    // WCAG 1.4.13: the pointer may move onto the bubble, which then stays visible.
     tooltip.addEventListener('pointerenter', cancelGrace);
     tooltip.addEventListener('pointerleave', event => {
       if (!target?.contains(event.relatedTarget)) {
@@ -3743,7 +3756,7 @@ const bindNavigationTooltips = root => {
     modal.appendChild(tooltip);
     const margin = 12;
     const gap = 10;
-    const anchor = button.getBoundingClientRect();
+    const anchor = element.getBoundingClientRect();
     let size = tooltip.getBoundingClientRect();
     if (size.height > 34.5) {
       tooltip.classList.add('is-multiline');
@@ -3760,38 +3773,39 @@ const bindNavigationTooltips = root => {
     tooltip.style.setProperty('--easyedu-tooltip-anchor',
       `${Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, size.width - 12))}px`);
     tooltip.classList.toggle('is-above', above);
+    void Motion.enter(tooltip, {duration: Motion.timing.normal, distance: above ? '-0.2rem' : '0.2rem'});
   };
   const scheduleHide = () => {
     cancelGrace();
-    graceTimer = window.setTimeout(hide, 220);
+    graceTimer = window.setTimeout(() => hide(false), 220);
   };
-  const buttonFor = element => element?.closest?.(SELECTORS.navItem);
-  addTrackedListener(root, nav, 'pointerover', event => {
+  const bubbleFor = element => element?.closest?.(GUIDE_BUBBLE);
+  addTrackedListener(root, modal, 'pointerover', event => {
     if (event.pointerType !== 'mouse') return;
-    const button = buttonFor(event.target);
-    if (button && !button.contains(event.relatedTarget)) show(button);
+    const element = bubbleFor(event.target);
+    if (element && !element.contains(event.relatedTarget)) show(element);
   });
-  addTrackedListener(root, nav, 'pointerout', event => {
-    const button = buttonFor(event.target);
-    if (button === target && !button?.contains(event.relatedTarget)) {
+  addTrackedListener(root, modal, 'pointerout', event => {
+    const element = bubbleFor(event.target);
+    if (element && element === target && !element.contains(event.relatedTarget)) {
       if (tooltip?.contains(event.relatedTarget)) {
         return;
       }
       scheduleHide();
     }
   });
-  addTrackedListener(root, nav, 'focusin', event => {
-    const button = buttonFor(event.target);
-    if (button?.matches(':focus-visible')) show(button);
+  addTrackedListener(root, modal, 'focusin', event => {
+    const element = bubbleFor(event.target);
+    if (element?.matches(':focus-visible')) show(element);
   });
-  addTrackedListener(root, nav, 'focusout', hide);
-  addTrackedListener(root, root, 'pointerdown', hide, true);
-  addTrackedListener(root, root, 'click', hide, true);
+  addTrackedListener(root, modal, 'focusout', () => hide(false));
+  addTrackedListener(root, root, 'pointerdown', () => hide(), true);
+  addTrackedListener(root, root, 'click', () => hide(), true);
   addTrackedListener(root, root, 'keydown', event => {
     if (event.key !== 'Escape') {
       return;
     }
-    // WCAG 1.4.13: dismissing the label tooltip must not also close the Guide.
+    // WCAG 1.4.13: dismissing the bubble must not also close the Guide.
     const wasOpen = tooltip !== null;
     hide();
     if (wasOpen) {
@@ -3799,12 +3813,13 @@ const bindNavigationTooltips = root => {
       event.stopPropagation();
     }
   }, true);
+  const nav = root.querySelector(SELECTORS.nav);
   addTrackedListener(root, modal.ownerDocument, 'scroll', event => {
-    const focused = buttonFor(modal.ownerDocument.activeElement);
+    const focused = bubbleFor(modal.ownerDocument.activeElement);
     // Native keyboard focus can scroll the horizontal navigation after focusin.
-    // Re-anchor its label on the next paint instead of losing keyboard help.
+    // Re-anchor its bubble on the next paint instead of losing keyboard help.
     // Other scrolling still dismisses it, and every teardown cancels this frame.
-    if (event.target === nav && focused?.matches(':focus-visible')) {
+    if (nav && event.target === nav && focused?.matches(':focus-visible')) {
       hide();
       refreshFrame = window.requestAnimationFrame(() => {
         refreshFrame = null;
@@ -3814,8 +3829,8 @@ const bindNavigationTooltips = root => {
       hide();
     }
   }, true);
-  addTrackedListener(root, modal.ownerDocument, 'fullscreenchange', hide);
-  addTrackedListener(root, window, 'resize', hide);
+  addTrackedListener(root, modal.ownerDocument, 'fullscreenchange', () => hide());
+  addTrackedListener(root, window, 'resize', () => hide());
 };
 
 const bindGuide = (root, config) => {
@@ -3824,7 +3839,7 @@ const bindGuide = (root, config) => {
     return;
   }
   root.dataset.easyeduGuideBound = '1';
-  bindNavigationTooltips(root);
+  bindGuideBubbles(root);
   const responsiveSteps = window.matchMedia ? window.matchMedia(GUIDE_NARROW_QUERY) : null;
   if (responsiveSteps && responsiveSteps.addEventListener) {
     addTrackedListener(root, responsiveSteps, 'change', () => refreshResponsiveChecklist(root));
@@ -3843,7 +3858,7 @@ const bindGuide = (root, config) => {
       fullscreenButton.setAttribute('aria-pressed', state.active ? 'true' : 'false');
       fullscreenButton.setAttribute('aria-label', state.active ?
         fullscreenButton.dataset.exitLabel : fullscreenButton.dataset.enterLabel);
-      fullscreenButton.title = fullscreenButton.getAttribute('aria-label');
+      fullscreenButton.dataset.easyeduGuideBubble = fullscreenButton.getAttribute('aria-label');
       const glyph = fullscreenButton.querySelector('[data-easyedu-guide-fullscreen-glyph]');
       if (glyph) {
         glyph.setAttribute('d', state.active ? glyph.dataset.exitPath : glyph.dataset.enterPath);

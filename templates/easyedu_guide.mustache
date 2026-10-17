@@ -73,7 +73,7 @@
                             {{#hasguidedpath}}data-easyedu-guided-label="{{guidebadgelabel}}"{{/hasguidedpath}}
                             {{#requires}}data-easyedu-guide-requires="{{requires}}"{{/requires}}
                             {{#requireslabel}}data-easyedu-guide-requires-label="{{requireslabel}}"{{/requireslabel}}
-                            title="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}"
+                            data-easyedu-guide-bubble="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}" data-easyedu-guide-bubble-when="truncated"
                         >
                             <span class="easyedu-guide-nav-item__icon" aria-hidden="true">
                                 <span class="fa {{navicon}}" aria-hidden="true"></span>
@@ -142,7 +142,7 @@
                                         {{#showopendelay}}data-easyedu-guide-show-open-delay="{{showopendelay}}"{{/showopendelay}}
                                         {{#showafteropen}}data-easyedu-guide-show-after-open="{{showafteropen}}"{{/showafteropen}}
                                         {{#showafteropendelay}}data-easyedu-guide-show-after-open-delay="{{showafteropendelay}}"{{/showafteropendelay}}
-                                        {{#discoverypresentation}}title="{{guideinterfacecuelabel}}"{{/discoverypresentation}}
+                                        {{#discoverypresentation}}data-easyedu-guide-bubble="{{guideinterfacecuelabel}}"{{/discoverypresentation}}
                                     >
                                         <span class="fa {{#discoverypresentation}}fa-eye{{/discoverypresentation}}{{^discoverypresentation}}fa-location-arrow{{/discoverypresentation}}" aria-hidden="true"></span>
                                         <span class="easyedu-guide-slide__show-label">{{guideshowinterfacelabel}}</span>
@@ -248,7 +248,7 @@
                                         <span class="easyedu-guide-scene__identity fa {{cardicon}}" aria-hidden="true"></span>
                                         <div class="easyedu-guide-scene__inspection-header">
                                             <span class="easyedu-guide-scene__card-copy"><strong>{{cardtitle}}</strong><small>{{cardmeta}}</small></span>
-                                            <span class="easyedu-guide-scene__inspection-desktop-trigger" data-guide-inspection-trigger title="{{actionlabel}}" aria-hidden="true"><span class="fa {{actionicon}}" aria-hidden="true"></span></span>
+                                            <span class="easyedu-guide-scene__inspection-desktop-trigger" data-guide-inspection-trigger data-easyedu-guide-bubble="{{actionlabel}}" aria-hidden="true"><span class="fa {{actionicon}}" aria-hidden="true"></span></span>
                                             <span class="easyedu-guide-scene__inspection-mobile-trigger" data-guide-inspection-mobile-trigger hidden aria-hidden="true"><span class="fa fa-bars" aria-hidden="true"></span></span>
                                         </div>
                                         <div class="easyedu-guide-scene__inspection-menu" data-guide-inspection-menu hidden aria-hidden="true"><span>{{menutitle}}</span><strong><span class="fa {{actionicon}}" aria-hidden="true"></span> {{actionlabel}}</strong></div>
@@ -534,7 +534,7 @@
                                             {{#previewlabel}}<small class="easyedu-guide-introduction__specimen-caption">{{previewlabel}}</small>{{/previewlabel}}
                                             {{#navigation}}
                                             <div class="easyedu-guide-nav easyedu-guide-introduction__navigation">
-                                                <span class="easyedu-guide-nav-item is-active" title="{{label}}">
+                                                <span class="easyedu-guide-nav-item is-active">
                                                     <span class="easyedu-guide-nav-item__icon"><span class="fa fa-compass" aria-hidden="true"></span></span>
                                                     <span class="easyedu-guide-nav-copy"><span>{{label}}</span></span>
                                                 </span>

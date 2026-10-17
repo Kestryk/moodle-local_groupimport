@@ -61,6 +61,13 @@
   // the token for an intentionally narrower Guide host.
   --easyedu-guide-reading-measure: 38rem;
 
+  // K17-24: every element that carries a bubble, and both kinds of numbered
+  // slide navigation (previous / next arrows and pills), shows the hand cursor.
+  [data-easyedu-guide-bubble],
+  .easyedu-guide-nav-arrow,
+  .easyedu-guide-nav-item { cursor: pointer; }
+  .easyedu-guide-nav-arrow:disabled { cursor: default; }
+
   .easyedu-guide-label-tooltip {
     @include tooltips.foundation-light-tooltip;
     max-width: min(14rem, calc(100vw - 1.5rem));

@@ -63,10 +63,10 @@ function tooltip() {
 }
 function guide() {
     const source = read('amd/src/easyedu_guide.js');
-    const a = source.indexOf('const bindNavigationTooltips ='), b = source.indexOf('const bindGuide =', a);
+    const a = source.indexOf('const bindGuideBubbles ='), b = source.indexOf('const bindGuide =', a);
     assert(a >= 0 && b > a); const helper = source.slice(a, b);
-    for (const marker of ["target === button", "tooltip.addEventListener('pointerenter', cancelGrace)",
-        'window.setTimeout(hide, 220)', 'modal.appendChild(tooltip)', "event.key !== 'Escape'", 'event.stopPropagation()',
+    for (const marker of ["target === element", "tooltip.addEventListener('pointerenter', cancelGrace)",
+        'window.setTimeout(() => hide(false), 220)', 'modal.appendChild(tooltip)', "event.key !== 'Escape'", 'event.stopPropagation()',
         "addTrackedListener(root, modal.ownerDocument, 'scroll'", 'root.easyeduGuideTooltipHide = hide']) {
         assert(helper.includes(marker), marker);
     }
