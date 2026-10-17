@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] L1/L2 coherent389b832d successor: preserve the already-applied root/dead-rule cleanup; prove four conservative page sheets ordered-identical, global CSS0rules and all50shared Kit definitions aligned; no new consumer removals.
+
 - 2026-10-17 [N0] Verify K-BUBBLE/PEN-K17 on9e628d4f: official PHP/non-PHP checker and new bubble/builder ESLint have zero errors; localized bubble fixture9/9 PASS; no product changes.
 
 - 2026-10-17 [N0] Replace the obsolete Guide mirror with9e628d4f: share the import-free bubble controller, adapt both Moodle dependencies, mirror PEN-K17 templates/SCSS, and retain exact consumer parity; T037/T038/roundtrip PASS.
