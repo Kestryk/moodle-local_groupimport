@@ -1817,5 +1817,12 @@
       ],
       "decisionGate": "none"
     }
-  ]
+  ],
+  "codex1Tri3820261017": {
+    "status": "provenance-pass-node22-release-validation-pending",
+    "base": "05a84c57",
+    "report": "docs/testing/tri38-toolchain-2026-10-17.md",
+    "nodeObserved": "20.17.0",
+    "nodeRequired": ">=22.11.0 <23"
+  }
 }

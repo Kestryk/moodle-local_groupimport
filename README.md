@@ -116,3 +116,12 @@ production packages through `.gitattributes` where appropriate.
 GNU General Public License v3 or later.
 
 K16 title decoration AMD: rebuild with node tools/release/build-card-title-accent-amd.cjs C:/dev/moodle51-build-501/node_modules, then build-page-bootstrap-amd.cjs with the same toolchain. Runtime source is copied from canonical Kit cards/amd/src/easyedu_card_title_accent.js; preserve exact source parity.
+
+### Release build toolchain provenance
+
+See `tools/release/toolchain-contract.json` and
+`docs/testing/tri38-toolchain-2026-10-17.md`. Sass 1.79.1 and conservative CSS are
+the current builder contract. The referenced Moodle checkout requires Node
+`>=22.11.0 <23`; local standalone Node 20 builds do not certify a release engine.
+Use `check-toolchain.cjs BUILD_ROOT SASS_ROOT EXTERNAL_JSON --release` before a
+release build. Exact validated Node 22 patch remains to be recorded.
