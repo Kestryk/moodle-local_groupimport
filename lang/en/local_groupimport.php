@@ -1154,3 +1154,5 @@ $string['longlistaddedmembers'] = '{$a} more members displayed';
 $string['longlistaddedmembers_one'] = '{$a} more member displayed';
 $string['longlistaddedgroups'] = '{$a} more groups displayed';
 $string['longlistaddedgroups_one'] = '{$a} more group displayed';
+
+$string['eventreportexported'] = 'EasyStud import report generated';
