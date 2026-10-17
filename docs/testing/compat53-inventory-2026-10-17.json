@@ -1,0 +1,189 @@
+{
+  "base": "ae3291b5",
+  "local53Version": {
+    "version": "2026100500.02",
+    "release": "5.3+ Build20261013",
+    "branch": "503"
+  },
+  "coreModules": [
+    {
+      "module": "core/ajax",
+      "uses": [
+        {
+          "file": "amd/src/local/sm/store.js",
+          "line": 29
+        }
+      ],
+      "corePath": "lib/amd/src/ajax.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": true
+      }
+    },
+    {
+      "module": "core/local/templates/loader",
+      "uses": [
+        {
+          "file": "amd/src/local/sm/groups.js",
+          "line": 29
+        },
+        {
+          "file": "amd/src/local/sm/participants.js",
+          "line": 34
+        }
+      ],
+      "corePath": "lib/amd/src/local/templates/loader.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": true
+      }
+    },
+    {
+      "module": "core/log",
+      "uses": [
+        {
+          "file": "amd/src/course_manager.js",
+          "line": 25
+        },
+        {
+          "file": "amd/src/local/cm/advanced_settings.js",
+          "line": 25
+        },
+        {
+          "file": "amd/src/local/cm/participant_modal.js",
+          "line": 27
+        },
+        {
+          "file": "amd/src/local/cm/shared.js",
+          "line": 25
+        },
+        {
+          "file": "amd/src/local/cm/workspace.js",
+          "line": 30
+        }
+      ],
+      "corePath": "lib/amd/src/log.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": false
+      }
+    },
+    {
+      "module": "core/mustache",
+      "uses": [
+        {
+          "file": "amd/src/local/sm/groups.js",
+          "line": 28
+        },
+        {
+          "file": "amd/src/local/sm/participants.js",
+          "line": 33
+        },
+        {
+          "file": "amd/src/local/sm/specimen.js",
+          "line": 36
+        }
+      ],
+      "corePath": "lib/amd/src/mustache.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": true
+      }
+    },
+    {
+      "module": "core/reactive",
+      "uses": [
+        {
+          "file": "amd/src/local/sm/store.js",
+          "line": 30
+        }
+      ],
+      "corePath": "lib/amd/src/reactive.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": true
+      }
+    },
+    {
+      "module": "core/toast",
+      "uses": [
+        {
+          "file": "amd/src/local/cm/shared.js",
+          "line": 146
+        }
+      ],
+      "corePath": "lib/amd/src/toast.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": true
+      }
+    },
+    {
+      "module": "core_user/local/participants/bulkactions",
+      "uses": [
+        {
+          "file": "amd/src/local/cm/messaging.js",
+          "line": 223
+        }
+      ],
+      "corePath": "user/amd/src/local/participants/bulkactions.js",
+      "present": {
+        "4.5": true,
+        "5.1": true,
+        "5.3": true
+      }
+    }
+  ],
+  "modalFactoryDirectUses": 0,
+  "coreLogSourceGap": "No src/log.js or built log.min.js in local53 copy; core/notification still imports it. Not evidence of an intentional API removal; source/build completeness needs review before native certification.",
+  "reservedDeprecatedCalls": [
+    {
+      "file": "classes/service/course_state.php",
+      "line": 380,
+      "call": "user_get_user_details"
+    },
+    {
+      "file": "classes/service/course_state.php",
+      "line": 562,
+      "call": "user_get_user_details"
+    }
+  ],
+  "contrastCalculations": [
+    {
+      "pair": [
+        "#1f2a37",
+        "#f7f9fc"
+      ],
+      "ratio": 13.783
+    },
+    {
+      "pair": [
+        "#5c6c7d",
+        "#f7f9fc"
+      ],
+      "ratio": 5.11
+    },
+    {
+      "pair": [
+        "#f7f9fc",
+        "#f8f9fa"
+      ],
+      "ratio": 1.001
+    },
+    {
+      "pair": [
+        "#ffffff",
+        "#f7f9fc"
+      ],
+      "ratio": 1.055
+    }
+  ],
+  "contrastIsNativeVisualProof": false,
+  "runtimeAccess": false
+}
