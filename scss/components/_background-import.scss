@@ -1,0 +1,10 @@
+// Adapter only: shared pagination remains defined by the Kit.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-import-pagination {
+  @include easyedu.pagination-controls;
+
+  button {
+    @include easyedu.pagination-arrow-button;
+  }
+}

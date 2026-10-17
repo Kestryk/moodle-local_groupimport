@@ -21,112 +21,30 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace core\event {
-    /**
-     * Isolated fixture double for base.
-     */
-    class base {
-        /** Fixture teaching-context marker. */
-        const LEVEL_TEACHING = 1;
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        protected array $data = [];
-        /**
-         * Perform isolated fixture operation __get.
-         * @param mixed $key Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __get($key) {
-            return $this->data[$key] ?? null;
-        }
-        /**
-         * Perform isolated fixture operation create.
-         * @param array $data Fixture argument.
-         * @return static Fixture result.
-         */
-        public static function create(array $data): static {
-            $e = new static();
-            $e->data = $data + ['userid' => 77, 'courseid' => $data['context']->instanceid];
-            $e->init();
-            return $e;
-        }
-        /**
-         * Perform isolated fixture operation trigger.
-         * @return void Fixture result.
-         */
-        public function trigger(): void {
-            $GLOBALS['events'][] = ['data' => $this->data, 'description' => $this->get_description(), 'name' => $this->get_name()];
-        }
+namespace core\event {define('CLI_SCRIPT', true);
+    require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+    if (!MOODLE_INTERNAL) {
+        die('CLI fixtures only.');
     }
+
+
+    require_once(__DIR__ . '/../../../tools/release/fixtures/source_file.php');
+
+    require_once(__DIR__ . '/doubles/security_s7_m5_isolated/core_event/fixture_security_s7_m5_isolated_base.php');
+    class_alias('core\\event\\fixture_security_s7_m5_isolated_base', 'core\\event\\base');
 }
 namespace {
     // Execute the real export page with in-memory auth/history and real XLSX libraries.
     // Its two bootstrap requires are deliberately omitted; no Moodle config or DB.
-    require __DIR__ . '/spreadsheet-libraries.php';
-    define('MOODLE_INTERNAL', true);
+    require(__DIR__ . '/spreadsheet-libraries.php');
     define('PARAM_INT', 1);
     define('MUST_EXIST', 1);
-    /**
-     * Isolated fixture double for moodle_exception.
-     */
-    class moodle_exception extends RuntimeException {
-        /**
-         * Perform isolated fixture operation __construct.
-         * @param mixed $key Fixture argument.
-         * @param mixed $component Fixture argument.
-         * @param mixed $rest Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __construct($key, $component = '', ...$rest) {
-            parent::__construct($key);
-        }
-    }
-    /**
-     * Isolated fixture double for core_text.
-     */
-    class core_text {
-        /**
-         * Perform isolated fixture operation substr.
-         * @param mixed $s Fixture argument.
-         * @param mixed $start Fixture argument.
-         * @param mixed $length Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public static function substr($s, $start, $length) {
-            return mb_substr($s, $start, $length);
-        }
-    }
-    /**
-     * Isolated fixture double for context_course.
-     */
-    class context_course {
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        public int $id;
-        /**
-         * Perform isolated fixture operation __construct.
-         * @param int $instanceid Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __construct(
-            /**
-             * @var mixed Standalone fixture state.
-             */
-            public int $instanceid
-        ) {
-            $this->id = 1000 + $instanceid;
-        }
-        /**
-         * Perform isolated fixture operation instance.
-         * @param mixed $id Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public static function instance($id) {
-            return new self($id);
-        }
-    }
+    require_once(__DIR__ . '/doubles/security_s7_m5_isolated/global/fixture_security_s7_m5_isolated_moodle_exception.php');
+    class_alias('fixture_security_s7_m5_isolated_moodle_exception', 'moodle_exception');
+    require_once(__DIR__ . '/doubles/security_s7_m5_isolated/global/fixture_security_s7_m5_isolated_core_text.php');
+    class_alias('fixture_security_s7_m5_isolated_core_text', 'core_text');
+    require_once(__DIR__ . '/doubles/security_s7_m5_isolated/global/fixture_security_s7_m5_isolated_context_course.php');
+    class_alias('fixture_security_s7_m5_isolated_context_course', 'context_course');
     /**
      * Perform isolated fixture operation required_param.
      * @param mixed $key Fixture argument.
@@ -211,38 +129,8 @@ namespace {
     function send_file($content, $filename, $cache, $filter, $forcedownload, $dontdie, $mime) {
         $GLOBALS['download'] = compact('content', 'filename', 'mime');
     }
-    /**
-     * Isolated fixture double for memory_db.
-     */
-    class memory_db {
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        public object $record;
-        /**
-         * Perform isolated fixture operation get_record.
-         * @param mixed $table Fixture argument.
-         * @param mixed $conditions Fixture argument.
-         * @param mixed $fields Fixture argument.
-         * @param mixed $strict Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_record($table, $conditions, $fields, $strict) {
-            if ($GLOBALS['auth'] !== ['login', 'moodle/course:managegroups']) {
-                throw new RuntimeException('Lookup before auth');
-            }
-            if (
-                $table !== 'local_groupimport_history' ||
-                $conditions !== ['id' =>
-                7,
-                'courseid' =>
-                5]
-            ) {
-                throw new RuntimeException('Unscoped history read');
-            }
-            return clone $this->record;
-        }
-    }
+    require_once(__DIR__ . '/doubles/security_s7_m5_isolated/global/fixture_security_s7_m5_isolated_memory_db.php');
+    class_alias('fixture_security_s7_m5_isolated_memory_db', 'memory_db');
     /**
      * Perform isolated fixture operation run_export.
      * @param string $file Fixture argument.
@@ -274,7 +162,7 @@ namespace {
         if ($requires !== 2) {
             throw new RuntimeException('Review changed bootstrap boundary');
         }
-        eval($source);
+        require(\local_groupimport_fixture_source_file($source));
     }
     $checks = 0;
     /**
@@ -290,13 +178,13 @@ namespace {
         }
     }
     $root = dirname(__DIR__, 3);
-    require $root . '/classes/local/report_export.php';
-    require $root . '/classes/event/report_exported.php';
+    require($root . '/classes/local/report_export.php');
+    require($root . '/classes/event/report_exported.php');
     use local_groupimport\local\report_export as policy;
     $translations = [];
     foreach (['en', 'fr'] as $language) {
         $string = [];
-        require $root . '/lang/' . $language . '/local_groupimport.php';
+        require($root . '/lang/' . $language . '/local_groupimport.php');
         $translations[$language] = $string;
     }
     $unsafe = ['=1+1',

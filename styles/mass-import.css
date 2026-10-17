@@ -1055,6 +1055,86 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   .local-groupimport-import__loading-card {min-height: 18rem;
   }
 }
+.local-groupimport-import-pagination {align-items: center;display: inline-flex;gap: 0.28rem;justify-content: center;
+}
+.local-groupimport-import-pagination button,
+.local-groupimport-import-pagination a {align-items: center;border-color: color-mix(in srgb, var(--easyedu-primary) 32%, var(--easyedu-card-border) 68%);border-radius: 0.58rem;color: var(--easyedu-primary-strong);display: inline-flex;font-size: 0.78rem;justify-content: center;min-height: 1.85rem;min-width: 1.85rem;padding: 0.2rem 0.45rem;
+}
+.local-groupimport-import-pagination button[data-easyedu-page-first],
+.local-groupimport-import-pagination button[data-easyedu-page-prev],
+.local-groupimport-import-pagination button[data-easyedu-page-next],
+.local-groupimport-import-pagination button[data-easyedu-page-last],
+.local-groupimport-import-pagination button[data-easystud-page-first],
+.local-groupimport-import-pagination button[data-easystud-page-prev],
+.local-groupimport-import-pagination button[data-easystud-page-next],
+.local-groupimport-import-pagination button[data-easystud-page-last],
+.local-groupimport-import-pagination a[data-easyedu-page-first],
+.local-groupimport-import-pagination a[data-easyedu-page-prev],
+.local-groupimport-import-pagination a[data-easyedu-page-next],
+.local-groupimport-import-pagination a[data-easyedu-page-last],
+.local-groupimport-import-pagination a[data-easystud-page-first],
+.local-groupimport-import-pagination a[data-easystud-page-prev],
+.local-groupimport-import-pagination a[data-easystud-page-next],
+.local-groupimport-import-pagination a[data-easystud-page-last] {align-items: center;display: inline-flex;inline-size: 1.85rem;justify-content: center;min-height: 1.85rem;min-inline-size: 1.85rem;padding: 0;text-align: center;
+}
+.local-groupimport-import-pagination button[data-easyedu-page-first] > .fa,
+.local-groupimport-import-pagination button[data-easyedu-page-prev] > .fa,
+.local-groupimport-import-pagination button[data-easyedu-page-next] > .fa,
+.local-groupimport-import-pagination button[data-easyedu-page-last] > .fa,
+.local-groupimport-import-pagination button[data-easystud-page-first] > .fa,
+.local-groupimport-import-pagination button[data-easystud-page-prev] > .fa,
+.local-groupimport-import-pagination button[data-easystud-page-next] > .fa,
+.local-groupimport-import-pagination button[data-easystud-page-last] > .fa,
+.local-groupimport-import-pagination a[data-easyedu-page-first] > .fa,
+.local-groupimport-import-pagination a[data-easyedu-page-prev] > .fa,
+.local-groupimport-import-pagination a[data-easyedu-page-next] > .fa,
+.local-groupimport-import-pagination a[data-easyedu-page-last] > .fa,
+.local-groupimport-import-pagination a[data-easystud-page-first] > .fa,
+.local-groupimport-import-pagination a[data-easystud-page-prev] > .fa,
+.local-groupimport-import-pagination a[data-easystud-page-next] > .fa,
+.local-groupimport-import-pagination a[data-easystud-page-last] > .fa {align-items: center;display: inline-flex;justify-content: center;line-height: 1;
+}
+@media (forced-colors: active) {
+  .local-groupimport-import-pagination button[data-easyedu-page-first],
+.local-groupimport-import-pagination button[data-easyedu-page-prev],
+.local-groupimport-import-pagination button[data-easyedu-page-next],
+.local-groupimport-import-pagination button[data-easyedu-page-last],
+.local-groupimport-import-pagination button[data-easystud-page-first],
+.local-groupimport-import-pagination button[data-easystud-page-prev],
+.local-groupimport-import-pagination button[data-easystud-page-next],
+.local-groupimport-import-pagination button[data-easystud-page-last],
+.local-groupimport-import-pagination a[data-easyedu-page-first],
+.local-groupimport-import-pagination a[data-easyedu-page-prev],
+.local-groupimport-import-pagination a[data-easyedu-page-next],
+.local-groupimport-import-pagination a[data-easyedu-page-last],
+.local-groupimport-import-pagination a[data-easystud-page-first],
+.local-groupimport-import-pagination a[data-easystud-page-prev],
+.local-groupimport-import-pagination a[data-easystud-page-next],
+.local-groupimport-import-pagination a[data-easystud-page-last] {border-color: ButtonText;
+  }
+}
+.local-groupimport-import-pagination button:hover,
+.local-groupimport-import-pagination button:focus-visible,
+.local-groupimport-import-pagination a:hover,
+.local-groupimport-import-pagination a:focus-visible {background: var(--easyedu-primary-soft);border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-card-border) 42%);color: var(--easyedu-primary-strong);
+}
+.local-groupimport-import-pagination button:focus-visible,
+.local-groupimport-import-pagination a:focus-visible {border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-card-border) 42%);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-import-pagination > [data-easyedu-page-label],
+.local-groupimport-import-pagination > [data-easystud-page-label] {align-items: center;display: inline-flex;justify-content: center;min-width: 0;text-align: center;color: var(--easyedu-text);font-size: 0.72rem;font-weight: var(--easyedu-font-weight-semibold);line-height: 1;
+}
+.local-groupimport-import-pagination > [data-easyedu-page-label] > span,
+.local-groupimport-import-pagination > [data-easystud-page-label] > span {align-items: center;display: inline-flex;justify-content: center;min-width: 0;text-align: center;
+}
+.local-groupimport-import-pagination button {align-items: center;display: inline-flex;inline-size: 1.85rem;justify-content: center;min-height: 1.85rem;min-inline-size: 1.85rem;padding: 0;text-align: center;
+}
+.local-groupimport-import-pagination button > .fa {align-items: center;display: inline-flex;justify-content: center;line-height: 1;
+}
+@media (forced-colors: active) {
+  .local-groupimport-import-pagination button {border-color: ButtonText;
+  }
+}
 
 @media (max-width: 1200px) {
   .local-groupimport-import__header,

@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
-$plugin->version = 2026101700;   // Privacy history retention and scheduled purge.
+$plugin->version = 2026101702;   // Privacy history retention and scheduled purge.
 $plugin->requires = 2025100600;  // Moodle 5.1 minimum.
 $plugin->maturity = MATURITY_BETA;
 $plugin->release = '0.4.2-beta';

@@ -257,5 +257,26 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026101700, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026101702) {
+        $dbman = $DB->get_manager();
+        $table = new xmldb_table('local_groupimport_jobs');
+        if (!$dbman->table_exists($table)) {
+            $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+            $table->add_field('historyid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('status', XMLDB_TYPE_CHAR, '16', null, XMLDB_NOTNULL, null, 'queued');
+            $table->add_field('nextrow', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('failcount', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('elapsedms', XMLDB_TYPE_INTEGER, '18', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('peakbytes', XMLDB_TYPE_INTEGER, '18', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('timenotified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+            $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+            $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+            $table->add_index('historyid', XMLDB_INDEX_UNIQUE, ['historyid']);
+            $dbman->create_table($table);
+        }
+        upgrade_plugin_savepoint(true, 2026101702, 'local', 'groupimport');
+    }
+
     return true;
 }

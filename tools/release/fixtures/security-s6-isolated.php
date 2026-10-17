@@ -22,23 +22,20 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-require __DIR__ . '/spreadsheet-libraries.php';
-define('MOODLE_INTERNAL', true);
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends RuntimeException {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $key Fixture argument.
-     * @param mixed $component Fixture argument.
-     * @param mixed $rest Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($key, $component = '', ...$rest) {
-        parent::__construct($key);
-    }
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
 }
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require(__DIR__ . '/spreadsheet-libraries.php');
+require_once(__DIR__ . '/doubles/security_s6_isolated/global/fixture_security_s6_isolated_moodle_exception.php');
+class_alias('fixture_security_s6_isolated_moodle_exception', 'moodle_exception');
 /**
  * Perform isolated fixture operation make_request_directory.
  * @return mixed Fixture result.
@@ -47,8 +44,8 @@ function make_request_directory() {
     return $GLOBALS['requestdir'];
 }
 $root = dirname(__DIR__, 3);
-require $root . '/classes/local/import_preview.php';
-require $root . '/classes/local/import_reader.php';
+require($root . '/classes/local/import_preview.php');
+require($root . '/classes/local/import_reader.php');
 use local_groupimport\local\import_reader as reader;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -140,7 +137,9 @@ try {
     check(count(reader::csv($many)['rows']) === 3000, '3000 rows retained');
     $max = "a;b;c\n" . str_repeat("1;2;3\n", 5000);
     check(count(reader::csv($max)['rows']) === 5000, '5000 parser boundary');
-    rejects(fn()=>reader::csv($max . "1;2;3\n"), '5001 data rows fail closed');
+    check(count(reader::csv($max . "1;2;3\n")['rows']) === 5001, '5001 rows use the background path');
+    check(count(reader::csv("a;b;c\n" . str_repeat("1;2;3\n", 10000))['rows']) === 10000, '10000 rows accepted within cells');
+    rejects(fn()=>reader::csv("a;b;c\n" . str_repeat("1;2;3\n", 16667)), 'Cell bound remains enforced');
     rejects(fn()=>reader::csv("a;b;c\n1;\"unclosed\n"), 'Unclosed CSV rejected');
     rejects(fn()=>reader::csv("a;b;c\n1;x\"bad;3\n"), 'Invalid quote rejected');
     rejects(fn()=>reader::csv("a;b\n1;\x00binary"), 'Binary rejected');
@@ -210,7 +209,7 @@ try {
     rejects(fn()=>reader::excel('anything', 'fake.ods'), 'Other reader formats rejected');
     check(glob($requestdir . '/import_*') === [], 'Exception cleanup');
     $book = new Spreadsheet();
-    $book->getActiveSheet()->setCellValue('A1', 'header')->setCellValue('A5002', 'overflow');
+    $book->getActiveSheet()->setCellValue('A1', 'header')->setCellValue('A' . (\local_groupimport\local\import_preview::MAX_ROWS + 2), 'overflow');
     rejects(fn()=>reader::excel(workbook($book), 'rows.xlsx'), 'Excel row bound');
     $book = new Spreadsheet();
     $book->getActiveSheet()->setCellValue('BM1', 'too-wide');

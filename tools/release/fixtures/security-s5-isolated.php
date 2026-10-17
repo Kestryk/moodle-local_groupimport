@@ -21,127 +21,34 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace core\event {
-    /**
-     * Isolated fixture double for base.
-     */
-    class base {
-        /** Fixture teaching-context marker. */
-        const LEVEL_TEACHING = 1;
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        protected array $data = [];
-        /**
-         * Perform isolated fixture operation __get.
-         * @param mixed $key Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __get($key) {
-            return $this->data[$key] ?? null;
-        }
-        /**
-         * Perform isolated fixture operation create.
-         * @param array $data Fixture argument.
-         * @return static Fixture result.
-         */
-        public static function create(array $data): static {
-            $e = new static();
-            $e->data = $data + ['userid' => 777, 'courseid' => $data['context']->instanceid];
-            $e->init();
-            return $e;
-        }
-        /**
-         * Perform isolated fixture operation trigger.
-         * @return void Fixture result.
-         */
-        public function trigger(): void {
-            $GLOBALS['pending'][] = static::class;
-        }
+namespace core\event {define('CLI_SCRIPT', true);
+    require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+    if (!MOODLE_INTERNAL) {
+        die('CLI fixtures only.');
     }
+
+
+    require_once(__DIR__ . '/../../../tools/release/fixtures/source_file.php');
+
+    require_once(__DIR__ . '/doubles/security_s5_isolated/core_event/fixture_security_s5_isolated_base.php');
+    class_alias('core\\event\\fixture_security_s5_isolated_base', 'core\\event\\base');
 }
 namespace {
     // Source-only S5 fixture. No Moodle bootstrap, database connection or network.
-    define('MOODLE_INTERNAL', true);
     define('SQL_PARAMS_NAMED', 2);
     define('PARAM_TEXT', 1);
     define('PARAM_ALPHANUM', 2);
     define('PARAM_ALPHA', 3);
-    /**
-     * Isolated fixture double for moodle_exception.
-     */
-    class moodle_exception extends RuntimeException {
-        /**
-         * Perform isolated fixture operation __construct.
-         * @param mixed $key Fixture argument.
-         * @param mixed $component Fixture argument.
-         * @param mixed $rest Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __construct($key, $component = '', ...$rest) {
-            parent::__construct($key);
-        }
-    }
-    /**
-     * Isolated fixture double for coding_exception.
-     */
-    class coding_exception extends RuntimeException {
-    }
-    /**
-     * Isolated fixture double for core_php_time_limit.
-     */
-    class core_php_time_limit {
-        /**
-         * Perform isolated fixture operation raise.
-         * @param mixed $seconds Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public static function raise($seconds) {
-        }
-    }
-    /**
-     * Isolated fixture double for context_course.
-     */
-    class context_course {
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        public int $id;
-        /**
-         * Perform isolated fixture operation __construct.
-         * @param int $instanceid Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __construct(
-            /**
-             * @var mixed Standalone fixture state.
-             */
-            public int $instanceid
-        ) {
-            $this->id = 1000 + $instanceid;
-        }
-        /**
-         * Perform isolated fixture operation instance.
-         * @param mixed $id Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public static function instance($id) {
-            return new self($id);
-        }
-    }
-    /**
-     * Isolated fixture double for core_text.
-     */
-    class core_text {
-        /**
-         * Perform isolated fixture operation strtolower.
-         * @param mixed $s Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public static function strtolower($s) {
-            return mb_strtolower($s);
-        }
-    }
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_moodle_exception.php');
+    class_alias('fixture_security_s5_isolated_moodle_exception', 'moodle_exception');
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_coding_exception.php');
+    class_alias('fixture_security_s5_isolated_coding_exception', 'coding_exception');
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_core_php_time_limit.php');
+    class_alias('fixture_security_s5_isolated_core_php_time_limit', 'core_php_time_limit');
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_context_course.php');
+    class_alias('fixture_security_s5_isolated_context_course', 'context_course');
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_core_text.php');
+    class_alias('fixture_security_s5_isolated_core_text', 'core_text');
     /**
      * Perform isolated fixture operation get_enrolled_sql.
      * @param mixed $context Fixture argument.
@@ -271,341 +178,12 @@ namespace {
     function local_groupimport_count_string($key, $value) {
         return $key . ':' . $value;
     }
-    /**
-     * Isolated fixture double for rows.
-     */
-    class rows extends ArrayIterator {
-        /**
-         * Perform isolated fixture operation close.
-         * @return void Fixture result.
-         */
-        public function close(): void {
-            $GLOBALS['closed']++;
-        }
-    }
-    /**
-     * Isolated fixture double for transaction.
-     */
-    class transaction {
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        private array $state;
-        /**
-         * Perform isolated fixture operation __construct.
-         * @param object $db Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function __construct(
-            /**
-             * @var mixed Standalone fixture state.
-             */
-            private object $db
-        ) {
-            $this->state = unserialize(serialize([$db->members, $db->history, $GLOBALS['pending'], $GLOBALS['events']]));
-        }
-        /**
-         * Perform isolated fixture operation allow_commit.
-         * @return mixed Fixture result.
-         */
-        public function allow_commit() {
-            array_push($GLOBALS['events'], ...$GLOBALS['pending']);
-            $GLOBALS['pending'] = [];
-            $GLOBALS['commits']++;
-        }
-        /**
-         * Perform isolated fixture operation rollback.
-         * @param mixed $e Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function rollback($e) {
-            [$this->db->members, $this->db->history, $GLOBALS['pending'], $GLOBALS['events']] = $this->state;
-            $GLOBALS['rollbacks']++;
-            throw $e;
-        }
-    }
-    /**
-     * Isolated fixture double for memory_db.
-     */
-    class memory_db {
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        public array $users = [], $groups = [], $members = [], $history = [], $queries = [];
-        /**
-         * @var mixed Standalone fixture state.
-         */
-        public bool $failhistory = false;
-        /**
-         * Perform isolated fixture operation start_delegated_transaction.
-         * @return mixed Fixture result.
-         */
-        public function start_delegated_transaction() {
-            return new transaction($this);
-        }
-        /**
-         * Perform isolated fixture operation get_in_or_equal.
-         * @param array $values Fixture argument.
-         * @param mixed $mode Fixture argument.
-         * @param mixed $prefix Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_in_or_equal(array $values, $mode, $prefix = 'value') {
-            $params = [];
-            foreach ($values as $i => $v) {
-                $params[$prefix . $i] = $v;
-            }
-            return ['IN (' . implode(',', array_map(fn($k)=>':' . $k, array_keys($params))) . ')', $params];
-        }
-        /**
-         * Perform isolated fixture operation sql_null_from_clause.
-         * @return mixed Fixture result.
-         */
-        public function sql_null_from_clause() {
-            return '';
-        }
-        /**
-         * Perform isolated fixture operation matches.
-         * @param mixed $u Fixture argument.
-         * @param mixed $field Fixture argument.
-         * @param mixed $value Fixture argument.
-         * @param mixed $params Fixture argument.
-         * @return bool Fixture result.
-         */
-        private function matches($u, $field, $value, $params): bool {
-            if ($u->deleted || !in_array($u->id, $GLOBALS['enrolled'][$params['enrolcourse']] ?? [], true)) {
-                return false;
-            }
-            if ($field === 'profile') {
-                return ($u->profile ?? '') === $value;
-            }
-            return strcasecmp((string)$u->$field, (string)$value) === 0;
-        }
-        /**
-         * Perform isolated fixture operation get_records_sql.
-         * @param mixed $sql Fixture argument.
-         * @param mixed $params Fixture argument.
-         * @param mixed $offset Fixture argument.
-         * @param mixed $limit Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_records_sql($sql, $params, $offset = 0, $limit = 0) {
-            $this->queries[] = $sql;
-            if (
-                !isset($params['enrolcourse']) ||
-                !str_contains(
-                    $sql,
-                    'JOIN (SELECT userid AS id'
-                )
-            ) {
-                throw new RuntimeException('Unscoped user read');
-            }
-            if (
-                !str_starts_with(
-                    $sql,
-                    'SELECT DISTINCT u.id '
-                ) &&
-                !str_starts_with(
-                    $sql,
-                    'SELECT u.id '
-                )
-            ) {
-                throw new RuntimeException('Excess user fields');
-            }
-            $result = [];
-            foreach ($this->users as $u) {
-                $field = str_contains(
-                    $sql,
-                    'd.data'
-                ) ? 'profile' : (preg_match(
-                    '/u\.(email|username|idnumber) = :lookupvalue/',
-                    $sql,
-                    $m
-                ) ? $m[1] : '');
-                $match = $field !== '' ? $this->matches(
-                    $u,
-                    $field,
-                    $params['lookupvalue'],
-                    $params
-                ) : in_array(
-                    $u->id,
-                    $GLOBALS['enrolled'][$params['enrolcourse']] ?? [],
-                    true
-                );
-                if ($match && !$u->deleted) {
-                    $result[$u->id] = (object)['id' => $u->id];
-                }
-            }return $limit ? array_slice($result, 0, $limit, true) : $result;
-        }
-        /**
-         * Perform isolated fixture operation get_recordset_sql.
-         * @param mixed $sql Fixture argument.
-         * @param mixed $params Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_recordset_sql($sql, $params) {
-            if (str_contains($sql, 'FROM {groupings}')) {
-                return new rows([]);
-            }
-            if (
-                str_contains(
-                    $sql,
-                    'FROM {groups_members}'
-                )
-            ) {
-                return new rows(array_values(array_map(
-                    fn($r)=>
-                        (object)$r,
-                    $this->members
-                )));
-            }
-            if (str_contains($sql, 'FROM {groupings_groups}')) {
-                return new rows([]);
-            }
-            if (
-                !str_starts_with(
-                    $sql,
-                    'SELECT r.id, inputs.inputindex'
-                ) ||
-                !str_contains(
-                    $sql,
-                    'JOIN (SELECT userid AS id'
-                ) ||
-                !isset($params['enrolcourse'])
-            ) {
-                throw new RuntimeException('Unscoped or excessive batch query');
-            }
-            $this->queries[] = $sql;
-            $field = str_contains(
-                $sql,
-                'd.data'
-            ) ? 'profile' : (preg_match(
-                '/r\.(email|username|idnumber) = inputs/',
-                $sql,
-                $m
-            ) ? $m[1] : '');
-            $result = [];
-            foreach ($params as $key => $value) {
-                if (!preg_match('/^input(\d+)$/', $key, $m)) {
-                    continue;
-                }
-                foreach ($this->users as $u) {
-                    if (
-                        $this->matches(
-                            $u,
-                            $field,
-                            $value,
-                            $params
-                        )
-                    ) {
-                        $result[] = (object)['id' =>
-                        $u->id,
-                        'batchinputindex' =>
-                        (int)$m[1]];
-                    }
-                }
-            }return new rows($result);
-        }
-        /**
-         * Perform isolated fixture operation get_records_select.
-         * @param mixed $table Fixture argument.
-         * @param mixed $where Fixture argument.
-         * @param mixed $params Fixture argument.
-         * @param mixed $sort Fixture argument.
-         * @param mixed $fields Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_records_select($table, $where, $params, $sort, $fields) {
-            $out = [];
-            foreach ($this->users as $id => $u) {
-                if (in_array($id, $params, true)) {
-                    $out[$id] = (object)['id' => $id];
-                }
-            }
-            return $out;
-        }
-        /**
-         * Perform isolated fixture operation get_records.
-         * @param mixed $table Fixture argument.
-         * @param mixed $conditions Fixture argument.
-         * @param mixed $sort Fixture argument.
-         * @param mixed $fields Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_records($table, $conditions, $sort = '', $fields = '*') {
-            if ($table === 'groupings_groups') {
-                return [];
-            }
-            if ($table !== 'groups_members') {
-                throw new RuntimeException('Unexpected records');
-            }
-            $out = [];
-            foreach ($this->members as $key => $row) {
-                if ($row['groupid'] === $conditions['groupid']) {
-                    $out[$key] = (object)$row;
-                }
-            }
-            return $out;
-        }
-        /**
-         * Perform isolated fixture operation get_field.
-         * @param mixed $table Fixture argument.
-         * @param mixed $field Fixture argument.
-         * @param mixed $conditions Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function get_field($table, $field, $conditions) {
-            return false;
-        }
-        /**
-         * Perform isolated fixture operation record_exists.
-         * @param mixed $table Fixture argument.
-         * @param mixed $conditions Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function record_exists($table, $conditions) {
-            return false;
-        }
-        /**
-         * Perform isolated fixture operation insert_record.
-         * @param mixed $table Fixture argument.
-         * @param mixed $record Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function insert_record($table, $record) {
-            if ($this->failhistory) {
-                throw new RuntimeException('forced history failure');
-            }
-            $id = count($this->history) + 1;
-            $record = clone$record;
-            $record->id = $id;
-            $this->history[$id] = $record;
-            return $id;
-        }
-        /**
-         * Perform isolated fixture operation set_field.
-         * @param mixed $table Fixture argument.
-         * @param mixed $field Fixture argument.
-         * @param mixed $value Fixture argument.
-         * @param mixed $conditions Fixture argument.
-         * @return mixed Fixture result.
-         */
-        public function set_field($table, $field, $value, $conditions) {
-            $this->history[$conditions['id']]->$field = $value;
-        }
-    }
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_rows.php');
+    class_alias('fixture_security_s5_isolated_rows', 'rows');
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_transaction.php');
+    class_alias('fixture_security_s5_isolated_transaction', 'transaction');
+    require_once(__DIR__ . '/doubles/security_s5_isolated/global/fixture_security_s5_isolated_memory_db.php');
+    class_alias('fixture_security_s5_isolated_memory_db', 'memory_db');
     /**
      * Perform isolated fixture operation load_functions.
      * @param mixed $file Fixture argument.
@@ -638,7 +216,7 @@ namespace {
                 }if ($t === '}' && --$depth === 0 && $started) {
                     break;
                 }
-            }eval($body);
+            }require(\local_groupimport_fixture_source_file($body));
         }
     }
     $checks = 0;
@@ -658,16 +236,16 @@ namespace {
     $translations = [];
     foreach (['en', 'fr'] as $language) {
         $string = [];
-        require $root . '/lang/' . $language . '/local_groupimport.php';
+        require($root . '/lang/' . $language . '/local_groupimport.php');
         $translations[$language] = $string;
     }
-    require $root . '/classes/local/import_user_lookup.php';
-    require $root . '/classes/local/batch_reader.php';
-    require $root . '/classes/local/import_execution.php';
-    require $root . '/classes/event/import_applied.php';
-    require $root . '/classes/event/import_rolled_back.php';
+    require($root . '/classes/local/import_user_lookup.php');
+    require($root . '/classes/local/batch_reader.php');
+    require($root . '/classes/local/import_execution.php');
+    require($root . '/classes/event/import_applied.php');
+    require($root . '/classes/event/import_rolled_back.php');
     load_functions(
-        $root . '/index.php',
+        $root . '/importlib.php',
         ['local_groupimport_clean_cell',
          'local_groupimport_find_import_users_by_field',
          'local_groupimport_find_import_user',

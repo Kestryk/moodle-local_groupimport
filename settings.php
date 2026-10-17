@@ -280,6 +280,14 @@ if ($hassiteconfig) {
         PARAM_INT
     ));
 
+    $settings->add(new admin_setting_configtext(
+        'local_groupimport/importmaxrows',
+        get_string('importmaxrows', 'local_groupimport'),
+        get_string('importmaxrows_desc', 'local_groupimport'),
+        50000,
+        PARAM_INT
+    ));
+
     $participantdisplayfieldoptions = ['' => get_string('none')] + $customfieldoptions;
 
     $renderchips = static function (array $fields, string $modifier): string {
