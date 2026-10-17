@@ -1,0 +1,67 @@
+{{!
+    @template guide_specimen_group
+
+    Illustration only: one group card drawn with the real card classes of the product
+    (selector, header, counter, hover actions, member rows, empty row, identifier
+    panel), without any data-easystud-* hook, link or form control.
+    Actions use the product's "Guide target" marker, which keeps hover-only actions
+    visible, because an illustration cannot be hovered.
+
+    Example context (json):
+    {
+        "groupname": "TD 1",
+        "groupcount": 0,
+        "groupcountempty": true,
+        "treecard": false,
+        "groupactions": true,
+        "grouppath": false,
+        "grouppointer": false,
+        "members": [{"membername": "Alice Martin", "memberpath": false}]
+    }
+}}
+<div class="local-groupimport-easystud-group{{^treecard}} local-groupimport-easystud-group--catalog{{/treecard}}{{#grouppath}} is-guide-path{{/grouppath}}">
+    <span class="local-groupimport-easystud-selector local-groupimport-easystud-selector--group" aria-hidden="true">
+        <input type="checkbox" tabindex="-1" aria-hidden="true">
+        <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
+    </span>
+    <div class="local-groupimport-easystud-group__header">
+        <span class="local-groupimport-easystud-group__name">{{groupname}}</span>
+        <span class="badge bg-light text-dark local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--{{#groupcountempty}}empty{{/groupcountempty}}{{^groupcountempty}}filled{{/groupcountempty}} local-groupimport-easystud-count-badge--members"><span class="fa fa-users" aria-hidden="true"></span><span>{{groupcount}}</span></span>
+        {{#groupactions}}
+        <span class="btn btn-link p-0 local-groupimport-easystud-group__member-search-button is-easyedu-guide-highlight-target"><span class="fa fa-search" aria-hidden="true"></span></span>
+        <span class="btn btn-link p-0 local-groupimport-easystud-group__mail-button is-easyedu-guide-highlight-target{{#grouppointer}} is-guide-pointed{{/grouppointer}}"><span class="fa fa-at" aria-hidden="true"></span></span>
+        <span class="btn btn-link p-0 local-groupimport-easystud-group__duplicate-button is-easyedu-guide-highlight-target"><span class="fa fa-copy" aria-hidden="true"></span></span>
+        <span class="btn btn-link p-0 local-groupimport-easystud-group__settings-button is-easyedu-guide-highlight-target"><span class="fa fa-cog" aria-hidden="true"></span></span>
+        <span class="btn btn-link p-0 local-groupimport-easystud-rename__toggle is-easyedu-guide-highlight-target"><span class="fa fa-pen" aria-hidden="true"></span></span>
+        {{/groupactions}}
+    </div>
+    <ul class="local-groupimport-easystud-group__members">
+        {{#groupempty}}
+        <li class="local-groupimport-easystud-tree__empty easyedu-entity-card-empty easyedu-entity-card-empty--group">
+            <span class="easyedu-entity-card-empty__icon" aria-hidden="true"><span class="fa fa-user-plus"></span></span>
+            <span class="easyedu-entity-card-empty__copy"><span>{{groupemptytext}}</span><small class="easyedu-entity-card-empty__help">{{groupemptyhelp}}</small></span>
+        </li>
+        {{/groupempty}}
+        {{#members}}
+        <li class="local-groupimport-easystud-member easyedu-related-person-row{{#memberpath}} is-guide-path{{/memberpath}}">
+            <span class="local-groupimport-easystud-selector local-groupimport-easystud-selector--member easyedu-related-person-row__selector" aria-hidden="true">
+                <input type="checkbox" tabindex="-1" aria-hidden="true">
+                <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
+            </span>
+            <span class="local-groupimport-easystud-member__name easyedu-related-person-row__name">{{membername}}</span>
+        </li>
+        {{/members}}
+    </ul>
+    {{#panel}}
+    <div class="local-groupimport-easystud-group-email easyedu-guide-spec__panel is-open">
+        <textarea class="form-control form-control-sm" rows="2" readonly tabindex="-1" aria-hidden="true">{{panelvalue}}</textarea>
+        <div class="easyedu-guide-scene__inspection-chips" aria-hidden="true">
+            {{#panelchips}}<span{{#unresolved}} class="is-unresolved"{{/unresolved}}><span class="fa {{#unresolved}}fa-question{{/unresolved}}{{^unresolved}}fa-check{{/unresolved}}" aria-hidden="true"></span> {{chiplabel}}</span>{{/panelchips}}
+        </div>
+        <div class="local-groupimport-easystud-inline-actions">
+            <span class="btn btn-sm btn-primary"><span class="fa fa-plus" aria-hidden="true"></span> <span>{{panelsubmit}}</span></span>
+            <span class="btn btn-sm btn-outline-secondary">{{panelcancel}}</span>
+        </div>
+    </div>
+    {{/panel}}
+</div>

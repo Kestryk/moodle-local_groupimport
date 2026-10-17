@@ -127,7 +127,7 @@ $runtimeJavascript = ($runtimeJavascript -replace "`r`n", "`n").TrimEnd() + "`n"
 # translated hover/completion labels retained. Checking just the embedded
 # package cannot prove that Moodle's rendered template has been updated.
 $runtimeTemplate = Read-NormalizedText $canonicalTemplatePath
-$runtimeTemplate = $runtimeTemplate.Replace('{{> guide_simplecreate}}', '{{> local_groupimport/guide_simplecreate}}')
+$runtimeTemplate = [regex]::Replace($runtimeTemplate, '{{> (guide_\w+)}}', '{{> local_groupimport/$1}}')
 $runtimeTemplate = $runtimeTemplate.Replace(
     '<span class="easyedu-guide__launcher-label">{{guideopenlabel}}</span>',
     '<span class="easyedu-guide__launcher-label" aria-hidden="true">{{guidehoverlabel}}</span>')
@@ -245,6 +245,30 @@ $items = @(
         Expected = $runtimeJavascript
     }
 )
+
+# E1-E4 partials are public Guide templates, adapted only at the Moodle namespace boundary.
+foreach ($partial in @('guide_specimen', 'guide_specimen_group', 'guide_specimen_grouping', 'guide_specimen_participant', 'guide_anatomy')) {
+    $canonicalPartial = Resolve-OwnedPath $kitRoot ("guide\templates\" + $partial + '.mustache')
+    $partialText = Read-NormalizedText $canonicalPartial
+    $items += [pscustomobject]@{
+        Name = "embedded $partial Mustache"
+        Source = $canonicalPartial
+        Target = Resolve-OwnedPath $pluginRootPath ("easyedu-guide-kit\templates\" + $partial + '.mustache')
+        Expected = $partialText
+    }
+    $items += [pscustomobject]@{
+        Name = "runtime $partial Mustache"
+        Source = $canonicalPartial
+        Target = Resolve-OwnedPath $pluginRootPath ("templates\" + $partial + '.mustache')
+        Expected = [regex]::Replace($partialText.Replace('@template ' + $partial, '@template local_groupimport/' + $partial), '{{> (guide_\w+)}}', '{{> local_groupimport/$1}}')
+    }
+}
+$items += [pscustomobject]@{
+    Name = 'canonical specimen SCSS'
+    Source = Resolve-OwnedPath $kitRoot 'scss\easyedu\components\_guide-specimen.scss'
+    Target = Resolve-OwnedPath $pluginRootPath 'scss\easyedu\components\_guide-specimen.scss'
+    Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot 'scss\easyedu\components\_guide-specimen.scss')
+}
 
 $drift = New-Object System.Collections.Generic.List[object]
 if ($GuideOnly) {

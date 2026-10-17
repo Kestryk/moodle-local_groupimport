@@ -1115,3 +1115,9 @@ the relevant relation section. Added rows fade through Motion.enter (0px travel)
 including reduced mode; minimal stays immediate. Announce the added row count.
 Record isolated three-level Motion compatibility separately from published M1
 server/CSS proof. See docs/testing/long-lists-k16-01-2026-10-16.md.
+
+Guide E1–E4 owns seven generic partials including fictional specimens and anatomy.
+Mirror and namespace-adapt them atomically with the engine/specimen SCSS; retain
+all six exports, translated consumer labels and unchanged product programs.
+Disabled segmented choices remain dimmed and native toggle inputs are contained
+by the positioned toggle root. Source parity does not certify native behavior.
