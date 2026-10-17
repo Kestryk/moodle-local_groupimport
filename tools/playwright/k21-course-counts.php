@@ -13,16 +13,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
-// Read-only expected model counts for the managed principal course5 recipe.
 
 /**
- * Standalone local_groupimport test fixture or release helper.
+ * Standalone CLI test fixture and release validation.
  *
  * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('CLI_SCRIPT', true);
+
+// Read-only expected model counts for the managed principal course5 recipe.
+
 require($argv[1] . '/config.php');
 echo json_encode([
     'groups' => $DB->count_records('groups', ['courseid' => 5]),

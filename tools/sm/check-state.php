@@ -28,9 +28,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define('CLI_SCRIPT', true);
-
 // The plugin may be linked into the tested Moodle; --moodle-root names that Moodle explicitly.
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $moodleroot = dirname(__DIR__, 4);
 foreach ($argv as $arg) {
     if (strpos($arg, '--moodle-root=') === 0) {

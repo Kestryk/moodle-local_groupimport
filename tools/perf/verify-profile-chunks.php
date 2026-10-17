@@ -14,103 +14,34 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
+/**
+ * Standalone CLI test fixture and release validation.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 /** AP-E7: execute both actual functions against deterministic Moodle DML doubles.  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 define('SQL_PARAMS_NAMED', 2);
 $options = getopt('', ['before:', 'after:']);
 $checks = [];
-/**
- * Isolated fixture double for profile_chunk_db.
- */
-class profile_chunk_db {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public array $sizes = [];
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public int $closed = 0;
-    /**
-     * Perform isolated fixture operation get_in_or_equal.
-     * @param mixed $values Fixture argument.
-     * @param mixed $type Fixture argument.
-     * @param mixed $prefix Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_in_or_equal($values, $type, $prefix = 'param') {
-        $params = [];
-        foreach (array_values($values) as $i => $value) {
-            $params[$prefix . $i] = $value;
-        }
-        if ($prefix !== 'field') {
-            $this->sizes[] = count($values);
-        }
-        return ['IN (' . implode(',', array_map(static fn($key) => ':' . $key, array_keys($params))) . ')', $params];
-    }
-    /**
-     * Perform isolated fixture operation rows.
-     * @param array $params Fixture argument.
-     * @return array Fixture result.
-     */
-    public function rows(array $params): array {
-        $rows = [];
-        foreach ($params as $key => $id) {
-            if (str_starts_with($key, 'field')) {
-                continue;
-            }
-            foreach (['alpha', 'beta'] as $field) {
-                $rows[] = (object)['id' => $id * 2 + ($field === 'beta' ? 1 : 0),
-                    'userid' => $id, 'shortname' => $field, 'data' => '<b>' . $field . '-' . $id . '</b>'];
-            }
-        }
-        return $rows;
-    }
-    /**
-     * Perform isolated fixture operation get_recordset_sql.
-     * @param mixed $sql Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_recordset_sql($sql, $params) {
-        return new class ($this->rows($params), $this) extends ArrayIterator {
-            /**
-             * Perform isolated fixture operation __construct.
-             * @param array $rows Fixture argument.
-             * @param profile_chunk_db $db Fixture argument.
-             * @return mixed Fixture result.
-             */
-            public function __construct(
-                array $rows,
-                public profile_chunk_db $db
-            ) {
-                parent::__construct($rows);
-            }
-            /**
-             * Perform isolated fixture operation close.
-             * @return void Fixture result.
-             */
-            public function close(): void {
-                $this->db->closed++;
-            }
-        };
-    }
-    /**
-     * Perform isolated fixture operation get_records_sql.
-     * @param mixed $sql Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_records_sql($sql, $params) {
-        $rows = [];
-        // Preserve the historical userid-first-column collision, not a redesign.
-        foreach ($this->rows($params) as $row) {
-            $rows[$row->userid] = $row;
-        }
-        return $rows;
-    }
-}
+require_once(__DIR__ . '/doubles/verify_profile_chunks/global/fixture_verify_profile_chunks_profile_chunk_db.php');
+class_alias('fixture_verify_profile_chunks_profile_chunk_db', 'profile_chunk_db');
 /**
  * Perform isolated fixture operation local_groupimport_normalise_participant_label_value.
  * @param mixed $value Fixture argument.
@@ -127,11 +58,11 @@ foreach (['before', 'after'] as $variant) {
         if ($start === false || $end < $start) {
             throw new RuntimeException('Function boundary missing.');
         }
-        eval(str_replace(
+        require(\local_groupimport_fixture_source_file(str_replace(
             'function ' . $name . '(',
             'function ' . $variant . '_' . $name . '(',
             substr($source, $start, $end - $start)
-        ));
+        )));
     }
 }
 foreach ([0, 1, 999, 1000, 1001, 3000, 10000] as $size) {

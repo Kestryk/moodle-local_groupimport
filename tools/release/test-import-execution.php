@@ -22,96 +22,21 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends Exception {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $code Fixture argument.
-     * @param mixed $args Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($code, ...$args) {
-        parent::__construct($code);
-    }
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
 }
-/**
- * Isolated fixture double for core_php_time_limit.
- */
-class core_php_time_limit {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public static $seconds;
-    /**
-     * Perform isolated fixture operation raise.
-     * @param mixed $seconds Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function raise($seconds) {
-        self::$seconds = $seconds;
-    }
-}
+
+require_once(__DIR__ . '/doubles/test_import_execution/global/fixture_test_import_execution_moodle_exception.php');
+class_alias('fixture_test_import_execution_moodle_exception', 'moodle_exception');
+require_once(__DIR__ . '/doubles/test_import_execution/global/fixture_test_import_execution_core_php_time_limit.php');
+class_alias('fixture_test_import_execution_core_php_time_limit', 'core_php_time_limit');
 require(__DIR__ . '/../../classes/local/import_execution.php');
 use local_groupimport\local\import_execution;
 $events = [];
-$DB = new
-/**
- * Isolated fixture double for __construct.
- */
-class ($events) {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    private $events;
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $events Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct(&$events) {
-        $this->events =& $events;
-    }
-    /**
-     * Perform isolated fixture operation start_delegated_transaction.
-     * @return mixed Fixture result.
-     */
-    public function start_delegated_transaction() {
-        $this->events[] = 'begin';
-        return new class ($this->events) {
-            /**
-             * @var mixed Standalone fixture state.
-             */
-            private $events;
-            /**
-             * Perform isolated fixture operation __construct.
-             * @param mixed $events Fixture argument.
-             * @return mixed Fixture result.
-             */
-            public function __construct(&$events) {
-                $this->events =& $events;
-            }
-            /**
-             * Perform isolated fixture operation allow_commit.
-             * @return mixed Fixture result.
-             */
-            public function allow_commit() {
-                $this->events[] = 'commit';
-            }
-            /**
-             * Perform isolated fixture operation rollback.
-             * @param mixed $exception Fixture argument.
-             * @return mixed Fixture result.
-             */
-            public function rollback($exception) {
-                $this->events[] = 'rollback';
-                throw $exception;
-            }
-        };
-    }
-};
+require_once(__DIR__ . '/doubles/test_import_execution/global/fixture_test_import_execution_anonymous_1.php');
+$DB = new fixture_test_import_execution_anonymous_1($events);
 $check = function ($condition) {
     if (!$condition) {
         throw new RuntimeException('Import execution check failed');

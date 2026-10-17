@@ -22,21 +22,21 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 $hassiteconfig = false;
 $testconfig = [];
-/**
- * Isolated fixture double for admin_setting_configtext.
- */
-class admin_setting_configtext {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $arguments Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct(...$arguments) {
-    }
-}
+require_once(__DIR__ . '/doubles/test_theme_palette_standalone/global/fixture_test_theme_palette_standalone_admin_setting_configtext.php');
+class_alias('fixture_test_theme_palette_standalone_admin_setting_configtext', 'admin_setting_configtext');
 /**
  * Perform isolated fixture operation get_string.
  * @param string $key Fixture argument.
@@ -57,8 +57,8 @@ function get_config(string $component, string $key): string {
     return $testconfig[$key] ?? '';
 }
 
-require dirname(__DIR__, 2) . '/lib.php';
-require dirname(__DIR__, 2) . '/settings.php';
+require(dirname(__DIR__, 2) . '/lib.php');
+require(dirname(__DIR__, 2) . '/settings.php');
 
 $setting = new local_groupimport_admin_setting_configcolor(
     'local_groupimport/themeprimarycolor',

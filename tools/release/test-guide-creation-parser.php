@@ -22,12 +22,19 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 $source = file_get_contents(__DIR__ . '/../../ajax.php');
 $start = strpos($source, 'function local_groupimport_extract_create_names(');
 if ($start === false) {
     throw new RuntimeException('Missing creation parser');
 }
-eval(substr($source, $start));
+require(\local_groupimport_fixture_source_file(substr($source, $start)));
 $cases = [
     ['Assignment #*4', ['Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4']],
     ['Workshop @*3', ['Workshop A', 'Workshop B', 'Workshop C']],

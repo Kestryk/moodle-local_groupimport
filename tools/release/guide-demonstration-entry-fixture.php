@@ -22,6 +22,12 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
 ob_start();
 require(__DIR__ . '/guide-current-curriculum-fixture.php');
 $data = json_decode(ob_get_clean(), true, 512, JSON_THROW_ON_ERROR);

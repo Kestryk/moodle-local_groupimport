@@ -15,7 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated presentation data: no Moodle session or database.
 
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
 require(__DIR__ . '/../../lang/' . (($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en') . '/local_groupimport.php');
 /**
  * Perform isolated fixture operation get_string.
@@ -44,5 +50,5 @@ if ($start === false || $end === false) {
 $slide = ['index' => 0, 'title' => $string['tutorialmistakestitle'],
     'content' => '<p>' . htmlspecialchars($string['tutorialmistakescontent'], ENT_QUOTES, 'UTF-8') . '</p>'];
 $templatedata = $string;
-eval(substr($manage, $start + strlen($marker), $end - $start - strlen($marker)));
+require(\local_groupimport_fixture_source_file(substr($manage, $start + strlen($marker), $end - $start - strlen($marker))));
 echo json_encode(['actionLessons' => [$slide]], JSON_THROW_ON_ERROR);

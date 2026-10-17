@@ -13,16 +13,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
-// Bounded reversible configuration for the explicitly requested complete-view recipe.
 
 /**
- * Standalone local_groupimport test fixture or release helper.
+ * Standalone CLI test fixture and release validation.
  *
  * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('CLI_SCRIPT', true);
+
+// Bounded reversible configuration for the explicitly requested complete-view recipe.
+
 require($argv[1] . '/config.php');
 $action = $argv[2] ?? 'read';
 if ($action === 'enable') {
