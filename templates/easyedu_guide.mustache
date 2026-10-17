@@ -623,12 +623,11 @@
                                             </ol>
                                         {{/guidedpathsteps}}
                                     </div>
-                                    <button type="button" class="btn btn-primary easyedu-guide-slide__start" data-easyedu-guide-start-path="{{guidedpath}}">
-                                        <span>{{guidestartpathlabel}}</span>
+                                    <button type="button" class="btn btn-primary easyedu-guide-slide__start" data-easyedu-guide-start-path="{{guidedpath}}" data-start-label="{{guidestartpathlabel}}" data-resume-label="{{guideresumeguidedlabel}}">
+                                        <span data-easyedu-guide-start-label>{{guidestartpathlabel}}</span>
                                         <span class="fa fa-arrow-right" aria-hidden="true"></span>
                                     </button>
                                     <div class="easyedu-guide-guided-card__progress" data-easyedu-guide-path-progress hidden>
-                                        <small>{{guideresumetitle}}</small>
                                         <button type="button" class="btn btn-outline-secondary easyedu-guide-guided-card__reset" data-easyedu-guide-reset-path="{{guidedpath}}" hidden>{{guideresetpathlabel}}</button>
                                     </div>
                                     <span class="easyedu-guide-scene__caption" data-easyedu-guide-path-status role="status" aria-live="polite"></span>

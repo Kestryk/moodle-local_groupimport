@@ -860,6 +860,7 @@ $string['discovery_membership_body'] = 'Comparez « Ajouter » et « Déplace
 $string['discovery_membership_note'] = 'Comparez « Ajouter » et « Déplacer » pour les membres d’un groupe. « Ajouter » les garde dans « Projet Orion » et les ajoute à « Projet Horizon ». « Déplacer » les retire de « Projet Orion », après confirmation. Leurs autres groupes ne changent pas.';
 $string['discovery_resume_title'] = 'Un parcours guidé est en cours.';
 $string['guideresumepath'] = 'Reprendre';
+$string['guideresumeguidedpath'] = 'Reprendre le parcours guidé';
 $string['discovery_cancel_path'] = 'Annuler le parcours';
 $string['discovery_reset_path'] = 'Réinitialiser ce parcours';
 $string['discovery_path_reset_feedback'] = 'Parcours réinitialisé. Recommencez quand vous le souhaitez.';

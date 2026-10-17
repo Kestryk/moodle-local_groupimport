@@ -909,6 +909,7 @@ $string['discovery_membership_body'] = 'Compare “Add” and “Move” from �
 $string['discovery_membership_note'] = 'Compare “Add” and “Move” for the members of a group. “Add” keeps them in “Projet Orion” and adds them to “Projet Horizon”. “Move” removes them from “Projet Orion”, after confirmation. Their other groups do not change.';
 $string['discovery_resume_title'] = 'A guided path is in progress.';
 $string['guideresumepath'] = 'Resume';
+$string['guideresumeguidedpath'] = 'Resume the guided tour';
 $string['discovery_cancel_path'] = 'Cancel path';
 $string['discovery_reset_path'] = 'Reset this path';
 $string['discovery_path_reset_feedback'] = 'Path reset. Start again when you are ready.';

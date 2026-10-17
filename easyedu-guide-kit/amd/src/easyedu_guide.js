@@ -519,6 +519,16 @@ const syncPathInvitation = (root, config) => {
     button.hidden = state.path !== path || isPathComplete(config, path);
     const footer = button.closest('[data-easyedu-guide-path-progress]');
     if (footer) { footer.hidden = button.hidden; }
+    // K17-67: while this path is in progress, its start button resumes it where it stood.
+    root.querySelectorAll('[data-easyedu-guide-start-path]').forEach(start => {
+      if (start.getAttribute('data-easyedu-guide-start-path') !== path || !start.dataset.resumeLabel) {
+        return;
+      }
+      const label = start.querySelector('[data-easyedu-guide-start-label]');
+      if (label) {
+        label.textContent = button.hidden ? start.dataset.startLabel : start.dataset.resumeLabel;
+      }
+    });
   });
 };
 
