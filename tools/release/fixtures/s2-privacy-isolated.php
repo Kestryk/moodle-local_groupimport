@@ -153,8 +153,7 @@ namespace core_privacy\local\request {
          * @param string $component Fixture argument.
          * @return mixed Fixture result.
          */
-        public function __construct(private \context
-        $context, string $component = '') {
+        public function __construct(private \context $context, string $component = '') {
         }
         /**
          * Perform isolated fixture operation get_context.

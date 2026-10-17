@@ -44,7 +44,8 @@ $before = stream_get_contents($pipes[1]);
 $error = stream_get_contents($pipes[2]);
 fclose($pipes[1]);
 fclose($pipes[2]);
-if (proc_close($proc) !== 0)throw new RuntimeException($error);
+if (proc_close($proc) !== 0) { throw new RuntimeException($error);
+}
 $before = str_replace("\r\n", "\n", $before);
 $after = str_replace("\r\n", "\n", file_get_contents($root . '/templates/manage.mustache'));
 $loader = new
@@ -71,9 +72,11 @@ class ($root) implements Mustache_Loader {
      */
     public function load($name) {
         $name = preg_replace('~^local_groupimport/~', '', $name);
-        if (!preg_match('~^[a-zA-Z0-9_/-]+$~', $name) || str_contains($name, '..'))throw new RuntimeException('Invalid partial');
+        if (!preg_match('~^[a-zA-Z0-9_/-]+$~', $name) || str_contains($name, '..')) { throw new RuntimeException('Invalid partial');
+        }
         $p = $this->root . '/templates/' . $name . '.mustache';
-        if (!is_file($p))throw new RuntimeException('Missing partial ' . $name);
+        if (!is_file($p)) { throw new RuntimeException('Missing partial ' . $name);
+        }
         return file_get_contents($p);
     }
 };
@@ -87,10 +90,11 @@ $checks = 0;
  */
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if (!$ok)throw new RuntimeException($label);
+    if (!$ok) { throw new RuntimeException($label);
+    }
 }
 $normalize = static fn($html)=>preg_replace('/>\s+</', '><', trim($html));
-foreach (['fr', 'en'] as $lang)foreach ([true, false] as $compact) {
+foreach (['fr', 'en'] as $lang) { foreach ([true, false] as $compact) {
     $context = ['useeasyeduguide' =>
          true,
          'compactparticipantsdefault' =>
@@ -116,7 +120,8 @@ foreach (['fr', 'en'] as $lang)foreach ([true, false] as $compact) {
     $b = $normalize($mustache->render($after, $context));
     if ($a !== $b) {
         $i = 0;
-        while ($i < min(strlen($a), strlen($b)) && $a[$i] === $b[$i])$i++;
+        while ($i < min(strlen($a), strlen($b)) && $a[$i] === $b[$i]) { $i++;
+        }
         throw new RuntimeException('Render diff at ' . $i . ' before=' . json_encode(substr(
             $a,
             max(
@@ -136,6 +141,7 @@ foreach (['fr', 'en'] as $lang)foreach ([true, false] as $compact) {
     check($a === $b, 'current rendered markup unchanged ' . $lang . '/' . ($compact ? 'compact' : 'full'));
     check(substr_count($b, 'data-easyedu-guide-root=') === 1, 'one current Guide root');
     check(!str_contains($b, 'data-easystud-tutorial-modal='), 'no legacy modal rendered');
+}
 }
 echo json_encode(['surface' =>
          'P2-current-template-parity',

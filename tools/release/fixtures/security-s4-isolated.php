@@ -84,7 +84,8 @@ class memory_db {
             $ok = true;
             foreach ($conditions as $key => $value) {
                 $ok = $ok && ($row->$key ?? null) === $value;
-            }if ($ok)return true;
+            }if ($ok) { return true;
+            }
         }return false;
     }
     /**
@@ -101,7 +102,8 @@ class memory_db {
                 $row->courseid === $params['course'] &&
                 $row->id !== $params['id'] &&
                 ($row->$field ?? '') === $params['value']
-            )return true;
+            ) { return true;
+            }
         }return false;
     }
 }
@@ -163,7 +165,8 @@ $checks = 0;
  */
 function check($value, $label) {
     $GLOBALS['checks']++;
-    if (!$value)throw new RuntimeException($label);
+    if (!$value) { throw new RuntimeException($label);
+    }
 }
 /**
  * Perform isolated fixture operation rejects.
@@ -189,14 +192,17 @@ function rejects(callable $call, string $label) {
 function load_functions(string $file, array $names): void {
     $tokens = token_get_all(file_get_contents($file));
     for ($i = 0; $i < count($tokens); $i++) {
-        if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION)continue;
+        if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION) { continue;
+        }
         $name = '';for ($j = $i + 1; $j < count($tokens); $j++) {
             if (is_array($tokens[$j]) && $tokens[$j][0] === T_STRING) {
                 $name = $tokens[$j][1];
                 break;
-            }if ($tokens[$j] === '(')break;
+            }if ($tokens[$j] === '(') { break;
+            }
         }
-        if (!in_array($name, $names, true))continue;
+        if (!in_array($name, $names, true)) { continue;
+        }
         $body = '';
         $depth = 0;
         $started = false;
@@ -206,7 +212,8 @@ function load_functions(string $file, array $names): void {
             if ($t === '{') {
                 $depth++;
                 $started = true;
-            }if ($t === '}' && --$depth === 0 && $started)break;
+            }if ($t === '}' && --$depth === 0 && $started) { break;
+            }
         }
         eval($body);
     }
@@ -217,8 +224,10 @@ $DB = new memory_db();
 $CFG = (object)['groupenrolmentkeypolicy' => false];
 policy::require_request('POST', 5);
 check(true, 'POST accepted');
-foreach (['GET', 'HEAD', 'PUT', 'DELETE', ''] as $method)rejects(fn()=>policy::require_request($method, 5), 'Non-POST blocked');
-foreach ([0, -1, 1] as $id)rejects(fn()=>policy::require_request('POST', $id), 'Invalid/site course');
+foreach (['GET', 'HEAD', 'PUT', 'DELETE', ''] as $method) { rejects(fn()=>policy::require_request($method, 5), 'Non-POST blocked');
+}
+foreach ([0, -1, 1] as $id) { rejects(fn()=>policy::require_request('POST', $id), 'Invalid/site course');
+}
 policy::validate_name(str_repeat('é', 254));
 check(true, 'Unicode name boundary');
 rejects(fn()=>policy::validate_name(str_repeat('é', 255)), 'Overlong name');
