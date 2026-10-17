@@ -3394,7 +3394,13 @@ const bindNavigationTooltips = root => {
   let tooltip = null;
   let target = null;
   let refreshFrame = null;
+  let graceTimer = null;
+  const cancelGrace = () => {
+    if (graceTimer !== null) window.clearTimeout(graceTimer);
+    graceTimer = null;
+  };
   const hide = () => {
+    cancelGrace();
     if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
     refreshFrame = null;
     tooltip?.remove();
@@ -3413,7 +3419,10 @@ const bindNavigationTooltips = root => {
       hide();
       return;
     }
-    if (target === button) return;
+    if (target === button) {
+      cancelGrace();
+      return;
+    }
     hide();
     target = button;
     // One tooltip at a time: park the native title while this one is shown.
@@ -3425,6 +3434,13 @@ const bindNavigationTooltips = root => {
     tooltip.className = 'easyedu-guide-label-tooltip';
     tooltip.setAttribute('aria-hidden', 'true');
     tooltip.textContent = label.textContent.trim();
+    // WCAG 1.4.13: the pointer may move onto the tooltip, which then stays visible.
+    tooltip.addEventListener('pointerenter', cancelGrace);
+    tooltip.addEventListener('pointerleave', event => {
+      if (!target?.contains(event.relatedTarget)) {
+        scheduleHide();
+      }
+    });
     // Append inside the actual fullscreen element, not a global body portal.
     modal.appendChild(tooltip);
     const margin = 12;
@@ -3447,6 +3463,10 @@ const bindNavigationTooltips = root => {
       `${Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, size.width - 12))}px`);
     tooltip.classList.toggle('is-above', above);
   };
+  const scheduleHide = () => {
+    cancelGrace();
+    graceTimer = window.setTimeout(hide, 220);
+  };
   const buttonFor = element => element?.closest?.(SELECTORS.navItem);
   addTrackedListener(root, nav, 'pointerover', event => {
     if (event.pointerType !== 'mouse') return;
@@ -3455,7 +3475,12 @@ const bindNavigationTooltips = root => {
   });
   addTrackedListener(root, nav, 'pointerout', event => {
     const button = buttonFor(event.target);
-    if (button === target && !button?.contains(event.relatedTarget)) hide();
+    if (button === target && !button?.contains(event.relatedTarget)) {
+      if (tooltip?.contains(event.relatedTarget)) {
+        return;
+      }
+      scheduleHide();
+    }
   });
   addTrackedListener(root, nav, 'focusin', event => {
     const button = buttonFor(event.target);
@@ -3464,7 +3489,18 @@ const bindNavigationTooltips = root => {
   addTrackedListener(root, nav, 'focusout', hide);
   addTrackedListener(root, root, 'pointerdown', hide, true);
   addTrackedListener(root, root, 'click', hide, true);
-  addTrackedListener(root, root, 'keydown', event => { if (event.key === 'Escape') hide(); }, true);
+  addTrackedListener(root, root, 'keydown', event => {
+    if (event.key !== 'Escape') {
+      return;
+    }
+    // WCAG 1.4.13: dismissing the label tooltip must not also close the Guide.
+    const wasOpen = tooltip !== null;
+    hide();
+    if (wasOpen) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
   addTrackedListener(root, modal.ownerDocument, 'scroll', event => {
     const focused = buttonFor(modal.ownerDocument.activeElement);
     // Native keyboard focus can scroll the horizontal navigation after focusin.
