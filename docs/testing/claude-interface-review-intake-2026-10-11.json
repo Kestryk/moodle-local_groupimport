@@ -1,4 +1,12 @@
 {
+  "codex1R920261017": {
+    "status": "already-implemented-by-S6-isolated-regression-pass",
+    "base": "4110785e",
+    "implementation": "8b3810f9",
+    "branch": "work/codex1/easystud-r9-20261017",
+    "report": "docs/testing/r9-formatted-xlsx-2026-10-17.md",
+    "validation": "21 formatted-XLSX assertions under 128MiB plus 37 S6 assertions; no runtime"
+  },
   "codex1SecurityS220261017": {
     "status": "source-isolated-pass-not-published-phpunit-pending",
     "base": "6c3ac95f",
