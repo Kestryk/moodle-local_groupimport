@@ -1508,6 +1508,271 @@
     .easyedu-guide-modal__body { --easyedu-guide-reading-inset: 1rem; }
     .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }
   }
+  // E4 (K5): numbered anatomy of a card and mini demonstration of the loupe. The specimen is inert
+  // and built from Kit recipes: object card (identity rail), card label, filled count badge, card
+  // action disc. Current cards only: no title underline (K16-76), actions shown on hover (K16-79),
+  // icon + number counter and pills closing the header row on the right (K16-81).
+  .easyedu-guide-anatomy {
+    --easyedu-anatomy-identity: var(--easyedu-participant);
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    min-inline-size: 0;
+    &--group { --easyedu-anatomy-identity: var(--easyedu-group); }
+    &--grouping { --easyedu-anatomy-identity: var(--easyedu-grouping); }
+    &__heading {
+      display: grid;
+      gap: 0.125rem;
+      strong { @include typography.type-control-label; color: var(--easyedu-text); }
+      span { @include typography.type-caption; }
+    }
+    &__specimen { min-inline-size: 0; overflow: visible; padding-block-start: 1.125rem; }
+    &__card {
+      @include cards.object-card(var(--easyedu-anatomy-identity));
+      align-items: start;
+      box-sizing: border-box;
+      display: grid;
+      gap: 0.5rem 0.75rem;
+      min-inline-size: 0;
+      padding: 1.25rem 0.875rem 0.75rem 1rem;
+      pointer-events: none;
+      &--participant { grid-template-columns: auto auto minmax(0, 1fr); align-items: center; }
+      &--nested { box-shadow: none; padding-block: 0.5rem; }
+    }
+    &__body { display: grid; gap: 0.375rem; min-inline-size: 0; }
+    &__row {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      min-inline-size: 0;
+      &--header { flex-wrap: nowrap; }
+    }
+    &__target { position: relative; }
+    &__name {
+      @include typography.type-control-label;
+      // K16-76: the title carries no accent underline.
+      color: var(--easyedu-card-identity-title-color);
+      letter-spacing: 0;
+      min-inline-size: 0;
+      text-decoration: none;
+    }
+    &__card--group .easyedu-guide-anatomy__name, &__card--grouping .easyedu-guide-anatomy__name { margin-inline-end: auto; }
+    &__meta { @include typography.type-caption; justify-self: start; }
+    &__avatar {
+      align-items: center;
+      background: var(--easyedu-primary-soft);
+      border-radius: 50%;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      font-size: 1.125rem;
+      height: 2.75rem;
+      justify-content: center;
+      width: 2.75rem;
+    }
+    &__box {
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-control-border);
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+      display: inline-block;
+      flex: 0 0 auto;
+      height: 1rem;
+      width: 1rem;
+    }
+    &__check { align-items: center; display: inline-flex; }
+    &__chevron, &__more {
+      align-items: center;
+      color: var(--easyedu-text-muted);
+      display: inline-flex;
+      height: 1.5rem;
+      justify-content: center;
+      width: 1.5rem;
+    }
+    &__more { justify-self: center; }
+    &__tags { align-items: center; display: flex; flex-wrap: wrap; gap: 0.375rem; }
+    &__tag {
+      @include feedback.card-label;
+      &--role { background: var(--easyedu-primary-soft); border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%); color: var(--easyedu-primary-strong); }
+      &--group, &--field { background: color-mix(in srgb, var(--easyedu-group) 10%, #fff 90%); border-color: color-mix(in srgb, var(--easyedu-group) 26%, #fff 74%); color: var(--easyedu-group); }
+      &--field { background: var(--easyedu-primary-soft); border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%); color: var(--easyedu-primary-strong); }
+      &--grouping { background: color-mix(in srgb, var(--easyedu-grouping) 10%, #fff 90%); border-color: color-mix(in srgb, var(--easyedu-grouping) 26%, #fff 74%); color: var(--easyedu-grouping); }
+    }
+    // K16-81: actions (shown here as on hover) then the counter, right-aligned.
+    &__actions { align-items: center; display: inline-flex; gap: 0.125rem; margin-inline-start: auto; }
+    &__action {
+      align-items: center;
+      border-radius: 999px;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.875rem;
+      height: 1.75rem;
+      justify-content: center;
+      position: relative;
+      width: 1.75rem;
+      &--end { margin-inline-start: auto; }
+      &.is-pointed { @include card-actions.card-action-disc(var(--easyedu-primary-soft)); box-shadow: 0 0 0 2px var(--easyedu-primary); }
+    }
+    &__count {
+      @include feedback.card-label;
+      @include feedback.count-badge-filled(var(--easyedu-anatomy-identity));
+      position: relative;
+    }
+    &__members {
+      display: grid;
+      gap: 0.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        align-items: center;
+        border-radius: var(--easyedu-control-radius);
+        display: flex;
+        gap: 0.5rem;
+        min-block-size: 1.75rem;
+        padding-inline: 0.25rem;
+        @include typography.type-caption;
+        color: var(--easyedu-text);
+        > span:nth-child(2) { flex: 1 1 auto; min-inline-size: 0; }
+        &.is-match { background: var(--easyedu-primary-soft); font-weight: var(--easyedu-font-weight-semibold); }
+        &[hidden] { display: none; }
+      }
+    }
+    &__remove {
+      align-items: center;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      height: 1.5rem;
+      justify-content: center;
+      position: relative;
+      width: 1.5rem;
+    }
+    &__children { display: grid; margin-block-start: 0.25rem; padding-inline-start: 1.5rem; position: relative; }
+    // Numbered marker: Kit primary disc with a short stem pointing at its zone.
+    &__pin {
+      align-items: center;
+      background: var(--easyedu-primary);
+      border-radius: 999px;
+      box-sizing: border-box;
+      color: var(--easyedu-on-primary, #fff);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.6875rem;
+      font-weight: var(--easyedu-font-weight-strong);
+      height: 1.125rem;
+      justify-content: center;
+      line-height: 1;
+      min-width: 1.125rem;
+      padding-inline: 0.2rem;
+    }
+    .easyedu-guide-anatomy__target > .easyedu-guide-anatomy__pin, .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin, .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin {
+      inset-block-start: -1.125rem;
+      inset-inline-start: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      &::after {
+        background: var(--easyedu-primary);
+        content: "";
+        height: 0.375rem;
+        inset-block-start: 100%;
+        inset-inline-start: 50%;
+        position: absolute;
+        width: 1px;
+      }
+    }
+    .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin { inset-inline-start: 0; transform: none; }
+    .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin { inset-block-start: -0.5rem; inset-inline-start: 0; transform: none; }
+    &__hover {
+      @include typography.type-caption;
+      align-items: start;
+      display: flex;
+      gap: 0.5rem;
+      margin: 0;
+      .fa { color: var(--easyedu-primary); margin-block-start: 0.15rem; }
+    }
+    &__legend {
+      display: grid;
+      gap: 0.375rem 1.5rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        @include typography.type-caption;
+        align-items: center;
+        border-radius: var(--easyedu-control-radius);
+        color: var(--easyedu-text);
+        display: flex;
+        gap: 0.5rem;
+        min-inline-size: 0;
+        padding: 0.125rem 0.25rem;
+        transition: background-color var(--easyedu-motion-fast) ease;
+        &:hover { background: var(--easyedu-primary-soft); }
+      }
+    }
+    // Legend row lit => its zone is lit (and the reverse is not available: the specimen is inert).
+    @for $n from 1 through 10 {
+      &:has(.easyedu-guide-anatomy__legend li[data-n="#{$n}"]:hover) .easyedu-guide-anatomy__pin[data-n="#{$n}"] {
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+      }
+      &:has(.easyedu-guide-anatomy__legend li[data-n="#{$n}"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="#{$n}"]) {
+        outline: 2px solid var(--easyedu-primary);
+        outline-offset: 2px;
+      }
+    }
+    &__loupe {
+      border-block-start: 1px solid var(--easyedu-card-border);
+      display: grid;
+      gap: 0.5rem;
+      padding-block-start: 0.75rem;
+      &-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between;
+        strong { @include typography.type-control-label; color: var(--easyedu-text); }
+        .btn { @include buttons.button-size(small); }
+        .btn .fa { margin: 0; }
+      }
+      &-caption { @include typography.type-caption; margin: 0; min-block-size: 1.5em; }
+      .easyedu-guide-anatomy__specimen { padding-block-start: 0; }
+      .easyedu-guide-anatomy__card { max-inline-size: 28rem; padding-block-start: 0.75rem; }
+    }
+    &__search {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      .fa { color: var(--easyedu-text-muted); }
+      &[hidden] { display: none; }
+      &-input {
+        @include typography.type-caption;
+        background: var(--easyedu-surface);
+        border: 1px solid var(--easyedu-primary);
+        border-radius: var(--easyedu-control-radius);
+        box-sizing: border-box;
+        color: var(--easyedu-text);
+        flex: 1 1 auto;
+        min-block-size: 1.75rem;
+        min-inline-size: 0;
+        padding: 0.25rem 0.5rem;
+      }
+      &-cancel {
+        @include typography.type-caption;
+        border: 1px solid var(--easyedu-control-border);
+        border-radius: var(--easyedu-control-radius);
+        color: var(--easyedu-text);
+        padding: 0.25rem 0.625rem;
+      }
+    }
+    @media (max-width: 40rem) {
+      &__legend { grid-template-columns: minmax(0, 1fr); }
+      &__avatar { height: 2.25rem; width: 2.25rem; }
+      &__action { height: 1.5rem; width: 1.5rem; font-size: 0.8125rem; }
+      // 390: the counter closes the title row; the actions take their own row beneath it.
+      &__row--header { flex-wrap: wrap; row-gap: 1.25rem; }
+      &__name { white-space: nowrap; }
+      &__actions { flex: 1 1 100%; margin-inline-start: 0; order: 3; }
+      &__count { margin-inline-start: auto; }
+      &__card--mini .easyedu-guide-anatomy__row--header { flex-wrap: nowrap; row-gap: 0; }
+      &__card--mini .easyedu-guide-anatomy__actions { flex: 0 0 auto; margin-inline-start: auto; order: 0; }
+    }
+  }
   @include animations.motion-restricted($self: true) {
     .easyedu-guide-welcome { animation: none; }
     .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }

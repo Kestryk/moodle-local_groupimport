@@ -1,0 +1,124 @@
+{{!
+    @template local_groupimport/guide_anatomy
+
+    E4 (K5). Illustration only: an inert specimen of a card with numbered markers, its legend and,
+    for a group card, a mini demonstration of the search loupe. No command, form or Moodle call.
+    Context: guide_discovery::card_anatomy(); the numbers below match the guideanatomy_<type>_<n> strings.
+}}
+<figure class="easyedu-guide-anatomy easyedu-guide-anatomy--{{type}}" data-guide-anatomy="{{type}}">
+    <figcaption class="easyedu-guide-anatomy__heading">
+        <strong>{{title}}</strong>
+        <span>{{caption}}</span>
+    </figcaption>
+    <div class="easyedu-guide-anatomy__specimen" aria-hidden="true" inert>
+        {{#participant}}
+        <div class="easyedu-guide-anatomy__card easyedu-guide-anatomy__card--participant">
+            <span class="easyedu-guide-anatomy__check easyedu-guide-anatomy__target"><span class="easyedu-guide-anatomy__box"></span><span class="easyedu-guide-anatomy__pin" data-n="1">1</span></span>
+            <span class="easyedu-guide-anatomy__avatar easyedu-guide-anatomy__target"><span class="fa fa-user"></span><span class="easyedu-guide-anatomy__pin" data-n="5">5</span></span>
+            <div class="easyedu-guide-anatomy__body">
+                <div class="easyedu-guide-anatomy__row">
+                    <span class="easyedu-guide-anatomy__name easyedu-guide-anatomy__target">Inès Garnier<span class="easyedu-guide-anatomy__pin" data-n="2">2</span></span>
+                    <span class="easyedu-guide-anatomy__tag easyedu-guide-anatomy__tag--field easyedu-guide-anatomy__target">EMLV<span class="easyedu-guide-anatomy__pin" data-n="3">3</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target easyedu-guide-anatomy__action--end"><span class="fa fa-eye"></span><span class="easyedu-guide-anatomy__pin" data-n="7">7</span></span>
+                </div>
+                <span class="easyedu-guide-anatomy__meta easyedu-guide-anatomy__target">ines.garnier@example.test<span class="easyedu-guide-anatomy__pin" data-n="4">4</span></span>
+                <div class="easyedu-guide-anatomy__tags easyedu-guide-anatomy__target">
+                    <span class="easyedu-guide-anatomy__tag easyedu-guide-anatomy__tag--role">{{rolelabel}}</span>
+                    <span class="easyedu-guide-anatomy__tag easyedu-guide-anatomy__tag--group">{{grouptag}}</span>
+                    <span class="easyedu-guide-anatomy__tag easyedu-guide-anatomy__tag--group">+2</span>
+                    <span class="easyedu-guide-anatomy__tag easyedu-guide-anatomy__tag--grouping">{{groupingname}}</span>
+                    <span class="easyedu-guide-anatomy__pin" data-n="6">6</span>
+                </div>
+            </div>
+        </div>
+        {{/participant}}
+        {{#group}}
+        <div class="easyedu-guide-anatomy__card easyedu-guide-anatomy__card--group">
+            <div class="easyedu-guide-anatomy__row easyedu-guide-anatomy__row--header">
+                <span class="easyedu-guide-anatomy__check easyedu-guide-anatomy__target"><span class="easyedu-guide-anatomy__box"></span><span class="easyedu-guide-anatomy__pin" data-n="1">1</span></span>
+                <span class="easyedu-guide-anatomy__name easyedu-guide-anatomy__target">TD 1<span class="easyedu-guide-anatomy__pin" data-n="2">2</span></span>
+                <span class="easyedu-guide-anatomy__actions">
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-search"></span><span class="easyedu-guide-anatomy__pin" data-n="3">3</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-at"></span><span class="easyedu-guide-anatomy__pin" data-n="4">4</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-copy"></span><span class="easyedu-guide-anatomy__pin" data-n="5">5</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-cog"></span><span class="easyedu-guide-anatomy__pin" data-n="6">6</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-pen"></span><span class="easyedu-guide-anatomy__pin" data-n="7">7</span></span>
+                </span>
+                <span class="easyedu-guide-anatomy__count easyedu-guide-anatomy__count--group easyedu-guide-anatomy__target"><span class="fa fa-users"></span>12<span class="easyedu-guide-anatomy__pin" data-n="8">8</span></span>
+            </div>
+            <ul class="easyedu-guide-anatomy__members">
+                <li><span class="easyedu-guide-anatomy__box"></span><span>Alice Martin</span><span class="easyedu-guide-anatomy__remove easyedu-guide-anatomy__target"><span class="fa fa-minus"></span><span class="easyedu-guide-anatomy__pin" data-n="9">9</span></span></li>
+                <li><span class="easyedu-guide-anatomy__box"></span><span>Bastien Leroy</span><span class="easyedu-guide-anatomy__remove"><span class="fa fa-minus"></span></span></li>
+            </ul>
+            <span class="easyedu-guide-anatomy__more easyedu-guide-anatomy__target"><span class="fa fa-chevron-down"></span><span class="easyedu-guide-anatomy__pin" data-n="10">10</span></span>
+        </div>
+        {{/group}}
+        {{#grouping}}
+        <div class="easyedu-guide-anatomy__card easyedu-guide-anatomy__card--grouping">
+            <div class="easyedu-guide-anatomy__row easyedu-guide-anatomy__row--header">
+                <span class="easyedu-guide-anatomy__check easyedu-guide-anatomy__target"><span class="easyedu-guide-anatomy__box"></span><span class="easyedu-guide-anatomy__pin" data-n="1">1</span></span>
+                <span class="easyedu-guide-anatomy__chevron easyedu-guide-anatomy__target"><span class="fa fa-chevron-down"></span><span class="easyedu-guide-anatomy__pin" data-n="2">2</span></span>
+                <span class="easyedu-guide-anatomy__name easyedu-guide-anatomy__target">{{groupingname}}<span class="easyedu-guide-anatomy__pin" data-n="3">3</span></span>
+                <span class="easyedu-guide-anatomy__actions">
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-layer-group"></span><span class="easyedu-guide-anatomy__pin" data-n="5">5</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-search"></span><span class="easyedu-guide-anatomy__pin" data-n="6">6</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-copy"></span><span class="easyedu-guide-anatomy__pin" data-n="7">7</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-cog"></span><span class="easyedu-guide-anatomy__pin" data-n="8">8</span></span>
+                    <span class="easyedu-guide-anatomy__action easyedu-guide-anatomy__target"><span class="fa fa-pen"></span><span class="easyedu-guide-anatomy__pin" data-n="9">9</span></span>
+                </span>
+                <span class="easyedu-guide-anatomy__count easyedu-guide-anatomy__count--grouping easyedu-guide-anatomy__target"><span class="fa fa-layer-group"></span>3<span class="easyedu-guide-anatomy__pin" data-n="4">4</span></span>
+            </div>
+            <div class="easyedu-guide-anatomy__children easyedu-guide-anatomy__target">
+                <div class="easyedu-guide-anatomy__card easyedu-guide-anatomy__card--group easyedu-guide-anatomy__card--nested">
+                    <div class="easyedu-guide-anatomy__row easyedu-guide-anatomy__row--header">
+                        <span class="easyedu-guide-anatomy__box"></span>
+                        <span class="easyedu-guide-anatomy__name">TD 1</span>
+                        <span class="easyedu-guide-anatomy__count easyedu-guide-anatomy__count--group"><span class="fa fa-users"></span>12</span>
+                    </div>
+                </div>
+                <span class="easyedu-guide-anatomy__pin" data-n="10">10</span>
+            </div>
+        </div>
+        {{/grouping}}
+    </div>
+    <p class="easyedu-guide-anatomy__hover"><span class="fa fa-hand-pointer" aria-hidden="true"></span><span>{{hovernote}}</span></p>
+    <ol class="easyedu-guide-anatomy__legend" aria-label="{{legendlabel}}">
+        {{#legend}}
+        <li data-n="{{n}}"><span class="easyedu-guide-anatomy__pin" aria-hidden="true">{{n}}</span><span>{{label}}</span></li>
+        {{/legend}}
+    </ol>
+    {{#loupe}}
+    <section class="easyedu-guide-anatomy__loupe" data-guide-loupe aria-label="{{title}}"
+        data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}"
+        data-idle-label="{{idlelabel}}" data-phase1="{{phase1}}" data-phase2="{{phase2}}" data-phase3="{{phase3}}"
+        data-done-label="{{donelabel}}" data-query="{{query}}">
+        <div class="easyedu-guide-anatomy__loupe-bar">
+            <strong>{{title}}</strong>
+            <button type="button" class="btn btn-outline-secondary" data-guide-loupe-start aria-busy="false"><span class="fa fa-play" aria-hidden="true"></span><span data-guide-loupe-start-label>{{startlabel}}</span></button>
+        </div>
+        <p class="easyedu-guide-anatomy__loupe-caption" data-guide-loupe-caption role="status">{{idlelabel}}</p>
+        <div class="easyedu-guide-anatomy__specimen" aria-hidden="true" inert>
+            <div class="easyedu-guide-anatomy__card easyedu-guide-anatomy__card--group easyedu-guide-anatomy__card--mini">
+                <div class="easyedu-guide-anatomy__row easyedu-guide-anatomy__row--header">
+                    <span class="easyedu-guide-anatomy__box"></span>
+                    <span class="easyedu-guide-anatomy__name">TD 1</span>
+                    <span class="easyedu-guide-anatomy__actions"><span class="easyedu-guide-anatomy__action" data-guide-loupe-trigger><span class="fa fa-search"></span></span></span>
+                    <span class="easyedu-guide-anatomy__count easyedu-guide-anatomy__count--group"><span class="fa fa-users"></span>12</span>
+                </div>
+                <div class="easyedu-guide-anatomy__search" data-guide-loupe-panel hidden>
+                    <span class="fa fa-search"></span>
+                    <span class="easyedu-guide-anatomy__search-input" data-guide-loupe-input></span>
+                    <span class="easyedu-guide-anatomy__search-cancel" data-guide-loupe-cancel>{{cancellabel}}</span>
+                </div>
+                <ul class="easyedu-guide-anatomy__members">
+                    <li data-name="alice martin"><span class="easyedu-guide-anatomy__box"></span><span>Alice Martin</span></li>
+                    <li data-name="bastien leroy"><span class="easyedu-guide-anatomy__box"></span><span>Bastien Leroy</span></li>
+                    <li data-name="léa martin lea martin"><span class="easyedu-guide-anatomy__box"></span><span>Léa Martin</span></li>
+                    <li data-name="nathan faure"><span class="easyedu-guide-anatomy__box"></span><span>Nathan Faure</span></li>
+                    <li data-name="zoé marchand zoe marchand"><span class="easyedu-guide-anatomy__box"></span><span>Zoé Marchand</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    {{/loupe}}
+</figure>

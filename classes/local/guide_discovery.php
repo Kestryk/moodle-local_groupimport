@@ -111,6 +111,56 @@ final class guide_discovery {
     }
 
     /**
+     * E4 (K5): numbered anatomy of a card and, for a group, the mini demonstration of the search loupe.
+     *
+     * Illustration only: fictional values, no command attribute, no Moodle call. The legend is the
+     * ordered list of lang strings guideanatomy_<type>_<n>, which match the numbered markers
+     * of templates/guide_anatomy.mustache.
+     *
+     * @param string $type Card type: participant, group or grouping.
+     * @return array Context for the guide_anatomy partial.
+     */
+    public static function card_anatomy(string $type): array {
+        $counts = ['participant' => 7, 'group' => 10, 'grouping' => 10];
+        if (!isset($counts[$type])) {
+            throw new \InvalidArgumentException('Unknown Guide card type.');
+        }
+        $legend = [];
+        for ($n = 1; $n <= $counts[$type]; $n++) {
+            $legend[] = ['n' => $n, 'label' => get_string('guideanatomy_' . $type . '_' . $n, 'local_groupimport')];
+        }
+        $data = [
+            $type => true,
+            'type' => $type,
+            'title' => get_string('guideanatomy_title', 'local_groupimport'),
+            'caption' => get_string('guideanatomy_caption', 'local_groupimport'),
+            'hovernote' => get_string('guideanatomy_hover', 'local_groupimport'),
+            'legendlabel' => get_string('guideanatomy_legend', 'local_groupimport'),
+            'legend' => $legend,
+            'rolelabel' => get_string('tutorialvisualrolebadge', 'local_groupimport'),
+            'grouptag' => get_string('tutorialvisualgroupbadge', 'local_groupimport'),
+            'groupingname' => get_string('guideanatomy_sample_grouping', 'local_groupimport'),
+        ];
+        if ($type === 'group') {
+            $data['loupe'] = [
+                'title' => get_string('guideanatomy_loupe_title', 'local_groupimport'),
+                'startlabel' => get_string('guideanatomy_loupe_start', 'local_groupimport'),
+                'runninglabel' => get_string('guideanatomy_loupe_running', 'local_groupimport'),
+                'replaylabel' => get_string('guideanatomy_loupe_replay', 'local_groupimport'),
+                'idlelabel' => get_string('guideanatomy_loupe_idle', 'local_groupimport'),
+                'phase1' => get_string('guideanatomy_loupe_phase1', 'local_groupimport'),
+                'phase2' => get_string('guideanatomy_loupe_phase2', 'local_groupimport'),
+                'phase3' => get_string('guideanatomy_loupe_phase3', 'local_groupimport'),
+                'donelabel' => get_string('guideanatomy_loupe_done', 'local_groupimport'),
+                'query' => get_string('guideanatomy_loupe_query', 'local_groupimport'),
+                'cancellabel' => get_string('discovery_cancel', 'local_groupimport'),
+                'searchlabel' => get_string('guideanatomy_group_3', 'local_groupimport'),
+            ];
+        }
+        return $data;
+    }
+
+    /**
      * Prepare illustration-only destination-card data for the shared inspection recipe.
      *
      * Not wired into the curriculum until the matching Kit template, engine and

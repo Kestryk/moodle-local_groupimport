@@ -6189,6 +6189,205 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return {inset-inline: 1rem;width: auto;
   }
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy {--easyedu-anatomy-identity: var(--easyedu-participant);display: grid;gap: 0.75rem;margin: 1rem 0 0;min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy--group {--easyedu-anatomy-identity: var(--easyedu-group);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy--grouping {--easyedu-anatomy-identity: var(--easyedu-grouping);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__heading {display: grid;gap: 0.125rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__heading strong {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;color: var(--easyedu-text);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__heading span {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__specimen {min-inline-size: 0;overflow: visible;padding-block-start: 1.125rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card {background: var(--easyedu-surface);border: 1px solid var(--easyedu-card-border);border-left: var(--easyedu-identity-border-width) solid var(--easyedu-anatomy-identity);border-radius: var(--easyedu-card-radius);box-shadow: var(--easyedu-card-shadow);transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.22s ease, transform 0.22s ease;align-items: start;box-sizing: border-box;display: grid;gap: 0.5rem 0.75rem;min-inline-size: 0;padding: 1.25rem 0.875rem 0.75rem 1rem;pointer-events: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card:hover {border-color: color-mix(in srgb, var(--easyedu-anatomy-identity) 32%, var(--easyedu-card-border) 68%);box-shadow: var(--easyedu-shadow-soft);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card--participant {grid-template-columns: auto auto minmax(0, 1fr);align-items: center;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card--nested {box-shadow: none;padding-block: 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__body {display: grid;gap: 0.375rem;min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__row {align-items: center;display: flex;gap: 0.5rem;min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__row--header {flex-wrap: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__target {position: relative;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__name {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;color: var(--easyedu-card-identity-title-color);letter-spacing: 0;min-inline-size: 0;text-decoration: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card--group .easyedu-guide-anatomy__name,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card--grouping .easyedu-guide-anatomy__name {margin-inline-end: auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__meta {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;justify-self: start;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__avatar {align-items: center;background: var(--easyedu-primary-soft);border-radius: 50%;color: var(--easyedu-primary);display: inline-flex;font-size: 1.125rem;height: 2.75rem;justify-content: center;width: 2.75rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__box {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: 0.25rem;box-sizing: border-box;display: inline-block;flex: 0 0 auto;height: 1rem;width: 1rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__check {align-items: center;display: inline-flex;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__chevron,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__more {align-items: center;color: var(--easyedu-text-muted);display: inline-flex;height: 1.5rem;justify-content: center;width: 1.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__more {justify-self: center;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tags {align-items: center;display: flex;flex-wrap: wrap;gap: 0.375rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag {align-items: center;block-size: var(--easyedu-card-label-height);border-radius: var(--easyedu-card-label-radius);border-style: solid;border-width: 1px;box-sizing: border-box;display: inline-flex;flex-shrink: 0;font-size: var(--easyedu-card-label-font-size);font-weight: var(--easyedu-font-weight-semibold);gap: 0.25rem;line-height: calc(var(--easyedu-card-label-height) - 2px);max-block-size: var(--easyedu-card-label-height);min-block-size: var(--easyedu-card-label-height);padding-block: 0;padding-inline: var(--easyedu-card-label-padding-inline);vertical-align: middle;white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag .fa {font-size: var(--easyedu-card-label-icon-size);line-height: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag--role {background: var(--easyedu-primary-soft);border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%);color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag--group,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag--field {background: color-mix(in srgb, var(--easyedu-group) 10%, #fff 90%);border-color: color-mix(in srgb, var(--easyedu-group) 26%, #fff 74%);color: var(--easyedu-group);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag--field {background: var(--easyedu-primary-soft);border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%);color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__tag--grouping {background: color-mix(in srgb, var(--easyedu-grouping) 10%, #fff 90%);border-color: color-mix(in srgb, var(--easyedu-grouping) 26%, #fff 74%);color: var(--easyedu-grouping);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__actions {align-items: center;display: inline-flex;gap: 0.125rem;margin-inline-start: auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__action {align-items: center;border-radius: 999px;color: var(--easyedu-primary);display: inline-flex;flex: 0 0 auto;font-size: 0.875rem;height: 1.75rem;justify-content: center;position: relative;width: 1.75rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__action--end {margin-inline-start: auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__action.is-pointed {background: radial-gradient(circle, var(--easyedu-primary-soft) 0 0.75rem, transparent calc(0.75rem + 0.6px));box-shadow: 0 0 0 2px var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__count {align-items: center;block-size: var(--easyedu-card-label-height);border-radius: var(--easyedu-card-label-radius);border-style: solid;border-width: 1px;box-sizing: border-box;display: inline-flex;flex-shrink: 0;font-size: var(--easyedu-card-label-font-size);font-weight: var(--easyedu-font-weight-semibold);gap: 0.25rem;line-height: calc(var(--easyedu-card-label-height) - 2px);max-block-size: var(--easyedu-card-label-height);min-block-size: var(--easyedu-card-label-height);padding-block: 0;padding-inline: var(--easyedu-card-label-padding-inline);vertical-align: middle;white-space: nowrap;background: color-mix(in srgb, var(--easyedu-anatomy-identity) 12%, #fff 88%) !important;border: 1px solid color-mix(in srgb, var(--easyedu-anatomy-identity) 26%, #fff 74%) !important;border-radius: 999px;color: color-mix(in srgb, var(--easyedu-anatomy-identity) 82%, #000 18%) !important;font-weight: 700;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;position: relative;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__count .fa {font-size: var(--easyedu-card-label-icon-size);line-height: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__members {display: grid;gap: 0.25rem;list-style: none;margin: 0;padding: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__members li {align-items: center;border-radius: var(--easyedu-control-radius);display: flex;gap: 0.5rem;min-block-size: 1.75rem;padding-inline: 0.25rem;font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;color: var(--easyedu-text);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__members li > span:nth-child(2) {flex: 1 1 auto;min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__members li.is-match {background: var(--easyedu-primary-soft);font-weight: var(--easyedu-font-weight-semibold);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__members li[hidden] {display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__remove {align-items: center;color: var(--easyedu-primary);display: inline-flex;height: 1.5rem;justify-content: center;position: relative;width: 1.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__children {display: grid;margin-block-start: 0.25rem;padding-inline-start: 1.5rem;position: relative;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__pin {align-items: center;background: var(--easyedu-primary);border-radius: 999px;box-sizing: border-box;color: var(--easyedu-on-primary, #fff);display: inline-flex;flex: 0 0 auto;font-size: 0.6875rem;font-weight: var(--easyedu-font-weight-strong);height: 1.125rem;justify-content: center;line-height: 1;min-width: 1.125rem;padding-inline: 0.2rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__target > .easyedu-guide-anatomy__pin,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin {inset-block-start: -1.125rem;inset-inline-start: 50%;position: absolute;transform: translateX(-50%);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__target > .easyedu-guide-anatomy__pin::after,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin::after,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin::after {background: var(--easyedu-primary);content: "";height: 0.375rem;inset-block-start: 100%;inset-inline-start: 50%;position: absolute;width: 1px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin {inset-inline-start: 0;transform: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin {inset-block-start: -0.5rem;inset-inline-start: 0;transform: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__hover {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;align-items: start;display: flex;gap: 0.5rem;margin: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__hover .fa {color: var(--easyedu-primary);margin-block-start: 0.15rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__legend {display: grid;gap: 0.375rem 1.5rem;grid-template-columns: repeat(2, minmax(0, 1fr));list-style: none;margin: 0;padding: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__legend li {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;align-items: center;border-radius: var(--easyedu-control-radius);color: var(--easyedu-text);display: flex;gap: 0.5rem;min-inline-size: 0;padding: 0.125rem 0.25rem;transition: background-color var(--easyedu-motion-fast) ease;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__legend li:hover {background: var(--easyedu-primary-soft);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="1"]:hover) .easyedu-guide-anatomy__pin[data-n="1"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="1"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="1"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="2"]:hover) .easyedu-guide-anatomy__pin[data-n="2"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="2"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="2"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="3"]:hover) .easyedu-guide-anatomy__pin[data-n="3"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="3"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="3"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="4"]:hover) .easyedu-guide-anatomy__pin[data-n="4"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="4"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="4"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="5"]:hover) .easyedu-guide-anatomy__pin[data-n="5"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="5"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="5"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="6"]:hover) .easyedu-guide-anatomy__pin[data-n="6"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="6"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="6"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="7"]:hover) .easyedu-guide-anatomy__pin[data-n="7"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="7"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="7"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="8"]:hover) .easyedu-guide-anatomy__pin[data-n="8"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="8"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="8"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="9"]:hover) .easyedu-guide-anatomy__pin[data-n="9"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="9"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="9"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="10"]:hover) .easyedu-guide-anatomy__pin[data-n="10"] {box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy:has(.easyedu-guide-anatomy__legend li[data-n="10"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="10"]) {outline: 2px solid var(--easyedu-primary);outline-offset: 2px;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe {border-block-start: 1px solid var(--easyedu-card-border);display: grid;gap: 0.5rem;padding-block-start: 0.75rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe-bar {align-items: center;display: flex;flex-wrap: wrap;gap: 0.75rem;justify-content: space-between;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe-bar strong {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;color: var(--easyedu-text);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe-bar .btn {font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe-bar .btn .fa {margin: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe-caption {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;margin: 0;min-block-size: 1.5em;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe .easyedu-guide-anatomy__specimen {padding-block-start: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__loupe .easyedu-guide-anatomy__card {max-inline-size: 28rem;padding-block-start: 0.75rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__search {align-items: center;display: flex;gap: 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__search .fa {color: var(--easyedu-text-muted);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__search[hidden] {display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__search-input {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;background: var(--easyedu-surface);border: 1px solid var(--easyedu-primary);border-radius: var(--easyedu-control-radius);box-sizing: border-box;color: var(--easyedu-text);flex: 1 1 auto;min-block-size: 1.75rem;min-inline-size: 0;padding: 0.25rem 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__search-cancel {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);color: var(--easyedu-text);padding: 0.25rem 0.625rem;
+}
+@media (max-width: 40rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__legend {grid-template-columns: minmax(0, 1fr);
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__avatar {height: 2.25rem;width: 2.25rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__action {height: 1.5rem;width: 1.5rem;font-size: 0.8125rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__row--header {flex-wrap: wrap;row-gap: 1.25rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__name {white-space: nowrap;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__actions {flex: 1 1 100%;margin-inline-start: 0;order: 3;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__count {margin-inline-start: auto;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card--mini .easyedu-guide-anatomy__row--header {flex-wrap: nowrap;row-gap: 0;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-anatomy__card--mini .easyedu-guide-anatomy__actions {flex: 0 0 auto;margin-inline-start: auto;order: 0;
+  }
+}
 :is(.easyedu-ui[data-easyedu-motion-level=reduced], body.easyedu-motion-reduced, [data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-welcome,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery:is([data-easyedu-motion-level=reduced], .easyedu-motion-reduced, [data-easyedu-motion-level=minimal], .easyedu-motion-disabled) .easyedu-guide-welcome {animation: none;
 }

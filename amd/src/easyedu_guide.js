@@ -1648,10 +1648,90 @@ const toggleRecapDisclosure = recap => {
 
 const stopDiscoveryScene = root => {
   root.querySelectorAll('[data-guide-recap-body]').forEach(cancelRecapPanel);
+  if (root.easyeduGuideLoupeStop) {
+    root.easyeduGuideLoupeStop();
+  }
   if (root.easyeduGuideSceneStop) {
     root.easyeduGuideSceneStop();
     root.easyeduGuideSceneStop = null;
   }
+};
+
+// E4 (K5): three-phase mini demonstration of a group card's search loupe (about 6.5 s). Fictional
+// members, no Moodle call. Phase changes use Motion.enter, so the animation level applies; at the
+// minimal level the same phases change without movement.
+const LOUPE_PHASE_MS = [1500, 2600, 2400];
+const runLoupeDemo = (root, demo) => {
+  stopDiscoveryScene(root);
+  const q = key => demo.querySelector(`[data-guide-loupe-${key}]`);
+  const trigger = q('trigger');
+  const panel = q('panel');
+  const input = q('input');
+  const caption = q('caption');
+  const button = q('start');
+  const label = q('start-label');
+  const rows = [...demo.querySelectorAll('.easyedu-guide-anatomy__members li')];
+  const query = demo.dataset.query || '';
+  const timers = [];
+  const after = (ms, fn) => {
+    timers.push(setTimeout(fn, ms));
+  };
+  const reset = () => {
+    trigger.classList.remove('is-pointed');
+    panel.hidden = true;
+    input.textContent = '';
+    rows.forEach(row => {
+      row.hidden = false;
+      row.classList.remove('is-match');
+    });
+  };
+  const finish = done => {
+    timers.splice(0).forEach(clearTimeout);
+    reset();
+    root.easyeduGuideLoupeStop = null;
+    demo.dataset.guideLoupeState = done ? 'done' : 'idle';
+    button.disabled = false;
+    button.setAttribute('aria-busy', 'false');
+    label.textContent = done ? demo.dataset.replayLabel : demo.dataset.startLabel;
+    caption.textContent = done ? demo.dataset.doneLabel : demo.dataset.idleLabel;
+  };
+  const enter = node => {
+    if (isMotionEnabled(root)) {
+      Motion.enter(node);
+    }
+  };
+  root.easyeduGuideLoupeStop = () => finish(false);
+  reset();
+  demo.dataset.guideLoupeState = 'running';
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  label.textContent = demo.dataset.runningLabel;
+  // Phase 1: the pointer touches the loupe.
+  caption.textContent = demo.dataset.phase1;
+  trigger.classList.add('is-pointed');
+  // Phase 2: the panel opens in the card and the query is typed.
+  after(LOUPE_PHASE_MS[0], () => {
+    caption.textContent = demo.dataset.phase2;
+    trigger.classList.remove('is-pointed');
+    panel.hidden = false;
+    enter(panel);
+    [...query].forEach((char, index) => after(450 + index * 330, () => {
+      input.textContent += char;
+    }));
+  });
+  // Phase 3: the list narrows to the match; Cancel restores it.
+  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1], () => {
+    caption.textContent = demo.dataset.phase3;
+    rows.forEach(row => {
+      const match = (row.dataset.name || '').includes(query);
+      row.hidden = !match;
+      row.classList.toggle('is-match', match);
+      if (match) {
+        enter(row);
+      }
+    });
+  });
+  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1] + LOUPE_PHASE_MS[2], () => finish(true));
 };
 
 // Names are generated locally from the exercise input, never through Moodle APIs.
@@ -3718,6 +3798,14 @@ const bindGuide = (root, config) => {
       return;
     }
 
+    const loupeStart = event.target.closest('[data-guide-loupe-start]');
+    if (loupeStart && root.contains(loupeStart)) {
+      event.preventDefault();
+      if (!loupeStart.disabled) {
+        runLoupeDemo(root, loupeStart.closest('[data-guide-loupe]'));
+      }
+      return;
+    }
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
       // A radio keeps its native selection and keyboard behaviour: never cancel its click.
