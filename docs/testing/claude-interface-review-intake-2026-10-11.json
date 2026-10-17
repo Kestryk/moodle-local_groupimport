@@ -1,4 +1,13 @@
 {
+  "codex1K1721CatalogSearch20261017": {
+    "status": "source-build-native-six-case-pass-not-published",
+    "base": "bc3f48f8",
+    "decision": "RETOURS-KEVIN-2026-10-17.md K17-05 validation 21",
+    "branch": "work/codex1/easystud-catalog-search-20261017",
+    "report": "docs/testing/catalog-search-k17-21-2026-10-17.md",
+    "scope": "Responsive Groups visibility of the existing Kit Structure search; no new component or behavior",
+    "validation": "FR/EN 1600/768/390 six fresh-document cases; positive/no-match/clear search, centres <=0.0078125px, zero console/page errors; resize scenario uncertified"
+  },
   "codex1GuideMirrorResync20261017": {
     "status": "source-parity-pass-not-published",
     "base": "4110785e",

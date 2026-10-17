@@ -3,6 +3,8 @@
 - 2026-10-17 [N1] ANIM/G1 (K17-05): add personal Display and animations window from the desktop icon, responsive drawer and Guide; save full/reduced/minimal or institution default through Moodle and apply the existing M1 policy immediately.
 - 2026-10-17 [N0] Synchronize accepted Guide E1–E4 mirrors, specimen/anatomy templates and exact adapters; relay disabled choices and contained toggle inputs to the canonical Kit without changing consumer runtime assets.
 
+- 2026-10-17 [N1] K17-21: keep the existing Kit group-search field visible in responsive Groups after desktop Structure focus is cleared; preserve filtering and desktop composition.
+
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
 
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.

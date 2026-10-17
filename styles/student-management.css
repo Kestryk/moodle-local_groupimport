@@ -7217,6 +7217,8 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   }
   .local-groupimport-easystud--responsive-workspace[data-easystud-mobile-view-active=groups] .local-groupimport-easystud-group-catalog-filters--structure {display: grid;
   }
+  .local-groupimport-easystud--responsive-workspace[data-easystud-mobile-view-active=groups] .local-groupimport-easystud__search-field--structure {display: flex;
+  }
   .local-groupimport-easystud__layout {gap: 1rem;grid-template-columns: minmax(0, 1fr);
   }
   .local-groupimport-easystud__panel {height: auto;min-height: min(42rem, 100vh - 8rem);min-width: 0;overflow-x: clip;
