@@ -2929,7 +2929,8 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   }
 
   const slides = Array.from(root.querySelectorAll(SELECTORS.slide));
-  const direction = index < getActiveSlideIndex(root) ? -1 : 1;
+  const previousIndex = getActiveSlideIndex(root);
+  const direction = index < previousIndex ? -1 : 1;
   const safeIndex = config && !options.allowLocked ?
     findAvailableSlideIndex(root, config, index, direction) :
     Math.max(0, Math.min(index, slides.length - 1));
@@ -2969,6 +2970,14 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   });
 
   root.setAttribute('data-easyedu-guide-current-slide', String(safeIndex));
+  // K17-40: a new slide always starts at its top, whatever the previous reading position.
+  if (safeIndex !== previousIndex) {
+    [root.querySelector(SELECTORS.modal + ' .easyedu-guide-modal__body'), slides[safeIndex]].forEach(scroller => {
+      if (scroller) {
+        scroller.scrollTop = 0;
+      }
+    });
+  }
   if (config && options.persistReading) saveGuideReadingPosition(config, safeIndex);
   syncInterfaceCue(root, slides[safeIndex]);
   stopDiscoveryScene(root);
