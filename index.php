@@ -502,7 +502,14 @@ function local_groupimport_get_import_history(int $courseid, int $limit = 20): a
         return [];
     }
 
-    return $DB->get_records('local_groupimport_history', ['courseid' => $courseid], 'timecreated DESC', '*', 0, $limit);
+    // Keep report/changes payloads on the explicit detail/export/restore paths only.
+    $length = $DB->sql_length('changesjson');
+    $sql = "SELECT id, filename, timecreated, rowcount, successcount, errorcount, timerolledback,
+                   CASE WHEN changesjson IS NOT NULL AND $length > 0 THEN 1 ELSE 0 END AS haschanges
+              FROM {local_groupimport_history}
+             WHERE courseid = :courseid
+          ORDER BY timecreated DESC";
+    return $DB->get_records_sql($sql, ['courseid' => $courseid], 0, $limit);
 }
 
 /**
@@ -1747,7 +1754,7 @@ if (!empty($historyrecords)) {
     foreach ($historyrecords as $record) {
         $historycount++;
         $restored = !empty($record->timerolledback);
-        $restorable = !empty($record->changesjson);
+        $restorable = !empty($record->haschanges);
         $meta = [
             userdate((int)$record->timecreated, get_string('strftimedatetimeshort', 'langconfig')),
             local_groupimport_count_string('importhistoryrowscount', (int)$record->rowcount),

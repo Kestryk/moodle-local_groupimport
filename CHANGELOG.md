@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] R8: project only displayed import-history fields plus a computed detail-availability bit; keep large payloads on explicit restore/export paths.
+
 # Changelog
 
 - 2026-10-17 [N1] S2: expose subject-scoped import history through Privacy user lists/export/erasure; add configurable 365-day retention and daily history-only purge.
