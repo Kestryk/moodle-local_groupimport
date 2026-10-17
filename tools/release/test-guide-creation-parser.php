@@ -11,7 +11,7 @@ $cases = [
     ['Workshop @*3', ['Workshop A', 'Workshop B', 'Workshop C']],
     ["One, Two; Three\nFour", ['One', 'Two', 'Three', 'Four']],
     ['One,One', ['One']],
-    ['Workshop @*27', array_map(static function($index) {
+    ['Workshop @*27', array_map(static function ($index) {
         return 'Workshop ' . local_groupimport_number_to_letters($index);
     }, range(1, 27))],
 ];

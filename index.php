@@ -265,7 +265,9 @@ function local_groupimport_build_preview_rows(array $parsed, array &$errors): ar
  * @return array User records.
  */
 function local_groupimport_find_import_users_by_field(
-    string $identifier, string $userfield, context_course $context
+    string $identifier,
+    string $userfield,
+    context_course $context
 ): array {
     return \local_groupimport\local\import_user_lookup::by_field($identifier, $userfield, $context);
 }
@@ -794,7 +796,6 @@ function local_groupimport_rollback_import(stdClass $history, int $userid): stdC
     $context = context_course::instance((int)$history->courseid);
     $transaction = $DB->start_delegated_transaction();
     try {
-
         $result = (object)[
             'members' => 0,
             'assignments' => 0,

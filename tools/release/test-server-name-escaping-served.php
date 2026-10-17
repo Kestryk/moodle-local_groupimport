@@ -15,7 +15,7 @@ $cases = [
     ['QA <b>bold</b> & quote', 'QA bold & quote'],
 ];
 $report = [];
-$check = static function(string $actual, string $expected, string $where): void {
+$check = static function (string $actual, string $expected, string $where): void {
     if ($actual !== $expected) {
         throw new RuntimeException($where . ': ' . json_encode(['actual' => $actual, 'expected' => $expected]));
     }

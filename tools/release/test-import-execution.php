@@ -37,12 +37,12 @@ $DB = new class($events) {
         };
     }
 };
-$check = function($condition) {
+$check = function ($condition) {
     if (!$condition) {
         throw new RuntimeException('Import execution check failed');
     }
 };
-$id = import_execution::run([[]], function() use (&$events) {
+$id = import_execution::run([[]], function () use (&$events) {
     $events[] = 'memberships';
     $events[] = 'history';
     return 42;
@@ -51,7 +51,7 @@ $check($id === 42 && $events === ['begin', 'memberships', 'history', 'commit']);
 $check(core_php_time_limit::$seconds === 120);
 $events = [];
 try {
-    import_execution::run([[]], function() use (&$events) {
+    import_execution::run([[]], function () use (&$events) {
         $events[] = 'memberships';
         throw new RuntimeException('history write failed');
     });

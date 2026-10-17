@@ -58,7 +58,7 @@ $context = context_course::instance($course->id);
 $PAGE->set_context($context);
 
 $failures = [];
-$fail = static function(string $message) use (&$failures): void {
+$fail = static function (string $message) use (&$failures): void {
     if (count($failures) < 50) {
         $failures[] = $message;
     }
@@ -99,7 +99,7 @@ foreach ($state['users'] as $user) {
     if ($old['groupids'] !== $user['groupids']) {
         $fail("user {$user['id']}: groupids differ");
     }
-    $names = array_map(static function(int $roleid) use ($rolenames): string {
+    $names = array_map(static function (int $roleid) use ($rolenames): string {
         return $rolenames[$roleid];
     }, $user['roleids']);
     if (array_values($old['roles']) !== $names) {
@@ -167,15 +167,17 @@ if (array_map('intval', array_keys($legacy['groupings'])) !== array_column($stat
 }
 foreach ($state['groupings'] as $grouping) {
     $old = $legacy['groupings'][$grouping['id']] ?? null;
-    if ($old && ($old['name'] !== $grouping['name'] || $old['idnumber'] !== $grouping['idnumber'] ||
+    if (
+        $old && ($old['name'] !== $grouping['name'] || $old['idnumber'] !== $grouping['idnumber'] ||
             $old['groupids'] !== $grouping['groupids'] ||
-            (trim($old['rawdescription']) !== '') !== $grouping['hasdescription'])) {
+            (trim($old['rawdescription']) !== '') !== $grouping['hasdescription'])
+    ) {
         $fail("grouping {$grouping['id']}: fields differ");
     }
 }
-$ungrouped = array_values(array_map(static function(array $group): int {
+$ungrouped = array_values(array_map(static function (array $group): int {
     return $group['id'];
-}, array_filter($state['groups'], static function(array $group): bool {
+}, array_filter($state['groups'], static function (array $group): bool {
     return empty($group['groupingids']);
 })));
 if ($ungrouped !== $legacy['ungroupedgroupids']) {
@@ -187,8 +189,10 @@ $sampleusers = array_slice(array_column($state['users'], 'id'), 0, 20);
 $details = $sampleusers ? course_state::get_details($course, $context, 'user', $sampleusers) : [];
 foreach ($details as $detail) {
     $old = $legacy['users'][$detail['id']];
-    foreach (['fullname', 'email', 'profileimage', 'profileurl', 'username', 'idnumber', 'institution',
-            'department', 'city', 'country', 'lang', 'description'] as $field) {
+    foreach (
+        ['fullname', 'email', 'profileimage', 'profileurl', 'username', 'idnumber', 'institution',
+            'department', 'city', 'country', 'lang', 'description'] as $field
+    ) {
         if ($old[$field] !== $detail[$field]) {
             $fail("details user {$detail['id']}: $field differs");
         }
@@ -204,8 +208,10 @@ foreach ($samplegroups ? course_state::get_details($course, $context, 'group', $
 $samplegroupings = array_slice(array_column($state['groupings'], 'id'), 0, 20);
 foreach ($samplegroupings ? course_state::get_details($course, $context, 'grouping', $samplegroupings) : [] as $detail) {
     $old = $legacy['groupings'][$detail['id']];
-    if ($old['description'] !== $detail['description'] || $old['rawdescription'] !== $detail['rawdescription'] ||
-            $old['configdata'] !== $detail['configdata']) {
+    if (
+        $old['description'] !== $detail['description'] || $old['rawdescription'] !== $detail['rawdescription'] ||
+            $old['configdata'] !== $detail['configdata']
+    ) {
         $fail("details grouping {$detail['id']}: fields differ");
     }
 }
@@ -214,7 +220,7 @@ foreach ($samplegroupings ? course_state::get_details($course, $context, 'groupi
 // servicerequireslogin; the login itself is enforced by lib/ajax/service.php. Call execute()
 // directly: parameter validation, validate_context() and the capability checks all run there.
 $permissions = [];
-$call = static function(string $function, array $args): string {
+$call = static function (string $function, array $args): string {
     $class = [
         'local_groupimport_get_state' => \local_groupimport\external\get_state::class,
         'local_groupimport_get_details' => \local_groupimport\external\get_details::class,
@@ -235,8 +241,10 @@ $outsider = $DB->get_record_sql(
     IGNORE_MULTIPLE
 ) ?: guest_user();
 if ($outsider) {
-    $permissions['admin_details_outsider'] = $call('local_groupimport_get_details',
-        ['courseid' => $course->id, 'type' => 'user', 'ids' => [$outsider->id]]);
+    $permissions['admin_details_outsider'] = $call(
+        'local_groupimport_get_details',
+        ['courseid' => $course->id, 'type' => 'user', 'ids' => [$outsider->id]]
+    );
 }
 $student = null;
 foreach ($state['users'] as $user) {

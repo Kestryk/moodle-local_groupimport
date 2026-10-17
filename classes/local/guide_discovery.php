@@ -404,9 +404,11 @@ final class guide_discovery {
                 $scene['kind'] = 'simplecreate';
                 $scene['simplecreate'] = true;
                 $scene += self::demonstration_entry();
-                foreach (['note', 'groupname', 'groupingname', 'renamed', 'grouplabel', 'groupinglabel',
+                foreach (
+                    ['note', 'groupname', 'groupingname', 'renamed', 'grouplabel', 'groupinglabel',
                     'groupplaceholder', 'groupingplaceholder', 'addlabel', 'renamelabel', 'emptymembers',
-                    'emptygroups', 'phase1', 'phase2', 'phase3', 'phase4'] as $label) {
+                    'emptygroups', 'phase1', 'phase2', 'phase3', 'phase4'] as $label
+                ) {
                     $scene[$label] = get_string('discovery_simplecreate_' . $label, 'local_groupimport');
                 }
                 $slide['discoveryscene'] = $scene;
@@ -419,8 +421,10 @@ final class guide_discovery {
                     'note' => get_string('discovery_simplecreate_note', 'local_groupimport'),
                     'lessonreading' => true];
             } else if ($source === 'discovery-creation') {
-                foreach (['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
-                    'guidedpathcontent', 'guidedpathsteps'] as $key) {
+                foreach (
+                    ['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
+                    'guidedpathcontent', 'guidedpathsteps'] as $key
+                ) {
                     unset($slide[$key]);
                 }
                 $slide['commonintroduction'] = $byid['reference-16']['commonintroduction'];

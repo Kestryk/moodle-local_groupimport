@@ -220,9 +220,15 @@ try {
             throw new moodle_exception('groupnameexists', 'group', '', $name);
         }
 
-        ajax_security::validate_entity('groups', (int)$course->id, $groupid, $name,
+        ajax_security::validate_entity(
+            'groups',
+            (int)$course->id,
+            $groupid,
+            $name,
             has_capability('moodle/course:changeidnumber', $context) ? $idnumber : null,
-            $enrolmentkey, (string)($group->enrolmentkey ?? ''));
+            $enrolmentkey,
+            (string)($group->enrolmentkey ?? '')
+        );
         $imagepath = $deletepicture ? null : ajax_security::image_upload($_FILES['imagefile'] ?? null, $course);
 
         $data = (object)[
@@ -299,8 +305,13 @@ try {
             throw new moodle_exception('groupingnameexists', 'group', '', $name);
         }
 
-        ajax_security::validate_entity('groupings', (int)$course->id, $groupingid, $name,
-            has_capability('moodle/course:changeidnumber', $context) ? $idnumber : null);
+        ajax_security::validate_entity(
+            'groupings',
+            (int)$course->id,
+            $groupingid,
+            $name,
+            has_capability('moodle/course:changeidnumber', $context) ? $idnumber : null
+        );
 
         $data = (object)[
             'id' => $groupingid,

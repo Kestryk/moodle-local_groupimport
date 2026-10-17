@@ -29,8 +29,10 @@ foreach (['moodle-root', 'manifest', 'output', 'case'] as $key) {
     }
 }
 $case = $options['case'];
-if (!in_array($case, ['manage', 'course-state', 'addemails', 'duplicategroup', 'deletegroupings',
-        'movemembers', 'import-preview', 'rollback', 'userdetails-checks'], true)) {
+if (
+    !in_array($case, ['manage', 'course-state', 'addemails', 'duplicategroup', 'deletegroupings',
+        'movemembers', 'import-preview', 'rollback', 'userdetails-checks'], true)
+) {
     throw new RuntimeException('Unknown measurement case.');
 }
 $root = realpath($options['moodle-root']);
@@ -80,8 +82,10 @@ if (isset($options['entry-root'])) {
 }
 if (isset($options['service-root'])) {
     $candidate = realpath($options['service-root']);
-    if (!$candidate || !is_file($candidate . '/version.php') ||
-            !is_file($candidate . '/classes/service/course_structure.php')) {
+    if (
+        !$candidate || !is_file($candidate . '/version.php') ||
+            !is_file($candidate . '/classes/service/course_structure.php')
+    ) {
         throw new RuntimeException('Invalid source service checkout.');
     }
     require_once($candidate . '/classes/service/course_structure.php');
@@ -204,8 +208,23 @@ $bufferlevel = ob_get_level();
 ob_start();
 $outcome = ['passed' => false];
 $failure = null;
-register_shutdown_function(static function() use (&$outcome, &$failure, $start, $reads, $writes, $querytime,
-        $bufferlevel, $options, $case, &$cleanup, $manifest, $expected, $cache, $candidate, $entrycandidate): void {
+register_shutdown_function(static function () use (
+    &$outcome,
+    &$failure,
+    $start,
+    $reads,
+    $writes,
+    $querytime,
+    $bufferlevel,
+    $options,
+    $case,
+    &$cleanup,
+    $manifest,
+    $expected,
+    $cache,
+    $candidate,
+    $entrycandidate
+): void {
     global $DB;
     $elapsed = (microtime(true) - $start) * 1000;
     $measuredreads = $DB->perf_get_reads() - $reads;
@@ -227,8 +246,11 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
             $outcome['members'] = count($response['group']['members'] ?? []);
             $generatedid = $response['group']['id'];
             $response['group']['id'] = 'generated-group';
-            $response['group']['nativeurl'] = preg_replace('/([?&]id=)' . $generatedid . '(?=&|$)/',
-                '$1generated-group', $response['group']['nativeurl']);
+            $response['group']['nativeurl'] = preg_replace(
+                '/([?&]id=)' . $generatedid . '(?=&|$)/',
+                '$1generated-group',
+                $response['group']['nativeurl']
+            );
             foreach ($response['group']['members'] as &$member) {
                 $member['selectableid'] = 'generated-group:' . $member['userid'];
             }
@@ -250,13 +272,21 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
         $outcome['functional'] = ['response' => $response];
         if (in_array($case, ['addemails', 'movemembers', 'duplicategroup'], true) && $outcome['passed']) {
             $destinationid = $case === 'duplicategroup' ? $generatedid : $cleanup['groups'][0];
-            $memberids = $DB->get_fieldset_select('groups_members', 'userid', 'groupid = :groupid',
-                ['groupid' => $destinationid]);
+            $memberids = $DB->get_fieldset_select(
+                'groups_members',
+                'userid',
+                'groupid = :groupid',
+                ['groupid' => $destinationid]
+            );
             sort($memberids, SORT_NUMERIC);
             $outcome['functional']['destinationMembers'] = array_map('intval', $memberids);
             if ($case === 'movemembers') {
-                $memberids = $DB->get_fieldset_select('groups_members', 'userid', 'groupid = :groupid',
-                    ['groupid' => $cleanup['groups'][1]]);
+                $memberids = $DB->get_fieldset_select(
+                    'groups_members',
+                    'userid',
+                    'groupid = :groupid',
+                    ['groupid' => $cleanup['groups'][1]]
+                );
                 sort($memberids, SORT_NUMERIC);
                 $outcome['functional']['sourceMembers'] = array_map('intval', $memberids);
             }
@@ -324,8 +354,13 @@ try {
             if ($other['profileimage'] !== '' || $other['description'] !== '' || empty($other['detailsdeferred'])) {
                 $checks['all-light-identities-memberships-roles-preserved'] = false;
             }
-            unset($item['profileimage'], $item['description'], $other['profileimage'], $other['description'],
-                $other['detailsdeferred']);
+            unset(
+                $item['profileimage'],
+                $item['description'],
+                $other['profileimage'],
+                $other['description'],
+                $other['detailsdeferred']
+            );
             $checks['all-light-identities-memberships-roles-preserved'] =
                 $checks['all-light-identities-memberships-roles-preserved'] && $item === $other;
         }
@@ -394,10 +429,16 @@ try {
                 'functional' => ['rows' => $preview['rows'] ?? [], 'messages' => $preview['messages'] ?? [],
                     'errors' => $errors, 'success' => $success]];
         } else if ($case === 'rollback') {
-            $outcome = ['passed' => empty($errors), 'restored' => $DB->count_records('groups_members',
-                ['groupid' => $cleanup['groups'][0]])];
-            $memberids = $DB->get_fieldset_select('groups_members', 'userid', 'groupid = :groupid',
-                ['groupid' => $cleanup['groups'][0]]);
+            $outcome = ['passed' => empty($errors), 'restored' => $DB->count_records(
+                'groups_members',
+                ['groupid' => $cleanup['groups'][0]]
+            )];
+            $memberids = $DB->get_fieldset_select(
+                'groups_members',
+                'userid',
+                'groupid = :groupid',
+                ['groupid' => $cleanup['groups'][0]]
+            );
             sort($memberids, SORT_NUMERIC);
             $outcome['functional'] = ['errors' => $errors, 'success' => $success,
                 'members' => array_map('intval', $memberids)];

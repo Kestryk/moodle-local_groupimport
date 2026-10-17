@@ -6,9 +6,11 @@ $context = context_course::instance(5);
 $students = get_enrolled_users($context, '', 0, 'u.id, u.username, u.email', 'u.id');
 $student = null;
 foreach ($students as $candidate) {
-    if (str_ends_with($candidate->email, '@example.com') &&
+    if (
+        str_ends_with($candidate->email, '@example.com') &&
             !is_siteadmin($candidate->id) &&
-            !has_capability('moodle/course:managegroups', $context, $candidate->id)) {
+            !has_capability('moodle/course:managegroups', $context, $candidate->id)
+    ) {
         $roles = get_user_roles($context, $candidate->id);
         foreach ($roles as $role) {
             if ($role->shortname === 'student') {
@@ -30,7 +32,9 @@ if ($student) {
         $USER = $DB->get_record('user', ['id' => $userid], '*', MUST_EXIST);
         foreach ($tours as $record) {
             $matches[$kind][] = \tool_usertours\local\filter\role::filter_matches(
-                \tool_usertours\tour::instance($record->id), $context);
+                \tool_usertours\tour::instance($record->id),
+                $context
+            );
         }
     }
     $USER = $previoususer;
@@ -38,8 +42,10 @@ if ($student) {
 $pending = [];
 foreach (core_plugin_manager::instance()->get_plugins() as $plugins) {
     foreach ($plugins as $plugin) {
-        if ($plugin->versiondisk !== null && $plugin->versiondb !== null &&
-                (float)$plugin->versiondisk > (float)$plugin->versiondb) {
+        if (
+            $plugin->versiondisk !== null && $plugin->versiondb !== null &&
+                (float)$plugin->versiondisk > (float)$plugin->versiondb
+        ) {
             $pending[] = $plugin->component;
         }
     }

@@ -101,8 +101,10 @@ if ($action === 'setup') {
     easystud_perf_write($path, $manifest);
     $generator = new testing_data_generator();
     if (!$manifest['courseId']) {
-        if ($DB->record_exists('course', ['shortname' => 'perffixture-t052']) ||
-                $DB->record_exists('course', ['idnumber' => $manifest['fixture']])) {
+        if (
+            $DB->record_exists('course', ['shortname' => 'perffixture-t052']) ||
+                $DB->record_exists('course', ['idnumber' => $manifest['fixture']])
+        ) {
             throw new RuntimeException('An existing fixture needs its original manifest; adoption refused.');
         }
         $course = $generator->create_course([
@@ -179,7 +181,8 @@ $result = [
     'users' => count($manifest['userIds']), 'groups' => count($manifest['groupIds']),
     'groupings' => count($manifest['groupingIds']), 'memberships' => $DB->count_records_sql(
         'SELECT COUNT(1) FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?',
-        [$manifest['courseId']]),
+        [$manifest['courseId']]
+    ),
     'managerUrl' => $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $manifest['courseId'],
     'cacheSettings' => $cache,
 ];

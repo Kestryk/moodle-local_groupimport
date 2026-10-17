@@ -26,10 +26,12 @@ if (!in_array(parse_url($CFG->wwwroot, PHP_URL_HOST), ['localhost', '127.0.0.1',
     throw new RuntimeException('Local runtime only.');
 }
 if (isset($options['purge'])) {
-    if (empty($options['expected-url']) || empty($options['expected-db']) ||
+    if (
+        empty($options['expected-url']) || empty($options['expected-db']) ||
             rtrim($CFG->wwwroot, '/') !== rtrim($options['expected-url'], '/') ||
             $CFG->dbname !== $options['expected-db'] ||
-            parse_url($CFG->wwwroot, PHP_URL_PORT) !== 8051 || $CFG->dbname !== 'moodle51perf') {
+            parse_url($CFG->wwwroot, PHP_URL_PORT) !== 8051 || $CFG->dbname !== 'moodle51perf'
+    ) {
         throw new RuntimeException('Cache purge refused outside the explicitly identified Perf copy.');
     }
     purge_all_caches();

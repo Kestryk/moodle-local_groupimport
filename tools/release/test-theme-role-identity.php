@@ -44,8 +44,10 @@ foreach (['absent', 'exact-defaults', 'distinct-custom', 'malformed'] as $mode) 
     $style = local_groupimport_get_theme_style();
     foreach ($defaults as $role => [$key, $hex]) {
         $expected = $mode === 'distinct-custom' ? $distinct[$role] : $hex;
-        if ($colours[$role] !== $expected ||
-                !str_contains($style, '--easyedu-' . $role . '-chosen: ' . $expected . ';')) {
+        if (
+            $colours[$role] !== $expected ||
+                !str_contains($style, '--easyedu-' . $role . '-chosen: ' . $expected . ';')
+        ) {
             throw new RuntimeException('Semantic role changed identity: ' . $mode . '/' . $role);
         }
         $cases++;

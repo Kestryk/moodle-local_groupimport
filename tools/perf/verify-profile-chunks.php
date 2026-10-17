@@ -31,34 +31,48 @@ class profile_chunk_db {
     }
     public function get_recordset_sql($sql, $params) {
         return new class($this->rows($params), $this) extends ArrayIterator {
-            public function __construct(array $rows, public profile_chunk_db $db) { parent::__construct($rows); }
-            public function close(): void { $this->db->closed++; }
+            public function __construct(array $rows, public profile_chunk_db $db) {
+                parent::__construct($rows); 
+            }
+            public function close(): void {
+                $this->db->closed++; 
+            }
         };
     }
     public function get_records_sql($sql, $params) {
         $rows = [];
         // Preserve the historical userid-first-column collision, not a redesign.
-        foreach ($this->rows($params) as $row) { $rows[$row->userid] = $row; }
+        foreach ($this->rows($params) as $row) { $rows[$row->userid] = $row; 
+        }
         return $rows;
     }
 }
-function local_groupimport_normalise_participant_label_value($value) { return trim(strip_tags($value)); }
+function local_groupimport_normalise_participant_label_value($value) {
+    return trim(strip_tags($value)); 
+}
 foreach (['before', 'after'] as $variant) {
     $source = file_get_contents($options[$variant]);
     foreach (['local_groupimport_load_custom_user_field_values', 'local_groupimport_enrich_users_with_copy_fields'] as $name) {
         $start = strpos($source, 'function ' . $name . '(');
         $end = strpos($source, "\n}\n", $start) + 3;
-        if ($start === false || $end < $start) { throw new RuntimeException('Function boundary missing.'); }
-        eval(str_replace('function ' . $name . '(', 'function ' . $variant . '_' . $name . '(',
-            substr($source, $start, $end - $start)));
+        if ($start === false || $end < $start) { throw new RuntimeException('Function boundary missing.'); 
+        }
+        eval(str_replace(
+            'function ' . $name . '(',
+            'function ' . $variant . '_' . $name . '(',
+            substr($source, $start, $end - $start)
+        ));
     }
 }
 foreach ([0, 1, 999, 1000, 1001, 3000, 10000] as $size) {
     $users = [];
-    for ($i = 1; $i <= $size; $i++) { $users[$i] = ['username' => 'u-' . $i]; }
-    foreach (['local_groupimport_load_custom_user_field_values' => ['profile_field_alpha', 'profile_field_beta'],
+    for ($i = 1; $i <= $size; $i++) { $users[$i] = ['username' => 'u-' . $i]; 
+    }
+    foreach (
+        ['local_groupimport_load_custom_user_field_values' => ['profile_field_alpha', 'profile_field_beta'],
             'local_groupimport_enrich_users_with_copy_fields' =>
-                ['username' => 'Username', 'profile_field_alpha' => 'Alpha', 'profile_field_beta' => 'Beta']] as $name => $fields) {
+                ['username' => 'Username', 'profile_field_alpha' => 'Alpha', 'profile_field_beta' => 'Beta']] as $name => $fields
+    ) {
         $DB = new profile_chunk_db();
         $before = ('before_' . $name)($users, $fields);
         $DB = new profile_chunk_db();
@@ -70,7 +84,9 @@ foreach ([0, 1, 999, 1000, 1001, 3000, 10000] as $size) {
         }
     }
 }
-echo json_encode(['surface' => 'AP-E7-isolated-profile-chunks', 'passed' => !in_array(false, $checks, true),
+echo json_encode(
+    ['surface' => 'AP-E7-isolated-profile-chunks', 'passed' => !in_array(false, $checks, true),
     'checks' => $checks, 'scope' => 'Actual function bodies, deterministic DML doubles; not native SQL Server proof'],
-    JSON_PRETTY_PRINT) . "\n";
+    JSON_PRETTY_PRINT
+) . "\n";
 exit(in_array(false, $checks, true) ? 1 : 0);

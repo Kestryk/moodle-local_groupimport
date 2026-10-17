@@ -10,8 +10,10 @@ if ($CFG->wwwroot !== 'http://localhost:8051' || $CFG->dbname !== 'moodle51perf'
 $data = json_decode(file_get_contents($options['manifest']), true, 512, JSON_THROW_ON_ERROR);
 $courseid = (int)$data['courseId'];
 $course = get_course($courseid);
-if ($courseid <= 5 || $course->shortname !== $data['shortname'] ||
-        !str_starts_with($course->shortname, 'eed-guide-write-')) {
+if (
+    $courseid <= 5 || $course->shortname !== $data['shortname'] ||
+        !str_starts_with($course->shortname, 'eed-guide-write-')
+) {
     throw new RuntimeException('Disposable course ownership mismatch');
 }
 $userid = (int)$data['userIds'][0];

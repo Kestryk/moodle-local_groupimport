@@ -13,8 +13,10 @@ $checks = [
     'real-card-and-member-count' => $result['instances']['participant-cards'] === 1 &&
         $result['instances']['member-rows'] === 1,
     'escaped-description-json-decoded' => isset($result['detailJsonFieldBytesBeforeHtmlEscaping']['description']),
-    'data-spans-not-dom-elements' => array_values(array_filter($result['regions'],
-        static fn(array $region): bool => $region['region'] === 'data-attributes-json'))[0]['sourceElements'] === 0,
+    'data-spans-not-dom-elements' => array_values(array_filter(
+        $result['regions'],
+        static fn(array $region): bool => $region['region'] === 'data-attributes-json'
+    ))[0]['sourceElements'] === 0,
 ];
 echo json_encode(['passed' => !in_array(false, $checks, true), 'checks' => $checks], JSON_PRETTY_PRINT) . "\n";
 exit(in_array(false, $checks, true) ? 1 : 0);

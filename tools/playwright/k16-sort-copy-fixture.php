@@ -55,7 +55,8 @@ function guide_fixture_cleanup(array $data): array {
 $action = $options['action'] ?? '';
 if ($action === 'cleanup') {
     $data = is_file($file) ? json_decode(file_get_contents($file), true) : [];
-    if (!is_array($data)) { throw new RuntimeException('Invalid fixture manifest'); }
+    if (!is_array($data)) { throw new RuntimeException('Invalid fixture manifest'); 
+    }
     $id = (int)($data['courseId'] ?? 0);
     $course = $id ? $DB->get_record('course', ['id' => $id]) : false;
     if ($course && $course->shortname !== ($data['shortname'] ?? '')) {
@@ -65,9 +66,13 @@ if ($action === 'cleanup') {
     if ($course) {
         $snapshot['groups'] = array_values($DB->get_records('groups', ['courseid' => $id], 'id', 'id,name'));
         $snapshot['memberships'] = array_values($DB->get_records_sql(
-            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?', [$id]));
+            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?',
+            [$id]
+        ));
         $snapshot['groupingAssignments'] = array_values($DB->get_records_sql(
-            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?', [$id]));
+            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?',
+            [$id]
+        ));
     }
     $data['finalCourseState'] = $snapshot;
     guide_fixture_save($file, $data);
@@ -77,14 +82,16 @@ if ($action === 'cleanup') {
 if ($action !== 'setup' || !preg_match('/^[a-zA-Z0-9-]+$/', $options['run-id'] ?? '')) {
     throw new RuntimeException('Explicit setup/cleanup and safe run ID required');
 }
-if (is_file($file)) { throw new RuntimeException('Fresh manifest required'); }
+if (is_file($file)) { throw new RuntimeException('Fresh manifest required'); 
+}
 $suffix = substr(hash('sha256', $options['run-id']), 0, 12);
 $data = ['schemaVersion' => 1, 'runId' => $options['run-id'], 'courseId' => 0,
     'shortname' => 'eed-guide-write-' . $suffix, 'userIds' => []];
 guide_fixture_save($file, $data);
 try {
     $category = (int)$DB->get_field_sql('SELECT MIN(id) FROM {course_categories}');
-    if (!$category) { throw new RuntimeException('Course category required'); }
+    if (!$category) { throw new RuntimeException('Course category required'); 
+    }
     $course = create_course((object)['fullname' => 'EasyStud guided write QA ' . $suffix,
         'shortname' => $data['shortname'], 'category' => $category, 'visible' => 1]);
     $data['courseId'] = (int)$course->id;
@@ -92,7 +99,8 @@ try {
     $instances = enrol_get_instances($course->id, true);
     $manual = array_values(array_filter($instances, static fn($instance) => $instance->enrol === 'manual'))[0] ?? null;
     $role = $DB->get_record('role', ['shortname' => 'student'], '*', MUST_EXIST);
-    if (!$manual) { throw new RuntimeException('Manual enrollment required'); }
+    if (!$manual) { throw new RuntimeException('Manual enrollment required'); 
+    }
     $full = !defined('EASYSTUD_K16_SMALL_FIXTURE');
     $names = $full ? array_merge(['One', 'Two'], array_map(static fn($i) => sprintf('Member %02d', $i), range(1, 16))) : ['One', 'Two'];
     foreach ($names as $name) {
@@ -106,8 +114,10 @@ try {
     }
     $data['groupIds'] = [];
     $names = ['QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma'];
-    if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) { $names = EASYSTUD_K16_COPY_GROUP_NAMES; }
-    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Group %02d', $i), range(1, 10))); }
+    if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) { $names = EASYSTUD_K16_COPY_GROUP_NAMES; 
+    }
+    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Group %02d', $i), range(1, 10))); 
+    }
     foreach ($names as $name) {
         $data['groupIds'][] = (int)groups_create_group((object)['courseid' => $course->id, 'name' => $name]);
     }
@@ -115,11 +125,13 @@ try {
     groups_add_member($data['groupIds'][1], $data['userIds'][1]);
     $data['groupingIds'] = [];
     $names = ['QA Source Structure', 'QA Activity Destination'];
-    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Grouping %02d', $i), range(1, 10))); }
+    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Grouping %02d', $i), range(1, 10))); 
+    }
     foreach ($names as $name) {
         $data['groupingIds'][] = (int)groups_create_grouping((object)['courseid' => $course->id, 'name' => $name]);
     }
-    foreach ($data['groupIds'] as $id) { groups_assign_grouping($data['groupingIds'][0], $id); }
+    foreach ($data['groupIds'] as $id) { groups_assign_grouping($data['groupingIds'][0], $id); 
+    }
     $data['managerUrl'] = $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $course->id . '&lang=fr';
     guide_fixture_save($file, $data);
     echo json_encode($data, JSON_UNESCAPED_SLASHES) . PHP_EOL;

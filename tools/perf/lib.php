@@ -18,8 +18,10 @@ function easystud_perf_write(string $path, array $data): void {
         throw new RuntimeException('The external output directory must exist and be writable.');
     }
     $temporary = $path . '.pending';
-    if (file_put_contents($temporary, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
-            JSON_THROW_ON_ERROR) . "\n", LOCK_EX) === false || !rename($temporary, $path)) {
+    if (
+        file_put_contents($temporary, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
+            JSON_THROW_ON_ERROR) . "\n", LOCK_EX) === false || !rename($temporary, $path)
+    ) {
         throw new RuntimeException('Cannot persist the performance ownership record.');
     }
 }
@@ -45,8 +47,10 @@ function easystud_perf_require_local(): array {
 /** Read a manifest; a matching course name alone is never ownership evidence. */
 function easystud_perf_manifest(string $path): array {
     $data = json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
-    if (($data['fixture'] ?? '') !== 'easystud-perf-t052-v1' ||
-            ($data['prefix'] ?? '') !== 'perffixture-t052-') {
+    if (
+        ($data['fixture'] ?? '') !== 'easystud-perf-t052-v1' ||
+            ($data['prefix'] ?? '') !== 'perffixture-t052-'
+    ) {
         throw new RuntimeException('Unknown T052 ownership manifest.');
     }
     return $data;
@@ -59,8 +63,10 @@ function easystud_perf_validate(array $manifest): void {
     $course = null;
     if ($courseid) {
         $course = $DB->get_record('course', ['id' => $courseid]);
-        if ($course && ($course->idnumber !== $manifest['fixture'] ||
-                $course->shortname !== 'perffixture-t052' || (int)$course->visible !== 0)) {
+        if (
+            $course && ($course->idnumber !== $manifest['fixture'] ||
+                $course->shortname !== 'perffixture-t052' || (int)$course->visible !== 0)
+        ) {
             throw new RuntimeException('Fixture course ownership changed.');
         }
         foreach ($course ? ['groups', 'groupings'] : [] as $table) {
@@ -82,15 +88,21 @@ function easystud_perf_validate(array $manifest): void {
         if (!$user) {
             continue;
         }
-        if ($user->username !== $manifest['prefix'] . sprintf('%04d', $index) ||
+        if (
+            $user->username !== $manifest['prefix'] . sprintf('%04d', $index) ||
                 $user->email !== $user->username . '@example.invalid' || $user->auth !== 'nologin' ||
-                $user->idnumber !== $manifest['fixture']) {
+                $user->idnumber !== $manifest['fixture']
+        ) {
             throw new RuntimeException('Fixture user ownership changed.');
         }
-        if ($DB->record_exists_sql('SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid ' .
+        if (
+            $DB->record_exists_sql('SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid ' .
                 'WHERE ue.userid = ? AND e.courseid <> ?', [$userid, $courseid]) ||
-                $DB->record_exists_sql('SELECT 1 FROM {role_assignments} WHERE userid = ? AND contextid <> ?',
-                    [$userid, $course ? context_course::instance($courseid)->id : 0])) {
+                $DB->record_exists_sql(
+                    'SELECT 1 FROM {role_assignments} WHERE userid = ? AND contextid <> ?',
+                    [$userid, $course ? context_course::instance($courseid)->id : 0]
+                )
+        ) {
             throw new RuntimeException('Fixture user gained an external enrolment or role; cleanup refused.');
         }
     }
