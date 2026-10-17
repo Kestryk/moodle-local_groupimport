@@ -209,7 +209,8 @@ try {
     rejects(fn()=>reader::excel('anything', 'fake.ods'), 'Other reader formats rejected');
     check(glob($requestdir . '/import_*') === [], 'Exception cleanup');
     $book = new Spreadsheet();
-    $book->getActiveSheet()->setCellValue('A1', 'header')->setCellValue('A' . (\local_groupimport\local\import_preview::MAX_ROWS + 2), 'overflow');
+    $book->getActiveSheet()->setCellValue('A1', 'header')
+        ->setCellValue('A' . (\local_groupimport\local\import_preview::MAX_ROWS + 2), 'overflow');
     rejects(fn()=>reader::excel(workbook($book), 'rows.xlsx'), 'Excel row bound');
     $book = new Spreadsheet();
     $book->getActiveSheet()->setCellValue('BM1', 'too-wide');

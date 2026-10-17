@@ -271,7 +271,10 @@ function action($name, $input) {
     $course = (object)['id' => 5];
     $response = ['success' => false];
     $GLOBALS['input'] = $input;
-    require(\local_groupimport_fixture_source_file('use local_groupimport\\local\\bulk_action; use local_groupimport\\local\\ajax_security; ' . $GLOBALS['bodies'][$name]));
+    require(\local_groupimport_fixture_source_file(
+        'use local_groupimport\\local\\bulk_action; use local_groupimport\\local\\ajax_security; ' .
+        $GLOBALS['bodies'][$name]
+    ));
     return $response;
 }
 /**

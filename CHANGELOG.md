@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-17 : libellé de messagerie local FR/EN compatible Moodle 4.5 et repli de lignes PHP sans changement des jetons exécutables ; Guide, cartes et rendu inchangés.
+
 - 2026-10-17 [N1] K17-79: space participant filters with shared Kit tokens in both workspace views; keep field sizes and filtering unchanged.
 
 - 2026-10-17 [N0] A10: share logical inline-icon spacing across Bootstrap 4/5; preserve the native 0.25rem spacing without a Bootstrap-specific utility.

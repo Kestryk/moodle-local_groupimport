@@ -33,22 +33,50 @@ namespace core_privacy\local\metadata {
     class_alias('core_privacy\\local\\metadata\\fixture_s2_privacy_isolated_provider', 'core_privacy\\local\\metadata\\provider');
 }
 namespace core_privacy\local\request\plugin {
-    require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request_plugin/fixture_s2_privacy_isolated_provider.php');
-    class_alias('core_privacy\\local\\request\\plugin\\fixture_s2_privacy_isolated_provider', 'core_privacy\\local\\request\\plugin\\provider');
+    require_once(
+        __DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request_plugin/fixture_s2_privacy_isolated_provider.php'
+    );
+    class_alias(
+        'core_privacy\\local\\request\\plugin\\fixture_s2_privacy_isolated_provider',
+        'core_privacy\\local\\request\\plugin\\provider'
+    );
 }
 namespace core_privacy\local\request {
-    require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_user_preference_provider.php');
-    class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_user_preference_provider', 'core_privacy\\local\\request\\user_preference_provider');
-    require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_core_userlist_provider.php');
-    class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_core_userlist_provider', 'core_privacy\\local\\request\\core_userlist_provider');
+    require_once(
+        __DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_user_preference_provider.php'
+    );
+    class_alias(
+        'core_privacy\\local\\request\\fixture_s2_privacy_isolated_user_preference_provider',
+        'core_privacy\\local\\request\\user_preference_provider'
+    );
+    require_once(
+        __DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_core_userlist_provider.php'
+    );
+    class_alias(
+        'core_privacy\\local\\request\\fixture_s2_privacy_isolated_core_userlist_provider',
+        'core_privacy\\local\\request\\core_userlist_provider'
+    );
     require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_contextlist.php');
-    class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_contextlist', 'core_privacy\\local\\request\\contextlist');
-    require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_approved_contextlist.php');
-    class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_approved_contextlist', 'core_privacy\\local\\request\\approved_contextlist');
+    class_alias(
+        'core_privacy\\local\\request\\fixture_s2_privacy_isolated_contextlist',
+        'core_privacy\\local\\request\\contextlist'
+    );
+    require_once(
+        __DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_approved_contextlist.php'
+    );
+    class_alias(
+        'core_privacy\\local\\request\\fixture_s2_privacy_isolated_approved_contextlist',
+        'core_privacy\\local\\request\\approved_contextlist'
+    );
     require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_userlist.php');
     class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_userlist', 'core_privacy\\local\\request\\userlist');
-    require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_approved_userlist.php');
-    class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_approved_userlist', 'core_privacy\\local\\request\\approved_userlist');
+    require_once(
+        __DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_approved_userlist.php'
+    );
+    class_alias(
+        'core_privacy\\local\\request\\fixture_s2_privacy_isolated_approved_userlist',
+        'core_privacy\\local\\request\\approved_userlist'
+    );
     require_once(__DIR__ . '/doubles/s2_privacy_isolated/core_privacy_local_request/fixture_s2_privacy_isolated_writer.php');
     class_alias('core_privacy\\local\\request\\fixture_s2_privacy_isolated_writer', 'core_privacy\\local\\request\\writer');
 }
@@ -381,7 +409,10 @@ namespace {
     $before = json_encode($DB->history);
     $task->execute();
     check(json_encode($DB->history) === $before, 'Purge idempotent');
-    check(array_diff(array_unique($DB->writes), ['local_groupimport_history', 'local_groupimport_jobs']) === [], 'No business-table writes');
+    check(
+        array_diff(array_unique($DB->writes), ['local_groupimport_history', 'local_groupimport_jobs']) === [],
+        'No business-table writes'
+    );
     check($closed > 10, 'Recordsets closed');
     echo json_encode(
         ['suite' =>
