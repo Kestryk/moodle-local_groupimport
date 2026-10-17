@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "k1779ParticipantFilterSpacing20261017": {
     "base": "4474ffde",
     "scope": "K17-79: participant filter spacing shared across Complete and Participants/groups views",
@@ -184,7 +183,7 @@
     "published": false,
     "humanAccepted": false,
     "proofDirectory": "C:/dev/artifacts/codex1-k17-79-20261017"
-=======
+  },
   "a10InlineIcon20261017": {
     "base": "4474ffde",
     "scope": "A10 Bootstrap 4/5 inline icon spacing in two native add forms",
@@ -227,7 +226,6 @@
     "published": false,
     "humanAccepted": false,
     "proofDirectory": "C:/dev/artifacts/codex1-a10-inline-icon-20261017"
->>>>>>> 396220c1 ([N0] A10 keep native add icon spacing compatible with Bootstrap 4)
   },
   "k1780ParticipantGrouping20261017": {
     "base": "71a8f0cd",
