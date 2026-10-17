@@ -78,6 +78,15 @@ export const getPaginationConfigs = root => {
     ];
 };
 
+// Accessible names of the pagination landmark and of its glyph-only buttons (the glyphs stay the visible text).
+const paginationNavLabel = (labels, position) => {
+    const label = position === 'top' ? labels.paginationnavtop : labels.paginationnavbottom;
+    return label || '';
+};
+
+const pageButton = (attribute, label, glyph) => '<button type="button" class="btn btn-sm btn-outline-secondary" ' +
+    'data-easystud-' + attribute + '="1" aria-label="' + escapeHtml(label || '') + '">' + glyph + '</button>';
+
 export const getPagination = (list, inside, position) => {
     const root = list.closest('.local-groupimport-easystud');
     const labels = root ? getLabels(root) : {};
@@ -91,6 +100,7 @@ export const getPagination = (list, inside, position) => {
         pagination = document.createElement('nav');
         pagination.className = 'local-groupimport-easystud-pagination local-groupimport-easystud-pagination--' + position;
         pagination.setAttribute('data-easystud-pagination', position);
+        pagination.setAttribute('aria-label', paginationNavLabel(labels, position));
         pagination.innerHTML =
             '<span class="local-groupimport-easystud-pagination__selection">' +
                 '<button type="button" class="btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select" data-easystud-select-results="1">' +
@@ -101,11 +111,11 @@ export const getPagination = (list, inside, position) => {
                 '<span class="local-groupimport-easystud-pagination__count" data-easystud-list-count></span>' +
             '</span>' +
             '<span class="local-groupimport-easystud-pagination__controls">' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-page-first="1">&laquo;</button>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-page-prev="1">&lsaquo;</button>' +
+                pageButton('page-first', labels.paginationfirstpage, '&laquo;') +
+                pageButton('page-prev', labels.paginationpreviouspage, '&lsaquo;') +
                 '<span data-easystud-page-label></span>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-page-next="1">&rsaquo;</button>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-page-last="1">&raquo;</button>' +
+                pageButton('page-next', labels.paginationnextpage, '&rsaquo;') +
+                pageButton('page-last', labels.paginationlastpage, '&raquo;') +
             '</span>' +
             '<span class="local-groupimport-easystud-pagination__tools">' +
                 '<label class="local-groupimport-easystud-pagination__sort">' +

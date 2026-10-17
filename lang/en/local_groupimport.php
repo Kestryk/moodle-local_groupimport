@@ -1178,3 +1178,14 @@ $string['eventreportexported'] = 'EasyStud import report generated';
 
 $string['bulkactionlimit'] = 'This request exceeds the limit of {$a} items. No changes were made. Select fewer items and try again.';
 $string['bulkitemsskipped'] = 'Items not added: {$a}.';
+
+$string['selectparticipantnamed'] = 'Select participant {$a}';
+$string['selectgroupnamed'] = 'Select group {$a}';
+$string['selectgroupingnamed'] = 'Select grouping {$a}';
+$string['selectmembernamed'] = 'Select member {$a}';
+$string['paginationfirstpage'] = 'First page';
+$string['paginationpreviouspage'] = 'Previous page';
+$string['paginationnextpage'] = 'Next page';
+$string['paginationlastpage'] = 'Last page';
+$string['paginationnavtop'] = 'List pagination, top';
+$string['paginationnavbottom'] = 'List pagination, bottom';

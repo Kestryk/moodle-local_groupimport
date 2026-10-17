@@ -40,6 +40,7 @@ import {
     ensureAdvancedSettingsButtons, ensureInlinePanelCancelButtons,
 } from './local/cm/group_cards';
 import {updateParticipantEmptyState} from './local/cm/filters';
+import {bindAccessibleNames} from './local/cm/accessible_names';
 import {
     syncCatalogFilters, scheduleResponsiveUiRefresh, syncPagination, applyFilters, updateSelectionActions,
 } from './local/cm/workspace';
@@ -210,6 +211,7 @@ export const init = (rootId, courseId, options = {}) => {
             () => bindOptionalTools(root),
             () => bindPastePreview(root),
             () => bindHoverPopovers(root),
+            () => bindAccessibleNames(root),
              () => bindCanonicalNavigation(root),
              () => bindResponsiveParticipantNavigation(root),
              () => bindResponsiveGuideLauncher(root),

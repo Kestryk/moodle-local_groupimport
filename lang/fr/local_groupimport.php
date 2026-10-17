@@ -1176,3 +1176,14 @@ $string['eventreportexported'] = 'Rapport d’import EasyStud généré';
 
 $string['bulkactionlimit'] = 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.';
 $string['bulkitemsskipped'] = 'Éléments non ajoutés : {$a}.';
+
+$string['selectparticipantnamed'] = 'Sélectionner le participant {$a}';
+$string['selectgroupnamed'] = 'Sélectionner le groupe {$a}';
+$string['selectgroupingnamed'] = 'Sélectionner le groupement {$a}';
+$string['selectmembernamed'] = 'Sélectionner le membre {$a}';
+$string['paginationfirstpage'] = 'Première page';
+$string['paginationpreviouspage'] = 'Page précédente';
+$string['paginationnextpage'] = 'Page suivante';
+$string['paginationlastpage'] = 'Dernière page';
+$string['paginationnavtop'] = 'Pagination de la liste, en haut';
+$string['paginationnavbottom'] = 'Pagination de la liste, en bas';
