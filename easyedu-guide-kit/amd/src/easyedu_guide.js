@@ -1016,6 +1016,9 @@ const dockChecklistAwayFromTarget = (root, target) => {
   }
   // A fold made for this same target stays (re-renders must not make it blink).
   if (checklist.classList.contains(CHECKLIST_AVOIDING_CLASS) && root.easyeduGuideAvoidTarget === target) {
+    // Folding can finish after the first dock measurement. Keep the fold, but
+    // recheck the now smaller panel against a moving sheet or control.
+    dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
     return;
   }
   unfoldAvoidingChecklist(root, checklist);
@@ -1265,6 +1268,11 @@ const scrollToTarget = (root, target, options = {}) => {
 
   const topOffset = getScrollTopOffset();
   const checklistBottomClearance = getCompactChecklistBottomClearance(root);
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const bottomOffset = Math.max(
+    Math.min(Math.max(viewportHeight * 0.18, 110), 180),
+    checklistBottomClearance
+  );
 
   const alignWindow = () => {
     if (!isVisibleElement(target)) {
@@ -1272,11 +1280,6 @@ const scrollToTarget = (root, target, options = {}) => {
       return;
     }
     const rect = target.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const bottomOffset = Math.max(
-      Math.min(Math.max(viewportHeight * 0.18, 110), 180),
-      checklistBottomClearance
-    );
     const usableHeight = Math.max(160, viewportHeight - topOffset - bottomOffset);
     const needsScroll = rect.top < topOffset ||
       rect.bottom > viewportHeight - bottomOffset ||
@@ -1294,7 +1297,7 @@ const scrollToTarget = (root, target, options = {}) => {
       alignWindow();
     }
   };
-  if (!scrollScrollableAncestorsToTarget(root, target, checklistBottomClearance, alignAfterScroll)) {
+  if (!scrollScrollableAncestorsToTarget(root, target, bottomOffset, alignAfterScroll)) {
     alignWindow();
   }
 
