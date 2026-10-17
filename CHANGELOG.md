@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Record the dedicated Moodle 5.3 upgrade and partial native smoke, restored fixtures, and repaired Kit contracts; retain loading/translation/console findings without product changes.
+
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
 
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.

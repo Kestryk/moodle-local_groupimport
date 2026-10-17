@@ -1,0 +1,174 @@
+{
+  "base": "de6b6e4b",
+  "branch": "work/codex1/easystud-smoke53-20261017",
+  "status": "PARTIAL_FAIL",
+  "runtime": "http://localhost:8053",
+  "pluginBefore": 2026101500,
+  "pluginAfter": 2026101700,
+  "debug": 32767,
+  "debugdisplay": 1,
+  "upgrade": "PASS",
+  "purge": "PASS",
+  "productChanged": false,
+  "matrix": [
+    {
+      "page": "manage-fr-1600",
+      "ready": false,
+      "title": "Gestion simplifiée des étudiants | moodle53",
+      "readyState": "degraded",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 0,
+      "coreLogDefined": true,
+      "pageBootstrapDefined": true,
+      "managerDefined": true,
+      "bodyOverflow": false
+    },
+    {
+      "page": "index-fr-1600",
+      "ready": true,
+      "title": "Import massif EasyStud | moodle53",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 1,
+      "coreLogDefined": false,
+      "pageBootstrapDefined": false,
+      "managerDefined": false,
+      "bodyOverflow": false
+    },
+    {
+      "page": "manage-fr-390",
+      "ready": true,
+      "title": "Gestion simplifiée des étudiants | moodle53",
+      "readyState": "ready",
+      "participants": 3,
+      "groupCards": 0,
+      "filePickers": 0,
+      "coreLogDefined": true,
+      "pageBootstrapDefined": true,
+      "managerDefined": true,
+      "bodyOverflow": false
+    },
+    {
+      "page": "index-fr-390",
+      "ready": true,
+      "title": "Import massif EasyStud | moodle53",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 1,
+      "coreLogDefined": false,
+      "pageBootstrapDefined": false,
+      "managerDefined": false,
+      "bodyOverflow": false
+    },
+    {
+      "page": "manage-en-1600",
+      "ready": false,
+      "title": "Simplified student management | moodle53",
+      "readyState": "degraded",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 0,
+      "coreLogDefined": true,
+      "pageBootstrapDefined": true,
+      "managerDefined": true,
+      "bodyOverflow": false
+    },
+    {
+      "page": "index-en-1600",
+      "ready": true,
+      "title": "EasyStud Mass Import | moodle53",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 1,
+      "coreLogDefined": false,
+      "pageBootstrapDefined": false,
+      "managerDefined": false,
+      "bodyOverflow": false
+    },
+    {
+      "page": "manage-en-390",
+      "ready": false,
+      "title": "Simplified student management | moodle53",
+      "readyState": "degraded",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 0,
+      "coreLogDefined": true,
+      "pageBootstrapDefined": true,
+      "managerDefined": true,
+      "bodyOverflow": false
+    },
+    {
+      "page": "index-en-390",
+      "ready": true,
+      "title": "EasyStud Mass Import | moodle53",
+      "participants": 0,
+      "groupCards": 0,
+      "filePickers": 1,
+      "coreLogDefined": false,
+      "pageBootstrapDefined": false,
+      "managerDefined": false,
+      "bodyOverflow": false
+    }
+  ],
+  "consoleCounts": {
+    "Page unloaded.": 25,
+    "TypeError: Failed to fetch": 25
+  },
+  "uncaughtPageErrors": 0,
+  "abortedRequests": 139,
+  "translationWarnings": 4,
+  "navigationCases": 4,
+  "navigationStatus": "PASS",
+  "cleanup": {
+    "deletedCourse": "5",
+    "courseAbsent": true,
+    "testUsersDeleted": 3,
+    "remainingCourses": 3,
+    "removedFixtureStateRows": 1,
+    "remainingFixtureStateRows": 0,
+    "remainingFixtureHistoryRows": 0
+  },
+  "final": {
+    "wwwroot": "http://localhost:8053",
+    "php": "8.3.35",
+    "pluginVersion": "2026101700",
+    "debug": "32767",
+    "debugdisplay": "1",
+    "enablesimplifiedview": "1",
+    "courseCount": 3,
+    "pendingPlugins": []
+  },
+  "evidenceDirectory": "C:\\dev\\artifacts\\smoke53-0830-20261017",
+  "rawProofs": {
+    "browser-plugin-ready/smoke.json": "2ca956d9160fb908a0785701d3a62ac4bd14362fcd5488540662d655c06d242c",
+    "browser-action-commit/smoke.json": "648076d3b35bf2977d44c00da00e129623edb7b39a0f4ac065e96c9ba1b253b1",
+    "final-state.log": "fdad764a0cab894f137d1b0f87b7a3296afdd9ac3378468e9f8d5ad85bf44c26",
+    "fixture-cleanup-final.log": "2c7f703b8ca90e958340440a239def8750fca2ef69b7796e1e513c5f826ec556"
+  },
+  "kit": {
+    "branch": "work/codex1/easyedu-kit-sync-v2-20261017",
+    "commit": "2894034cddc07ee4333c9e67522869adba56ca46",
+    "classification": {
+      "initialFailures": 46,
+      "byCategory": {
+        "Obsolete as current-tip gate": 22,
+        "EasyStud V2": 19,
+        "CCB/EasyExam (shared)": 5
+      },
+      "repairedPASS": 19,
+      "openEasyStud": [],
+      "otherConsumersVerified": false,
+      "mainChanged": false,
+      "runtimeProductScssChanged": false
+    },
+    "guideMirror": [
+      "T037 PASS",
+      "T038 PASS",
+      "roundtrip PASS"
+    ],
+    "canonicalMotionM3": "OPEN: getLevel/setLevel absent; no runtime component changed",
+    "mergedIntoMain": false
+  }
+}
