@@ -32,30 +32,30 @@ class profile_chunk_db {
     public function get_recordset_sql($sql, $params) {
         return new class($this->rows($params), $this) extends ArrayIterator {
             public function __construct(array $rows, public profile_chunk_db $db) {
-                parent::__construct($rows); 
+                parent::__construct($rows);
             }
             public function close(): void {
-                $this->db->closed++; 
+                $this->db->closed++;
             }
         };
     }
     public function get_records_sql($sql, $params) {
         $rows = [];
         // Preserve the historical userid-first-column collision, not a redesign.
-        foreach ($this->rows($params) as $row) { $rows[$row->userid] = $row; 
+        foreach ($this->rows($params) as $row) { $rows[$row->userid] = $row;
         }
         return $rows;
     }
 }
 function local_groupimport_normalise_participant_label_value($value) {
-    return trim(strip_tags($value)); 
+    return trim(strip_tags($value));
 }
 foreach (['before', 'after'] as $variant) {
     $source = file_get_contents($options[$variant]);
     foreach (['local_groupimport_load_custom_user_field_values', 'local_groupimport_enrich_users_with_copy_fields'] as $name) {
         $start = strpos($source, 'function ' . $name . '(');
         $end = strpos($source, "\n}\n", $start) + 3;
-        if ($start === false || $end < $start) { throw new RuntimeException('Function boundary missing.'); 
+        if ($start === false || $end < $start) { throw new RuntimeException('Function boundary missing.');
         }
         eval(str_replace(
             'function ' . $name . '(',
@@ -66,7 +66,7 @@ foreach (['before', 'after'] as $variant) {
 }
 foreach ([0, 1, 999, 1000, 1001, 3000, 10000] as $size) {
     $users = [];
-    for ($i = 1; $i <= $size; $i++) { $users[$i] = ['username' => 'u-' . $i]; 
+    for ($i = 1; $i <= $size; $i++) { $users[$i] = ['username' => 'u-' . $i];
     }
     foreach (
         ['local_groupimport_load_custom_user_field_values' => ['profile_field_alpha', 'profile_field_beta'],

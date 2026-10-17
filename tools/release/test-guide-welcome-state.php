@@ -27,14 +27,14 @@ function set_user_preference($name, $value) {
 }
 function isloggedin() {
     global $userid;
-    return $userid > 0; 
+    return $userid > 0;
 }
 function isguestuser() {
     global $guest;
-    return $guest; 
+    return $guest;
 }
 function require_login($course = null, $autologin = true) {
-    if (!isloggedin()) { throw new RuntimeException('Login required'); 
+    if (!isloggedin()) { throw new RuntimeException('Login required');
     }
 }
 function require_capability($capability, $context) {
@@ -44,11 +44,11 @@ function require_capability($capability, $context) {
     }
 }
 class context_system { public static function instance() {
-        return new self(); 
-} 
+        return new self();
+}
 }
 function check($condition, $message) {
-    if (!$condition) { throw new RuntimeException($message); 
+    if (!$condition) { throw new RuntimeException($message);
     }
 }
 
@@ -67,9 +67,9 @@ check(!guide_welcome::should_offer(), 'Guest not offered');
 check(!guide_welcome::mark_opened($initial), 'Guest not acknowledged');
 $guest = false;
 try { guide_welcome::reset();
-    throw new LogicException('Unauthorized reset accepted'); 
+    throw new LogicException('Unauthorized reset accepted');
 }
-catch (RuntimeException $error) { check($error->getMessage() === 'Capability required', 'Capability guard'); 
+catch (RuntimeException $error) { check($error->getMessage() === 'Capability required', 'Capability guard');
 }
 $before = $preferences;
 $admin = true;
