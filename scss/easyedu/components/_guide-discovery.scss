@@ -747,7 +747,21 @@
       font-weight: var(--easyedu-font-weight-semibold);
       line-height: 1.2;
     }
-    &__card-copy > strong { @include typography.type-control-label; font-size: 0.88rem; }
+    &__card-copy > strong, &__card-title > strong { @include typography.type-control-label; font-size: 0.88rem; }
+    // K17-32: the title row of an illustrated card. The pencil follows the title like on the real cards and
+    // is the Kit card direct action (same disc, same icon family).
+    &__card-title {
+      display: flex;
+      align-items: center;
+      gap: var(--easyedu-card-label-gap);
+      min-width: 0;
+      > strong { min-width: 0; overflow-wrap: anywhere; }
+      > input { @include text-fields.foundation-text-field($size: small); flex: 1 1 auto; min-width: 0; }
+    }
+    &__card-edit {
+      @include card-actions.card-direct-action;
+      &:disabled { opacity: 1; }
+    }
     &__source-title { @include typography.type-control-label; display: block; font-size: 0.88rem; }
     [data-guide-source-empty] { display: block; margin-block-start: 0.5rem; }
     [data-guide-source-empty][hidden] { display: none; }
@@ -1056,7 +1070,28 @@
       border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);
     }
     // The simple-creation stage is a plain block (no __stage class): it is the pointer's containing block.
+    // K17-32: its field rows and created cards are separated by one Kit gap.
     [data-guide-simplecreate] { position: relative; }
+    [data-guide-simplecreate],
+    [data-guide-simplecreate-grouping-stage]:not([hidden]) {
+      display: grid;
+      gap: var(--easyedu-guide-scene-stack-gap);
+      min-inline-size: 0;
+    }
+    // K17-36: the creation demonstration (names typed, formula, groupings) owns its pointer and its two result lists.
+    &__creation-stage { position: relative; }
+    &__grouping-block { display: grid; gap: 0; }
+    // K17-44: the animated filter stage reuses the specimen surface and cards. Layout only: the panel itself is
+    // the scene's, so the specimen frame and padding are removed and the list stays at a readable width.
+    &__filters-stage.easyedu-guide-spec.easyedu-guide-spec--filters {
+      position: relative;
+      inline-size: min(100%, 24rem);
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
     &__cursor[data-guide-pointer="touch"] {
       .easyedu-guide-scene__cursor-mouse { display: none; }
       .easyedu-guide-scene__cursor-touch { display: block; }

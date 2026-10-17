@@ -264,6 +264,10 @@
   --easyedu-guide-modal-height: min(90vh, 46rem);
   --easyedu-guide-modal-max-height: calc(100vh - 2rem);
   --easyedu-guide-modal-min-height: min(42rem, calc(100vh - 2rem));
+  // K17-32, K17-46: spacing inside an illustrated demonstration. The stack gap separates blocks that follow
+  // each other (field row, created card); the header gap spaces the rows of the step block (narration, action).
+  --easyedu-guide-scene-stack-gap: 1rem;
+  --easyedu-guide-scene-header-gap: 0.75rem;
   --easyedu-tooltip-bg: #f8fbfd;
   --easyedu-tooltip-border: #cfe0ec;
   --easyedu-tooltip-glow: rgba(12, 113, 194, 0.1);

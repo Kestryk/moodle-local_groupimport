@@ -20,12 +20,15 @@
     <div class="easyedu-guide-scene__results" data-guide-simplecreate-result="group" hidden>
         <span class="easyedu-guide-scene__card">
             <span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span>
-            <span class="easyedu-guide-scene__card-copy"><strong data-guide-simplecreate-card-name>{{groupname}}</strong>
+            <span class="easyedu-guide-scene__card-copy">
+                <span class="easyedu-guide-scene__card-title">
+                    <strong data-guide-simplecreate-card-name>{{groupname}}</strong>
+                    <input type="text" data-guide-simplecreate-rename value="{{groupname}}" readonly tabindex="-1" hidden>
+                    <button type="button" class="easyedu-guide-scene__card-edit" data-guide-simplecreate-edit
+                        aria-label="{{renamelabel}}" tabindex="-1" disabled><span class="fa fa-pen" aria-hidden="true"></span></button>
+                </span>
                 <small>{{emptymembers}}</small>
-                <input type="text" data-guide-simplecreate-rename value="{{groupname}}" readonly tabindex="-1" hidden>
             </span>
-            <button type="button" class="btn btn-outline-secondary" data-guide-simplecreate-edit
-                aria-label="{{renamelabel}}" tabindex="-1" disabled><span class="fa fa-pencil" aria-hidden="true"></span></button>
         </span>
     </div>
     <div data-guide-simplecreate-grouping-stage hidden>
