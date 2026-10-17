@@ -1141,6 +1141,7 @@ $string['importlimits'] = 'Limits: {$a->rows} rows per import, {$a->mb} MB per f
 
 $string['emptygrouphelp'] = 'Drag participants here or use @';
 $string['groupmembersshowall'] = 'See all {$a} members';
+$string['groupmembersshowall_one'] = 'See {$a} member';
 $string['groupmembersshowless'] = 'Show less';
 $string['emptygroupinghelp'] = 'Drag groups here';
 $string['emptygrouphelptouch'] = 'Use @ or “Add to a group”';

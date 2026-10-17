@@ -12,7 +12,7 @@ const slice = (start, end) => {
 };
 const helper = slice('const bindNavigationTooltips =', 'const bindGuide =');
 const listeners = slice('const addTrackedListener =', 'const setTrackedTimeout =');
-const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
+const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'utf8');
 (async() => {
     const browser = await chromium.launch({headless:true, channel:'chrome'});
     let cases = 0;
@@ -22,15 +22,16 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             'Search and choose the destination group',
             'Rechercher et choisir le groupe de destination']) {
             const page = await browser.newPage({viewport:{width, height:700}});
+            await page.route('**/*', route => route.abort());
             await page.setContent('<style>' + css + '</style>' +
                 '<div class="local-groupimport-easystud easyedu-ui"><div class="local-groupimport-easystud-easyedu-guide easyedu-guide easyedu-guide--discovery" id="root">' +
                 '<div data-easyedu-guide-modal style="position:fixed;inset:0;background:white">' +
                 '<nav data-easyedu-guide-nav style="position:absolute;top:30px;left:12px;width:150px">' +
-                '<button data-easyedu-guide-nav-item="0"><span class="easyedu-guide-nav-copy"><span id="label"></span></span></button>' +
-                '<button data-easyedu-guide-nav-item="1"><span class="easyedu-guide-nav-copy"><span>OK</span></span></button>' +
+                '<button data-easyedu-guide-nav-item="0"><span class="easyedu-guide-nav-copy"><span id="label" class="easyedu-guide-nav-item__label"></span></span></button>' +
+                '<button data-easyedu-guide-nav-item="1"><span class="easyedu-guide-nav-copy"><span class="easyedu-guide-nav-item__label">OK</span></span></button>' +
                 '</nav><button id="fullscreen" style="position:absolute;bottom:30px">Fullscreen</button></div></div></div>' +
                 '<style>[data-easyedu-guide-nav-item]{width:130px}.easyedu-guide-nav-copy{display:block!important}' +
-                '.easyedu-guide-nav-copy>span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}</style>');
+                '#root .easyedu-guide-nav-copy>span{display:block;width:3ch;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis;white-space:nowrap}</style>');
             await page.evaluate(({helper, listeners, copy}) => {
                 document.querySelector('#label').textContent = copy;
                 window.bindTooltipTest = Function('const SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
@@ -44,7 +45,18 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             const tip = page.locator('.easyedu-guide-label-tooltip');
             console.log(width + ': hover');
             await button.hover();
-            await tip.waitFor({state:'visible'});
+            await tip.waitFor({state:'visible', timeout:5000}).catch(async error => {
+                console.error('tooltip fixture state', await page.evaluate(() => ({
+                    bound: typeof document.querySelector('#root').easyeduGuideTooltipHide,
+                    label: document.querySelector('#label')?.outerHTML,
+                    width: document.querySelector('#label')?.clientWidth,
+                    scroll: document.querySelector('#label')?.scrollWidth,
+                    font: getComputedStyle(document.querySelector('#label')).font,
+                    hit: document.elementFromPoint(60,50)?.outerHTML.slice(0,250),
+                    tips: document.querySelectorAll('.easyedu-guide-label-tooltip').length
+                })));
+                throw error;
+            });
             assert.equal(await tip.textContent(), copy);
             const paint = await tip.evaluate(node => {
                 const style = getComputedStyle(node), rect = node.getBoundingClientRect();
@@ -59,6 +71,18 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             assert.equal(paint.radius, '10.24px');
             assert.ok(paint.rect.x >= 11 && paint.rect.right <= width - 11 && paint.rect.y >= 11 && paint.rect.bottom <= 689);
             assert.equal(paint.hidden, 'true'); assert.ok(paint.owner);
+            assert.equal(await tip.evaluate(n => getComputedStyle(n).pointerEvents), 'auto');
+            await button.evaluate(n => n.focus());
+            await tip.hover();
+            await page.waitForTimeout(260);
+            assert.equal(await tip.count(), 1, 'Pointer may stay on the tooltip past its exit grace');
+            await page.evaluate(() => { window.guideEscapeReached = 0; document.querySelector('#root').addEventListener('keydown', () => window.guideEscapeReached++); });
+            await page.keyboard.press('Escape');
+            assert.equal(await tip.count(), 0);
+            assert.equal(await page.evaluate(() => window.guideEscapeReached), 0, 'Tooltip Escape cannot close the Guide');
+            await page.keyboard.press('Escape');
+            assert.equal(await page.evaluate(() => window.guideEscapeReached), 1, 'A later Escape reaches the Guide normally');
+            await button.hover(); await tip.waitFor({state:'visible'});
             await button.click(); assert.equal(await tip.count(), 0, 'No click bubble');
             await page.mouse.move(width - 20, 400);
             await page.keyboard.press('Tab');
@@ -118,6 +142,7 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             await tip.waitFor({state:'visible'});
             assert.equal(await tip.count(), 1, 'No duplicate on rebind');
             await page.mouse.move(width - 20, 400);
+            await tip.waitFor({state:'hidden'}); // Accepted A11Y exit grace must finish before moving the anchor.
             await page.locator('[data-easyedu-guide-nav]').evaluate((node, width) => {
                 node.style.left = (width - 150) + 'px'; node.style.top = '640px';
             }, width);

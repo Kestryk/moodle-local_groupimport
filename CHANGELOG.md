@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Repin obsolete whole-file test oracles to current page CSS and modular contracts; verify offline tooltip/palette behavior and singular accessible group-member counts.
+
 - 2026-10-17 [N0] Audit all tracked PHP and AMD sources with Moodle rules; apply token-preserving PHP formatting and JavaScript documentation fixes, and merge duplicate intake evidence without product behavior changes.
 
 - 2026-10-17 [N0] Repin five historical controller tests to current modules and Guide contracts; verify LF and CRLF without product changes.

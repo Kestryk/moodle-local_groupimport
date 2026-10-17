@@ -1,0 +1,46 @@
+[
+  {
+    "file": "test-filter-disclosure-capsule-source.js.txt",
+    "sha256": "0ae454ea4baf45b41fdf1e5ec7243d701c8ace0b1a82096401a060fa0442356a"
+  },
+  {
+    "file": "test-filter-disclosure-local-work-preservation.cjs.txt",
+    "sha256": "f8a6850732ddbc2e5ef0c4573e23272cd139396404c48476ab2cdfb6477ec1b8"
+  },
+  {
+    "file": "test-filter-disclosure-refresh-preservation.cjs.txt",
+    "sha256": "cf33662a866b66d5c430d65417856cd1abd0a036f36bdf1b0638f85387d5558d"
+  },
+  {
+    "file": "test-guide-navigation-tooltip-source.cjs.txt",
+    "sha256": "610c4dfe3141762cfc1d467cd6eed1e22ae45307863148daf802fda2a278faae"
+  },
+  {
+    "file": "test-guide-navigation-tooltips.cjs.txt",
+    "sha256": "4b133997893bcd28b36e19a68ce76879a258828e39678962183898aa9268d324"
+  },
+  {
+    "file": "test-mass-report-semantic-palette.cjs.txt",
+    "sha256": "e084bfea4245d6f4c321001d518c08dd36932a0d83fdbe1979cfa8013ce8f7ae"
+  },
+  {
+    "file": "test-modal-focus-scope.cjs.txt",
+    "sha256": "ed88248586a5ec3a973b2ecfc8fbcb1230bce9cf05520e2d75d0770df05ffea2"
+  },
+  {
+    "file": "test-quiet-selection-recovery.cjs.txt",
+    "sha256": "8348266fe6724d432116d41209767ba0c1e463888bc1cef7fff261e5cbda67a0"
+  },
+  {
+    "file": "test-tooltip-extraction-source.cjs.txt",
+    "sha256": "8940481ef1d1c7969f709e33ceed79f491b1ced54ed13268f8591669da0500f6"
+  },
+  {
+    "file": "test-view-icon-palette-preservation.cjs.txt",
+    "sha256": "b2d14c343988d0a86efd241feb2aae60189e239c1429c608abe0cc08c56a4965"
+  },
+  {
+    "file": "test-wave15-corrections-contract.ps1.txt",
+    "sha256": "83832a42917949662da4e911318e1e4640324961b0acc59bfcfb5549ae2f626c"
+  }
+]

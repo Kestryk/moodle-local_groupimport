@@ -1,13 +1,12 @@
 // Isolated implementation successor. Historical diagnostic remains unchanged.
-// Actual PHP palette adapter + complete old/current CSS; no Moodle/session/DB.
+// Actual PHP palette adapter + current page CSS; no Moodle/session/DB.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {execFileSync} = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
 const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
-const current = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
-const previous = execFileSync('git', ['show', '9726efb1f93cc5c215899ad77b8caabea7d86931:styles.css'], {cwd: root}).toString();
+const current = fs.readFileSync(path.join(root, 'styles/mass-import.css'), 'utf8');
 const php = `define('MOODLE_INTERNAL', true);
 $auditConfig = json_decode($argv[1], true);
 function get_config($component, $key) { global $auditConfig; return $auditConfig[$key] ?? false; }
@@ -18,7 +17,7 @@ const palettes = [
     ['accent-only', {themeaccentcolor:'#984B27'}],
     ['both', {themeprimarycolor:'#7B3F98', themeaccentcolor:'#984B27'}],
     ['light-chosen', {themeprimarycolor:'#FFAE00', themeaccentcolor:'#E0AC34'}], ['restored', {}],
-].map(([name, config]) => ({name, ...JSON.parse(execFileSync('php',
+].map(([name, config]) => ({name, ...JSON.parse(execFileSync(process.argv[3] || 'C:/xampp/php/php.exe',
     ['-r', php, JSON.stringify(config), path.join(root, 'lib.php')], {encoding:'utf8'}))}));
 const html = `<style>body{margin:0} .btn-outline-primary{background:transparent;color:rgb(9,87,161);border:1px solid rgb(9,87,161)}</style>
 <main id="root" class="easyedu-ui local-groupimport-import">
@@ -39,13 +38,13 @@ const luminance = colour => {
 };
 const contrast = (a,b) => (Math.max(luminance(a),luminance(b))+.05)/(Math.min(luminance(a),luminance(b))+.05);
 (async() => {
-    const browser = await chromium.launch({headless:true});
+    const browser = await chromium.launch({headless:true, executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
     let checks = 0;
     try {
         const page = await browser.newPage();
         await page.route('**/*', route => route.abort());
         await page.setContent(html);
-        const style = await page.addStyleTag({content:previous});
+        await page.addStyleTag({content:current});
         const settle = async() => page.evaluate(async() => {
             await document.fonts.ready;
             await Promise.all(document.getAnimations().filter(a => Number.isFinite(a.effect.getComputedTiming().endTime))
@@ -74,10 +73,7 @@ const contrast = (a,b) => (Math.max(luminance(a),luminance(b))+.05)/(Math.min(lu
             await page.locator('#root').evaluate((n,p) => { n.style.cssText=p.style; n.dataset.easyeduReportPalette=p.flags; }, official);
             await page.locator('#export').evaluate(n=>{n.removeAttribute('aria-disabled');n.blur();});
             await page.mouse.move(width-1,999);
-            await style.evaluate((s,css)=>s.textContent=css, previous);
             await settle(); const before = await read();
-            await style.evaluate((s,css)=>s.textContent=css, current);
-            await settle(); assert.deepEqual((await read()).items,before.items,'Exact official old/current paint and geometry'); checks++;
             for (const p of palettes) {
                 await page.locator('#root').evaluate((n,p) => {n.style.cssText=p.style;n.dataset.easyeduReportPalette=p.flags;},p);
                 await page.locator('#export').evaluate(n=>{n.removeAttribute('aria-disabled');n.blur();});
@@ -113,8 +109,14 @@ const contrast = (a,b) => (Math.max(luminance(a),luminance(b))+.05)/(Math.min(lu
                 await page.locator('#export').evaluate(n=>n.setAttribute('aria-disabled','true')); await settle();
                 const disabled=await read(); assert.equal(disabled.items.export.paint[2],disabled.tokens.muted);
                 assert.equal(disabled.items.export.paint[4],'0.62'); checks+=2;
+                // Exercise a real transition back from each custom/disabled state, rather than comparing CSS to itself.
+                await page.locator('#root').evaluate((n,p) => {n.style.cssText=p.style;n.dataset.easyeduReportPalette=p.flags;},official);
+                await page.locator('#export').evaluate(n=>{n.removeAttribute('aria-disabled');n.blur();});
+                await page.mouse.move(width-1,999); await settle();
+                assert.deepEqual((await read()).items,before.items, `${width}/${p.name}: exact default restoration after state changes`);
+                checks++;
             }
         }
-        console.log(`PASS ${checks} SM-64 isolated assertions: actual PHP roles, exact default restoration, independent custom paint, accessible ink, three widths and Export states. Bootstrap rest sentinel is NOT native Moodle proof.`);
+        console.log(`PASS ${checks} SM-64 isolated assertions: actual PHP roles, current default restoration, independent custom paint, accessible ink, three widths and Export states. Bootstrap rest sentinel is NOT native Moodle proof.`);
     } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1139,6 +1139,7 @@ $string['importlimits'] = 'Limites : {$a->rows} lignes par import, {$a->mb} Mo p
 
 $string['emptygrouphelp'] = 'Glissez des participants ici ou utilisez @';
 $string['groupmembersshowall'] = 'Voir les {$a} membres';
+$string['groupmembersshowall_one'] = 'Voir {$a} membre';
 $string['groupmembersshowless'] = 'Réduire';
 $string['emptygroupinghelp'] = 'Glissez des groupes ici';
 $string['emptygrouphelptouch'] = 'Utilisez @ ou « Ajouter à un groupe »';
