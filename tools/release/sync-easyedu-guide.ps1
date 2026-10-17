@@ -128,6 +128,7 @@ $runtimeJavascript = ($runtimeJavascript -replace "`r`n", "`n").TrimEnd() + "`n"
 # package cannot prove that Moodle's rendered template has been updated.
 $runtimeTemplate = Read-NormalizedText $canonicalTemplatePath
 $runtimeTemplate = [regex]::Replace($runtimeTemplate, '{{> (guide_\w+)}}', '{{> local_groupimport/$1}}')
+$runtimeTemplate = $runtimeTemplate.Replace('{{displaypreferenceslabel}}', '{{#str}}displaypreferences, local_groupimport{{/str}}')
 $runtimeTemplate = $runtimeTemplate.Replace(
     '<span class="easyedu-guide__launcher-label">{{guideopenlabel}}</span>',
     '<span class="easyedu-guide__launcher-label" aria-hidden="true">{{guidehoverlabel}}</span>')

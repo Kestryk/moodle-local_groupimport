@@ -55,6 +55,7 @@ assert.equal(api.guideModality().pointer, 'mouse');
 let template = read(kit, 'guide/templates/easyedu_guide.mustache');
 assert.equal(template, read(root, 'easyedu-guide-kit/templates/easyedu_guide.mustache'));
 template = template.replace(/{{> (guide_\w+)}}/g, '{{> local_groupimport/$1}}')
+    .replaceAll('{{displaypreferenceslabel}}', '{{#str}}displaypreferences, local_groupimport{{/str}}')
     .replace('<span class="easyedu-guide__launcher-label">{{guideopenlabel}}</span>', '<span class="easyedu-guide__launcher-label" aria-hidden="true">{{guidehoverlabel}}</span>')
     .replace('aria-hidden="true">Everything is set</span>', 'aria-hidden="true">{{guidechecklistdonelabel}}</span>')
     .replace('data-complete-message="Everything is set"', 'data-complete-message="{{guidechecklistdonelabel}}"')
