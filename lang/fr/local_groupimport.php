@@ -799,6 +799,16 @@ $string['discovery_creation_category'] = 'Pratique';
 $string['discovery_creation_title'] = 'Créer plusieurs groupes d’un coup';
 $string['discovery_creation_body'] = 'Pour préparer plusieurs groupes, saisissez des noms séparés par des virgules, ou une série comme « Équipe #*3 ». Essayez l’aperçu ci-dessous. Cet exercice ne crée aucun groupe dans votre cours.';
 $string['discovery_creation_note'] = 'Dans une activité Moodle, choisissez ensuite le groupement voulu. Créer un groupement ne configure pas les activités à votre place.';
+// K17-36 / K17-44: animated demonstrations of the creation and filter slides.
+$string['discovery_creation_phase1'] = 'Saisissez plusieurs noms séparés par une virgule ou un point-virgule : chaque nom devient un groupe.';
+$string['discovery_creation_phase2'] = 'Pour une série, écrivez une formule : « Atelier #*4 » donne « Atelier 1 » à « Atelier 4 ».';
+$string['discovery_creation_phase3'] = 'Dans la colonne Groupements, les mêmes règles créent des groupements.';
+$string['discovery_creation_list'] = 'Équipe rouge, Équipe bleue ; Équipe verte';
+$string['discovery_creation_formula'] = 'Atelier #*4';
+$string['discovery_creation_groupings'] = 'Matin, Après-midi';
+$string['discovery_creation_groupinglabel'] = 'Nom des groupements';
+$string['discovery_creation_groupingresult'] = 'Groupements simulés — aucun groupement créé dans Moodle';
+$string['discovery_filters_initial'] = 'Exemple : « TD » dans la recherche, rôle « Étudiant », puis sélection des résultats.';
 $string['discovery_membership_category'] = 'Organisation';
 $string['discovery_membership_title'] = 'Organiser un projet sans perdre les autres appartenances';
 $string['discovery_demo_compare'] = 'Comparer deux gestes';

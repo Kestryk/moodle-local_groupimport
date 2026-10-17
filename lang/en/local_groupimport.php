@@ -847,6 +847,17 @@ $string['discovery_simplecreate_grouping_body'] = 'An empty grouping gathers gro
 $string['discovery_simplecreate_edit_title'] = 'Edit or copy';
 $string['discovery_simplecreate_edit_body'] = 'The pencil renames. The copy icon makes a duplicate marked “(copy)”.';
 $string['discovery_creation_note'] = 'Then choose the grouping you want in the Moodle activity. Creating a grouping does not set up activities for you.';
+$string['discovery_simplecreate_edit_body'] = 'The pencil renames; the copy icon duplicates (“(copy)”).';
+// K17-36 / K17-44: animated demonstrations of the creation and filter slides.
+$string['discovery_creation_phase1'] = 'Type several names separated by a comma or a semicolon: each name becomes a group.';
+$string['discovery_creation_phase2'] = 'For a series, write a formula: “Workshop #*4” gives “Workshop 1” to “Workshop 4”.';
+$string['discovery_creation_phase3'] = 'In the Groupings column, the same rules create groupings.';
+$string['discovery_creation_list'] = 'Red team, Blue team ; Green team';
+$string['discovery_creation_formula'] = 'Workshop #*4';
+$string['discovery_creation_groupings'] = 'Morning, Afternoon';
+$string['discovery_creation_groupinglabel'] = 'Grouping names';
+$string['discovery_creation_groupingresult'] = 'Simulated groupings — no grouping created in Moodle';
+$string['discovery_filters_initial'] = 'Example: “TD” in the search, role “Student”, then select the results.';
 $string['discovery_membership_category'] = 'Organisation';
 $string['discovery_membership_title'] = 'Organise a project and keep other memberships';
 $string['discovery_demo_compare'] = 'Compare two actions';

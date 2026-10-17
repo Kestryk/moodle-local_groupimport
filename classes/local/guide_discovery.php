@@ -311,6 +311,10 @@ final class guide_discovery {
             if (in_array($kind, ['membership', 'actions'], true)) {
                 $scene += self::demonstration_entry();
             }
+            // K17-36: the plain preview is the legacy form; the modern curriculum adds its animated demonstration.
+            if ($kind === 'creation') {
+                $scene['creationstatic'] = true;
+            }
             // The preceding membership paragraph already names Add/Move,
             // source/destination and preserved memberships. Keep one explanation.
             if ($kind === 'membership') {
@@ -460,7 +464,7 @@ final class guide_discovery {
                         get_string('discovery_simplecreate_' . $label, 'local_groupimport');
                 }
                 $scene = $slide['discoveryscene'];
-                unset($scene['creation']);
+                unset($scene['creation'], $scene['creationstatic']);
                 $scene['kind'] = 'simplecreate';
                 $scene['simplecreate'] = true;
                 $scene += self::demonstration_entry();
@@ -481,6 +485,7 @@ final class guide_discovery {
                     'note' => get_string('discovery_simplecreate_note', 'local_groupimport'),
                     'lessonreading' => true];
             } else if ($source === 'discovery-creation') {
+                $slide['discoveryscene'] = self::creation_demonstration($slide['discoveryscene']);
                 foreach (
                     ['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
                     'guidedpathcontent', 'guidedpathsteps'] as $key
@@ -588,6 +593,61 @@ final class guide_discovery {
             $result[] = $slide;
         }
         return $result;
+    }
+
+    /**
+     * K17-36, K17-17 no. 41: the "create several groups" scene gets its animated demonstration.
+     *
+     * Typed names separated by a comma or a semicolon, then a formula, then the same for groupings.
+     * Illustration only: nothing is created in the course.
+     *
+     * @param array $scene Scene context of the legacy plain preview.
+     * @return array Scene context with the demonstration entry and its narration strings.
+     */
+    public static function creation_demonstration(array $scene): array {
+        unset($scene['creationstatic']);
+        $scene += self::demonstration_entry();
+        foreach (
+            ['phase1', 'phase2', 'phase3', 'list', 'formula', 'groupings', 'groupinglabel', 'groupingresult'] as $key
+        ) {
+            $scene['creation' . $key] = get_string('discovery_creation_' . $key, 'local_groupimport');
+        }
+        $scene['emptygroups'] = get_string('discovery_simplecreate_emptygroups', 'local_groupimport');
+        return $scene;
+    }
+
+    /**
+     * K17-44: scene context of the animated "search, filter, select" demonstration (slide 9).
+     *
+     * The four renderings of the former static specimen stay on the slide as the recap.
+     *
+     * @return array Scene context.
+     */
+    public static function filters_demonstration(): array {
+        $scene = [
+            'kind' => 'filters',
+            'filtersdemo' => true,
+            'caption' => get_string('discovery_simulation', 'local_groupimport'),
+            'captionshort' => get_string('discovery_simulation_short', 'local_groupimport'),
+            'replay' => get_string('discovery_replay', 'local_groupimport'),
+            'reset' => get_string('discovery_reset', 'local_groupimport'),
+            'initiallabel' => get_string('discovery_filters_initial', 'local_groupimport'),
+            'filtersrole' => get_string('roleslabel', 'local_groupimport'),
+            'filtersrolevalue' => get_string('tutorialvisualrolebadge', 'local_groupimport'),
+            'filterscountall' => get_string('listeditemscount', 'local_groupimport', 5),
+            'filterscountfiltered' => get_string('listeditemscount', 'local_groupimport', 3),
+            'filtersselect' => get_string('selectresults', 'local_groupimport'),
+            'filtersdeselect' => get_string('deselectresults', 'local_groupimport'),
+            'filtersselection' => get_string('selectioncount', 'local_groupimport', 3),
+            'filtersclear' => get_string('contextclearselection', 'local_groupimport'),
+        ];
+        foreach (['pause', 'resume', 'nextphase', 'finished'] as $key) {
+            $scene[$key . 'label'] = get_string('discovery_' . $key, 'local_groupimport');
+        }
+        foreach ([1, 2, 3, 4] as $number) {
+            $scene['filtersstep' . $number] = get_string('guidespec_filters_step' . $number, 'local_groupimport');
+        }
+        return $scene + self::demonstration_entry();
     }
 
     /**

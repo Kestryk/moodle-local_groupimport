@@ -1889,7 +1889,8 @@ const renderDiscoveryNames = (root, scene, command) => {
   if (command === 'letters') {
     input.value = input.value.replace(/[#@]/, value => value === '#' ? '@' : '#');
   }
-  const match = input.value.match(/^(.*?)([#@])\*([1-9]\d*)$/);
+  // K17-36: the preview follows the real parser: lists separated by a comma or a semicolon, and formulas.
+  const names = expandCreateNames(input.value, 6);
   const template = scene.querySelector('[data-guide-name-card]');
   const warning = scene.querySelector('[data-guide-warning-host]');
   const warningText = scene.querySelector('[data-guide-warning-text]');
@@ -1931,7 +1932,7 @@ const renderDiscoveryNames = (root, scene, command) => {
     const initialHeight = output.getBoundingClientRect().height;
     output.replaceChildren();
     if (command !== 'clear') {
-      if (!match || Number(match[3]) > 6) {
+      if (!names) {
         input.setAttribute('aria-invalid', 'true');
         if (warning && warningText) {
           warningText.textContent = output.getAttribute('data-invalid') || '';
@@ -1939,8 +1940,7 @@ const renderDiscoveryNames = (root, scene, command) => {
           await animate(warning, [{opacity: 0}, {opacity: 1}], 220);
         }
       } else {
-        for (let index = 0; index < Number(match[3]); index++) {
-          const name = match[1] + (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
+        for (const name of names) {
           const card = template?.content.firstElementChild?.cloneNode(true) || document.createElement('span');
           const label = card.querySelector('[data-guide-name]');
           if (label) { label.textContent = name; } else { card.textContent = name; }
@@ -1964,16 +1964,22 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   if (!scene) { return; }
   const kind = scene.getAttribute('data-easyedu-guide-scene');
   if (kind === 'concepts') { return; }
+  // K17-36: with a demonstration entry, the plain preview is the resting state of the creation stage.
+  const hasStart = !!scene.querySelector('[data-guide-scene-command="start"]');
   if (kind === 'creation') {
     if (!scene.easyeduGuideNamesInitialized) {
       scene.easyeduGuideNamesInitialized = true;
       renderDiscoveryNames(root, scene, 'preview');
     }
-    return;
+    if (!hasStart) {
+      return;
+    }
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection', 'simplecreate'].includes(kind)) { return; }
+  if (!['membership', 'actions', 'inspection', 'simplecreate', 'creation', 'filters'].includes(kind)) {
+    return;
+  }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
@@ -1981,7 +1987,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
   // J-G4: the simple-creation scene has no result line; every other kind needs one.
-  if (!stage || (!result && kind !== 'simplecreate')) { return; }
+  if (!stage || (!result && !['simplecreate', 'creation', 'filters'].includes(kind))) {
+    return;
+  }
   if (!scene.easyeduGuideStageOriginal) {
     scene.easyeduGuideStageOriginal = stage.innerHTML;
     scene.easyeduGuideResultOriginal = result ? result.textContent : '';
@@ -2004,7 +2012,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const compact = guideModality().touch;
   // Count the applicable explanation phases, not animation frames or timers.
   // J-G4: the simple-creation scene reads its four phases from its root's labels.
-  const applicablePhases = kind === 'simplecreate' ? [1, 2, 3, 4].map(n => ({dataset: {guidePhase: String(n)}})) :
+  const labelledPhases = {simplecreate: 4, creation: 3, filters: 4}[kind];
+  const applicablePhases = labelledPhases ?
+    Array.from({length: labelledPhases}, (unused, n) => ({dataset: {guidePhase: String(n + 1)}})) :
     [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
     !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
@@ -2059,7 +2069,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       startControl.querySelector('[data-guide-start-label]').textContent = busy ?
         startControl.dataset.runningLabel : state === 'finished' ?
           startControl.dataset.replayLabel : startControl.dataset.startLabel;
-      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
+      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
+        '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
+        '[data-guide-scene-command="clear"]').forEach(button => {
         button.disabled = busy;
       });
     }
@@ -2524,18 +2536,14 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
-    if (kind === 'simplecreate') {
-      // J-G4 (P-G5, validated 16/10): create ONE group, then ONE grouping, then rename the group.
-      // Illustration only: readonly fields and disabled buttons, never a Moodle command.
+    if (['simplecreate', 'creation', 'filters'].includes(kind)) {
+      // J-G4 (P-G5), K17-36, K17-44: illustration only. Readonly fields and disabled buttons, never a Moodle
+      // command. Pointer, typing, narration and reading clock are shared by the three demonstrations.
       const pick = selector => stage.querySelector(selector);
       const cursor = pick('[data-guide-cursor]');
       const field = role => pick(`[data-guide-simplecreate-input="${role}"]`);
       const submit = role => pick(`[data-guide-simplecreate-submit="${role}"]`);
       const created = role => pick(`[data-guide-simplecreate-result="${role}"]`);
-      const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
-      const cardName = pick('[data-guide-simplecreate-card-name]');
-      const edit = pick('[data-guide-simplecreate-edit]');
-      const rename = pick('[data-guide-simplecreate-rename]');
       const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
       const pointAt = async element => {
         assertActive();
@@ -2554,17 +2562,24 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         if (!cursor || cursor.hidden) { return; }
         if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
         cursor.hidden = true;
+        // The retained travel animations of a hidden pointer are released with it.
+        animations.forEach(animation => {
+          if (animation.effect?.target === cursor) {
+            animation.cancel();
+            animations.delete(animation);
+          }
+        });
       };
       const press = element => element ? Promise.all([compact ? touchPointer.tap(cursor) : Promise.resolve(),
         animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'}, {transform: 'scale(1)'}], 220, false)]) :
         Promise.resolve();
-      const type = async(input, text) => {
+      const type = async(input, text, step = 45) => {
         if (!input) { return; }
         input.value = '';
         for (const character of text) {
           assertActive();
           input.value += character;
-          await wait(still ? 0 : 45);
+          await wait(still ? 0 : step);
         }
         input.value = text;
       };
@@ -2594,35 +2609,188 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
         await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
       };
-      await reveal(stage);
-      await pointAt(field('group'));
-      await say(1);
-      if (compact) { await touchPointer.tap(cursor); }
-      await type(field('group'), sample('name'));
-      await pointAt(submit('group'));
-      await say(2);
-      await press(submit('group'));
-      if (field('group')) { field('group').value = ''; }
-      await show(created('group'));
-      await show(groupingStage);
-      await pointAt(field('grouping'));
-      await say(3);
-      if (compact) { await touchPointer.tap(cursor); }
-      await type(field('grouping'), sample('grouping'));
-      if (compact) { await pointAt(submit('grouping')); }
-      await press(submit('grouping'));
-      if (field('grouping')) { field('grouping').value = ''; }
-      await show(created('grouping'));
-      await pointAt(edit);
-      await say(4);
-      await press(edit);
-      if (cardName && rename) {
-        cardName.hidden = true;
-        rename.hidden = false;
-        await type(rename, sample('renamed'));
-        cardName.textContent = sample('renamed');
-        rename.hidden = true;
-        cardName.hidden = false;
+      if (kind === 'simplecreate') {
+        // Create ONE group, then ONE grouping, then rename the group.
+        const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
+        const cardName = pick('[data-guide-simplecreate-card-name]');
+        const edit = pick('[data-guide-simplecreate-edit]');
+        const rename = pick('[data-guide-simplecreate-rename]');
+        await reveal(stage);
+        await pointAt(field('group'));
+        await say(1);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(field('group'), sample('name'));
+        await pointAt(submit('group'));
+        await say(2);
+        await press(submit('group'));
+        if (field('group')) {
+          field('group').value = '';
+        }
+        await show(created('group'));
+        await show(groupingStage);
+        await pointAt(field('grouping'));
+        await say(3);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(field('grouping'), sample('grouping'));
+        if (compact) {
+          await pointAt(submit('grouping'));
+        }
+        await press(submit('grouping'));
+        if (field('grouping')) {
+          field('grouping').value = '';
+        }
+        await show(created('grouping'));
+        await pointAt(edit);
+        await say(4);
+        await press(edit);
+        if (cardName && rename) {
+          // K17-32: the rename is slow enough to be read (pause, typing at about 2.5 times the former pace,
+          // pause), then the title returns through the common fade.
+          cardName.hidden = true;
+          rename.hidden = false;
+          await wait(still ? 0 : 600);
+          await type(rename, sample('renamed'), 115);
+          await wait(still ? 0 : 1000);
+          await restFlash(() => {
+            cardName.textContent = sample('renamed');
+            rename.hidden = true;
+            cardName.hidden = false;
+          });
+        }
+      } else if (kind === 'creation') {
+        // K17-36: names separated by a comma or a semicolon, then a formula, then the same for groupings.
+        const input = pick('[data-guide-pattern]');
+        const label = pick('[data-guide-pattern-label]');
+        const groupOut = pick('[data-guide-names]');
+        const groupingBlock = pick('[data-guide-grouping-block]');
+        const groupingOut = pick('[data-guide-grouping-names]');
+        const warning = pick('[data-guide-warning-host]');
+        const attr = name => stage.getAttribute(`data-guide-creation-${name}`) || '';
+        const fill = (out, selector, names) => {
+          const template = pick(selector);
+          out.replaceChildren();
+          names.forEach(name => {
+            const card = template.content.firstElementChild.cloneNode(true);
+            const title = card.querySelector('[data-guide-name]');
+            if (title) {
+              title.textContent = name;
+            }
+            card.style.opacity = '0';
+            out.appendChild(card);
+          });
+          return [...out.children];
+        };
+        const appear = async cards => {
+          for (const card of cards) {
+            await animate(card, [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}],
+              200, false);
+            card.style.removeProperty('opacity');
+          }
+        };
+        input.readOnly = true;
+        input.value = '';
+        input.removeAttribute('aria-invalid');
+        groupOut.replaceChildren();
+        groupingOut.replaceChildren();
+        groupingBlock.hidden = true;
+        if (warning) {
+          warning.hidden = true;
+        }
+        if (label && !label.dataset.original) {
+          label.dataset.original = label.textContent;
+        }
+        await reveal(stage);
+        await pointAt(input);
+        await say(1);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(input, attr('list'));
+        let cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
+        await reveal(groupOut);
+        await appear(cards);
+        await say(2);
+        await type(input, attr('formula'));
+        cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
+        await appear(cards);
+        await say(3);
+        if (label) {
+          label.textContent = label.dataset.groupingLabel || label.textContent;
+        }
+        await type(input, attr('groupings'));
+        groupingBlock.hidden = false;
+        cards = fill(groupingOut, '[data-guide-grouping-card]', expandCreateNames(input.value) || []);
+        await reveal(groupingBlock);
+        await appear(cards);
+        input.readOnly = false;
+      } else {
+        // K17-44: search "TD", add the role filter, select the results, clear the selection.
+        const input = pick('[data-guide-filters-input]');
+        const role = pick('[data-guide-filters-role]');
+        const select = pick('[data-guide-filters-select]');
+        const count = pick('[data-guide-filters-count]');
+        const selection = pick('[data-guide-filters-selection]');
+        const clear = pick('[data-guide-filters-clear]');
+        const cards = [...stage.querySelectorAll('[data-guide-filters-card]')];
+        const attr = name => stage.getAttribute(`data-guide-${name}`) || '';
+        const isMatch = card => card.dataset.guideFiltersMatch === '1';
+        const setSelected = on => cards.forEach(card => {
+          const selected = on && isMatch(card);
+          card.querySelector('.local-groupimport-easystud-user')?.classList.toggle('is-selected', selected);
+          const box = card.querySelector('input[type="checkbox"]');
+          if (box) {
+            box.checked = selected;
+          }
+        });
+        const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
+        await reveal(stage);
+        await pointAt(input);
+        await say(1);
+        if (compact) {
+          await touchPointer.tap(cursor);
+        }
+        await type(input, attr('filters-query'), 170);
+        await Promise.all(cards.filter(card => !isMatch(card)).map(card => animate(card, [{opacity: 1}, {opacity: 0}], 220)));
+        cards.filter(card => !isMatch(card)).forEach(card => {
+          card.hidden = true;
+        });
+        count.textContent = attr('count-filtered');
+        await say(2);
+        role.classList.remove('is-spacer');
+        role.removeAttribute('aria-hidden');
+        await animate(role, [{opacity: 0}, {opacity: 1}], 240);
+        await say(3);
+        await pointAt(select);
+        ring(select, true);
+        await press(select);
+        setSelected(true);
+        select.textContent = attr('deselect-label');
+        selection.hidden = false;
+        await animate(selection, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}], 200);
+        await say(4);
+        ring(select, false);
+        await pointAt(clear);
+        ring(clear, true);
+        await press(clear);
+        await hidePointer();
+        // K17-28: the list returns to its resting state behind the common short fade.
+        await restFlash(() => {
+          input.value = '';
+          cards.forEach(card => {
+            card.hidden = false;
+          });
+          setSelected(false);
+          count.textContent = attr('count-all');
+          role.classList.add('is-spacer');
+          role.setAttribute('aria-hidden', 'true');
+          select.textContent = attr('select-label');
+          selection.hidden = true;
+          ring(clear, false);
+        });
       }
       await hidePointer();
       if (controller.signal.aborted) { return; }
@@ -2632,6 +2800,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       advancing = false;
       syncPlayback('finished');
       await settleHeader();
+      if (controller.signal.aborted) {
+        return;
+      }
+      const specimenRecap = kind === 'filters' ?
+        scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
+      if (specimenRecap) {
+        specimenRecap.style.opacity = '0';
+        specimenRecap.hidden = false;
+        await reveal(specimenRecap);
+        await animate(specimenRecap, [{opacity: 0}, {opacity: 1}], 280);
+        specimenRecap.style.removeProperty('opacity');
+      }
       if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
       return;
     }
