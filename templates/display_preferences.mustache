@@ -1,0 +1,47 @@
+{{!
+    @template local_groupimport/display_preferences
+
+    Personal animation levels. Native dialog owns focus and modal isolation.
+}}
+<dialog class="easyedu-preferences-dialog" data-easyedu-display-dialog aria-labelledby="easyedu-display-title">
+    <form>
+        <header class="easyedu-dialog-header">
+            <div class="easyedu-entity-dialog__heading">
+                <span class="easyedu-entity-dialog__icon fa fa-sliders" aria-hidden="true"></span>
+                <div>
+                    <span class="easyedu-entity-dialog__eyebrow">EasyStud</span>
+                    <h2 class="easyedu-modal-title" id="easyedu-display-title">{{#str}}displaypreferences, local_groupimport{{/str}}</h2>
+                </div>
+            </div>
+            <button type="button" class="easyedu-dialog-close" data-easyedu-display-close aria-label="{{#str}}closebuttontitle, core{{/str}}"></button>
+        </header>
+        <div class="easyedu-preferences-dialog__body">
+            <p>{{#str}}displaypreferencesdesc, local_groupimport{{/str}}</p>
+            <fieldset class="easyedu-choice-group">
+                <legend>{{#str}}displaymotionlevel, local_groupimport{{/str}}</legend>
+                <label class="easyedu-radio-choice">
+                    <input type="radio" name="easyedu_motion_level" value="full">
+                    <span><strong data-easyedu-display-level="full">{{#str}}motionlevelfull, local_groupimport{{/str}}</strong><span class="easyedu-radio-choice__description">{{#str}}displaymotionfull, local_groupimport{{/str}}</span></span>
+                </label>
+                <label class="easyedu-radio-choice">
+                    <input type="radio" name="easyedu_motion_level" value="reduced">
+                    <span><strong data-easyedu-display-level="reduced">{{#str}}motionlevelreduced, local_groupimport{{/str}}</strong><span class="easyedu-radio-choice__description">{{#str}}displaymotionreduced, local_groupimport{{/str}}</span></span>
+                </label>
+                <label class="easyedu-radio-choice">
+                    <input type="radio" name="easyedu_motion_level" value="minimal">
+                    <span><strong data-easyedu-display-level="minimal">{{#str}}motionlevelminimal, local_groupimport{{/str}}</strong> <span class="easyedu-choice-recommendation">{{#str}}displaymotionrecommended, local_groupimport{{/str}}</span><span class="easyedu-radio-choice__description">{{#str}}displaymotionminimal, local_groupimport{{/str}}</span></span>
+                </label>
+            </fieldset>
+            <div class="easyedu-notice"><span class="fa fa-info-circle" aria-hidden="true"></span><p>{{#str}}displaymotionreading, local_groupimport{{/str}}</p></div>
+            <div class="easyedu-preferences-default">
+                <span>{{#str}}displaymotiondefault, local_groupimport{{/str}} <strong data-easyedu-display-default-name></strong></span>
+                <button type="button" class="easyedu-text-action" data-easyedu-display-reset aria-pressed="false">{{#str}}displaymotionreset, local_groupimport{{/str}}</button>
+            </div>
+            <p data-easyedu-display-status role="alert" tabindex="-1" hidden>{{#str}}displaymotionsaveerror, local_groupimport{{/str}}</p>
+        </div>
+        <footer class="easyedu-preferences-dialog__footer easyedu-dialog-actions">
+            <button type="button" class="easyedu-button--secondary" data-easyedu-display-close><span class="easyedu-control-label">{{#str}}cancel, core{{/str}}</span></button>
+            <button type="submit" class="easyedu-button"><span class="easyedu-control-label">{{#str}}savechanges, core{{/str}}</span></button>
+        </footer>
+    </form>
+</dialog>

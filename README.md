@@ -95,6 +95,9 @@ for export and deletion of this data.
 
 ## Development
 
+- Personal Display and animations (ANIM/G1): `docs/display-preferences-2026-10-17.md`.
+- Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
+
 - Moodle requirement: 5.1 or later on this refactor branch.
 - SCSS entry point: `scss/easystud.scss`.
 - Compile styles with `sass scss/easystud.scss styles.css --no-source-map`.

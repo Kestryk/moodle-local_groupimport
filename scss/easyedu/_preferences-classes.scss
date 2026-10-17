@@ -1,0 +1,157 @@
+// G1 reusable preference window and radio-card recipe. Penpot Product views03z.
+// This is a Kit definition; consumers supply commands and translated content.
+@use "components/modals";
+@use "components/buttons";
+@use "components/card-actions";
+@use "components/focus";
+@use "components/typography" as type;
+@use "components/animations";
+@use "components/tooltips";
+
+@mixin preferences-classes {
+  .easyedu-ui dialog.easyedu-preferences-dialog {
+    @include modals.modal-surface;
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0;
+    inline-size: min(35rem, calc(100vw - 2rem));
+    max-inline-size: calc(100vw - 2rem);
+    max-block-size: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    color: var(--easyedu-text);
+    &::backdrop { background: color-mix(in srgb, var(--easyedu-text) 35%, transparent); }
+    > form { display: flex; flex-direction: column; max-block-size: calc(100dvh - 2rem); margin: 0; }
+    &:not([open]) { display: none; }
+  }
+  .easyedu-ui .easyedu-preferences-dialog__body {
+    @include type.type-body;
+    display: grid;
+    flex: 1 1 auto;
+    gap: 1rem;
+    min-block-size: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 1.25rem;
+    > p { margin: 0; }
+  }
+  .easyedu-ui .easyedu-preferences-dialog__footer {
+    flex: 0 0 auto;
+    background: var(--easyedu-modal-footer-bg);
+    border-block-start: 1px solid var(--easyedu-modal-border);
+    padding: 0.75rem 1.25rem;
+  }
+  // Inter's painted control text sits 0.95px above its flex line-box centre.
+  // Keep frame geometry unchanged; this public label role supplies the 1px
+  // optical correction measured on the native Regular and touch controls.
+  .easyedu-ui .easyedu-control-label {
+    position: relative;
+    inset-block-start: var(--easyedu-control-label-optical-offset, 0.0625rem);
+  }
+  .easyedu-ui .easyedu-choice-group {
+    display: grid;
+    gap: 0.625rem;
+    border: 0;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+    > legend { @include type.type-eyebrow; float: none; inline-size: auto; margin-block-end: 0.5rem; }
+  }
+  .easyedu-ui .easyedu-radio-choice {
+    @include type.type-body;
+    align-items: start;
+    background: var(--easyedu-surface);
+    border: 1px solid var(--easyedu-control-border);
+    border-radius: var(--easyedu-control-radius);
+    cursor: pointer;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    margin: 0;
+    padding: 0.875rem;
+    @include buttons.control-state-transition;
+    &:has(input:checked) {
+      background: var(--easyedu-primary-soft);
+      border-color: var(--easyedu-primary);
+      box-shadow: inset 0 0 0 1px var(--easyedu-primary);
+    }
+    &:has(input:focus-visible) { @include focus.ring; }
+    > input {
+      appearance: none;
+      background: var(--easyedu-surface);
+      border: 2px solid var(--easyedu-control-border);
+      border-radius: 50%;
+      box-sizing: border-box;
+      block-size: 1.25rem;
+      inline-size: 1.25rem;
+      margin: 0.125rem 0 0;
+      display: grid;
+      place-items: center;
+      &::before { content: ""; inline-size: 0.625rem; block-size: 0.625rem; border-radius: 50%; }
+      &:checked { border-color: var(--easyedu-primary); &::before { background: var(--easyedu-primary); } }
+      &:focus-visible { outline: 0; }
+    }
+    strong { @include type.type-control-label; }
+    &__description { @include type.type-caption; display: block; color: var(--easyedu-text-muted); margin-block-start: 0.375rem; }
+  }
+  .easyedu-ui .easyedu-choice-recommendation {
+    @include type.type-caption;
+    align-items: center;
+    background: var(--easyedu-accent-soft);
+    border: 1px solid var(--easyedu-semantic-border-success);
+    border-radius: 999px;
+    color: var(--easyedu-accent);
+    display: inline-flex;
+    line-height: 1.25;
+    margin-inline-start: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    max-inline-size: 100%;
+  }
+  .easyedu-ui .easyedu-preferences-default {
+    @include type.type-caption;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+  }
+  .easyedu-ui .easyedu-text-action {
+    @include type.type-caption;
+    background: transparent;
+    border: 0;
+    border-radius: var(--easyedu-control-radius);
+    color: var(--easyedu-primary);
+    cursor: pointer;
+    padding: 0.25rem 0;
+    text-align: start;
+    text-decoration: underline;
+    &:focus-visible { @include focus.ring; }
+  }
+  .easyedu-ui .easyedu-direct-icon { @include card-actions.card-direct-action; }
+  .easyedu-ui .easyedu-control-tooltip {
+    @include tooltips.tooltip-surface;
+    position: fixed;
+    z-index: var(--easyedu-modal-layer);
+    max-inline-size: min(20rem, calc(100vw - 1rem));
+    pointer-events: auto;
+  }
+  :is(.easyedu-ui, .easyedu-guide) .easyedu-guide-utility { @include buttons.guide-adjacent-action($size: small); }
+  .easyedu-ui .easyedu-navigation__preferences-source {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    inset-inline-end: 0.625rem;
+    inset-block: 0;
+  }
+  .easyedu-ui .easyedu-navigation__preferences-drawer { margin: 1rem 0; }
+  @media (max-width: 64rem) {
+    .easyedu-ui .easyedu-preferences-dialog__footer > button { min-block-size: 2.75rem; }
+    :is(.easyedu-ui, .easyedu-guide) .easyedu-guide-utility,
+    .easyedu-ui .easyedu-text-action { min-block-size: 2.75rem; white-space: normal; }
+    .easyedu-ui .easyedu-preferences-dialog .easyedu-dialog-close { min-block-size: 2.75rem; min-inline-size: 2.75rem; }
+    .easyedu-ui .easyedu-choice-recommendation { margin-inline-start: 0; margin-block-start: 0.375rem; }
+  }
+  @media (forced-colors: active) {
+    .easyedu-ui .easyedu-radio-choice > input { appearance: auto; &::before { display: none; } }
+  }
+}
