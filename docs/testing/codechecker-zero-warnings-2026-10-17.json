@@ -1,0 +1,680 @@
+{
+  "sourceHead": "9cee735809da45f9be0a9802b65d18dd08654079",
+  "base": "01872080",
+  "errors": 0,
+  "warnings": 49,
+  "files": [
+    {
+      "file": "ajax.php",
+      "warnings": 2,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 140 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 788,
+          "column": 140
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 133 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 794,
+          "column": 133
+        }
+      ]
+    },
+    {
+      "file": "importlib.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 25,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "index.php",
+      "warnings": 2,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 156 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 235,
+          "column": 156
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 146 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 494,
+          "column": 146
+        }
+      ]
+    },
+    {
+      "file": "tests/guide_welcome_test.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 21,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/batch_reader.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/guide_discovery.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/guide_specimen.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/guide_welcome.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/import_execution.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/import_preview.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "classes/local/motion.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tests/privacy/provider_test.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 25,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/perf/decompose.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 24,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/perf/lib.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected.",
+          "source": "moodle.Files.MoodleInternal.MoodleInternalNotNeeded",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 25,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/claude-integration-fixture.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 154 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 52,
+          "column": 9
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/easystud-action-button-alignment-fixture.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 154 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 52,
+          "column": 9
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/easystud-role-density-fixture.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 133 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 189,
+          "column": 133
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/guide-writing-course-fixture.php",
+      "warnings": 2,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 133 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 109,
+          "column": 133
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 145 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 113,
+          "column": 145
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/k16-sort-copy-fixture.php",
+      "warnings": 2,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 133 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 108,
+          "column": 133
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 145 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 112,
+          "column": 145
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/k21-course-counts.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/palette-native-default-roles.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/palette-native-full-defaults.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/student-native-context.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/playwright/t020-complete-view-config.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/release/test-guide-welcome-state.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 136 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 168,
+          "column": 136
+        }
+      ]
+    },
+    {
+      "file": "tools/release/test-import-execution-served.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/release/test-server-name-escaping-served.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/release/test-server-name-escaping.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found.",
+          "source": "moodle.Files.RequireLogin.Missing",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 27,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "file": "tools/release/test-theme-palette-standalone.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 139 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 38,
+          "column": 139
+        }
+      ]
+    },
+    {
+      "file": "tools/release/fixtures/r6-bulk-actions-isolated.php",
+      "warnings": 2,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 172 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 274,
+          "column": 172
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 170 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 370,
+          "column": 170
+        }
+      ]
+    },
+    {
+      "file": "tools/release/fixtures/s2-privacy-isolated.php",
+      "warnings": 12,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 134 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 36,
+          "column": 134
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 144 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 37,
+          "column": 144
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 143 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 40,
+          "column": 143
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 160 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 41,
+          "column": 160
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 141 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 42,
+          "column": 141
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 156 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 43,
+          "column": 156
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 134 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 45,
+          "column": 134
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 139 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 46,
+          "column": 139
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 152 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 47,
+          "column": 152
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 136 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 50,
+          "column": 136
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 146 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 51,
+          "column": 146
+        },
+        {
+          "message": "Line exceeds 132 characters; contains 141 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 384,
+          "column": 141
+        }
+      ]
+    },
+    {
+      "file": "tools/release/fixtures/security-s6-isolated.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 147 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 212,
+          "column": 147
+        }
+      ]
+    },
+    {
+      "file": "tools/release/fixtures/security-s7-m5-isolated.php",
+      "warnings": 1,
+      "errors": 0,
+      "issues": [
+        {
+          "message": "Line exceeds 132 characters; contains 179 characters",
+          "source": "moodle.Files.LineLength.TooLong",
+          "severity": 5,
+          "fixable": false,
+          "type": "WARNING",
+          "line": 321,
+          "column": 179
+        }
+      ]
+    }
+  ]
+}
