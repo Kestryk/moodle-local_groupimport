@@ -1,4 +1,11 @@
 {
+  "codex1SecurityS420261017": {
+    "status": "source-isolated-pass-not-published-native-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s4-20261017",
+    "report": "docs/testing/security-s4-2026-10-17.md",
+    "validation": "44 isolated checks for each server parser; lint, helper MoodleCS, escaping/filter PASS; no runtime access"
+  },
   "codex1GuideCG720261016": {
     "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
     "base": "ee870566",

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-17 [N1] S4: require POST/course scope for AJAX; apply native membership/key/idnumber guards, bounded image uploads and name creation, and omit email from duplicate search text.
+
 - 2026-10-16 [N1] C-G7: add the bilingual Create-one Guide slide before Batch, retain reading progress across thirteen slides, move the first membership path and expose four-phase scene markers for J-G4.
 
 - 2026-10-16 [N1] K16-14: reuse the Move dialog origin checkbox for optional participant copying through existing addusers; preserve default move, deduplicate multiple source selections, localize results and Guide instructions without new styles.

@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_groupimport\local\ajax_security;
+
 define('AJAX_SCRIPT', true);
 
 require_once(__DIR__ . '/../../config.php');
@@ -32,6 +34,7 @@ require_once($CFG->libdir . '/gdlib.php');
 $courseid = required_param('courseid', PARAM_INT);
 $action = required_param('action', PARAM_ALPHA);
 
+ajax_security::require_request((string)($_SERVER['REQUEST_METHOD'] ?? ''), $courseid);
 require_sesskey();
 
 $course = get_course($courseid);
@@ -55,6 +58,13 @@ try {
         $names = local_groupimport_extract_create_names(required_param('groupname', PARAM_TEXT));
         if (!$names) {
             throw new moodle_exception('invaliddata', 'error');
+        }
+
+        foreach ($names as $name) {
+            ajax_security::validate_name($name);
+            if (groups_get_group_by_name($course->id, $name)) {
+                throw new moodle_exception('groupnameexists', 'group', '', $name);
+            }
         }
 
         $groups = [];
@@ -96,6 +106,13 @@ try {
         $names = local_groupimport_extract_create_names(required_param('groupingname', PARAM_TEXT));
         if (!$names) {
             throw new moodle_exception('invaliddata', 'error');
+        }
+
+        foreach ($names as $name) {
+            ajax_security::validate_name($name);
+            if (groups_get_grouping_by_name($course->id, $name)) {
+                throw new moodle_exception('groupingnameexists', 'group', '', $name);
+            }
         }
 
         $groupings = [];
@@ -161,6 +178,7 @@ try {
         $name = trim(required_param('name', PARAM_TEXT));
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
 
+        ajax_security::validate_name($name);
         if ($name === '') {
             throw new moodle_exception('invaliddata', 'error');
         }
@@ -196,10 +214,15 @@ try {
 
         if (
             $name !== (string)$group->name &&
-                ($existing = groups_get_group_by_name($course->id, $name)) && (int)$existing->id !== $groupid
+                ($existing = groups_get_group_by_name($course->id, $name)) && (int)$existing !== $groupid
         ) {
             throw new moodle_exception('groupnameexists', 'group', '', $name);
         }
+
+        ajax_security::validate_entity('groups', (int)$course->id, $groupid, $name,
+            has_capability('moodle/course:changeidnumber', $context) ? $idnumber : null,
+            $enrolmentkey, (string)($group->enrolmentkey ?? ''));
+        $imagepath = $deletepicture ? null : ajax_security::image_upload($_FILES['imagefile'] ?? null, $course);
 
         $data = (object)[
             'id' => $groupid,
@@ -225,8 +248,8 @@ try {
             $fs->delete_area_files($context->id, 'group', 'icon', $groupid);
             $DB->set_field('groups', 'picture', 0, ['id' => $groupid]);
             $group->picture = 0;
-        } else if (!empty($_FILES['imagefile']['tmp_name']) && is_uploaded_file($_FILES['imagefile']['tmp_name'])) {
-            if ($rev = process_new_icon($context, 'group', 'icon', $groupid, $_FILES['imagefile']['tmp_name'])) {
+        } else if ($imagepath !== null) {
+            if ($rev = process_new_icon($context, 'group', 'icon', $groupid, $imagepath)) {
                 $DB->set_field('groups', 'picture', $rev, ['id' => $groupid]);
                 $group->picture = $rev;
             }
@@ -263,16 +286,20 @@ try {
         $description = optional_param('description', '', PARAM_RAW);
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
 
+        ajax_security::validate_name($name);
         if ($name === '') {
             throw new moodle_exception('invaliddata', 'error');
         }
 
         if (
             $name !== (string)$grouping->name &&
-                ($existing = groups_get_grouping_by_name($course->id, $name)) && (int)$existing->id !== $groupingid
+                ($existing = groups_get_grouping_by_name($course->id, $name)) && (int)$existing !== $groupingid
         ) {
             throw new moodle_exception('groupingnameexists', 'group', '', $name);
         }
+
+        ajax_security::validate_entity('groupings', (int)$course->id, $groupingid, $name,
+            has_capability('moodle/course:changeidnumber', $context) ? $idnumber : null);
 
         $data = (object)[
             'id' => $groupingid,
@@ -353,18 +380,17 @@ try {
 
         $newgroup = (object)[
             'courseid' => $course->id,
-            'name' => get_string('duplicatedname', 'local_groupimport', $group->name),
+            'name' => ajax_security::copy_name('groups', (int)$course->id, get_string('duplicatedname', 'local_groupimport', $group->name)),
         ];
         $newgroupid = groups_create_group($newgroup);
 
-        $members = groups_get_members($groupid, 'u.id, u.firstname, u.lastname, u.email') ?: [];
+        $members = groups_get_members($groupid, 'u.id, u.firstname, u.lastname') ?: [];
         foreach ($members as $member) {
             groups_add_member($newgroupid, $member->id);
         }
         $searchparts = [$newgroup->name];
         foreach ($members as $member) {
             $searchparts[] = fullname($member);
-            $searchparts[] = $member->email ?? '';
         }
 
         $groupingids = [];
@@ -417,7 +443,7 @@ try {
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
         $newgrouping = (object)[
             'courseid' => $course->id,
-            'name' => get_string('duplicatedname', 'local_groupimport', $grouping->name),
+            'name' => ajax_security::copy_name('groupings', (int)$course->id, get_string('duplicatedname', 'local_groupimport', $grouping->name)),
         ];
         $newgroupingid = groups_create_grouping($newgrouping);
 
@@ -639,33 +665,14 @@ try {
             throw new moodle_exception('invalidgroupid', 'error');
         }
 
-        if (groups_is_member($groupid, $userid)) {
-            groups_remove_member($groupid, $userid);
-        }
+        ajax_security::remove_members((int)$course->id, [$groupid], [$userid]);
 
         $response['success'] = true;
         $response['message'] = get_string('userremovedfromgroup', 'local_groupimport');
     } else if ($action === 'removemembers') {
         $groupids = required_param_array('groupids', PARAM_INT);
         $userids = required_param_array('userids', PARAM_INT);
-        $removed = 0;
-
-        foreach ($groupids as $index => $groupid) {
-            $userid = $userids[$index] ?? 0;
-            if (!$groupid || !$userid) {
-                continue;
-            }
-
-            $group = groups_get_group($groupid);
-            if (!$group || (int)$group->courseid !== (int)$course->id) {
-                continue;
-            }
-
-            if (groups_is_member($groupid, $userid)) {
-                groups_remove_member($groupid, $userid);
-                $removed++;
-            }
-        }
+        $removed = ajax_security::remove_members((int)$course->id, $groupids, $userids);
 
         $response['success'] = true;
         $response['message'] = local_groupimport_count_string('membersremoved', (int)$removed);
@@ -999,6 +1006,10 @@ function local_groupimport_extract_group_tokens(string $text, array $coursegroup
  * @return array
  */
 function local_groupimport_extract_create_names(string $text): array {
+    if (core_text::strlen($text) > 131072) {
+        throw new moodle_exception('invaliddata', 'error');
+    }
+    $total = 0;
     $parts = preg_split('/[\r\n,;|]+/u', $text);
     $names = [];
     foreach ($parts ?: [] as $part) {
@@ -1011,6 +1022,10 @@ function local_groupimport_extract_create_names(string $text): array {
             $prefix = rtrim($matches[1]);
             $marker = $matches[2];
             $count = max(0, min(200, (int)$matches[3]));
+            $total += $count;
+            if ($total > \local_groupimport\local\ajax_security::MAX_NAMES) {
+                throw new moodle_exception('invaliddata', 'error');
+            }
             for ($index = 1; $index <= $count; $index++) {
                 $suffix = $marker === '#' ? (string)$index : local_groupimport_number_to_letters($index);
                 $names[] = trim($prefix . ' ' . $suffix);
@@ -1018,9 +1033,15 @@ function local_groupimport_extract_create_names(string $text): array {
             continue;
         }
 
+        if (++$total > \local_groupimport\local\ajax_security::MAX_NAMES) {
+            throw new moodle_exception('invaliddata', 'error');
+        }
         $names[] = $part;
     }
 
+    foreach ($names as $name) {
+        \local_groupimport\local\ajax_security::validate_name($name);
+    }
     return array_values(array_unique($names));
 }
 
