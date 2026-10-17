@@ -2430,6 +2430,17 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (liveAnnouncement) { liveAnnouncement.textContent = text; }
     liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
       text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
+    // K17-33: the end card shows a title and a hint on two lines (the string is "Title · Hint").
+    const split = state === 'finished' ? text.split(/\s*\u00b7\s*/) : [];
+    if (split.length === 2) {
+      liveCopy.textContent = '';
+      ['title', 'hint'].forEach((role, index) => {
+        const line = document.createElement('span');
+        line.className = 'easyedu-guide-scene__finished-' + role;
+        line.textContent = split[index];
+        liveCopy.appendChild(line);
+      });
+    }
     liveCopy.dataset.easyeduGuideBubble = text;
     liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.dataset.guideLiveState = state;
