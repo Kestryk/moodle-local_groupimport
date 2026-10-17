@@ -569,27 +569,10 @@
 
 
   &-preview__reimport-alert {
-    background: #fffaf0;
-    border: 1px solid #f1d9a8;
-    border-radius: 0.85rem;
-    color: #725018;
-    padding: 0.75rem 0.85rem;
+    @include easyedu.notice-inline-warning;
   }
 
-  &-preview__reimport-alert {
-    align-items: center;
-    display: grid;
-    gap: 0.55rem;
-    grid-template-columns: auto minmax(0, 1fr);
 
-    .fa {
-      color: #a46b12;
-    }
-
-    p {
-      @include easyedu.type-caption;
-    }
-  }
 
 
   &-preview__table-wrap {
@@ -723,26 +706,9 @@
   }
 
   &-history__notice.easyedu-notice {
-    align-items: center;
-    gap: 0.625rem;
-    grid-template-columns: 1rem minmax(0, 1fr);
+    @include easyedu.notice-compact;
+
     margin: 0 0 0.5rem;
-    padding: 0.75rem 1rem;
-
-    > .fa {
-      border: 0;
-      font-size: 1rem;
-      height: 1rem;
-      width: 1rem;
-    }
-
-    > p {
-      @include easyedu.type-caption;
-
-      color: var(--easyedu-text);
-      line-height: 1.4;
-      margin: 0;
-    }
   }
 
   &-history__caption {
