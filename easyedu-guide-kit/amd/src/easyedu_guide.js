@@ -3960,7 +3960,10 @@ const bindGuideBubbles = root => {
     const element = bubbleFor(event.target);
     if (element?.matches(':focus-visible')) show(element);
   });
-  addTrackedListener(root, modal, 'focusout', () => hide(false));
+  addTrackedListener(root, modal, 'focusout', () => {
+    bubble.release();
+    hide(false);
+  });
   addTrackedListener(root, root, 'pointerdown', () => hide(), true);
   addTrackedListener(root, root, 'click', () => hide(), true);
   addTrackedListener(root, root, 'keydown', event => {
@@ -3969,7 +3972,9 @@ const bindGuideBubbles = root => {
     }
     // WCAG 1.4.13: dismissing the bubble must not also close the Guide.
     const wasOpen = bubble.isOpen();
-    hide();
+    if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
+    refreshFrame = null;
+    bubble.dismiss();
     if (wasOpen) {
       event.preventDefault();
       event.stopPropagation();

@@ -31,6 +31,8 @@ export const GRACE_MS = 220;
 const LONG_TEXT = 110;
 const MARGIN = 8;
 const GAP = 10;
+// The browser replays the last pointer position after the bubble disappears, within about this long.
+const REPLAY_MS = 250;
 
 /**
  * Place a mounted bubble above its trigger, or below it when there is no room above, inside the viewport.
@@ -71,13 +73,41 @@ const place = (bubble, node) => {
  * @param {Function} options.mount Returns the element that receives the bubble for a trigger
  *     (the fullscreen element when there is one, so the bubble stays visible).
  * @param {Function} [options.decorate] Called with each new bubble before it is mounted.
- * @return {Object} show(node, text), hide(immediate), scheduleHide(), cancelGrace(), isOpen(), isActive(node),
- *     contains(node).
+ * @return {Object} show(node, text), hide(immediate), dismiss(), release(), scheduleHide(), cancelGrace(),
+ *     isOpen(), isActive(node), contains(node).
  */
 export const createBubbleController = ({Motion, mount, decorate = null}) => {
     let tip = null;
     let anchor = null;
     let graceTimer = null;
+    // Escape dismissal: no bubble reopens until the pointer really moves. Removing the bubble makes the browser
+    // replay the last pointer position over whatever is now under it (often a trigger): those replays carry the
+    // same coordinates, a real move does not.
+    let dismissed = null;
+    let dismissedAt = 0;
+    let pointer = null;
+    const events = ['pointerover', 'pointermove', 'mouseover'];
+    const track = event => {
+        // Without a known position (pure keyboard use) only an event after the replay window counts as a move.
+        const moved = pointer !== null ?
+            Math.abs(event.clientX - pointer.x) > 1 || Math.abs(event.clientY - pointer.y) > 1 :
+            Date.now() - dismissedAt > REPLAY_MS;
+        if (dismissed && moved) {
+            dismissed = null;
+            settle();
+        }
+        pointer = {x: event.clientX, y: event.clientY};
+    };
+    let watching = false;
+    const watch = on => {
+        if (watching === on) {
+            return;
+        }
+        watching = on;
+        events.forEach(name => window[on ? 'addEventListener' : 'removeEventListener'](name, track, true));
+    };
+    // Pointer coordinates are only followed while a bubble is open or an Escape dismissal is pending.
+    const settle = () => watch(tip !== null || dismissed !== null);
 
     const cancelGrace = () => {
         if (graceTimer !== null) {
@@ -92,6 +122,7 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
         const leaving = tip;
         tip = null;
         anchor = null;
+        settle();
         if (!leaving) {
             return;
         }
@@ -113,6 +144,9 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
 
     const show = (node, text) => {
         const copy = String(text || '').trim();
+        if (dismissed) {
+            return;
+        }
         if (tip && anchor === node) {
             cancelGrace();
             return;
@@ -149,14 +183,29 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
         }
         tip = bubble;
         anchor = node;
+        settle();
         host.appendChild(bubble);
         place(bubble, node);
         void Motion.enter(bubble, {distance: '0rem', duration: Motion.timing.normal});
     };
 
+    // Escape (WCAG 1.4.13): close at once, even with the pointer on the bubble, and stay closed until the pointer
+    // really moves (or focus leaves, see release).
+    const dismiss = () => {
+        // Only a pointer resting on the bubble or its trigger can see it reopen; a keyboard-only Escape needs no guard.
+        dismissed = tip && (tip.matches(':hover') || (anchor && anchor.matches(':hover'))) ? {} : null;
+        dismissedAt = Date.now();
+        hide(true);
+    };
+
     return {
         show,
         hide,
+        dismiss,
+        release: () => {
+            dismissed = null;
+            settle();
+        },
         scheduleHide,
         cancelGrace,
         isOpen: () => tip !== null,

@@ -617,7 +617,10 @@ export const bindHoverPopovers = root => {
         }
     });
 
-    root.addEventListener('focusout', () => bubble.hide(false));
+    root.addEventListener('focusout', () => {
+        bubble.release();
+        bubble.hide(false);
+    });
     root.addEventListener('click', () => bubble.hide());
     window.addEventListener('scroll', () => bubble.hide(), true);
 
@@ -627,7 +630,7 @@ export const bindHoverPopovers = root => {
         if (event.key !== 'Escape' || !bubble.isOpen()) {
             return;
         }
-        bubble.hide(false);
+        bubble.dismiss();
         event.preventDefault();
         event.stopPropagation();
     }, true);
