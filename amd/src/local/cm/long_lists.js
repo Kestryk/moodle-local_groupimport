@@ -46,23 +46,55 @@ export const syncLongListFooter = (owner, kind, state, paged = false) => {
     const labels = getLabels(root);
     let footer = owner.querySelector(':scope > [data-easystud-long-list-footer]');
     if (!footer) {
-        footer = document.createElement('div');
-        footer.className = 'local-groupimport-easystud-long-list';
+        footer = document.createElement(paged ? 'nav' : 'div');
         footer.setAttribute('data-easystud-long-list-footer', kind);
-        const count = document.createElement('span');
-        count.setAttribute('data-easystud-long-list-count', '1');
-        footer.appendChild(count);
-        ['more', 'less', 'all', 'previous', 'next', 'select'].forEach(action => {
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'easyedu-button easyedu-button--secondary';
-            button.setAttribute('data-easystud-long-list-action', action);
-            footer.appendChild(button);
-        });
+        const button = (action, classes) => {
+            const node = document.createElement('button');
+            node.type = 'button';
+            node.className = classes;
+            node.setAttribute('data-easystud-long-list-action', action);
+            return node;
+        };
+        if (paged) {
+            // K16-01 formula C: the Kit pagination bar (selection, controls, tools), not a local footer.
+            footer.className = 'local-groupimport-easystud-pagination local-groupimport-easystud-pagination--section';
+            const selection = document.createElement('span');
+            selection.className = 'local-groupimport-easystud-pagination__selection';
+            const select = button('select', 'btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select');
+            select.appendChild(document.createElement('span'));
+            selection.appendChild(select);
+            const controls = document.createElement('span');
+            controls.className = 'local-groupimport-easystud-pagination__controls';
+            const previous = button('previous', 'btn btn-sm btn-outline-secondary');
+            previous.setAttribute('data-easyedu-page-prev', '1');
+            const next = button('next', 'btn btn-sm btn-outline-secondary');
+            next.setAttribute('data-easyedu-page-next', '1');
+            const label = document.createElement('span');
+            label.setAttribute('data-easyedu-page-label', '1');
+            controls.append(previous, label, next);
+            const tools = document.createElement('span');
+            tools.className = 'local-groupimport-easystud-pagination__tools';
+            const count = document.createElement('span');
+            count.className = 'local-groupimport-easystud-pagination__count';
+            count.setAttribute('data-easystud-long-list-count', '1');
+            const size = document.createElement('span');
+            size.className = 'local-groupimport-easystud-long-list__per-page';
+            size.setAttribute('data-easystud-long-list-per-page', '1');
+            tools.append(count, size);
+            footer.append(selection, controls, tools);
+        } else {
+            footer.className = 'local-groupimport-easystud-long-list';
+            const count = document.createElement('span');
+            count.setAttribute('data-easystud-long-list-count', '1');
+            footer.appendChild(count);
+            ['more', 'less', 'all', 'select'].forEach(action => {
+                footer.appendChild(button(action, 'easyedu-button easyedu-button--secondary'));
+            });
+        }
         const selection = owner.querySelector(':scope > [data-easystud-group-select-all-row]');
         owner.insertBefore(footer, selection);
     }
-    footer.hidden = state.total <= listPolicy[kind].initial && !paged;
+    footer.hidden = paged ? !state.total : state.total <= listPolicy[kind].initial;
     footer.setAttribute('role', paged ? 'navigation' : 'group');
     const title = owner.querySelector(':scope > .local-groupimport-easystud-tree__toggle, ' +
         ':scope > .local-groupimport-easystud-group__header .local-groupimport-easystud-group__name');
@@ -72,33 +104,38 @@ export const syncLongListFooter = (owner, kind, state, paged = false) => {
     footer.setAttribute('data-total', state.total);
     const values = {...state, step: Math.min(listPolicy[kind].step || 0, state.remaining,
         listPolicy[kind].ceiling - state.limit)};
-    footer.querySelector('[data-easystud-long-list-count]').textContent = text(labels.longlistshown, values);
+    const count = footer.querySelector('[data-easystud-long-list-count]');
     const buttons = Object.fromEntries(Array.from(footer.querySelectorAll('button')).map(b =>
         [b.getAttribute('data-easystud-long-list-action'), b]));
-    buttons.more.hidden = paged || !state.more;
+    if (paged) {
+        count.textContent = text(labels.longlistpage, {...values, start: state.total ? (state.page - 1) * state.size + 1 : 0,
+            end: Math.min(state.page * state.size, state.total)});
+        footer.querySelector('[data-easystud-long-list-per-page]').textContent =
+            text(labels.longlistperpage, {size: state.size});
+        footer.querySelector('[data-easyedu-page-label]').textContent = state.page + ' / ' + state.pages;
+        buttons.previous.textContent = '‹';
+        buttons.next.textContent = '›';
+        buttons.previous.setAttribute('aria-label', labels.longlistprevious || '');
+        buttons.next.setAttribute('aria-label', labels.longlistnext || '');
+        buttons.previous.disabled = state.page <= 1;
+        buttons.next.disabled = state.page >= state.pages;
+        footer.querySelector('.local-groupimport-easystud-pagination__controls').hidden = state.pages <= 1;
+        buttons.select.firstElementChild.textContent = labels.selectall || '';
+        buttons.select.hidden = !state.total;
+        return;
+    }
+    count.textContent = text(labels.longlistshown, values);
+    buttons.more.hidden = !state.more;
     buttons.more.textContent = text(labels.longlistmore, values);
-    buttons.less.hidden = paged || state.limit <= listPolicy[kind].initial;
+    buttons.less.hidden = state.limit <= listPolicy[kind].initial;
     buttons.less.textContent = labels.showless || '';
     buttons.less.classList.add('local-groupimport-easystud-long-list__quiet');
-    buttons.all.hidden = paged || !state.all;
+    buttons.all.hidden = !state.all;
     buttons.all.textContent = text(labels.longlistall, values);
     buttons.all.setAttribute('data-easystud-open-advanced-settings', '1');
     buttons.all.setAttribute('data-easystud-advanced-target', kind === 'members' ? 'group' : 'grouping');
-    buttons.previous.hidden = buttons.next.hidden = !paged;
-    buttons.previous.textContent = '‹';
-    buttons.next.textContent = '›';
-    buttons.previous.setAttribute('aria-label', labels.longlistprevious || '');
-    buttons.next.setAttribute('aria-label', labels.longlistnext || '');
-    buttons.previous.disabled = state.page <= 1;
-    buttons.next.disabled = state.page >= state.pages;
     buttons.select.hidden = kind !== 'groups';
     buttons.select.textContent = labels.selectall || '';
-    footer.classList.toggle('local-groupimport-easystud-pagination', paged);
-    if (paged) {
-        footer.querySelector('[data-easystud-long-list-count]').textContent =
-            text(labels.longlistpage, {...values, start: state.total ? (state.page - 1) * state.size + 1 : 0,
-                end: Math.min(state.page * state.size, state.total)});
-    }
 };
 
 /**

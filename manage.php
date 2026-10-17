@@ -437,6 +437,7 @@ function local_groupimport_build_manage_template_data(
         'longlistmore' => get_string('longlistmore', 'local_groupimport'),
         'longlistall' => get_string('longlistall', 'local_groupimport'),
         'longlistpage' => get_string('longlistpage', 'local_groupimport'),
+        'longlistperpage' => get_string('longlistperpage', 'local_groupimport'),
         'longlistprevious' => get_string('previouspage'),
         'longlistnext' => get_string('nextpage'),
         'longlistaddedmembers' => local_groupimport_count_template('longlistaddedmembers'),

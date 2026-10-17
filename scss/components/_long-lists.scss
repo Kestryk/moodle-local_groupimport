@@ -31,9 +31,43 @@
       margin-inline-start: auto;
     }
 
-    [data-easystud-long-list-action="previous"],
-    [data-easystud-long-list-action="next"] {
-      @include easyedu.pagination-arrow-button;
+    // Formula A buttons are Kit small buttons, one height for every control of the row.
+    [data-easystud-long-list-action="more"],
+    [data-easystud-long-list-action="all"],
+    [data-easystud-long-list-action="less"],
+    [data-easystud-long-list-action="select"] {
+      @include easyedu.button-size(small);
+
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+    }
+
+    // K16-66: the count never overlaps the actions; it wraps above them first.
+    [data-easystud-long-list-count] {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    &__per-page {
+      color: var(--easyedu-text-muted);
+      font-size: var(--easyedu-font-size-caption);
+      white-space: nowrap;
+    }
+  }
+
+  // Formula C: the Kit pagination bar under a long section. Its geometry, count and controls come
+  // from the shared pagination styles; only the section placement is set here.
+  &-pagination--section {
+    margin-block-start: 0.75rem;
+    width: 100%;
+
+    .local-groupimport-easystud-pagination__tools {
+      gap: 0.5rem;
+    }
+
+    &[hidden] {
+      display: none;
     }
   }
 
@@ -47,7 +81,8 @@
     }
   }
 
-  &-tree__children[hidden] ~ &-long-list {
+  &-tree__children[hidden] ~ &-long-list,
+  &-tree__children[hidden] ~ &-pagination--section {
     display: none;
   }
 
