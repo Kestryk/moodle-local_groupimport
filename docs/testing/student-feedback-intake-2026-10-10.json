@@ -1,4 +1,5 @@
 {
+"codecheckerZeroFinal20261017":{"base":"01872080","checkedHead":"9cee7358","phpFiles":197,"phpErrors":0,"phpWarnings":49,"nonPhpFiles":13,"nonPhpErrors":0,"packagePhpFiles":50,"packageErrors":0,"packageWarnings":12,"officialNativeUi":true,"nativeConsoleErrors":0,"smokePassed":13,"runtimePublished":false,"humanAccepted":false},
 "animGuideKitRaccord20261017":{"base":"abf3c636","anim":"88d8e83d","mirror":"dd986649","status":"isolated six cases and exact mirror PASS; no runtime publication"},
 "animG1PersonalPreference20261017":{"base":"bc3f48f8","branch":"work/codex1/easystud-anim-20261017","nativeCases":6,"isolatedCases":6,"matrix":"FR/EN 1600/768/390","consoleErrors":0,"maxFooterDxPx":0,"maxFooterDyPx":0.046875,"footerHeightPx":[37.59375],"perCaseFooterHeightDeltaPx":0,"horizontalOverflowPx":0,"preferenceRestored":true,"humanAccepted":false,"publishedToLocalhost":false},
 
