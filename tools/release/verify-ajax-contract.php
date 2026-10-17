@@ -19,22 +19,22 @@ $injected = null;
 $created = null;
 class moodle_exception extends RuntimeException {
 }
-class dml_exception extends moodle_exception { public $debuginfo = 'synthetic SQL detail'; 
+class dml_exception extends moodle_exception { public $debuginfo = 'synthetic SQL detail';
 }
 class moodle_url {
     public function __construct($path, $params) {
     }
     public function out($escape) {
-        return '/synthetic'; 
+        return '/synthetic';
     }
 }
 class core_text { public static function strtolower($value) {
-        return strtolower($value); 
-} 
+        return strtolower($value);
+}
 }
 class fixture_database {
     public function get_records($table, $conditions, $sort, $fields) {
-        return []; 
+        return [];
     }
     public function get_record($table, $conditions, $fields, $strict = false) {
         return (object)['id' => 11, 'courseid' => 123, 'name' => 'Synthetic grouping'];
@@ -61,7 +61,7 @@ class identifier_database {
         return null;
     }
     public function get_in_or_equal($fields, $style, $prefix) {
-        return ['IN (:field0)', ['field0' => $fields[0]]]; 
+        return ['IN (:field0)', ['field0' => $fields[0]]];
     }
     public function get_records_sql($sql, $params, $start, $limit) {
         $this->fields[] = 'profile_field_' . $params['field0'];
@@ -70,43 +70,43 @@ class identifier_database {
 }
 function get_config($component) {
     global $allowedfields;
-    return (object)['alloweduserfields' => $allowedfields]; 
+    return (object)['alloweduserfields' => $allowedfields];
 }
 function required_param($name, $type) {
-    return 11; 
+    return 11;
 }
 function groups_get_group($id) {
     global $injected;
-    if ($injected) { throw $injected; 
+    if ($injected) { throw $injected;
     }
     return (object)['id' => $id, 'courseid' => 123, 'name' => 'Synthetic group'];
 }
 function groups_create_group($record) {
     global $created;
     $created = $record;
-    return 12; 
+    return 12;
 }
 function groups_create_grouping($record) {
     global $created;
     $created = $record;
-    return 12; 
+    return 12;
 }
 function groups_get_members($id, $fields) {
-    return []; 
+    return [];
 }
 function format_string($value) {
-    return $value; 
+    return $value;
 }
 function get_string($key, $component, $a = null) {
     global $string;
-    if (!isset($string[$key])) { throw new RuntimeException('Missing string: ' . $key); 
+    if (!isset($string[$key])) { throw new RuntimeException('Missing string: ' . $key);
     }
     return is_scalar($a) ? str_replace('{$a}', (string)$a, $string[$key]) : $string[$key];
 }
 function check($name, $condition) {
     global $checks;
     $checks[$name] = (bool)$condition;
-    if (!$condition) { throw new RuntimeException('Failed: ' . $name); 
+    if (!$condition) { throw new RuntimeException('Failed: ' . $name);
     }
 }
 require $root . '/classes/local/guide_discovery.php';
@@ -243,17 +243,17 @@ $report = json_encode(
     'checks' => $checks, 'scope' => 'Actual dispatch with isolated service doubles; no native course writes'],
     JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
 ) . PHP_EOL;
-if (!empty($argv[1])) { file_put_contents($argv[1], $report); 
+if (!empty($argv[1])) { file_put_contents($argv[1], $report);
 }
 echo $report;
 
 function data_submitted() {
     global $submitted;
-    return $submitted; 
+    return $submitted;
 }
 function require_sesskey() {
     global $validkey, $guardcalls;
     $guardcalls++;
-    if (!$validkey) { throw new moodle_exception('Invalid session key'); 
+    if (!$validkey) { throw new moodle_exception('Invalid session key');
     }
 }

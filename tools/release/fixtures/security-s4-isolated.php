@@ -2,17 +2,17 @@
 // Executes only isolated policy/functions; no Moodle bootstrap or database connection.
 define('SITEID', 1);
 class moodle_exception extends RuntimeException { public function __construct($key, $component) {
-        parent::__construct($key); 
-} 
+        parent::__construct($key);
+}
 }
 class coding_exception extends RuntimeException {
 }
 class core_text {
     public static function strlen($s) {
-        return mb_strlen($s); 
+        return mb_strlen($s);
     }
     public static function substr($s, $a, $b) {
-        return mb_substr($s, $a, $b); 
+        return mb_substr($s, $a, $b);
     }
 }
 class memory_db {

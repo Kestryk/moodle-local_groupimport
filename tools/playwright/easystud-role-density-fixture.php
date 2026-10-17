@@ -140,7 +140,7 @@ function density_cleanup(array $manifest): array {
     $users = [];
     foreach ($manifest['userIds'] as $id) {
         $user = $DB->get_record('user', ['id' => $id, 'deleted' => 0]);
-        if (!$user) { continue; 
+        if (!$user) { continue;
         }
         if (
             !str_starts_with($user->username, $prefix) || $user->auth !== 'nologin' ||
@@ -152,7 +152,7 @@ function density_cleanup(array $manifest): array {
     }
     foreach ($manifest['roleIds'] as $id) {
         $role = $DB->get_record('role', ['id' => $id]);
-        if (!$role) { continue; 
+        if (!$role) { continue;
         }
         if (
             !str_starts_with($role->shortname, $prefix) || $role->archetype !== '' ||
@@ -171,14 +171,14 @@ function density_cleanup(array $manifest): array {
     }
     $manual = enrol_get_plugin('manual');
     $instance = $DB->get_record('enrol', ['id' => $manifest['enrolId'], 'courseid' => $manifest['courseId'], 'enrol' => 'manual'], '*', MUST_EXIST);
-    foreach ($users as $user) { $manual->unenrol_user($instance, $user->id); 
+    foreach ($users as $user) { $manual->unenrol_user($instance, $user->id);
     }
     foreach ($manifest['roleIds'] as $id) {
-        if ($DB->record_exists('role', ['id' => $id])) { delete_role($id); 
+        if ($DB->record_exists('role', ['id' => $id])) { delete_role($id);
         }
     }
     foreach ($users as $user) {
-        if (!delete_user($user)) { throw new RuntimeException('Native fixture user deletion failed.'); 
+        if (!delete_user($user)) { throw new RuntimeException('Native fixture user deletion failed.');
         }
     }
     $after = density_baseline((int)$manifest['courseId'], (int)$manifest['contextId']);
@@ -215,10 +215,10 @@ $context = context_course::instance($courseid);
 $instance = null;
 foreach (enrol_get_instances($courseid, true) as $candidate) {
     if ($candidate->enrol === 'manual') { $instance = $candidate;
-        break; 
+        break;
     }
 }
-if (!$instance) { throw new RuntimeException('A pre-existing manual enrolment instance is required.'); 
+if (!$instance) { throw new RuntimeException('A pre-existing manual enrolment instance is required.');
 }
 $manifest = ['schemaVersion' => 1, 'fixture' => 'easystud-sm15-role-density',
     'prefix' => 'eed-sm15-' . substr(hash('sha256', $options['run-id']), 0, 12) . '-',
@@ -261,10 +261,10 @@ try {
     echo json_encode($manifest, JSON_UNESCAPED_SLASHES) . "\n";
 } catch (Throwable $exception) {
     // Moodle rollback throws. Recheck exact ownership even if ids were rolled back.
-    try { $transaction->rollback($exception); 
+    try { $transaction->rollback($exception);
     } catch (Throwable $rolledback) {
         $cleanup = density_cleanup($manifest);
-        if (!$cleanup['complete']) { throw new RuntimeException('Setup failed and fixture cleanup is incomplete.', 0, $rolledback); 
+        if (!$cleanup['complete']) { throw new RuntimeException('Setup failed and fixture cleanup is incomplete.', 0, $rolledback);
         }
         throw $rolledback;
     }

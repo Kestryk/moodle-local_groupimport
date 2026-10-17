@@ -1,10 +1,10 @@
 <?php
 // Source-only S2 execution: no Moodle bootstrap, network or database connection.
 namespace core_privacy\local\metadata { interface provider {
-} 
+}
 }
 namespace core_privacy\local\request\plugin { interface provider {
-} 
+}
 }
 namespace core_privacy\local\request {
     interface user_preference_provider {
@@ -17,27 +17,27 @@ namespace core_privacy\local\request {
         private array $ids = [];
         public function add_from_sql(string $sql, array $params): self {
             foreach ($params as $key => $value) {
-                if ($key !== 'contextlevel') { $this->ids[] = \context_course::instance((int)$value)->id; 
+                if ($key !== 'contextlevel') { $this->ids[] = \context_course::instance((int)$value)->id;
                 }
             }
             return $this;
         }
         public function add_user_context(int $userid): self {
             $this->ids[] = \context_user::instance($userid)->id;
-            return $this; 
+            return $this;
         }
         public function get_contextids(): array {
-            return array_values(array_unique($this->ids)); 
+            return array_values(array_unique($this->ids));
         }
     }
     class approved_contextlist {
         public function __construct(private object $user, private string $component, private array $ids) {
         }
         public function get_user(): object {
-            return $this->user; 
+            return $this->user;
         }
         public function get_contexts(): array {
-            return array_map(fn($id) => \context::$registry[$id], $this->ids); 
+            return array_map(fn($id) => \context::$registry[$id], $this->ids);
         }
     }
     class userlist {
@@ -45,45 +45,45 @@ namespace core_privacy\local\request {
         public function __construct(private \context $context, string $component = '') {
         }
         public function get_context(): \context {
-            return $this->context; 
+            return $this->context;
         }
         public function add_users(array $ids): self {
             $this->ids = array_values(array_unique(array_merge($this->ids, $ids)));
-            return $this; 
+            return $this;
         }
         public function get_userids(): array {
-            return $this->ids; 
+            return $this->ids;
         }
     }
     class approved_userlist extends userlist {
         public function __construct(\context $context, string $component, array $ids) {
             parent::__construct($context, $component);
-            $this->add_users($ids); 
+            $this->add_users($ids);
         }
     }
     class writer {
         public static array $writers = [];
         public array $data = [];
         public static function with_context(\context $context): self {
-            return self::$writers[$context->id] ??= new self(); 
+            return self::$writers[$context->id] ??= new self();
         }
         public function export_data(array $path, object $data): void {
-            $this->data = $data->imports; 
+            $this->data = $data->imports;
         }
     }
 }
 namespace core\task { abstract class scheduled_task {
-} 
+}
 }
 namespace local_groupimport\local {
-    class motion { const PREFERENCE = 'motion'; 
+    class motion { const PREFERENCE = 'motion';
     }
-    class guide_welcome { const PREFERENCE = 'welcome'; 
+    class guide_welcome { const PREFERENCE = 'welcome';
     }
 }
 namespace local_groupimport\task { function time(): int {
-        return $GLOBALS['clock']; 
-} 
+        return $GLOBALS['clock'];
+}
 }
 namespace {
     define('MOODLE_INTERNAL', true);
@@ -92,52 +92,52 @@ namespace {
     define('CONTEXT_COURSE', 50);
     define('DAYSECS', 86400);
     class core_text { public static function strtolower(string $s): string {
-            return mb_strtolower($s); 
-    } 
+            return mb_strtolower($s);
+    }
     }
     class context {
         public static array $registry = [];
         public function __construct(public int $id, public int $instanceid) {
-            self::$registry[$id] = $this; 
+            self::$registry[$id] = $this;
         }
     }
     class context_course extends context { public static function instance(int $id, int $mode = 0): self {
-            return self::$registry[$id + 1000] ?? new self($id + 1000, $id); 
-    } 
+            return self::$registry[$id + 1000] ?? new self($id + 1000, $id);
+    }
     }
     class context_user extends context { public static function instance(int $id): self {
-            return self::$registry[$id + 2000] ?? new self($id + 2000, $id); 
-    } 
+            return self::$registry[$id + 2000] ?? new self($id + 2000, $id);
+    }
     }
     class context_system extends context {
     }
     function get_string(string $key, string $component): string {
-        return $key; 
+        return $key;
     }
     function get_config(string $component, string $key): mixed {
-        return $GLOBALS['config'][$key] ?? false; 
+        return $GLOBALS['config'][$key] ?? false;
     }
     function get_user_preferences(string $key, mixed $default, int $userid): mixed {
-        return $GLOBALS['preferences'][$userid][$key] ?? $default; 
+        return $GLOBALS['preferences'][$userid][$key] ?? $default;
     }
     function unset_user_preference(string $key, int $userid): void {
-        unset($GLOBALS['preferences'][$userid][$key]); 
+        unset($GLOBALS['preferences'][$userid][$key]);
     }
     class records extends \ArrayIterator { public function close(): void {
-            $GLOBALS['closed']++; 
-    } 
+            $GLOBALS['closed']++;
+    }
     }
     class memory_db {
         public array $users = [];
         public array $history = [];
         public array $writes = [];
         public function get_record(string $table, array $conditions, string $fields, int $strict): mixed {
-            if ($table !== 'user') { throw new \RuntimeException('Unexpected read'); 
+            if ($table !== 'user') { throw new \RuntimeException('Unexpected read');
             }
             return $this->users[$conditions['id']] ?? false;
         }
         public function get_recordset(string $table, array $conditions = [], string $sort = ''): records {
-            if ($table !== 'local_groupimport_history') { throw new \RuntimeException('Unexpected read'); 
+            if ($table !== 'local_groupimport_history') { throw new \RuntimeException('Unexpected read');
             }
             return new records(array_map(fn($r) => clone $r, array_filter(
                 $this->history,
@@ -146,29 +146,29 @@ namespace {
         }
         public function get_in_or_equal(array $values, int $mode, string $prefix = 'param'): array {
             $params = [];
-            foreach ($values as $i => $v) { $params[$prefix . $i] = $v; 
+            foreach ($values as $i => $v) { $params[$prefix . $i] = $v;
             }
             return ['IN (' . implode(',', array_map(fn($k) => ':' . $k, array_keys($params))) . ')', $params];
         }
         public function get_records_select(string $table, string $select, array $params, string $sort, string $fields): array {
-            if ($table !== 'user' || !preg_match('/LOWER\((email|username|idnumber)\)/', $select, $m)) { throw new \RuntimeException('Unexpected SQL'); 
+            if ($table !== 'user' || !preg_match('/LOWER\((email|username|idnumber)\)/', $select, $m)) { throw new \RuntimeException('Unexpected SQL');
             }
             return array_filter($this->users, fn($u) => in_array(core_text::strtolower($u->{$m[1]}), $params, true));
         }
         public function delete_records(string $table, array $conditions): void {
             $this->writes[] = $table;
             foreach ($this->history as $id => $row) {
-                if (array_all_local($conditions, fn($key, $value) => $row->$key == $value)) { unset($this->history[$id]); 
+                if (array_all_local($conditions, fn($key, $value) => $row->$key == $value)) { unset($this->history[$id]);
                 }
             }
         }
         public function update_record(string $table, object $row): void {
             $this->writes[] = $table;
-            foreach ((array)$row as $key => $value) { $this->history[$row->id]->$key = $value; 
+            foreach ((array)$row as $key => $value) { $this->history[$row->id]->$key = $value;
             }
         }
         public function delete_records_select(string $table, string $sql, array $params): void {
-            if ($sql !== 'timecreated < :cutoff') { throw new \RuntimeException('Unexpected cutoff'); 
+            if ($sql !== 'timecreated < :cutoff') { throw new \RuntimeException('Unexpected cutoff');
             }
             $this->writes[] = $table;
             $this->history = array_filter($this->history, fn($r) => $r->timecreated >= $params['cutoff']);
@@ -176,13 +176,13 @@ namespace {
     }
     function array_all_local(array $values, callable $predicate): bool {
         foreach ($values as $key => $value) { if (!$predicate($key, $value)) { return false;
-        } 
+        }
         } return true;
     }
     $checks = 0;
     function check(bool $condition, string $label): void {
         $GLOBALS['checks']++;
-        if (!$condition) { throw new \RuntimeException($label); 
+        if (!$condition) { throw new \RuntimeException($label);
         }
     }
     $root = dirname(__DIR__, 3);
@@ -194,7 +194,7 @@ namespace {
     $preferences = [];
     $closed = 0;
     $clock = 1800000000;
-    foreach ([1, 2, 3, 4, 5] as $id) { $DB->users[$id] = (object)['id' => $id, 'email' => "user$id@example.test", 'username' => "u$id", 'idnumber' => "number$id"]; 
+    foreach ([1, 2, 3, 4, 5] as $id) { $DB->users[$id] = (object)['id' => $id, 'email' => "user$id@example.test", 'username' => "u$id", 'idnumber' => "number$id"];
     }
     $payload = ['desiredstate' => [['userid' => 2, 'identifier' => 'old@example.test', 'groupname' => 'G'], ['userid' => 3, 'identifier' => 'user3@example.test', 'groupname' => 'G']],
         'addedmembers' => [['userid' => 2, 'groupid' => 1], ['userid' => 3, 'groupid' => 1]], 'removedmembers' => [['userid' => 2, 'groupid' => 2]],
@@ -207,7 +207,7 @@ namespace {
     $provider = \local_groupimport\privacy\provider::class;
     $helper = \local_groupimport\local\history_privacy::class;
     check($provider::get_contexts_for_userid(0)->get_contextids() === [], 'Invalid subject rejected');
-    foreach ([1, 2, 3, 4] as $id) { check($provider::get_contexts_for_userid($id)->get_contextids() === [1010, 1011], "Contexts user$id"); 
+    foreach ([1, 2, 3, 4] as $id) { check($provider::get_contexts_for_userid($id)->get_contextids() === [1010, 1011], "Contexts user$id");
     }
     check($provider::get_contexts_for_userid(5)->get_contextids() === [], 'Unrelated user has no history');
     $list = new \core_privacy\local\request\userlist($ctx);
@@ -256,10 +256,10 @@ namespace {
     $task = new \local_groupimport\task\purge_import_history();
     check($task::retention_days() === 365, 'Default retention');
     foreach ([0, -1, 'invalid', '1.5', 36501] as $invalid) { $config['historyretentiondays'] = $invalid;
-        check($task::retention_days() === 365, 'Invalid retention fallback'); 
+        check($task::retention_days() === 365, 'Invalid retention fallback');
     }
     foreach ([1, 30, 365, 730, 36500] as $valid) { $config['historyretentiondays'] = $valid;
-        check($task::retention_days() === $valid, 'Adjustable days'); 
+        check($task::retention_days() === $valid, 'Adjustable days');
     }
     $config['historyretentiondays'] = 30;
     $DB->history = [1 => $make(1, 10, $clock - 30 * DAYSECS - 1), 2 => $make(2, 10, $clock - 30 * DAYSECS), 3 => $make(3, 11, $clock)];

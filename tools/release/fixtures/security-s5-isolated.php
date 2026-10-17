@@ -26,12 +26,12 @@ namespace {
     define('PARAM_ALPHA', 3);
     class moodle_exception extends RuntimeException { public function __construct($key, $component = '', ...$rest) {
             parent::__construct($key);
-    } 
+    }
     }
     class coding_exception extends RuntimeException {
     }
     class core_php_time_limit { public static function raise($seconds) {
-    } 
+    }
     }
     class context_course { public int $id;
         public function __construct(public int $instanceid) {
@@ -39,11 +39,11 @@ namespace {
 
         }public static function instance($id) {
             return new self($id);
-        } 
+        }
     }
     class core_text { public static function strtolower($s) {
             return mb_strtolower($s);
-    } 
+    }
     }
     function get_enrolled_sql($context) {
         return ['SELECT userid AS id FROM {fixture_enrolments} WHERE courseid = :enrolcourse', ['enrolcourse' => $context->instanceid]];
@@ -93,7 +93,7 @@ namespace {
     }
     class rows extends ArrayIterator { public function close(): void {
             $GLOBALS['closed']++;
-    } 
+    }
     }
     class transaction {
         private array $state;
