@@ -1829,5 +1829,11 @@
     "base": "05a84c57",
     "report": "docs/testing/p2-js-retirement-2026-10-17.md",
     "validation": "17 source/AMD + 12 template checks; T037/T038, escaping/filter and builds PASS"
+  },
+  "codex1Tri1220261017": {
+    "status": "guide-parity-pass-unrelated-buttons-drift-open",
+    "base": "05a84c57",
+    "canonical": "57b5d7f",
+    "report": "docs/testing/tri12-guide-parity-2026-10-17.md"
   }
 }
