@@ -1,0 +1,36 @@
+// Existing workspace rules retained when retiring the legacy tutorial.
+// Keep their original cascade slot and the canonical guided-panel mixin.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  @include easyedu.guided-panel;
+
+  [data-selectable-type].is-selection-disabled {
+    > .local-groupimport-easystud-selector {
+      cursor: not-allowed;
+    }
+
+    > .local-groupimport-easystud-selector .local-groupimport-easystud-selector__ui {
+      background: #f2f5f8;
+      border-color: #d7e0e8;
+      box-shadow: none;
+      opacity: 0.45;
+    }
+
+    > .local-groupimport-easystud-selector input {
+      cursor: not-allowed;
+    }
+
+    > .local-groupimport-easystud-selector .local-groupimport-easystud-selector__ui::after {
+      opacity: 0;
+    }
+  }
+
+  &-modal__footer {
+    display: flex;
+    gap: 0.65rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+}
