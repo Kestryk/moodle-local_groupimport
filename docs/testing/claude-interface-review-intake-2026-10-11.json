@@ -1817,5 +1817,10 @@
       ],
       "decisionGate": "none"
     }
-  ]
+  ],
+  "codex1Tri1920261017": {
+    "status": "13-isolated-suites-pass-native-phpunit-behat-pending",
+    "base": "05a84c57",
+    "report": "docs/testing/tri19-minimal-test-gate-2026-10-17.md"
+  }
 }
