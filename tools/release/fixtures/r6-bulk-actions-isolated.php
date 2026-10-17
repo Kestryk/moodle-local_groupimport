@@ -81,4 +81,8 @@ reset_state();$DB->members=['10:1'=>true,'10:99'=>true];rejection('removemembers
 reset_state();$r=action('deletegroups',['groupids'=>[10,10,11,12,999]]);check(!isset($DB->groups[10])&&!isset($DB->groups[11])&&isset($DB->groups[12]),'course scope/dedupe');check($DB->queries===1&&$DB->commits===1,'one group lookup/commit');
 reset_state();$DB->failat=2;rejection('deletegroups',['groupids'=>[10,11]],'native-failure');check(count($DB->groups)===3&&!$DB->events&&$DB->rollbacks===1,'delete DB atomic');
 reset_state();rejection('deletegroups',['groupids'=>range(1,501)],'bulkactionlimit');check($DB->writes===0&&$DB->queries===0&&$DB->starts===0,'delete cap before reads/writes');
+$string=[];require $root.'/lang/fr/local_groupimport.php';
+check($string['bulkactionlimit']==='Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.','exact UTF-8 FR bulkactionlimit');
+check($string['bulkitemsskipped']==='Éléments non ajoutés : {$a}.','exact UTF-8 FR bulkitemsskipped');
+check(!str_contains($string['bulkactionlimit'].$string['bulkitemsskipped'],'?'),'no encoding replacement');
 echo json_encode(['surface'=>'r6-server','passed'=>true,'checks'=>$checks,'databaseConnections'=>0,'runtimeAccess'=>false]),"\n";
