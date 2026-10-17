@@ -2201,7 +2201,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
     const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
     const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
-    await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
+    let reading = Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
+    // Budget actual reading phases, on the same pausable clock at every Motion
+    // level. Desktop Add has two phases (no confirmation); inspection has five.
+    // Keep the illustrated result on screen, never add a second animation loop.
+    if (kind === 'membership' && mode === 'add' && !compact) {
+      reading += 5000;
+    } else if (kind === 'inspection') {
+      reading = Math.max(minimum - 350, reading - 350);
+    } else if (kind === 'membership' && mode === 'move' && compact) {
+      reading += 250;
+    }
+    await wait(reading);
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
