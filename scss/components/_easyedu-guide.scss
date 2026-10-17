@@ -3,8 +3,9 @@
 // has been retired.
 @use "../easyedu" as easyedu;
 
-.local-groupimport-easystud-easyedu-guide,
-.path-local-groupimport .easyedu-guide {
+// One persistent Guide root, including its body/fullscreen portals.
+// Keep two-class specificity of the former page-root branch without duplicating every rule.
+.local-groupimport-easystud-easyedu-guide.easyedu-guide {
   --easyedu-guide-accent: var(--local-groupimport-easystud-primary, #0f6cbf);
   --easyedu-guide-accent-strong: var(--local-groupimport-easystud-primary-strong, #0b4f90);
   --easyedu-guide-text: var(--local-groupimport-easystud-text, #243447);
