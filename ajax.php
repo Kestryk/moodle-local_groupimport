@@ -24,6 +24,8 @@
 
 use local_groupimport\local\ajax_security;
 use local_groupimport\local\bulk_action;
+use local_groupimport\local\state_version;
+use local_groupimport\service\course_state;
 
 define('AJAX_SCRIPT', true);
 
@@ -45,6 +47,12 @@ $context = context_course::instance($course->id);
 require_capability('moodle/course:managegroups', $context);
 
 $response = ['success' => false];
+
+// Perf R5: the on-demand page asks for the group structure after the action, so it updates the course
+// state it holds instead of reloading every participant. The version before the action lets it check
+// that no other change happened in between (otherwise it reloads the whole state as before).
+$withstructure = optional_param('withstructure', 0, PARAM_BOOL) && $action !== 'userdetails';
+$versionbefore = $withstructure ? state_version::get((int)$course->id) : 0;
 
 try {
     if ($action === 'userdetails') {
@@ -348,15 +356,27 @@ try {
     } else if ($action === 'movegroup') {
         global $DB;
 
-        $groupid = required_param('groupid', PARAM_INT);
+        // Perf R5: several groups move in one request (groupids[], sent in batches by the page, at most
+        // bulk_action::MAX_ITEMS, one transaction); the single groupid form is unchanged.
+        $groupids = optional_param_array('groupids', [], PARAM_INT);
+        $batch = !empty($groupids);
+        if ($batch) {
+            bulk_action::validate_size(count($groupids));
+        } else {
+            $groupids = [required_param('groupid', PARAM_INT)];
+        }
+        $groupids = array_values(array_unique(array_map('intval', $groupids)));
         $targetgroupingid = optional_param('groupingid', 0, PARAM_INT);
         $removefromorigin = optional_param('removefromorigin', 1, PARAM_BOOL);
-        $group = groups_get_group($groupid);
 
-        if (!$group || (int)$group->courseid !== (int)$course->id) {
-            throw new moodle_exception('invalidgroupid', 'error');
+        foreach ($groupids as $groupid) {
+            $group = groups_get_group($groupid);
+            if (!$group || (int)$group->courseid !== (int)$course->id) {
+                throw new moodle_exception('invalidgroupid', 'error');
+            }
         }
 
+        $grouping = null;
         if ($targetgroupingid > 0) {
             $grouping = $DB->get_record(
                 'groupings',
@@ -364,6 +384,12 @@ try {
                 '*',
                 MUST_EXIST
             );
+        }
+        $movegroup = static function (int $groupid) use ($DB, $course, $grouping, $targetgroupingid, $removefromorigin): bool {
+            if (!$grouping) {
+                local_groupimport_remove_group_from_other_groupings($groupid, $course->id);
+                return false;
+            }
             $existing = $DB->record_exists('groupings_groups', ['groupingid' => $grouping->id, 'groupid' => $groupid]);
             if ($removefromorigin) {
                 local_groupimport_remove_group_from_other_groupings($groupid, $course->id, $targetgroupingid);
@@ -371,13 +397,24 @@ try {
             if (!$existing) {
                 groups_assign_grouping($grouping->id, $groupid);
             }
-            $response['message'] = get_string('groupmovedtogrouping', 'local_groupimport', format_string($grouping->name));
-            $response['existing'] = $existing;
+            return $existing;
+        };
+
+        if ($batch) {
+            $results = bulk_action::run(count($groupids), static function () use ($groupids, $movegroup): array {
+                $results = [];
+                foreach ($groupids as $groupid) {
+                    $results[] = ['groupid' => $groupid, 'existing' => $movegroup($groupid)];
+                }
+                return $results;
+            });
+            $response['results'] = $results;
         } else {
-            local_groupimport_remove_group_from_other_groupings($groupid, $course->id);
-            $response['message'] = get_string('groupremovedfromgroupings', 'local_groupimport');
-            $response['existing'] = false;
+            $response['existing'] = $movegroup($groupids[0]);
         }
+        $response['message'] = $grouping ?
+            get_string('groupmovedtogrouping', 'local_groupimport', format_string($grouping->name)) :
+            get_string('groupremovedfromgroupings', 'local_groupimport');
 
         $response['success'] = true;
     } else if ($action === 'duplicategroup') {
@@ -785,6 +822,16 @@ try {
 
         $response['success'] = true;
         $response['message'] = local_groupimport_count_string('groupingsdeleted', (int)$deleted);
+    }
+
+    if ($withstructure && !empty($response['success'])) {
+        // Optional: without it the page reloads the whole state, as before.
+        try {
+            $response['structure'] = course_state::structure($course, $context, $versionbefore);
+        } catch (Throwable $exception) {
+            debugging('local_groupimport ajax ' . $action . ' structure: ' . get_class($exception) . ': ' .
+                $exception->getMessage(), DEBUG_DEVELOPER);
+        }
     }
 } catch (dml_exception $exception) {
     // Database errors may carry SQL in their debug details: log them, never return them.
