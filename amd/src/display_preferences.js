@@ -154,6 +154,29 @@ function(Templates, UserRepository, Notification, Motion, Bubble) {
             return {dialog, sync, status};
         };
 
+        // Render the dialog once the page is idle so the first click costs the same as a reopening (K17-75).
+        const prefetch = () => {
+            if (pending || !document.querySelector('.easyedu-ui')) {
+                return;
+            }
+            pending = create().catch(() => {
+                // A failed background render is retried by the first real click.
+                pending = null;
+            });
+        };
+        const schedulePrefetch = () => {
+            if (typeof window.requestIdleCallback === 'function') {
+                window.requestIdleCallback(prefetch, {timeout: 4000});
+            } else {
+                window.setTimeout(prefetch, 1500);
+            }
+        };
+        if (document.readyState === 'complete') {
+            schedulePrefetch();
+        } else {
+            window.addEventListener('load', () => window.setTimeout(schedulePrefetch, 300), {once: true});
+        }
+
         document.addEventListener('click', async event => {
             const trigger = event.target.closest('[data-easyedu-display-open]');
             if (!trigger || saving) {
