@@ -3203,6 +3203,16 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-direct-icon.btn.disabled {background: var(--easyedu-card-action-disabled-bg, #f0f4f8);border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);color: var(--easyedu-card-action-disabled-color, #9aa9b8);cursor: not-allowed;opacity: 1;
 }
 
+@media (max-width: 48rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-direct-icon,
+.easyedu-ui .easyedu-direct-icon.btn {height: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+  }
+  .easyedu-ui .easyedu-direct-icon > .fa,
+.easyedu-ui .easyedu-direct-icon > .icon,
+.easyedu-ui .easyedu-direct-icon.btn > .fa,
+.easyedu-ui .easyedu-direct-icon.btn > .icon {flex-basis: 1rem;font-size: inherit;height: 1rem;width: 1rem;
+  }
+}
 .easyedu-ui .easyedu-navigation__preferences-source {display: flex;align-items: center;position: absolute;inset-inline-end: 0.625rem;inset-block: 0;
 }
 

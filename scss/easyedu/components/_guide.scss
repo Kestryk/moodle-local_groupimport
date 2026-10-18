@@ -632,7 +632,21 @@
     background: #fbfdff;
     border-top: 1px solid var(--easyedu-card-border);
     box-shadow: 0 -0.45rem 1rem rgba(31, 42, 55, 0.05);
-    justify-content: flex-end;
+    // K17-69: Display preferences + step count stay as one left-hand group; Previous/Next stay as
+    // one right-hand group. space-between keeps a single flexible gap between the two groups at
+    // every width instead of a fixed middle gap, so the row never grows past the modal footer.
+    justify-content: space-between;
+  }
+
+  // K17-62/69: icon-only Display preferences trigger and the step counter share one axis, 12px
+  // apart (Penpot K17-62-69-PRODUCT-VIEWS-2026-10-18, footer table). This wrapper is layout-only;
+  // it carries no Kit control of its own.
+  .easyedu-guide-modal__footer-primary {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.75rem;
+    min-width: 0;
   }
 
   .easyedu-guide-modal__step-count {
@@ -658,8 +672,9 @@
   .easyedu-guide-modal__footer-actions {
     align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
     justify-content: flex-end;
     min-width: 0;
 
@@ -1085,33 +1100,38 @@
       margin-inline-start: auto;
     }
 
+    // K17-69 (Penpot K17-62-69-PRODUCT-VIEWS-2026-10-18): the footer holds its four controls on one
+    // 64px row — icon trigger, counter, Previous, Next, left group and right group kept apart by the
+    // single space-between gap (26px at the 390px board) instead of stacking onto a second line.
+    // Fallback (outside the 390/768/1600 test matrix): if the row ever runs short of space or a
+    // translated label grows, Previous/Next must shrink or wrap together — never leave the trigger
+    // alone on its own line.
     .easyedu-guide-modal__footer {
       align-items: center;
-      flex-direction: column;
-      gap: 0.65rem;
-      justify-content: center;
-      text-align: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 0;
+      height: 4rem;
+      justify-content: space-between;
+      padding-block: 0;
+      padding-inline: 1rem;
+      text-align: initial;
     }
 
     .easyedu-guide-modal__footer-actions {
       flex: 0 0 auto;
-      order: 1;
-      width: 100%;
+      width: auto;
     }
 
     .easyedu-guide-modal__step-count {
-      order: 2;
-      text-align: center;
-      width: 100%;
-    }
-
-    .easyedu-guide-modal__footer-actions,
-    .easyedu-guide-modal__footer-actions .btn {
-      flex: 1 1 0;
+      flex: 0 0 auto;
+      text-align: start;
+      width: auto;
     }
 
     .easyedu-guide-modal__footer-actions .btn {
-      min-height: 2.5rem;
+      flex: 0 0 auto;
+      min-height: var(--easyedu-touch-target-min);
     }
 
     .easyedu-guide-slide {
@@ -3147,7 +3167,7 @@
     transition: max-height 0.3s var(--easyedu-motion-ease), opacity 0.18s ease, margin 0.22s ease;
   }
 
-  .easyedu-guided-panel__footer .easyedu-guide-utility {
+  .easyedu-guided-panel__footer .easyedu-direct-icon {
     max-width: 100%;
   }
 

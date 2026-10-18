@@ -652,15 +652,19 @@
             </div>
 
             <footer class="easyedu-guide-modal__footer">
-                <button type="button" class="easyedu-guide-utility" data-easyedu-display-open>
+                <div class="easyedu-guide-modal__footer-primary">
+                <button type="button" class="easyedu-direct-icon" data-easyedu-display-open
+                    data-easyedu-display-tooltip
+                    aria-label="{{#str}}displaypreferences, local_groupimport{{/str}}">
                     <span class="fa fa-sliders" aria-hidden="true"></span>
-                    <span>{{#str}}displaypreferences, local_groupimport{{/str}}</span>
+                    <span class="sr-only">{{#str}}displaypreferences, local_groupimport{{/str}}</span>
                 </button>
 
                 <span class="easyedu-guide-modal__step-count">
                     <span class="easyedu-guide-modal__step-count-long" data-easyedu-guide-progress-label data-progress-label="{{guidesteplabel}}">1/{{slidecount}}</span>
                     <span class="easyedu-guide-modal__step-count-compact" data-easyedu-guide-progress-label data-progress-label="__current__ / __total__">1 / {{slidecount}}</span>
                 </span>
+                </div>
                 {{#discoverypresentation}}
                 {{! GS10: the slide's Show command docks here, left of Previous/Next. }}
                 <div class="easyedu-guide-interface-cue" data-easyedu-guide-interface-cue-action hidden></div>
@@ -740,9 +744,11 @@
             <span class="easyedu-guided-panel__message-compact" aria-hidden="true">{{guidechecklistdonelabel}}</span>
         </div>
         <div class="easyedu-guided-panel__footer">
-            <button type="button" class="easyedu-guide-utility" data-easyedu-display-open>
+            <button type="button" class="easyedu-direct-icon" data-easyedu-display-open
+                data-easyedu-display-tooltip
+                aria-label="{{#str}}displaypreferences, local_groupimport{{/str}}">
                 <span class="fa fa-sliders" aria-hidden="true"></span>
-                <span>{{#str}}displaypreferences, local_groupimport{{/str}}</span>
+                <span class="sr-only">{{#str}}displaypreferences, local_groupimport{{/str}}</span>
             </button>
             <button type="button" class="btn btn-outline-primary btn-sm easyedu-guided-panel__return" data-easyedu-guide-checklist-return="1">
                 <span class="fa fa-route" aria-hidden="true"></span>

@@ -12,9 +12,13 @@ for (const file of ['guide/amd/src/easyedu_guide.js', 'guide/templates/easyedu_g
     assert.equal(read(kit, file), before(kit, '51b4711', file), 'Complete canonical controller/template/legacy Guide unchanged: ' + file);
 }
 for (const file of ['amd/src/easyedu_guide.js', 'amd/build/easyedu_guide.min.js', 'amd/src/course_manager.js',
-    'amd/src/motion.js', 'classes/local/guide_discovery.php', 'templates/easyedu_guide.mustache']) {
+    'amd/src/motion.js', 'classes/local/guide_discovery.php']) {
     assert.equal(read(root, file), before(root, 'bb8f4f2', file), 'Complete consumer commands/Motion/curriculum unchanged: ' + file);
 }
+// K17-62/69 (Penpot K17-62-69-PRODUCT-VIEWS-2026-10-18) intentionally replaces the Display
+// preferences trigger (icon-only Kit recipe) and the footer markup (390px one-line layout) in
+// templates/easyedu_guide.mustache, so that file is no longer pinned to the bb8f4f2 baseline here.
+// The footer/step-count CSS carve-out below already allowed the matching style delta.
 assert.equal(read(root, 'scss/easyedu/components/_guide-discovery.scss'), read(kit, 'scss/easyedu/components/_guide-discovery.scss'), 'Canonical stylesheet parity');
 
 const prefix = '.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery ';
