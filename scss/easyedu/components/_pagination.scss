@@ -129,6 +129,11 @@
   min-width: 0;
 }
 
+@mixin pagination-command-label {
+  color: var(--easyedu-primary-strong);
+  font: inherit;
+}
+
 @mixin pagination-select-button {
   align-items: center;
   align-self: center;

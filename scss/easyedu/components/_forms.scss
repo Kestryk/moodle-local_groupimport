@@ -105,6 +105,19 @@
   }
 }
 
+// State and touch target adapters for native filter-choice buttons. The owner
+// keeps the existing responsive boundary and selection/ARIA behaviour.
+@mixin filter-choice-touch-frame {
+  min-height: var(--easyedu-touch-target-min);
+  line-height: normal;
+}
+
+@mixin filter-choice-selected {
+  background: var(--easyedu-primary-soft);
+  border-color: var(--easyedu-control-focus-border);
+  color: var(--easyedu-primary-strong);
+}
+
 @mixin segmented-toggle {
   background: var(--easyedu-surface-strong);
   border: 1px solid var(--easyedu-card-border);
