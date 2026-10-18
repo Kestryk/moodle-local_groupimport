@@ -1556,3 +1556,9 @@
 @mixin inline-create-touch-field {
   min-height: 2.65rem;
 }
+
+// Existing pill-shaped role choices, kept separate from native selects.
+@mixin toggle-choice-rounded {
+  border-radius: 999px !important;
+  white-space: nowrap;
+}

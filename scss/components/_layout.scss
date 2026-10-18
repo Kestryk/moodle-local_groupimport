@@ -1175,8 +1175,7 @@
     gap: 0.4rem;
 
     > .btn {
-      border-radius: 999px !important;
-      white-space: nowrap;
+      @include easyedu.toggle-choice-rounded;
     }
   }
 

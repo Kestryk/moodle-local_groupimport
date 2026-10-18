@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F22B: compose accepted overflow menu grid, options and captions plus rounded role choices from the Kit.
+
 - 2026-10-18 [N0] K16-80 F26: share exact entity skeleton footprints while preserving shimmer, reveal timing and every ordered CSS declaration.
 
 - 2026-10-18 [N0] K16-80 F25: share identity title/action ink, large avatar and resting frames without changing card geometry or CSS.
