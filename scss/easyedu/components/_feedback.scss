@@ -269,3 +269,10 @@
 
 // Roomier search-empty modifier of the existing empty-state component.
 @mixin search-empty-state-roomy-inset { padding: 1.2rem 1rem; }
+
+
+// Existing grouping-header count tone; preserve its legacy text priority.
+@mixin count-badge-grouping-header-paint {
+  background: #dbe7f1 !important;
+  color: #36546f !important;
+}
