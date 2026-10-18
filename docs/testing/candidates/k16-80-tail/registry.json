@@ -175,6 +175,13 @@
       "ciExecutable": false,
       "source": "f25o.json",
       "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f25o"
+    },
+    {
+      "id": "K1680-TAIL-F25P",
+      "status": "candidate",
+      "ciExecutable": false,
+      "source": "f25p.json",
+      "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f25p"
     }
   ]
 }

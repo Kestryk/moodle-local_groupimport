@@ -371,7 +371,7 @@
   }
 
   button.local-groupimport-easystud-group__groupings-summary {
-    padding-right: 0.58rem;
+    @include easyedu.membership-summary-inset;
   }
 
   &-group__groupings-summary-icon {
@@ -1209,7 +1209,7 @@
   // Preserve that contract when this sheet is requested after the theme:
   // overflow measurements must see the same intrinsic disclosure width.
   &-tags-toggle.p-0 {
-    padding: 0 !important;
+    @include easyedu.metadata-overflow-flush;
   }
 
   &-tags-toggle:not(.local-groupimport-easystud-token) {
