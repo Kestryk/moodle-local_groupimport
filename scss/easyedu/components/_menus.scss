@@ -245,3 +245,60 @@
     @include focus.ring;
   }
 }
+
+// Accepted overflow menu composition: the host retains portal position and visibility.
+@mixin dropdown-card-action-grid {
+  align-items: stretch;
+  display: grid;
+  gap: 0.18rem;
+  min-width: 13rem;
+  padding: 0.38rem;
+}
+
+@mixin dropdown-card-action($strong: var(--easyedu-primary-strong)) {
+
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 0.64rem;
+      display: inline-flex;
+      gap: 0.52rem;
+      height: auto;
+      justify-content: flex-start;
+      margin: 0;
+      min-height: 2.12rem;
+      padding: 0.42rem 0.58rem !important;
+      text-align: left;
+      text-decoration: none;
+      width: 100%;
+
+      .fa {
+        align-items: center;
+        display: inline-flex;
+        flex: 0 0 1.05rem;
+        justify-content: center;
+      }
+
+      &:hover {
+        background: #f3f8fc;
+        border-color: #d3e2ee;
+        box-shadow: none;
+        color: $strong;
+      }
+
+      &:focus-visible {
+        background: #f3f8fc;
+        color: $strong;
+        @include focus.ring($border-color: #d3e2ee);
+      }
+    }
+
+@mixin dropdown-card-action-label {
+
+      color: #40566c;
+      font-size: 0.78rem;
+      font-weight: 650;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }

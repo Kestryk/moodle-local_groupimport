@@ -919,11 +919,7 @@
   &-group__actions-menu {
     @include easyedu.dropdown-menu;
 
-    align-items: stretch;
-    display: grid;
-    gap: 0.18rem;
-    min-width: 13rem;
-    padding: 0.38rem;
+    @include easyedu.dropdown-card-action-grid;
     position: absolute;
     right: 0.45rem;
     top: 2.35rem;
@@ -934,49 +930,11 @@
     }
 
     .btn {
-      align-items: center;
-      border: 1px solid transparent;
-      border-radius: 0.64rem;
-      display: inline-flex;
-      gap: 0.52rem;
-      height: auto;
-      justify-content: flex-start;
-      margin: 0;
-      min-height: 2.12rem;
-      padding: 0.42rem 0.58rem !important;
-      text-align: left;
-      text-decoration: none;
-      width: 100%;
-
-      .fa {
-        align-items: center;
-        display: inline-flex;
-        flex: 0 0 1.05rem;
-        justify-content: center;
-      }
-
-      &:hover {
-        background: #f3f8fc;
-        border-color: #d3e2ee;
-        box-shadow: none;
-        color: var(--local-groupimport-easystud-primary-strong);
-      }
-
-      &:focus-visible {
-        background: #f3f8fc;
-        color: var(--local-groupimport-easystud-primary-strong);
-        @include easyedu.ring($border-color: #d3e2ee);
-      }
+      @include easyedu.dropdown-card-action(var(--local-groupimport-easystud-primary-strong));
     }
 
     &-label {
-      color: #40566c;
-      font-size: 0.78rem;
-      font-weight: 650;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      @include easyedu.dropdown-card-action-label;
     }
   }
 
