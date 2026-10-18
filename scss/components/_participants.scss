@@ -18,22 +18,22 @@
 
     &:hover {
       @include easyedu.identity-card-paint(person, hover);
-      border-left-color: var(--local-groupimport-easystud-participant-rail);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant-rail));
     }
 
     &:focus-within {
-      border-left-color: var(--local-groupimport-easystud-participant);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
       @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14));
       border-color: var(--easyedu-control-focus-border) !important;
     }
 
     &.is-selected {
-      background: var(--local-groupimport-easystud-participant-soft);
+      @include easyedu.identity-card-surface-ink(var(--local-groupimport-easystud-participant-soft));
       @include easyedu.identity-card-paint(person, selected);
-      border-left-color: var(--local-groupimport-easystud-participant);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
 
       &::before {
-        background-color: #fff;
+        @include easyedu.identity-card-rail-glyph-surface;
       }
     }
 
@@ -101,7 +101,7 @@
 
   &-user::after,
   &-group::after {
-    background-color: #fff;
+    @include easyedu.identity-card-rail-glyph-surface;
     content: "";
     height: 0.78rem;
     left: calc(var(--local-groupimport-easystud-identity-border-width) / -2);

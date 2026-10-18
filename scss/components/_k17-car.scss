@@ -8,13 +8,13 @@
 
 .local-groupimport-easystud {
   &-user.is-selected:focus-within {
-    border-left-color: var(--local-groupimport-easystud-participant);
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
     @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14));
     border-color: var(--easyedu-control-focus-border) !important;
   }
 
   &-group.is-selected:focus-within {
-    border-left-color: var(--local-groupimport-easystud-group-rail);
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
     @include easyedu.card-focus-context(
       var(--easyedu-shadow-soft),
       $preserve-identity-rail: true,
@@ -25,7 +25,7 @@
   &-tree__section[data-easystud-grouping-id].is-selected:focus-within:not(
     :has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)
   ) {
-    border-left-color: var(--local-groupimport-easystud-grouping-rail);
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping-rail));
     @include easyedu.card-focus-context(0 0.5rem 1rem rgba(106, 127, 152, 0.15));
   }
 
