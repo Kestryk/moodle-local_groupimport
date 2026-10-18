@@ -581,23 +581,61 @@ try {
             throw new moodle_exception('invaliddata', 'error');
         }
         $destinationid = required_param('destinationid', PARAM_INT);
-        $groupids = array_values(required_param_array('groupids', PARAM_INT));
-        $userids = array_values(required_param_array('userids', PARAM_INT));
-        if (!$groupids || count($groupids) !== count($userids)) {
-            throw new moodle_exception('invaliddata', 'error');
+        $membersjson = optional_param('membersjson', '', PARAM_RAW);
+        if ($membersjson !== '') {
+            if (strlen($membersjson) > 8000000) {
+                throw new moodle_exception('invaliddata', 'error');
+            }
+            $members = json_decode($membersjson, true, 32, JSON_THROW_ON_ERROR);
+            if (!is_array($members) || !array_is_list($members)) {
+                throw new moodle_exception('invaliddata', 'error');
+            }
+        } else {
+            $groupids = array_values(required_param_array('groupids', PARAM_INT));
+            $userids = array_values(required_param_array('userids', PARAM_INT));
+            if (!$groupids || count($groupids) !== count($userids)) {
+                throw new moodle_exception('invaliddata', 'error');
+            }
+            $members = [];
+            foreach ($groupids as $index => $groupid) {
+                $members[] = ['groupid' => $groupid, 'userid' => $userids[$index]];
+            }
         }
-        $members = [];
-        foreach ($groupids as $index => $groupid) {
-            $members[] = ['groupid' => $groupid, 'userid' => $userids[$index]];
+        if (count($members) > \local_groupimport\local\move_job::BATCH_SIZE) {
+            $job = \local_groupimport\local\move_job::queue(
+                (int)$course->id,
+                $destinationid,
+                $members,
+                required_param('requestid', PARAM_ALPHANUMEXT)
+            );
+            $response['success'] = true;
+            $response['background'] = true;
+            $response['job'] = \local_groupimport\local\move_job::progress($job);
+            $response['message'] = $response['job']['message'];
+        } else {
+            $result = \local_groupimport\service\membership_transfer::move_members(
+                (int)$course->id,
+                $destinationid,
+                $members
+            );
+            $response = array_merge($response, $result);
+            $response['success'] = true;
+            $response['message'] = get_string('membersmovedsummary', 'local_groupimport', (object)$result);
         }
-        $result = \local_groupimport\service\membership_transfer::move_members(
-            (int)$course->id,
-            $destinationid,
-            $members
-        );
-        $response = array_merge($response, $result);
+    } else if ($action === 'movestatus') {
+        $jobid = optional_param('jobid', 0, PARAM_INT);
+        $conditions = ['courseid' => $course->id, 'userid' => $USER->id];
+        if ($jobid) {
+            $conditions['id'] = $jobid;
+        }
+        $jobs = $DB->get_records('local_groupimport_moves', $conditions, 'id DESC');
+        $response['jobs'] = [];
+        foreach ($jobs as $job) {
+            if (($jobid && (int)$job->id === $jobid) || (!$jobid && in_array($job->status, ['queued', 'running', 'retry']))) {
+                $response['jobs'][] = \local_groupimport\local\move_job::progress($job);
+            }
+        }
         $response['success'] = true;
-        $response['message'] = get_string('membersmovedsummary', 'local_groupimport', (object)$result);
     } else if ($action === 'addemails') {
         global $DB;
 

@@ -39,7 +39,7 @@ import {
     captureTryActionsMoveToken, emitTryActionsMoveCompletion,
 } from './guide_hooks';
 import {syncGroupMembersState} from './group_cards';
-import {applyFilters, updateSelectionActions} from './workspace';
+import {applyFilters, updateSelectionActions, scheduleOnDemandStateRefresh} from './workspace';
 import {
     handleActionError, postAction, postAddUsersInBatches,
     moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
@@ -65,6 +65,70 @@ export const bindMoveModal = (root, courseId) => {
     if (!modal || !confirmButton || !destination || !help || !label || !body) {
         return;
     }
+
+    // Progress reads must neither block the interface nor refresh the full course state.
+    const readProgress = jobid => fetch(M.cfg.wwwroot + '/local/groupimport/ajax.php', {
+        method: 'POST', credentials: 'same-origin',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        body: new URLSearchParams({courseid: courseId, action: 'movestatus', jobid: jobid || 0, sesskey: M.cfg.sesskey}),
+    }).then(response => response.json()).then(response => {
+        if (!response.success) {
+            throw new Error(response.error || labels.ajaxerror || '');
+        }
+        return response;
+    });
+    const watches = new Map();
+    const monitor = job => {
+        if (watches.has(job.id)) {
+            return;
+        }
+        const container = root.querySelector('[data-easystud-notifications]');
+        const note = document.createElement('aside');
+        note.className = 'easyedu-notice';
+        note.setAttribute('role', 'status');
+        note.setAttribute('data-easystud-move-job', String(job.id));
+        container?.appendChild(note);
+        let timer;
+        const update = state => {
+            note.textContent = state.message;
+            if (state.status === 'completed' || state.status === 'cancelled') {
+                watches.delete(job.id);
+                note.classList.toggle('easyedu-notice--success', state.status === 'completed');
+                if (state.status === 'completed') {
+                    scheduleOnDemandStateRefresh(root);
+                    emitMemberPathCompletion(root, 'confirm-member-move');
+                }
+                return;
+            }
+            note.classList.toggle('easyedu-notice--warning', state.status === 'retry');
+            timer = window.setTimeout(() => {
+                if (!root.isConnected) {
+                    watches.delete(job.id);
+                    return;
+                }
+                readProgress(job.id).then(response => {
+                    if (response.jobs[0]) {
+                        update(response.jobs[0]);
+                    } else {
+                        note.remove();
+                        watches.delete(job.id);
+                    }
+                    return response;
+                }).catch(error => {
+                    // Retain the last confirmed progress; a visible page can retry after a network interruption.
+                    note.textContent = error.message || labels.ajaxerror || '';
+                    timer = window.setTimeout(() => update(state), 10000);
+                });
+            }, 3000);
+        };
+        watches.set(job.id, () => window.clearTimeout(timer));
+        update(job);
+    };
+    // Restore running jobs after a page visit, without ever repeating the mutation.
+    readProgress().then(response => {
+        response.jobs.forEach(monitor);
+        return response;
+    }).catch(error => handleActionError(root, error));
 
     let contextType = '';
     let memberSnapshot = [];
@@ -313,13 +377,29 @@ export const bindMoveModal = (root, courseId) => {
                 groupids: pairs.map(pair => pair.groupid),
                 userids: pairs.map(pair => pair.userid),
             };
+            if (!keepOrigin) {
+                // One JSON field avoids PHP max_input_vars truncating a large immutable selection.
+                payload.membersjson = JSON.stringify(pairs.map(pair => ({groupid: pair.groupid, userid: pair.userid})));
+                payload.requestid = Array.from(window.crypto.getRandomValues(new Uint32Array(4)),
+                    part => part.toString(16).padStart(8, '0')).join('-');
+                delete payload.groupids;
+                delete payload.userids;
+            }
             chooser.close();
             setMemberBusy(true);
-            // R6: copying is bounded by the server and sent in batches; moving stays one native transaction.
+            // Copying uses bounded requests; large moves use a resumable native task instead of optimistic DOM changes.
             (keepOrigin ?
                 postAddUsersInBatches(root, courseId, value, users, done => appendUsersToGroupCopies(root, value, done, labels)) :
                 postAction(payload)
             ).then(response => {
+                if (response.background) {
+                    setMemberBusy(false);
+                    closeModal();
+                    clearSelectionState(root);
+                    updateSelectionActions(root);
+                    monitor(response.job);
+                    return response;
+                }
                 if (!keepOrigin) {
                     appendUsersToGroupCopies(root, value, users, labels, pairs.filter(pair => pair.groupid !== value));
                 }
@@ -344,6 +424,7 @@ export const bindMoveModal = (root, courseId) => {
                     formatMoveSummary(labels.memberscopiedsummary, response.added, response.existing) : response.message;
                 showNotification(root, message || '', 'success');
                 emitMemberPathCompletion(root, 'confirm-member-move');
+                return response;
             }).catch(error => {
                 setMemberBusy(false);
                 handleActionError(root, error);

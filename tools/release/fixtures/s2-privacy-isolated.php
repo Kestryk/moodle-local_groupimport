@@ -94,6 +94,7 @@ namespace core\task {
     class_alias('core\\task\\fixture_s2_privacy_isolated_scheduled_task', 'core\\task\\scheduled_task');
 }
 namespace local_groupimport\local {
+    require_once(__DIR__ . '/../../../classes/local/move_privacy.php');
     require_once(__DIR__ . '/doubles/s2_privacy_isolated/local_groupimport_local/fixture_s2_privacy_isolated_motion.php');
     class_alias('local_groupimport\\local\\fixture_s2_privacy_isolated_motion', 'local_groupimport\\local\\motion');
     require_once(__DIR__ . '/doubles/s2_privacy_isolated/local_groupimport_local/fixture_s2_privacy_isolated_guide_welcome.php');
@@ -375,6 +376,23 @@ namespace {
     check(isset($preferences[2]['motion']), 'Foreign user cannot clear preference');
     $provider::delete_data_for_user($approved(2, [$uc->id]));
     check(empty($preferences[2]) && $preferences[3]['motion'] === 'reduced', 'Both subject preferences cleared');
+    $moves = \local_groupimport\local\move_privacy::class;
+    $move = (object)['id' => 1, 'courseid' => 10, 'userid' => 1, 'destinationid' => 42,
+        'payload' => json_encode([['groupid' => 41, 'userid' => 2], ['groupid' => 41, 'userid' => 3]]),
+        'status' => 'queued', 'nextitem' => 0, 'total' => 2, 'timecreated' => $clock];
+    $DB->moves = [1 => $move, 2 => clone $move];
+    $DB->moves[2]->id = 2;
+    $DB->moves[2]->courseid = 11;
+    check($moves::userids($move) === [1, 2, 3], 'Transfer actor and subjects indexed');
+    $projection = $moves::export(10, 2);
+    check(count($projection) === 1 && count($projection[0]['pairs']) === 1, 'Transfer subject projection');
+    check($projection[0]['pairs'][0]['userid'] === 2, 'No transfer peer identity exported');
+    $moves::erase(10, [2]);
+    check(!isset($DB->moves[1]) && isset($DB->moves[2]), 'Erasure cancels only the affected course transfer');
+    $moves::erase(11, null, $clock);
+    check(isset($DB->moves[2]), 'Transfer retention boundary preserved');
+    $moves::erase(11, null, $clock + 1);
+    check(!$DB->moves, 'Expired transfer payload removed');
     $task = new \local_groupimport\task\purge_import_history();
     check($task::retention_days() === 365, 'Default retention');
     foreach ([0, -1, 'invalid', '1.5', 36501] as $invalid) {
