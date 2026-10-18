@@ -10,6 +10,10 @@
 
 @use "focus";
 @use "typography";
+@use "buttons";
+
+// Shared divider of the accepted T045 dialog family.
+$dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 
 // Opt-in fixed controls yield while an actual shared blocking dialog owns the
 // viewport. Existing hidden/ARIA lifecycle is authoritative; closed dialogs
@@ -849,5 +853,67 @@
     max-block-size: 7rem;
   } @else {
     min-block-size: 7rem;
+  }
+}
+
+// Guide-style sticky footer: tertiary action on the left, Kit buttons (38px) on the right.
+@mixin dialog-footer {
+  align-items: center;
+  background: var(--easyedu-modal-footer-bg);
+  border-block-start: 0.0625rem solid $dialog-divider;
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  justify-content: flex-end;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0.75rem 1.25rem;
+
+  // Doubled class: beat the Kit button defaults (white-space: normal) emitted later.
+  > .btn.btn {
+    // Natural font metrics centre the label without changing the accepted frame.
+    line-height: normal;
+    min-inline-size: 6rem;
+    white-space: nowrap;
+  }
+}
+
+// Footer text action with the external-link arrow ("Modifier dans Moodle").
+@mixin dialog-footer-link {
+  @include typography.type-ui-base;
+
+  align-items: center;
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: var(--easyedu-font-weight-semibold);
+  gap: 0.3rem;
+  line-height: normal;
+  margin-inline-end: auto;
+  min-inline-size: 0;
+  padding: 0.25rem 0.125rem;
+  text-decoration: none;
+  @include buttons.control-state-transition;
+
+  &:hover,
+  &:focus {
+    color: var(--easyedu-primary-strong);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  &.is-disabled {
+    opacity: 0.55;
+    pointer-events: none;
   }
 }

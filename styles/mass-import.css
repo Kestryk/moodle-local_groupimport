@@ -957,7 +957,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-import-modal__footer {align-items: center;background: var(--easyedu-modal-footer-bg);border-block-start: 0.0625rem solid color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);box-sizing: border-box;display: flex;flex: 0 0 auto;flex-wrap: wrap;gap: 0.625rem;justify-content: flex-end;margin: 0;min-inline-size: 0;padding: 0.75rem 1.25rem;
 }
-.local-groupimport-import-modal__footer > .btn.btn {min-inline-size: 6rem;white-space: nowrap;
+.local-groupimport-import-modal__footer > .btn.btn {line-height: normal;min-inline-size: 6rem;white-space: nowrap;
 }
 .local-groupimport-import-history__notice.easyedu-notice {align-items: center;gap: 0.625rem;grid-template-columns: 1rem minmax(0, 1fr);padding: 0.75rem 1rem;margin: 0 0 0.5rem;
 }
