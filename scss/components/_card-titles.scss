@@ -9,8 +9,7 @@
   .local-groupimport-easystud-user__name,
   .local-groupimport-easystud-group__name,
   .local-groupimport-easystud-grouping__name {
-    color: var(--easyedu-card-identity-title-color);
-    letter-spacing: 0;
+    @include easyedu.card-title-ink;
   }
 
   .local-groupimport-easystud-user__name {
@@ -41,14 +40,14 @@
   .local-groupimport-easystud-group,
   .local-groupimport-easystud-tree__section {
     #{$actions} {
-      color: var(--easyedu-card-action-neutral);
+      @include easyedu.card-action-ink;
     }
 
     &:hover,
     &:focus-within,
     &.is-selected {
       #{$actions} {
-        color: var(--easyedu-primary);
+        @include easyedu.card-action-ink(active);
       }
     }
   }

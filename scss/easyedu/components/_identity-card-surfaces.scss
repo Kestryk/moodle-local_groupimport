@@ -44,3 +44,12 @@ $identity-card-paints: (
     #{$property}: $value;
   }
 }
+
+// Resting frame modifiers shared by all identity-card kinds.
+@mixin identity-card-rest-radius {
+  border-radius: var(--easyedu-card-radius-rest);
+}
+
+@mixin identity-card-rest-shadow {
+  box-shadow: var(--easyedu-card-shadow-rest);
+}

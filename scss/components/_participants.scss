@@ -192,14 +192,7 @@
 
     img,
     .userinitials {
-      border: 2px solid #fff;
-      border-radius: 50%;
-      box-shadow: 0 0.2rem 0.5rem rgba(31, 42, 55, 0.1);
-      display: inline-flex;
-      font-size: 1.35rem;
-      height: 5.35rem !important;
-      line-height: 5.35rem;
-      width: 5.35rem !important;
+      @include easyedu.identity-avatar-large;
     }
 
     .userinitials {
