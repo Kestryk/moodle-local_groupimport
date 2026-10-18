@@ -53,10 +53,13 @@ $PAGE->set_heading(format_string($course->fullname));
 // Animation level (user choice, else administrator default): root attributes and body classes.
 $motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
 $PAGE->requires->css('/local/groupimport/styles/mass-import.css');
+// The Guide rules are a separate sheet, requested on this page only (GMI-C1, Kevin 18/10).
+$PAGE->requires->css('/local/groupimport/styles/guide.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation', 'init', [
     '#local-groupimport-import-navigation',
 ]);
+$PAGE->requires->js_call_amd('local_groupimport/guide_bootstrap', 'init', ['mass-import-guide-config']);
 $PAGE->requires->js_call_amd('local_groupimport/csv_import', 'init', [
     'local-groupimport-import',
     [
@@ -255,10 +258,32 @@ $historyrecords = local_groupimport_get_import_history((int)$course->id);
 // Output.
 echo $OUTPUT->header();
 
+// Keep the Guide configuration out of Moodle's inline AMD call arguments (K16-21).
+// Hex escaping prevents translations from terminating this JSON element.
+echo html_writer::tag('script', json_encode([
+    'guide' => [
+        '[data-easyedu-guide-root]',
+        \local_groupimport\local\mass_import_guide::js_config((int)$course->id, (int)$USER->id),
+    ],
+], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR), [
+    'type' => 'application/json',
+    'id' => 'mass-import-guide-config',
+]);
+
 // The shared navigation replaces the legacy Mass Import action row only. The
 // Skeleton lifecycle, its root attributes and real-content wrapper stay owned
 // by the loading implementation.
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
+// The Guide launcher sits first in the navigation (compass only, no welcome bubble: Kevin 18/10, Q4).
+$navigationdata['hasguide'] = true;
+$navigationdata['guidehtml'] = $OUTPUT->render_from_template(
+    'local_groupimport/easyedu_guide',
+    \local_groupimport\local\mass_import_guide::template_data([
+        'allowedfields' => array_values($allowedimportfields),
+        'motionlevel' => $motionlevel,
+        'motionpolicy' => $motionlevel === 'minimal' ? 'disabled' : 'enabled',
+    ])
+);
 $themestyle = local_groupimport_get_theme_style();
 $themerailroles = local_groupimport_get_theme_rail_roles();
 $navigationmarkup = html_writer::tag(

@@ -5,6 +5,9 @@ require('./verify-build-versions.cjs').assertNode();
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {compactDeclarations}=require('./build-styles.cjs');
 const root=path.resolve(__dirname,'../..');
+// Guide rules requested only by Mass Import, as a separate sheet (GMI-C1, Kevin 18/10): selectors that
+// name the Guide itself. Student Management keeps them in its own page CSS, unchanged.
+function guideTargets(selector){return /easyedu-guide|local-groupimport-tutorial/.test(selector);}
 function targets(selector){
  const sm=/local-groupimport-easystud(?!-admin)|easyedu-guide|local-groupimport-tutorial/.test(selector);
  const admin=/local-groupimport-admin|page-admin-setting-local_groupimport|easyedu-welcome-reset/.test(selector);
@@ -18,15 +21,15 @@ function build(sassModule,postcssModule){
  const css=compactDeclarations(sass.compile(path.join(root,'scss/easystud.scss'),{style:'expanded',charset:false,sourceMap:false,logger:sass.Logger.silent}).css);
  const parsed=postcss.parse(css);const report={sourceBytes:Buffer.byteLength(css),pages:{}};
  fs.mkdirSync(path.join(root,'styles'),{recursive:true});
- for(const [surface,name] of Object.entries({sm:'student-management',mass:'mass-import',admin:'administration'})){
+ for(const [surface,name] of Object.entries({sm:'student-management',mass:'mass-import',admin:'administration',guide:'guide'})){
   const ast=parsed.clone();let kept=0,removed=0;
   ast.walkRules(rule=>{
    if(rule.parent.type==='atrule'&&/keyframes$/.test(rule.parent.name))return;
-   const selectors=postcss.list.comma(rule.selector);const selected=selectors.filter(s=>targets(s)[surface]);
+   const selectors=postcss.list.comma(rule.selector);const selected=selectors.filter(s=>surface==='guide'?guideTargets(s):targets(s)[surface]);
    removed+=selectors.length-selected.length;kept+=selected.length;
    if(!selected.length)rule.remove();else rule.selector=selected.join(',\n');
   });
-  ast.walkAtRules(at=>{if(/keyframes$/.test(at.name)&&/guide|tutorial/i.test(at.params)&&surface!=='sm')at.remove();});
+  ast.walkAtRules(at=>{if(/keyframes$/.test(at.name)&&/guide|tutorial/i.test(at.params)&&surface!=='sm'&&surface!=='guide')at.remove();});
   // Remove empty conditional groups without altering the retained order.
   for(let pass=0;pass<3;pass++)ast.walkAtRules(at=>{if(at.nodes&&!at.nodes.length)at.remove();});
   ast.walkDecls(decl=>{decl.value=decl.value.replace(/\[\[font:local_groupimport\|([^\]]+)\]\]/g,'../fonts/$1');});
@@ -38,4 +41,4 @@ function build(sassModule,postcssModule){
  return report;
 }
 if(require.main===module){const [sass,postcss]=process.argv.slice(2);if(!sass||!postcss)throw Error('Pass Sass1.79.1 and PostCSS package paths');console.log(JSON.stringify(build(sass,postcss)));}
-module.exports={build,targets};
+module.exports={build,targets,guideTargets};
