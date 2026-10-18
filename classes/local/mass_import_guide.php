@@ -95,6 +95,93 @@ final class mass_import_guide {
     }
 
     /**
+     * GMI-C3: scene of a Mass Import demonstration, "midrop" (3 phases) or "mipreview" (4 phases).
+     *
+     * Illustration only, played by the Guide engine with a manual start. The recap repeats the end state of
+     * each phase with its narration: it is the lesson at the minimal animation level, and the summary after
+     * the demonstration at the other levels. Example rows are those of the example file (guide_specimen).
+     *
+     * @param string $kind 'midrop' or 'mipreview'.
+     * @return array Scene context of guide_mass_import_scene.mustache.
+     */
+    private static function demonstration(string $kind): array {
+        $component = 'local_groupimport';
+        $prefix = $kind === 'midrop' ? 'mi_guide_drop_' : 'mi_guide_preview_';
+        $rows = guide_specimen::mass_import_preview_rows();
+        $ready = get_string('importpreviewready', $component);
+        $headers = [];
+        foreach (['include', 'line', 'identifier', 'group', 'grouping', 'status'] as $column) {
+            $headers[] = get_string('importpreview' . $column, $component);
+        }
+        $scene = [
+            'kind' => $kind,
+            'miscene' => true,
+            $kind => true,
+            'caption' => get_string('discovery_simulation', $component),
+            'captionshort' => get_string('discovery_simulation_short', $component),
+            'initiallabel' => get_string($prefix . 'initial', $component),
+            'recaptitle' => get_string('guideinspection_recaptitle', $component),
+            'filename' => get_string('mi_guide_example_filename', $component),
+            'headers' => $headers,
+        ];
+        foreach (['pause', 'resume', 'nextphase', 'finished'] as $key) {
+            $scene[$key . 'label'] = get_string('discovery_' . $key, $component);
+        }
+        $phases = $kind === 'midrop' ? 3 : 4;
+        for ($n = 1; $n <= $phases; $n++) {
+            $scene['phase' . $n] = get_string($prefix . 'phase' . $n, $component);
+        }
+        // Every recap view flag is explicit: Mustache would otherwise read a missing key from a parent context.
+        $view = static fn(string $flag, string $text, string $value = ''): array => array_merge(
+            array_fill_keys(['viewfile', 'viewsubmit', 'viewsummary', 'viewstatuses', 'viewexcluded', 'viewcorrected',
+                'viewunchanged'], false),
+            [$flag => true, 'text' => $text, 'value' => $value]
+        );
+        if ($kind === 'midrop') {
+            $scene += [
+                'phase2compact' => get_string('mi_guide_drop_phase2_compact', $component),
+                'uploadtitle' => get_string('importfile', $component),
+                'deposittitle' => get_string('filedeposittitle', $component),
+                'depositsupport' => get_string('filedepositsupport', $component),
+                'dropready' => get_string('csvdropready', $component),
+                'formats' => get_string('filedepositformats', $component),
+                'formatsdetail' => get_string('filedepositformatsdetail', $component),
+                'previewlabel' => get_string('previewimport', $component),
+                'resultstitle' => get_string('importresults', $component),
+                'emptylabel' => get_string('noresults', $component),
+                'rowscount' => count($rows),
+                'rowslabel' => get_string('importpreviewrows', $component),
+                'warningscount' => count(array_filter(array_column($rows, 'warning'))),
+                'warningslabel' => get_string('importpreviewwarnings', $component),
+                // The preview opens on its first three rows.
+                'rows' => array_slice($rows, 0, 3),
+                'recap' => [
+                    $view('viewfile', $scene['phase1']),
+                    $view('viewsubmit', $scene['phase2']),
+                    $view('viewsummary', $scene['phase3']),
+                ],
+            ];
+        } else {
+            $typed = guide_specimen::mass_import_correction();
+            $scene += [
+                'typedvalue' => $typed,
+                'selectpage' => get_string('selectpreviewpage', $component),
+                'searchplaceholder' => get_string('previewsearchpageonly', $component),
+                'rows' => $rows,
+                'statusready' => $ready,
+                'statusflagged' => $rows[3]['status'],
+                'recap' => [
+                    $view('viewstatuses', $scene['phase1']),
+                    $view('viewexcluded', $scene['phase2'], $rows[3]['identifier']),
+                    $view('viewcorrected', $scene['phase3'], $typed),
+                    $view('viewunchanged', $scene['phase4'], $rows[4]['status']),
+                ],
+            ];
+        }
+        return $scene + guide_discovery::demonstration_entry();
+    }
+
+    /**
      * Build the shell and the ten lessons of the Guide.
      *
      * @param array $options 'allowedfields': labels of the user fields compared with the file;
@@ -170,6 +257,10 @@ final class mass_import_guide {
                     $slide['guidespecimen'] = guide_specimen::mireport();
                 } else if ($id === 'mi-history-restore') {
                     $slide['anatomy'] = guide_specimen::mass_import_anatomy('mihistory', self::legend('history', 5));
+                }
+                // GMI-C3: the two demonstrations (slides 4 and 5), each with its static recap.
+                if ($id === 'mi-drop-preview' || $id === 'mi-review-preview') {
+                    $slide['discoveryscene'] = self::demonstration($id === 'mi-drop-preview' ? 'midrop' : 'mipreview');
                 }
             }
             $slide['navcategorylabel'] = $slide['category'];

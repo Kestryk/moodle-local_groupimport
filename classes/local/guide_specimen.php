@@ -293,6 +293,36 @@ final class guide_specimen {
     }
 
     /**
+     * GMI-C3: the rows of the example file "td-2026.xlsx" as the Mass Import preview lists them.
+     *
+     * @return array[] Rows with line, identifier, group, grouping, status and warning (true when flagged).
+     */
+    public static function mass_import_preview_rows(): array {
+        $component = 'local_groupimport';
+        $unknown = get_string('guideinspection_unknownlabel', $component);
+        $ready = get_string('importpreviewready', $component);
+        $rows = [
+            [2, 'alice.martin', 'TD 1', 'Année 2026', $ready, false],
+            [3, 'i.garnier@example.test', 'TD 1', 'Année 2026', $ready, false],
+            [4, '10482', 'TD 2', 'Année 2026', $ready, false],
+            [5, 'zoe.dubois', 'TD 2', 'Année 2026', get_string('previewuseralreadyingroup', $component), true],
+            [6, $unknown, 'TD 2', 'Année 2026', get_string('importuserunavailable', $component, $unknown), true],
+            [7, 'alex@example.test', 'TD 9', '', $ready, false],
+        ];
+        return array_map(static fn(array $row): array => ['line' => $row[0], 'identifier' => $row[1],
+            'group' => $row[2], 'grouping' => $row[3], 'status' => $row[4], 'warning' => $row[5]], $rows);
+    }
+
+    /**
+     * GMI-C3: the identifier typed in place of the unknown entry in the preview demonstration.
+     *
+     * @return string
+     */
+    public static function mass_import_correction(): string {
+        return 'hugo.petit';
+    }
+
+    /**
      * Mass Import slide "Reimport strategy": the same group after each of the two strategies.
      *
      * @return array Template context of guide_specimen.mustache.

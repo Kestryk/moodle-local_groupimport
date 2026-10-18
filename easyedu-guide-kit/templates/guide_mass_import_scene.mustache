@@ -1,0 +1,112 @@
+{{!
+    @template guide_mass_import_scene
+
+    GMI-C3: the two demonstrations of the Mass Import Guide, "midrop" (drop the file and preview it)
+    and "mipreview" (review the preview). Illustration only: no form, no upload, no Moodle command; each stage is inert.
+    The Guide engine owns playback (pointer, narration, Pause, Next phase, Motion levels); the recap
+    below the stage is the static summary of the phases ("Minimal" level and end of demonstration).
+    Kit and product components only: file deposit, panels, status pills, data table, search, buttons.
+    Context: local_groupimport\local\mass_import_guide.
+}}
+{{#midrop}}
+<div class="easyedu-ui easyedu-guide-mi-scene easyedu-guide-mi-scene--drop" data-guide-stage data-guide-mi="drop" aria-hidden="true" inert
+    data-guide-phase-1-label="{{phase1}}"
+    data-guide-phase-2-label="{{phase2}}" data-guide-phase-2-compact-label="{{phase2compact}}"
+    data-guide-phase-3-label="{{phase3}}">
+    <div class="easyedu-guide-mi-scene__page" data-guide-mi-page>
+        <section class="easyedu-panel easyedu-guide-mi-scene__column easyedu-guide-mi-scene__upload" data-guide-mi-upload>
+            <div class="easyedu-panel__header easyedu-panel__header--compact-icon">
+                <span class="easyedu-icon-tile easyedu-icon-tile--compact" aria-hidden="true"><span class="fa fa-file-csv"></span></span>
+                <div class="easyedu-panel__copy"><h3 class="easyedu-panel__title">{{uploadtitle}}</h3></div>
+                <span class="easyedu-button easyedu-button--icon easyedu-guide-mi-scene__toggle" data-guide-mi-toggle hidden><span class="fa fa-chevron-right" aria-hidden="true"></span></span>
+            </div>
+            <div class="easyedu-guide-mi-scene__upload-body" data-guide-mi-upload-body>
+                <div class="easyedu-file-deposit easyedu-file-deposit--moodle easyedu-file-deposit--small-icon easyedu-file-deposit--aligned" data-guide-mi-deposit data-easyedu-drop-label="{{dropready}}">
+                    <div class="easyedu-file-deposit__heading">
+                        <span class="easyedu-file-deposit__icon easyedu-icon-tile" aria-hidden="true"><span class="fa fa-cloud-upload"></span></span>
+                        <strong class="easyedu-file-deposit__title">{{deposittitle}}</strong>
+                    </div>
+                    <p class="easyedu-file-deposit__support"><span class="easyedu-guide-mi-scene__browse" data-guide-mi-browse>{{depositsupport}}</span></p>
+                    <div class="easyedu-file-deposit__control">
+                        <span class="easyedu-file-deposit__selected-file" data-guide-mi-file hidden><a><span class="fa fa-file-excel easyedu-file-deposit__file-type" aria-hidden="true"></span><span>{{filename}}</span></a><span class="easyedu-file-deposit__remove"><span class="fa fa-trash" aria-hidden="true"></span></span></span>
+                    </div>
+                    <div class="easyedu-file-deposit__requirements"><strong>{{formats}}</strong><span>{{formatsdetail}}</span></div>
+                </div>
+                <span class="btn btn-primary easyedu-guide-mi-scene__submit" data-guide-mi-submit>{{previewlabel}}</span>
+            </div>
+        </section>
+        <section class="easyedu-panel easyedu-panel--success easyedu-guide-mi-scene__column easyedu-guide-mi-scene__results" data-guide-mi-results>
+            <div class="easyedu-panel__header easyedu-panel__header--compact-icon">
+                <span class="easyedu-icon-tile easyedu-icon-tile--compact easyedu-icon-tile--success" aria-hidden="true"><span class="fa fa-clipboard-check"></span></span>
+                <div class="easyedu-panel__copy"><h3 class="easyedu-panel__title">{{resultstitle}}</h3></div>
+            </div>
+            <p class="easyedu-guide-mi-scene__empty" data-guide-mi-empty><span class="fa fa-inbox" aria-hidden="true"></span><span>{{emptylabel}}</span></p>
+            <div class="easyedu-guide-mi-scene__preview" data-guide-mi-preview hidden>
+                <p class="easyedu-guide-mi-scene__summary"><span class="easyedu-status"><strong>{{rowscount}}</strong>&nbsp;{{rowslabel}}</span><span class="easyedu-status easyedu-status--warning"><strong>{{warningscount}}</strong>&nbsp;{{warningslabel}}</span></p>
+                <div class="easyedu-guide-mi-scene__table-wrap">
+                    <table class="table-reboot easyedu-data-table easyedu-guide-mi-scene__table">
+                        <thead><tr>{{#headers}}<th>{{.}}</th>{{/headers}}</tr></thead>
+                        <tbody>
+                            {{#rows}}
+                            <tr><td><input type="checkbox" checked tabindex="-1"></td><td>{{line}}</td><td>{{identifier}}</td><td>{{group}}</td><td>{{grouping}}</td><td><span class="easyedu-status">{{status}}</span></td></tr>
+                            {{/rows}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <span class="easyedu-guide-mi-scene__ghost" data-guide-mi-ghost hidden><span class="fa fa-file-excel" aria-hidden="true"></span><span>{{filename}}</span></span>
+    <span class="easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"><span class="fa fa-mouse-pointer easyedu-guide-scene__cursor-mouse"></span><span class="easyedu-guide-scene__cursor-touch" data-guide-cursor-touch><span class="easyedu-guide-scene__cursor-ripple" data-guide-cursor-ripple></span></span></span>
+</div>
+{{/midrop}}
+{{#mipreview}}
+<div class="easyedu-ui easyedu-guide-mi-scene easyedu-guide-mi-scene--preview" data-guide-stage data-guide-mi="preview" aria-hidden="true" inert
+    data-guide-phase-1-label="{{phase1}}" data-guide-phase-2-label="{{phase2}}"
+    data-guide-phase-3-label="{{phase3}}" data-guide-phase-4-label="{{phase4}}"
+    data-guide-mi-typed="{{typedvalue}}">
+    <div class="easyedu-table-toolbar easyedu-guide-mi-scene__toolbar">
+        <span class="easyedu-button easyedu-button--neutral">{{selectpage}}</span>
+        <span class="easyedu-search easyedu-guide-mi-scene__search"><span class="fa fa-search" aria-hidden="true"></span><input type="search" class="form-control" placeholder="{{searchplaceholder}}" readonly tabindex="-1"></span>
+    </div>
+    <div class="easyedu-guide-mi-scene__table-wrap" data-guide-mi-table-wrap>
+        <table class="table-reboot easyedu-data-table easyedu-guide-mi-scene__table">
+            <thead><tr>{{#headers}}<th>{{.}}</th>{{/headers}}</tr></thead>
+            <tbody>
+                {{#rows}}
+                <tr data-guide-mi-row="{{line}}"{{#warning}} class="is-warning"{{/warning}}>
+                    <td><input type="checkbox" checked tabindex="-1" data-guide-mi-include></td>
+                    <td>{{line}}</td>
+                    <td><input type="text" class="form-control" value="{{identifier}}" readonly tabindex="-1" data-guide-mi-identifier></td>
+                    <td><input type="text" class="form-control" value="{{group}}" readonly tabindex="-1"></td>
+                    <td><input type="text" class="form-control" value="{{grouping}}" readonly tabindex="-1"></td>
+                    <td><span class="easyedu-status{{#warning}} easyedu-status--warning{{/warning}}" data-guide-mi-status>{{status}}</span></td>
+                </tr>
+                {{/rows}}
+            </tbody>
+        </table>
+    </div>
+    <span class="easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"><span class="fa fa-mouse-pointer easyedu-guide-scene__cursor-mouse"></span><span class="easyedu-guide-scene__cursor-touch" data-guide-cursor-touch><span class="easyedu-guide-scene__cursor-ripple" data-guide-cursor-ripple></span></span></span>
+</div>
+{{/mipreview}}
+<section class="easyedu-guide-scene__recap easyedu-guide-mi-recap" data-guide-recap data-guide-mi-recap hidden>
+    <button type="button" class="easyedu-guide-scene__recap-toggle" data-guide-recap-toggle aria-expanded="true"><strong>{{recaptitle}}</strong><span class="fa fa-chevron-down" aria-hidden="true"></span></button>
+    <div class="easyedu-guide-scene__recap-body" data-guide-recap-body>
+        <ol class="easyedu-guide-scene__steps easyedu-guide-mi-recap__steps">
+            {{#recap}}
+            <li class="easyedu-guide-mi-recap__step">
+                <span class="easyedu-ui easyedu-guide-mi-recap__view" aria-hidden="true" inert>
+                    {{#viewfile}}<span class="easyedu-guide-mi-recap__file"><span class="fa fa-file-excel" aria-hidden="true"></span><span>{{filename}}</span></span>{{/viewfile}}
+                    {{#viewsubmit}}<span class="btn btn-primary easyedu-guide-mi-recap__button">{{previewlabel}}</span>{{/viewsubmit}}
+                    {{#viewsummary}}<span class="easyedu-status"><strong>{{rowscount}}</strong>&nbsp;{{rowslabel}}</span><span class="easyedu-status easyedu-status--warning"><strong>{{warningscount}}</strong>&nbsp;{{warningslabel}}</span>{{/viewsummary}}
+                    {{#viewstatuses}}<span class="easyedu-status">{{statusready}}</span><span class="easyedu-status easyedu-status--warning">{{statusflagged}}</span>{{/viewstatuses}}
+                    {{#viewexcluded}}<span class="easyedu-guide-mi-recap__row is-excluded"><input type="checkbox" tabindex="-1"><span>{{value}}</span></span>{{/viewexcluded}}
+                    {{#viewcorrected}}<span class="easyedu-guide-mi-recap__row"><input type="text" class="form-control" value="{{value}}" readonly tabindex="-1"></span>{{/viewcorrected}}
+                    {{#viewunchanged}}<span class="easyedu-status easyedu-status--warning">{{value}}</span>{{/viewunchanged}}
+                </span>
+                <span class="easyedu-guide-mi-recap__text">{{text}}</span>
+            </li>
+            {{/recap}}
+        </ol>
+    </div>
+</section>

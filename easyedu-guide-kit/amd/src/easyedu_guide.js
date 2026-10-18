@@ -1884,7 +1884,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection', 'simplecreate', 'creation', 'filters'].includes(kind)) {
+  if (!['membership', 'actions', 'inspection', 'simplecreate', 'creation', 'filters', 'midrop', 'mipreview'].includes(kind)) {
     return;
   }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
@@ -1894,7 +1894,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
   // J-G4: the simple-creation scene has no result line; every other kind needs one.
-  if (!stage || (!result && !['simplecreate', 'creation', 'filters'].includes(kind))) {
+  if (!stage || (!result && !['simplecreate', 'creation', 'filters', 'midrop', 'mipreview'].includes(kind))) {
     return;
   }
   if (!scene.easyeduGuideStageOriginal) {
@@ -1919,7 +1919,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const compact = guideModality().touch;
   // Count the applicable explanation phases, not animation frames or timers.
   // J-G4: the simple-creation scene reads its four phases from its root's labels.
-  const labelledPhases = {simplecreate: 4, creation: 3, filters: 4}[kind];
+  const labelledPhases = {simplecreate: 4, creation: 3, filters: 4, midrop: 3, mipreview: 4}[kind];
   const applicablePhases = labelledPhases ?
     Array.from({length: labelledPhases}, (unused, n) => ({dataset: {guidePhase: String(n + 1)}})) :
     [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
@@ -2006,6 +2006,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
   if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
+  // GMI-C3: at the minimal level the Mass Import recap is the lesson itself, shown at rest.
+  if (recap && ['midrop', 'mipreview'].includes(kind)) { recap.hidden = getMotionLevel(root) !== 'minimal'; }
   // K17-44: the four renderings of the filter slide are the recap shown once its demonstration ends.
   const filtersRecap = kind === 'filters' ?
     scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
@@ -2466,7 +2468,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
-    if (['simplecreate', 'creation', 'filters'].includes(kind)) {
+    if (['simplecreate', 'creation', 'filters', 'midrop', 'mipreview'].includes(kind)) {
       // J-G4 (P-G5), K17-36, K17-44: illustration only. Readonly fields and disabled buttons, never a Moodle
       // command. Pointer, typing, narration and reading clock are shared by the three demonstrations.
       const pick = selector => stage.querySelector(selector);
@@ -2522,7 +2524,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       const say = async number => {
         assertActive();
         skipping = false;
-        const text = stage.getAttribute(`data-guide-phase-${number}-label`) || '';
+        // A touch variant of the narration, when the root supplies one (GMI-C3 "Tap" wording).
+        const text = (compact && stage.getAttribute(`data-guide-phase-${number}-compact-label`)) ||
+          stage.getAttribute(`data-guide-phase-${number}-label`) || '';
         await writeLive(text, 'active');
         if (controller.signal.aborted) { return; }
         scene.dataset.guidePhase = String(number);
@@ -2649,6 +2653,144 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await reveal(groupingBlock);
         await appear(cards);
         input.readOnly = false;
+      } else if (kind === 'midrop') {
+        // GMI-C3: drag "td-2026.xlsx" into the deposit (touch: browse), Preview, then the preview opens and
+        // the file column folds. 'minimal' shows the final state and the recap at once, with no clock.
+        const deposit = pick('[data-guide-mi-deposit]');
+        const file = pick('[data-guide-mi-file]');
+        const submit = pick('[data-guide-mi-submit]');
+        const ghost = pick('[data-guide-mi-ghost]');
+        const results = pick('[data-guide-mi-results]');
+        const openPreview = () => {
+          stage.classList.add('is-previewed');
+          ['[data-guide-mi-upload-body]', '[data-guide-mi-empty]'].forEach(selector => {
+            const node = pick(selector);
+            if (node) {
+              node.hidden = true;
+            }
+          });
+          ['[data-guide-mi-toggle]', '[data-guide-mi-preview]'].forEach(selector => {
+            const node = pick(selector);
+            if (node) {
+              node.hidden = false;
+            }
+          });
+        };
+        if (reduced) {
+          if (file) {
+            file.hidden = false;
+          }
+          openPreview();
+        } else {
+          await reveal(stage);
+          if (compact || !ghost || !deposit || !results) {
+            const browse = pick('[data-guide-mi-browse]');
+            await pointAt(browse);
+            await say(1);
+            await press(browse);
+          } else {
+            // The file ghost starts over the results column and follows the pointer into the deposit.
+            const frame = stage.getBoundingClientRect();
+            const centre = element => {
+              const box = element.getBoundingClientRect();
+              return [box.left - frame.left + box.width / 2, box.top - frame.top + box.height / 2];
+            };
+            const [sx, sy] = centre(results);
+            const [ex, ey] = centre(deposit);
+            ghost.hidden = false;
+            const gx = ghost.offsetWidth / 2, gy = ghost.offsetHeight / 2;
+            const from = `translate(${sx - gx}px, ${sy - gy}px)`, to = `translate(${ex - gx}px, ${ey - gy}px)`;
+            ghost.style.transform = from;
+            await animate(ghost, [{opacity: 0}, {opacity: 1}], 160, false);
+            await pointAt(ghost);
+            await say(1);
+            if (still) {
+              ghost.style.transform = to;
+              await placeCursor(cursor, `translate(${ex}px, ${ey}px)`);
+            } else {
+              const duration = Math.max(700, Math.round(Math.hypot(ex - sx, ey - sy) / POINTER_SPEED));
+              const pointer = new DOMMatrixReadOnly(getComputedStyle(cursor).transform);
+              await Promise.all([
+                animate(ghost, [{transform: from}, {transform: to}], duration),
+                animate(cursor, [{transform: pointer.toString()}, {transform: `translate(${ex}px, ${ey}px)`}], duration)
+              ]);
+              ghost.style.transform = to;
+            }
+            // The deposit's own drag-over state names the drop ("Drop your import file here").
+            deposit.classList.add('is-dragover');
+            await wait(700);
+            deposit.classList.remove('is-dragover');
+            await animate(ghost, [{opacity: 1}, {opacity: 0}], 160, false);
+            ghost.hidden = true;
+          }
+          await show(file);
+          await pointAt(submit);
+          await say(2);
+          await press(submit);
+          await hidePointer();
+          await restFlash(openPreview);
+          if (results) {
+            await reveal(results);
+          }
+          await say(3);
+        }
+      } else if (kind === 'mipreview') {
+        // GMI-C3: read the statuses, leave row 5 out, correct row 6, see that its status does not change.
+        const wrap = pick('[data-guide-mi-table-wrap]');
+        const row = line => pick(`[data-guide-mi-row="${line}"]`);
+        const status = line => row(line)?.querySelector('[data-guide-mi-status]');
+        const include = row(5)?.querySelector('[data-guide-mi-include]');
+        const identifier = row(6)?.querySelector('[data-guide-mi-identifier]');
+        const typed = stage.getAttribute('data-guide-mi-typed') || '';
+        const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
+        const exclude = () => {
+          if (include) {
+            include.checked = false;
+          }
+          row(5)?.classList.add('is-excluded');
+        };
+        // A phone shows the table in its own horizontal frame: bring the phase's cell into it at once
+        // (never the page, never a second clock), before the pointer measures it.
+        const showCell = cell => {
+          if (!wrap || !cell) {
+            return;
+          }
+          const frame = wrap.getBoundingClientRect(), box = cell.getBoundingClientRect();
+          if (box.left < frame.left || box.right > frame.right) {
+            wrap.scrollLeft += box.left - frame.left - Math.max(0, (frame.width - box.width) / 2);
+          }
+        };
+        if (reduced) {
+          exclude();
+          if (identifier) {
+            identifier.value = typed;
+          }
+        } else {
+          await reveal(stage);
+          showCell(status(5));
+          await pointAt(status(5));
+          ring(status(5), true);
+          ring(status(6), true);
+          await say(1);
+          ring(status(5), false);
+          ring(status(6), false);
+          showCell(include);
+          await pointAt(include);
+          await say(2);
+          await press(include);
+          exclude();
+          await animate(row(5), [{opacity: 1}, {opacity: 0.45}], 240, false);
+          showCell(identifier);
+          await pointAt(identifier);
+          await say(3);
+          await press(identifier);
+          await type(identifier, typed, 90);
+          showCell(status(6));
+          await pointAt(status(6));
+          ring(status(6), true);
+          await say(4);
+          ring(status(6), false);
+        }
       } else {
         // K17-44: search "TD", add the role filter, select the results, clear the selection.
         const input = pick('[data-guide-filters-input]');
@@ -2724,7 +2866,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         return;
       }
       const specimenRecap = kind === 'filters' ?
-        scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
+        scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') :
+        ['midrop', 'mipreview'].includes(kind) ? scene.querySelector('[data-guide-mi-recap]') : null;
       if (specimenRecap) {
         specimenRecap.style.opacity = '0';
         specimenRecap.hidden = false;

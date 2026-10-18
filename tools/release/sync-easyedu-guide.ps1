@@ -269,7 +269,8 @@ $items = @(
 )
 
 # E1-E4 partials are public Guide templates, adapted only at the Moodle namespace boundary.
-foreach ($partial in @('guide_specimen', 'guide_specimen_group', 'guide_specimen_grouping', 'guide_specimen_participant', 'guide_anatomy')) {
+# GMI-C3: the Mass Import demonstration scenes follow the same public partial boundary.
+foreach ($partial in @('guide_specimen', 'guide_specimen_group', 'guide_specimen_grouping', 'guide_specimen_participant', 'guide_anatomy', 'guide_mass_import_scene')) {
     $canonicalPartial = Resolve-OwnedPath $kitRoot ("guide\templates\" + $partial + '.mustache')
     $partialText = Read-NormalizedText $canonicalPartial
     $items += [pscustomobject]@{

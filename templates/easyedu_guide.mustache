@@ -252,7 +252,8 @@
                                 </div>
                                 {{/creation}}
                                 {{#simplecreate}}{{> local_groupimport/guide_simplecreate}}{{/simplecreate}}
-                                {{^concepts}}{{^creation}}{{^simplecreate}}
+                                {{#miscene}}{{> local_groupimport/guide_mass_import_scene}}{{/miscene}}
+                                {{^concepts}}{{^creation}}{{^simplecreate}}{{^miscene}}
                                 {{#inspection}}
                                 <div class="easyedu-guide-scene__creation-controls easyedu-guide-scene__inspection-stage" data-guide-stage>
                                     <div class="easyedu-guide-scene__inspection-card{{#grouping}} easyedu-guide-scene__inspection-card--grouping{{/grouping}}" data-guide-inspection-card>
@@ -365,7 +366,7 @@
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>
-                                {{/inspection}}{{/filtersdemo}}{{/simplecreate}}{{/creation}}{{/concepts}}
+                                {{/inspection}}{{/filtersdemo}}{{/miscene}}{{/simplecreate}}{{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
                             {{#guidespecimen}}{{#filtersdemo}}<div class="easyedu-guide-spec-recap" data-guide-filters-recap hidden>{{/filtersdemo}}{{> local_groupimport/guide_specimen}}{{#filtersdemo}}</div>{{/filtersdemo}}{{/guidespecimen}}

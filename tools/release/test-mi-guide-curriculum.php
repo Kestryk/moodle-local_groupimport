@@ -152,13 +152,38 @@ foreach (['en', 'fr'] as $lang) {
         && !empty($byid['mi-overview']['example']['body']), $lang . ': page anatomy and example notice');
     $check($byid['mi-history-restore']['anatomy']['type'] === 'mihistory'
         && count($byid['mi-history-restore']['anatomy']['legend']) === 5, $lang . ': history anatomy');
+    // GMI-C3: the two demonstrations, their phase narration (Penpot GMI-04/05) and their static recap.
+    $drop = $byid['mi-drop-preview']['discoveryscene'] ?? [];
+    $check(($drop['kind'] ?? '') === 'midrop' && !empty($drop['miscene']) && !empty($drop['manualstart'])
+        && count($drop['recap']) === 3 && count($drop['rows']) === 3 && trim($drop['phase2compact']) !== ''
+        && trim($drop['phase1'] . $drop['phase2'] . $drop['phase3']) !== '', $lang . ': midrop demonstration');
+    $review = $byid['mi-review-preview']['discoveryscene'] ?? [];
+    $check(($review['kind'] ?? '') === 'mipreview' && !empty($review['miscene']) && !empty($review['manualstart'])
+        && count($review['recap']) === 4 && count($review['rows']) === 6
+        && count(array_filter(array_column($review['rows'], 'warning'))) === 2, $lang . ': mipreview demonstration');
+    foreach ([$drop, $review] as $scene) {
+        foreach ($scene['recap'] ?? [] as $item) {
+            $views = array_intersect_key($item, array_flip(['viewfile', 'viewsubmit', 'viewsummary', 'viewstatuses',
+                'viewexcluded', 'viewcorrected', 'viewunchanged']));
+            $check(
+                trim($item['text']) !== '' && count($views) === 7 && count(array_filter($views)) === 1,
+                $lang . ': one explicit view and one narration per recap step'
+            );
+        }
+    }
+    $check(
+        empty($byid['mi-overview']['discoveryscene']) && empty($byid['mi-reimport-strategy']['discoveryscene']),
+        $lang . ': demonstrations only on slides 4 and 5'
+    );
     $ready = $byid['mi-ready']['guidespecimen'];
     $check($ready['kind'] === 'ready' && array_column($ready['tiles'], 'index') === [2, 4, 6, 8], $lang . ': ready tiles');
     foreach ($ready['tiles'] as $tile) {
         $check(trim($tile['review']) !== '' && strpos($tile['review'], '{$a') === false, $lang . ': ready review label');
     }
-    $check(array_column(guide_specimen::ready()['tiles'], 'index') === [2, 7, 8, 11],
-        $lang . ': Student Management ready tiles unchanged');
+    $check(
+        array_column(guide_specimen::ready()['tiles'], 'index') === [2, 7, 8, 11],
+        $lang . ': Student Management ready tiles unchanged'
+    );
     foreach (['mifile', 'mistrategy', 'mirun', 'mireport'] as $kind) {
         $check(trim($byid[['mifile' => 'mi-prepare-file', 'mistrategy' => 'mi-reimport-strategy', 'mirun' => 'mi-run-import',
             'mireport' => 'mi-read-report'][$kind]]['guidespecimen']['label']) !== '', $lang . ': ' . $kind . ' label');

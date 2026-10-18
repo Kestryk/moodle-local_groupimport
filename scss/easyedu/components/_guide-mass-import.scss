@@ -7,6 +7,7 @@
 // Student Management does not carry them.
 @use "typography";
 @use "feedback";
+@use "guide-specimen";
 
 @mixin guide-mass-import {
   // The Mass Import Guide is rendered inside the navigation, whose items never wrap: the reading area wraps.
@@ -209,6 +210,109 @@
     @media (max-width: 40rem) {
       .easyedu-guide-anatomy__history > li { grid-template-columns: minmax(0, 1fr); justify-items: start; }
       .easyedu-guide-anatomy__history > li > div:last-child { justify-content: flex-start; min-inline-size: 0; }
+    }
+  }
+  // GMI-C3: the two demonstrations (drop and preview, review the preview) and their recap. Their selectors
+  // name the Mass Import Guide, so build-page-styles.cjs serves them in styles/guide.css only.
+  &.easyedu-guide--mass-import {
+    .easyedu-guide-mi-scene { display: grid; gap: 0.75rem; min-inline-size: 0; position: relative; }
+    .easyedu-guide-mi-scene .is-guide-pointed { @include guide-specimen.pointer-ring; border-radius: 999px; }
+
+    // Drop and preview: the page's two columns, the Kit deposit, then the preview in the results column.
+    .easyedu-guide-mi-scene__page {
+      align-items: start;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      min-inline-size: 0;
+    }
+    // After the preview the file column folds into a rail beside the results, as on the page.
+    .easyedu-guide-mi-scene.is-previewed .easyedu-guide-mi-scene__page { grid-template-columns: auto minmax(0, 1fr); }
+    .easyedu-guide-mi-scene__column { display: grid; gap: 0.75rem; margin: 0; min-inline-size: 0; }
+    .easyedu-guide-mi-scene__column .easyedu-panel__header { margin-block-end: 0; min-block-size: 0; }
+    .easyedu-guide-mi-scene__column .easyedu-panel__title { align-self: center; margin: 0; }
+    .easyedu-guide-mi-scene__toggle { margin-inline-start: auto; }
+    .easyedu-guide-mi-scene__upload-body { display: grid; gap: 0.75rem; min-inline-size: 0; }
+    .easyedu-guide-mi-scene__submit { justify-self: start; }
+    .easyedu-guide-mi-scene__empty {
+      @include typography.type-caption;
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      margin: 0;
+      .fa { color: var(--easyedu-text-muted); }
+    }
+    .easyedu-guide-mi-scene__preview { display: grid; gap: 0.75rem; min-inline-size: 0; }
+    .easyedu-guide-mi-scene__summary { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; }
+    // The Kit status pill centres itself in a table cell; in these rows it starts the line.
+    .easyedu-guide-mi-scene__summary .easyedu-status,
+    .easyedu-guide-mi-recap__view .easyedu-status { margin-inline: 0; }
+
+    // The file ghost follows the pointer (desktop only; touch browses the device).
+    .easyedu-guide-mi-scene__ghost {
+      @include typography.type-control-label;
+      align-items: center;
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-control-focus-border);
+      border-radius: var(--easyedu-control-radius);
+      box-shadow: var(--easyedu-dropdown-shadow);
+      color: var(--easyedu-text);
+      display: inline-flex;
+      gap: 0.5rem;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      padding: 0.375rem 0.625rem;
+      pointer-events: none;
+      position: absolute;
+      white-space: nowrap;
+      z-index: 4;
+      .fa { color: var(--easyedu-success); }
+    }
+
+    // Review the preview: the page's toolbar and data table, scrolled inside their own frame when narrow.
+    .easyedu-guide-mi-scene__toolbar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .easyedu-guide-mi-scene__search { flex: 1 1 16rem; min-inline-size: 0; }
+    .easyedu-guide-mi-scene__table-wrap { max-inline-size: 100%; min-inline-size: 0; overflow-x: auto; }
+    .easyedu-guide-mi-scene__table {
+      min-inline-size: 44rem;
+      input[type="text"] { min-inline-size: 7.5rem; }
+      tr.is-excluded { opacity: 0.45; }
+    }
+
+    // Recap: the end state of each phase beside its narration, numbered by the list.
+    .easyedu-guide-mi-recap__step {
+      align-items: center;
+      display: grid;
+      gap: 0.5rem 1rem;
+      grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    }
+    .easyedu-guide-mi-recap__view { align-items: center; display: flex; flex-wrap: wrap; gap: 0.5rem; min-inline-size: 0; }
+    .easyedu-guide-mi-recap__file {
+      @include typography.type-control-label;
+      align-items: center;
+      color: var(--easyedu-text);
+      display: inline-flex;
+      gap: 0.5rem;
+      .fa { color: var(--easyedu-success); }
+    }
+    .easyedu-guide-mi-recap__row {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.5rem;
+      min-inline-size: 0;
+      &.is-excluded { opacity: 0.45; }
+      input[type="text"] { inline-size: 10rem; max-inline-size: 100%; }
+    }
+
+    @media (min-width: 40.001rem) {
+      // Desktop rail: the icon tile and the chevron only.
+      .easyedu-guide-mi-scene.is-previewed .easyedu-guide-mi-scene__upload .easyedu-panel__copy { display: none; }
+    }
+    @media (max-width: 40rem) {
+      // Touch: the columns stack and the folded file column keeps its title row.
+      .easyedu-guide-mi-scene__page,
+      .easyedu-guide-mi-scene.is-previewed .easyedu-guide-mi-scene__page { grid-template-columns: minmax(0, 1fr); }
+      .easyedu-guide-mi-recap__step { grid-template-columns: minmax(0, 1fr); }
     }
   }
 }

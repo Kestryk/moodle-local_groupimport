@@ -37,7 +37,8 @@ function Assert-Contains {
     }
 }
 
-Assert-Contains $javascript "define\(\['local_groupimport/motion'\], function\(Motion\)" "The current Motion-dependent AMD wrapper is missing."
+# The shared bubble module joined the wrapper before GMI-C3; Motion stays the first dependency.
+Assert-Contains $javascript "define\(\['local_groupimport/motion'(, 'local_groupimport/easyedu_bubble')?\], function\(Motion(, EasyeduBubble)?\)" "The current Motion-dependent AMD wrapper is missing."
 Assert-Contains $javascript 'const destroy =' "The runtime source does not include teardown."
 Assert-Contains $javascript 'destroy: destroy' "The AMD wrapper does not export destroy."
 Assert-Contains $javascript 'init: init' "The AMD wrapper does not export init."
