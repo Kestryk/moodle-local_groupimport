@@ -771,6 +771,15 @@
   }
 }
 
+// The legacy fold-button adapter shares this neutral glyph frame with filters.
+// Parent trigger owns type, target, focus and Motion; this adds no new paint.
+@mixin filter-disclosure-neutral-icon {
+  background: transparent;
+  border: 0;
+  height: auto;
+  width: auto;
+}
+
 // Opt-in More Filters composition. The button retains the full available hit
 // lane and keyboard ring; only its intrinsic content capsule receives paint.
 // Keep the default recipe unchanged for accepted Compact/Show-all consumers.

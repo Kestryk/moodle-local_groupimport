@@ -274,9 +274,7 @@
   }
 
   &-entity__relation-chevron {
-    @include easyedu.card-disclosure-icon(var(--easyedu-card-identity-title-color));
-
-    font-size: 0.625rem;
+    @include easyedu.card-disclosure-icon(var(--easyedu-card-identity-title-color), $compact: true);
     transform: rotate(180deg);
   }
 
