@@ -5,6 +5,7 @@
 // opacity handoff used by proven EasyEdu loading states.
 
 @use "typography";
+@use "sass:map";
 @use "animations";
 
 @mixin skeleton-surface(
@@ -345,4 +346,23 @@
     opacity: 0;
     pointer-events: none;
   }
+}
+
+// Exact accepted entity-dialog footprints. Inline extent stays with the field layout;
+// surface, shimmer and reveal still compose the existing loading primitives.
+$skeleton-entity-block-sizes: (
+  value: 1.25rem,
+  label: 0.75rem,
+  control: 2.375rem,
+  area: 7rem,
+  row: 2.5rem,
+  pills: 1.375rem,
+  media: 7rem
+);
+
+@mixin skeleton-entity-block-size($role: value) {
+  @if not map.has-key($skeleton-entity-block-sizes, $role) {
+    @error "Unknown skeleton entity footprint: #{$role}.";
+  }
+  block-size: map.get($skeleton-entity-block-sizes, $role);
 }

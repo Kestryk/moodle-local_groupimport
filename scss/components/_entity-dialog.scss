@@ -462,7 +462,7 @@
     @include easyedu.skeleton-surface;
     @include easyedu.skeleton-shimmer-direct;
 
-    block-size: 1.25rem;
+    @include easyedu.skeleton-entity-block-size;
     inline-size: 100%;
     visibility: hidden;
   }
@@ -472,7 +472,7 @@
   }
 
   &-entity__skeleton--label {
-    block-size: 0.75rem;
+    @include easyedu.skeleton-entity-block-size(label);
     inline-size: min(8rem, 60%);
   }
 
@@ -481,11 +481,11 @@
   }
 
   &-entity__skeleton--control {
-    block-size: 2.375rem;
+    @include easyedu.skeleton-entity-block-size(control);
   }
 
   &-entity__skeleton--area {
-    block-size: 7rem;
+    @include easyedu.skeleton-entity-block-size(area);
   }
 
   &-entity__skeleton--title {
@@ -493,17 +493,17 @@
   }
 
   &-entity__skeleton--row {
-    block-size: 2.5rem;
+    @include easyedu.skeleton-entity-block-size(row);
   }
 
   &-entity__skeleton--pills {
-    block-size: 1.375rem;
+    @include easyedu.skeleton-entity-block-size(pills);
     inline-size: min(14rem, 70%);
   }
 
   &-entity__skeleton--image,
   &-entity__skeleton--deposit {
-    block-size: 7rem;
+    @include easyedu.skeleton-entity-block-size(media);
   }
 
   &-entity__relation--skeleton {
