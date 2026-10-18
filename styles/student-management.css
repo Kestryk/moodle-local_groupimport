@@ -8243,6 +8243,11 @@ body.easyedu-motion-disabled .local-groupimport-easystud-message-modal::after {a
 .local-groupimport-easystud [data-easystud-container-search-cancel],
 .local-groupimport-easystud .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {align-self: stretch;block-size: 2.375rem;
 }
+.local-groupimport-easystud [data-easystud-container-search-cancel].btn,
+.local-groupimport-easystud [data-easystud-container-search-cancel].easyedu-button--secondary,
+.local-groupimport-easystud .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters].btn,
+.local-groupimport-easystud .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters].easyedu-button--secondary {line-height: normal;
+}
 .local-groupimport-easystud [data-easystud-advanced-filters-toggle],
 .local-groupimport-easystud-pagination__sort > span,
 [data-easystud-list-sort-dropdown] > .local-groupimport-easystud-dropdown__button {font-family: inherit;font-weight: var(--easyedu-font-weight-regular);
