@@ -7,7 +7,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const {execFileSync} = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
-const [sassPath, postcssPath, kitPath, output, base = '389b832d'] = process.argv.slice(2);
+const [sassPath, postcssPath, kitPath, output, base = 'HEAD'] = process.argv.slice(2);
 assert.ok([sassPath, postcssPath, kitPath, output].every(value => value && path.isAbsolute(value)),
     'Pass absolute Sass, PostCSS, canonical Kit and external proof paths');
 const postcss = require(postcssPath);
@@ -17,7 +17,7 @@ const before = file => execFileSync('git', ['-C', root, 'show', base + ':' + fil
 const sheets = ['styles.css', 'styles/student-management.css', 'styles/mass-import.css', 'styles/administration.css'];
 const baseline = Object.fromEntries(sheets.map(file => [file, before(file)]));
 const removedSelectors = []; // All three historical removals are already present in this base.
-const priorityChanges = []; // The action-grip margin is already non-important in this base.
+const priorityChanges = []; // K17-78 retired the grip; current-root proof compares its absence.
 const build = require('./build-page-styles.cjs').build(sassPath, postcssPath);
 function ordered(css) {
     const result = [];
@@ -63,9 +63,8 @@ const historicalRemovedSelectors = [scene + '[data-guide-mode=move] ' + scene + 
 postcss.parse(read('styles/student-management.css')).walkRules(rule => {
     assert.ok(!postcss.list.comma(rule.selector).some(selector => historicalRemovedSelectors.includes(selector)),
         'Do not reintroduce unreachable self-nested Guide scene selectors');
-    if (rule.selector === '.local-groupimport-easystud-action-grip') {
-        rule.walkDecls('margin', declaration => assert.ok(!declaration.important));
-    }
+    assert.ok(!/\.local-groupimport-easystud-action-grip(?:[^a-zA-Z0-9_-]|$)/.test(rule.selector),
+        'K17-78: the retired grip cannot return under any selector');
 });
 proof.historicalRemovedSelectors = historicalRemovedSelectors;
 for (const file of ['_guide.scss', '_guide-discovery.scss', '_guide-specimen.scss', '_animations.scss',
