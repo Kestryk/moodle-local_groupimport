@@ -1406,8 +1406,7 @@
 
     [data-easystud-select-results-label],
     [data-easystud-list-sort-label] {
-      color: var(--easyedu-primary-strong);
-      font: inherit;
+      @include easyedu.pagination-command-label;
     }
 
     [data-easystud-list-sort-label] {
