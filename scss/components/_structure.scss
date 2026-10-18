@@ -333,7 +333,7 @@
   }
 
   &-group--catalog {
-    padding-top: 0.8rem;
+    @include easyedu.object-card-catalog-inset;
   }
 
   &-group__groupings {
@@ -600,7 +600,7 @@
   &-grouping__name,
   &-group__name {
     display: inline-block;
-    padding-bottom: 0;
+    @include easyedu.card-title-block-inset;
   }
 
   &-group__name {
@@ -610,7 +610,7 @@
   &-tree__section--ungrouped &-group__name {
     // The ungrouped shell clipped the final pixels of glyph descenders even
     // though the shared card-title role already provided a sound line box.
-    padding-bottom: 0.08em;
+    @include easyedu.card-title-block-inset($unassigned: true);
   }
 
   &-grouping__name {
@@ -726,13 +726,15 @@
 
     align-self: start;
     @include easyedu.identity-card-paint(object);
-    border-left: var(--local-groupimport-easystud-identity-border-width) solid
-      var(--local-groupimport-easystud-group-rail);
+    @include easyedu.object-card-rail-edge(
+      var(--local-groupimport-easystud-identity-border-width),
+      var(--local-groupimport-easystud-group-rail)
+    );
     cursor: grab;
     max-width: 100%;
     min-width: 0;
     position: relative;
-    padding: 0.6rem 0.7rem 0.62rem;
+    @include easyedu.object-card-inset;
     transition:
       background-color var(--easyedu-motion-fast) ease,
       border-color var(--easyedu-motion-fast) ease,
@@ -832,7 +834,7 @@
 
     > .local-groupimport-easystud-group__name {
       flex: 1 1 auto;
-      line-height: 1.25;
+      @include easyedu.card-title-object-leading;
       min-width: 7.5rem;
     }
 
