@@ -193,9 +193,7 @@
 
   &[data-easyedu-deselect-results="1"],
   &[data-easystud-deselect-results="1"] {
-    background: var(--easyedu-surface-soft);
-    border-color: var(--easyedu-border-strong);
-    color: color-mix(in srgb, var(--easyedu-text) 80%, var(--easyedu-text-muted) 20%);
+    @include pagination-deselect-palette;
   }
 }
 
@@ -294,5 +292,18 @@
     .easyedu-pagination__spacer {
       display: none;
     }
+  }
+}
+
+
+@mixin pagination-deselect-palette($quiet: false) {
+  @if $quiet {
+    background: #f7fafc;
+    border-color: #b9c6d4;
+    color: #40566c;
+  } @else {
+    background: var(--easyedu-surface-soft);
+    border-color: var(--easyedu-border-strong);
+    color: color-mix(in srgb, var(--easyedu-text) 80%, var(--easyedu-text-muted) 20%);
   }
 }

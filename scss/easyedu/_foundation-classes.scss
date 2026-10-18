@@ -414,3 +414,16 @@
     .easyedu-ui .easyedu-tag { padding-inline: 0.75rem; }
   }
 }
+
+
+@mixin foundation-field-peer-frame {
+  align-self: stretch;
+  block-size: 2.375rem;
+
+  // Native host classes also receive a later Foundation font shorthand.
+  // Qualify the shared metric so that shorthand cannot undo the centring.
+  &.btn,
+  &.easyedu-button--secondary {
+    line-height: normal;
+  }
+}

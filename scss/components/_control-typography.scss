@@ -27,9 +27,7 @@
   .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {
     @include foundations.foundation-button($secondary: true);
     & {
-      align-self: stretch;
-      // Keep38px when a mobile search field makes its flex row taller.
-      block-size: 2.375rem;
+      @include foundations.foundation-field-peer-frame;
     }
   }
 
