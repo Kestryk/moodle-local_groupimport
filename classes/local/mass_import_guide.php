@@ -31,6 +31,9 @@ final class mass_import_guide {
     /** Stable presentation key: reading positions are only migrated when it changes. */
     public const PRESENTATION_KEY = 'mass-import-20261018';
 
+    /** Stable identifier of the guided path (its progress is stored under this name). */
+    public const PATH_ID = 'mi-review-without-importing';
+
     /**
      * Stable identifiers of the ten lessons, in reading order.
      *
@@ -175,6 +178,7 @@ final class mass_import_guide {
                 'category' => $slide['category'], 'number' => $index + 1, 'title' => $slide['navtitle']]);
             $slides[] = $slide;
         }
+        $slides = self::interface_cues($slides);
 
         $slidecount = count($slides);
         $data = [
@@ -251,21 +255,35 @@ final class mass_import_guide {
             'welcomeOffer' => false,
             'highlightAutoHideDelay' => 5200,
             'highlightStyle' => 'pulse-blue',
+            // Interface targets of the cahier (section 1.14): the first visible selector wins, so a
+            // preview-only target falls back to the results card on an empty page.
             'targets' => [
                 'miUploadCard' => '.local-groupimport-import-card--upload',
+                'miUploadToggle' => '[data-local-groupimport-upload-toggle]',
+                'miAutoDetect' => '.local-groupimport-import-fields',
                 'miDepositZone' => '#local_groupimport-form .easyedu-file-deposit',
+                'miPreviewSubmit' => ['#local_groupimport-form #id_submitbutton', '#local_groupimport-form [type="submit"]'],
                 'miResultsCard' => '#local_groupimport-results',
                 'miPreviewTable' => ['.local-groupimport-import-preview__table-wrap', '#local_groupimport-results'],
+                'miFlaggedRowInclude' => [
+                    '.local-groupimport-import-preview__row--warning:not([hidden]) input[name^="rowenabled["]',
+                    '[data-local-groupimport-preview-row]:not([hidden]) input[name^="rowenabled["]',
+                ],
                 'miStrategy' => ['.local-groupimport-import-preview__strategy', '#local_groupimport-results'],
                 'miRunImport' => ['[data-local-groupimport-preview-submit]', '#local_groupimport-results'],
+                'miPreviewCancel' => '[data-local-groupimport-preview-cancel]',
+                'miJobProgress' => '[data-import-job]',
+                'miExportReport' => '.local-groupimport-import__export-results',
                 'miTemplateLink' => '#local-groupimport-import-navigation ' .
                     '[data-easyedu-navigation-item-id="mass-import-download-template"]',
                 'miHistoryOpen' => '#local-groupimport-import-navigation ' .
                     '[data-easyedu-navigation-action="mass-import-history"]',
+                'miHistoryList' => '[data-local-groupimport-history-modal] [data-local-groupimport-history-list]',
+                'miNavigationTrigger' => '#local-groupimport-import-navigation [data-easyedu-navigation-open]',
             ],
-            'pathLabels' => new \stdClass(),
+            'pathLabels' => [self::PATH_ID => get_string('mi_guide_path_title', $component)],
             'pathContextFields' => new \stdClass(),
-            'paths' => new \stdClass(),
+            'paths' => [self::PATH_ID => self::review_path()],
             'labels' => [
                 'hint' => get_string('tutorialguidedpanelhint', $component),
                 'complete' => get_string('tutorialguidedpanelcomplete', $component),
@@ -281,5 +299,80 @@ final class mass_import_guide {
                 'pathCancelled' => get_string('discovery_path_cancelled_feedback', $component),
             ],
         ];
+    }
+    /**
+     * Interface cues of the lessons (GMI-C4): openers run before "Show in the interface", and the
+     * guided path card of lesson 5 with the warning decided by Kevin (K18-07).
+     *
+     * @param array[] $slides Lessons built by template_data().
+     * @return array[]
+     */
+    private static function interface_cues(array $slides): array {
+        $component = 'local_groupimport';
+        foreach ($slides as $index => $slide) {
+            if ($slide['id'] === 'mi-prepare-file') {
+                // Compact: the template link lives in the navigation drawer.
+                $slides[$index] += ['showopen' => 'mi:open-navigation', 'showopendelay' => 360];
+            } else if ($slide['id'] === 'mi-drop-preview') {
+                // After a preview the file column is folded: unfold it first.
+                $slides[$index] += ['showopen' => 'mi:expand-upload', 'showopendelay' => 480];
+            } else if ($slide['id'] === 'mi-history-restore') {
+                $slides[$index]['targetselector'] = 'miHistoryList';
+                $slides[$index] += ['showopen' => 'mi:open-history', 'showopendelay' => 420];
+            } else if ($slide['id'] === 'mi-review-preview') {
+                $slides[$index] += [
+                    'hasguidedpath' => true,
+                    'guidedpath' => self::PATH_ID,
+                    'guidedpathlabel' => get_string('member_path_label', $component),
+                    'guidedpathtitle' => get_string('mi_guide_path_title', $component),
+                    'guidedpathcontent' => get_string('mi_guide_path_content', $component),
+                    'guidedpathsteps' => ['items' => array_column(self::review_path(), 'title')],
+                    'guidedpathwarning' => get_string('mi_guide_path_warning', $component),
+                ];
+                $slides[$index]['navtooltip'] = get_string('guide_nav_tooltip_guided', $component, (object) [
+                    'category' => $slide['category'], 'number' => $index + 1, 'title' => $slide['navtitle']]);
+            }
+        }
+        return $slides;
+    }
+
+    /**
+     * Guided path "Check a file without importing anything" (cahier section 1.15).
+     *
+     * No step changes the course: the path ends on Cancel and never targets "Run import".
+     * Steps 2, 3 and 4 are completed by the Mass Import adapter (local/mi/guide).
+     *
+     * @return array[]
+     */
+    public static function review_path(): array {
+        $component = 'local_groupimport';
+        $steps = [
+            ['id' => 'download-example', 'target' => 'miTemplateLink', 'open' => 'mi:open-navigation',
+                'openDelay' => 360, 'completeOnClick' => true],
+            ['id' => 'add-file', 'target' => 'miDepositZone', 'open' => 'mi:expand-upload', 'openDelay' => 480,
+                'completionMode' => 'event'],
+            // On the reloaded preview page this milestone is completed by Resume: never unfold the column.
+            ['id' => 'preview-file', 'target' => 'miPreviewSubmit', 'open' => 'mi:close-navigation',
+                'completionMode' => 'event'],
+            ['id' => 'exclude-row', 'target' => 'miFlaggedRowInclude', 'open' => 'mi:close-navigation',
+                'completionMode' => 'event'],
+            ['id' => 'read-strategy', 'target' => 'miStrategy', 'open' => 'mi:close-navigation'],
+            ['id' => 'cancel-preview', 'target' => 'miPreviewCancel', 'open' => 'mi:close-navigation',
+                'completeOnClick' => true],
+        ];
+        $path = [];
+        foreach ($steps as $index => $step) {
+            $step['title'] = get_string(sprintf('mi_guide_path_step%d', $index + 1), $component);
+            $step['description'] = get_string(sprintf('mi_guide_path_desc%d', $index + 1), $component);
+            if ($index > 0) {
+                $step['requiresStep'] = $steps[$index - 1]['id'];
+            }
+            if ($index < count($steps) - 1) {
+                // The next target is highlighted as soon as a step is done (no extra click).
+                $step['autoHighlightNext'] = true;
+            }
+            $path[] = $step;
+        }
+        return $path;
     }
 }

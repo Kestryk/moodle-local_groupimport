@@ -626,6 +626,10 @@
                                                 {{#items}}<li>{{.}}</li>{{/items}}
                                             </ol>
                                         {{/guidedpathsteps}}
+                                        {{#guidedpathwarning}}
+                                        {{! K18-07: the path works on the teacher's real file; Kit warning notice. }}
+                                        <div class="easyedu-ui" data-easyedu-guide-path-warning><div class="easyedu-notice easyedu-notice--warning" role="note"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span><p>{{guidedpathwarning}}</p></div></div>
+                                        {{/guidedpathwarning}}
                                     </div>
                                     <button type="button" class="btn btn-primary easyedu-guide-slide__start" data-easyedu-guide-start-path="{{guidedpath}}" data-start-label="{{guidestartpathlabel}}" data-resume-label="{{guideresumeguidedlabel}}">
                                         <span data-easyedu-guide-start-label>{{guidestartpathlabel}}</span>

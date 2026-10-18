@@ -34,6 +34,7 @@ import {
 } from './layout';
 import {clearSelectionState} from './selection';
 import {emitPracticeCompletion} from './guide_hooks';
+import {bindGuideLauncher} from './guide_launcher';
 import {getSelectedFilterValues, updateRoleFilterMode} from './filters';
 import {
     syncCatalogFilters, scheduleResponsiveUiRefresh, syncPagination, applyFilters, ensureMobileActionBar,
@@ -41,74 +42,9 @@ import {
 } from './workspace';
 
 // Keep the shared guide launcher consumer-owned while the navigation component
-// owns only destinations and its compact panel.
-export const bindResponsiveGuideLauncher = root => {
-    const guideSlot = root.querySelector('[data-easyedu-navigation-guide-slot]');
-    const guideSource = root.querySelector('[data-easyedu-navigation-guide-source]');
-    const guideNode = guideSource ?
-        guideSource.querySelector('[data-easyedu-guide-root]') : null;
-    const guideLauncher = guideNode ? guideNode.querySelector('[data-easyedu-guide-open]') : null;
-    if (!guideNode || !guideSource || !guideSlot || !guideLauncher) {
-        return;
-    }
-    if (guideNode.matches('[data-easyedu-guide-root]')) {
-        root.easystudGuideOwner = guideNode;
-    }
-    const guideAnchor = document.createComment('easyedu-guide-responsive-anchor');
-    guideSource.insertBefore(guideAnchor, guideNode);
-
-    const preserveGuidePortalTheme = () => {
-        // The guide is visually scoped below the EasyStud workspace. Portalling
-        // it to body must retain the resolved product tokens, otherwise CSS
-        // declarations using those variables become invalid (not transparent).
-        const styles = window.getComputedStyle(guideNode);
-        Array.from(styles).forEach(name => {
-            if (!name.startsWith('--easyedu-') && !name.startsWith('--local-groupimport-easystud-')) {
-                return;
-            }
-            const value = styles.getPropertyValue(name).trim();
-            if (value !== '') {
-                guideNode.style.setProperty(name, value);
-            }
-        });
-        guideNode.setAttribute('data-easyedu-guide-portal-theme', '1');
-    };
-
-    const syncGuideLauncher = matches => {
-        if (matches) {
-            // The overlay surfaces must never live inside the compact drawer:
-            // closing that drawer makes its descendants inert and invisible.
-            if (guideNode.parentElement !== document.body) {
-                preserveGuidePortalTheme();
-                document.body.appendChild(guideNode);
-            }
-            guideLauncher.hidden = true;
-            if (!guideSlot.querySelector('[data-easyedu-responsive-guide-launcher]')) {
-                const compactLauncher = guideLauncher.cloneNode(true);
-                compactLauncher.hidden = false;
-                compactLauncher.removeAttribute('id');
-                compactLauncher.setAttribute('data-easyedu-responsive-guide-launcher', '1');
-                compactLauncher.addEventListener('click', event => {
-                    event.preventDefault();
-                    guideLauncher.click();
-                });
-                guideSlot.replaceChildren(compactLauncher);
-            }
-        } else {
-            guideSlot.replaceChildren();
-            if (guideAnchor.parentNode && guideNode.parentElement !== guideSource) {
-                guideAnchor.parentNode.insertBefore(guideNode, guideAnchor.nextSibling);
-            }
-            guideLauncher.hidden = false;
-        }
-    };
-
-    const responsiveMedia = window.matchMedia(responsiveWorkspaceQuery);
-    responsiveMedia.addEventListener('change', event => {
-        syncGuideLauncher(event.matches);
-    });
-    syncGuideLauncher(responsiveMedia.matches);
-};
+// owns only destinations and its compact panel. The binding itself is shared with
+// Mass Import (GMI-C4) through the dependency-free guide_launcher module.
+export const bindResponsiveGuideLauncher = root => bindGuideLauncher(root, responsiveWorkspaceQuery);
 
 export const bindCanonicalNavigation = root => {
     const navigationRoot = root.querySelector('[data-easyedu-navigation]');

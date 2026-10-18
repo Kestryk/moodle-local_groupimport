@@ -216,6 +216,25 @@ $check($config['slideIds'] === $expectedids, 'slideIds match the curriculum');
 $check($config['storageKey'] === 'local_groupimport.mi_guide.u5.c71', 'storageKey is distinct from Student Management');
 $check($config['welcomeOffer'] === false && $config['firstVisit'] === false, 'no welcome bubble, no automatic opening');
 
+// GMI-C4: guided path "check a file without importing anything" (cahier section 1.15).
+$path = $config['paths'][mass_import_guide::PATH_ID] ?? [];
+$check(array_column($path, 'id') === ['download-example', 'add-file', 'preview-file', 'exclude-row', 'read-strategy',
+    'cancel-preview'], 'guided path: six steps in order');
+foreach ($path as $index => $step) {
+    $check(isset($config['targets'][$step['target']]), 'guided path target exists: ' . $step['target']);
+    $check($step['target'] !== 'miRunImport', 'guided path never targets Run import: ' . $step['id']);
+    $check(strpos($step['open'] ?? 'mi:', 'mi:') === 0, 'guided path opener is a Mass Import opener: ' . $step['id']);
+    $check($index === 0 || $step['requiresStep'] === $path[$index - 1]['id'], 'guided path order is locked: ' . $step['id']);
+}
+$check(strpos(json_encode($config['targets']['miRunImport']), 'preview-submit') !== false, 'Run import target is data-*');
+$check(isset($config['pathLabels'][mass_import_guide::PATH_ID]), 'guided path label');
+foreach (['en', 'fr'] as $lang) {
+    $currentlanguage = $lang;
+    $slide = mass_import_guide::template_data(['allowedfields' => ['Username']])['slides'][4];
+    $check($slide['guidedpath'] === mass_import_guide::PATH_ID && trim($slide['guidedpathwarning']) !== '',
+        $lang . ': lesson 5 carries the path card and its K18-07 warning');
+}
+
 if ($failures) {
     fwrite(STDERR, "FAIL\n - " . implode("\n - ", $failures) . "\n");
     exit(1);

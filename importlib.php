@@ -215,6 +215,8 @@ function local_groupimport_build_preview_rows(array $parsed, array &$errors): ar
         'studentidentifier', 'student', 'studentid', 'studentlogin', 'studentemail',
         'learneridentifier', 'learner', 'learnerid', 'apprenant', 'identifiantapprenant',
         'identifiantdelapprenant', 'etudiant', 'identifiantetudiant', 'eleve', 'identifianteleve',
+        // Headers of the downloadable template (templatecolumnidentifier, EN and FR), GMI-C4.
+        'participantidentifier', 'identifiantduparticipant', 'participant',
     ]);
     $groupnameindex = local_groupimport_find_import_column($normalised, [
         'groupname', 'group', 'groups', 'groupid', 'groupe', 'nomdegroupe', 'nomdugroupe',

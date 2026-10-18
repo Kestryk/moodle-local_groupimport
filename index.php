@@ -60,6 +60,8 @@ $PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation', 'init', [
     '#local-groupimport-import-navigation',
 ]);
 $PAGE->requires->js_call_amd('local_groupimport/guide_bootstrap', 'init', ['mass-import-guide-config']);
+// Mass Import Guide adapter: compact launcher, interface openers and guided path milestones (GMI-C4).
+$PAGE->requires->js_call_amd('local_groupimport/local/mi/guide', 'init', ['local-groupimport-import']);
 $PAGE->requires->js_call_amd('local_groupimport/csv_import', 'init', [
     'local-groupimport-import',
     [
@@ -807,18 +809,31 @@ if ($preview !== null) {
         ]
     );
 
+    // Guided path warning (K18-07), right before the only button that changes the course: shown by
+    // the Guide adapter while the "check a file without importing" path is running.
+    echo html_writer::tag(
+        'div',
+        html_writer::tag('span', '', ['class' => 'fa fa-exclamation-triangle', 'aria-hidden' => 'true']) .
+        html_writer::tag('p', s(get_string('mi_guide_path_warning', 'local_groupimport'))),
+        [
+            'class' => 'easyedu-notice easyedu-notice--warning',
+            'role' => 'note',
+            'data-local-groupimport-guide-path-warning' => '1',
+            'hidden' => 'hidden',
+        ]
+    );
     echo html_writer::tag(
         'div',
         html_writer::tag(
             'button',
             html_writer::tag('span', '', ['class' => 'fa fa-check', 'aria-hidden' => 'true']) .
             get_string('submitimport', 'local_groupimport'),
-            ['type' => 'submit', 'class' => 'easyedu-button']
+            ['type' => 'submit', 'class' => 'easyedu-button', 'data-local-groupimport-preview-submit' => '1']
         ) .
         html_writer::link(
             new moodle_url('/local/groupimport/index.php', ['id' => $course->id]),
             get_string('cancel', 'local_groupimport'),
-            ['class' => 'easyedu-button easyedu-button--neutral']
+            ['class' => 'easyedu-button easyedu-button--neutral', 'data-local-groupimport-preview-cancel' => '1']
         ),
         ['class' => 'local-groupimport-import-preview__actions']
     );
@@ -1046,7 +1061,10 @@ echo html_writer::tag(
             html_writer::tag('h4', get_string('importhistoryrecent', 'local_groupimport'), [
                 'class' => 'local-groupimport-import-history__caption',
             ]) .
-            html_writer::tag('ul', $historyitems, ['class' => 'local-groupimport-import-history']),
+            html_writer::tag('ul', $historyitems, [
+                'class' => 'local-groupimport-import-history',
+                'data-local-groupimport-history-list' => '1',
+            ]),
             ['class' => 'local-groupimport-import-modal__body']
         ) .
         html_writer::tag(
