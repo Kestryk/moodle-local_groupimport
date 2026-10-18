@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25K: raccorder les empreintes de champs, titres, actions et cartes d’attente aux recettes de chargement Kit, sans changer leurs dimensions.
+
 - 2026-10-18 [N0] K16-80 F16C: raccorder les priorités de focus natives à la définition Kit de l’anneau et à son adaptateur de focus pointeur.
 
 - 2026-10-18 [N0] K16-80 F25J: réutiliser une variante intégrée de filter-shell et une seule recette de gouttière intérieure du couloir.

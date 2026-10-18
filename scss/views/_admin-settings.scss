@@ -131,12 +131,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__loading-form-control {
-    height: 2.7rem;
+    @include easyedu.skeleton-entity-block-size(control-regular, $physical: true);
     width: min(100%, 34rem);
   }
 
   .local-groupimport-admin-settings__loading-form-control--tall {
-    height: 6.2rem;
+    @include easyedu.skeleton-entity-block-size(control-tall, $physical: true);
   }
 
   .local-groupimport-admin-settings__loading-overview {
@@ -192,17 +192,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__loading-card-title {
-    height: 1.15rem;
+    @include easyedu.skeleton-entity-block-size(card-title-detailed, $physical: true);
     width: 62%;
   }
 
   .local-groupimport-admin-settings__loading-field {
-    height: 2.6rem;
+    @include easyedu.skeleton-entity-block-size(control-compact, $physical: true);
     width: 100%;
   }
 
   .local-groupimport-admin-settings__loading-field--short {
-    height: 2.6rem;
+    @include easyedu.skeleton-entity-block-size(control-compact, $physical: true);
     width: 72%;
   }
 

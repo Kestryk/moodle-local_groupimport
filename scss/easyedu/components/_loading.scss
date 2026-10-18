@@ -357,14 +357,24 @@ $skeleton-entity-block-sizes: (
   area: 7rem,
   row: 2.5rem,
   pills: 1.375rem,
-  media: 7rem
+  media: 7rem,
+  control-regular: 2.7rem,
+  control-compact: 2.6rem,
+  control-tall: 6.2rem,
+  card-title: 1rem,
+  card-title-detailed: 1.15rem,
+  action: 2.45rem
 );
 
-@mixin skeleton-entity-block-size($role: value) {
+@mixin skeleton-entity-block-size($role: value, $physical: false) {
   @if not map.has-key($skeleton-entity-block-sizes, $role) {
     @error "Unknown skeleton entity footprint: #{$role}.";
   }
-  block-size: map.get($skeleton-entity-block-sizes, $role);
+  @if $physical {
+    height: map.get($skeleton-entity-block-sizes, $role);
+  } @else {
+    block-size: map.get($skeleton-entity-block-sizes, $role);
+  }
 }
 
 // Accepted awaiting-card frames; no fake-page container or readiness lifecycle.
@@ -375,6 +385,12 @@ $skeleton-entity-block-sizes: (
   } @else if $kind == object {
     min-height: 3.6rem;
     padding: 0.58rem 0.65rem;
+  } @else if $kind == workspace {
+    min-height: 23rem;
+    @content;
+    padding: 1rem;
+  } @else if $kind == workspace-compact {
+    min-height: 18rem;
   } @else {
     @error "Unknown skeleton card kind: #{$kind}.";
   }
