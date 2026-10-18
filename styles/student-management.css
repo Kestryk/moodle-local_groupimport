@@ -1334,24 +1334,6 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud__layout {align-items: stretch;display: grid;gap: 2rem;grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.local-groupimport-easystud-tour-button {align-items: center;background: transparent;border: 0;border-radius: 0.9rem;color: #fff;display: inline-flex;flex: 0 0 auto;height: 2.55rem;justify-content: center;line-height: 1;padding: 0;position: relative;transition: box-shadow var(--easyedu-motion-fast) ease;width: 2.55rem;
-}
-.local-groupimport-easystud-tour-button .fa {align-items: center;color: inherit;display: inline-flex;font-size: 1rem;height: 1.2rem;justify-content: center;line-height: 1;margin: 0;width: 1.2rem;
-}
-.local-groupimport-easystud-tour-button .fa::before {display: block;line-height: 1;
-}
-.local-groupimport-easystud-tour-button:hover {box-shadow: none;color: #2f7f62;outline: 0;transform: translateY(-0.08rem);
-}
-.local-groupimport-easystud-tour-button:focus {box-shadow: none;color: #2f7f62;outline: 0;
-}
-.local-groupimport-easystud-tour-button:focus-visible {box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring-accent);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
-}
-.local-groupimport-easystud-tour-button__icon {background: linear-gradient(135deg, #3477ab 0%, #2f8f62 100%);border-color: rgba(255, 255, 255, 0.86);box-shadow: 0 0.48rem 1rem rgba(35, 93, 115, 0.28);color: #fff;height: 2.55rem;transition: background var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;width: 2.55rem;
-}
-.local-groupimport-easystud-tour-button:hover .local-groupimport-easystud-tour-button__icon {background: #fff;border-color: #b9d9ca;box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);color: #2f7f62;transform: scale(1.04);
-}
-.local-groupimport-easystud-tour-button:focus .local-groupimport-easystud-tour-button__icon {background: #fff;border-color: #b9d9ca;box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);color: #2f7f62;
-}
 .local-groupimport-easystud__panel {height: auto;overflow: visible;position: relative;transition: box-shadow var(--easyedu-motion-normal) ease;
 }
 .local-groupimport-easystud__panel > .card-body {display: flex;flex: 1 1 auto;flex-direction: column;height: 100%;

@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F22: share accepted view choices and selection-recovery paint; retire nine unused tour-button rules without changing active CSS.
+
 - 2026-10-18 [N1] K16-80: share filter-choice states and command labels in the Kit; centre touch-choice text with natural line metrics.
 
 - 2026-10-18 [N1] K16-80: share inline edit/create field adapters in the Kit and centre edit action text without changing frames.
