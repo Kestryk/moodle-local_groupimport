@@ -6134,7 +6134,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active > .fa,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active .easyedu-guide-nav-item__icon {display: none;
   }
-  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {flex-wrap: wrap;padding: 0.75rem 1rem;
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {flex-wrap: nowrap;padding-inline: 1rem;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count {flex: 1 1 0;min-width: 0;white-space: normal;
   }

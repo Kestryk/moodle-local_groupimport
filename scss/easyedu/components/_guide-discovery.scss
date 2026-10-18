@@ -1666,7 +1666,11 @@
         > .fa, .easyedu-guide-nav-item__icon { display: none; }
       }
     }
-    .easyedu-guide-modal__footer { flex-wrap: wrap; padding: 0.75rem 1rem; }
+    // K17-69 superseded the wrapping fallback this rule used to need: the
+    // footer now holds icon trigger, counter, Previous and Next on a single
+    // fixed 64px row (see _guide.scss), so this media query must not force a
+    // second line or shrink the vertical padding that row depends on.
+    .easyedu-guide-modal__footer { flex-wrap: nowrap; padding-inline: 1rem; }
     // GS10 phone: one footer row. The reading count yields its width and may
     // break between "Step 3" and "of 12" inside the 38px row height.
     .easyedu-guide-modal__step-count { flex: 1 1 0; min-width: 0; white-space: normal; }
