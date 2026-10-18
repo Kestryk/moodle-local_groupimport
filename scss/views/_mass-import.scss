@@ -62,7 +62,7 @@
     inline-size: 100%;
     max-inline-size: 100%;
     min-width: 0;
-    padding-block: 0.45rem 0.9rem;
+    @include easyedu.skeleton-pending-inset(import);
     @include easyedu.loading-opacity-transition(180ms);
     @include easyedu.loading-appearance;
   }

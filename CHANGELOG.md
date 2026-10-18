@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N0] K16-80 F26C: raccorder les deux marges internes des composants en attente d’Import massif et des réglages au composant Skeleton du Kit.
+
 - 2026-10-18 [N0] K16-80 F12T: raccorder le cadre de barre, l’inset des outils, l’encre des libellés et les métriques responsive à la pagination du Kit.
 
 - 2026-10-18 [N0] K16-80 F13B: raccorder les couleurs sémantiques et les retraits des titres de dépliage aux variantes du Kit, sans changer leurs valeurs ni Motion.
