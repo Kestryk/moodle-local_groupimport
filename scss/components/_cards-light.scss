@@ -132,6 +132,6 @@
   .local-groupimport-easystud-card-menu__icon.fa,
   .local-groupimport-easystud-group__header > .btn-link .fa,
   .local-groupimport-easystud-grouping__header > .btn-link .fa {
-    font-size: var(--easyedu-card-action-icon-size);
+    @include easyedu.card-action-icon-type;
   }
 }

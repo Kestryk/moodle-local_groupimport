@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "scenarios": [
+    {
+      "id": "K1680-TAIL-F07B",
+      "status": "candidate",
+      "ciExecutable": false,
+      "source": "f07b.json",
+      "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f07b"
+    }
+  ]
+}

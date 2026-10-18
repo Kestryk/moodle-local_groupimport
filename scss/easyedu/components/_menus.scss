@@ -302,3 +302,16 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+// Context-menu viewport and touch modifiers; routing remains with the host.
+@mixin context-submenu-viewport-bound {
+  max-height: calc(100vh - 16px);
+}
+
+@mixin context-action-touch-minimum {
+  min-height: var(--easyedu-touch-target-min);
+}
+
+@mixin context-sheet-top-radius {
+  border-radius: 1rem 1rem 0 0;
+}

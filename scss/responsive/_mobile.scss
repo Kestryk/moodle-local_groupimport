@@ -824,7 +824,7 @@
     }
 
     &-context-menu.is-mobile-sheet {
-      border-radius: 1rem 1rem 0 0;
+      @include easyedu.context-sheet-top-radius;
       left: 0 !important;
       right: 0;
       top: auto !important;

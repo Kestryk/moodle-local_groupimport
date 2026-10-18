@@ -350,7 +350,7 @@
 
     &-context-menu.is-mobile-sheet &-context-menu__group > button,
     &-context-menu.is-mobile-sheet &-context-menu__submenu > button {
-      min-height: var(--easyedu-touch-target-min);
+      @include easyedu.context-action-touch-minimum;
       width: 100%;
     }
 

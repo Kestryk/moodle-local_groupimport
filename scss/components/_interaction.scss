@@ -52,7 +52,7 @@
   &-context-menu__submenu {
     @include easyedu.menu-surface;
 
-    max-height: calc(100vh - 16px);
+    @include easyedu.context-submenu-viewport-bound;
     overflow-y: auto;
     position: fixed;
     z-index: 1061;
