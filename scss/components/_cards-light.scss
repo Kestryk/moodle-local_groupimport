@@ -13,20 +13,17 @@
   .local-groupimport-easystud-group,
   .local-groupimport-easystud-tree__section {
     &#{$rest} {
-      border-block-color: var(--easyedu-card-hairline);
-      border-inline-end-color: var(--easyedu-card-hairline);
-      box-shadow: none;
+      @include easyedu.identity-card-rest-hairlines;
     }
   }
 
   .local-groupimport-easystud-user {
-    padding-block: 0.625rem;
+    @include easyedu.identity-card-responsive-inset;
   }
 
   .local-groupimport-easystud-group,
   .local-groupimport-easystud-tree__section {
-    padding-block: 0.625rem;
-    padding-inline-start: 0.75rem;
+    @include easyedu.identity-card-responsive-inset($object: true);
   }
 
   // Participant: email under the name, then one line of pills
@@ -134,7 +131,7 @@
   }
 
   .local-groupimport-easystud-group__members > .local-groupimport-easystud-member:last-child {
-    border-bottom-color: transparent;
+    @include easyedu.related-person-row-terminal-divider;
   }
 
   // Action icons at 14 px.

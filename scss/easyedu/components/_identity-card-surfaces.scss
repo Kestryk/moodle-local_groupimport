@@ -79,3 +79,17 @@ $identity-card-paints: (
     @error "Unknown identity mutation paint: #{$state}.";
   }
 }
+
+// Responsive light-card variants; layout predicates remain consumer-owned.
+@mixin identity-card-rest-hairlines {
+  border-block-color: var(--easyedu-card-hairline);
+  border-inline-end-color: var(--easyedu-card-hairline);
+  box-shadow: none;
+}
+
+@mixin identity-card-responsive-inset($object: false) {
+  padding-block: 0.625rem;
+  @if $object {
+    padding-inline-start: 0.75rem;
+  }
+}
