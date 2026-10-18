@@ -53,3 +53,29 @@ $identity-card-paints: (
 @mixin identity-card-rest-shadow {
   box-shadow: var(--easyedu-card-shadow-rest);
 }
+
+// Colour-only identity modifiers; owning predicates and rail dimensions stay native.
+@mixin identity-card-rail-ink($color) {
+  border-left-color: $color;
+}
+
+@mixin identity-card-surface-ink($color) {
+  background: $color;
+}
+
+@mixin identity-card-rail-glyph-surface($color: #fff) {
+  background-color: $color;
+}
+
+// Brief native mutation feedback, composed independently of Motion timing.
+@mixin identity-card-mutation-paint($state) {
+  @if $state == created {
+    background-color: var(--easyedu-success-soft);
+    border-color: color-mix(in srgb, var(--easyedu-success) 48%, var(--easyedu-card-border) 52%);
+  } @else if $state == removing {
+    background-color: var(--easyedu-danger-soft);
+    border-color: color-mix(in srgb, var(--easyedu-danger) 48%, var(--easyedu-card-border) 52%);
+  } @else {
+    @error "Unknown identity mutation paint: #{$state}.";
+  }
+}

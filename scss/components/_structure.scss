@@ -421,11 +421,11 @@
       @include easyedu.open-identity-rail-base(#f7fafc, #b7c5d1);
 
       @include easyedu.identity-card-paint(container);
-      border-left-color: var(--local-groupimport-easystud-grouping-rail);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping-rail));
     }
 
     &[data-easystud-grouping-id]:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
-      border-left-color: var(--local-groupimport-easystud-grouping-rail);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping-rail));
       @include easyedu.card-focus-context(0 0.5rem 1rem rgba(106, 127, 152, 0.15));
     }
 
@@ -450,13 +450,13 @@
       box-shadow: 0 0.56rem 1.05rem rgba(106, 127, 152, 0.15);
 
       &[data-easystud-grouping-id] {
-        background: var(--local-groupimport-easystud-grouping-soft);
+        @include easyedu.identity-card-surface-ink(var(--local-groupimport-easystud-grouping-soft));
         @include easyedu.identity-card-paint(container, selected);
-        border-left-color: var(--local-groupimport-easystud-grouping);
+        @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping));
       }
 
       &[data-easystud-grouping-id]::before {
-        background-color: #fff;
+        @include easyedu.identity-card-rail-glyph-surface;
       }
     }
 
@@ -504,11 +504,11 @@
     @include easyedu.identity-rail(var(--easyedu-icon-grouping));
 
     @include easyedu.identity-card-paint(unassigned);
-    border-left-color: var(--local-groupimport-easystud-ungrouped-rail);
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-ungrouped-rail));
     box-shadow: var(--local-groupimport-easystud-shadow-soft);
 
     &:focus-within {
-      border-left-color: var(--local-groupimport-easystud-ungrouped-rail);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-ungrouped-rail));
       @include easyedu.card-focus-context(
         0 0.45rem 0.95rem rgba(111, 67, 100, 0.15),
         $preserve-identity-rail: true,
@@ -740,11 +740,11 @@
 
     &:hover {
       @include easyedu.identity-card-paint(object, hover);
-      border-left-color: var(--local-groupimport-easystud-group-rail);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
     }
 
     &:focus-within {
-      border-left-color: var(--local-groupimport-easystud-group-rail);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
       @include easyedu.card-focus-context(
         var(--easyedu-shadow-soft),
         $preserve-identity-rail: true,
@@ -759,12 +759,12 @@
     &.is-drop-target,
     &.is-selected {
       --local-groupimport-group-surface: var(--local-groupimport-easystud-group-soft);
-      background: var(--local-groupimport-easystud-group-soft);
+      @include easyedu.identity-card-surface-ink(var(--local-groupimport-easystud-group-soft));
       @include easyedu.identity-card-paint(object, selected);
-      border-left-color: var(--local-groupimport-easystud-group);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group));
 
       &::before {
-        background-color: #fff;
+        @include easyedu.identity-card-rail-glyph-surface;
       }
     }
 
@@ -805,8 +805,7 @@
 
   &-group.is-newly-created,
   &-tree__section[data-easystud-grouping-id].is-newly-created {
-    background-color: var(--easyedu-success-soft);
-    border-color: color-mix(in srgb, var(--easyedu-success) 48%, var(--easyedu-card-border) 52%);
+    @include easyedu.identity-card-mutation-paint(created);
     position: relative;
     transition:
       background-color var(--easyedu-motion-normal) ease,
@@ -816,8 +815,7 @@
 
   &-group.is-being-removed,
   &-tree__section[data-easystud-grouping-id].is-being-removed {
-    background-color: var(--easyedu-danger-soft);
-    border-color: color-mix(in srgb, var(--easyedu-danger) 48%, var(--easyedu-card-border) 52%);
+    @include easyedu.identity-card-mutation-paint(removing);
     pointer-events: none;
   }
 
