@@ -1584,3 +1584,7 @@
   letter-spacing: 0.03em;
   color: var(--easyedu-text-muted);
 }
+
+
+// Accepted native settings-field caption tone.
+@mixin settings-field-heading-ink { color: var(--easyedu-text-muted); }

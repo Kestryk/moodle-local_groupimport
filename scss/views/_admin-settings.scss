@@ -246,7 +246,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 
   .local-groupimport-admin-settings__page-identity {
     display: block;
-    padding-block: 0.15rem;
+    @include easyedu.page-identity-compact-inset;
   }
 
   // Project Moodle's native headings onto the measured Foundation roles.
@@ -333,7 +333,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     h4 {
       @include easyedu.type-control-label;
 
-      color: var(--easyedu-text-muted);
+      @include easyedu.settings-field-heading-ink;
       margin: 0;
     }
   }
