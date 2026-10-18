@@ -1387,9 +1387,7 @@
     }
 
     .local-groupimport-easystud-pagination__select[data-easystud-deselect-results="1"] {
-      background: #f7fafc;
-      border-color: #b9c6d4;
-      color: #40566c;
+      @include easyedu.pagination-deselect-palette($quiet: true);
     }
 
     &.is-placeholder {

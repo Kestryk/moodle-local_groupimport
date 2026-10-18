@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80: share deselection palettes and field-peer frames; centre field-peer labels through the Kit.
+
 - 2026-10-18 [N0] K16-80: route compact section chevrons and the legacy filter glyph adapter through the Kit; compiled CSS unchanged.
 
 - 2026-10-18 [N0] K16-80: share card-header/menu target compositions and correct direct-action glyph centring with natural line metrics.

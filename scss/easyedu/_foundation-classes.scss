@@ -10,6 +10,20 @@
 @use "components/color-panel";
 @use "tokens";
 
+// Compose after a secondary button for a fixed regular field peer. Touch
+// search rows may stretch; the accepted peer frame itself remains38px.
+@mixin foundation-field-peer-frame {
+  align-self: stretch;
+  block-size: 2.375rem;
+
+  // Native host classes also receive a later Foundation font shorthand.
+  // Qualify the shared metric so that shorthand cannot undo the centring.
+  &.btn,
+  &.easyedu-button--secondary {
+    line-height: normal;
+  }
+}
+
 @mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
   @if $secondary and $danger {
     @error "A Foundation action cannot be both secondary and destructive.";
