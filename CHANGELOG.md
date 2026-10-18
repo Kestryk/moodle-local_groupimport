@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F26B: remove unused Student Management fake-page shell, heading, navigation and layout rules; preserve live component skeletons and all other ordered CSS.
+
 - 2026-10-18 [N0] K16-80 F23C: share details-image paint, intrinsic sizing, placeholder and filename variants; centre the placeholder glyph without changing its frame.
 
 - 2026-10-18 [N0] K16-80 F22C: share compact workspace action geometry and centre view/recovery labels and glyphs with natural font metrics; preserve outer frames and unrelated CSS.

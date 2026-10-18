@@ -107,14 +107,6 @@
       visibility: hidden;
       width: 100%;
     }
-
-    .local-groupimport-easystud__loading-skeleton {
-      display: grid;
-    }
-  }
-
-  &.is-easystud-loading-skeleton-exiting &__loading-skeleton {
-    @include easyedu.loading-opacity-hidden;
   }
 
   &.is-easystud-loading-content-entering &__content {
@@ -130,64 +122,6 @@
     opacity: 1;
   }
 
-  &__loading-skeleton {
-    // Compatibility aliases resolve to the Kit; no private loading palette.
-    --local-groupimport-easystud-loading-surface: var(--easyedu-loading-surface);
-    --local-groupimport-easystud-loading-surface-soft: var(--easyedu-loading-surface-soft);
-    --local-groupimport-easystud-loading-surface-strong: var(--easyedu-loading-surface-strong);
-    --local-groupimport-easystud-loading-border: var(--easyedu-loading-border);
-    --local-groupimport-easystud-loading-radius: var(--easyedu-loading-radius);
-    --local-groupimport-easystud-loading-gap: var(--easyedu-loading-stack-gap);
-    --local-groupimport-easystud-loading-shimmer-duration: var(--easyedu-loading-shimmer-duration);
-    --local-groupimport-easystud-loading-shimmer-highlight: var(--easyedu-loading-shimmer-highlight);
-
-    background: transparent;
-    border: 0;
-    box-sizing: border-box;
-    box-shadow: none;
-    display: none;
-    gap: 0.85rem;
-    inline-size: 100%;
-    max-inline-size: 100%;
-    min-width: 0;
-    padding: 0.45rem 0 0;
-    @include easyedu.loading-opacity-transition(320ms);
-    @include easyedu.loading-appearance;
-  }
-
-  &__loading-header {
-    @include easyedu.skeleton-page-heading;
-  }
-
-  &__loading-header-eyebrow {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    height: 0.72rem;
-    width: min(100%, 9rem);
-  }
-
-  &__loading-header-title {
-    height: 1.55rem;
-    width: min(100%, 28rem);
-  }
-
-  &__loading-header-intro {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    height: 0.82rem;
-    width: min(100%, 52rem);
-  }
-
-  &__loading-header-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 0.25rem;
-  }
-
-  &__loading-header-action {
-    height: 2.25rem;
-    width: 10.75rem;
-  }
-
   &__loading-surface {
     @include easyedu.navigation-skeleton-cue-overlay(
       $surface: var(--local-groupimport-easystud-loading-surface),
@@ -195,50 +129,6 @@
       $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight),
       $radius: var(--local-groupimport-easystud-loading-radius)
     );
-  }
-
-  &__loading-navigation {
-    @include easyedu.skeleton-section-navigation-gap;
-  }
-
-  &__loading-navigation-frame {
-    @include easyedu.navigation-skeleton-compact-frame(
-      $surface: var(--easyedu-loading-frame-surface),
-      $border: var(--local-groupimport-easystud-loading-border),
-      $radius: 1rem
-    );
-  }
-
-  &__loading-navigation-guide {
-    @include easyedu.navigation-skeleton-guide-start-cue(
-      $surface: var(--local-groupimport-easystud-loading-surface),
-      $soft: var(--easyedu-loading-shimmer-soft),
-      $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight)
-    );
-  }
-
-  &__loading-navigation-cues {
-    @include easyedu.navigation-skeleton-single-line;
-  }
-
-  &__loading-navigation-cue {
-    @include easyedu.navigation-skeleton-compact-cue(
-      $surface: var(--local-groupimport-easystud-loading-surface),
-      $soft: var(--easyedu-loading-shimmer-soft),
-      $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight),
-      $radius: var(--local-groupimport-easystud-loading-radius)
-    );
-
-  }
-
-  &__loading-layout {
-    align-items: stretch;
-    box-sizing: border-box;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: minmax(0, 1fr);
-    max-inline-size: 100%;
-    min-width: 0;
   }
 
   &__loading-panel {
@@ -388,11 +278,6 @@
   &__loading-view-toggle-item {
     background: var(--local-groupimport-easystud-loading-surface-soft);
     height: 3.15rem;
-  }
-
-  &__loading-layout {
-    gap: 1.35rem;
-    grid-template-columns: minmax(23rem, 0.92fr) minmax(29rem, 1.38fr);
   }
 
   &__loading-panel--structure {
@@ -546,38 +431,19 @@
   }
 
   @media (max-width: 1200px) {
-    &__loading-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
   }
 
   @media (max-width: 1024px) {
     // Reserve the compact EasyStud header/navigation height that is rendered
     // by the ready state above the workspace switcher.
-    &__loading-skeleton {
-      padding-top: 0.75rem;
-    }
-
-    &__loading-header {
-      min-height: 0;
-    }
 
     @media (max-width: 390px) {
-      &__loading-skeleton {
-        padding-top: 1.25rem;
-      }
     }
 
     @media (min-width: 391px) and (max-width: 520px) {
-      &__loading-skeleton {
-        padding-top: 1.6rem;
-      }
     }
 
     @media (min-width: 521px) {
-      &__loading-skeleton {
-        padding-top: 0.25rem;
-      }
     }
 
   &__loading-view-toggle {
@@ -596,9 +462,6 @@
   }
 
   @media (max-width: 64rem) {
-    &__loading-navigation-frame {
-      @include easyedu.navigation-skeleton-compact-mobile;
-    }
   }
 
   // Native browser zoom can reduce the effective CSS viewport below the phone
@@ -608,12 +471,7 @@
     // The native-zoom viewport can reduce the available inline space to 160 CSS
     // px. Give the compact Navigation Skeleton its resolved mobile block size
     // explicitly so its frame remains measurable independently of grid sizing.
-    &__loading-navigation-frame {
-      block-size: var(--easyedu-navigation-skeleton-compact-min-block-size);
-      box-sizing: border-box;
-    }
 
-    &__loading-header-actions,
     &__loading-panel-header,
     &__loading-pagination {
       display: grid;
@@ -623,7 +481,6 @@
       min-inline-size: 0;
     }
 
-    &__loading-header-action,
     &__loading-panel-secondary,
     &__loading-pagination-summary,
     &__loading-pagination-rail {
@@ -641,34 +498,17 @@
 
   @media (min-width: 1025px) {
     // Reserve the desktop navigation/header height used by the ready state.
-    &__loading-skeleton {
-      padding-top: 2.5rem;
-    }
 
     @media (max-width: 1200px) {
-      &__loading-skeleton {
-        padding-top: 4.7rem;
-      }
 
       @media (max-width: 1100px) {
-        &__loading-skeleton {
-          padding-top: 6.14rem;
-        }
       }
 
       @media (min-width: 1101px) {
-        &__loading-layout {
-          inset-block-start: 1.4rem;
-          position: relative;
-        }
       }
     }
 
     @media (min-width: 1201px) {
-      &__loading-layout {
-        inset-block-start: 0;
-        position: relative;
-      }
     }
   }
 
