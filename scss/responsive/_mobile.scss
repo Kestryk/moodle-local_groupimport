@@ -102,10 +102,9 @@
 
       .btn {
         flex: 0 0 auto;
-        font-size: 0.82rem;
-        min-height: 2.35rem;
-        min-width: 0;
-        padding: 0.45rem 0.55rem;
+        @include easyedu.workspace-panel-action-compact {
+          min-width: 0;
+        }
         white-space: nowrap;
 
         &:disabled,

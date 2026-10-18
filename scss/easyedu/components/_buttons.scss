@@ -98,7 +98,7 @@
 // Shared geometry for every action that combines one icon and a translated
 // label. The parent owns spacing; glyph whitespace and product selectors do
 // not. This can be consumed independently from the semantic button skin.
-@mixin action-content($gap: var(--easyedu-action-icon-gap, 0.65rem)) {
+@mixin action-content($gap: var(--easyedu-action-icon-gap, 0.65rem), $icon-line-height: 1) {
   align-items: center;
   column-gap: $gap;
   display: inline-flex;
@@ -112,7 +112,7 @@
     display: inline-flex;
     flex: 0 0 auto;
     justify-content: center;
-    line-height: 1;
+    line-height: $icon-line-height;
     margin-inline: 0;
     min-inline-size: 1em;
     width: 1em;
@@ -136,7 +136,7 @@
 // Compact selection actions in list toolbars and their responsive action tray.
 // Palette is explicit so native Bootstrap focus/hover cannot replace the
 // semantic role. Keep overflow/routing/selection ownership in the consumer.
-@mixin selection-action($tone: primary, $solid: false, $tray: false) {
+@mixin selection-action($tone: primary, $solid: false, $tray: false, $icon-line-height: 1) {
   @if not list.index((primary, neutral, danger), $tone) {
     @error "selection-action expects primary, neutral or danger.";
   }
@@ -152,7 +152,7 @@
     $strong: var(--easyedu-danger);
     $ring: var(--easyedu-focus-ring-danger);
   }
-  @include action-content(0.35rem);
+  @include action-content(0.35rem, $icon-line-height);
   @include button-size(small);
   @include control-state-transition;
   & {
@@ -204,8 +204,8 @@
 // Quiet recovery action inside an already framed selection capsule. Keep the
 // normal selection-action density, type, icon gap, state Motion and keyboard
 // ring; the outer capsule owns the persistent border, not this inner control.
-@mixin selection-recovery-action {
-  @include selection-action(neutral);
+@mixin selection-recovery-action($natural-icons: false) {
+  @include selection-action(neutral, $icon-line-height: if($natural-icons, normal, 1));
   & { background: transparent; border-color: transparent; }
   &:focus { background: transparent; }
   &:hover,
@@ -814,4 +814,13 @@
       color: var(--easyedu-danger);
     }
   }
+}
+
+// Existing compact workspace action frame. The host retains its minimum
+// inline extent through the content slot and its responsive visibility.
+@mixin workspace-panel-action-compact {
+  font-size: 0.82rem;
+  min-height: 2.35rem;
+  @content;
+  padding: 0.45rem 0.55rem;
 }

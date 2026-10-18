@@ -306,7 +306,7 @@
   }
 }
 
-@mixin sticky-selection-button {
+@mixin sticky-selection-button($natural-labels: false) {
   align-items: center;
   background: var(--easyedu-surface);
   border-color: var(--easyedu-control-border);
@@ -318,6 +318,10 @@
   min-height: 2.25rem;
   padding-inline: 0.8rem;
   white-space: nowrap;
+
+  @if $natural-labels {
+    @include typography.control-label-natural-metrics;
+  }
 
   &[hidden] {
     display: none;

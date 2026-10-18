@@ -964,7 +964,7 @@ body.easyedu-motion-disabled :is(.easyedu-ui, .easyedu-guide, .easyedu-guide-hig
 .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {align-items: center;column-gap: 0.35rem;display: inline-flex;justify-content: center;line-height: 1.2;row-gap: 0.35rem;font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action .fa,
-.easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action [class*=" fa-"] {align-items: center;display: inline-flex;flex: 0 0 auto;justify-content: center;line-height: 1;margin-inline: 0;min-inline-size: 1em;width: 1em;
+.easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action [class*=" fa-"] {align-items: center;display: inline-flex;flex: 0 0 auto;justify-content: center;line-height: normal;margin-inline: 0;min-inline-size: 1em;width: 1em;
 }
 .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {background: var(--easyedu-surface);border: 1px solid var(--easyedu-text-muted);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text-muted);font-family: var(--easyedu-font-family-ui);font-weight: 600;text-align: center;text-decoration: none;white-space: nowrap;
 }
@@ -2462,6 +2462,13 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   }
 }
 :is(.easyedu-ui[data-easyedu-motion-level=reduced], body.easyedu-motion-reduced, [data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .easyedu-ui .easyedu-search-field {transition: none;
+}
+
+.easyedu-workspace-view-switcher > button > span:not(.fa),
+.easyedu-workspace-view-switcher .btn > span:not(.fa) {line-height: normal;
+}
+.easyedu-workspace-view-switcher > button > .fa,
+.easyedu-workspace-view-switcher .btn > .fa {line-height: normal;
 }
 
 .easyedu-ui dialog.easyedu-preferences-dialog {background: var(--easyedu-surface);border: 1px solid var(--easyedu-modal-border);border-radius: var(--easyedu-modal-radius);box-shadow: var(--easyedu-modal-shadow);overflow: hidden;box-sizing: border-box;position: fixed;inset: 0;inline-size: min(35rem, 100vw - 2rem);max-inline-size: calc(100vw - 2rem);max-block-size: calc(100dvh - 2rem);margin: auto;padding: 0;color: var(--easyedu-text);
