@@ -2823,7 +2823,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-first].btn,
 .local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-prev].btn,
 .local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-next].btn,
-.local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-last].btn {background: transparent;border-color: transparent;border-radius: 50%;height: 1.62rem;inline-size: 1.62rem;min-height: 1.62rem;min-inline-size: 1.62rem;min-width: 1.62rem;width: 1.62rem;
+.local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-last].btn {background: transparent;border-color: transparent;border-radius: 50%;height: 1.62rem;line-height: normal;inline-size: 1.62rem;min-height: 1.62rem;min-inline-size: 1.62rem;min-width: 1.62rem;width: 1.62rem;
 }
 .local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-first].btn:not(:disabled):hover,
 .local-groupimport-easystud .local-groupimport-easystud-pagination [data-easystud-page-prev].btn:not(:disabled):hover,
