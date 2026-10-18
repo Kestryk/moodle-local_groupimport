@@ -327,8 +327,7 @@
       gap: 0.55rem;
       grid-template-columns: 2rem minmax(0, 1fr) auto auto;
       max-inline-size: 100%;
-      min-height: 2.72rem;
-      padding: 0.45rem 0.55rem;
+      @include easyedu.skeleton-card-frame(person);
     }
   }
 
@@ -346,8 +345,7 @@
     & {
       box-sizing: border-box;
       max-inline-size: 100%;
-      min-height: 3.6rem;
-      padding: 0.58rem 0.65rem;
+      @include easyedu.skeleton-card-frame(object);
     }
   }
 
@@ -363,7 +361,7 @@
     }
 
     &__loading-participant-card {
-      min-height: 2.5rem;
+      @include easyedu.skeleton-card-person-compact;
     }
   }
 
@@ -502,9 +500,7 @@
   }
 
   &__loading-card-avatar {
-    block-size: 2rem;
-    border-radius: 50%;
-    inline-size: 2rem;
+    @include easyedu.skeleton-card-avatar;
   }
 
   // Each line is a real surface so the Kit shimmer sweeps a visible grey bar.
@@ -517,15 +513,12 @@
   }
 
   &__loading-card-line {
-    background: var(--local-groupimport-easystud-loading-surface-strong);
-    block-size: 0.6rem;
-    border-radius: 999px;
+    @include easyedu.skeleton-card-copy-line(strong, var(--local-groupimport-easystud-loading-surface-strong));
     inline-size: min(62%, 9rem);
   }
 
   &__loading-card-line--secondary {
-    background: var(--local-groupimport-easystud-loading-surface);
-    block-size: 0.45rem;
+    @include easyedu.skeleton-card-copy-line(soft, var(--local-groupimport-easystud-loading-surface));
     inline-size: min(88%, 13rem);
   }
 
