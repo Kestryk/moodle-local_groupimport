@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F23: compose modal overlay, surface, header and body through shared Kit recipes; preserve all ordered CSS.
+
 - 2026-10-18 [N0] K16-80 F22: share accepted view choices and selection-recovery paint; retire nine unused tour-button rules without changing active CSS.
 
 - 2026-10-18 [N1] K16-80: share filter-choice states and command labels in the Kit; centre touch-choice text with natural line metrics.

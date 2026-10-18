@@ -794,13 +794,11 @@
     }
 
     &-modal {
-      padding: 0.65rem;
+      @include easyedu.modal-overlay-inset(0.65rem);
     }
 
     &-modal__dialog {
-      border-radius: 0.85rem;
-      max-height: calc(100vh - 1.3rem);
-      width: 100%;
+      @include easyedu.modal-surface-compact;
     }
 
     &-modal__dialog--tutorial {

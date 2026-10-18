@@ -32,12 +32,23 @@
   }
 }
 
-@mixin modal-surface {
+@mixin modal-surface($border: null, $shadow: null, $width: null) {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-modal-border);
   border-radius: var(--easyedu-modal-radius);
   box-shadow: var(--easyedu-modal-shadow);
   overflow: hidden;
+
+  @if $border != null {
+    border-color: $border;
+  }
+  @if $shadow != null {
+    box-shadow: $shadow;
+  }
+  @if $width != null {
+    max-width: $width;
+    width: min(100%, $width);
+  }
 }
 
 // Shared contextual chrome for plugin-owned or Moodle-native modal content.
@@ -743,4 +754,42 @@
     border-color: color-mix(in srgb, var(--easyedu-warning) 28%, #fff 72%);
     color: color-mix(in srgb, var(--easyedu-warning) 78%, #000 22%);
   }
+}
+
+// Accepted blocking-dialog frame; placement and Motion lifecycle stay with the host.
+@mixin modal-overlay($padding: 1rem) {
+  align-items: center;
+  background: rgba(15, 23, 42, 0.45);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: $padding;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1050;
+}
+
+@mixin modal-header-frame($border) {
+  align-items: center;
+  border-bottom: 1px solid $border;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.9rem;
+}
+
+@mixin modal-body-inset {
+  padding: 1rem;
+}
+
+@mixin modal-surface-compact {
+  border-radius: 0.85rem;
+  max-height: calc(100vh - 1.3rem);
+  width: 100%;
+}
+
+// Inset modifier without repeating the overlay paint or positioning.
+@mixin modal-overlay-inset($padding) {
+  padding: $padding;
 }

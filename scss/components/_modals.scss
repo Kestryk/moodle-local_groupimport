@@ -10,17 +10,7 @@
   }
 
   &-modal {
-    align-items: center;
-    background: rgba(15, 23, 42, 0.45);
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    left: 0;
-    padding: 1rem;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1050;
+    @include easyedu.modal-overlay;
 
     &[hidden] {
       display: none;
@@ -28,12 +18,11 @@
   }
 
   &-modal__dialog {
-    @include easyedu.modal-surface;
-
-    border-color: var(--local-groupimport-easystud-border);
-    box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.24);
-    max-width: 42rem;
-    width: min(100%, 42rem);
+    @include easyedu.modal-surface(
+      $border: var(--local-groupimport-easystud-border),
+      $shadow: 0 1rem 3rem rgba(15, 23, 42, 0.24),
+      $width: 42rem
+    );
   }
 
   &-modal:not([hidden]):not(.is-closing) {
@@ -93,15 +82,11 @@
   }
 
   &-modal__header {
-    align-items: center;
-    border-bottom: 1px solid var(--local-groupimport-easystud-border);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 1rem 0.9rem;
+    @include easyedu.modal-header-frame(var(--local-groupimport-easystud-border));
   }
 
   &-modal__body {
-    padding: 1rem;
+    @include easyedu.modal-body-inset;
   }
 
   // One shared Close anatomy for Participant, Group, Grouping, Move and
