@@ -12,7 +12,7 @@
     @include easyedu.workspace-lane(var(--easyedu-participant-rail));
     padding-inline: 0;
     > .card-body {
-      padding-inline: var(--easyedu-lane-inset);
+      @include easyedu.workspace-lane-content-inset;
       container: easystud-panel / inline-size;
     }
   }
@@ -22,13 +22,11 @@
   .local-groupimport-easystud__filters,
   .local-groupimport-easystud-create-card,
   .local-groupimport-easystud-create-row {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
+    @include easyedu.filter-shell($embedded: true);
   }
   .local-groupimport-easystud__filters,
   .local-groupimport-easystud-create-card,
-  .local-groupimport-easystud-create-row { padding-inline: 0; }
+  .local-groupimport-easystud-create-row { @include easyedu.workspace-lane-content-inset($flush: true); }
 
   .local-groupimport-easystud__participant-list,
   .local-groupimport-easystud-participant-groups__list,
