@@ -588,6 +588,20 @@
   }
 }
 
+// OLD-B K16-46: the existing switch, without a visible state caption. The
+// setting's external native label remains its accessible name. Track36x20,
+// thumb14 and inset3 are inherited unchanged from filter-toggle.
+@mixin filter-toggle-standalone {
+  block-size: var(--easyedu-touch-target-min);
+  inline-size: var(--easyedu-touch-target-min);
+  justify-content: center;
+
+  > span {
+    inline-size: 2.25rem;
+    padding: 0;
+  }
+}
+
 // Opt-in trailing variant: same native checkbox, track, thumb and Motion as
 // filter-toggle. Its label wraps independently of the reserved switch lane.
 @mixin filter-toggle-trailing {

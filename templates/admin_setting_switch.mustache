@@ -1,0 +1,14 @@
+{{!
+    @template local_groupimport/admin_setting_switch
+
+    Native admin checkbox setting, presented by the Kit standalone switch.
+    Context: id, name, no, value, checked, readonly, label. No visible state text.
+    Native checked state is exposed by role=switch; no redundant ARIA state.
+}}
+<div class="form-checkbox defaultsnext easyedu-ui">
+    {{^readonly}}<input type="hidden" name="{{name}}" value="{{no}}">{{/readonly}}
+    <label class="easyedu-filter-toggle easyedu-filter-toggle--standalone">
+        <input {{#readonly}}disabled{{/readonly}} type="checkbox" role="switch" name="{{name}}" value="{{value}}" id="{{id}}" aria-label="{{label}}" {{#checked}}checked{{/checked}}>
+        <span aria-hidden="true"></span>
+    </label>
+</div>

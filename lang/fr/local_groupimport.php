@@ -1516,3 +1516,4 @@ $string['movejobcancelled'] = 'Le déplacement en arrière-plan a été annulé.
 $string['movejobbusy'] = 'Un déplacement est en cours de préparation ou de traitement. Veuillez réessayer dans un instant.';
 $string['messageprovider:movecomplete'] = 'Déplacements de membres en arrière-plan';
 $string['privacy:metadata:movejobs'] = 'Personne à l’origine de la demande, appartenances sélectionnées, destination et progression des déplacements en arrière-plan. Conservation selon la durée réglée pour l’historique.';
+$string['removemembernamedgroup'] = 'Retirer {$a->member} du groupe « {$a->group} »';

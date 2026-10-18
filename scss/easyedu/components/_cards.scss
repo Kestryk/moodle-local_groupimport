@@ -421,33 +421,50 @@
   inline-size: related-person-remove-size();
   min-block-size: related-person-remove-size();
   min-inline-size: related-person-remove-size();
+
+  @media (max-width: 48rem), (pointer: coarse) {
+    --easyedu-related-person-remove-size: var(--easyedu-touch-target-min);
+  }
 }
 
 @mixin related-person-remove {
   align-items: center;
-  background: #f8fbfe;
-  border-color: #cfdce8;
-  border-radius: 0.5rem;
-  border-style: solid;
-  border-width: 1px;
-  box-shadow: 0 0.1rem 0.3rem rgba(64, 92, 116, 0.08);
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
   box-sizing: border-box;
-  color: #486985;
+  color: #5c6c7d;
   display: inline-grid;
   flex: 0 0 auto;
-  font-size: 1rem;
+  font-size: 0;
   font-weight: 700;
   height: related-person-remove-size();
   line-height: 1;
   place-items: center;
   padding: 0 !important;
+  position: relative;
   text-decoration: none !important;
+  transition: color var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
   width: related-person-remove-size();
+  @include related-person-remove-target;
 
-  span {
-    display: block;
-    line-height: 1;
-    margin: 0;
+  // The sign is geometry, not a font glyph. Keep legacy aria-hidden content
+  // for compatibility; a single centred stroke serves every consumer.
+  > span {
+    visibility: hidden;
+  }
+
+  &::before {
+    background: currentColor;
+    block-size: 1.5px;
+    content: "";
+    inline-size: 12px;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
   }
 
   // The action remains discoverable on touch screens, which have no hover.
@@ -457,17 +474,20 @@
 
   &:hover,
   &:focus {
-    background: #eef5fb;
-    border-color: #adc4d8;
-    box-shadow: 0 0.2rem 0.45rem rgba(64, 92, 116, 0.12);
-    color: #294b68;
+    background: transparent;
+    box-shadow: none;
+    color: var(--easyedu-primary-strong);
     text-decoration: none !important;
   }
 
   &:focus-visible {
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
-    border-color: var(--easyedu-control-focus-border) !important;
-    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:where(.easyedu-related-person-row:not(:hover):not(:focus-within) > *):not(.is-easyedu-guide-highlight-target):not([aria-expanded="true"]) {
+      opacity: 0;
+    }
   }
 }
 

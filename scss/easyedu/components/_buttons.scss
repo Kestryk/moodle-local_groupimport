@@ -242,25 +242,27 @@
 @mixin filter-reset {
   @include secondary-action;
 
-  & {
-    align-self: center;
-    justify-content: center;
-    border-color: var(--easyedu-control-border);
-    color: var(--easyedu-primary-strong);
-    font-size: var(--easyedu-font-size-caption);
-    min-height: 1.9rem;
-    padding: 0.32rem 0.7rem;
-    width: auto;
+  &:focus {
+    background: var(--easyedu-surface);
+    color: var(--easyedu-text);
   }
 
   &:not(:disabled):not([aria-disabled="true"]):not(.disabled):hover,
   &:not(:disabled):not([aria-disabled="true"]):not(.disabled):active {
     background: var(--easyedu-primary-soft);
-    color: var(--easyedu-primary-strong);
+    color: var(--easyedu-text);
+    text-decoration: none;
   }
 
-  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):focus {
-    color: var(--easyedu-primary-strong);
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled {
+    background: var(--easyedu-surface-soft);
+    color: var(--easyedu-text-muted);
   }
 
   @include scale.touch-target-floor;

@@ -1519,3 +1519,4 @@ $string['movejobcancelled'] = 'The background transfer was cancelled.';
 $string['movejobbusy'] = 'Another transfer is being queued or processed. Please try again shortly.';
 $string['messageprovider:movecomplete'] = 'Background member transfers';
 $string['privacy:metadata:movejobs'] = 'Requesting user, selected source memberships, destination and progress of background transfers. Retained for the configured history retention period.';
+$string['removemembernamedgroup'] = 'Remove {$a->member} from group {$a->group}';

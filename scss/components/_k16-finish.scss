@@ -22,7 +22,7 @@
     @include easyedu.filter-panel-trailing-actions;
   }
   .local-groupimport-easystud__filters-reset {
-    @include easyedu.selection-recovery-action;
+    @include easyedu.filter-reset;
   }
   .local-groupimport-easystud-user__meta .badge {
     @include easyedu.card-label;
@@ -43,7 +43,7 @@
     > .easyedu-related-person-row__selector { margin-right: 0; }
     // K16-81: the header row now ends with its labels; the "−" shares that right edge.
     > .easyedu-related-person-row__remove {
-      // The Kit square (1.45rem) shares the header's right edge, whatever its size.
+      // The Kit remove target shares the header's right edge, whatever its size.
       margin-inline-end: 0;
     }
   }
