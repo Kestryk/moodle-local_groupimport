@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F16B: share checked checkbox paint and mark between the Kit checked/indeterminate states and the selected-card adapter; preserve exact ordered CSS.
+
 - 2026-10-18 [N0] K16-80 F05B: share logical visually-hidden geometry, metadata rounding guard, compact badge and relation-list reset; preserve exact ordered CSS.
 
 - 2026-10-18 [N0] K16-80 F25H: share object-card rail/insets, catalog inset and title block metrics; preserve exact ordered CSS and responsive states.

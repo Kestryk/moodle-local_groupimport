@@ -28,6 +28,13 @@
       "ciExecutable": false,
       "source": "f05b.json",
       "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-next-20261018\\f05b"
+    },
+    {
+      "id": "K1680-NEXT-F16B",
+      "status": "candidate",
+      "ciExecutable": false,
+      "source": "f16b.json",
+      "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-next-20261018\\f16b"
     }
   ]
 }
