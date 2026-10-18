@@ -9,6 +9,7 @@
 // --easyedu-radius, --easyedu-shadow, --easyedu-shadow-soft.
 
 @use "typography";
+@use "focus";
 
 // Collapsible deposit shell: retain the accepted open/folded/stacked inset.
 // The caller keeps its breakpoint, grid placement and disclosure behaviour.
@@ -332,3 +333,26 @@
   text-align: center;
   white-space: nowrap;
 }
+
+// Quiet recovery modifier, composed after sticky-selection-button.
+@mixin sticky-selection-recovery-paint {
+
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+
+      &:not(:disabled):hover {
+        background: var(--easyedu-surface-soft);
+        border-color: transparent;
+      }
+
+      &:focus-visible {
+        @include focus.ring;
+      }
+
+      &:disabled {
+        background: transparent;
+        border-color: transparent;
+        opacity: 0.55;
+      }
+    }

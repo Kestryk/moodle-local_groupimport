@@ -1,5 +1,6 @@
 // Layout, navigation, panels and filters.
 @use "../easyedu" as easyedu;
+@use "../easyedu/workspace-control-classes" as workspace;
 
 .local-groupimport-easystud {
   position: relative;
@@ -915,24 +916,7 @@
 
     // R10-12: only the recovery capsule owns a resting border.
     &.btn {
-      background: transparent;
-      border-color: transparent;
-      box-shadow: none;
-
-      &:not(:disabled):hover {
-        background: var(--easyedu-surface-soft);
-        border-color: transparent;
-      }
-
-      &:focus-visible {
-        @include easyedu.ring;
-      }
-
-      &:disabled {
-        background: transparent;
-        border-color: transparent;
-        opacity: 0.55;
-      }
+      @include easyedu.sticky-selection-recovery-paint;
     }
   }
 
@@ -947,72 +931,18 @@
   }
 
   &__layout-mode-group {
-    background: #f4f8fb;
-    border: 1px solid #c8dae9;
-    border-radius: 1.15rem;
-    box-shadow: 0 0.38rem 0.8rem rgba(31, 68, 104, 0.08);
-    display: inline-flex;
-    gap: 0.38rem;
-    grid-column: 2;
-    justify-content: center;
-    max-width: min(100%, 44rem);
-    padding: 0.34rem;
-    width: auto;
+    @include workspace.workspace-view-frame {
+      grid-column: 2;
+    }
   }
 
   &__layout-mode-group > .btn {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-radius: 0.72rem !important;
-    box-shadow: none;
-    color: var(--local-groupimport-easystud-text-muted);
-    display: inline-flex;
-    flex: 0 1 auto;
-    font-weight: 650;
-    gap: 0.52rem;
-    justify-content: center;
-    margin: 0 !important;
-    min-height: 3.15rem;
-    min-width: 12rem;
-    padding: 0.72rem 1.05rem;
-    white-space: nowrap;
-
-    .fa {
-      align-items: center;
-      background: rgba(12, 113, 194, 0.1);
-      border-radius: 0.72rem;
-      color: #0c71c2;
-      display: inline-flex;
-      font-size: 0.92rem;
-      height: 1.75rem;
-      justify-content: center;
-      transition: background-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;
-      width: 1.75rem;
-    }
-
-    &:hover,
-    &:focus {
-      background: rgba(255, 255, 255, 0.78);
-      color: var(--local-groupimport-easystud-primary-strong);
-
-      .fa {
-        background: rgba(12, 113, 194, 0.16);
-        transform: translateY(-0.04rem);
-      }
-    }
+    @include workspace.workspace-view-choice(var(--local-groupimport-easystud-text-muted), var(--local-groupimport-easystud-primary-strong));
   }
 
   &__layout-mode-group > .btn.active,
   &__layout-mode-group > .btn[aria-pressed="true"] {
-    background: #fff;
-    box-shadow: 0 0.22rem 0.5rem rgba(21, 82, 132, 0.12);
-    color: var(--local-groupimport-easystud-primary-strong);
-
-    .fa {
-      background: #0c71c2;
-      color: #fff;
-    }
+    @include workspace.workspace-view-choice-active(var(--local-groupimport-easystud-primary-strong));
   }
 
   &__layout {
@@ -1020,86 +950,6 @@
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  &-tour-button {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-radius: 0.9rem;
-    color: #fff;
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 2.55rem;
-    justify-content: center;
-    line-height: 1;
-    padding: 0;
-    position: relative;
-    transition: box-shadow var(--easyedu-motion-fast) ease;
-    width: 2.55rem;
-
-    .fa {
-      align-items: center;
-      color: inherit;
-      display: inline-flex;
-      font-size: 1rem;
-      height: 1.2rem;
-      justify-content: center;
-      line-height: 1;
-      margin: 0;
-      width: 1.2rem;
-
-      &::before {
-        display: block;
-        line-height: 1;
-      }
-    }
-
-    &:hover {
-      box-shadow: none;
-      color: #2f7f62;
-      outline: 0;
-      transform: translateY(-0.08rem);
-    }
-
-    &:focus {
-      box-shadow: none;
-      color: #2f7f62;
-      outline: 0;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($color: var(--easyedu-focus-ring-accent));
-    }
-  }
-
-  &-tour-button__icon {
-    background: linear-gradient(135deg, #3477ab 0%, #2f8f62 100%);
-    border-color: rgba(255, 255, 255, 0.86);
-    box-shadow: 0 0.48rem 1rem rgba(35, 93, 115, 0.28);
-    color: #fff;
-    height: 2.55rem;
-    transition:
-      background var(--easyedu-motion-fast) ease,
-      border-color var(--easyedu-motion-fast) ease,
-      box-shadow var(--easyedu-motion-fast) ease,
-      color var(--easyedu-motion-fast) ease;
-    width: 2.55rem;
-  }
-
-  &-tour-button:hover &-tour-button__icon {
-    background: #fff;
-    border-color: #b9d9ca;
-    box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);
-    color: #2f7f62;
-    transform: scale(1.04);
-  }
-
-  &-tour-button:focus &-tour-button__icon {
-    background: #fff;
-    border-color: #b9d9ca;
-    box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);
-    color: #2f7f62;
   }
 
   &__panel {

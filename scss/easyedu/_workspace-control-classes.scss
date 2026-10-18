@@ -4,6 +4,88 @@
 @use "components/focus";
 @use "components/animations";
 
+// Shared accepted frame/choice compositions; the consumer retains placement.
+@mixin workspace-view-frame {
+    background: #f4f8fb;
+    border: 1px solid #c8dae9;
+    border-radius: 1.15rem;
+    box-shadow: 0 0.38rem 0.8rem rgba(31, 68, 104, 0.08);
+    display: inline-flex;
+    gap: 0.38rem;
+    @content;
+    justify-content: center;
+    max-width: min(100%, 44rem);
+    padding: 0.34rem;
+    width: auto;
+  }
+
+@mixin workspace-view-choice($muted, $strong) {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 0.72rem !important;
+    box-shadow: none;
+    color: $muted;
+    display: inline-flex;
+    flex: 0 1 auto;
+    font-weight: 650;
+    gap: 0.52rem;
+    justify-content: center;
+    margin: 0 !important;
+    min-height: 3.15rem;
+    min-width: 12rem;
+    padding: 0.72rem 1.05rem;
+    white-space: nowrap;
+
+    .fa {
+      align-items: center;
+      background: rgba(12, 113, 194, 0.1);
+      border-radius: 0.72rem;
+      color: #0c71c2;
+      display: inline-flex;
+      font-size: 0.92rem;
+      height: 1.75rem;
+      justify-content: center;
+      transition: background-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;
+      width: 1.75rem;
+    }
+
+    &:hover,
+    &:focus {
+      background: rgba(255, 255, 255, 0.78);
+      color: $strong;
+
+      .fa {
+        background: rgba(12, 113, 194, 0.16);
+        transform: translateY(-0.04rem);
+      }
+    }
+  }
+
+@mixin workspace-view-choice-active($strong) {
+    background: #fff;
+    box-shadow: 0 0.22rem 0.5rem rgba(21, 82, 132, 0.12);
+    color: $strong;
+
+    .fa {
+      background: #0c71c2;
+      color: #fff;
+    }
+  }
+
+@mixin workspace-view-choice-compact {
+      flex: 1 1 0;
+      min-width: 0;
+      min-height: 2.95rem;
+      padding: 0.55rem 0.62rem;
+      white-space: normal;
+
+      .fa {
+        height: 1.55rem;
+        width: 1.55rem;
+      }
+    }
+
 @mixin workspace-control-classes {
   .easyedu-ui .easyedu-workspace-view-switcher > button {
     font: 650 var(--easyedu-workspace-view-label-size)/1.2 var(--easyedu-font-family-ui);
