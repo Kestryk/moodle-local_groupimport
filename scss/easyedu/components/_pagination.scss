@@ -352,3 +352,40 @@
     }
   }
 }
+
+
+@mixin pagination-compact-button {
+      align-items: center;
+      border-radius: 0.48rem;
+      display: inline-flex;
+      font-size: 0.72rem;
+      height: 1.62rem;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      width: 1.62rem;
+}
+
+
+@mixin pagination-disabled-paint {
+      background: #f8fafc;
+      border-color: #e4ebf2;
+      color: #adb9c5;
+      opacity: 1;
+}
+
+
+@mixin pagination-number-label {
+      color: var(--easyedu-text);
+      font-size: 0.72rem;
+      font-weight: 650;
+      line-height: 1;
+}
+
+
+@mixin pagination-count-frame($height) {
+  align-items: center;
+  box-sizing: border-box;
+  min-height: $height;
+  padding-block: 0;
+}

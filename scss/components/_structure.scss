@@ -1276,15 +1276,7 @@
     }
 
     .btn {
-      align-items: center;
-      border-radius: 0.48rem;
-      display: inline-flex;
-      font-size: 0.72rem;
-      height: 1.62rem;
-      justify-content: center;
-      line-height: 1;
-      padding: 0;
-      width: 1.62rem;
+      @include easyedu.pagination-compact-button;
     }
 
     .local-groupimport-easystud-pagination__selection {
@@ -1324,10 +1316,7 @@
     .local-groupimport-easystud-pagination__count {
       @include easyedu.pagination-count;
 
-      align-items: center;
-      box-sizing: border-box;
-      min-height: var(--local-groupimport-result-height);
-      padding-block: 0;
+      @include easyedu.pagination-count-frame(var(--local-groupimport-result-height));
     }
 
     .local-groupimport-easystud-pagination__sort {
@@ -1343,17 +1332,11 @@
     }
 
     .btn:disabled {
-      background: #f8fafc;
-      border-color: #e4ebf2;
-      color: #adb9c5;
-      opacity: 1;
+      @include easyedu.pagination-disabled-paint;
     }
 
     [data-easystud-page-label] {
-      color: var(--easyedu-text);
-      font-size: 0.72rem;
-      font-weight: 650;
-      line-height: 1;
+      @include easyedu.pagination-number-label;
     }
 
     [data-easystud-select-results-label],
