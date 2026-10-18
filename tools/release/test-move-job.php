@@ -127,7 +127,10 @@ namespace {
         \local_groupimport\local\move_job::execute(1);
         throw new RuntimeException('Expected post-commit processor failure.');
     } catch (RuntimeException $exception) {
-        move_job_test_assert($exception->getMessage() === 'Injected message processor failure.', 'Disposed rollback hid the error.');
+        move_job_test_assert(
+            $exception->getMessage() === 'Injected message processor failure.',
+            'Disposed rollback hid the error.'
+        );
     }
     move_job_test_assert($DB->job->timenotified > 0 && $DB->job->status === 'completed', 'Committed notification lost.');
     \local_groupimport\local\move_job::execute(1);

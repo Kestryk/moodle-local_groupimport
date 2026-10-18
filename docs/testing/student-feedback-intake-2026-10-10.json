@@ -1741,5 +1741,6 @@
     "nativeUpgradeValidated": false,
     "report": "docs/testing/move-background-http-2026-10-18.md",
     "proof": "C:/dev/artifacts/move-bg-20261018"
-  }
+  },
+"codex1MoveBackgroundRebase20261018":{"base":"fa16784f","stylePrerequisite":"34787045","originalHead":"9697a992","schemaVersion":2026101801,"sourceConflicts":0,"resolvedDocumentationConflicts":["CHANGELOG.md","docs/testing/student-feedback-intake-2026-10-10.json"],"perfSrvServiceUnchanged":true,"amdUnchangedFromOriginal":true,"phpLintFiles":32,"moodlecsErrors":0,"moodlecsWarnings":27,"isolated":{"membershipTransfer":"PASS","securityS4":44,"moveWorkerCases":8,"privacyChecks":49,"upgradeXmlDb45":10,"upgradeXmlDb51":10},"runtimeAccess":false,"builds":false,"published":false,"integrationGate":"CHARGE-V2b verdict and Claude approval pending","report":"docs/testing/move-background-rebase-2026-10-18.md"}
 }
