@@ -915,15 +915,22 @@
 }
 
 // Accepted large avatar; compact visibility remains with the owning density controller.
-@mixin identity-avatar-large {
+@mixin identity-avatar-large($touch: false) {
+  @if $touch {
+    font-size: 1rem;
+    height: 3.25rem !important;
+    line-height: 3.25rem;
+    width: 3.25rem !important;
+  } @else {
   border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0.2rem 0.5rem rgba(31, 42, 55, 0.1);
   display: inline-flex;
   font-size: 1.35rem;
   height: 5.35rem !important;
-  line-height: 5.35rem;
+  line-height: normal;
   width: 5.35rem !important;
+  }
 }
 
 // Suppress only the terminal divider; keep row geometry and interaction.
@@ -932,7 +939,7 @@
 }
 
 // Accepted person-card density values; the host retains predicates and Motion.
-@mixin person-card-inset($density: detailed) {
+@mixin person-card-inset($density: detailed, $frame: true) {
   @if $density == detailed {
     padding: 0.45rem 0.9rem 0.85rem;
   } @else if $density == compact {
@@ -945,21 +952,35 @@
     min-height: 8rem;
     @content;
     padding: 0.45rem 0.9rem 0.85rem;
+  } @else if $density == touch-detailed {
+    padding: 0.72rem 0.72rem 0.72rem 0.82rem;
+  } @else if $density == touch-compact {
+    @if $frame { min-height: 2.45rem; }
+    padding-left: 3.85rem;
+  } @else if $density == touch-expanded {
+    max-height: 38rem;
+    min-height: 7rem;
+    padding: 0.72rem 0.72rem 0.72rem 0.82rem;
+  } @else if $density == narrow-detailed {
+    padding-left: 1.85rem;
+  } @else if $density == narrow-expanded {
+    max-height: 42rem;
+    padding-left: 1.85rem;
   } @else {
     @error "Unknown person-card inset density: #{$density}.";
   }
 }
 
-@mixin person-card-rail-inset($compact: false) {
-  padding-top: if($compact, 0, 1.35rem);
+@mixin person-card-rail-inset($compact: false, $touch: false) {
+  padding-top: if($compact, 0, if($touch, 1.05rem, 1.35rem));
 }
 
 @mixin person-card-secondary-copy-paint($color) {
   color: $color;
 }
 
-@mixin person-card-secondary-copy-type {
-  font-size: 0.83rem;
+@mixin person-card-secondary-copy-type($density: detailed) {
+  font-size: if($density == compact, 0.8rem, if($density == touch, 0.82rem, 0.83rem));
 }
 
 @mixin identity-card-drag-glyph-block {
