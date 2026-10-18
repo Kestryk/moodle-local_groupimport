@@ -4,6 +4,11 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "oldBNative20261018": {
+      "branch": "work/codex1/easyedu-kit-old-b-20261018",
+      "commit": "cff748730597e7782b05fc3350fe1e80528c2c96",
+      "scope": "OLD-B native containment and shared natural label metrics; eight scoped mixins identical"
+    },
     "oldBSource20261018":{"kitCommit":"fa6d0fbee9750b704957eeeb0e30d866cbfb977f","baseKit":"afcacdd4","scope":"Member remove32/44, shared secondary37.6/44, standalone admin switch44; source only, builds/native pending"},
     "k176269Ecarts20261018":{"kitCommit":"afcacdd4d40ce394cae340315f0c54c550cf1b44","baseKit":"df4c0db / 0428c2a","scope":"Display preferences Desktop32, unchanged Touch44; shared compact footer and predecessor template parity; previous pins retained"},
     "k18CMassImport20261018":{"kitCommit":"df4c0db8f6545fe10a7dc5bafd61ac567560f033","baseKit":"0428c2a","scope":"Mass Import opt-in loading, reading rhythm and native picker; prior pins and Guide values unchanged"},

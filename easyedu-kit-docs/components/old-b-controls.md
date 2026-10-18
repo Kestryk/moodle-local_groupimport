@@ -1,8 +1,8 @@
-# OLD-B controls — source candidate, 18 October 2026
+# OLD-B controls — native candidate, 18 October 2026
 
 Source reference: Product views / 03z, `OLD-B-PENPOT-2026-10-18.md`.
-This delivery contains source only. No generated stylesheet, AMD build,
-browser geometry or accessibility-tree acceptance is claimed.
+Stage1 sources were followed by pinned builds and isolated native validation.
+See the stage2 results below; human and speech-reader acceptance stay separate.
 
 ## Member remove — K16-67
 
@@ -31,7 +31,7 @@ are compatibility adapters to the same definition. Compact inline controls
 remain an explicit separate density.
 
 At a16px root: minimum height37.6px desktop and44px narrow/coarse pointer;
-font14.08px/1.2, weight600; inline padding12px; radius11.52px; white surface,
+font14.08px with natural line metrics, weight600; inline padding12px; radius11.52px; white surface,
 1px border #C8D6E3 and text #1F2A37 through the existing semantic tokens.
 Widths remain intrinsic for translations. Reset and Cancel must use this
 recipe together; do not combine Reset with the quiet selection-recovery skin.
@@ -53,7 +53,7 @@ native property, rather than a duplicated `aria-checked` attribute that could
 become stale without JavaScript. No visible On/Off caption is emitted. Native
 default-value information below the setting is retained.
 
-## Stage2 gate and scope
+## Original stage1 gate and scope
 
 Wait for the explicit end of the load-test slot before any build or browser.
 Then compile styles and affected AMD using the pinned toolchain, and measure
@@ -68,3 +68,29 @@ this delta. OLD-B mixins are identical across the canonical Kit and EasyStud's
 `scss/easyedu` source mirror. Existing unrelated differences in three files
 (responsive card variants, filter helper mixins, legacy field-peer adapter)
 are documented separately; the scoped patch does not overwrite either side.
+
+## Stage2 — native validation, 18 October 2026
+
+The isolated Claude pool copy passed FR/EN ×1600/1280/768/390. Desktop removal
+targets are32px; coarse/mobile targets44px. The12×1.5px pseudo-element has
+measured X/Y centre offsets0/0. Pointer hover/focus and permanent touch
+visibility pass. The compact row now participates in normal flow rather than
+clipping its44px child in a40px row: the measured mobile row is45px.
+
+Secondary actions keep14.08px type,12px horizontal padding,11.52px radius
+and37.6px CSS/44px touch heights. Chromium reports37.59375px for2.35rem
+(layout quantisation). Natural line metrics, already served on dialog Cancel,
+are shared by the component: measured text-box centre offsets are0/0. This
+replaces the stage1 line-height1.2 preview that placed Reset text0.953125px high.
+No positional text compensation or product-only variant is added.
+
+Standalone switch targets remain44×44px, tracks36×20px centred0/0. Browser
+accessibility exposes the translated setting name, switch role and native
+checked state before/after click or tap. Inputs are restored without submitting
+the admin form. This is browser accessibility-tree evidence, not a recorded
+NVDA/VoiceOver speech test.
+
+All measured controls fit vertically and horizontally in their containing
+rows/footers. Final native matrix:8cases,0console/page errors. Initial failed
+containment and harness runs remain in the artifact directory. No main
+localhost runtime or Penpot file is modified.

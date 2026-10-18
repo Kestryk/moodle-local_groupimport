@@ -1084,9 +1084,10 @@
   font-size: if($nested, 0.84rem, 0.94rem);
 }
 
-// Preserve existing member-row cap and intervening native flow declarations.
+// Let the shared removal target participate in flow: a fixed compact cap would
+// clip its 44px touch target. Keep the accepted minimum and host declarations.
 @mixin related-person-row-compact-frame {
-  block-size: 2.35rem;
+  block-size: auto;
   @content;
   min-block-size: 2.35rem;
 }
