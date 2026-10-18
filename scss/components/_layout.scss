@@ -673,7 +673,7 @@
   &__filters-grid {
     display: grid;
     gap: 0.65rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
   }
 
   &__filter-group {

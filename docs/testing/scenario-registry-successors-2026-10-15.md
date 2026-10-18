@@ -147,3 +147,8 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 Local-supervised `k16-13-sort-za-native.spec.js` uses disposable own8051 `k16-sort-copy-fixture.php`: FR/EN1600/390, three lists, all pages, active/inactive states and round trip alpha -> alpha-desc -> alpha. At most two screenshots, assertions/values in JSON, all product writes blocked. Production comparator unit covers stable ties and unknown-mode fallback. No styles or other runtime ports.
 
 Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. Fixture course/users deleted, leases/credentials/profile cleaned. Exact assertions, SHA256 and run roots in own8051 `local/k16-13-evidence/proof-summary.json`.
+
+
+## K18-B selection, filters and deferred fields, 2026-10-18
+
+Candidate `candidates/k18-b-20261018.json`: local-supervised, isolated lease and restored fixture, not automatic CI; human acceptance open. Strict settled Kit focus paint, native filter layout and actual detail dialogs in both languages at four widths. Earlier failed harnesses remain immutable externally.

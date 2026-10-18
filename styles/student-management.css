@@ -1094,7 +1094,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud__participant-main {flex: 1 1 auto;width: 100%;
 }
-.local-groupimport-easystud__filters-grid {display: grid;gap: 0.65rem;grid-template-columns: repeat(2, minmax(0, 1fr));
+.local-groupimport-easystud__filters-grid {display: grid;gap: 0.65rem;grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 .local-groupimport-easystud__filter-group {display: flex;flex-direction: column;gap: 0.35rem;min-width: 0;
 }
@@ -10771,7 +10771,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 
 .local-groupimport-easystud-user.is-selected:focus-within {border-left-color: var(--local-groupimport-easystud-participant);border-color: var(--easyedu-control-focus-border);box-shadow: inset 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring), 0 0.45rem 0.95rem rgba(72, 115, 173, 0.14);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: calc(var(--easyedu-focus-outline-width) * -1);border-color: var(--easyedu-control-focus-border) !important;
 }
-.local-groupimport-easystud-group.is-selected:focus-within {border-left-color: var(--local-groupimport-easystud-group-rail);border-color: var(--easyedu-control-focus-border);border-left-color: var(--local-groupimport-easystud-group-rail);box-shadow: inset 0 var(--easyedu-focus-ring-width) 0 var(--easyedu-focus-ring), inset var(--easyedu-focus-ring-width) 0 0 var(--easyedu-focus-ring), inset calc(var(--easyedu-focus-ring-width) * -1) 0 0 var(--easyedu-focus-ring), inset 0 calc(var(--easyedu-focus-ring-width) * -1) 0 var(--easyedu-focus-ring), var(--easyedu-shadow-soft);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: calc(var(--easyedu-focus-outline-width) * -1);
+.local-groupimport-easystud-group.is-selected {border-left-color: var(--local-groupimport-easystud-group-rail);border-color: var(--easyedu-control-focus-border);border-left-color: var(--local-groupimport-easystud-group-rail);box-shadow: inset 0 var(--easyedu-focus-ring-width) 0 var(--easyedu-focus-ring), inset var(--easyedu-focus-ring-width) 0 0 var(--easyedu-focus-ring), inset calc(var(--easyedu-focus-ring-width) * -1) 0 0 var(--easyedu-focus-ring), inset 0 calc(var(--easyedu-focus-ring-width) * -1) 0 var(--easyedu-focus-ring), var(--easyedu-shadow-soft);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: calc(var(--easyedu-focus-outline-width) * -1);
 }
 .local-groupimport-easystud-tree__section[data-easystud-grouping-id].is-selected:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {border-left-color: var(--local-groupimport-easystud-grouping-rail);border-color: var(--easyedu-control-focus-border);box-shadow: inset 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring), 0 0.5rem 1rem rgba(106, 127, 152, 0.15);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: calc(var(--easyedu-focus-outline-width) * -1);
 }

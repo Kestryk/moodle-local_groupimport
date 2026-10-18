@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
+
 - 2026-10-18 [N0] K16-80: record five source-preserving families on ac80d103, 240 to 196 unique declarations, native limits and open work; no runtime publication.
 
 - 2026-10-18 [N0] K16-80 F16B: share checked checkbox paint and mark between the Kit checked/indeterminate states and the selected-card adapter; preserve exact ordered CSS.

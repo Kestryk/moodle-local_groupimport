@@ -32,7 +32,7 @@ import {areSelectionTypesCompatible} from './shared';
 import {getSelectedMemberRow} from '../sm/groups';
 import {hideEasyStudModal, bindCardModalKeyboard} from './modal';
 import {
-    entitySection, entityIdentity, entityIcon, entitySkeletonField, entitySkeletonRelation,
+    entitySection, entityIdentity, entityIcon, entitySkeletonField,
     entityMemberRows, entityRelationRows, entityRelationSection, entityErrorNotice, entityCount, startEntityLoading,
     setEntityFooterBusy, bindEntityReveal,
 } from './entity_dialog';
@@ -389,7 +389,7 @@ const refreshDialogMembers = (root, item, modal) => {
     }
     const context = modal.querySelector('.local-groupimport-easystud-entity__context');
     if (context && countText) {
-        context.textContent = [countText, context.textContent.split(' · ')[1] || ''].filter(Boolean).join(' · ');
+        context.textContent = [countText, context.textContent.split(' ï¿½ ')[1] || ''].filter(Boolean).join(' ï¿½ ');
     }
 };
 
@@ -749,32 +749,21 @@ const renderAdvancedBody = (root, item, state) => {
     if (state === 'error') {
         return identity + entityErrorNotice(labels.entityloaderror || '', labels.retry || '');
     }
-    if (state === 'loading') {
-        // Header and identity are known from the card; every loaded field is a skeleton
-        // at the geometry of the final field.
-        return identity +
-            entitySection(labels.entityinformation || '',
-                '<div class="local-groupimport-easystud-entity__fields">' +
-                    entitySkeletonField('control') + entitySkeletonField('control') +
-                    entitySkeletonField('control') + entitySkeletonField('area', true) +
-                '</div>', 'information') +
-            entitySection(labels.entityrelations || '', entitySkeletonRelation('rows') + entitySkeletonRelation(), 'relations') +
-            entitySection(labels.entityimage || '',
-                '<div class="local-groupimport-easystud-entity__image-grid">' +
-                    '<span class="local-groupimport-easystud-entity__skeleton ' +
-                        'local-groupimport-easystud-entity__skeleton--image" aria-hidden="true"></span>' +
-                    '<span class="local-groupimport-easystud-entity__skeleton ' +
-                        'local-groupimport-easystud-entity__skeleton--deposit" aria-hidden="true"></span>' +
-                '</div>', 'image');
-    }
+    const loading = state === 'loading';
 
     const config = isgroup ? '' : getAdvancedValue(item, 'config');
-    const fields = renderAdvancedInput(labels.advancedsettingsname || '', 'name', name) +
+    // The state already supplies the name, identifier, image and relations.
+    // Only the description is deferred. Lock known inputs until the response
+    // arrives so rebuilding the form cannot discard an early edit or file choice.
+    const lockKnownInputs = html => loading ? html.replace(/<(input|button)(\s)/g, '<$1 disabled$2') : html;
+    const fields = lockKnownInputs(
+        renderAdvancedInput(labels.advancedsettingsname || '', 'name', name) +
         renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber', getAdvancedValue(item, 'idnumber')) +
         (isgroup ? renderAdvancedInput(labels.advancedsettingsenrolmentkey || '', 'enrolmentkey', '', 'password',
-            labels.advancedsettingsenrolmentkeyhelp || '') : '') +
-        renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
-            getAdvancedValue(item, 'raw-description')) +
+            labels.advancedsettingsenrolmentkeyhelp || '') : '')) +
+        (loading ? entitySkeletonField('area', true) :
+            renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
+                getAdvancedValue(item, 'raw-description'))) +
         (config ? renderAdvancedReadonly(labels.advancedsettingsconfigdata || '', config) : '');
     const memberSection = isgroup ? renderMemberSection(root, item, memberRows) : '';
     const groupingSection = entityRelationSection({
@@ -815,12 +804,14 @@ const renderAdvancedBody = (root, item, state) => {
         exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsgroups || ''),
     });
     const imageInputId = 'local-groupimport-easystud-group-image-' + (item.getAttribute('data-easystud-group-id') || 'current');
+    const imageSection = isgroup ? lockKnownInputs(
+        renderAdvancedImageSection(labels, getAdvancedValue(item, 'picture'), escapeHtml(imageInputId))) : '';
     return identity +
         entitySection(labels.entityinformation || '',
             '<div class="local-groupimport-easystud-settings-modal__grid local-groupimport-easystud-entity__fields">' +
                 fields + '</div>', 'information') +
         entitySection(labels.entityrelations || '', isgroup ? memberSection + groupingSection : groupSection, 'relations') +
-        (isgroup ? renderAdvancedImageSection(labels, getAdvancedValue(item, 'picture'), escapeHtml(imageInputId)) : '');
+        imageSection;
 };
 
 export const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
