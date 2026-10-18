@@ -1,4 +1,4 @@
-- 2026-10-18 [N1] MOVE-BG / K18-24 : déplacer plus de 500 membres en tâche adhoc, avec reprise par lots atomiques, suivi et notification ; préciser la restriction d’accès au devoir dans le Guide (K18-25). Mise à niveau en attente du numéro attribué par Claude.
+- 2026-10-18 [N1] MOVE-BG / K18-24 : déplacer plus de 500 membres en tâche adhoc, avec reprise par lots atomiques, suivi et notification ; préciser la restriction d’accès au devoir dans le Guide (K18-25). Migration XMLDB 2026101801 ; candidat non publié, délai HTTP global encore hors seuil et localisé avant le code métier.
 
 - 2026-10-18 [N1] K18-A : supprimer le récapitulatif de création simple, unifier Lancer/Rejouer dans le Kit, restaurer la checklist et partager le retour des clics via Motion.
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/groupimport/db" VERSION="2026101702" COMMENT="XMLDB file for EasyStud tables"
+<XMLDB PATH="local/groupimport/db" VERSION="2026101801" COMMENT="XMLDB file for EasyStud tables"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
   <TABLES>

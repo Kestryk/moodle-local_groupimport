@@ -1660,7 +1660,7 @@
     "progress": "owner and course scoped",
     "privacy": "subject projection; cancellation on erasure; existing retention setting",
     "guideAssignmentNote": "K18-25 FR/EN",
-    "migration": "version allocation required before upgrade/integration",
+    "migration": "2026101801 allocated and implemented; native upgrade/cron still to validate",
     "published": false,
     "humanAccepted": false,
     "proof": "C:/dev/artifacts/move-bg-20261018",
@@ -1676,5 +1676,37 @@
     "enqueueProfileSeconds": 0.11263394355773926,
     "integrationReady": false,
     "UIConsoleMatrix": "not certified"
+  },
+  "codex1MoveBackgroundMigration20261018": {
+    "base": "e348d271",
+    "version": 2026101801,
+    "authorization": "Claude/Kevin 2026-10-18 15:02",
+    "schema": "17 fields, primary key, unique requestkey, fingerprint and courseid/userid indexes",
+    "xmldbSourceVersions": [
+      "4.5",
+      "5.1"
+    ],
+    "isolatedChecksPerVersion": 10,
+    "codecheckerErrors": 0,
+    "codecheckerWarnings": 0,
+    "httpUnderTwoSeconds": false,
+    "httpExceptionAccepted": false,
+    "bootstrapOnlySeconds": [
+      2.102062,
+      1.92786
+    ],
+    "bootstrapSqlSeconds": [
+      0.006755,
+      0.000981
+    ],
+    "dbConnectSeconds": [
+      0.001088,
+      0.00106
+    ],
+    "diagnosis": "non-SQL Moodle bootstrap cost before MOVE-BG; exact core subsystem not yet attributed",
+    "published": false,
+    "nativeUpgradeValidated": false,
+    "report": "docs/testing/move-background-http-2026-10-18.md",
+    "proof": "C:/dev/artifacts/move-bg-20261018"
   }
 }

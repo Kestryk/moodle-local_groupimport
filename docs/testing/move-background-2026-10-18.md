@@ -1,7 +1,7 @@
 # MOVE-BG / K18-24 et note K18-25
 
 Base : `d241e83a`. Branche : `work/codex1/easystud-move-bg-20261018`.
-**Candidat non publiable en l’état : numéro de mise à niveau demandé, non reçu ; critère HTTP global < 2 s non atteint sur la copie test.**
+**Candidat non publiable en l’état : migration 2026101801 préparée, mais critère HTTP global < 2 s non atteint et non accepté par Claude.**
 
 ## Implémentation
 
@@ -13,11 +13,11 @@ Base : `d241e83a`. Branche : `work/codex1/easystud-move-bg-20261018`.
 - Privacy : export limité au sujet ; effacement d’un travail contenant ce sujet sous le même verrou que le worker ; conservation selon le réglage existant d’historique. Un effacement ne modifie pas les appartenances Moodle déjà validées.
 - K18-25 : texte FR/EN du devoir restreint au groupement corrigé. Le Guide et le Kit reçoivent cette valeur depuis `lang/` : aucune copie du texte en dur dans le miroir ou le Kit canonique, aucune modification concurrente du gabarit GMI-C2.
 
-## Migration requise avant intégration
+## Migration 2026101801
 
 `db/install.xml` décrit `local_groupimport_moves`, et `db/messages.php` déclare `movecomplete`.
-`version.php` et `db/upgrade.php` restent volontairement inchangés : ne pas intégrer avant attribution du numéro par Claude/Kevin et ajout de l’étape XMLDB correspondante. L’incrément permettra aussi à Moodle de mettre à jour les fournisseurs de notification et leurs préférences.
-La recette a créé puis supprimé ce schéma temporaire sous bail ; elle ne constitue pas une recette d’installation/mise à niveau.
+Le numéro a été attribué par Claude/Kevin le 18/10 à 15 h 02. `version.php` annonce `2026101801` ; le hook `xmldb_local_groupimport_upgrade` ajoute les 17 champs, la clé primaire et les trois index uniquement si la table manque, puis appelle `upgrade_plugin_savepoint`. L’API reste celle de Moodle 4.5 ; aucun `requires` modifié ni dépendance 5.x ajoutée. Le parcours normal `upgrade_noncore` de Moodle chargera aussi le fournisseur de notification lors de l’intégration.
+Le test `test-move-upgrade.php` passe dix contrôles avec les classes XMLDB réelles de 4.5 et de 5.1, sans bootstrap ni accès aux bases : égalité de tous les attributs du schéma install/migration, reprise sur table existante, installation déjà à jour, échec DDL sans savepoint et nouvel essai. La recette précédente a créé puis supprimé le schéma temporaire sous bail ; elle ne constitue pas une recette native complète d’installation/mise à niveau.
 
 ## Contrôles statiques
 
@@ -44,9 +44,10 @@ Un second passage instrumenté, sans exécuter les mutations : lecture de statut
 
 ## Limites de recette à reprendre
 
-- Migration numérotée, installation et vrai lancement par cron, puis validation native Moodle 4.5.
+- Installation/mise à niveau native en 2026101801 et vrai lancement par cron, puis validation native Moodle 4.5.
 - FR/EN dans l’interface, progression visible aux deux largeurs, zéro erreur console : non certifiés par le test API. Les essais navigateur antérieurs ne valent pas cette matrice (un passage interrompu par `ERR_NETWORK_IO_SUSPENDED`).
 - Seuil HTTP global à remesurer sur un runtime dont le bootstrap tient sous 2 s.
+- Point chaud non SQL mesuré sans déplacement : voir `move-background-http-2026-10-18.md`. Pas de publication avant résolution ou acceptation explicite par Claude.
 - Validation humaine du bandeau Kit et report Penpot : état en cours / reprise / terminé, aucune variante nouvelle.
 
 Les échecs antérieurs et leurs nettoyages sont conservés : v4 (préférences de notification manquantes dans le harnais), v5 (courriel local invalide et cleanup TEXT réconcilié), v6 (réseau Chrome suspendu). Leurs preuves ne sont pas remplacées par des PASS.
