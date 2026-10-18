@@ -4150,4 +4150,4 @@ html.easyedu-guide-dialog-open .drawer-toggler {visibility: hidden;pointer-event
 #local-groupimport-easystud .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-selected) > .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]),
 #local-groupimport-easystud .local-groupimport-easystud-member:not(:hover):not(:focus-within) .local-groupimport-easystud-member__remove:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]) {opacity: 0;
   }
-}
+}
