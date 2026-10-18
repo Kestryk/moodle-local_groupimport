@@ -43,12 +43,7 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
   box-shadow: var(--easyedu-modal-shadow);
   overflow: hidden;
 
-  @if $border != null {
-    border-color: $border;
-  }
-  @if $shadow != null {
-    box-shadow: $shadow;
-  }
+  @include modal-surface-paint($border, $shadow);
   @if $width != null {
     max-width: $width;
     width: min(100%, $width);
@@ -763,7 +758,7 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 // Accepted blocking-dialog frame; placement and Motion lifecycle stay with the host.
 @mixin modal-overlay($padding: 1rem) {
   align-items: center;
-  background: rgba(15, 23, 42, 0.45);
+  @include modal-overlay-paint;
   bottom: 0;
   display: flex;
   justify-content: center;
@@ -985,4 +980,19 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
     cursor: default;
     opacity: 0.6;
   }
+}
+
+
+// Reuse surface overrides independently when a shared dialog shell owns its frame.
+@mixin modal-surface-paint($border: null, $shadow: null) {
+  @if $border != null {
+    border-color: $border;
+  }
+  @if $shadow != null {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin modal-overlay-paint($opacity: 0.45) {
+  background: rgba(15, 23, 42, $opacity);
 }

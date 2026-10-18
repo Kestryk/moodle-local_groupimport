@@ -631,11 +631,11 @@
 
   &-modal {
     align-items: center;
-    background: rgba(15, 23, 42, 0.42);
+    @include easyedu.modal-overlay-paint(0.42);
     display: flex;
     inset: 0;
     justify-content: center;
-    padding: 1rem;
+    @include easyedu.modal-overlay-inset(1rem);
     position: fixed;
     z-index: 1085;
 
@@ -649,8 +649,7 @@
   &-modal__dialog {
     @include recipes.dialog-shell(48.75rem);
 
-    border-color: var(--local-groupimport-easystud-border);
-    box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.24);
+    @include easyedu.modal-surface-paint(var(--local-groupimport-easystud-border), 0 1rem 3rem rgba(15, 23, 42, 0.24));
   }
 
   &-modal__dialog--confirm {
@@ -831,7 +830,7 @@
   // Responsive 390 (S6-D5c): full-height sheet; pill beside the file, actions below.
   @media (max-width: 36rem) {
     &-modal:has(> .local-groupimport-import-modal__dialog--history) {
-      padding: 0;
+      @include easyedu.modal-overlay-inset(0);
     }
 
     &-modal__dialog--history {
