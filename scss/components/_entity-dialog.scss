@@ -314,10 +314,7 @@
 
   &-entity__pills,
   &-entity__members {
-    list-style: none;
-    margin: 0;
-    min-inline-size: 0;
-    padding: 0;
+    @include easyedu.entity-relation-list-reset;
   }
 
   &-entity__pills {

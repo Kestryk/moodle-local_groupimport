@@ -301,9 +301,9 @@
   }
 
   &--compact-users &-user__primary-badge {
-    font-size: 0.64rem;
+    @include easyedu.identity-badge-compact-type;
     max-width: min(7.5rem, 38%);
-    padding: 0.14rem 0.44rem;
+    @include easyedu.identity-badge-compact-inset;
   }
 
   &--compact-users &-user__email {

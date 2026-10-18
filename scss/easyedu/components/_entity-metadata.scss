@@ -347,3 +347,23 @@
   overflow: auto;
   padding: 0.65rem;
 }
+
+// Rounding guard for the existing card-tag window; overflow remains JS-owned.
+@mixin entity-card-tag-rounding-guard {
+  padding-inline-end: 1px;
+}
+
+@mixin identity-badge-compact-type {
+  font-size: 0.64rem;
+}
+
+@mixin identity-badge-compact-inset {
+  padding: 0.14rem 0.44rem;
+}
+
+@mixin entity-relation-list-reset {
+  list-style: none;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}

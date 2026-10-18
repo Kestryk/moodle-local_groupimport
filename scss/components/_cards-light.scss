@@ -50,7 +50,7 @@
 
   .local-groupimport-easystud-user__meta-tags {
     min-width: 0;
-    padding-inline-end: 1px;
+    @include easyedu.entity-card-tag-rounding-guard;
   }
 
   .local-groupimport-easystud-user__headline {
@@ -69,14 +69,7 @@
   }
 
   .local-groupimport-easystud-user__meta-label {
-    block-size: 1px;
-    clip: rect(0, 0, 0, 0);
-    inline-size: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
+    @include easyedu.visually-hidden(logical);
   }
 
   .local-groupimport-easystud-user__meta-tags {

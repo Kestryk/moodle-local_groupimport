@@ -10,6 +10,7 @@
 // --easyedu-identity-size, --easyedu-identity-icon-color.
 
 @use "focus";
+@use "accessibility";
 @use "typography";
 @use "entity-metadata" as metadata;
 
@@ -302,14 +303,7 @@
     }
   }
   .easyedu-person-card__meta-label {
-    block-size: 1px;
-    clip: rect(0, 0, 0, 0);
-    inline-size: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
+    @include accessibility.visually-hidden(logical);
   }
   .easyedu-person-card__email {
     grid-area: email;
