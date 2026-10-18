@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N1] K16-80 F23F: centraliser l’action textuelle de fenêtre et corriger son centrage par les métriques naturelles de police.
+
 - 2026-10-18 [N1] K16-80 F12R: reprendre la variante ronde de pagination du Kit et ses métriques naturelles de centrage, sans changer les cadres.
 
 - 2026-10-18 [N1] K16-80 F10R: reprendre la variante Kit du bouton voisin d’un champ et la palette calme de désélection ; conserver les cadres acceptés.

@@ -38,37 +38,7 @@ $dialog-divider: easyedu.$dialog-divider;
 
 // Quiet text action of the family (CSV, "+ N other members", Restore).
 @mixin dialog-text-action {
-  @include easyedu.type-ui-base;
-
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: 0.375rem;
-  color: var(--easyedu-primary);
-  cursor: pointer;
-  display: inline-flex;
-  font-size: var(--easyedu-font-size-caption);
-  font-weight: var(--easyedu-font-weight-strong);
-  gap: 0.3rem;
-  line-height: 1.2;
-  padding: 0.2rem 0.25rem;
-  text-decoration: none;
-  @include easyedu.control-state-transition;
-
-  &:hover:not(:disabled) {
-    color: var(--easyedu-primary-strong);
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-  }
-
-  &:disabled {
-    color: var(--easyedu-text-muted);
-    cursor: default;
-    opacity: 0.6;
-  }
+  @include easyedu.dialog-text-action;
 }
 
 // Responsive 390 (Penpot S6-D5c): full-height sheet, sticky header and footer.
