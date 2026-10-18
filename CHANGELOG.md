@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25G: share identity summary edge/inset, participant visual frame, initials and details-row inset with exact ordered CSS parity.
+
 - 2026-10-18 [N0] K16-80 F25F: share person-card density insets, rail insets, secondary-copy type/paint and drag-glyph block; preserve exact ordered CSS.
 
 - 2026-10-18 [N0] K16-80: format archived native recipe candidates with LF and bounded lines; preserve semantic assertions and checker zero, no product change.

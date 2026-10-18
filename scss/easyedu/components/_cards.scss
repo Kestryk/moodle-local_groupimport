@@ -971,3 +971,48 @@
 @mixin identity-card-drag-glyph-block {
   height: 0.78rem;
 }
+
+
+// Identity summary in a details window, retaining the existing entity palette.
+@mixin entity-identity-summary-edge($color) {
+  border-inline-start: 0.25rem solid $color;
+  border-radius: 0.125rem;
+}
+
+@mixin entity-identity-summary-inset {
+  padding-inline-start: 0.625rem;
+}
+
+@mixin entity-identity-person-visual {
+  border-radius: 50%;
+}
+
+@mixin entity-identity-person-image-frame {
+  block-size: 100% !important;
+  border: 0;
+  border-radius: inherit;
+  box-shadow: none;
+}
+
+@mixin entity-identity-person-image-inset {
+  padding: 0;
+}
+
+@mixin entity-identity-person-initials-paint {
+  background: var(--easyedu-participant-soft);
+  color: color-mix(in srgb, var(--easyedu-participant) 82%, #000 18%);
+}
+
+@mixin entity-identity-person-initials-size {
+  font-size: 1.125rem;
+}
+
+@mixin entity-identity-person-initials-leading {
+  line-height: 1;
+}
+
+@mixin related-person-row-details-inset {
+  background: var(--easyedu-surface-soft);
+  min-block-size: 2.5rem;
+  padding-inline: 0.75rem;
+}

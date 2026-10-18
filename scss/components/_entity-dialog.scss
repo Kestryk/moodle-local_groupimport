@@ -78,13 +78,12 @@
     --local-groupimport-easystud-entity-soft: var(--easyedu-participant-soft);
 
     align-items: center;
-    border-inline-start: 0.25rem solid var(--local-groupimport-easystud-entity-color);
-    border-radius: 0.125rem;
+    @include easyedu.entity-identity-summary-edge(var(--local-groupimport-easystud-entity-color));
     display: grid;
     gap: 0.875rem;
     grid-template-columns: 3.5rem minmax(0, 1fr);
     min-inline-size: 0;
-    padding-inline-start: 0.625rem;
+    @include easyedu.entity-identity-summary-inset;
   }
 
   &-entity__identity--group {
@@ -116,31 +115,27 @@
   }
 
   &-entity__identity--participant &-entity__visual {
-    border-radius: 50%;
+    @include easyedu.entity-identity-person-visual;
 
     img,
     .userinitials {
-      block-size: 100% !important;
-      border: 0;
-      border-radius: inherit;
-      box-shadow: none;
+      @include easyedu.entity-identity-person-image-frame;
       display: block;
       inline-size: 100% !important;
       margin: 0 !important;
       max-inline-size: none;
       object-fit: cover;
-      padding: 0;
+      @include easyedu.entity-identity-person-image-inset;
     }
 
     .userinitials {
       align-items: center;
-      background: var(--easyedu-participant-soft);
-      color: color-mix(in srgb, var(--easyedu-participant) 82%, #000 18%);
+      @include easyedu.entity-identity-person-initials-paint;
       display: inline-flex;
-      font-size: 1.125rem;
+      @include easyedu.entity-identity-person-initials-size;
       font-weight: var(--easyedu-font-weight-strong);
       justify-content: center;
-      line-height: 1;
+      @include easyedu.entity-identity-person-initials-leading;
     }
   }
 
@@ -373,9 +368,7 @@
   }
 
   &-entity &-entity__member.easyedu-related-person-row {
-    background: var(--easyedu-surface-soft);
-    min-block-size: 2.5rem;
-    padding-inline: 0.75rem;
+    @include easyedu.related-person-row-details-inset;
   }
 
   // K16-15: bulk actions of the selected members of a group dialog (same Kit buttons as the
