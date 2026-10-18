@@ -98,18 +98,14 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     display: none;
   }
 
+  // K18-37: back to a single reading column at every width, as in Student
+  // Management and Mass Import. The two-column split made the page harder to
+  // scan and is reverted here; sections keep their 24 px rhythm.
   #adminsettings > .settingsform > fieldset {
     border: 0;
-    column-count: 2;
-    column-gap: 2rem;
     margin: 0;
     min-inline-size: 0;
     padding: 0;
-
-    // Sections stack on narrow viewports (24 px rhythm between them).
-    @media (max-width: 64rem) {
-      column-count: 1;
-    }
 
     > .clearer {
       display: none;

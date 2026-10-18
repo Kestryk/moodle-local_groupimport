@@ -104,11 +104,7 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > h2 {display: none;
 }
-#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {border: 0;column-count: 2;column-gap: 2rem;margin: 0;min-inline-size: 0;padding: 0;
-}
-@media (max-width: 64rem) {
-  #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {column-count: 1;
-  }
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {border: 0;margin: 0;min-inline-size: 0;padding: 0;
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .clearer {display: none;
 }
