@@ -7,8 +7,10 @@ Les preuves d’exécution sont externes et ne sont pas des médias versionnés.
 Les sources sont archivées comme texte, avec les chemins de machine remplacés par
 des paramètres nommés. Les empreintes source/candidat sont dans registry.json.
 Le statut est **candidate**, pas un test CI exécutable ni une certification Docker.
-Le seul travail de préparation a remplacé les chemins ; les assertions n’ont pas
-été affaiblies. Les prédécesseurs échoués restent dans leurs artefacts externes.
+Les chemins sont paramétrés et les lignes formatées pour le checker. La parité
+AST JavaScript (concaténations constantes normalisées) et les jetons PHP hors
+espaces/commentaires prouvent que les assertions restent identiques. Les
+prédécesseurs échoués restent dans leurs artefacts externes.
 
 Avant une adoption CI : raccorder le runner authentifié partagé et son chargeur
 de credentials process-local, découvrir une seule recette, prendre le bail du

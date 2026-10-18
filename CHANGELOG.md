@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80: format archived native recipe candidates with LF and bounded lines; preserve semantic assertions and checker zero, no product change.
+
 - 2026-10-18 [N0] K16-80: preserve four native measurement/fixture recipes as parameterised candidates; no product or runtime change.
 
 - 2026-10-18 [N0] K16-80: record fifteen stacked deliveries, 461 to 240 unique local declarations, native limits and remaining work; no runtime publication.
