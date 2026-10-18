@@ -8492,6 +8492,8 @@ body.easyedu-motion-disabled .local-groupimport-easystud-message-modal::after {a
 .local-groupimport-easystud [data-easystud-container-search-cancel]:disabled,
 .local-groupimport-easystud [data-easystud-rename-cancel]:disabled {background: var(--easyedu-surface-soft);color: var(--easyedu-text-muted);
 }
+.local-groupimport-easystud-rename__edit .btn {line-height: normal;
+}
 .local-groupimport-easystud [data-easystud-container-search-cancel],
 .local-groupimport-easystud .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {align-items: center;background: var(--easyedu-primary);border: 0.0625rem solid transparent;border-radius: 0.72rem;box-shadow: none;color: var(--easyedu-surface);display: inline-flex;gap: var(--easyedu-action-icon-gap, 0.65rem);font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);justify-content: center;min-block-size: 2.35rem;padding: 0.5rem 1rem;text-align: center;text-decoration: none;white-space: normal;transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);background: var(--easyedu-surface);border-color: var(--easyedu-deposit-border);color: var(--easyedu-secondary-text);border-radius: 0.58rem;font-size: 0.75rem;min-block-size: 2rem;
 }
