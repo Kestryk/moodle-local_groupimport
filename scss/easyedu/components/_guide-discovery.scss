@@ -830,7 +830,7 @@
       white-space: nowrap;
     }
     &__entry { display: flex; flex-wrap: wrap; margin-block: 0 1rem; }
-    &__start { @include buttons.selection-action($solid: true); }
+    &__start { @include buttons.demonstration-action; }
     // Unified scene header composes the existing Small controls and Reading
     // surface. The whole header owns sticky clearance, not its live child.
     &__header {
@@ -857,7 +857,7 @@
         .easyedu-guide-scene__reading { padding-block-start: 0; }
       }
       // K17-33 (Penpot "Fin de démonstration sobre"): a white card, success mark + two text lines on
-      // the left, the Kit Secondary action (no icon) on the right. Scoped to the finished state.
+      // the left, the shared solid Kit action on the right. Scoped to the finished state.
       &[data-guide-playback-state="finished"] {
         align-items: center;
         background: var(--easyedu-surface);
@@ -908,16 +908,8 @@
           font: 400 0.875rem/1.5 var(--easyedu-font-family-ui);
         }
         .easyedu-guide-scene__header-controls { align-self: center; }
-        .easyedu-guide-scene__start {
-          // Kit Core action, Secondary: the same recipe as every secondary action, with no icon.
-          @include foundation.foundation-button($secondary: true, $matched-size: true);
-          inline-size: auto;
-          margin: 0;
-          padding-block: 0.5rem;
-          padding-inline: 0.75rem;
-          > .fa { display: none; }
-          @media (pointer: coarse) { min-block-size: var(--easyedu-touch-target-min); }
-        }
+        // K18-11: Replay inherits the same solid Kit action and height as Start.
+        .easyedu-guide-scene__start { inline-size: auto; margin: 0; }
       }
       .easyedu-guide-scene__live {
         display: contents;
@@ -937,7 +929,7 @@
         // narration and all metrics intact, using the existing semantic roles.
       }
       .easyedu-guide-scene__playback[hidden] { display: none; }
-      .easyedu-guide-scene__start { @include buttons.button-size(small); margin-inline-start: auto; }
+      .easyedu-guide-scene__start { @include buttons.demonstration-action; margin-inline-start: auto; }
       .easyedu-guide-scene__start .fa { margin: 0; line-height: 1; }
       .easyedu-guide-scene__playback { grid-column: 3; grid-row: 1; }
     }
@@ -1005,7 +997,7 @@
       &__header[data-guide-playback-state="finished"] .easyedu-guide-scene__live-content { grid-row: 1; }
       // K17-33: compact end card, the Replay action sits on a lower row, at the right, intrinsic width.
       &__header[data-guide-playback-state="finished"] {
-        .easyedu-guide-scene__start { inline-size: auto; min-block-size: var(--easyedu-touch-target-min); }
+        .easyedu-guide-scene__start { inline-size: auto; }
         .easyedu-guide-scene__header-controls-inner { align-items: flex-end; }
       }
       &__header .easyedu-guide-scene__playback { grid-column: 2; grid-row: 1; }
@@ -1021,6 +1013,9 @@
           .easyedu-guide-scene__reading { padding-block-end: 0; }
         }
       }
+    }
+    &__actions .btn[data-guide-scene-command="replay"] {
+      @include buttons.demonstration-action;
     }
     &__actions .btn[data-guide-scene-command="add"],
     &__actions .btn[data-guide-scene-command="move"] {
@@ -1929,18 +1924,10 @@
       &-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between;
         strong { @include typography.type-control-label; color: var(--easyedu-text); }
         // K17-39: the Kit selection action (its icon-to-label gap), like every other demonstration button.
-        .btn { @include buttons.selection-action; @include buttons.button-size(small); }
+        .btn { @include buttons.demonstration-action; }
         .btn .fa { margin: 0; line-height: 1; }
       }
-      // K17-65: once the mini demonstration is done, its replay action is the Kit Secondary (white, no icon),
-      // exactly like "Rejouer" on the end card of the other demonstrations.
-      &[data-guide-loupe-state="done"] .easyedu-guide-anatomy__loupe-bar .btn {
-        @include foundation.foundation-button($secondary: true, $matched-size: true);
-        margin: 0;
-        > .fa { display: none; }
-      }
-      // The action keeps the Secondary height from the first state, so nothing moves when its label changes.
-      &-bar .btn { min-block-size: 2.35rem; @media (pointer: coarse) { min-block-size: var(--easyedu-touch-target-min); } }
+      // K18-11: no finished-state override; Start and Replay share the solid action above.
       // K17-39: the caption keeps room for its longest line count (two lines on a phone), so the page below
       // never moves when the narration changes.
       &-caption { @include typography.type-caption; margin: 0; min-block-size: 1.5em; }

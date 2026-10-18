@@ -477,13 +477,8 @@ final class guide_discovery {
                 }
                 $slide['discoveryscene'] = $scene;
                 $slide['navicon'] = 'fa-plus';
-                $slide['commonintroduction'] = ['topics' => array_map(static function (string $topic): array {
-                    return ['icon' => 'fa-info-circle',
-                        'title' => get_string('discovery_simplecreate_' . $topic . '_title', 'local_groupimport'),
-                        'description' => get_string('discovery_simplecreate_' . $topic . '_body', 'local_groupimport')];
-                }, ['group', 'grouping', 'edit']),
-                    'note' => get_string('discovery_simplecreate_note', 'local_groupimport'),
-                    'lessonreading' => true];
+                // K18-10: the demonstration teaches these steps; keep only its syntax warning.
+                unset($slide['commonintroduction']);
             } else if ($source === 'discovery-creation') {
                 $slide['discoveryscene'] = self::creation_demonstration($slide['discoveryscene']);
                 foreach (
