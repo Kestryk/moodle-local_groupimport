@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25J: réutiliser une variante intégrée de filter-shell et une seule recette de gouttière intérieure du couloir.
+
 - 2026-10-18 [N0] K16-80 F03C: raccorder trois états de peinture du groupement ouvert à la table canonique des cartes d’identité, sans changer les couleurs.
 
 - 2026-10-18 [N1] K16-80 F25I: raccorder les variantes tactiles de densité, rail, avatar et texte secondaire aux composants Kit existants ; recentrer les initiales bureau.

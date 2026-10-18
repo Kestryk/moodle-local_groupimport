@@ -61,7 +61,7 @@
   border: 0;
   box-shadow: none;
   min-inline-size: 0;
-  padding-inline: var(--easyedu-lane-inset);
+  @include workspace-lane-content-inset;
   @if $segment == whole or $segment == start {
     @if $segment == whole {
       border-radius: var(--easyedu-lane-radius);
@@ -110,13 +110,19 @@
   position: relative;
 }
 
-@mixin filter-shell {
+@mixin filter-shell($embedded: false) {
+  @if $embedded {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  } @else {
   background: var(--easyedu-surface-soft);
   border: 1px solid var(--easyedu-filter-border);
   border-radius: var(--easyedu-radius);
   box-shadow: var(--easyedu-shadow-soft);
   min-width: 0;
   padding: 0.75rem;
+  }
 }
 
 @mixin panel-header($accent: var(--easyedu-primary)) {
@@ -360,3 +366,9 @@
         opacity: 0.55;
       }
     }
+
+
+// Shared interior gutter; the host retains its grid/container positioning.
+@mixin workspace-lane-content-inset($flush: false) {
+  padding-inline: if($flush, 0, var(--easyedu-lane-inset));
+}
