@@ -31,6 +31,18 @@
   line-height: var(--easyedu-line-height-title);
 }
 
+// Reading rhythm for a form/report workspace, measured on the applied K18-15
+// compositions. Existing condensed workspaces keep their current defaults.
+@mixin workspace-reading-rhythm {
+  --easyedu-line-height-title: 1.5;
+  --easyedu-line-height-body: 1.5;
+}
+
+@mixin type-workspace-reading-title {
+  @include type-page-title;
+  font-weight: var(--easyedu-font-weight-semibold);
+}
+
 @mixin type-modal-title {
   @include type-ui-base;
 
@@ -104,7 +116,11 @@
 
 // Font-metric label line inside an already centred control. Icon metrics and
 // the accepted outer frame remain independent (no offsets or font-size change).
-@mixin control-label-natural-metrics($icons: false) {
+@mixin control-label-natural-metrics($icons: false, $native: false) {
+  @if $native {
+    // Native input labels live in the browser shadow tree, not a child span.
+    line-height: normal;
+  }
   > span:not(.fa) {
     line-height: normal;
   }

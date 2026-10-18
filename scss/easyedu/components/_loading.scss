@@ -348,6 +348,30 @@
   }
 }
 
+// Keep the actual control's intrinsic size and border width while its handler
+// is not bound. This works on native input buttons, which cannot paint ::after.
+@mixin loading-control-capsule {
+  @include skeleton-shimmer-direct(
+    $highlight: var(--easyedu-loading-shimmer-highlight)
+  );
+  border-color: transparent;
+  border-radius: 999px;
+  box-shadow: none;
+  color: transparent;
+  cursor: wait;
+  text-shadow: none;
+
+  > *,
+  &::before {
+    visibility: hidden;
+  }
+}
+
+// A loaded control replaces its own capsule once; never animate a page mask.
+@mixin loading-control-reveal {
+  @include loading-appearance;
+}
+
 // Exact accepted entity-dialog footprints. Inline extent stays with the field layout;
 // surface, shimmer and reveal still compose the existing loading primitives.
 $skeleton-entity-block-sizes: (

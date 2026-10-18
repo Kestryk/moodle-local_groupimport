@@ -1909,6 +1909,29 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-form-actions + .easyedu-form-note {text-align: center;
 }
 
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose {align-items: center;background: var(--easyedu-primary);border: 0.0625rem solid transparent;border-radius: 0.72rem;box-shadow: none;color: var(--easyedu-surface);display: inline-flex;gap: var(--easyedu-action-icon-gap, 0.65rem);font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);justify-content: center;min-block-size: 2.35rem;padding: 0.5rem 1rem;text-align: center;text-decoration: none;white-space: normal;transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);background: var(--easyedu-surface);border-color: var(--easyedu-deposit-border);color: var(--easyedu-secondary-text);min-block-size: var(--easyedu-touch-target-min);min-inline-size: min(var(--easyedu-workspace-deposit-action-min-inline-size, 11.25rem), 100%);
+}
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose .fa,
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose [class*=" fa-"] {align-items: center;display: inline-flex;flex: 0 0 auto;justify-content: center;line-height: 1;margin-inline: 0;min-inline-size: 1em;width: 1em;
+}
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose:focus {background: var(--easyedu-surface);color: var(--easyedu-secondary-text);
+}
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose:hover {text-decoration: none;background: var(--easyedu-primary-soft);color: var(--easyedu-secondary-text);
+}
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-form--workspace .fp-btn-choose:disabled {background: var(--easyedu-surface-soft);color: var(--easyedu-text-muted);
+}
+
+.easyedu-ui .easyedu-form--workspace input:is([type=button], [type=submit]) {line-height: normal;
+}
+.easyedu-ui .easyedu-form--workspace input:is([type=button], [type=submit]) > span:not(.fa) {line-height: normal;
+}
+
+@media (max-width: 52rem) {
+  .easyedu-ui .easyedu-form--workspace .easyedu-form-actions [type=submit] {min-block-size: var(--easyedu-touch-target-min);
+  }
+}
 .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__heading {grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr);
 }
 .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__icon {align-items: center;background: var(--easyedu-deposit-icon-surface);border: 1px solid var(--easyedu-deposit-icon-border);border-radius: var(--easyedu-section-icon-radius);box-sizing: border-box;color: var(--easyedu-primary);display: inline-flex;flex: 0 0 var(--easyedu-section-icon-size-compact);height: var(--easyedu-section-icon-size-compact);justify-content: center;line-height: 1;width: var(--easyedu-section-icon-size-compact);font-size: 1.0625rem;

@@ -1,3 +1,5 @@
+- 2026-10-18 [N2] K18-C-MI : afficher immédiatement la vraie page Import massif, réserver les capsules aux contrôles en attente, harmoniser lecture et dépôt avec le Kit et isoler le vrai sélecteur de fichier des spécimens du Guide.
+
 - 2026-10-18 [N1] K18-A : supprimer le récapitulatif de création simple, unifier Lancer/Rejouer dans le Kit, restaurer la checklist et partager le retour des clics via Motion.
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
