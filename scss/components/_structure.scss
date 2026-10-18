@@ -154,10 +154,7 @@
 
   &--structure-focus &-create-card {
     align-self: stretch;
-    background: var(--local-groupimport-easystud-surface-soft);
-    border: 1px solid #e3ece5;
-    border-radius: var(--local-groupimport-easystud-radius);
-    padding: 0.8rem;
+    @include easyedu.identity-create-card-frame($surface: var(--local-groupimport-easystud-surface-soft), $radius: var(--local-groupimport-easystud-radius));
   }
 
   &--structure-focus &-create-card__topline {
@@ -275,9 +272,7 @@
   }
 
   &--participant-focus.local-groupimport-easystud--compact-users &-user {
-    min-height: 2.15rem;
-    padding-bottom: 0.38rem;
-    padding-top: 0.38rem;
+    @include easyedu.identity-person-card-dense-inset;
   }
 
   &--participant-focus.local-groupimport-easystud--compact-users &-user > .local-groupimport-easystud-selector {
@@ -1449,7 +1444,7 @@
     &--structure-focus &-create-card {
       display: flex;
       flex-direction: column;
-      min-height: 0;
+      @include easyedu.identity-create-card-frame($intrinsic: true);
     }
 
     &--structure-focus &-create-card--group > &-advanced-filters__control {

@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25N: raccorder le cadre de création et l’inset de la carte participant dense aux variantes du Kit, sans changement des valeurs.
+
 - 2026-10-18 [N0] K16-80 F26C: raccorder les deux marges internes des composants en attente d’Import massif et des réglages au composant Skeleton du Kit.
 
 - 2026-10-18 [N0] K16-80 F12T: raccorder le cadre de barre, l’inset des outils, l’encre des libellés et les métriques responsive à la pagination du Kit.

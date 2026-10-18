@@ -1098,3 +1098,22 @@
     @error "Unknown disclosure title inset: #{$variant}.";
   }
 }
+
+
+// Existing creation-card presentation; placement remains owned by the workspace.
+@mixin identity-create-card-frame($intrinsic: false, $surface: var(--easyedu-surface-soft), $radius: var(--easyedu-card-radius)) {
+  @if $intrinsic { min-height: 0; }
+  @else {
+    background: $surface;
+    border: 1px solid #e3ece5;
+    border-radius: $radius;
+    padding: 0.8rem;
+  }
+}
+
+// Accepted dense person-card inset in the single-lane composition.
+@mixin identity-person-card-dense-inset {
+  min-height: 2.15rem;
+  padding-bottom: 0.38rem;
+  padding-top: 0.38rem;
+}
