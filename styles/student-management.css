@@ -6686,7 +6686,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-settings-modal__image-placeholder > span:last-child {font-size: 0.78rem;font-weight: 620;line-height: 1.25;
 }
-.local-groupimport-easystud-settings-modal__image-placeholder > .fa {color: #7f97ad;
+.local-groupimport-easystud-settings-modal__image-placeholder > .fa {color: #7f97ad;line-height: normal;
 }
 .local-groupimport-easystud-settings-modal__filepicker:not(.easyedu-filepicker) {align-items: center;background: radial-gradient(circle at 1.3rem 1.1rem, color-mix(in srgb, var(--easyedu-primary) 8%, transparent), transparent 5rem), #fbfdff;border: 1px solid transparent;border-radius: 0.9rem;box-sizing: border-box;display: grid;gap: 0.42rem 0.55rem;grid-template-columns: auto minmax(0, auto) minmax(0, 1fr);margin: 0.42rem 0 0;max-width: 100%;min-height: 3.3rem;min-width: 0;overflow: visible;padding: 0.55rem 0.66rem;position: relative;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;width: 100%;
 }

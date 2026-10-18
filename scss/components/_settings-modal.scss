@@ -13,22 +13,21 @@
   &-settings-modal__image {
     @include easyedu.image-preview;
 
-    color: #60778d;
+    @include easyedu.image-preview-details-paint;
     margin-bottom: 0;
 
     img {
-      height: auto;
-      width: auto;
+      @include easyedu.image-preview-intrinsic-image;
     }
 
     &-placeholder {
       @include easyedu.image-preview-placeholder;
 
-      color: #697f95;
+      @include easyedu.image-preview-placeholder-details-paint;
     }
 
     &-placeholder > .fa {
-      color: #7f97ad;
+      @include easyedu.image-preview-placeholder-details-paint($glyph: true);
     }
   }
 
@@ -37,13 +36,7 @@
   }
 
   &-settings-modal__filename {
-    color: #607487;
-    font-size: 0.82rem;
-    font-weight: 560;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @include easyedu.image-preview-filename;
   }
 
   &-settings-modal__help {

@@ -793,3 +793,32 @@
 @mixin modal-overlay-inset($padding) {
   padding: $padding;
 }
+
+// Details-window preview variants; the image source and draft picker stay native.
+@mixin image-preview-details-paint {
+  color: #60778d;
+}
+
+@mixin image-preview-intrinsic-image {
+  height: auto;
+  width: auto;
+}
+
+@mixin image-preview-placeholder-details-paint($glyph: false) {
+  @if $glyph {
+    color: #7f97ad;
+    line-height: normal;
+  } @else {
+    color: #697f95;
+  }
+}
+
+@mixin image-preview-filename {
+  color: #607487;
+  font-size: 0.82rem;
+  font-weight: 560;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
