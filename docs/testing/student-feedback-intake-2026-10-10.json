@@ -1758,7 +1758,10 @@
 "k176269Ecarts20261018":{"base":"e8a1b83a","kitCommit":"afcacdd4d40ce394cae340315f0c54c550cf1b44","status":"candidate, not integrated or published","scope":["Kit Display preferences Desktop32","Guide footer Touch44/counter20/shrink group","canonical and embedded mirror parity","current chrome preservation gate"],"native":{"copy":8054,"course":71,"languages":["fr","en"],"widths":[1600,1280,768,390],"cases":8,"consoleErrors":0,"desktopTrigger":{"before":29.59375,"after":32},"touchTrigger":44,"touchNavigationHeight":44,"footerHeight":{"desktop":63,"touch":64},"maxCentreSpread":0,"maxBottomOverflow":0,"horizontalOverflow":0,"realChecklistRestored":true,"checklist768":"existing avoidance footer hidden; no visible44px claim","businessActions":false},"static":{"guideGatesPassed":true,"unrelatedOrderedRules":4408,"frozenBehaviours":7,"guideTests":{"total":93,"passed":17,"failed":76,"preExistingFailures":76,"newFailures":[]},"fullMoodleCs":{"errors":14,"warnings":22,"preExistingOnBase":14,"touchedPhpFiles":0},"officialOtherFiles":{"errors":0,"warnings":0},"amdSourceChanged":false},"proof":"C:\\dev\\artifacts\\k17-62-69-20261018","published":false,"humanAccepted":false},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 "k176269Ecarts20261018":{"base":"e8a1b83a","kitCommit":"afcacdd4d40ce394cae340315f0c54c550cf1b44","status":"candidate, not integrated or published","scope":["Kit Display preferences Desktop32","Guide footer Touch44/counter20/shrink group","canonical and embedded mirror parity","current chrome preservation gate"],"native":{"copy":8054,"course":71,"languages":["fr","en"],"widths":[1600,1280,768,390],"cases":8,"consoleErrors":0,"desktopTrigger":{"before":29.59375,"after":32},"touchTrigger":44,"touchNavigationHeight":44,"footerHeight":{"desktop":63,"touch":64},"maxCentreSpread":0,"maxBottomOverflow":0,"horizontalOverflow":0,"realChecklistRestored":true,"checklist768":"existing avoidance footer hidden; no visible44px claim","businessActions":false},"static":{"guideGatesPassed":true,"unrelatedOrderedRules":4408,"frozenBehaviours":7,"guideTests":{"total":93,"passed":17,"failed":76,"preExistingFailures":76,"newFailures":[]},"fullMoodleCs":{"errors":14,"warnings":22,"preExistingOnBase":14,"touchedPhpFiles":0},"officialOtherFiles":{"errors":0,"warnings":0},"amdSourceChanged":false},"proof":"C:\\dev\\artifacts\\k17-62-69-20261018","published":false,"humanAccepted":false},
+=======
+>>>>>>> 9f5ff4d5 ([N1] OLD-B Build and validate shared controls across desktop and touch)
 "oldBSource20261018":{"base":"fa16784f","kitBase":"afcacdd4","kitCommit":"fa6d0fbee9750b704957eeeb0e30d866cbfb977f","stage":1,"scope":["K16-67 member remove","R13 secondary Reset/Cancel","K16-46 standalone admin switch"],"excluded":["K16-64"],"checks":{"phpLintFiles":5,"moodlecsTouchedErrors":0,"moodlecsTouchedWarnings":0,"isolatedSwitchContexts":18,"sharedMixinPairs":7},"builds":false,"browser":false,"runtimeAccess":false,"published":false,"humanAccepted":false,"nextGate":"Explicit end of load-test slot before builds and native matrix","report":"docs/testing/old-b-source-2026-10-18.md"},
   "oldBNative20261018": {
     "date": "2026-10-18",
@@ -1817,6 +1820,7 @@
       "First containment and harness failures retained",
       "K16-64 excluded"
     ]
+<<<<<<< HEAD
 =======
   "codex1MoveBackground20261018": {
     "base": "d241e83a",
@@ -1887,4 +1891,7 @@
 =======
 "oldBSource20261018":{"base":"fa16784f","kitBase":"afcacdd4","kitCommit":"fa6d0fbee9750b704957eeeb0e30d866cbfb977f","stage":1,"scope":["K16-67 member remove","R13 secondary Reset/Cancel","K16-46 standalone admin switch"],"excluded":["K16-64"],"checks":{"phpLintFiles":5,"moodlecsTouchedErrors":0,"moodlecsTouchedWarnings":0,"isolatedSwitchContexts":18,"sharedMixinPairs":7},"builds":false,"browser":false,"runtimeAccess":false,"published":false,"humanAccepted":false,"nextGate":"Explicit end of load-test slot before builds and native matrix","report":"docs/testing/old-b-source-2026-10-18.md"}
 >>>>>>> 9ba7043e ([N1] OLD-B Prepare shared control sources pending load-slot release)
+=======
+  }
+>>>>>>> 9f5ff4d5 ([N1] OLD-B Build and validate shared controls across desktop and touch)
 }

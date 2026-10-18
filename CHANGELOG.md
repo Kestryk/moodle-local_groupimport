@@ -29,6 +29,9 @@
 - 2026-10-18 [N1] OLD-B temps2 : construire les contrôles partagés, contenir la cible tactile Retirer, centrer les libellés Reset/Annuler et vérifier les switches nommés en FR/EN aux quatre largeurs.
 
 
+
+- 2026-10-18 [N1] OLD-B temps2 : construire les contrôles partagés, contenir la cible tactile Retirer, centrer les libellés Reset/Annuler et vérifier les switches nommés en FR/EN aux quatre largeurs.
+
 - 2026-10-18 [N1] OLD-B : préparer les sources Kit du retrait de membre sans carré (K16-67), des boutons Annuler/Réinitialiser unifiés (R13) et des interrupteurs sans texte visible (K16-46) ; builds et recette suspendus au feu vert de fin de charge.
 
 - 2026-10-18 [N1] K17-62/69 : corriger le déclencheur Kit Affichage et animations en Desktop32, conserver Touch44 et contenir les commandes tactiles du pied du Guide dans sa hauteur de 64 px.
