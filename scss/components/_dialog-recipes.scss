@@ -1,12 +1,12 @@
 // T045 dialog family recipes shared by the Student Management entity dialogs and
 // the Mass Import history/restore dialogs (Penpot S6-D5a/b/c, PROPOSITION-MODALES section 2).
 // Mixins only: each page compiles its own selectors (per-page CSS split).
-// Candidate for a Kit "dialog-footer" extraction (Foundations 09.2), not a fork:
-// every value composes existing Kit tokens and mixins.
+// Footer recipes delegate to the Kit (Foundations 09.2); local wrappers
+// preserve the accepted API and page cascade, without a second definition.
 @use "../easyedu" as easyedu;
 
 // One divider for footer and section separations (Penpot filet #ecf2f7).
-$dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
+$dialog-divider: easyedu.$dialog-divider;
 
 // Dialog grid: header and footer stay visible, only the body scrolls.
 @mixin dialog-shell($width) {
@@ -26,64 +26,13 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
   overscroll-behavior: contain;
 }
 
-// Guide-style sticky footer: tertiary action on the left, Kit buttons (38px) on the right.
+// Keep local API/cascade position; the Kit owns all component treatment.
 @mixin dialog-footer {
-  align-items: center;
-  background: var(--easyedu-modal-footer-bg);
-  border-block-start: 0.0625rem solid $dialog-divider;
-  box-sizing: border-box;
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-  justify-content: flex-end;
-  margin: 0;
-  min-inline-size: 0;
-  padding: 0.75rem 1.25rem;
-
-  // Doubled class: beat the Kit button defaults (white-space: normal) emitted later.
-  > .btn.btn {
-    min-inline-size: 6rem;
-    white-space: nowrap;
-  }
+  @include easyedu.dialog-footer;
 }
 
-// Footer text action with the external-link arrow ("Modifier dans Moodle").
 @mixin dialog-footer-link {
-  @include easyedu.type-ui-base;
-
-  align-items: center;
-  border-radius: var(--easyedu-control-radius);
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  font-size: 0.875rem;
-  font-weight: var(--easyedu-font-weight-semibold);
-  gap: 0.3rem;
-  line-height: 1.2;
-  margin-inline-end: auto;
-  min-inline-size: 0;
-  padding: 0.25rem 0.125rem;
-  text-decoration: none;
-  @include easyedu.control-state-transition;
-
-  &:hover,
-  &:focus {
-    color: var(--easyedu-primary-strong);
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-  }
-
-  &[hidden] {
-    display: none;
-  }
-
-  &.is-disabled {
-    opacity: 0.55;
-    pointer-events: none;
-  }
+  @include easyedu.dialog-footer-link;
 }
 
 // Header icon tile tinted by its object (T045: tile and eyebrow follow the variant).
