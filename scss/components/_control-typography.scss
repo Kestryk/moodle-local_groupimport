@@ -17,6 +17,11 @@
     @include foundations.foundation-button($secondary: true, $density: compact);
   }
 
+  // Keep natural action metrics after the shared compact button treatment.
+  &-rename__edit .btn {
+    @include easyedu.inline-edit-action;
+  }
+
   // K16: both peers use the same regular secondary recipe and explicit height.
   [data-easystud-container-search-cancel],
   .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {

@@ -193,7 +193,7 @@
     // Card-owned inline creation remains outside this standardisation lot.
     &-create input.form-control,
     &-participant-groups__create input.form-control {
-      min-height: 2.65rem;
+      @include easyedu.inline-create-touch-field;
     }
 
     // Search sizing/padding already belongs to easyedu-search-field.
@@ -436,13 +436,11 @@
     }
 
     &--responsive-workspace &-rename__edit:not([hidden]) {
-      background: color-mix(in srgb, var(--easyedu-surface) 92%, var(--easyedu-primary-soft) 8%);
-      border: 1px solid var(--easyedu-card-border);
-      border-radius: var(--easyedu-control-radius);
-      gap: 0.35rem;
-      grid-template-columns: minmax(0, 1fr) auto auto;
-      margin: 0.45rem 0 0;
-      padding: 0.35rem;
+      @include easyedu.inline-edit-surface {
+        gap: 0.35rem;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        margin: 0.45rem 0 0;
+      }
     }
 
     &--responsive-workspace &-rename__edit .form-control {
@@ -450,7 +448,7 @@
     }
 
     &--responsive-workspace &-rename__edit .btn {
-      padding-inline: 0.65rem;
+      @include easyedu.inline-edit-action($compact: true);
     }
 
     &-tree__toggle {

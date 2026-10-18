@@ -312,7 +312,7 @@
 
     &--responsive-workspace &-rename__edit .btn,
     &--responsive-workspace &-rename__edit .form-control {
-      min-height: var(--easyedu-touch-target-min);
+      @include easyedu.inline-edit-touch-control;
     }
 
     &--inline-editing &-mobile-actions,
