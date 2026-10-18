@@ -385,9 +385,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     @include easyedu.inline-empty-state;
     @include easyedu.type-caption;
 
-    align-items: flex-start;
-    min-height: 2.7rem;
-    text-align: left;
+    @include easyedu.inline-empty-state-compact;
   }
 
   .local-groupimport-admin-settings__hint {
