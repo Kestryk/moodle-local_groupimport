@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25: share identity title/action ink, large avatar and resting frames without changing card geometry or CSS.
+
 - 2026-10-18 [N0] K16-80 F24: centralise empty-state contexts, compact captions and notification paint; preserve complete ordered CSS.
 
 - 2026-10-18 [N0] K16-80 F23: compose modal overlay, surface, header and body through shared Kit recipes; preserve all ordered CSS.

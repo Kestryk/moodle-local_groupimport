@@ -199,3 +199,14 @@
     }
   }
 }
+
+// Header action ink only; the owning card retains hover/focus/selection predicates.
+@mixin card-action-ink($state: rest) {
+  @if $state == rest {
+    color: var(--easyedu-card-action-neutral);
+  } @else if $state == active {
+    color: var(--easyedu-primary);
+  } @else {
+    @error "Unknown card action ink state: #{$state}.";
+  }
+}

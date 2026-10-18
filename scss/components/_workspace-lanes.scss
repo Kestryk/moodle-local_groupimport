@@ -42,9 +42,9 @@
   .local-groupimport-easystud-user,
   .local-groupimport-easystud-group,
   .local-groupimport-easystud-tree__section {
-    border-radius: var(--easyedu-card-radius-rest);
+    @include easyedu.identity-card-rest-radius;
     &:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target) {
-      box-shadow: var(--easyedu-card-shadow-rest);
+      @include easyedu.identity-card-rest-shadow;
     }
   }
   // K16-65: no opaque fill here; the Kit row veil keeps the row light on every card surface.
