@@ -612,6 +612,8 @@
   .easyedu-guide-modal__footer { flex-direction: row; }
   .easyedu-guide-modal__step-count {
     @include typography.type-caption;
+    // Penpot20px counter track shares the exact footer centre of its controls.
+    line-height: 1.25rem;
     display: block;
     flex: 0 0 auto;
     min-width: 0;
@@ -1357,6 +1359,15 @@
       width: auto;
     }
     .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); min-height: 2.375rem; }
+    // This file follows the shared Guide shell: retain Touch44 after both
+    // discovery button recipes, rather than restoring their desktop38 minimum.
+    @media (max-width: 48rem), (pointer: coarse) {
+      flex-shrink: 1;
+      .btn, .btn-primary {
+        min-height: var(--easyedu-touch-target-min);
+        min-width: var(--easyedu-touch-target-min);
+      }
+    }
   }
 
   // Discovery opts into a restrained checklist. Legacy Guide consumers retain

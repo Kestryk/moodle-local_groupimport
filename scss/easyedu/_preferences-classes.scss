@@ -135,7 +135,7 @@
   // keeps evaluating each branch on its own: the plain .easyedu-ui branch still ships on every page
   // (admin/mass-import/sm) and the .easyedu-guide branch ships wherever a Guide actually renders.
   .easyedu-ui .easyedu-direct-icon,
-  .easyedu-guide .easyedu-direct-icon { @include card-actions.card-direct-action; }
+  .easyedu-guide .easyedu-direct-icon { @include card-actions.card-direct-action($size: 2rem); }
   :is(.easyedu-ui, .easyedu-guide) .easyedu-guide-utility { @include buttons.guide-adjacent-action($size: small); }
   // Touch44: same recipe, sized to the shared touch target, with its 16px glyph.
   @media (max-width: 48rem), (pointer: coarse) {
