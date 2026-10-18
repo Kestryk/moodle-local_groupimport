@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80: retire two unused legacy mobile Guide command-frame adapters; keep current Kit navigation unchanged.
+
 - 2026-10-18 [N0] K16-80: share switch helper/section captions and plain checkbox lines in the Kit; preserve all compiled CSS.
 
 - 2026-10-18 [N0] K16-80: share selection-command result-line and compact frames in the Kit; preserve all compiled CSS.
