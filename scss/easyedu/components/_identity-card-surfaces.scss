@@ -25,7 +25,10 @@ $identity-card-paints: (
     rest: (background: var(--easyedu-surface), border-color: color-mix(in srgb, var(--easyedu-grouping) 24%, #fff)),
     expanded: (background: var(--easyedu-surface), box-shadow: var(--easyedu-shadow-soft)),
     selected: (border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft)),
-    expanded-selected: (background: var(--easyedu-grouping-soft), border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft))
+    expanded-selected: (background: var(--easyedu-grouping-soft), border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    expanded-focused: (background: linear-gradient(180deg, #fff 0%, #f7fafc 100%)),
+    expanded-selected-focused: (background: #edf2f7),
+    expanded-rail-rest: (background-color: #8ca0b1)
   ),
   unassigned: (
     rest: (background: #fbf6fa, border-color: #e5d4e0, border-radius: var(--easyedu-card-radius)),

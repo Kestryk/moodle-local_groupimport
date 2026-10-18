@@ -438,7 +438,7 @@
     &[data-easystud-grouping-id].is-expanded:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
       @include easyedu.open-identity-rail-state(#f7fafc, #b7c5d1, #8ca0b1);
 
-      background: linear-gradient(180deg, #fff 0%, #f7fafc 100%);
+      @include easyedu.identity-card-paint(container, expanded-focused);
       @include easyedu.card-focus-context(
         0 0.42rem 0.9rem -0.28rem rgba(106, 127, 152, 0.18)
       );
@@ -469,7 +469,7 @@
     &[data-easystud-grouping-id].is-expanded.is-selected:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
       @include easyedu.open-identity-rail-state(#edf2f7, #9eb0c2, #8a9dad);
 
-      background: #edf2f7;
+      @include easyedu.identity-card-paint(container, expanded-selected-focused);
       @include easyedu.card-focus-context(
         0 0.5rem 1rem -0.24rem rgba(106, 127, 152, 0.22)
       );
@@ -477,7 +477,7 @@
 
     &[data-easystud-grouping-id].is-expanded:not(:focus-within)::before,
     &[data-easystud-grouping-id].is-expanded:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)::before {
-      background-color: #8ca0b1;
+      @include easyedu.identity-card-paint(container, expanded-rail-rest);
     }
   }
 
