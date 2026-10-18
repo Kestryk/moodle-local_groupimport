@@ -28,6 +28,13 @@
       "ciExecutable": false,
       "source": "f05c.json",
       "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f05c"
+    },
+    {
+      "id": "K1680-TAIL-F11R",
+      "status": "candidate",
+      "ciExecutable": false,
+      "source": "f11r.json",
+      "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f11r"
     }
   ]
 }
