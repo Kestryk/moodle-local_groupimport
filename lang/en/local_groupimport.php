@@ -40,7 +40,11 @@ $string['activity_path_desc5'] = 'Check the groups in the destination grouping. 
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['guidewelcometitle'] = 'Discover the EasyStud guide';
+$string['guidewelcomeeyebrow'] = 'EasyStud guide';
+$string['notificationerrortitle'] = 'Action not completed';
+$string['notificationsuccesstitle'] = 'Change saved';
+$string['importnotificationsummary'] = 'Successful lines: {$a->success}. Lines with errors: {$a->errors}. The report below gives the details.';
+$string['guidewelcometitle'] = 'Discover the EasyStud Guide';
 $string['guideinspection_caption'] = 'Practice example — no course data is changed';
 $string['guideinspection_menutitle'] = 'Card actions';
 $string['guideinspection_unknownlabel'] = 'unknown-entry';
@@ -71,7 +75,7 @@ $string['guideinspection_grouping_open_compact'] = 'On mobile, open the grouping
 $string['guideinspection_grouping_enter'] = 'Paste the group names or identifiers. The example has “Projet Orion” and one unknown entry.';
 $string['guideinspection_grouping_review'] = 'Check “Projet Orion” and fix the unknown entry. If a name matches several groups, make it more specific.';
 $string['guideinspection_grouping_return'] = '“Cancel” closes the field. No group is added and no Moodle activity changes.';
-$string['guidewelcomecopy'] = 'This step-by-step guide shows you how to organise participants, groups and groupings in EasyStud. Click the compass button below to start, or open the guide later.';
+$string['guidewelcomecopy'] = 'A step-by-step tour to organise participants, groups and groupings. Start it now, or later from the compass button.';
 $string['guidewelcomeopen'] = 'Open guide';
 $string['guidefullscreenenter'] = 'Enter fullscreen';
 $string['guideintro_title'] = 'How to use this guide';
@@ -193,9 +197,9 @@ $string['guidefullscreenexit'] = 'Exit fullscreen (Esc)';
 $string['guidefullscreenunavailable'] = 'Fullscreen is unavailable. You can continue in the guide window.';
 $string['guidewelcomedismiss'] = 'Later';
 $string['guidewelcomereset'] = 'Reset guide welcome';
-$string['guidewelcomeresethelp'] = 'Offer the desktop guide welcome again to all users. You will confirm before anything changes.';
-$string['guidewelcomeresetconfirm'] = 'Offer the desktop guide welcome again to all users on their next visit? Existing guided path progress and course data will not change.';
-$string['guidewelcomeresetdone'] = 'The guide welcome will be offered again on the next desktop visit.';
+$string['guidewelcomeresethelp'] = 'Offer the guide welcome again to all users. You will confirm before anything changes.';
+$string['guidewelcomeresetconfirm'] = 'Offer the guide welcome again to all users on their next visit? Existing guided path progress and course data will not change.';
+$string['guidewelcomeresetdone'] = 'The guide welcome will be offered again on the next visit.';
 $string['privacy:metadata:motionlevel'] = 'The animation level this user chose for the EasyEdu interfaces: full, reduced, minimal or the site default.';
 $string['privacy:metadata:guidewelcomeseen'] = 'The welcome generation for which this user actually opened the EasyStud guide. It prevents repeating the first-visit invitation.';
 

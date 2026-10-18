@@ -492,29 +492,10 @@
     }
   }
 
+  // K18-16 (Kevin 18/10/2026): the first-visit welcome is the Kit V3 banner
+  // (components/_v3-banner.scss), anchored to the launcher at every width.
   .easyedu-guide-welcome {
-    position: fixed;
-    inset: 0;
-    margin: auto;
-    height: fit-content;
-    z-index: 1070;
-    width: min(30rem, calc(100vw - 2rem));
-    min-height: 8.75rem;
-    padding: 1rem;
-    border: 1px solid var(--easyedu-border);
-    border-radius: var(--easyedu-radius-lg);
-    background: var(--easyedu-surface);
-    animation: easyedu-modal-in var(--easyedu-motion-normal) var(--easyedu-motion-ease) both;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    > p { @include typography.type-caption; margin: 0; color: var(--easyedu-text-muted); }
-    &__actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-block-start: auto; }
-    &__dismiss { @include buttons.selection-action(neutral); }
-    &__open { @include buttons.selection-action($solid: true); }
-    &__dismiss, &__open { & { @include buttons.button-size(small); } }
     &[hidden] { display: none; }
-    @media (max-width: 63.999rem) { display: none; }
   }
 
   .easyedu-guide-resume {

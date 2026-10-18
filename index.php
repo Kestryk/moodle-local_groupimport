@@ -791,6 +791,19 @@ if ($preview !== null) {
         ['class' => 'local-groupimport-import-empty easyedu-empty']
     );
 } else {
+    // K18-16 (Kevin 18/10/2026): the outcome is also announced with the Kit V3 notification.
+    $notificationtype = empty($errors) ? 'success' : 'error';
+    $PAGE->requires->js_call_amd('local_groupimport/easyedu_notification', 'show', [[
+        'type' => $notificationtype,
+        'eyebrow' => get_string('pluginname', 'local_groupimport'),
+        'title' => get_string('notification' . $notificationtype . 'title', 'local_groupimport'),
+        'text' => get_string('importnotificationsummary', 'local_groupimport', (object)[
+            'success' => count($success),
+            'errors' => count($errors),
+        ]),
+        'closeLabel' => get_string('closebuttontitle'),
+        'delay' => 6000,
+    ]]);
     echo html_writer::tag(
         'div',
         html_writer::tag(

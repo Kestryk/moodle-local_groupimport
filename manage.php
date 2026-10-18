@@ -346,6 +346,10 @@ function local_groupimport_build_manage_template_data(
         has_all_capabilities(['moodle/site:sendmessage', 'moodle/course:bulkmessaging'], $context);
     $detaillabels = [
         'ajaxerror' => get_string('ajaxactionfailed', 'local_groupimport'),
+        'notificationeyebrow' => get_string('pluginname', 'local_groupimport'),
+        'notificationsuccesstitle' => get_string('notificationsuccesstitle', 'local_groupimport'),
+        'notificationerrortitle' => get_string('notificationerrortitle', 'local_groupimport'),
+        'notificationclose' => get_string('closebuttontitle'),
         'actioninprogress' => get_string('actioninprogress', 'local_groupimport'),
         'username' => get_string('detailusername', 'local_groupimport'),
         'idnumber' => get_string('detailidnumber', 'local_groupimport'),
@@ -1535,6 +1539,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guidereturnbutton' => $templatedata['tutorialreturnbutton'],
         'guidereturndismiss' => $templatedata['tutorialreturndismiss'],
         'guidechecklisttitle' => $templatedata['tutorialguidedpaneltitle'],
+        'guidewelcomeeyebrow' => get_string('guidewelcomeeyebrow', 'local_groupimport'),
         'guidewelcometitle' => get_string('guidewelcometitle', 'local_groupimport'),
         'guidewelcomecopy' => get_string('guidewelcomecopy', 'local_groupimport'),
         'guidewelcomeopen' => get_string('guidewelcomeopen', 'local_groupimport'),
@@ -1571,6 +1576,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
         'firstVisit' => false,
         'fullscreen' => true,
         'welcomeOffer' => \local_groupimport\local\guide_welcome::should_offer(),
+        // K18-16: on compact layouts the compass lives in the closed navigation drawer.
+        'welcomeCompactTarget' => '[data-easyedu-navigation-open]',
         'highlightAutoHideDelay' => 5200,
         'highlightStyle' => 'pulse-blue',
         'targets' => [

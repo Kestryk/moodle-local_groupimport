@@ -38,7 +38,11 @@ $string['activity_path_desc5'] = 'Vérifiez les groupes du groupement de destina
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['guidewelcometitle'] = 'Découvrez le guide EasyStud';
+$string['guidewelcomeeyebrow'] = 'Guide EasyStud';
+$string['notificationerrortitle'] = 'Action non effectuée';
+$string['notificationsuccesstitle'] = 'Modification effectuée';
+$string['importnotificationsummary'] = 'Lignes traitées : {$a->success}. Lignes en erreur : {$a->errors}. Le rapport ci-dessous donne le détail.';
+$string['guidewelcometitle'] = 'Découvrez le Guide EasyStud';
 $string['guideinspection_caption'] = 'Exemple pratique — aucune donnée du cours n’est modifiée';
 $string['guideinspection_menutitle'] = 'Actions de la carte';
 $string['guideinspection_unknownlabel'] = 'entree-inconnue';
@@ -69,8 +73,8 @@ $string['guideinspection_grouping_open_compact'] = 'Sur mobile, ouvrez le menu d
 $string['guideinspection_grouping_enter'] = 'Collez les noms ou identifiants des groupes. L’exemple contient « Projet Orion » et une entrée inconnue.';
 $string['guideinspection_grouping_review'] = 'Vérifiez « Projet Orion » et corrigez l’entrée inconnue. Si un nom correspond à plusieurs groupes, précisez-le.';
 $string['guideinspection_grouping_return'] = '« Annuler » ferme le champ. Aucun groupe n’est ajouté et aucune activité Moodle ne change.';
-$string['guidewelcomecopy'] = 'Ce guide vous explique pas à pas comment organiser les participants, groupes et groupements dans EasyStud. Cliquez sur le bouton boussole ci-dessous pour commencer, ou ouvrez le guide plus tard.';
-$string['guidewelcomeopen'] = 'Ouvrir le guide';
+$string['guidewelcomecopy'] = 'Un parcours pas à pas pour organiser les participants, les groupes et les groupements. Lancez-le maintenant, ou plus tard avec le bouton boussole.';
+$string['guidewelcomeopen'] = 'Ouvrir le Guide';
 $string['guidefullscreenenter'] = 'Afficher en plein écran';
 $string['guideintro_title'] = 'Comment utiliser ce guide';
 $string['guideintro_category'] = 'Guide';
@@ -191,9 +195,9 @@ $string['guidefullscreenexit'] = 'Quitter le plein écran (Échap)';
 $string['guidefullscreenunavailable'] = 'Le plein écran est indisponible. Vous pouvez continuer dans la fenêtre du guide.';
 $string['guidewelcomedismiss'] = 'Plus tard';
 $string['guidewelcomereset'] = 'Réinitialiser l’accueil du guide';
-$string['guidewelcomeresethelp'] = 'Proposer à nouveau l’accueil du guide sur ordinateur à tous les utilisateurs. Une confirmation précède toute modification.';
-$string['guidewelcomeresetconfirm'] = 'Proposer à nouveau l’accueil du guide sur ordinateur à tous les utilisateurs lors de leur prochaine visite ? La progression des parcours et les données des cours restent inchangées.';
-$string['guidewelcomeresetdone'] = 'L’accueil du guide sera de nouveau proposé lors de la prochaine visite sur ordinateur.';
+$string['guidewelcomeresethelp'] = 'Proposer à nouveau l’accueil du guide à tous les utilisateurs. Une confirmation précède toute modification.';
+$string['guidewelcomeresetconfirm'] = 'Proposer à nouveau l’accueil du guide à tous les utilisateurs lors de leur prochaine visite ? La progression des parcours et les données des cours restent inchangées.';
+$string['guidewelcomeresetdone'] = 'L’accueil du guide sera de nouveau proposé lors de la prochaine visite.';
 $string['privacy:metadata:motionlevel'] = 'Le niveau d’animation choisi par cet utilisateur pour les interfaces EasyEdu : complètes, réduites, minimales ou la valeur par défaut du site.';
 $string['privacy:metadata:guidewelcomeseen'] = 'La version de l’accueil pour laquelle cet utilisateur a réellement ouvert le guide EasyStud. Elle évite de répéter l’invitation de première visite.';
 

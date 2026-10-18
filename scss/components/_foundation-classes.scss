@@ -6,6 +6,7 @@
 @use "../easyedu/workspace-classes" as workspace;
 @use "../easyedu/workspace-control-classes" as workspaceControls;
 @use "../easyedu/preferences-classes" as preferences;
+@use "../easyedu/components/v3-banner" as v3banner;
 
 @include foundations.foundation-font("[[font:local_groupimport|InterVariable.woff2]]");
 @include foundations.foundation-classes;
@@ -15,3 +16,4 @@
 @include workspace.workspace-classes;
 @include workspaceControls.workspace-control-classes;
 @include preferences.preferences-classes;
+@include v3banner.v3-banner-classes;

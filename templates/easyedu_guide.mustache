@@ -698,11 +698,21 @@
         </div>
     </aside>
     {{#guidewelcomecopy}}
-    <aside class="easyedu-guide-welcome" data-easyedu-guide-welcome hidden role="region" aria-label="{{guidewelcometitle}}">
-        <p>{{guidewelcomecopy}}</p>
-        <div class="easyedu-guide-welcome__actions">
-            <button type="button" class="easyedu-guide-welcome__dismiss" data-easyedu-guide-welcome-dismiss>{{guidewelcomedismiss}}</button>
-            <button type="button" class="easyedu-guide-welcome__open" data-easyedu-guide-open><span class="fa fa-compass" aria-hidden="true"></span><span>{{guidewelcomeopen}}</span></button>
+    <aside class="easyedu-guide-welcome easyedu-v3-banner easyedu-v3-banner--welcome easyedu-v3-banner--anchored" data-easyedu-guide-welcome hidden role="region" aria-label="{{guidewelcometitle}}">
+        <span class="easyedu-v3-banner__arrow" aria-hidden="true"></span>
+        <div class="easyedu-v3-banner__panel">
+            <div class="easyedu-v3-banner__content">
+                <span class="easyedu-v3-banner__tile" aria-hidden="true"><span class="fa fa-compass" aria-hidden="true"></span></span>
+                <div class="easyedu-v3-banner__heading">
+                    <span class="easyedu-v3-banner__eyebrow">{{guidewelcomeeyebrow}}</span>
+                    <strong class="easyedu-v3-banner__title">{{guidewelcometitle}}</strong>
+                </div>
+                <p class="easyedu-v3-banner__text">{{guidewelcomecopy}}</p>
+            </div>
+            <div class="easyedu-v3-banner__actions">
+                <button type="button" class="easyedu-guide-welcome__open easyedu-v3-banner__action" data-easyedu-guide-open>{{guidewelcomeopen}}</button>
+                <button type="button" class="easyedu-guide-welcome__dismiss easyedu-v3-banner__action easyedu-v3-banner__action--secondary" data-easyedu-guide-welcome-dismiss>{{guidewelcomedismiss}}</button>
+            </div>
         </div>
     </aside>
     {{/guidewelcomecopy}}

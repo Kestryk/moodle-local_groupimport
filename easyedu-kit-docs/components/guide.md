@@ -256,6 +256,20 @@ Do not replace this opt-in offer with legacy `firstVisit` auto-opening.
 AMD in EN/FR normal/reduced Motion, dismissal, real opening, destroy and compact
 suppression. This is isolated proof, not native persistence or human approval.
 
+### K18-16 update (18/10/2026): V3 banner at every width
+
+The invitation is now the Kit V3 banner (`scss/easyedu/components/_v3-banner.scss`,
+Penpot Foundations `EasyEdu / Feedback / V3 banner / Welcome / Desktop` 600x174 and
+`/ Touch` 358x314, touch master at 40rem and below). Supply `guidewelcomeeyebrow`
+as well. It is offered at every width, anchored with fixed coordinates 18px under
+the launcher (box 4px left of it, arrow on its centre, bounded 24px from the box
+edges), flipped above when the viewport is too short and pinned without arrow when
+the anchor scrolled away. When the launcher sits in a closed drawer, the optional
+`welcomeCompactTarget` selector names the visible control that opens it. Escape
+equals Later. Notifications reuse the same component through the
+`easyedu_notification` AMD module (`show({type, eyebrow, title, text, closeLabel, delay})`).
+The 1024px threshold described above no longer applies.
+
 ## Active checklist highlight lifetime (0.4.153)
 
 A checklist step is a current task, not a transient interface location cue.

@@ -13,6 +13,8 @@ const DEFAULTS = {
   // Server eligibility is product-owned. This opt-in offers, never auto-opens.
   welcomeOffer: false,
   welcomeTarget: '',
+  // Optional visible stand-in when the launcher sits in a closed drawer (compact layouts).
+  welcomeCompactTarget: '',
   fullscreen: false,
   highlightAutoHideDelay: 9000,
   highlightStyle: 'default',
@@ -3366,6 +3368,7 @@ const applyActiveSlide = (root, index, config, options = {}) => {
 
 const hideWelcome = root => {
   root.easyeduGuideWelcomeWaitStop?.();
+  root.easyeduGuideWelcomePlaceStop?.();
   const invitation = root.querySelector('[data-easyedu-guide-welcome]');
   if (!invitation || invitation.hidden) { return; }
   invitation.hidden = true;
@@ -3375,14 +3378,118 @@ const hideWelcome = root => {
   root.easyeduGuideWelcomeTarget = null;
 };
 
-const offerWelcome = (root, config) => {
-  // A first-visit invitation never competes with a resumed task or phone nav.
-  if (!config.welcomeOffer || window.innerWidth < 1024 ||
-      root.easyeduGuideWelcomeDismissed) { return; }
+// K18-16 (Kevin 18/10/2026): the V3 welcome banner sits next to the launcher
+// at every width. A launcher hidden in a closed drawer hands over to the
+// visible control that opens that drawer (config.welcomeCompactTarget).
+const isInViewport = element => {
+  if (!isVisibleElement(element)) {
+    return false;
+  }
+  const rect = element.getBoundingClientRect();
+  return rect.right > 0 && rect.left < window.innerWidth;
+};
+
+const resolveWelcomeAnchor = (root, config, invitation) => {
+  const launchers = config.welcomeTarget ? [document.querySelector(config.welcomeTarget)].filter(Boolean) :
+    Array.from(root.querySelectorAll(SELECTORS.open)).filter(element => !invitation.contains(element));
+  const launcher = launchers.find(isInViewport) || launchers[0] || null;
+  if (isInViewport(launcher)) {
+    return launcher;
+  }
+  const compact = config.welcomeCompactTarget ?
+    Array.from(document.querySelectorAll(config.welcomeCompactTarget)).find(isInViewport) : null;
+  return compact || launcher;
+};
+
+// Fixed coordinates: 18px under the anchor, box 4px left of it, arrow on its
+// centre; above it when the viewport is too short, pinned without arrow when
+// the anchor scrolled away. The banner never leaves the viewport.
+const placeWelcome = root => {
   const invitation = root.querySelector('[data-easyedu-guide-welcome]');
-  const target = config.welcomeTarget ? document.querySelector(config.welcomeTarget) :
-    root.querySelector(SELECTORS.open);
-  if (!invitation || !target) { return; }
+  const anchor = root.easyeduGuideWelcomeTarget;
+  if (!invitation || invitation.hidden || !anchor) {
+    return;
+  }
+  const gutter = 16;
+  const gap = 18;
+  const arrowEdge = 24;
+  const viewWidth = document.documentElement.clientWidth || window.innerWidth;
+  const viewHeight = window.innerHeight;
+  const rect = anchor.getBoundingClientRect();
+  const width = invitation.offsetWidth;
+  const height = invitation.offsetHeight;
+  const left = Math.max(gutter, Math.min(rect.left - 4, viewWidth - gutter - width));
+  let top = rect.bottom + gap;
+  let placement = 'below';
+  if (top + height > viewHeight - gutter && rect.top - gap - height >= gutter) {
+    top = rect.top - gap - height;
+    placement = 'above';
+  }
+  const clamped = Math.max(gutter, Math.min(top, viewHeight - gutter - height));
+  if (clamped !== top) {
+    placement = 'none';
+  }
+  const arrow = Math.max(arrowEdge, Math.min(rect.left + rect.width / 2 - left, width - arrowEdge));
+  invitation.style.setProperty('--easyedu-v3-banner-left', `${left}px`);
+  invitation.style.setProperty('--easyedu-v3-banner-top', `${clamped}px`);
+  invitation.style.setProperty('--easyedu-v3-banner-arrow-x', `${arrow}px`);
+  invitation.dataset.easyeduV3Placement = placement;
+};
+
+const followWelcomeAnchor = root => {
+  root.easyeduGuideWelcomePlaceStop?.();
+  const invitation = root.querySelector('[data-easyedu-guide-welcome]');
+  let frame = 0;
+  const schedule = () => {
+    if (frame) {
+      return;
+    }
+    frame = window.requestAnimationFrame(() => {
+      frame = 0;
+      placeWelcome(root);
+    });
+  };
+  const escape = event => {
+    if (event.key !== 'Escape' || invitation.hidden || event.defaultPrevented) {
+      return;
+    }
+    const modal = root.querySelector(SELECTORS.modal);
+    if (modal && !modal.hidden) {
+      return;
+    }
+    invitation.querySelector('[data-easyedu-guide-welcome-dismiss]')?.click();
+  };
+  const resize = new ResizeObserver(schedule);
+  resize.observe(invitation);
+  window.addEventListener('scroll', schedule, {capture: true, passive: true});
+  window.addEventListener('resize', schedule, {passive: true});
+  document.addEventListener('keydown', escape);
+  root.easyeduGuideWelcomePlaceStop = () => {
+    if (frame) {
+      window.cancelAnimationFrame(frame);
+    }
+    resize.disconnect();
+    window.removeEventListener('scroll', schedule, {capture: true, passive: true});
+    window.removeEventListener('resize', schedule, {passive: true});
+    document.removeEventListener('keydown', escape);
+    root.easyeduGuideWelcomePlaceStop = null;
+  };
+  placeWelcome(root);
+};
+
+const offerWelcome = (root, config) => {
+  // A first-visit invitation never competes with a resumed task.
+  if (!config.welcomeOffer || root.easyeduGuideWelcomeDismissed) {
+    return;
+  }
+  const invitation = root.querySelector('[data-easyedu-guide-welcome]');
+  if (!invitation) {
+    return;
+  }
+  const target = resolveWelcomeAnchor(root, config, invitation);
+  if (!target) {
+    return;
+  }
   if (!isVisibleElement(target)) {
     // Consumers may initialize Guide while their loading shell still hides
     // the launcher. Observe only its ancestry, never the whole document tree.
@@ -3392,6 +3499,9 @@ const offerWelcome = (root, config) => {
       const mutation = new MutationObserver(refresh);
       const resize = new ResizeObserver(refresh);
       resize.observe(target);
+      if (config.welcomeCompactTarget) {
+        document.querySelectorAll(config.welcomeCompactTarget).forEach(element => resize.observe(element));
+      }
       for (let node = target; node; node = node.parentElement) {
         mutation.observe(node, {attributes: true, attributeFilter: ['class', 'hidden', 'style']});
       }
@@ -3408,6 +3518,7 @@ const offerWelcome = (root, config) => {
   root.easyeduGuideWelcomeWaitStop?.();
   invitation.hidden = false;
   root.easyeduGuideWelcomeTarget = target;
+  followWelcomeAnchor(root);
   updateHighlight(root, target);
 };
 
@@ -4741,7 +4852,16 @@ export const init = (rootOrSelector, rawConfig) => {
     offerWelcome(root, config);
   }
   addTrackedListener(root, window, 'resize', () => {
-    if (window.innerWidth < 1024) { hideWelcome(root); }
+    const invitation = root.querySelector('[data-easyedu-guide-welcome]');
+    if (!invitation || invitation.hidden) {
+      return;
+    }
+    const anchor = resolveWelcomeAnchor(root, config, invitation);
+    if (anchor && anchor !== root.easyeduGuideWelcomeTarget && isInViewport(anchor)) {
+      root.easyeduGuideWelcomeTarget = anchor;
+      updateHighlight(root, anchor);
+      placeWelcome(root);
+    }
   });
 
   const storage = getStorage();

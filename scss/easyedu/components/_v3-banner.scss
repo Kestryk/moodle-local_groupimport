@@ -1,0 +1,331 @@
+// EasyEdu V3 banner (K18-16, Kevin 18/10/2026): one Kit component for the
+// first-visit welcome and for notifications (former toasts).
+// Penpot Foundations masters, file revision 2470:
+// - EasyEdu / Feedback / V3 banner / Welcome / Desktop       600 x 174
+// - EasyEdu / Feedback / V3 banner / Welcome / Touch         358 x 314
+// - EasyEdu / Feedback / V3 banner / Notification / Desktop  480 x 124 (long text 480 x 144)
+// - EasyEdu / Feedback / V3 banner / Notification / Touch    358 x 148
+// Common paint: white, inner 1px #cfe0ef stroke drawn above the content,
+// radius 8, 4px plugin accent on the left edge, shadow 0 8 24 #162d44 at 14 %.
+// Touch masters apply at 40rem and below. Geometry is the Penpot one,
+// including the Touch title/text boxes that keep the master height stable.
+@use "buttons";
+@use "animations";
+@use "../foundation-classes" as foundation;
+
+$v3-touch-query: "(max-width: 40rem)";
+
+@mixin v3-banner-tokens {
+  --easyedu-v3-banner-accent: var(--easyedu-primary, #0f6cbf);
+  --easyedu-v3-banner-border: var(--easyedu-modal-border, #cfe0ef);
+  --easyedu-v3-banner-surface: var(--easyedu-surface, #fff);
+  --easyedu-v3-banner-actions-surface: var(--easyedu-modal-footer-bg, #f8fbfd);
+  --easyedu-v3-banner-tile-surface: #e7f2ff;
+  --easyedu-v3-banner-title: var(--easyedu-card-identity-title-color, #264861);
+  --easyedu-v3-banner-text: #3b4c5e;
+  --easyedu-v3-banner-shadow: 0 0.5rem 1.5rem rgba(22, 45, 68, 0.14);
+}
+
+@mixin v3-banner-classes {
+  .easyedu-v3-banner {
+    @include v3-banner-tokens;
+    @include foundation.foundation-scope;
+    box-sizing: border-box;
+    color: var(--easyedu-v3-banner-text);
+    position: relative;
+    text-align: start;
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+    &[hidden] { display: none; }
+  }
+
+  .easyedu-v3-banner__panel {
+    background: var(--easyedu-v3-banner-surface);
+    border-radius: 0.5rem;
+    box-shadow: var(--easyedu-v3-banner-shadow);
+    display: grid;
+    max-block-size: calc(100vh - 2rem);
+    overflow: hidden auto;
+    position: relative;
+    z-index: 1;
+    // Accent: left edge, full height, clipped by the radius.
+    &::before {
+      background: var(--easyedu-v3-banner-accent);
+      content: "";
+      inline-size: 0.25rem;
+      inset-block: 0;
+      inset-inline-start: 0;
+      position: absolute;
+      z-index: 2;
+    }
+    // Inner stroke above the content, as in Penpot.
+    &::after {
+      border: 0.0625rem solid var(--easyedu-v3-banner-border);
+      border-radius: inherit;
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 3;
+    }
+  }
+
+  .easyedu-v3-banner__content {
+    column-gap: 1rem;
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    min-inline-size: 0;
+  }
+
+  .easyedu-v3-banner__tile {
+    align-items: center;
+    background: var(--easyedu-v3-banner-tile-surface);
+    block-size: 2.5rem;
+    border-radius: 0.5rem;
+    color: var(--easyedu-v3-banner-accent);
+    display: inline-flex;
+    font-size: 1.25rem;
+    grid-column: 1;
+    grid-row: 1;
+    inline-size: 2.5rem;
+    justify-content: center;
+    line-height: 1;
+    > .fa { line-height: 1; margin: 0; }
+  }
+
+  .easyedu-v3-banner__heading {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    grid-row: 1;
+    min-inline-size: 0;
+  }
+
+  .easyedu-v3-banner__eyebrow {
+    color: var(--easyedu-v3-banner-accent);
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 0.875rem;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .easyedu-v3-banner__title {
+    color: var(--easyedu-v3-banner-title);
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    margin: 0.5rem 0 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .easyedu-v3-banner__text {
+    color: var(--easyedu-v3-banner-text);
+    font-size: 0.875rem;
+    font-weight: 400;
+    grid-column: 2;
+    line-height: 1.3125rem;
+    margin: 0;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .easyedu-v3-banner__actions {
+    background: var(--easyedu-v3-banner-actions-surface);
+    display: flex;
+    min-inline-size: 0;
+    position: relative;
+    &::before {
+      background: var(--easyedu-v3-banner-border);
+      content: "";
+      position: absolute;
+    }
+  }
+
+  // Kit Core actions (Primary M / neutral Secondary M; Touch 44px below 40rem).
+  .easyedu-v3-banner__action {
+    @include foundation.foundation-button;
+    & {
+      inline-size: 100%;
+      margin: 0;
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      padding-inline: 0.75rem;
+    }
+  }
+  .easyedu-v3-banner__action--secondary {
+    @include foundation.foundation-button($secondary: true, $matched-size: true);
+    & {
+      border-color: var(--easyedu-deposit-border, #c8d6e3);
+      color: var(--easyedu-text, #1f2a37);
+    }
+    &:focus,
+    &:hover { color: var(--easyedu-text, #1f2a37); }
+  }
+
+  // Kit Close: 32px desktop target centre, 44px touch.
+  .easyedu-v3-banner__close {
+    @include buttons.close-button;
+    & {
+      inset-block-start: 0.8rem;
+      inset-inline-end: 1.05rem;
+      margin: 0;
+      position: absolute;
+      z-index: 4;
+    }
+  }
+
+  .easyedu-v3-banner__arrow {
+    background: var(--easyedu-v3-banner-surface);
+    block-size: 1rem;
+    border: 0.0625rem solid var(--easyedu-v3-banner-border);
+    border-radius: 0.125rem;
+    inline-size: 1rem;
+    inset-block-start: -0.5rem;
+    left: calc(var(--easyedu-v3-banner-arrow-x, 1.75rem) - 0.5rem);
+    pointer-events: none;
+    position: absolute;
+    transform: rotate(45deg);
+    z-index: 0;
+  }
+  .easyedu-v3-banner[data-easyedu-v3-placement="above"] .easyedu-v3-banner__arrow {
+    inset-block: auto -0.5rem;
+  }
+  .easyedu-v3-banner[data-easyedu-v3-placement="none"] .easyedu-v3-banner__arrow { display: none; }
+
+  // Welcome, Desktop master (600 x 174 with the French copy).
+  .easyedu-v3-banner--welcome {
+    inline-size: min(37.5rem, calc(100vw - 2rem));
+    .easyedu-v3-banner__panel { grid-template-columns: minmax(0, 1fr) 11.25rem; }
+    .easyedu-v3-banner__content { padding: 1.25rem 1.25rem 1.25rem 1.5rem; }
+    .easyedu-v3-banner__title { margin-block-start: 0.25rem; }
+    .easyedu-v3-banner__text { margin-block-start: 0.5rem; }
+    .easyedu-v3-banner__actions {
+      background-clip: padding-box;
+      border-inline-start: 0.0625rem solid transparent;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      padding: 1rem 0.75rem 1rem 0.6875rem;
+      &::before {
+        inline-size: 0.0625rem;
+        inset-block: 1rem;
+        inset-inline-start: -0.0625rem;
+      }
+    }
+  }
+
+  // Notification, Desktop master (480 x 124; 144 with a two-line text).
+  .easyedu-v3-banner--notification {
+    inline-size: min(30rem, calc(100vw - 2rem));
+    pointer-events: auto;
+    .easyedu-v3-banner__panel { min-block-size: 7.75rem; }
+    .easyedu-v3-banner__content {
+      display: block;
+      padding: 1rem 1.5rem 1.875rem;
+    }
+    .easyedu-v3-banner__heading { padding-inline-end: 3rem; }
+    .easyedu-v3-banner__text { margin-block-start: 0.625rem; }
+  }
+
+  @media #{$v3-touch-query} {
+    .easyedu-v3-banner__action { min-block-size: 2.75rem; }
+    .easyedu-v3-banner__close {
+      block-size: 2.75rem;
+      inline-size: 2.75rem;
+      inset-block-start: 0.75rem;
+      inset-inline-end: 1rem;
+      min-block-size: 2.75rem;
+      min-inline-size: 2.75rem;
+    }
+
+    // Welcome, Touch master (358 x 314 with the French copy).
+    .easyedu-v3-banner--welcome {
+      inline-size: min(22.375rem, calc(100vw - 2rem));
+      .easyedu-v3-banner__panel { grid-template-columns: minmax(0, 1fr); }
+      .easyedu-v3-banner__content { padding: 1.25rem 1.5rem 0.8125rem; }
+      .easyedu-v3-banner__title {
+        margin-block-start: 0.5rem;
+        min-block-size: 3rem;
+      }
+      .easyedu-v3-banner__text {
+        grid-column: 1 / -1;
+        margin-block-start: 0.875rem;
+        min-block-size: 6.5625rem;
+      }
+      .easyedu-v3-banner__actions {
+        background-clip: border-box;
+        border-inline-start: 0;
+        column-gap: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 1.5rem 1rem;
+        &::before {
+          block-size: 0.0625rem;
+          inline-size: auto;
+          inset-block-start: 0;
+          inset-inline: 1rem;
+        }
+        // Penpot Touch: Later on the left, Open on the right; focus order stays Open, Later.
+        > .easyedu-v3-banner__action { grid-column: 2; grid-row: 1; }
+        > .easyedu-v3-banner__action--secondary { grid-column: 1; }
+      }
+    }
+
+    // Notification, Touch master (358 x 148).
+    .easyedu-v3-banner--notification {
+      inline-size: min(22.375rem, calc(100vw - 2rem));
+      max-inline-size: 100%;
+      .easyedu-v3-banner__panel { min-block-size: 9.25rem; }
+      .easyedu-v3-banner__content { padding-block-end: 1.125rem; }
+      .easyedu-v3-banner__title { min-block-size: 3rem; }
+      .easyedu-v3-banner__text {
+        margin-block-start: 0.125rem;
+        min-block-size: 2.625rem;
+      }
+    }
+  }
+
+  // Anchored welcome: JS writes the fixed coordinates next to the launcher.
+  .easyedu-v3-banner--anchored {
+    inset-block-start: var(--easyedu-v3-banner-top, 1rem);
+    left: var(--easyedu-v3-banner-left, 1rem);
+    position: fixed;
+    z-index: 1070;
+  }
+
+  // Notification stack: top end, under Moodle's fixed navbar; centred on touch.
+  .easyedu-v3-banner-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    inset-block-start: 4.75rem;
+    inset-inline-end: 1rem;
+    pointer-events: none;
+    position: fixed;
+    z-index: 1080;
+    @media #{$v3-touch-query} {
+      align-items: center;
+      inset-inline: 1rem;
+    }
+  }
+
+  // Motion levels (contract M1): full = existing modal entrance and a fade out;
+  // reduced and minimal = no movement and no transition.
+  .easyedu-v3-banner--notification,
+  .easyedu-v3-banner--anchored {
+    animation: easyedu-modal-in var(--easyedu-motion-normal, 220ms) var(--easyedu-motion-ease, ease) backwards;
+    transition: opacity var(--easyedu-motion-normal, 220ms) ease;
+    &.is-leaving { opacity: 0; }
+    @include animations.motion-restricted($self: true) {
+      animation: none;
+      transition: none;
+    }
+  }
+}
