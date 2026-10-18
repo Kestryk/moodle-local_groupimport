@@ -10,6 +10,39 @@
 
 @use "typography";
 
+// Collapsible deposit shell: retain the accepted open/folded/stacked inset.
+// The caller keeps its breakpoint, grid placement and disclosure behaviour.
+@mixin deposit-shell-inset($state: preview) {
+  @if $state == folded {
+    padding: 0.85rem 0.55rem;
+  } @else {
+    padding: 0.85rem;
+  }
+}
+
+@mixin deposit-shell-heading-clearance {
+  padding-inline-end: 2.7rem;
+}
+
+@mixin deposit-shell-folded-heading($stacked: false) {
+  @if $stacked {
+    height: auto;
+    min-height: 0;
+  } @else {
+    align-content: start;
+    align-items: start;
+    display: grid;
+    gap: 0.72rem;
+    grid-auto-rows: max-content;
+    grid-template-columns: minmax(0, 1fr);
+    height: 100%;
+    justify-items: center;
+    margin: 0;
+    padding-top: 0.25rem;
+    width: 100%;
+  }
+}
+
 // Opt-in continuous workspace lane. Split headers/lists may use start/end
 // without clipping descendants, keyboard focus, menus or active drop targets.
 @mixin workspace-lane-tokens {

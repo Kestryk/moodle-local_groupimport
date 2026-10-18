@@ -36,7 +36,7 @@
 
     &.has-preview.is-upload-collapsed &-card--upload {
       display: block;
-      padding: 0.85rem;
+      @include easyedu.deposit-shell-inset(stacked);
     }
 
     &.has-preview.is-upload-collapsed &-card--upload &-fields,
@@ -49,8 +49,7 @@
     }
 
     &.has-preview.is-upload-collapsed &-card--upload &-card__header {
-      height: auto;
-      min-height: 0;
+      @include easyedu.deposit-shell-folded-heading($stacked: true);
     }
 
     &__header {
