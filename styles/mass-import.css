@@ -2040,7 +2040,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {transit
 .easyedu-ui .easyedu-related-person-row__name {color: var(--easyedu-related-person-name-color);font-family: var(--easyedu-font-family-ui);font-size: var(--easyedu-related-person-name-size);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;flex: 1 1 auto;min-width: 0;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
 }
 
-.easyedu-ui .easyedu-related-person-row__remove {align-items: center;background: #f8fbfe;border-color: #cfdce8;border-radius: 0.5rem;border-style: solid;border-width: 1px;box-shadow: 0 0.1rem 0.3rem rgba(64, 92, 116, 0.08);box-sizing: border-box;color: #486985;display: inline-grid;flex: 0 0 auto;font-size: 1rem;font-weight: 700;height: 1.45rem;line-height: 1;place-items: center;padding: 0 !important;text-decoration: none !important;width: 1.45rem;
+.easyedu-ui .easyedu-related-person-row__remove {align-items: center;background: #f8fbfe;border-color: #cfdce8;border-radius: 0.5rem;border-style: solid;border-width: 1px;box-shadow: 0 0.1rem 0.3rem rgba(64, 92, 116, 0.08);box-sizing: border-box;color: #486985;display: inline-grid;flex: 0 0 auto;font-size: 1rem;font-weight: 700;height: var(--easyedu-related-person-remove-size);line-height: 1;place-items: center;padding: 0 !important;text-decoration: none !important;width: var(--easyedu-related-person-remove-size);
 }
 .easyedu-ui .easyedu-related-person-row__remove span {display: block;line-height: 1;margin: 0;
 }
