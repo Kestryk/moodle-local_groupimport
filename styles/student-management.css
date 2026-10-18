@@ -1128,8 +1128,6 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-discovery__actions {align-items: center;display: flex;gap: 0.45rem;
 }
-.local-groupimport-easystud-discovery__dismiss {align-items: center;border-radius: 0.68rem;display: inline-flex;height: 2rem;justify-content: center;padding: 0;width: 2rem;
-}
 .local-groupimport-easystud__header {align-items: flex-start;display: block;gap: 1rem;margin-bottom: 0;
 }
 .local-groupimport-easystud__eyebrow {color: var(--local-groupimport-easystud-primary);display: block;font-size: 0.75rem;font-weight: 700;letter-spacing: 0.08em;margin-bottom: 0.2rem;text-transform: uppercase;
