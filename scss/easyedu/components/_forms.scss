@@ -1588,3 +1588,8 @@
 
 // Accepted native settings-field caption tone.
 @mixin settings-field-heading-ink { color: var(--easyedu-text-muted); }
+
+
+// Accepted narrow filter/creation shell inset; the host owns its display predicate.
+@mixin control-shell-touch-inset { padding: 0.68rem; }
+@mixin filter-panel-touch-extent { max-height: 42rem; }

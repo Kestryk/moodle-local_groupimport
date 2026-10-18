@@ -265,3 +265,7 @@
   border-radius: 0.75rem;
   box-shadow: 0 0.3rem 0.8rem rgba(31, 42, 55, 0.08);
 }
+
+
+// Roomier search-empty modifier of the existing empty-state component.
+@mixin search-empty-state-roomy-inset { padding: 1.2rem 1rem; }
