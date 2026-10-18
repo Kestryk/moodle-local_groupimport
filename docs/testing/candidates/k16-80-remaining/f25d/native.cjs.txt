@@ -1,101 +1,244 @@
-const fs = require('node:fs'), cp = require('node:child_process'), assert = require('node:assert/strict');
-const {chromium} = require('<PLAYWRIGHT_MODULE>');
-const root = '<EASYSTUD_SOURCE_ROOT>';
-const runId = 'codex1-k1680-f25d-native', out = __dirname;
-const ps = (file, args) => cp.execFileSync('powershell.exe', ['-NoProfile', '-File', '<ORCHESTRATION_SCRIPTS>/' + file, ...args], {encoding: 'utf8'});
-const css = file => fs.readFileSync(file, 'utf8').replace(/url\((["']?)(\.\.?\/[^)"']+)\1\)/g,
-    (match, quote, relative) => 'url("' + new URL(relative, 'http://localhost:8051/local/groupimport/styles/student-management.css').href + '")');
-async function settle(locator) {
-    await locator.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(r)))));
-    await locator.evaluate(async node => {
-        const animations = [...node.getAnimations({subtree:true})];
-        for (let n = node; n; n = n.parentElement) animations.push(...n.getAnimations());
-        await Promise.all(animations.filter(a => Number.isFinite(a.effect.getTiming().iterations)).map(a => a.finished.catch(() => {})));
-    });
-}
-async function measure(locator) {
- return locator.evaluate(node=>{
-  const m=n=>{const r=n.getBoundingClientRect(),s=getComputedStyle(n);return {width:r.width,height:r.height,padding:s.padding,radius:s.borderRadius,background:s.backgroundColor,border:s.border,shadow:s.boxShadow,color:s.color,fontSize:s.fontSize,lineHeight:s.lineHeight,borderLeft:s.borderLeft,borderTop:s.borderTop,borderRight:s.borderRight,borderBottom:s.borderBottom,beforeBackground:getComputedStyle(n,'::before').backgroundColor,afterBackground:getComputedStyle(n,'::after').backgroundColor};};
-  return {frame:m(node),parts:[...node.querySelectorAll('.local-groupimport-easystud-user__name,.local-groupimport-easystud-group__name,.local-groupimport-easystud-grouping__name,.local-groupimport-easystud-user__avatar .userinitials,.local-groupimport-easystud-user__avatar img,.local-groupimport-easystud-member')].filter(n=>n.getClientRects().length).map(n=>({class:n.className,...m(n)}))};
- });
-}
-(async () => {
-    const result = {passed: false, rows: [], errors: [], runtimeFilesChanged: false};
-    let lease = false, created = false, browser, page;
-    try {
-        ps('Acquire-EasyEduResourceLease.ps1', ['-Resource', 'moodle51-perf', '-ProjectNamespace', 'easystud', '-RunId', runId,
-            '-Repository', root, '-Purpose', 'K16-80 disclosures exact native CSS parity, restored synthetic fixture', '-LeaseSeconds', '900', '-OwnerPid', String(process.pid)]);
-        lease = true;
-        const fixture = JSON.parse(cp.execFileSync('<PHP_BINARY>', [out + '/fixture.php', 'create'], {encoding: 'utf8'}));
-        created = true; result.course = fixture.courseid;
-        browser = await chromium.launch({headless: true, executablePath: '<CHROME_EXECUTABLE>'});
-        for (const locale of ['fr', 'en']) for (const width of [1600, 390]) {
-            const context = await browser.newContext({storageState: '<PROCESS_LOCAL_AUTH_STATE>',
-                viewport: {width, height: 1000}, hasTouch: width === 390, reducedMotion: 'reduce'});
-            page = await context.newPage();
-            page.setDefaultTimeout(20000);
-            page.on('pageerror', e => result.errors.push(e.message));
-            page.on('console', m => {if (m.type() === 'error') result.errors.push(m.text());});
-            const response = await page.goto('http://localhost:8051/local/groupimport/manage.php?id=' + fixture.courseid + '&lang=' + locale,
-                {waitUntil: 'domcontentloaded', timeout: 180000});
-            assert.equal(response.status(), 200);
-            await page.waitForFunction(() => {
-                const r = document.querySelector('#local-groupimport-easystud');
-                return r?.dataset.easystudManagerInitialised === '1' && !r.classList.contains('is-action-busy') && !r.classList.contains('local-groupimport-easystud--booting');
-            }, null, {timeout: 180000});
-            const both = page.locator('[data-easystud-layout-mode="both"]'); if (await both.isVisible()) await both.click();
-            if (width < 1024) await page.locator('[data-easystud-mobile-view="groups"]').click();
-            await page.evaluate(() => {
-                document.querySelectorAll('link[rel="stylesheet"]').forEach(n => {if (/\/local\/groupimport\/styles\//.test(n.href)) n.disabled = true;});
-            });
-            const style = await page.addStyleTag({content: css(out + '/before-student-management.css')});
-            await page.addStyleTag({content: '.codex1-range-probe::before {content:none!important;}'});
-            await page.evaluate(() => document.fonts.ready);
-            for(const kind of ['participant','group','grouping']){
-                if(width<1024)await page.locator('[data-easystud-mobile-view="'+({participant:'participants',group:'groups',grouping:'groupings'})[kind]+'"]').click();
-                const ungrouped=page.locator('[aria-controls="easystud-group-list-ungrouped"]');
-                if(kind==='group'&&await ungrouped.isVisible()&&await ungrouped.getAttribute('aria-expanded')==='false')await ungrouped.click();
-                const card=page.locator('[data-selectable-type="'+kind+'"]:visible').first();await card.waitFor();
-                const input=card.locator(':scope > .local-groupimport-easystud-selector [data-easystud-selector-input]');
-                for(const expanded of kind==='grouping'?[false,true]:[false]){
-                    if(kind==='grouping'){
-                        const toggle=card.locator('[data-easystud-collapse-toggle]').first();
-                        if((await toggle.getAttribute('aria-expanded')==='true')!==expanded)await toggle.click();
-                    }
-                    for(const state of ['rest','selected']){
-                        if((await input.isChecked())!==(state==='selected'))await input.locator('..').click();
-                        assert.equal(await input.isChecked(),state==='selected','Real selection state reached');
-                        for(const phase of ['before','after']){
-                            await style.evaluate((n,t)=>{n.textContent=t;},css(phase==='before'?out+'/before-student-management.css':root+'/styles/student-management.css'));
-                            await page.mouse.move(0,0);await settle(card);
-                            await card.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(r)))));await settle(card);
-                            result.rows.push({kind,state,expanded,locale,width,phase,measurement:await measure(card)});
-                        }
-                    }
-                    if(await input.isChecked())await input.locator('..').click();
-                }
-            }
-            await context.close();
-        }
-        assert.equal(result.rows.length,64);
-        for(const after of result.rows.filter(r=>r.phase==='after')){
-            const before=result.rows.find(r=>r.kind===after.kind&&r.state===after.state&&r.expanded===after.expanded&&r.locale===after.locale&&r.width===after.width&&r.phase==='before');
-            assert.deepEqual(after.measurement,before.measurement,'Card frame, title, avatar and paint identical');assert.ok(after.measurement.parts.length>0);
-        }
-        assert.equal(result.errors.length, 0); result.passed = true;
-    } catch (e) {
-        result.failure = e.message;
-        if (page && !page.isClosed()) await page.screenshot({path: out + '/failure.png', timeout: 10000}).catch(() => {});
-    } finally {
-        if (browser) await browser.close();
-        if (!created && fs.existsSync(out + '/fixture-ids.json')) {
-            const ids = JSON.parse(fs.readFileSync(out + '/fixture-ids.json'));
-            const restored = fs.existsSync(out + '/fixture-restored.json') ? JSON.parse(fs.readFileSync(out + '/fixture-restored.json')) : {};
-            created = !(restored.removed && restored.courseid === ids.courseid);
-        }
-        if (created) result.fixtureCleanup = JSON.parse(cp.execFileSync('<PHP_BINARY>', [out + '/fixture.php', 'cleanup'], {encoding: 'utf8'}));
-        if (lease) {ps('Release-EasyEduResourceLease.ps1', ['-Resource', 'moodle51-perf', '-RunId', runId]); result.leaseReleased = true;}
-        fs.writeFileSync(out + '/native.json', JSON.stringify(result, null, 2));
-        console.log(JSON.stringify({passed: result.passed, rows: result.rows.length, errors: result.errors.length, failure: result.failure, restored: result.fixtureCleanup, leaseReleased: result.leaseReleased}));
-    }
-})();
+const fs = require('node:fs'),
+      cp = require('node:child_process'),
+      assert = require('node:assert/strict');
+
+const {
+  chromium
+} = require('<PLAYWRIGHT_MODULE>');
+
+const root = '<EASYSTUD_SOURCE_ROOT>';
+const runId = 'codex1-k1680-f25d-native',
+      out = __dirname;
+
+const ps = (file, args) => cp.execFileSync('powershell.exe', ['-NoProfile', '-File', '<ORCHESTRATION_SCRIPTS>/' + file,
+    ...args], {
+  encoding: 'utf8'
+});
+
+const css = file => fs.readFileSync(file, 'utf8').replace(/url\((["']?)(\.\.?\/[^)"']+)\1\)/g, (match, quote, relative) =>
+    'url("' + new URL(relative, "http://localhost:8051/local/groupimport/styles/student-manag" + "ement.css").href + '")');
+
+async function settle(locator) {
+  await locator.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(() =>
+      requestAnimationFrame(r)))));
+  await locator.evaluate(async node => {
+    const animations = [...node.getAnimations({
+      subtree: true
+    })];
+
+    for (let n = node; n; n = n.parentElement) animations.push(...n.getAnimations());
+
+    await Promise.all(animations.filter(a => Number.isFinite(a.effect.getTiming().iterations)).map(a => a.finished.catch((
+        ) => {})));
+  });
+}
+
+async function measure(locator) {
+  return locator.evaluate(node => {
+    const m = n => {
+      const r = n.getBoundingClientRect(),
+            s = getComputedStyle(n);
+      return {
+        width: r.width,
+        height: r.height,
+        padding: s.padding,
+        radius: s.borderRadius,
+        background: s.backgroundColor,
+        border: s.border,
+        shadow: s.boxShadow,
+        color: s.color,
+        fontSize: s.fontSize,
+        lineHeight: s.lineHeight,
+        borderLeft: s.borderLeft,
+        borderTop: s.borderTop,
+        borderRight: s.borderRight,
+        borderBottom: s.borderBottom,
+        beforeBackground: getComputedStyle(n, '::before').backgroundColor,
+        afterBackground: getComputedStyle(n, '::after').backgroundColor
+      };
+    };
+
+    return {
+      frame: m(node),
+      parts: [...node.querySelectorAll(".local-groupimport-easystud-user__name,.local-groupimport-ea" +
+          "systud-group__name,.local-groupimport-easystud-grouping__nam" +
+              "e,.local-groupimport-easystud-user__avatar .userinitials,.lo" +
+                  "cal-groupimport-easystud-user__avatar img,.local-groupimport" + "-easystud-member")].filter(n =>
+                      n.getClientRects().length).map(n => ({
+        class: n.className,
+        ...m(n)
+      }))
+    };
+  });
+}
+
+(async () => {
+  const result = {
+    passed: false,
+    rows: [],
+    errors: [],
+    runtimeFilesChanged: false
+  };
+  let lease = false,
+      created = false,
+      browser,
+      page;
+
+  try {
+    ps('Acquire-EasyEduResourceLease.ps1', ['-Resource', 'moodle51-perf', '-ProjectNamespace', 'easystud', '-RunId', runId,
+        '-Repository', root, '-Purpose', "K16-80 disclosures exact native CSS parity, restored synthet" + "ic fixture",
+            '-LeaseSeconds', '900', '-OwnerPid', String(process.pid)]);
+    lease = true;
+    const fixture = JSON.parse(cp.execFileSync('<PHP_BINARY>', [out + '/fixture.php', 'create'], {
+      encoding: 'utf8'
+    }));
+    created = true;
+    result.course = fixture.courseid;
+    browser = await chromium.launch({
+      headless: true,
+      executablePath: '<CHROME_EXECUTABLE>'
+    });
+
+    for (const locale of ['fr', 'en']) for (const width of [1600, 390]) {
+      const context = await browser.newContext({
+        storageState: '<PROCESS_LOCAL_AUTH_STATE>',
+        viewport: {
+          width,
+          height: 1000
+        },
+        hasTouch: width === 390,
+        reducedMotion: 'reduce'
+      });
+      page = await context.newPage();
+      page.setDefaultTimeout(20000);
+      page.on('pageerror', e => result.errors.push(e.message));
+      page.on('console', m => {
+        if (m.type() === 'error') result.errors.push(m.text());
+      });
+      const response = await page.goto('http://localhost:8051/local/groupimport/manage.php?id=' + fixture.courseid +
+          '&lang=' + locale, {
+        waitUntil: 'domcontentloaded',
+        timeout: 180000
+      });
+      assert.equal(response.status(), 200);
+      await page.waitForFunction(() => {
+        const r = document.querySelector('#local-groupimport-easystud');
+        return r?.dataset.easystudManagerInitialised === '1' && !r.classList.contains('is-action-busy') &&
+            !r.classList.contains('local-groupimport-easystud--booting');
+      }, null, {
+        timeout: 180000
+      });
+      const both = page.locator('[data-easystud-layout-mode="both"]');
+      if (await both.isVisible()) await both.click();
+      if (width < 1024) await page.locator('[data-easystud-mobile-view="groups"]').click();
+      await page.evaluate(() => {
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(n => {
+          if (/\/local\/groupimport\/styles\//.test(n.href)) n.disabled = true;
+        });
+      });
+      const style = await page.addStyleTag({
+        content: css(out + '/before-student-management.css')
+      });
+      await page.addStyleTag({
+        content: '.codex1-range-probe::before {content:none!important;}'
+      });
+      await page.evaluate(() => document.fonts.ready);
+
+      for (const kind of ['participant', 'group', 'grouping']) {
+        if (width < 1024) await page.locator('[data-easystud-mobile-view="' + {
+          participant: 'participants',
+          group: 'groups',
+          grouping: 'groupings'
+        }[kind] + '"]').click();
+        const ungrouped = page.locator('[aria-controls="easystud-group-list-ungrouped"]');
+        if (kind === 'group' && (await ungrouped.isVisible()) && (await ungrouped.getAttribute(
+            'aria-expanded')) === 'false') await ungrouped.click();
+        const card = page.locator('[data-selectable-type="' + kind + '"]:visible').first();
+        await card.waitFor();
+        const input = card.locator(":scope > .local-groupimport-easystud-selector [data-easystud" + "-selector-input]");
+
+        for (const expanded of kind === 'grouping' ? [false, true] : [false]) {
+          if (kind === 'grouping') {
+            const toggle = card.locator('[data-easystud-collapse-toggle]').first();
+            if ((await toggle.getAttribute('aria-expanded')) === 'true' !== expanded) await toggle.click();
+          }
+
+          for (const state of ['rest', 'selected']) {
+            if ((await input.isChecked()) !== (state === 'selected')) await input.locator('..').click();
+            assert.equal(await input.isChecked(), state === 'selected', 'Real selection state reached');
+
+            for (const phase of ['before', 'after']) {
+              await style.evaluate((n, t) => {
+                n.textContent = t;
+              }, css(phase === 'before' ? out + '/before-student-management.css' : root + '/styles/student-management.css'));
+              await page.mouse.move(0, 0);
+              await settle(card);
+              await card.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(() =>
+                  requestAnimationFrame(r)))));
+              await settle(card);
+              result.rows.push({
+                kind,
+                state,
+                expanded,
+                locale,
+                width,
+                phase,
+                measurement: await measure(card)
+              });
+            }
+          }
+
+          if (await input.isChecked()) await input.locator('..').click();
+        }
+      }
+
+      await context.close();
+    }
+
+    assert.equal(result.rows.length, 64);
+
+    for (const after of result.rows.filter(r => r.phase === 'after')) {
+      const before = result.rows.find(r => r.kind === after.kind && r.state === after.state &&
+          r.expanded === after.expanded && r.locale === after.locale && r.width === after.width && r.phase === 'before');
+      assert.deepEqual(after.measurement, before.measurement, 'Card frame, title, avatar and paint identical');
+      assert.ok(after.measurement.parts.length > 0);
+    }
+
+    assert.equal(result.errors.length, 0);
+    result.passed = true;
+  } catch (e) {
+    result.failure = e.message;
+    if (page && !page.isClosed()) await page.screenshot({
+      path: out + '/failure.png',
+      timeout: 10000
+    }).catch(() => {});
+  } finally {
+    if (browser) await browser.close();
+
+    if (!created && fs.existsSync(out + '/fixture-ids.json')) {
+      const ids = JSON.parse(fs.readFileSync(out + '/fixture-ids.json'));
+      const restored = fs.existsSync(out + '/fixture-restored.json') ? JSON.parse(fs.readFileSync(out +
+          '/fixture-restored.json')) : {};
+      created = !(restored.removed && restored.courseid === ids.courseid);
+    }
+
+    if (created) result.fixtureCleanup = JSON.parse(cp.execFileSync('<PHP_BINARY>', [out + '/fixture.php', 'cleanup'], {
+      encoding: 'utf8'
+    }));
+
+    if (lease) {
+      ps('Release-EasyEduResourceLease.ps1', ['-Resource', 'moodle51-perf', '-RunId', runId]);
+      result.leaseReleased = true;
+    }
+
+    fs.writeFileSync(out + '/native.json', JSON.stringify(result, null, 2));
+    console.log(JSON.stringify({
+      passed: result.passed,
+      rows: result.rows.length,
+      errors: result.errors.length,
+      failure: result.failure,
+      restored: result.fixtureCleanup,
+      leaseReleased: result.leaseReleased
+    }));
+  }
+})();

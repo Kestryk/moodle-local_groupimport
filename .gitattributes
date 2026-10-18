@@ -13,3 +13,4 @@
 /tools export-ignore
 /docs export-ignore
 /AGENTS.md export-ignore
+/docs/testing/candidates/k16-80-remaining/**/*.txt text eol=lf

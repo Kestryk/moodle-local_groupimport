@@ -56,7 +56,8 @@ if (($argv[1] ?? '') === 'create') {
     ob_end_clean();
     $removed = !$DB->record_exists('course', ['id' => $fixture->courseid]);
     $usersremoved = !$DB->record_exists('user', ['idnumber' => $marker, 'deleted' => 0]);
-    file_put_contents(__DIR__ . '/fixture-restored.json', json_encode(['removed' => $removed, 'usersRemoved' => $usersremoved, 'courseid' => $fixture->courseid]));
+    file_put_contents(__DIR__ . '/fixture-restored.json', json_encode(['removed' => $removed, 'usersRemoved' =>
+        $usersremoved, 'courseid' => $fixture->courseid]));
     echo json_encode(['removed' => $removed, 'usersRemoved' => $usersremoved]);
 } else {
     throw new Exception('Expected create or cleanup.');
