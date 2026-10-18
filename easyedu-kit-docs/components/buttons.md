@@ -1,6 +1,16 @@
 # Buttons
 
-## Field-peer Reset scoped adoption (Kit0.4.168)
+## Reset and Cancel — OLD-B R13 native candidate
+
+Regular Reset and Cancel now use the single `buttons.secondary-action` recipe:
+37.6px desktop /44px touch minimum height,14.08px text at weight600 with natural line metrics,
+12px inline padding and11.52px radius at a16px root. `filter-reset`, its
+field-peer adapter and regular secondary Foundation buttons delegate to it.
+The old Reset caption/30.4px and field-peer38px recipes below are historical
+references, replaced by OLD-B. Pinned builds and eight isolated native cases pass.
+See [OLD-B controls](old-b-controls.md) for source scope, measured geometry and remaining acceptance limits.
+
+## Historical field-peer Reset scoped adoption (Kit0.4.168, replaced by OLD-B R13)
 
 `easyedu-filter-reset--field-peer` composes with `easyedu-filter-reset` beside
 Regular fields:38px desktop /44px touch, keeping legacy30.4px, caption type,

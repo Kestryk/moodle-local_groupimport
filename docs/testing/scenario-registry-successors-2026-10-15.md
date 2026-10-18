@@ -152,3 +152,12 @@ Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. 
 ## K18-B selection, filters and deferred fields, 2026-10-18
 
 Candidate `candidates/k18-b-20261018.json`: local-supervised, isolated lease and restored fixture, not automatic CI; human acceptance open. Strict settled Kit focus paint, native filter layout and actual detail dialogs in both languages at four widths. Earlier failed harnesses remain immutable externally.
+
+## OLD-B native candidate — 2026-10-18
+
+`tools/release/test-old-b-controls-native.cjs` : FR/EN ×1600/1280/768/390,
+real cards/details/admin, numeric geometry/containment, active Reset,
+mouse/focus/touch visibility and browser AX state. Isolated pool lease only;
+no membership writes or admin form submit. Eight native cases PASS; parameter
+wrapper preserved for future CI adaptation, assertion-body hash in artifacts.
+No localhost publication or human/speech-reader acceptance implied.

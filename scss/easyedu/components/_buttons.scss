@@ -223,10 +223,31 @@
   }
 }
 
+// OLD-B R13: one Core action / Secondary / M definition for Cancel and Reset.
+// Compact inline actions remain a separate explicit density.
+@mixin secondary-action {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-text);
+  display: inline-flex;
+  font: 600 0.88rem/normal var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  @include control-state-transition;
+}
+
 // Compact neutral reset used inside filter panels. It intentionally shares the
 // selection-action interaction contract while keeping reset-specific sizing.
 @mixin filter-reset {
-  @include selection-action(neutral);
+  @include secondary-action;
 
   & {
     align-self: center;

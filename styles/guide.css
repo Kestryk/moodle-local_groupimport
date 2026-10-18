@@ -4318,6 +4318,10 @@ body.easyedu-motion-disabled :is(.easyedu-ui, .easyedu-guide, .easyedu-guide-hig
   to {opacity: 1;transform: translateY(0);
   }
 }
+@media (hover: hover) and (pointer: fine) {
+  .easyedu-ui .easyedu-related-person-row__remove:where(.easyedu-related-person-row:not(:hover):not(:focus-within) > *):not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]) {opacity: 0;
+  }
+}
 
 html.easyedu-guide-dialog-open .drawer-toggler {visibility: hidden;pointer-events: none;
 }
@@ -4412,7 +4416,6 @@ html.easyedu-guide-dialog-open .drawer-toggler {visibility: hidden;pointer-event
 #local-groupimport-easystud .local-groupimport-easystud-group:not(:hover):not(:focus-within):not(.is-selected) > .local-groupimport-easystud-group__header .local-groupimport-easystud-rename__toggle:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]),
 #local-groupimport-easystud .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-selected) > .local-groupimport-easystud-grouping__header > .btn-link:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]),
 #local-groupimport-easystud .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-selected) > .local-groupimport-easystud-grouping__header > .local-groupimport-easystud-card-menu:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]),
-#local-groupimport-easystud .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-selected) > .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]),
-#local-groupimport-easystud .local-groupimport-easystud-member:not(:hover):not(:focus-within) .local-groupimport-easystud-member__remove:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]) {opacity: 0;
+#local-groupimport-easystud .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-selected) > .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle:not(.is-easyedu-guide-highlight-target):not([aria-expanded=true]) {opacity: 0;
   }
 }
