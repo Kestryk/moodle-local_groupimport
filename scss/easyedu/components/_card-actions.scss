@@ -125,7 +125,7 @@
   }
 }
 
-@mixin card-direct-action {
+@mixin card-direct-action($size: 1.85rem) {
   // Moodle loads Bootstrap states after plugin CSS. Qualify native .btn
   // composition in the shared recipe, rather than adding consumer !important.
   &,
@@ -140,12 +140,12 @@
     display: inline-flex;
     flex: 0 0 auto;
     font-size: 0.95rem;
-    height: 1.85rem;
+    height: $size;
     justify-content: center;
     line-height: 1;
     @include card-action-zero-inset;
     text-decoration: none;
-    width: 1.85rem;
+    width: $size;
 
     > .fa,
     > .icon {

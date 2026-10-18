@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] K17-62/69 : corriger le déclencheur Kit Affichage et animations en Desktop32, conserver Touch44 et contenir les commandes tactiles du pied du Guide dans sa hauteur de 64 px.
+
 - 2026-10-18 [N2] K18-C-MI : afficher immédiatement la vraie page Import massif, réserver les capsules aux contrôles en attente, harmoniser lecture et dépôt avec le Kit et isoler le vrai sélecteur de fichier des spécimens du Guide.
 
 - 2026-10-18 [N1] K18-A : supprimer le récapitulatif de création simple, unifier Lancer/Rejouer dans le Kit, restaurer la checklist et partager le retour des clics via Motion.

@@ -2359,7 +2359,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 
 .easyedu-ui .easyedu-direct-icon,
-.easyedu-ui .easyedu-direct-icon.btn {align-items: center;background: transparent;border: 1px solid transparent;border-radius: 999px;box-shadow: none;box-sizing: border-box;color: var(--easyedu-primary);display: inline-flex;flex: 0 0 auto;font-size: 0.95rem;height: 1.85rem;justify-content: center;line-height: 1;padding: 0;text-decoration: none;width: 1.85rem;
+.easyedu-ui .easyedu-direct-icon.btn {align-items: center;background: transparent;border: 1px solid transparent;border-radius: 999px;box-shadow: none;box-sizing: border-box;color: var(--easyedu-primary);display: inline-flex;flex: 0 0 auto;font-size: 0.95rem;height: 2rem;justify-content: center;line-height: 1;padding: 0;text-decoration: none;width: 2rem;
 }
 .easyedu-ui .easyedu-direct-icon > .fa,
 .easyedu-ui .easyedu-direct-icon > .icon,
