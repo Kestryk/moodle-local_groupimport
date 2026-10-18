@@ -564,13 +564,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     button,
     input[type="submit"] {
       &:focus-visible {
-        @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-        border-color: var(--easyedu-control-focus-border) !important;
-        box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+        @include easyedu.ring($border-color: var(--easyedu-control-focus-border), $native-overrides: true);
       }
 
       &:focus:not(:focus-visible) {
-        outline: 0;
+        @include easyedu.pointer-focus-outline;
       }
     }
   }

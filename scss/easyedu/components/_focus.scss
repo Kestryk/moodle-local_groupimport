@@ -6,7 +6,8 @@
 @mixin ring(
   $color: var(--easyedu-focus-ring),
   $border-color: null,
-  $base-shadow: null
+  $base-shadow: null,
+  $native-overrides: false
 ) {
   @if $border-color != null {
     border-color: $border-color;
@@ -24,6 +25,12 @@
   // outline to a system colour without adding a nested Sass rule.
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
+
+  // Explicit Moodle host adapter; preserve the accepted normal-priority fallback.
+  @if $native-overrides {
+    border-color: $border-color !important;
+    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) $color !important;
+  }
 }
 
 // Context focus belongs to a non-interactive host which contains the actual
@@ -72,4 +79,10 @@
   // without reintroducing the outer-gutter overflow this variant avoids.
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: calc(var(--easyedu-focus-outline-width) * -1);
+}
+
+
+// Mouse-focus adapter only; keyboard focus still uses the shared ring.
+@mixin pointer-focus-outline {
+  outline: 0;
 }
