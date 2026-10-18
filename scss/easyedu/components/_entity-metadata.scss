@@ -367,3 +367,24 @@
   min-inline-size: 0;
   padding: 0;
 }
+
+
+// The accepted 22px dialog label is a shared metadata variant.
+@mixin dialog-pill($role: empty) {
+  @include entity-card-token;
+  @include entity-card-token-semantic($role);
+
+  // Card label recipe (16/10 no. 4 and no. 15): 22px, radius 11, 1px border, 11px semibold, padding 0 x 8.
+  block-size: 1.375rem;
+  border-radius: 0.6875rem;
+  border-width: 0.0625rem;
+  box-sizing: border-box;
+  font-size: 0.6875rem;
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1;
+  margin: 0;
+  max-inline-size: 100%;
+  min-block-size: 0;
+  padding-block: 0;
+  padding-inline: 0.5rem;
+}
