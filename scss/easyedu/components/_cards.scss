@@ -936,3 +936,38 @@
 @mixin related-person-row-terminal-divider {
   border-bottom-color: transparent;
 }
+
+// Accepted person-card density values; the host retains predicates and Motion.
+@mixin person-card-inset($density: detailed) {
+  @if $density == detailed {
+    padding: 0.45rem 0.9rem 0.85rem;
+  } @else if $density == compact {
+    max-height: 3.3rem;
+    min-height: 2.3rem;
+    @content;
+    padding: 0.45rem 0.9rem 0.45rem 3.2rem;
+  } @else if $density == expanded {
+    max-height: 34rem;
+    min-height: 8rem;
+    @content;
+    padding: 0.45rem 0.9rem 0.85rem;
+  } @else {
+    @error "Unknown person-card inset density: #{$density}.";
+  }
+}
+
+@mixin person-card-rail-inset($compact: false) {
+  padding-top: if($compact, 0, 1.35rem);
+}
+
+@mixin person-card-secondary-copy-paint($color) {
+  color: $color;
+}
+
+@mixin person-card-secondary-copy-type {
+  font-size: 0.83rem;
+}
+
+@mixin identity-card-drag-glyph-block {
+  height: 0.78rem;
+}
