@@ -801,12 +801,7 @@
   }
 
   &-history__empty {
-    @include easyedu.type-caption;
-
-    align-items: center;
-    color: var(--local-groupimport-easystud-text-muted);
-    display: flex;
-    gap: 0.5rem;
+    @include easyedu.empty-state-caption(var(--local-groupimport-easystud-text-muted));
   }
 
   &-rollback__message {

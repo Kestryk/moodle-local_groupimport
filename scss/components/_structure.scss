@@ -1089,11 +1089,7 @@
   }
 
   &-tree__empty {
-    @include easyedu.empty-state;
-
-    color: #617487;
-    font-size: 0.85rem;
-    padding: 0.75rem 0.9rem;
+    @include easyedu.empty-state(tree);
   }
 
   &-toggle-check {

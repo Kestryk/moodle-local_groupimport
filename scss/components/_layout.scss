@@ -49,8 +49,7 @@
   }
 
   &__notification {
-    border-radius: 0.75rem;
-    box-shadow: 0 0.3rem 0.8rem rgba(31, 42, 55, 0.08);
+    @include easyedu.notification-soft-frame;
     margin: 0;
     transition: opacity var(--easyedu-motion-normal) ease, transform var(--easyedu-motion-normal) ease;
 
@@ -1216,27 +1215,11 @@
   }
 
   &__empty-state {
-    @include easyedu.empty-state;
-
-    color: #617487;
-    gap: 0.35rem;
-    justify-items: center;
-    min-height: 5.5rem;
-
-    .fa {
-      color: #8aa0b3;
-      font-size: 1rem;
-    }
-
-    p {
-      font-size: 0.86rem;
-      max-width: 26rem;
-    }
+    @include easyedu.empty-state(panel);
   }
 
   &__empty-state--structure {
-    background: linear-gradient(180deg, #fbfdfb 0%, #f4f8f5 100%);
-    border-color: #d8e4da;
+    @include easyedu.empty-state-positive;
   }
 
 }
