@@ -12,7 +12,7 @@
     display: grid;
     gap: 0.85rem;
     grid-template-columns: 6.35rem minmax(0, 1fr);
-    padding: 0.45rem 0.9rem 0.85rem;
+    @include easyedu.person-card-inset;
     position: relative;
     @include easyedu.density-transition;
 
@@ -81,10 +81,9 @@
     align-items: center;
     gap: 0.55rem;
     grid-template-columns: minmax(0, 1fr);
-    max-height: 3.3rem;
-    min-height: 2.3rem;
-    overflow: visible;
-    padding: 0.45rem 0.9rem 0.45rem 3.2rem;
+    @include easyedu.person-card-inset(compact) {
+      overflow: visible;
+    }
     @include easyedu.density-transition;
   }
 
@@ -93,17 +92,16 @@
     align-items: start;
     gap: 0.85rem;
     grid-template-columns: 5.9rem minmax(0, 1fr);
-    max-height: 34rem;
-    min-height: 8rem;
-    overflow: visible;
-    padding: 0.45rem 0.9rem 0.85rem;
+    @include easyedu.person-card-inset(expanded) {
+      overflow: visible;
+    }
   }
 
   &-user::after,
   &-group::after {
     @include easyedu.identity-card-rail-glyph-surface;
     content: "";
-    height: 0.78rem;
+    @include easyedu.identity-card-drag-glyph-block;
     left: calc(var(--local-groupimport-easystud-identity-border-width) / -2);
     mask-image: var(--local-groupimport-easystud-drag-handle);
     mask-position: center;
@@ -173,7 +171,7 @@
     display: grid;
     gap: 0.45rem;
     justify-items: center;
-    padding-top: 1.35rem;
+    @include easyedu.person-card-rail-inset;
   }
 
   &-user > .local-groupimport-easystud-selector {
@@ -218,14 +216,14 @@
   &--compact-users &-user__rail {
     align-items: center;
     display: none;
-    padding-top: 0;
+    @include easyedu.person-card-rail-inset($compact: true);
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__rail {
     align-items: start;
 
     display: grid;
-    padding-top: 1.35rem;
+    @include easyedu.person-card-rail-inset;
   }
 
   &--compact-users &-user__main {
@@ -268,9 +266,9 @@
   }
 
   &-user__email {
-    color: var(--local-groupimport-easystud-text-muted);
+    @include easyedu.person-card-secondary-copy-paint(var(--local-groupimport-easystud-text-muted));
     display: block;
-    font-size: 0.83rem;
+    @include easyedu.person-card-secondary-copy-type;
     grid-area: email;
     overflow: hidden;
     text-overflow: ellipsis;
