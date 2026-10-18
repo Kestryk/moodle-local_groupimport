@@ -7520,7 +7520,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   }
   .local-groupimport-easystud-grouping-mobile-filters__choices {display: grid;gap: 0.35rem;grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .local-groupimport-easystud-grouping-mobile-filters__choices .btn {min-height: var(--easyedu-touch-target-min);
+  .local-groupimport-easystud-grouping-mobile-filters__choices .btn {min-height: var(--easyedu-touch-target-min);line-height: normal;
   }
   .local-groupimport-easystud-grouping-mobile-filters__choices .is-active {background: var(--easyedu-primary-soft);border-color: var(--easyedu-control-focus-border);color: var(--easyedu-primary-strong);
   }
