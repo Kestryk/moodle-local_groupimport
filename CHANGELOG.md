@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F23B: retire six unused tutorial-dialog blocks; preserve every active modal and Guide rule.
+
 - 2026-10-18 [N0] K16-80 F25B: centralise rail ink, selected surfaces, glyph backing and mutation colours; preserve owning state predicates and CSS.
 
 - 2026-10-18 [N0] K16-80 F22B: compose accepted overflow menu grid, options and captions plus rounded role choices from the Kit.
