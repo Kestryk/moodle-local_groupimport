@@ -349,8 +349,7 @@
     font-family: inherit;
 
     &:hover {
-      border-color: color-mix(in srgb, var(--easyedu-primary) 35%, #fff 65%);
-      color: var(--easyedu-primary);
+      @include easyedu.entity-relation-overflow-hover;
     }
 
     &:focus-visible {

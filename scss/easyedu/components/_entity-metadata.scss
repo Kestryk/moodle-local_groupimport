@@ -393,3 +393,10 @@
 // Companion grouping-summary inset and legacy utility priority of token disclosure.
 @mixin membership-summary-inset { padding-right: 0.58rem; }
 @mixin metadata-overflow-flush { padding: 0 !important; }
+
+
+// Existing overflow action of a dialog relation list.
+@mixin entity-relation-overflow-hover {
+  border-color: color-mix(in srgb, var(--easyedu-primary) 35%, #fff 65%);
+  color: var(--easyedu-primary);
+}
