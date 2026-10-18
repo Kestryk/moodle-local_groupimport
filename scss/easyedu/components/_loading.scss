@@ -366,3 +366,39 @@ $skeleton-entity-block-sizes: (
   }
   block-size: map.get($skeleton-entity-block-sizes, $role);
 }
+
+// Accepted awaiting-card frames; no fake-page container or readiness lifecycle.
+@mixin skeleton-card-frame($kind) {
+  @if $kind == person {
+    min-height: 2.72rem;
+    padding: 0.45rem 0.55rem;
+  } @else if $kind == object {
+    min-height: 3.6rem;
+    padding: 0.58rem 0.65rem;
+  } @else {
+    @error "Unknown skeleton card kind: #{$kind}.";
+  }
+}
+
+@mixin skeleton-card-person-compact {
+  min-height: 2.5rem;
+}
+
+@mixin skeleton-card-avatar {
+  block-size: 2rem;
+  border-radius: 50%;
+  inline-size: 2rem;
+}
+
+@mixin skeleton-card-copy-line($tone: strong, $surface: var(--easyedu-loading-surface-strong)) {
+  @if $tone == strong {
+    background: $surface;
+    block-size: 0.6rem;
+    border-radius: 999px;
+  } @else if $tone == soft {
+    background: $surface;
+    block-size: 0.45rem;
+  } @else {
+    @error "Unknown skeleton copy tone: #{$tone}.";
+  }
+}
