@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F12S: raccorder le cadre compact, la palette désactivée, le numéro de page et le cadre du compteur aux définitions Kit de pagination.
+
 - 2026-10-18 [N1] K16-80 F23F: centraliser l’action textuelle de fenêtre et corriger son centrage par les métriques naturelles de police.
 
 - 2026-10-18 [N1] K16-80 F12R: reprendre la variante ronde de pagination du Kit et ses métriques naturelles de centrage, sans changer les cadres.
