@@ -1684,5 +1684,30 @@
 "k1680TailF04C20261018":{"base": "3a298191", "family": "F04C", "before": 2, "after": 0, "new": 0, "variants": ["count-badge-grouping-header-paint"], "native": {"widths": [1600, 768, 390], "languages": ["fr", "en"], "rows": 96, "errors": 0, "fixtureRestored": true, "leaseReleased": true}, "proof": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f04c", "published": false, "humanAccepted": false},
 "k1680TailF25S20261018":{"base": "3a298191", "family": "F25S", "before": 16, "after": 12, "new": 0, "variants": ["card-relation-list-unbounded", "person-card-selected-unbounded"], "native": {"widths": [1600, 900, 390], "languages": ["fr", "en"], "rows": 96, "errors": 0, "fixtureRestored": true, "leaseReleased": true}, "proof": "C:\\dev\\artifacts\\k16-80-tail-20261018\\f25s", "published": false, "humanAccepted": false},
 "k18CMassImport20261018":{"base":"665bd86a","kitCommit":"df4c0db8f6545fe10a7dc5bafd61ac567560f033","scope":["index.php","csv_import","Mass Import composition","Kit component loading/native deposit/typography"],"status":"pushed candidate; not integrated or published","native":{"copy":8054,"languages":["fr","en"],"widths":[1600,1280,768,390],"cases":8,"consoleErrors":0,"viewportOverflow":0,"maxGlyphCentreDeltaX":0.0078125,"maxGlyphCentreDeltaY":0,"warningGap":16,"chooserHeight":44,"submitHeight":{"desktop":37.59375,"touch":44},"noJs":true,"uploadAndEditablePreview":true,"importExecuted":false,"ownDraftFilesRemaining":0,"motion":"full shimmer; reduced/minimal static via Motion.setLevel"},"static":{"bindingChecks":29,"guardedPickerStates":8,"smoke":13,"t037":17,"t038":49,"roundtrip":true,"sync":true,"phpcsErrors":0,"phpcsWarnings":0,"officialOtherErrors":0,"officialOtherWarnings":0,"eslintBefore":{"errors":1,"warnings":7},"eslintAfter":{"errors":1,"warnings":7},"globalCssRules":0},"proof":"C:/dev/artifacts/k18-c-mi-20261018","humanAccepted":false,"published":false,"open":["native Moodle4.5/5.3","human visual acceptance","Penpot report by Claude/Codex2","MOVE-BG waits CHARGE-V2b acceptance separately"]},
-"k176269Ecarts20261018":{"base":"e8a1b83a","kitCommit":"afcacdd4d40ce394cae340315f0c54c550cf1b44","status":"candidate, not integrated or published","scope":["Kit Display preferences Desktop32","Guide footer Touch44/counter20/shrink group","canonical and embedded mirror parity","current chrome preservation gate"],"native":{"copy":8054,"course":71,"languages":["fr","en"],"widths":[1600,1280,768,390],"cases":8,"consoleErrors":0,"desktopTrigger":{"before":29.59375,"after":32},"touchTrigger":44,"touchNavigationHeight":44,"footerHeight":{"desktop":63,"touch":64},"maxCentreSpread":0,"maxBottomOverflow":0,"horizontalOverflow":0,"realChecklistRestored":true,"checklist768":"existing avoidance footer hidden; no visible44px claim","businessActions":false},"static":{"guideGatesPassed":true,"unrelatedOrderedRules":4408,"frozenBehaviours":7,"guideTests":{"total":93,"passed":17,"failed":76,"preExistingFailures":76,"newFailures":[]},"fullMoodleCs":{"errors":14,"warnings":22,"preExistingOnBase":14,"touchedPhpFiles":0},"officialOtherFiles":{"errors":0,"warnings":0},"amdSourceChanged":false},"proof":"C:\\dev\\artifacts\\k17-62-69-20261018","published":false,"humanAccepted":false}
+"k176269Ecarts20261018":{"base":"e8a1b83a","kitCommit":"afcacdd4d40ce394cae340315f0c54c550cf1b44","status":"candidate, not integrated or published","scope":["Kit Display preferences Desktop32","Guide footer Touch44/counter20/shrink group","canonical and embedded mirror parity","current chrome preservation gate"],"native":{"copy":8054,"course":71,"languages":["fr","en"],"widths":[1600,1280,768,390],"cases":8,"consoleErrors":0,"desktopTrigger":{"before":29.59375,"after":32},"touchTrigger":44,"touchNavigationHeight":44,"footerHeight":{"desktop":63,"touch":64},"maxCentreSpread":0,"maxBottomOverflow":0,"horizontalOverflow":0,"realChecklistRestored":true,"checklist768":"existing avoidance footer hidden; no visible44px claim","businessActions":false},"static":{"guideGatesPassed":true,"unrelatedOrderedRules":4408,"frozenBehaviours":7,"guideTests":{"total":93,"passed":17,"failed":76,"preExistingFailures":76,"newFailures":[]},"fullMoodleCs":{"errors":14,"warnings":22,"preExistingOnBase":14,"touchedPhpFiles":0},"officialOtherFiles":{"errors":0,"warnings":0},"amdSourceChanged":false},"proof":"C:\\dev\\artifacts\\k17-62-69-20261018","published":false,"humanAccepted":false},
+  "codex1MoveBackground20261018": {
+    "base": "d241e83a",
+    "threshold": 500,
+    "atomicBatch": 500,
+    "requestIdempotency": true,
+    "progress": "owner and course scoped",
+    "privacy": "subject projection; cancellation on erasure; existing retention setting",
+    "guideAssignmentNote": "K18-25 FR/EN",
+    "migration": "version allocation required before upgrade/integration",
+    "published": false,
+    "humanAccepted": false,
+    "proof": "C:/dev/artifacts/move-bg-20261018",
+    "atomicityCases": 8,
+    "privacyChecks": 49,
+    "nativeCorrectness": true,
+    "webUnderTwoSeconds": false,
+    "httpSeconds": [
+      11.8198567,
+      4.6395384
+    ],
+    "bootstrapProfileSeconds": 3.398880958557129,
+    "enqueueProfileSeconds": 0.11263394355773926,
+    "integrationReady": false,
+    "UIConsoleMatrix": "not certified"
+  }
 }

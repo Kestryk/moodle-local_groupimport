@@ -29,6 +29,7 @@ use core_privacy\local\request\contextlist;
 use core_privacy\local\request\writer;
 use local_groupimport\local\motion;
 use local_groupimport\local\history_privacy;
+use local_groupimport\local\move_privacy;
 
 /**
  * Privacy provider for Local Group Import.
@@ -76,6 +77,16 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
             'timemodified' => 'privacy:metadata:history:timecreated',
             'timenotified' => 'privacy:metadata:history:timecreated',
         ], 'privacy:metadata:importjobs');
+        $collection->add_database_table('local_groupimport_moves', [
+            'userid' => 'privacy:metadata:movejobs', 'courseid' => 'privacy:metadata:movejobs',
+            'destinationid' => 'privacy:metadata:movejobs', 'payload' => 'privacy:metadata:movejobs',
+            'status' => 'privacy:metadata:movejobs', 'nextitem' => 'privacy:metadata:movejobs',
+            'requestkey' => 'privacy:metadata:movejobs', 'fingerprint' => 'privacy:metadata:movejobs',
+            'total' => 'privacy:metadata:movejobs', 'added' => 'privacy:metadata:movejobs',
+            'removed' => 'privacy:metadata:movejobs', 'unchanged' => 'privacy:metadata:movejobs',
+            'failcount' => 'privacy:metadata:movejobs', 'timenotified' => 'privacy:metadata:movejobs',
+            'timecreated' => 'privacy:metadata:movejobs', 'timemodified' => 'privacy:metadata:movejobs',
+        ], 'privacy:metadata:movejobs');
         return $collection;
     }
 
@@ -130,7 +141,7 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
             return $contexts;
         }
         $identifiers = self::user_identifiers($userid);
-        $courseids = [];
+        $courseids = move_privacy::courses($userid);
         $records = $DB->get_recordset('local_groupimport_history');
         try {
             foreach ($records as $record) {
@@ -196,6 +207,14 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         if (!$context instanceof context_course) {
             return;
         }
+        $moves = $DB->get_recordset('local_groupimport_moves', ['courseid' => $context->instanceid]);
+        try {
+            foreach ($moves as $job) {
+                $userlist->add_users(move_privacy::userids($job));
+            }
+        } finally {
+            $moves->close();
+        }
         $identifiers = [];
         $records = $DB->get_recordset('local_groupimport_history', ['courseid' => $context->instanceid]);
         try {
@@ -232,6 +251,10 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         foreach ($contextlist->get_contexts() as $context) {
             if (!$context instanceof context_course) {
                 continue;
+            }
+            $moves = move_privacy::export((int)$context->instanceid, $userid);
+            if ($moves) {
+                writer::with_context($context)->export_data(['Member transfers'], (object)['jobs' => $moves]);
             }
             $exports = [];
             $records = $DB->get_recordset('local_groupimport_history', ['courseid' => $context->instanceid], 'timecreated ASC');
@@ -290,6 +313,7 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         if ($context instanceof context_course) {
             $lock = self::import_lock((int)$context->instanceid);
             try {
+                move_privacy::erase((int)$context->instanceid);
                 $DB->delete_records('local_groupimport_history', ['courseid' => $context->instanceid]);
                 self::delete_orphan_jobs();
             } finally {
@@ -342,6 +366,7 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         if (!$context instanceof context_course) {
             return;
         }
+        move_privacy::erase((int)$context->instanceid, $userids);
         $identifiers = [];
         foreach ($userids as $userid) {
             $identifiers[$userid] = self::user_identifiers($userid);

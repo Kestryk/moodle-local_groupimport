@@ -24,6 +24,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $messageproviders = [
+    'movecomplete' => [
+        'capability' => 'moodle/course:managegroups',
+        'defaults' => ['popup' => MESSAGE_PERMITTED + MESSAGE_DEFAULT_ENABLED],
+    ],
     'importcomplete' => [
         'capability' => 'moodle/course:managegroups',
         'defaults' => [
