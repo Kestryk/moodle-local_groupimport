@@ -779,8 +779,16 @@
   padding: 1rem 1rem 0.9rem;
 }
 
-@mixin modal-body-inset {
-  padding: 1rem;
+@mixin modal-body-inset($variant: regular) {
+  @if $variant == regular {
+    padding: 1rem;
+  } @else if $variant == details {
+    padding: 1.5rem 1.25rem;
+  } @else if $variant == compact {
+    padding: 1.25rem 1rem;
+  } @else {
+    @error "Unknown modal body inset variant: #{$variant}.";
+  }
 }
 
 @mixin modal-surface-compact {
@@ -821,4 +829,25 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+// Stable details shell, independent from loading and content ownership.
+@mixin modal-stable-details-block {
+  min-block-size: min(45rem, calc(100dvh - 2rem));
+}
+
+@mixin modal-body-paint {
+  background: var(--easyedu-surface);
+}
+
+@mixin modal-footer-compact-inset {
+  padding: 0.75rem 1rem;
+}
+
+@mixin image-preview-compact-extent($image: false) {
+  @if $image {
+    max-block-size: 7rem;
+  } @else {
+    min-block-size: 7rem;
+  }
 }
