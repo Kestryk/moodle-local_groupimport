@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K16-80: share inline edit/create field adapters in the Kit and centre edit action text without changing frames.
 
+- 2026-10-18 [N0] K16-80: share collapsible deposit shell insets and heading frames in the Kit; preserve complete CSS.
+
 - 2026-10-18 [N0] K16-80: share switch helper/section captions and plain checkbox lines in the Kit; preserve all compiled CSS.
 
 - 2026-10-18 [N0] K16-80: share selection-command result-line and compact frames in the Kit; preserve all compiled CSS.
