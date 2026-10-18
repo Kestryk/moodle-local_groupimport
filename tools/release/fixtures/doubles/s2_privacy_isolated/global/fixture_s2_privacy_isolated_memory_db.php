@@ -26,6 +26,8 @@
  * Isolated fixture double for memory_db.
  */
 class fixture_s2_privacy_isolated_memory_db {
+    /** @var array Durable membership transfers. */
+    public array $moves = [];
     /** @var array Pending progress attached to histories. */
     public array $jobs = [];
     /**
@@ -62,6 +64,9 @@ class fixture_s2_privacy_isolated_memory_db {
      * @return records Fixture result.
      */
     public function get_recordset(string $table, array $conditions = [], string $sort = ''): records {
+        if ($table === 'local_groupimport_moves') {
+            return new records($this->get_records($table, $conditions));
+        }
         if ($table !== 'local_groupimport_history') {
             throw new \RuntimeException('Unexpected read');
         }
@@ -106,6 +111,14 @@ class fixture_s2_privacy_isolated_memory_db {
      * @return void Fixture result.
      */
     public function delete_records(string $table, array $conditions): void {
+        if ($table === 'local_groupimport_moves') {
+            foreach ($this->moves as $id => $row) {
+                if (array_all_local($conditions, fn($key, $value) => $row->$key == $value)) {
+                    unset($this->moves[$id]);
+                }
+            }
+            return;
+        }
             $this->writes[] = $table;
         if ($table === 'local_groupimport_jobs') {
             foreach ($this->jobs as $id => $row) {
@@ -180,5 +193,36 @@ class fixture_s2_privacy_isolated_memory_db {
             fn($r) => clone $r,
             array_filter($this->history, fn($row) => $row->timecreated < $params['cutoff'])
         ));
+    }
+
+    /**
+     * Read transfer records with approved conditions only.
+     * @param string $table Table.
+     * @param array $conditions Equality conditions.
+     * @return array
+     */
+    public function get_records(string $table, array $conditions = []): array {
+        if ($table !== 'local_groupimport_moves') {
+            throw new RuntimeException('Unexpected transfer table');
+        }
+        return array_filter($this->moves, fn($row) => array_all_local($conditions, fn($key, $value) => $row->$key == $value));
+    }
+
+    /**
+     * Read expired transfer course ids for the existing retention task.
+     * @param string $table Table.
+     * @param string $field Distinct course field.
+     * @param string $where Expiry predicate.
+     * @param array $params Cutoff.
+     * @return array
+     */
+    public function get_fieldset_select(string $table, string $field, string $where, array $params): array {
+        if ($table !== 'local_groupimport_moves' || $field !== 'DISTINCT courseid' || $where !== 'timecreated < ?') {
+            throw new RuntimeException('Unexpected transfer retention query');
+        }
+        return array_values(array_unique(array_map(
+            fn($job) => $job->courseid,
+            array_filter($this->moves, fn($job) => $job->timecreated < $params[0])
+        )));
     }
 }

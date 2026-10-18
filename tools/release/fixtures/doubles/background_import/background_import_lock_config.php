@@ -49,7 +49,7 @@ class background_import_lock_config {
          * @return lock|false Owned lock, or contention.
          */
     public function get_lock(string $resource, int $timeout): lock|false {
-        if (!preg_match('/^importcourse_[0-9]+$/', $resource) || $timeout !== 5) {
+        if (!preg_match('/^(importcourse|movecourse)_[0-9]+$/', $resource) || $timeout !== 5) {
             throw new \RuntimeException('Unexpected lock resource or timeout');
         }
         if (isset(self::$held[$resource])) {

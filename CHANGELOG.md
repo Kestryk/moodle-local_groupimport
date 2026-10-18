@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] MOVE-BG / K18-24 : déplacer plus de 500 membres en tâche adhoc, avec reprise par lots atomiques, suivi et notification ; préciser la restriction d’accès au devoir dans le Guide (K18-25). Mise à niveau en attente du numéro attribué par Claude.
+
 - 2026-10-18 [N1] K18-A : supprimer le récapitulatif de création simple, unifier Lancer/Rejouer dans le Kit, restaurer la checklist et partager le retour des clics via Motion.
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.

@@ -1651,5 +1651,30 @@
 "k1680NextF16B20261018":{"base": "ac80d103", "family": "F16B", "before": 15, "after": 12, "new": 0, "variants": ["selection-checkbox-checked-paint", "selection-checkbox-checked-mark"], "native": {"widths": [1600, 390], "languages": ["fr", "en"], "rows": 64, "errors": 0, "fixtureRestored": true, "leaseReleased": true}, "proof": "C:\\dev\\artifacts\\k16-80-next-20261018\\f16b", "published": false, "humanAccepted": false},
 "k1680NextCheckpoint20261018":{"base": "ac80d103", "sourceProductHead": "7e69db51", "kitProductHead": "f313897", "lots": 5, "beforeUnique": 240, "afterUnique": 196, "newFindings": 0, "justified": 5, "open": 191, "nativeRows": 192, "published": false, "humanAccepted": false, "report": "docs/testing/k16-80-next-status-2026-10-18.md"},
 "codex1K18AGuide20261018":{"base": "4a6b997a", "checklistStates": 480, "demonstrationStates": 56, "loupeStates": 24, "contentCentreControls": 28, "maxAbsoluteCentreError": 0.0078125, "minimumChecklistHeightGain": 129.265625, "consoleErrors": 0, "checkerErrors": 0, "phpWarnings": 1, "published": false, "humanAccepted": false, "variants": ["buttons.demonstration-action", "Motion.clickFeedback"], "proof": "C:\\dev\\artifacts\\k18-a-20261018"},
-"codex1K18B20261018":{"base": "d3b78fdd", "cases": 16, "languages": ["fr", "en"], "widths": [1600, 1280, 768, 390], "consoleErrors": 0, "codecheckerErrors": 0, "newKitVariants": [], "published": false, "humanAccepted": false, "proof": "C:\\dev\\artifacts\\k18-b-20261018"}
+"codex1K18B20261018":{"base": "d3b78fdd", "cases": 16, "languages": ["fr", "en"], "widths": [1600, 1280, 768, 390], "consoleErrors": 0, "codecheckerErrors": 0, "newKitVariants": [], "published": false, "humanAccepted": false, "proof": "C:\\dev\\artifacts\\k18-b-20261018"},
+  "codex1MoveBackground20261018": {
+    "base": "d241e83a",
+    "threshold": 500,
+    "atomicBatch": 500,
+    "requestIdempotency": true,
+    "progress": "owner and course scoped",
+    "privacy": "subject projection; cancellation on erasure; existing retention setting",
+    "guideAssignmentNote": "K18-25 FR/EN",
+    "migration": "version allocation required before upgrade/integration",
+    "published": false,
+    "humanAccepted": false,
+    "proof": "C:/dev/artifacts/move-bg-20261018",
+    "atomicityCases": 8,
+    "privacyChecks": 49,
+    "nativeCorrectness": true,
+    "webUnderTwoSeconds": false,
+    "httpSeconds": [
+      11.8198567,
+      4.6395384
+    ],
+    "bootstrapProfileSeconds": 3.398880958557129,
+    "enqueueProfileSeconds": 0.11263394355773926,
+    "integrationReady": false,
+    "UIConsoleMatrix": "not certified"
+  }
 }

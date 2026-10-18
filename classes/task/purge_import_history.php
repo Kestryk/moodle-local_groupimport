@@ -48,6 +48,10 @@ final class purge_import_history extends \core\task\scheduled_task {
     public function execute(): void {
         global $DB;
         $cutoff = time() - self::retention_days() * DAYSECS;
+        $courses = $DB->get_fieldset_select('local_groupimport_moves', 'DISTINCT courseid', 'timecreated < ?', [$cutoff]);
+        foreach ($courses as $courseid) {
+            \local_groupimport\local\move_privacy::erase((int)$courseid, null, $cutoff);
+        }
         $expired = $DB->get_recordset_select('local_groupimport_history', 'timecreated < :cutoff', ['cutoff' => $cutoff]);
         try {
             foreach ($expired as $history) {
