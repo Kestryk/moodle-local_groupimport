@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] K16-80 F12R: reprendre la variante ronde de pagination du Kit et ses métriques naturelles de centrage, sans changer les cadres.
+
 - 2026-10-18 [N1] K16-80 F10R: reprendre la variante Kit du bouton voisin d’un champ et la palette calme de désélection ; conserver les cadres acceptés.
 
 - 2026-10-18 [N0] K16-80 F11R: reprendre les recettes canoniques du glyphe de dépliage et du titre de section de filtre, sans changement de valeurs.
