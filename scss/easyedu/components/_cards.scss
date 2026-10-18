@@ -546,7 +546,7 @@
   }
 }
 
-@mixin card-disclosure-icon($color: var(--easyedu-text-muted)) {
+@mixin card-disclosure-icon($color: var(--easyedu-text-muted), $compact: false) {
   align-items: center;
   color: $color;
   display: inline-flex;
@@ -556,6 +556,11 @@
   justify-content: center;
   transition: transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   width: 1.25rem;
+
+  // Existing compact relation sections keep their accepted 10px chevron.
+  @if $compact {
+    font-size: 0.625rem;
+  }
 }
 
 @mixin card-disclosure-expanded-icon {

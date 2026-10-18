@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80: route compact section chevrons and the legacy filter glyph adapter through the Kit; compiled CSS unchanged.
+
 - 2026-10-18 [N0] K16-80: remove the unused legacy discovery dismiss style; current Kit Close unchanged.
 
 - 2026-10-18 [N0] K16-80: route the legacy member removal target through the existing shared Kit size token; preserve geometry and paint.

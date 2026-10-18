@@ -1073,10 +1073,7 @@
     margin: 0;
 
     .fa {
-      background: transparent;
-      border: 0;
-      height: auto;
-      width: auto;
+      @include easyedu.filter-disclosure-neutral-icon;
     }
 
     &::before,
