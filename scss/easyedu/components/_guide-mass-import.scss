@@ -1,0 +1,214 @@
+// GMI-C2: specimens and anatomies of the Mass Import Guide.
+//
+// Layout only. Every control, label, panel, table, notice and report line is a Kit component or a
+// product class (data table surface, segmented choice, information panel, notice, tag, button, report list,
+// card label, anatomy pin and legend); this file places them. No literal colour, no !important.
+// build-page-styles.cjs sends the selectors below (modifiers --mi*) to styles/guide.css only, so
+// Student Management does not carry them.
+@use "typography";
+@use "feedback";
+
+@mixin guide-mass-import {
+  // The Mass Import Guide is rendered inside the navigation, whose items never wrap: the reading area wraps.
+  &.easyedu-guide--mass-import .easyedu-guide-modal { white-space: normal; }
+
+  // Prepare the file: a six row spreadsheet, its three numbered columns and the accepted identifier fields.
+  .easyedu-guide-spec--mifile {
+    .easyedu-guide-spec__sheet { display: grid; gap: 0.75rem; min-inline-size: 0; }
+
+    .easyedu-guide-spec__file {
+      @include typography.type-control-label;
+      align-items: center;
+      color: var(--easyedu-text);
+      display: flex;
+      gap: 0.5rem;
+      margin: 0;
+      .fa { color: var(--easyedu-success); }
+    }
+
+    // The sheet scrolls inside its own frame when the window is narrower than its columns.
+    .easyedu-guide-spec__scroll {
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-deposit-border);
+      border-radius: 0.75rem;
+      max-inline-size: 100%;
+      overflow-x: auto;
+    }
+
+    .easyedu-guide-spec__table {
+      @include typography.type-caption;
+      border-collapse: collapse;
+      color: var(--easyedu-text);
+      inline-size: 100%;
+      min-inline-size: 36rem;
+      table-layout: auto;
+
+      th,
+      td {
+        border-block-end: 1px solid var(--easyedu-table-row-border);
+        padding: 0.5rem 0.75rem;
+        text-align: start;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+      thead th {
+        background: var(--easyedu-information-surface);
+        color: var(--easyedu-primary-strong);
+        font-weight: var(--easyedu-font-weight-semibold);
+      }
+      tbody tr:last-child th,
+      tbody tr:last-child td { border-block-end: 0; }
+      // Fixed identifier column: the empty grouping cell of the last row keeps its width.
+      td { block-size: 2.25rem; }
+    }
+
+    .easyedu-guide-spec__line {
+      background: var(--easyedu-surface-soft);
+      color: var(--easyedu-text-muted);
+      font-weight: var(--easyedu-font-weight-regular);
+      inline-size: 2.5rem;
+      text-align: center;
+    }
+
+    .easyedu-guide-spec__column .easyedu-guide-anatomy__pin {
+      margin-inline-end: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .easyedu-guide-spec__fields { list-style: none; margin: 0; padding: 0; }
+    .easyedu-guide-spec__legend { margin-block-start: 1rem; }
+  }
+
+  // Reimport strategy: the starting point, then the same group after each strategy.
+  .easyedu-guide-spec--mistrategy {
+    --easyedu-guide-spec-min: 20rem;
+
+    .easyedu-guide-spec__start {
+      @include typography.type-caption;
+      display: grid;
+      gap: 0.125rem;
+      margin: 0 0 1rem;
+      strong { @include typography.type-control-label; color: var(--easyedu-text); }
+    }
+
+    // The two strategies stack their options: each frame is only half of the reading width.
+    .easyedu-segmented-choice__options { grid-template-columns: minmax(0, 1fr); }
+    .easyedu-guide-spec__group { margin: 0; }
+
+    // Added / removed mark of a member row: the Kit card label geometry, success or danger paint.
+    .easyedu-guide-spec__mark {
+      @include feedback.card-label;
+      background: var(--easyedu-success-soft);
+      border-color: var(--easyedu-semantic-border-success);
+      color: var(--easyedu-success);
+      margin-inline-start: auto;
+      &.is-removed {
+        background: var(--easyedu-danger-soft);
+        border-color: var(--easyedu-semantic-border-danger);
+        color: var(--easyedu-danger);
+      }
+    }
+  }
+
+  // The step number never wraps from its dot, whatever the length of the sentence beside it.
+  .easyedu-guide-spec--mistrategy .easyedu-guide-spec__step b,
+  .easyedu-guide-spec--mirun .easyedu-guide-spec__step b { flex: none; white-space: nowrap; }
+
+  // Run the import: the one click, the background import, the notification.
+  .easyedu-guide-spec--mirun {
+    --easyedu-guide-spec-min: 16rem;
+
+    // One counter: it takes the whole width of its frame instead of half of the two column summary.
+    .easyedu-guide-spec__summary { grid-template-columns: minmax(0, 1fr); }
+
+    .easyedu-guide-spec__submit { justify-self: start; }
+    .easyedu-guide-spec__progress {
+      color: var(--easyedu-text);
+      font-variant-numeric: tabular-nums;
+      font-weight: var(--easyedu-font-weight-semibold);
+    }
+    .easyedu-guide-spec__job,
+    .easyedu-guide-spec__notification { margin: 0; }
+  }
+
+  // Report: summary, one line per row, annotated export.
+  .easyedu-guide-spec--mireport {
+    .easyedu-guide-spec__report { display: grid; gap: 0.75rem; min-inline-size: 0; }
+    .easyedu-guide-spec__export { justify-self: start; }
+  }
+
+  // Page anatomy: the two columns and the two tools of the navigation, numbered like the other anatomies.
+  .easyedu-guide-anatomy--mipage {
+    .easyedu-guide-anatomy__page {
+      background: var(--easyedu-surface-soft);
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      display: grid;
+      gap: 1.25rem;
+      min-inline-size: 0;
+      padding: 1rem;
+    }
+    .easyedu-guide-anatomy__page-head {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      justify-content: space-between;
+    }
+    .easyedu-guide-anatomy__page-title { @include typography.type-card-title; color: var(--easyedu-text); }
+    .easyedu-guide-anatomy__page-nav { align-items: center; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+    .easyedu-guide-anatomy__page-link {
+      @include typography.type-control-label;
+      color: var(--easyedu-text);
+      &.is-active { color: var(--easyedu-primary-strong); }
+    }
+    .easyedu-guide-anatomy__page-columns {
+      align-items: start;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .easyedu-guide-anatomy__page-card { display: grid; gap: 0.75rem; margin: 0; min-inline-size: 0; position: relative; }
+    // The schematic cards keep the page's own header (icon tile and title) without its tall reserved height.
+    .easyedu-guide-anatomy__page-card .easyedu-panel__header { margin-block-end: 0; min-block-size: 0; padding-inline-end: 1.75rem; }
+    .easyedu-guide-anatomy__page-card .easyedu-panel__title { align-self: center; margin: 0; }
+    // The Kit panels clip their rail: their numbers sit inside the panel corner, not above its edge.
+    .easyedu-guide-anatomy__page-card > .easyedu-guide-anatomy__pin,
+    .easyedu-guide-anatomy__page-detect > .easyedu-guide-anatomy__pin {
+      inset-block-start: 0.5rem;
+      inset-inline-end: 0.5rem;
+      inset-inline-start: auto;
+      position: absolute;
+      transform: none;
+      &::after { content: none; }
+    }
+    .easyedu-guide-anatomy__page-detect { margin: 0; position: relative; }
+    .easyedu-guide-anatomy__page-detect .easyedu-information__title { margin-block: 0 0.5rem; padding-inline-end: 1.75rem; }
+    .easyedu-guide-anatomy__page-empty {
+      @include typography.type-caption;
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      margin: 0;
+      .fa { color: var(--easyedu-text-muted); }
+    }
+    @media (max-width: 40rem) {
+      .easyedu-guide-anatomy__page-columns { grid-template-columns: minmax(0, 1fr); }
+      // Stacked navigation entries leave room for the numbers drawn above them.
+      .easyedu-guide-anatomy__page-nav { row-gap: 1.75rem; }
+    }
+  }
+
+  // History row anatomy: the product's own row, with its numbers in the flow of each part.
+  .easyedu-guide-anatomy--mihistory {
+    .easyedu-guide-anatomy__history { margin: 0; padding: 0; }
+    .easyedu-guide-anatomy__history .easyedu-guide-anatomy__pin {
+      margin-inline-end: 0.375rem;
+      vertical-align: middle;
+    }
+    @media (max-width: 40rem) {
+      .easyedu-guide-anatomy__history > li { grid-template-columns: minmax(0, 1fr); justify-items: start; }
+      .easyedu-guide-anatomy__history > li > div:last-child { justify-content: flex-start; min-inline-size: 0; }
+    }
+  }
+}

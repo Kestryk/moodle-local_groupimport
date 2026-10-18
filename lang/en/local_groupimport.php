@@ -1455,3 +1455,20 @@ $string['mi_guide_ready_t2_title'] = 'Reopen the guide';
 $string['mi_guide_ready_t2_body'] = 'The compass button reopens the guide at the last slide you read.';
 $string['mi_guide_ready_t3_title'] = 'Keep a record';
 $string['mi_guide_ready_t3_body'] = 'Export the annotated Excel report after each import.';
+
+// GMI-C2: specimens of the Mass Import Guide.
+$string['mi_guide_anatomy_page_title'] = 'Page anatomy';
+$string['mi_guide_anatomy_history_title'] = 'History row anatomy';
+$string['mi_guide_strategy_start'] = 'Starting point';
+$string['mi_guide_strategy_startbody'] = '“TD 1” holds Alice Martin and Ben Leroy. The file puts “alice.martin” and “i.garnier@example.test” in “TD 1”.';
+$string['mi_guide_strategy_frame1'] = '“Add missing items”: “Inès Garnier” is added, “Ben Leroy” stays.';
+$string['mi_guide_strategy_frame2'] = '“Match this file”: “TD 1” matches the file exactly, “Ben Leroy” is removed.';
+$string['mi_guide_strategy_added'] = 'added';
+$string['mi_guide_strategy_removed'] = 'removed';
+$string['mi_guide_run_frame1'] = 'Up to 1,000 rows: the report appears at once.';
+$string['mi_guide_run_frame2'] = 'More than 1,000 rows: progress is shown, and you can leave the page.';
+$string['mi_guide_run_frame3'] = 'When it ends, Moodle sends you a notification.';
+$string['mi_guide_run_progress'] = 'Import in progress 1,200 / 3,000';
+$string['mi_guide_run_notification_body'] = 'The report of your import is available.';
+$string['mi_guide_path_warning'] = 'This tour uses your file and may change the course. Previewing changes nothing. Stop at Cancel: clicking Run import really changes the course.';
+$string['mi_guide_history_sample_date'] = '18/10/2026 10:42';

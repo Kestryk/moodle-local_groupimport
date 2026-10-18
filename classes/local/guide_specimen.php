@@ -213,23 +213,232 @@ final class guide_specimen {
     }
 
     /**
-     * Slide "Ready": the four lessons worth reviewing, each linking back to its slide.
+     * Slide "Ready": the lessons worth reviewing, each linking back to its slide.
+     *
+     * Student Management calls it without argument (its four fixed tiles). Another Guide passes its own
+     * tiles, each as icon, title, text and the zero based reading position of the slide to review.
+     *
+     * @param array[]|null $tiles Custom tiles, or null for the Student Management ones.
+     * @param string $navprefix Language string prefix of the slide pills (number appended).
+     * @return array Template context of guide_specimen.mustache.
      */
-    public static function ready(): array {
-        $tiles = [];
-        $icons = ['create' => 'fa-plus', 'organise' => 'fa-right-left', 'filter' => 'fa-filter',
-            'assignment' => 'fa-graduation-cap'];
-        foreach (self::REVIEW_INDEXES as $key => $index) {
-            $tiles[] = [
-                'icon' => $icons[$key],
-                'title' => self::string('ready_' . $key . '_title'),
-                'text' => self::string('ready_' . $key . '_text'),
-                'index' => $index,
+    public static function ready(?array $tiles = null, string $navprefix = 'guide_nav_'): array {
+        if ($tiles === null) {
+            $tiles = [];
+            $icons = ['create' => 'fa-plus', 'organise' => 'fa-right-left', 'filter' => 'fa-filter',
+                'assignment' => 'fa-graduation-cap'];
+            foreach (self::REVIEW_INDEXES as $key => $index) {
+                $tiles[] = ['icon' => $icons[$key], 'index' => $index,
+                    'title' => self::string('ready_' . $key . '_title'),
+                    'text' => self::string('ready_' . $key . '_text')];
+            }
+        }
+        $result = [];
+        foreach ($tiles as $tile) {
+            $index = (int) $tile['index'];
+            $result[] = $tile + [
                 'review' => self::string_with_args('ready_review', (object) ['number' => $index + 1,
-                    'title' => get_string('guide_nav_' . ($index + 1), 'local_groupimport')]),
+                    'title' => get_string($navprefix . ($index + 1), 'local_groupimport')]),
             ];
         }
-        return ['ready' => true, 'kind' => 'ready', 'label' => self::string('ready_label'), 'tiles' => $tiles];
+        return ['ready' => true, 'kind' => 'ready', 'label' => self::string('ready_label'), 'tiles' => $result];
+    }
+
+    /**
+     * Shared head of the Mass Import specimens: the label comes from the slide, not from guidespec_*.
+     *
+     * @param string $kind Specimen kind (also the template section name).
+     * @param string $labelkey Language string key of the specimen label.
+     * @return array
+     */
+    private static function mass_import_base(string $kind, string $labelkey): array {
+        return [
+            $kind => true,
+            'kind' => $kind,
+            'caption' => get_string('discovery_simulation', 'local_groupimport'),
+            'captionshort' => get_string('discovery_simulation_short', 'local_groupimport'),
+            'label' => get_string($labelkey, 'local_groupimport'),
+        ];
+    }
+
+    /**
+     * Mass Import slide "Prepare the file": a six row spreadsheet with three numbered columns.
+     *
+     * @param array[] $legend Numbered legend (n, label) of the three columns.
+     * @return array Template context of guide_specimen.mustache.
+     */
+    public static function mifile(array $legend): array {
+        $unknown = get_string('guideinspection_unknownlabel', 'local_groupimport');
+        $rows = [
+            [2, 'alice.martin', 'TD 1', 'Année 2026'],
+            [3, 'i.garnier@example.test', 'TD 1', 'Année 2026'],
+            [4, '10482', 'TD 2', 'Année 2026'],
+            [5, 'zoe.dubois', 'TD 2', 'Année 2026'],
+            [6, $unknown, 'TD 2', 'Année 2026'],
+            [7, 'alex@example.test', 'TD 9', ''],
+        ];
+        $columns = [];
+        foreach (['templatecolumnidentifier', 'templatecolumngroup', 'templatecolumngrouping'] as $index => $key) {
+            $columns[] = ['n' => $index + 1, 'label' => get_string($key, 'local_groupimport')];
+        }
+        return self::mass_import_base('mifile', 'mi_guide_file_label') + [
+            'filename' => get_string('mi_guide_example_filename', 'local_groupimport'),
+            'columns' => $columns,
+            'rows' => array_map(static fn(array $row): array => ['line' => $row[0], 'identifier' => $row[1],
+                'group' => $row[2], 'grouping' => $row[3]], $rows),
+            'fields' => [get_string('username'), get_string('email'), get_string('idnumber')],
+            'legend' => $legend,
+            'legendbelow' => true,
+        ];
+    }
+
+    /**
+     * Mass Import slide "Reimport strategy": the same group after each of the two strategies.
+     *
+     * @return array Template context of guide_specimen.mustache.
+     */
+    public static function mistrategy(): array {
+        $added = get_string('mi_guide_strategy_added', 'local_groupimport');
+        $removed = get_string('mi_guide_strategy_removed', 'local_groupimport');
+        $options = [
+            ['key' => 'keep', 'icon' => 'fa-plus', 'title' => get_string('reimportkeeptitle', 'local_groupimport'),
+                'description' => get_string('reimportkeepdesc', 'local_groupimport')],
+            ['key' => 'replace', 'icon' => 'fa-sync-alt',
+                'title' => get_string('reimportreplacetitle', 'local_groupimport'),
+                'description' => get_string('reimportreplacedesc', 'local_groupimport')],
+        ];
+        $strategy = get_string('reimportstrategy', 'local_groupimport');
+        $frames = [];
+        $members = [
+            1 => [['membername' => 'Alice Martin'], ['membername' => 'Ben Leroy'],
+                ['membername' => 'Inès Garnier', 'membermark' => $added, 'memberadded' => true]],
+            2 => [['membername' => 'Alice Martin'],
+                ['membername' => 'Inès Garnier', 'membermark' => $added, 'memberadded' => true],
+                ['membername' => 'Ben Leroy', 'membermark' => $removed, 'memberremoved' => true]],
+        ];
+        foreach ([1, 2] as $number) {
+            $frames[] = [
+                'number' => $number,
+                'step' => get_string('mi_guide_strategy_frame' . $number, 'local_groupimport'),
+                'strategy' => $strategy,
+                'options' => array_map(static fn(array $option): array => $option + [
+                    'checked' => ($option['key'] === 'keep') === ($number === 1)], $options),
+                'group' => ['groupname' => 'TD 1', 'groupcount' => count($members[$number]), 'treecard' => true,
+                    'members' => $members[$number]],
+            ];
+        }
+        return self::mass_import_base('mistrategy', 'mi_guide_strategy_title') + [
+            'start' => ['title' => get_string('mi_guide_strategy_start', 'local_groupimport'),
+                'body' => get_string('mi_guide_strategy_startbody', 'local_groupimport')],
+            'frames' => $frames,
+        ];
+    }
+
+    /**
+     * Mass Import slide "Run the import": the one click, the background import, the notification.
+     *
+     * @return array Template context of guide_specimen.mustache.
+     */
+    public static function mirun(): array {
+        $frames = [
+            ['number' => 1, 'immediate' => true,
+                'warning' => get_string('mi_guide_path_warning', 'local_groupimport'),
+                'submit' => get_string('submitimport', 'local_groupimport'),
+                'done' => get_string('successheader', 'local_groupimport'), 'donecount' => 4],
+            ['number' => 2, 'background' => true,
+                'queued' => get_string('importjobqueued', 'local_groupimport'),
+                'progress' => get_string('mi_guide_run_progress', 'local_groupimport')],
+            ['number' => 3, 'notification' => true,
+                'notificationtitle' => get_string('importjobcompleted', 'local_groupimport'),
+                'notificationbody' => get_string('mi_guide_run_notification_body', 'local_groupimport')],
+        ];
+        foreach ($frames as $index => $frame) {
+            $frames[$index]['step'] = get_string('mi_guide_run_frame' . $frame['number'], 'local_groupimport');
+        }
+        return self::mass_import_base('mirun', 'mi_guide_run_title') + ['frames' => $frames];
+    }
+
+    /**
+     * Mass Import slide "Read the report": the six kept rows, four successes and two errors.
+     *
+     * @return array Template context of guide_specimen.mustache.
+     */
+    public static function mireport(): array {
+        $component = 'local_groupimport';
+        $unknown = get_string('guideinspection_unknownlabel', $component);
+        $grouping = 'Année 2026';
+        $added = static fn(string $who, string $group, ?string $in = null): string => get_string(
+            $in === null ? 'useraddedtogroup' : 'useraddedtogroupwithgrouping',
+            $component,
+            (object) ['identifier' => $who, 'groupname' => $group, 'groupingname' => $in]
+        );
+        $success = [
+            $added('alice.martin', 'TD 1', $grouping),
+            $added('i.garnier@example.test', 'TD 1', $grouping),
+            $added('10482', 'TD 2', $grouping),
+            $added('alex@example.test', 'TD 9'),
+        ];
+        $errors = [
+            get_string('useralreadyingroup', $component, (object) ['identifier' => 'zoe.dubois',
+                'groupname' => 'TD 2']),
+            get_string('importuserunavailable', $component, $unknown),
+        ];
+        return self::mass_import_base('mireport', 'mi_guide_report_label') + [
+            'summarylabel' => get_string('importsummary', $component),
+            'successcount' => count($success), 'successheader' => get_string('successheader', $component),
+            'errorcount' => count($errors), 'errorheader' => get_string('errorheader', $component),
+            'success' => $success, 'errors' => $errors,
+            'export' => get_string('importexportresults', $component),
+        ];
+    }
+
+    /**
+     * Anatomy of a Mass Import element (page or history row), for guide_anatomy.mustache.
+     *
+     * @param string $type 'mipage' or 'mihistory'.
+     * @param array[] $legend Numbered legend (n, label).
+     * @return array Template context of guide_anatomy.mustache.
+     */
+    public static function mass_import_anatomy(string $type, array $legend): array {
+        $component = 'local_groupimport';
+        $data = [
+            $type => true,
+            'type' => $type,
+            'title' => get_string(
+                $type === 'mipage' ? 'mi_guide_anatomy_page_title' : 'mi_guide_anatomy_history_title',
+                $component
+            ),
+            'caption' => get_string('guideanatomy_caption', $component),
+            'legendlabel' => get_string('guideanatomy_legend', $component),
+            'legend' => $legend,
+        ];
+        if ($type === 'mipage') {
+            $data += [
+                'pagetitle' => get_string('groupimport', $component),
+                'navtemplate' => get_string('downloadtemplate', $component),
+                'navhistory' => get_string('importhistory', $component),
+                'uploadtitle' => get_string('importfile', $component),
+                'depositlabel' => get_string('filedeposittitle', $component),
+                'detecttitle' => get_string('importautodetecttitle', $component),
+                'fields' => [get_string('username'), get_string('email')],
+                'resultstitle' => get_string('importresults', $component),
+                'emptytext' => get_string('noresults', $component),
+            ];
+        } else {
+            $data += [
+                'filename' => get_string('mi_guide_example_filename', $component),
+                'meta' => implode(' · ', [
+                    get_string('mi_guide_history_sample_date', $component),
+                    get_string('importhistoryrowscount', $component, 6),
+                    get_string('importhistorysuccesscount', $component, 4),
+                    get_string('importhistoryerrorscount', $component, 2),
+                ]),
+                'state' => get_string('importhistoryapplied', $component),
+                'restore' => get_string('importhistoryrollback', $component),
+                'export' => get_string('importhistoryexportshort', $component),
+            ];
+        }
+        return $data;
     }
 
     /**

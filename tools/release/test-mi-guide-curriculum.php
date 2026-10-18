@@ -92,9 +92,11 @@ class html_writer {
 }
 
 require_once($root . '/classes/local/guide_discovery.php');
+require_once($root . '/classes/local/guide_specimen.php');
 require_once($root . '/classes/local/mass_import_guide.php');
 
 use local_groupimport\local\mass_import_guide;
+use local_groupimport\local\guide_specimen;
 
 $failures = [];
 $check = static function (bool $condition, string $message) use (&$failures): void {
@@ -131,6 +133,36 @@ foreach (['en', 'fr'] as $lang) {
     $note = $data['slides'][2]['commonintroduction']['note'];
     $check(strpos($note, 'Username, Email address') !== false, $lang . ': dynamic compared-fields note');
     $check(count(array_filter(array_column($data['slides'], 'targetselector'))) === 8, $lang . ': eight interface targets');
+    // GMI-C2: every specimen and anatomy is wired to its slide, with the numbers of the Penpot boards.
+    $byid = array_column($data['slides'], null, 'id');
+    $check($byid['mi-prepare-file']['guidespecimen']['kind'] === 'mifile'
+        && count($byid['mi-prepare-file']['guidespecimen']['rows']) === 6
+        && count($byid['mi-prepare-file']['guidespecimen']['columns']) === 3
+        && count($byid['mi-prepare-file']['guidespecimen']['legend']) === 3, $lang . ': mifile specimen');
+    $check($byid['mi-reimport-strategy']['guidespecimen']['kind'] === 'mistrategy'
+        && count($byid['mi-reimport-strategy']['guidespecimen']['frames']) === 2, $lang . ': mistrategy specimen');
+    $check($byid['mi-run-import']['guidespecimen']['kind'] === 'mirun'
+        && count($byid['mi-run-import']['guidespecimen']['frames']) === 3, $lang . ': mirun specimen');
+    $report = $byid['mi-read-report']['guidespecimen'];
+    $check(
+        $report['kind'] === 'mireport' && count($report['success']) === 4 && count($report['errors']) === 2,
+        $lang . ': mireport specimen'
+    );
+    $check($byid['mi-overview']['anatomy']['type'] === 'mipage' && count($byid['mi-overview']['anatomy']['legend']) === 5
+        && !empty($byid['mi-overview']['example']['body']), $lang . ': page anatomy and example notice');
+    $check($byid['mi-history-restore']['anatomy']['type'] === 'mihistory'
+        && count($byid['mi-history-restore']['anatomy']['legend']) === 5, $lang . ': history anatomy');
+    $ready = $byid['mi-ready']['guidespecimen'];
+    $check($ready['kind'] === 'ready' && array_column($ready['tiles'], 'index') === [2, 4, 6, 8], $lang . ': ready tiles');
+    foreach ($ready['tiles'] as $tile) {
+        $check(trim($tile['review']) !== '' && strpos($tile['review'], '{$a') === false, $lang . ': ready review label');
+    }
+    $check(array_column(guide_specimen::ready()['tiles'], 'index') === [2, 7, 8, 11],
+        $lang . ': Student Management ready tiles unchanged');
+    foreach (['mifile', 'mistrategy', 'mirun', 'mireport'] as $kind) {
+        $check(trim($byid[['mifile' => 'mi-prepare-file', 'mistrategy' => 'mi-reimport-strategy', 'mirun' => 'mi-run-import',
+            'mireport' => 'mi-read-report'][$kind]]['guidespecimen']['label']) !== '', $lang . ': ' . $kind . ' label');
+    }
     json_encode($data, JSON_THROW_ON_ERROR);
     $config = mass_import_guide::js_config(71, 5);
     json_encode($config, JSON_THROW_ON_ERROR);
@@ -169,8 +201,10 @@ foreach (array_unique($literals[1]) as $key) {
 }
 
 // Example names live in the lang files only, never as PHP literals.
-foreach (['Alice', 'Martin', 'Garnier', 'Zoé', 'Zoe ', 'Dubois', 'Leroy', 'Hugo', 'Petit', 'Alex ', 'Dupont', 'TD 1', 'TD 2',
-    'TD 9', 'Année 2026', 'td-2026', '10482', 'alice.martin', 'example.test', 'entree-inconnue'] as $name) {
+foreach (
+    ['Alice', 'Martin', 'Garnier', 'Zoé', 'Zoe ', 'Dubois', 'Leroy', 'Hugo', 'Petit', 'Alex ', 'Dupont', 'TD 1', 'TD 2',
+    'TD 9', 'Année 2026', 'td-2026', '10482', 'alice.martin', 'example.test', 'entree-inconnue'] as $name
+) {
     $check(stripos($source, $name) === false, 'Example name is not a PHP literal: ' . trim($name));
 }
 

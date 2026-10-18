@@ -370,6 +370,9 @@
                             {{/discoveryscene}}
                             {{#guidespecimen}}{{#filtersdemo}}<div class="easyedu-guide-spec-recap" data-guide-filters-recap hidden>{{/filtersdemo}}{{> local_groupimport/guide_specimen}}{{#filtersdemo}}</div>{{/filtersdemo}}{{/guidespecimen}}
                             {{^guidespecimen}}{{#anatomy}}{{> local_groupimport/guide_anatomy}}{{/anatomy}}{{/guidespecimen}}
+                            {{#example}}
+                            <div class="easyedu-ui easyedu-guide-scene__example"><aside class="easyedu-notice"><span class="fa fa-info-circle" aria-hidden="true"></span><div><strong>{{title}}</strong><p>{{body}}</p></div></aside></div>
+                            {{/example}}
                             {{#hasvisualflow}}
                                 <div class="easyedu-guide-visual easyedu-guide-visual--flow" aria-hidden="true">
                                     <span class="easyedu-guide-mini-card easyedu-guide-mini-card--source">
@@ -606,7 +609,7 @@
                                     </div>
                                     {{/topics}}
                                 </dl>
-                                <p class="easyedu-guide-introduction__note">{{note}}</p>
+                                {{#note}}<p class="easyedu-guide-introduction__note">{{note}}</p>{{/note}}
                             </div>
                             {{/commonintroduction}}
                             {{#discoveryscene}}{{#creation}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/creation}}{{/discoveryscene}}

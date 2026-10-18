@@ -126,14 +126,13 @@ final class mass_import_guide {
                     'navtitle' => get_string('mi_guide_nav_10', $component),
                     'content' => \html_writer::tag('p', s(get_string('mi_guide_ready_intro', $component))),
                     'commonintroduction' => self::explanations('ready', ''),
-                    // Review tiles (lesson indexes 2, 4, 6, 8): rendered by the parametrised
-                    // ready() specimen of lot GMI-C2.
-                    'readytiles' => array_map(static function (array $tile) use ($component): array {
-                        return ['icon' => $tile[0], 'review' => $tile[1],
+                    // Review tiles: reading positions 2, 4, 6 and 8 (slides 3, 5, 7 and 9).
+                    'guidespecimen' => guide_specimen::ready(array_map(static function (array $tile) use ($component): array {
+                        return ['icon' => $tile[0], 'index' => $tile[1],
                             'title' => get_string('mi_guide_ready_' . $tile[2] . '_title', $component),
                             'text' => get_string('mi_guide_ready_' . $tile[2] . '_text', $component)];
                     }, [['fa-file-excel', 2, 'file'], ['fa-table', 4, 'preview'],
-                        ['fa-check', 6, 'run'], ['fa-history', 8, 'history']]),
+                        ['fa-check', 6, 'run'], ['fa-history', 8, 'history']]), 'mi_guide_nav_'),
                 ];
             } else {
                 $definition = $definitions[$id];
@@ -153,18 +152,21 @@ final class mass_import_guide {
                     'targetselector' => $definition['target'],
                 ];
                 if ($id === 'mi-overview') {
-                    $slide['legend'] = self::legend('overview', 5);
+                    $slide['anatomy'] = guide_specimen::mass_import_anatomy('mipage', self::legend('overview', 5));
                     $slide['example'] = [
                         'title' => get_string('mi_guide_overview_exampletitle', $component),
                         'body' => get_string('mi_guide_overview_examplebody', $component),
                     ];
                 } else if ($id === 'mi-prepare-file') {
-                    $slide['legend'] = self::legend('file', 3);
-                    $slide['specimenlabel'] = get_string('mi_guide_file_label', $component);
+                    $slide['guidespecimen'] = guide_specimen::mifile(self::legend('file', 3));
+                } else if ($id === 'mi-reimport-strategy') {
+                    $slide['guidespecimen'] = guide_specimen::mistrategy();
+                } else if ($id === 'mi-run-import') {
+                    $slide['guidespecimen'] = guide_specimen::mirun();
                 } else if ($id === 'mi-read-report') {
-                    $slide['specimenlabel'] = get_string('mi_guide_report_label', $component);
+                    $slide['guidespecimen'] = guide_specimen::mireport();
                 } else if ($id === 'mi-history-restore') {
-                    $slide['legend'] = self::legend('history', 5);
+                    $slide['anatomy'] = guide_specimen::mass_import_anatomy('mihistory', self::legend('history', 5));
                 }
             }
             $slide['navcategorylabel'] = $slide['category'];
@@ -176,7 +178,7 @@ final class mass_import_guide {
 
         $slidecount = count($slides);
         $data = [
-            'rootclass' => 'local-groupimport-easystud-easyedu-guide easyedu-guide--discovery',
+            'rootclass' => 'local-groupimport-easystud-easyedu-guide easyedu-guide--discovery easyedu-guide--mass-import',
             'discoverypresentation' => true,
             'guideinterfacecuelabel' => get_string('guideinterfacecuelabel', $component),
             'guideopenlabel' => get_string('mi_guide_open', $component),

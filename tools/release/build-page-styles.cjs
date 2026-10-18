@@ -8,7 +8,10 @@ const root=path.resolve(__dirname,'../..');
 // Guide rules requested only by Mass Import, as a separate sheet (GMI-C1, Kevin 18/10): selectors that
 // name the Guide itself. Student Management keeps them in its own page CSS, unchanged.
 function guideTargets(selector){return /easyedu-guide|local-groupimport-tutorial/.test(selector);}
+// Mass Import Guide specimens (GMI-C2, modifiers --mi*) are served by guide.css only: Student Management never shows them.
+function massImportGuideOnly(selector){return /easyedu-guide-(spec|anatomy)--mi|easyedu-guide--mass-import/.test(selector);}
 function targets(selector){
+ if(massImportGuideOnly(selector))return {sm:false,admin:false,mass:false};
  const sm=/local-groupimport-easystud(?!-admin)|easyedu-guide|local-groupimport-tutorial/.test(selector);
  const admin=/local-groupimport-admin|page-admin-setting-local_groupimport|easyedu-welcome-reset/.test(selector);
  const mass=/local-groupimport-import|path-local-groupimport-index|local-groupimport-easystud__navigation/.test(selector);

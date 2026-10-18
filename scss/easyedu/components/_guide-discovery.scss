@@ -18,6 +18,7 @@
 @use "tooltips";
 @use "../dialog-palette-classes" as palette;
 @use "guide-specimen";
+@use "guide-mass-import";
 
 // Visually hidden, still in the accessibility tree (accessible name stays complete).
 @mixin guide-visually-hidden {
@@ -1994,6 +1995,8 @@
       &__card--mini .easyedu-guide-anatomy__actions { flex: 0 0 auto; margin-inline-start: auto; order: 0; }
     }
   }
+  // GMI-C2: Mass Import specimens come after the shared anatomy so their placement overrides win ties.
+  @include guide-mass-import.guide-mass-import;
   @include animations.motion-restricted($self: true) {
     .easyedu-guide-welcome { animation: none; }
     .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }

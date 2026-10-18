@@ -1452,3 +1452,20 @@ $string['mi_guide_ready_t2_title'] = 'Rouvrir le guide';
 $string['mi_guide_ready_t2_body'] = 'Le bouton boussole rouvre le guide à la dernière diapositive lue.';
 $string['mi_guide_ready_t3_title'] = 'Garder une trace';
 $string['mi_guide_ready_t3_body'] = 'Exportez le rapport Excel annoté après chaque import.';
+
+// GMI-C2: specimens of the Mass Import Guide.
+$string['mi_guide_anatomy_page_title'] = 'Anatomie de la page';
+$string['mi_guide_anatomy_history_title'] = 'Anatomie d’une ligne d’historique';
+$string['mi_guide_strategy_start'] = 'Situation de départ';
+$string['mi_guide_strategy_startbody'] = '« TD 1 » contient Alice Martin et Ben Leroy. Le fichier place « alice.martin » et « i.garnier@example.test » dans « TD 1 ».';
+$string['mi_guide_strategy_frame1'] = '« Ajouter les éléments manquants » : « Inès Garnier » est ajoutée, « Ben Leroy » reste.';
+$string['mi_guide_strategy_frame2'] = '« Reproduire ce fichier » : « TD 1 » reprend exactement le fichier, « Ben Leroy » est retiré.';
+$string['mi_guide_strategy_added'] = 'ajoutée';
+$string['mi_guide_strategy_removed'] = 'retiré';
+$string['mi_guide_run_frame1'] = 'Jusqu’à 1 000 lignes : le rapport s’affiche tout de suite.';
+$string['mi_guide_run_frame2'] = 'Plus de 1 000 lignes : la progression s’affiche, vous pouvez quitter la page.';
+$string['mi_guide_run_frame3'] = 'À la fin, Moodle vous envoie une notification.';
+$string['mi_guide_run_progress'] = 'Import en cours 1 200 / 3 000';
+$string['mi_guide_run_notification_body'] = 'Le rapport de votre import est disponible.';
+$string['mi_guide_path_warning'] = 'Ce parcours utilise votre fichier et peut modifier le cours. Prévisualiser ne change rien. Arrêtez-vous sur Annuler : cliquer sur Lancer l’import modifie réellement le cours.';
+$string['mi_guide_history_sample_date'] = '18/10/2026 10:42';
