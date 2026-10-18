@@ -72,7 +72,7 @@
   }
 
   &-group__members.local-groupimport-easystud-long-list__members {
-    max-height: none;
+    @include easyedu.card-relation-list-unbounded;
     overflow: visible;
     mask-image: none;
 
