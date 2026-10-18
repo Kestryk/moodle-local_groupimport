@@ -1345,8 +1345,7 @@
     .local-groupimport-easystud-pagination__select {
       @include easyedu.pagination-select-button;
 
-      color: var(--easyedu-primary-strong);
-      height: var(--local-groupimport-result-height);
+      @include easyedu.pagination-select-frame(var(--local-groupimport-result-height));
     }
 
     .local-groupimport-easystud-pagination__controls {

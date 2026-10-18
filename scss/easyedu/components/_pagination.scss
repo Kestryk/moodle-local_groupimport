@@ -129,6 +129,21 @@
   min-width: 0;
 }
 
+// The owner supplies its accepted result-line height token; density and paint
+// stay shared instead of being repeated by each list's selection command.
+@mixin pagination-select-frame($height) {
+  color: var(--easyedu-primary-strong);
+  height: $height;
+}
+
+@mixin pagination-select-compact {
+  font-size: 0.64rem;
+  max-width: 7.8rem;
+  min-width: max-content;
+  padding: 0 0.45rem;
+  width: auto !important;
+}
+
 @mixin pagination-select-button {
   align-items: center;
   align-self: center;
