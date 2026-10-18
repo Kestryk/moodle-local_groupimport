@@ -13,7 +13,7 @@
     // Border priority is owned by the contextual Kit variant.
   }
 
-  &-group.is-selected:focus-within {
+  &-group.is-selected {
     @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
     @include easyedu.card-focus-context(
       var(--easyedu-shadow-soft),

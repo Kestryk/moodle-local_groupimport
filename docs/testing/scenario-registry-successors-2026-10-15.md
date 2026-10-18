@@ -149,6 +149,6 @@ Local-supervised `k16-13-sort-za-native.spec.js` uses disposable own8051 `k16-so
 Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. Fixture course/users deleted, leases/credentials/profile cleaned. Exact assertions, SHA256 and run roots in own8051 `local/k16-13-evidence/proof-summary.json`.
 
 
-## K18-A Guide controls, 2026-10-18
+## K18-B selection, filters and deferred fields, 2026-10-18
 
-`candidates/k18-a-guide-20261018.json` preserves parameterised native oracles and the disposable fixture. Status: local-supervised candidate, requires an explicit lease and parameter adapter; not automatic CI, human acceptance open. The 480 checklist states use every configured path/step with a shared real-page collision and prove layout restoration, not full business-path replay. Native demonstrations retain their real Motion clocks; narration uses supported accelerated reading settings. The loupe observes actual animated frames in full/reduced/minimal modes. Strict label/icon centres, equal heights, zero console errors, fixture deletion and lease release are mandatory. Failed transient-paint and unavailable-runtime predecessors remain immutable in the external proof directory.
+Candidate `candidates/k18-b-20261018.json`: local-supervised, isolated lease and restored fixture, not automatic CI; human acceptance open. Strict settled Kit focus paint, native filter layout and actual detail dialogs in both languages at four widths. Earlier failed harnesses remain immutable externally.
