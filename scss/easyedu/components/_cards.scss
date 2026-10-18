@@ -1016,3 +1016,25 @@
   min-block-size: 2.5rem;
   padding-inline: 0.75rem;
 }
+
+
+// Object-card modifiers preserve the existing logical/physical rail cascade.
+@mixin object-card-rail-edge($width, $color) {
+  border-left: $width solid $color;
+}
+
+@mixin object-card-inset {
+  padding: 0.6rem 0.7rem 0.62rem;
+}
+
+@mixin object-card-catalog-inset {
+  padding-top: 0.8rem;
+}
+
+@mixin card-title-block-inset($unassigned: false) {
+  padding-bottom: if($unassigned, 0.08em, 0);
+}
+
+@mixin card-title-object-leading {
+  line-height: 1.25;
+}

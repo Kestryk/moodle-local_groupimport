@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25H: share object-card rail/insets, catalog inset and title block metrics; preserve exact ordered CSS and responsive states.
+
 - 2026-10-18 [N0] K16-80 F25G: share identity summary edge/inset, participant visual frame, initials and details-row inset with exact ordered CSS parity.
 
 - 2026-10-18 [N0] K16-80 F25F: share person-card density insets, rail insets, secondary-copy type/paint and drag-glyph block; preserve exact ordered CSS.
