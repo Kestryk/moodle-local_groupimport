@@ -524,7 +524,7 @@
   // Responsive 390 (S6-D5c): full-height sheet, one column, sticky footer on one row.
   @media (max-width: 36rem) {
     &-modal:has(> .local-groupimport-easystud-entity) {
-      padding: 0;
+      @include easyedu.modal-overlay-inset(0);
     }
 
     &-modal__dialog.local-groupimport-easystud-entity {

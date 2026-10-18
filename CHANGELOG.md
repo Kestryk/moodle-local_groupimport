@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N0] K16-80 F23G: réutiliser les recettes Kit de retrait d’overlay et de peinture de surface, sans changer de valeur ni de placement.
+
 - 2026-10-18 [N0] K16-80 F12S: raccorder le cadre compact, la palette désactivée, le numéro de page et le cadre du compteur aux définitions Kit de pagination.
 
 - 2026-10-18 [N1] K16-80 F23F: centraliser l’action textuelle de fenêtre et corriger son centrage par les métriques naturelles de police.
