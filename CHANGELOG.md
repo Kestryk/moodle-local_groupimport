@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N0] K16-80 F25O: raccorder l’inset du bandeau d’identité des réglages et l’encre des titres de champs au Kit.
+
 - 2026-10-18 [N0] K16-80 F23I: raccorder l’encre des mentions de fenêtre et le type Regular des actions d’historique au Kit, sans changer les valeurs.
 
 - 2026-10-18 [N0] K16-80 F23H: raccorder le minimum des actions de pied et la limite de défilement du corps de fenêtre à leurs variantes Kit.

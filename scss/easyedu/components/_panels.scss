@@ -372,3 +372,7 @@
 @mixin workspace-lane-content-inset($flush: false) {
   padding-inline: if($flush, 0, var(--easyedu-lane-inset));
 }
+
+
+// Compact identity strip already used by the native settings page.
+@mixin page-identity-compact-inset { padding-block: 0.15rem; }

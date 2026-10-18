@@ -136,14 +136,7 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 
   .local-groupimport-admin-settings__page-identity {
     display: block;
-    padding-block: 0;
-  }
-
-  .local-groupimport-admin-settings__page-eyebrow {
-    @include easyedu.type-caption;
-
-    display: block;
-    line-height: var(--easyedu-line-height-body);
+    @include easyedu.page-identity-compact-inset;
   }
 
   // Project Moodle's native headings onto the measured Foundation roles.
@@ -215,10 +208,7 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     h4 {
       @include easyedu.type-caption;
 
-      border: 0;
-      color: var(--easyedu-text-muted);
-      font-weight: var(--easyedu-font-weight-semibold);
-      line-height: var(--easyedu-line-height-body);
+      @include easyedu.settings-field-heading-ink;
       margin: 0;
     }
   }
