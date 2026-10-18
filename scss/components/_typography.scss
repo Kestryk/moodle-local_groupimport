@@ -16,7 +16,7 @@
   &-tree__section--ungrouped > &-tree__toggle {
     @include easyedu.type-section-title;
 
-    color: #627387;
+    @include easyedu.card-disclosure-ink($quiet-unassigned: true);
     letter-spacing: 0.02em;
     text-transform: none;
   }

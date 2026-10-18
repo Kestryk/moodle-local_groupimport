@@ -1081,3 +1081,20 @@
 @mixin preview-fade-list-inset {
   padding: 0;
 }
+
+
+// Semantic disclosure ink; preserve existing host aliases where they are public inputs.
+@mixin card-disclosure-ink($color: var(--easyedu-text), $quiet-unassigned: false) {
+  color: if($quiet-unassigned, #627387, $color);
+}
+
+// Existing narrow/flush adaptations of the same disclosure title control.
+@mixin card-disclosure-inset($variant) {
+  @if $variant == flush-end {
+    padding-right: 0;
+  } @else if $variant == narrow-leading {
+    padding-left: 1.3rem;
+  } @else {
+    @error "Unknown disclosure title inset: #{$variant}.";
+  }
+}

@@ -527,11 +527,11 @@
   }
 
   &-tree__section--ungrouped > &-tree__toggle {
-    color: var(--local-groupimport-easystud-ungrouped);
-    padding-right: 0;
+    @include easyedu.card-disclosure-ink(var(--local-groupimport-easystud-ungrouped));
+    @include easyedu.card-disclosure-inset(flush-end);
 
     > .fa {
-      color: var(--local-groupimport-easystud-ungrouped);
+      @include easyedu.card-disclosure-ink(var(--local-groupimport-easystud-ungrouped));
     }
 
     > span:last-child {
@@ -578,7 +578,7 @@
     > .fa {
       @include easyedu.card-disclosure-icon(var(--local-groupimport-easystud-grouping));
 
-      color: var(--local-groupimport-easystud-grouping);
+      @include easyedu.card-disclosure-ink(var(--local-groupimport-easystud-grouping));
     }
 
   }

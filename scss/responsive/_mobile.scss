@@ -437,7 +437,7 @@
     }
 
     &-tree__toggle {
-      padding-left: 1.3rem;
+      @include easyedu.card-disclosure-inset(narrow-leading);
     }
 
     &-pagination {
