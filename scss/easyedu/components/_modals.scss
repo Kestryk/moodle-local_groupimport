@@ -917,3 +917,36 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
     pointer-events: none;
   }
 }
+
+
+@mixin dialog-shell($width) {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-block-size: calc(100dvh - 2rem);
+  max-inline-size: min(#{$width}, calc(100vw - 2rem));
+  overflow: hidden;
+  inline-size: min(#{$width}, calc(100vw - 2rem));
+}
+
+@mixin dialog-scroll-body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+@mixin dialog-tile($color, $soft) {
+  background: $soft;
+  border-color: color-mix(in srgb, #{$color} 16%, #fff 84%);
+  color: $color;
+}
+
+@mixin dialog-sheet {
+  block-size: 100dvh;
+  border: 0;
+  border-radius: 0;
+  inline-size: 100%;
+  max-block-size: 100dvh;
+  max-inline-size: 100%;
+}

@@ -9,20 +9,11 @@ $dialog-divider: easyedu.$dialog-divider;
 
 // Dialog grid: header and footer stay visible, only the body scrolls.
 @mixin dialog-shell($width) {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  max-block-size: calc(100dvh - 2rem);
-  max-inline-size: min(#{$width}, calc(100vw - 2rem));
-  overflow: hidden;
-  inline-size: min(#{$width}, calc(100vw - 2rem));
+  @include easyedu.dialog-shell($width);
 }
 
 @mixin dialog-scroll-body {
-  flex: 1 1 auto;
-  min-block-size: 0;
-  overflow: auto;
-  overscroll-behavior: contain;
+  @include easyedu.dialog-scroll-body;
 }
 
 // Guide-style sticky footer: tertiary action on the left, Kit buttons (38px) on the right.
@@ -37,9 +28,7 @@ $dialog-divider: easyedu.$dialog-divider;
 
 // Header icon tile tinted by its object (T045: tile and eyebrow follow the variant).
 @mixin dialog-tile($color, $soft) {
-  background: $soft;
-  border-color: color-mix(in srgb, #{$color} 16%, #fff 84%);
-  color: $color;
+  @include easyedu.dialog-tile($color, $soft);
 }
 
 // One height for every label of the family: 22px pills (Kevin 16/10 no. 4).
@@ -99,10 +88,5 @@ $dialog-divider: easyedu.$dialog-divider;
 
 // Responsive 390 (Penpot S6-D5c): full-height sheet, sticky header and footer.
 @mixin dialog-sheet {
-  block-size: 100dvh;
-  border: 0;
-  border-radius: 0;
-  inline-size: 100%;
-  max-block-size: 100dvh;
-  max-inline-size: 100%;
+  @include easyedu.dialog-sheet;
 }
