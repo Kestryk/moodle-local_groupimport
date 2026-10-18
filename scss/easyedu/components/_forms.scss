@@ -780,6 +780,20 @@
   width: auto;
 }
 
+// Accepted disclosure glyph type and Motion, independent of host positioning.
+@mixin filter-disclosure-icon {
+  font-size: 0.68rem;
+  line-height: 1;
+  transition: transform var(--easyedu-motion-fast) ease;
+}
+
+@mixin filter-section-label {
+  @include typography.type-eyebrow;
+
+  letter-spacing: 0.03em;
+  color: var(--easyedu-text-muted);
+}
+
 // Opt-in More Filters composition. The button retains the full available hit
 // lane and keyboard ring; only its intrinsic content capsule receives paint.
 // Keep the default recipe unchanged for accepted Compact/Show-all consumers.

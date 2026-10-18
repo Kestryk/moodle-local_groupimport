@@ -1268,9 +1268,7 @@
     margin: 0;
 
     .fa {
-      font-size: 0.68rem;
-      line-height: 1;
-      transition: transform var(--easyedu-motion-fast) ease;
+      @include easyedu.filter-disclosure-icon;
     }
 
     &[aria-expanded="true"] .fa {

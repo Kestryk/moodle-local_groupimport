@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80: share filter disclosure glyphs and section labels in the Kit; preserve complete CSS and Motion.
+
 - 2026-10-18 [N0] K16-80: route compact section chevrons and the legacy filter glyph adapter through the Kit; compiled CSS unchanged.
 
 - 2026-10-18 [N0] K16-80: share card-header/menu target compositions and correct direct-action glyph centring with natural line metrics.
