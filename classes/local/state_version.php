@@ -43,6 +43,9 @@ class state_version {
     /** @var bool Whether the shutdown handler is registered. */
     protected static $shutdownregistered = false;
 
+    /** @var array Course id => number of increments made by this request. */
+    protected static $ownbumps = [];
+
     /**
      * Current version of a course; 0 when nothing was recorded yet.
      *
@@ -67,6 +70,7 @@ class state_version {
         if ($courseid <= SITEID) {
             return 0;
         }
+        self::$ownbumps[$courseid] = (self::$ownbumps[$courseid] ?? 0) + 1;
         $now = time();
         $DB->execute(
             'UPDATE {' . self::TABLE . '} SET version = version + 1, timemodified = :now WHERE courseid = :courseid',
@@ -118,6 +122,26 @@ class state_version {
             return;
         }
         self::$dirty[$courseid] = true;
+    }
+
+    /**
+     * Version stamp of an EasyStud action, read once its own changes are recorded.
+     *
+     * Applies the pending final bump now (instead of at shutdown), then returns the current
+     * version and the number of increments this request made. The browser skips the full
+     * state reload only when its version plus these increments equals the returned version,
+     * that is when nobody else (a native Moodle page, another teacher, an enrolment sync)
+     * changed the course in between. Otherwise it reloads the state as before.
+     *
+     * @param int $courseid Course id.
+     * @return array {version: int, bumps: int}
+     */
+    public static function stamp(int $courseid): array {
+        self::flush();
+        return [
+            'version' => self::get($courseid),
+            'bumps' => (int)(self::$ownbumps[$courseid] ?? 0),
+        ];
     }
 
     /**

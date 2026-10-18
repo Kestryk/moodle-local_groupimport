@@ -61,8 +61,23 @@ final class membership_transfer {
         $transaction = $DB->start_delegated_transaction();
         try {
             $pairs = [];
-            $enrolled = \local_groupimport\local\batch_reader::enrolled($context);
-            [$memberships] = \local_groupimport\local\batch_reader::relationships($courseid);
+            // Read only the selected users and groups (plus the destination), not the whole course.
+            // Malformed entries are still rejected by the validation loop below.
+            $selectedusers = [];
+            $selectedgroups = [$destinationid];
+            foreach ($members as $member) {
+                if (is_array($member)) {
+                    $selectedusers[] = (int)($member['userid'] ?? 0);
+                    $selectedgroups[] = (int)($member['groupid'] ?? 0);
+                }
+            }
+            $enrolled = \local_groupimport\local\batch_reader::enrolled($context, $selectedusers);
+            [$memberships] = \local_groupimport\local\batch_reader::relationships(
+                $courseid,
+                $selectedgroups,
+                $selectedusers
+            );
+            $origins = [];
             // Validate the whole request before emitting any native membership mutation.
             foreach ($members as $member) {
                 if (!is_array($member)) {
@@ -79,7 +94,10 @@ final class membership_transfer {
                 if ($groupid <= 0 || $userid <= 0) {
                     throw new \moodle_exception('invaliddata', 'error');
                 }
-                $origin = groups_get_group($groupid);
+                if (!array_key_exists($groupid, $origins)) {
+                    $origins[$groupid] = groups_get_group($groupid);
+                }
+                $origin = $origins[$groupid];
                 if (!$origin || (int)$origin->courseid !== $courseid) {
                     throw new \moodle_exception('invalidgroupid', 'error');
                 }
@@ -107,7 +125,8 @@ final class membership_transfer {
                     $result['added']++;
                     $memberships[$destinationid][$pair['userid']] = true;
                 }
-                if (!groups_remove_member($pair['groupid'], $pair['userid'])) {
+                // The origin record read during validation, so the native API does not read it again.
+                if (!groups_remove_member($origins[$pair['groupid']], $pair['userid'])) {
                     throw new \moodle_exception('invaliddata', 'error');
                 }
                 $result['removed']++;

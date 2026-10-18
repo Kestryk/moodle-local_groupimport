@@ -85,6 +85,8 @@ function groups_is_member($groupid, $userid) {
  * @return mixed Fixture result.
  */
 function groups_remove_member($groupid, $userid) {
+    // Native API: a group record or its id.
+    $groupid = is_object($groupid) ? $groupid->id : $groupid;
     unset($GLOBALS['members'][$groupid . ':' . $userid]);
     $GLOBALS['removals']++;
     return true;

@@ -60,27 +60,13 @@ try {
         if (!$names) {
             throw new moodle_exception('invaliddata', 'error');
         }
-
-        foreach ($names as $name) {
-            ajax_security::validate_name($name);
-            if (groups_get_group_by_name($course->id, $name)) {
-                throw new moodle_exception('groupnameexists', 'group', '', $name);
-            }
-        }
-
-        $groups = [];
-        foreach ($names as $name) {
-            if (groups_get_group_by_name($course->id, $name)) {
-                throw new moodle_exception('groupnameexists', 'group', '', $name);
-            }
-
-            $group = (object)[
-                'courseid' => $course->id,
-                'name' => $name,
-            ];
-            $groupid = groups_create_group($group);
-            $groups[] = [
-                'id' => (int)$groupid,
+        // PERF-SRV: a retried request (lost answer) carries the same token and gets its groups back.
+        $requesttoken = \local_groupimport\local\create_request_guard::clean_token(
+            optional_param('requesttoken', '', PARAM_ALPHANUMEXT)
+        );
+        $groupitem = static function (int $groupid, string $name, int $membercount) use ($course): array {
+            return [
+                'id' => $groupid,
                 'name' => format_string($name),
                 'rawname' => $name,
                 'description' => '',
@@ -92,9 +78,45 @@ try {
                     'courseid' => $course->id,
                     'id' => $groupid,
                 ]))->out(false),
-                'membercount' => 0,
-                'membercountlabel' => local_groupimport_count_string('memberscount', 0),
+                'membercount' => $membercount,
+                'membercountlabel' => local_groupimport_count_string('memberscount', $membercount),
             ];
+        };
+
+        $groups = [];
+        // A replay only matches names of a request that already passed every check below.
+        $replayed = \local_groupimport\local\create_request_guard::replay((int)$course->id, $requesttoken, $names);
+        if ($replayed !== null) {
+            foreach ($replayed as $group) {
+                $groups[] = $groupitem(
+                    (int)$group->id,
+                    (string)$group->name,
+                    $DB->count_records('groups_members', ['groupid' => $group->id])
+                );
+            }
+        } else {
+            foreach ($names as $name) {
+                ajax_security::validate_name($name);
+                if (groups_get_group_by_name($course->id, $name)) {
+                    throw new moodle_exception('groupnameexists', 'group', '', $name);
+                }
+            }
+
+            $createdids = [];
+            foreach ($names as $name) {
+                if (groups_get_group_by_name($course->id, $name)) {
+                    throw new moodle_exception('groupnameexists', 'group', '', $name);
+                }
+
+                $group = (object)[
+                    'courseid' => $course->id,
+                    'name' => $name,
+                ];
+                $groupid = groups_create_group($group);
+                $createdids[] = (int)$groupid;
+                $groups[] = $groupitem((int)$groupid, $name, 0);
+            }
+            \local_groupimport\local\create_request_guard::remember((int)$course->id, $requesttoken, $names, $createdids);
         }
 
         $response['success'] = true;
@@ -507,7 +529,8 @@ try {
             throw new moodle_exception('invalidgroupid', 'error');
         }
 
-        $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
+        // Enrolment is read for the selected users only, not for the whole course.
+        $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context, $userids);
         $added = 0;
         $skipped = 0;
         $existing = 0;
@@ -520,18 +543,21 @@ try {
             &$skipped,
             &$existing,
         ) {
+            $eligible = [];
             foreach (array_unique($userids) as $userid) {
                 if (!isset($enrolledusers[$userid])) {
                     $skipped++;
                     continue;
                 }
-                if (
-                    \local_groupimport\service\membership_assignment::add_user_to_group(
-                        (int)$course->id,
-                        $groupid,
-                        $userid
-                    )
-                ) {
+                $eligible[] = $userid;
+            }
+            $results = \local_groupimport\service\membership_assignment::add_users_to_group(
+                (int)$course->id,
+                $groupid,
+                $eligible
+            );
+            foreach ($results as $wasadded) {
+                if ($wasadded) {
                     $added++;
                 } else {
                     $existing++;
@@ -590,7 +616,12 @@ try {
         $missing = [];
 
         $resolvedusers = local_groupimport_find_users_by_identifiers($tokens);
-        $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
+        $enrolledusers = \local_groupimport\local\batch_reader::enrolled(
+            $context,
+            array_map(static function ($user): int {
+                return (int)$user->id;
+            }, array_values(array_filter($resolvedusers)))
+        );
         bulk_action::run(count($tokens), static function () use (
             $course,
             $groupid,
@@ -601,19 +632,26 @@ try {
             &$existing,
             &$missing,
         ) {
+            $eligible = [];
             foreach ($tokens as $token) {
                 $user = $resolvedusers[$token] ?? null;
                 if (!$user || !isset($enrolledusers[$user->id])) {
                     $missing[] = $token;
                     continue;
                 }
-                if (
-                    \local_groupimport\service\membership_assignment::add_user_to_group(
-                        (int)$course->id,
-                        $groupid,
-                        (int)$user->id
-                    )
-                ) {
+                $eligible[] = $user;
+            }
+            $results = \local_groupimport\service\membership_assignment::add_users_to_group(
+                (int)$course->id,
+                $groupid,
+                array_map(static function ($user): int {
+                    return (int)$user->id;
+                }, $eligible)
+            );
+            $reported = [];
+            foreach ($eligible as $user) {
+                // Two tokens of one user: the first reports the result, the next one is already a member.
+                if (!empty($results[(int)$user->id]) && empty($reported[(int)$user->id])) {
                     $addedusers[] = [
                         'id' => (int)$user->id,
                         'fullname' => fullname($user),
@@ -621,6 +659,7 @@ try {
                 } else {
                     $existing++;
                 }
+                $reported[(int)$user->id] = true;
             }
         });
 
@@ -802,6 +841,16 @@ try {
         DEBUG_DEVELOPER
     );
     $response['error'] = get_string('ajaxunexpectederror', 'local_groupimport');
+}
+
+if (!empty($response['success'])) {
+    try {
+        // PERF-SRV: lets the browser skip the full state reload when only this action changed the course.
+        $response['stateversion'] = \local_groupimport\local\state_version::stamp((int)$course->id);
+    } catch (Throwable $exception) {
+        // Without a stamp the browser reloads the full state, as before.
+        debugging('local_groupimport ajax stamp: ' . $exception->getMessage(), DEBUG_DEVELOPER);
+    }
 }
 
 header('Content-Type: application/json; charset=utf-8');

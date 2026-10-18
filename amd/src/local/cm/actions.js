@@ -45,7 +45,7 @@ import {
 import {
     expandGroupingSection, syncCatalogFilters, applyContainerGroupSearch, applyGroupMemberSearch,
     syncStructurePlaceholders, syncPagination, applyFilters, updateSelectionActions, scheduleOnDemandStateRefresh,
-    applyMembersAddedToState, applyMembersRemovedFromState,
+    applyMembersAddedToState, applyMembersRemovedFromState, settleOnDemandStateAfterAction,
 } from './workspace';
 
 let pendingActionCount = 0;
@@ -108,9 +108,12 @@ export const postAction = data => {
         body: body.toString(),
     }).then(response => response.json()).then(result => {
         if (!result.success) {
-            throw new Error(result.error || labels.ajaxerror || '');
+            const refusal = new Error(result.error || labels.ajaxerror || '');
+            // PERF-SRV: an answered refusal, unlike a lost answer (network error, timeout page).
+            refusal.easystudServerAnswer = true;
+            throw refusal;
         }
-        scheduleOnDemandStateRefresh(root);
+        settleOnDemandStateAfterAction(root, data.action, result);
         return result;
     }));
 };

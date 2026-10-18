@@ -90,7 +90,40 @@ class fixture_lib_transfer_mock_database {
         if (!str_contains($sql, 'SELECT u.id FROM {user}')) {
             throw new RuntimeException('Unexpected enrolled-user query.');
         }
-        return array_combine($this->enrolled, array_map(static fn($id) => (object)['id' => $id], $this->enrolled));
+        $this->boundedreads += str_contains($sql, 'u.id IN') ? 1 : 0;
+        $enrolled = array_values(array_filter($this->enrolled, fn($id) => $this->within($params, 'enrolleduser', $id)));
+        return $enrolled ? array_combine($enrolled, array_map(static fn($id) => (object)['id' => $id], $enrolled)) : [];
+    }
+    /**
+     * @var int Bounded (selection-only) reads observed.
+     */
+    public int $boundedreads = 0;
+    /**
+     * Perform the isolated get_in_or_equal fixture operation.
+     *
+     * @param array $values Fixture argument.
+     * @param int $type Fixture argument.
+     * @param string $prefix Fixture argument.
+     * @return array Fixture result.
+     */
+    public function get_in_or_equal(array $values, int $type, string $prefix): array {
+        $params = [];
+        foreach (array_values($values) as $index => $value) {
+            $params[$prefix . $index] = $value;
+        }
+        return ['IN (:' . implode(', :', array_keys($params)) . ')', $params];
+    }
+    /**
+     * Whether a value passes the optional IN restriction carried by prefixed parameters.
+     *
+     * @param array $params Fixture argument.
+     * @param string $prefix Fixture argument.
+     * @param int $value Fixture argument.
+     * @return bool Fixture result.
+     */
+    private function within(array $params, string $prefix, int $value): bool {
+        $bound = array_filter($params, static fn($key) => str_starts_with((string)$key, $prefix), ARRAY_FILTER_USE_KEY);
+        return !$bound || in_array($value, array_map('intval', $bound), true);
     }
     /**
      * Perform the isolated get_recordset_sql fixture operation.
@@ -106,8 +139,13 @@ class fixture_lib_transfer_mock_database {
                 if ($this->groups[$groupid]->courseid !== $params['courseid']) {
                     continue;
                 }
+                if (!$this->within($params, 'relgroup', $groupid)) {
+                    continue;
+                }
                 foreach ($users as $userid) {
-                    $rows[] = (object)['groupid' => $groupid, 'userid' => $userid];
+                    if ($this->within($params, 'reluser', $userid)) {
+                        $rows[] = (object)['groupid' => $groupid, 'userid' => $userid];
+                    }
                 }
             }
         } else if (!str_contains($sql, '{groupings_groups}')) {

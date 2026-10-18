@@ -65,6 +65,10 @@ class course_state {
 
         self::assert_context($course, $context);
 
+        // Read the version before the data: a change committed during the build then leaves an
+        // older version with newer data (the next check reloads), never a newer version with older data.
+        $version = state_version::get((int)$course->id);
+
         // Same population and order as the legacy page (course_structure::get_state()).
         $users = get_enrolled_users(
             $context,
@@ -206,7 +210,7 @@ class course_state {
             'meta' => [
                 'schema' => 1,
                 'courseid' => (int)$course->id,
-                'version' => state_version::get((int)$course->id),
+                'version' => $version,
                 'counts' => [
                     'users' => count($useritems),
                     'groups' => count($groupitems),

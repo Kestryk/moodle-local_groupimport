@@ -135,9 +135,14 @@ final class ajax_security {
         }
         $userids = array_values($userids);
         $pairs = [];
+        // Each origin group is read once, then handed to the native API (no re-read per member).
+        $groups = [];
         foreach (array_values($groupids) as $index => $groupid) {
             $userid = $userids[$index];
-            $group = groups_get_group((int)$groupid);
+            if (!array_key_exists((int)$groupid, $groups)) {
+                $groups[(int)$groupid] = groups_get_group((int)$groupid);
+            }
+            $group = $groups[(int)$groupid];
             if (!$group || (int)$group->courseid !== $courseid || (int)$userid <= 0) {
                 throw new \moodle_exception('invaliddata', 'error');
             }
@@ -149,7 +154,7 @@ final class ajax_security {
         $removed = 0;
         foreach ($pairs as [$groupid, $userid]) {
             if (groups_is_member($groupid, $userid)) {
-                if (!groups_remove_member($groupid, $userid)) {
+                if (!groups_remove_member($groups[$groupid], $userid)) {
                     throw new \moodle_exception('invaliddata', 'error');
                 }
                 $removed++;

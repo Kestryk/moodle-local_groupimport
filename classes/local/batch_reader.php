@@ -170,14 +170,34 @@ final class batch_reader {
 
     /**
      * All ordinary enrolments, including suspended/disabled, as is_enrolled's default.
+     *
+     * With $userids, only those users are read (same rules, bounded to the selection):
+     * a mutation of five members no longer loads every participant of the course.
+     *
+     * @param \context_course $context Course context.
+     * @param int[]|null $userids Optional selection; null reads the whole course.
+     * @return array User id => record with id.
      */
-    public static function enrolled(\context_course $context): array {
+    public static function enrolled(\context_course $context, ?array $userids = null): array {
         global $DB, $USER;
         [$sql, $params] = get_enrolled_sql($context);
-        $users = $DB->get_records_sql('SELECT u.id FROM {user} u JOIN (' . $sql . ') e ON e.id = u.id ' .
-            'WHERE u.deleted = 0', $params);
+        $users = [];
+        if ($userids === null) {
+            $users = $DB->get_records_sql('SELECT u.id FROM {user} u JOIN (' . $sql . ') e ON e.id = u.id ' .
+                'WHERE u.deleted = 0', $params);
+        } else {
+            $userids = array_values(array_unique(array_filter(array_map('intval', $userids), static function (int $id): bool {
+                return $id > 0;
+            })));
+            foreach (array_chunk($userids, self::CHUNK_SIZE) as $chunk) {
+                [$insql, $inparams] = $DB->get_in_or_equal($chunk, SQL_PARAMS_NAMED, 'enrolleduser');
+                $users += $DB->get_records_sql('SELECT u.id FROM {user} u JOIN (' . $sql . ') e ON e.id = u.id ' .
+                    'WHERE u.deleted = 0 AND u.id ' . $insql, $params + $inparams);
+            }
+        }
         // The is_enrolled function checks the current actor's active cached enrolment first.
-        if (!empty($USER->id) && is_enrolled($context, $USER->id)) {
+        if (!empty($USER->id) && ($userids === null || in_array((int)$USER->id, $userids, true)) &&
+                is_enrolled($context, $USER->id)) {
             $users[$USER->id] = (object)['id' => $USER->id];
         }
         foreach ($users as $id => $user) {
@@ -190,29 +210,85 @@ final class batch_reader {
 
     /**
      * Group memberships and grouping assignments, keyed by their actual IDs.
+     *
+     * With $groupids (and optionally $userids), only those groups (and users) are read:
+     * a membership mutation checks its own pairs without loading the whole course.
+     *
+     * @param int $courseid Course id.
+     * @param int[]|null $groupids Optional group selection; null reads the whole course.
+     * @param int[]|null $userids Optional user selection for memberships; null reads every member.
+     * @return array [members groupid => userid => true, assignments groupid => groupingid => true]
      */
-    public static function relationships(int $courseid): array {
+    public static function relationships(int $courseid, ?array $groupids = null, ?array $userids = null): array {
         global $DB;
         $members = [];
         $assignments = [];
-        $records = $DB->get_recordset_sql('SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
-            'JOIN {groups} g ON g.id = m.groupid WHERE g.courseid = :courseid', ['courseid' => $courseid]);
-        try {
-            foreach ($records as $record) {
-                $members[(int)$record->groupid][(int)$record->userid] = true;
-            }
-        } finally {
-            $records->close();
+        $groupchunks = [null];
+        if ($groupids !== null) {
+            $groupchunks = array_chunk(self::positive_ids($groupids), intdiv(self::CHUNK_SIZE, 2));
         }
-        $records = $DB->get_recordset_sql('SELECT a.id, a.groupid, a.groupingid FROM {groupings_groups} a ' .
-            'JOIN {groups} g ON g.id = a.groupid WHERE g.courseid = :courseid', ['courseid' => $courseid]);
-        try {
-            foreach ($records as $record) {
-                $assignments[(int)$record->groupid][(int)$record->groupingid] = true;
+        $userchunks = [null];
+        if ($userids !== null) {
+            $userchunks = array_chunk(self::positive_ids($userids), intdiv(self::CHUNK_SIZE, 2));
+        }
+        foreach ($groupchunks as $groupchunk) {
+            [$groupwhere, $groupparams] = self::bounded_where('g.id', $groupchunk, 'relgroup');
+            foreach ($userchunks as $userchunk) {
+                [$userwhere, $userparams] = self::bounded_where('m.userid', $userchunk, 'reluser');
+                $records = $DB->get_recordset_sql('SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
+                    'JOIN {groups} g ON g.id = m.groupid WHERE g.courseid = :courseid' . $groupwhere . $userwhere,
+                    ['courseid' => $courseid] + $groupparams + $userparams);
+                try {
+                    foreach ($records as $record) {
+                        $members[(int)$record->groupid][(int)$record->userid] = true;
+                    }
+                } finally {
+                    $records->close();
+                }
             }
-        } finally {
-            $records->close();
+            $records = $DB->get_recordset_sql('SELECT a.id, a.groupid, a.groupingid FROM {groupings_groups} a ' .
+                'JOIN {groups} g ON g.id = a.groupid WHERE g.courseid = :courseid' . $groupwhere,
+                ['courseid' => $courseid] + $groupparams);
+            try {
+                foreach ($records as $record) {
+                    $assignments[(int)$record->groupid][(int)$record->groupingid] = true;
+                }
+            } finally {
+                $records->close();
+            }
         }
         return [$members, $assignments];
+    }
+
+    /**
+     * Distinct positive integer ids, in input order.
+     *
+     * @param array $ids Raw ids.
+     * @return int[]
+     */
+    private static function positive_ids(array $ids): array {
+        return array_values(array_unique(array_filter(array_map('intval', $ids), static function (int $id): bool {
+            return $id > 0;
+        })));
+    }
+
+    /**
+     * Optional IN restriction: empty SQL for an unbounded read, a never-true clause for an empty selection.
+     *
+     * @param string $column Column.
+     * @param int[]|null $ids Selection, or null.
+     * @param string $prefix Parameter prefix.
+     * @return array [sql, params]
+     */
+    private static function bounded_where(string $column, ?array $ids, string $prefix): array {
+        global $DB;
+        if ($ids === null) {
+            return ['', []];
+        }
+        if (!$ids) {
+            return [' AND 1 = 0', []];
+        }
+        [$insql, $params] = $DB->get_in_or_equal($ids, SQL_PARAMS_NAMED, $prefix);
+        return [' AND ' . $column . ' ' . $insql, $params];
     }
 }

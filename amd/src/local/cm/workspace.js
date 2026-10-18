@@ -912,6 +912,9 @@ const renderOnDemandParticipantPage = (root, list, config) => {
 
 let onDemandRefreshTimer = null;
 let onDemandRefreshSeq = 0;
+/** PERF-SRV: one state reload at a time per page; actions that end meanwhile ask for one more. */
+let onDemandRefreshInFlight = false;
+let onDemandRefreshAgain = false;
 
 /**
  * Rebuild lookups and redraw the lists, the tree sections and the badges from the model.
@@ -1066,11 +1069,27 @@ export const scheduleOnDemandStateRefresh = root => {
     }
     window.clearTimeout(onDemandRefreshTimer);
     onDemandRefreshTimer = window.setTimeout(() => {
+        onDemandRefreshTimer = null;
+        if (onDemandRefreshInFlight) {
+            // PERF-SRV: never build the state twice in parallel for one page; the reload in flight is
+            // already stale (its answer is ignored below) and one more follows when it ends.
+            onDemandRefreshAgain = true;
+            return;
+        }
         const {model, courseId} = getOnDemandParticipants();
         const seq = ++onDemandRefreshSeq;
+        onDemandRefreshInFlight = true;
+        const settled = () => {
+            onDemandRefreshInFlight = false;
+            if (onDemandRefreshAgain) {
+                onDemandRefreshAgain = false;
+                scheduleOnDemandStateRefresh(root);
+            }
+        };
         fetchState(courseId).then(raw => {
             // A newer reload is on its way (another action followed): this answer is already stale.
-            if (getOnDemandModel(root) !== model || seq !== onDemandRefreshSeq) {
+            if (getOnDemandModel(root) !== model || seq !== onDemandRefreshSeq || onDemandRefreshAgain ||
+                    onDemandRefreshTimer !== null) {
                 return null;
             }
             const userids = new Set(raw.users.map(user => user.id));
@@ -1102,9 +1121,57 @@ export const scheduleOnDemandStateRefresh = root => {
             return raw;
         }).catch(error => {
             Log.error(error);
-            if (getOnDemandModel(root) === model && seq === onDemandRefreshSeq) {
+            if (getOnDemandModel(root) === model && seq === onDemandRefreshSeq && !onDemandRefreshAgain &&
+                    onDemandRefreshTimer === null) {
                 rollbackOptimisticMembership(root, model);
             }
-        });
+        }).then(settled).catch(Log.error);
     }, 250);
+};
+
+/**
+ * PERF-SRV: actions whose confirmed result the page applies completely to its state (members added,
+ * removed or moved), with the condition on the answer. Any other action reloads the full state.
+ */
+const deltaActions = {
+    // Participants the server skipped (no longer enrolled) would otherwise stay in the destination.
+    addusers: result => !Number(result.skipped || 0),
+    removeuser: () => true,
+    removemembers: () => true,
+    movemembers: () => true,
+};
+
+/**
+ * PERF-SRV: after a successful action, skip the full state reload when the answer is enough.
+ *
+ * The server returns the course state version and how many times this action bumped it. When the
+ * page version plus these bumps equals the new version, nothing else changed the course in between
+ * (no native Moodle page, other teacher or enrolment sync), and the page applies the action result
+ * itself (applyMembersAddedToState, applyMembersRemovedFromState). Otherwise, or with a reload
+ * already pending, the full state is reloaded as before, so native changes still appear.
+ *
+ * @param {HTMLElement|null} root EasyStud root.
+ * @param {String} action Action name sent to ajax.php.
+ * @param {Object} result Successful action answer.
+ */
+export const settleOnDemandStateAfterAction = (root, action, result) => {
+    const model = root ? getOnDemandModel(root) : null;
+    const stamp = result && result.stateversion;
+    const accepts = Object.prototype.hasOwnProperty.call(deltaActions, action) ? deltaActions[action] : null;
+    const current = model && model.raw && model.raw.meta ? Number(model.raw.meta.version) : NaN;
+    if (!model || !stamp || !accepts || !accepts(result) || onDemandRefreshTimer !== null ||
+            onDemandRefreshInFlight || current + Number(stamp.bumps) !== Number(stamp.version)) {
+        scheduleOnDemandStateRefresh(root);
+        return;
+    }
+    model.raw.meta.version = Number(stamp.version);
+    // The caller applies the confirmed result in its own then(): once it has, that result is the new
+    // server state and is no longer rolled back by a later failed reload.
+    window.setTimeout(() => {
+        if (getOnDemandModel(root) !== model || onDemandRefreshTimer !== null || onDemandRefreshInFlight) {
+            return;
+        }
+        model.optimistic = null;
+        root.setAttribute('data-easystud-sm-version', model.raw.meta.version);
+    }, 0);
 };

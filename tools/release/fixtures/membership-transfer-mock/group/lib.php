@@ -26,6 +26,8 @@ defined('MOODLE_INTERNAL') || die();
 
 defined('EASYEDU_TEST_MEMBER_TRANSFER') || die();
 
+defined('SQL_PARAMS_NAMED') || define('SQL_PARAMS_NAMED', 1);
+
 require_once(__DIR__ . '/doubles/lib/global/fixture_lib_moodle_exception.php');
 class_alias('fixture_lib_moodle_exception', 'moodle_exception');
 require_once(__DIR__ . '/doubles/lib/global/fixture_lib_required_capability_exception.php');
@@ -131,12 +133,13 @@ function groups_add_member(stdClass $group, int $userid): bool {
 /**
  * Perform the isolated groups_remove_member fixture operation.
  *
- * @param int $groupid Fixture argument.
+ * @param int|stdClass $groupid Fixture argument (native API: group record or id).
  * @param int $userid Fixture argument.
  * @return bool Fixture result.
  */
-function groups_remove_member(int $groupid, int $userid): bool {
+function groups_remove_member(int|stdClass $groupid, int $userid): bool {
     global $DB;
+    $groupid = is_object($groupid) ? (int)$groupid->id : $groupid;
     $DB->calls[] = ['remove', $groupid, $userid];
     if ($DB->failremove === $userid) {
         return false;

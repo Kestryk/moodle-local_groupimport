@@ -44,6 +44,20 @@ import {
 } from './actions';
 import {getSelectedMessageUserIds, openParticipantMessageModal} from './messaging';
 
+/**
+ * PERF-SRV: random token of one creation request (kept for its retries).
+ *
+ * @returns {String}
+ */
+const createRequestToken = () => {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+    }
+    const bytes = new Uint8Array(16);
+    window.crypto.getRandomValues(bytes);
+    return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+};
+
 export const bindQuickCreate = (root, courseId) => {
     root.querySelectorAll('.local-groupimport-easystud-create').forEach(form => {
         form.addEventListener('submit', event => {
@@ -62,6 +76,11 @@ export const bindQuickCreate = (root, courseId) => {
 
             if (action.value === 'creategroup') {
                 payload.groupname = textinput.value.trim();
+                // PERF-SRV: resending the same name after a lost answer reuses its token, so the server
+                // returns the groups the first request created instead of creating or refusing them.
+                const pending = form.easystudCreateRequest;
+                payload.requesttoken = pending && pending.name === payload.groupname ? pending.token : createRequestToken();
+                form.easystudCreateRequest = {name: payload.groupname, token: payload.requesttoken};
             } else if (action.value === 'creategrouping') {
                 payload.groupingname = textinput.value.trim();
             } else {
@@ -70,6 +89,7 @@ export const bindQuickCreate = (root, courseId) => {
 
             const activityCreationToken = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
             postAction(payload).then(response => {
+                form.easystudCreateRequest = null;
                 const createdGroups = response.groups || (response.group ? [response.group] : []);
                 const createdGroupings = response.groupings || (response.grouping ? [response.grouping] : []);
 
@@ -95,11 +115,16 @@ export const bindQuickCreate = (root, courseId) => {
                     });
                 }
             }).catch(error => {
+                if (error && error.easystudServerAnswer) {
+                    // The server answered (refusal): a new attempt is a new request.
+                    form.easystudCreateRequest = null;
+                }
                 showNotification(root, error.message || '', 'error');
             });
         });
     });
 };
+
 
 export const bindRenameForms = (root, courseId) => {
     root.addEventListener('click', event => {

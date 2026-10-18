@@ -77,6 +77,7 @@ transfer_check($DB->members[2] === [10] && $DB->members[1] === [11], 'Move only 
 transfer_check($DB->members[3] === [10] && $DB->members[4] === [10], 'Preserve unrelated memberships.');
 transfer_check($DB->calls === [['add', 2, 10], ['remove', 1, 10]] && $DB->committed, 'Native call order / commit.');
 transfer_check($DB->closed === 2, 'Both native relationship recordsets close.');
+transfer_check($DB->boundedreads === 1, 'PERF-SRV: enrolment read bounded to the selected users.');
 
 $DB = new transfer_mock_database();
 $DB->members[2] = [10];
