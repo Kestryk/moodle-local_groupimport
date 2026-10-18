@@ -143,7 +143,7 @@
     height: 1.85rem;
     justify-content: center;
     line-height: 1;
-    padding: 0;
+    @include card-action-zero-inset;
     text-decoration: none;
     width: 1.85rem;
 
@@ -213,4 +213,10 @@
 
 @mixin card-action-icon-type {
   font-size: var(--easyedu-card-action-icon-size);
+}
+
+
+// Shared flush inset for the accepted card-action compositions.
+@mixin card-action-zero-inset {
+  padding: 0;
 }

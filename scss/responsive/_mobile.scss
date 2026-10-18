@@ -486,13 +486,13 @@
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__children > .local-groupimport-easystud-group > .local-groupimport-easystud-group__header {
     flex-wrap: nowrap;
     gap: 0.25rem;
-    padding-right: 0;
+    @include easyedu.identity-card-action-clearance($flow: true);
   }
 
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__children > .local-groupimport-easystud-group {
     // Recover just the internal right gutter needed for the title. The card
     // width, identity rail and disclosure animation stay unchanged.
-    padding-right: 0;
+    @include easyedu.identity-card-action-clearance($flow: true);
   }
 
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__children > .local-groupimport-easystud-group > .local-groupimport-easystud-group__header > .local-groupimport-easystud-group__name {

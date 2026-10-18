@@ -1070,3 +1070,14 @@
   @content;
   min-block-size: 2.35rem;
 }
+
+
+// Reserve an action lane, or reclaim it when the action joins normal flow.
+@mixin identity-card-action-clearance($person: false, $flow: false) {
+  $gap: if($person, 0.75rem, 0.45rem);
+  padding-right: if($flow, 0, calc(var(--easyedu-touch-target-min) + #{$gap}));
+}
+
+@mixin preview-fade-list-inset {
+  padding: 0;
+}

@@ -897,7 +897,7 @@
     margin: 0;
     margin-inline-start: auto;
     order: 2;
-    padding: 0;
+    @include easyedu.card-action-zero-inset;
     position: static;
   }
 
@@ -955,7 +955,7 @@
     );
 
     margin: 0.55rem 0 0;
-    padding: 0;
+    @include easyedu.preview-fade-list-inset;
   }
 
   // R10-05: discreet member "Select all", laid over the right end of the members toggle row
@@ -972,7 +972,7 @@
   &-group__members-toggle:not([hidden]) + [data-easystud-long-list-footer][hidden] + &-group__select-all-row:not([hidden]) {
     align-items: center;
     // K16-70: the row now carries the Kit action height (button-size small).
-    block-size: 1.9rem;
+    @include easyedu.selection-recovery-row-extent;
     margin-top: -1.9rem;
     pointer-events: none;
     position: relative;
@@ -983,7 +983,7 @@
   }
 
   &-group__select-all.btn {
-    @include easyedu.selection-recovery-action;
+    @include easyedu.selection-recovery-action($natural-labels: true);
   }
 
   &-grouping__groups {

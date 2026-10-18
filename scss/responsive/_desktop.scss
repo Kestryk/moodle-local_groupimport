@@ -177,7 +177,7 @@
     // member-count badge. This changes neither card dimensions nor the menu,
     // rail or disclosure animation.
     &--responsive-workspace &-tree__children > &-group > &-group__header {
-      padding-right: calc(var(--easyedu-touch-target-min) + 0.45rem);
+      @include easyedu.identity-card-action-clearance;
 
       > .local-groupimport-easystud-group__name {
         min-width: 0;
@@ -199,7 +199,7 @@
     }
 
     &--responsive-workspace &-user {
-      padding-right: calc(var(--easyedu-touch-target-min) + 0.75rem);
+      @include easyedu.identity-card-action-clearance($person: true);
       position: relative;
     }
 
@@ -213,7 +213,7 @@
 
     &--responsive-workspace &-group > &-group__header,
     &--responsive-workspace &-tree__section[data-easystud-grouping-id] > &-grouping__header {
-      padding-right: calc(var(--easyedu-touch-target-min) + 0.45rem);
+      @include easyedu.identity-card-action-clearance;
     }
 
     &--responsive-workspace &-user__headline {
