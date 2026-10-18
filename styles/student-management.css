@@ -7115,7 +7115,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-context-menu [data-easystud-context-submenu-toggle][aria-expanded=true] .fa {color: var(--easyedu-primary);
 }
-.local-groupimport-easystud-context-menu .local-groupimport-easystud-context-menu__chevron.fa {color: var(--easyedu-text-muted);font-size: 0.72rem;margin-inline-start: auto;
+.local-groupimport-easystud-context-menu .local-groupimport-easystud-context-menu__chevron.fa {color: var(--easyedu-text-muted);font-size: 0.72rem;line-height: normal;margin-inline-start: auto;
 }
 .local-groupimport-easystud-context-menu__separator {border-top: 1px solid var(--easyedu-dropdown-border);margin: 0.2rem 0.35rem;
 }

@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] K16-80: centre the shared menu chevron with its natural line box; native FR/EN 1600/390 passes without changing button heights.
+
 - 2026-10-18 [N1] K16-80 champs : recherche et selects adoptent leurs recettes Kit, variantes tactiles/flèche native opt-in ; recette native :8051 bloquée par HTTP404.
 
 

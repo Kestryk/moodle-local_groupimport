@@ -14,6 +14,8 @@
 @mixin menu-item-chevron {
   color: var(--easyedu-text-muted);
   font-size: 0.72rem;
+  // Keep the glyph's intrinsic font box centred, including the rotated touch state.
+  line-height: normal;
   margin-inline-start: auto;
 }
 
