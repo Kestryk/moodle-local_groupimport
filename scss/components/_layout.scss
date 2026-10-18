@@ -131,65 +131,11 @@
     );
   }
 
-  &__loading-panel {
-    @include easyedu.skeleton-structural-container-frame(
-      $surface: var(--easyedu-loading-frame-surface),
-      $border: var(--local-groupimport-easystud-loading-border),
-      $radius: 1rem
-    );
-
-    & {
-      box-sizing: border-box;
-      max-inline-size: 100%;
-      min-width: 0;
-      padding: 0.95rem;
-
-      @include easyedu.skeleton-stack(0.9rem);
-    }
-  }
-
-  &__loading-panel--participants {
-    @include easyedu.skeleton-structural-container-block-accent;
-  }
-
-  &__loading-panel--structure {
-    display: none;
-    @include easyedu.skeleton-structural-container-block-accent($color: var(--easyedu-loading-success-rail-accent));
-  }
-
-  &__loading-panel-header,
-  &__loading-pagination,
   &__loading-structure-card {
     align-items: center;
     display: flex;
     gap: 0.5rem;
     min-width: 0;
-  }
-
-  &__loading-panel-header,
-  &__loading-pagination {
-    justify-content: space-between;
-  }
-
-  &__loading-panel-title {
-    height: 1rem;
-    width: min(58%, 12rem);
-  }
-
-  &__loading-search-filter-region {
-    @include easyedu.skeleton-filter-region($radius: var(--local-groupimport-easystud-loading-radius));
-  }
-
-  &__loading-search {
-    background: var(--easyedu-loading-surface-soft);
-    grid-column: 1 / -1;
-    height: 2.55rem;
-  }
-
-  &__loading-pagination-summary {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    height: 1.6rem;
-    width: 6rem;
   }
 
   &__loading-participant-list,
@@ -257,91 +203,9 @@
 
   // V4 represents only the loading workspace hierarchy. It intentionally does
   // not imitate the ready-state title, tertiary selector or individual actions.
-  &__loading-view-toggle {
-    & {
-      // This mirrors the real view selector's footprint but is not a Skeleton
-      // frame: a selector must never receive a card or structural border.
-      box-sizing: border-box;
-      box-shadow: none;
-      display: grid;
-      gap: 0.38rem;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-inline: auto;
-      max-inline-size: 100%;
-      max-width: 44rem;
-      min-width: 0;
-      padding: 0.34rem;
-      width: min(100%, 40rem);
-    }
-  }
-
-  &__loading-view-toggle-item {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    height: 3.15rem;
-  }
-
-  &__loading-panel--structure {
-    align-content: start;
-    display: grid;
-    grid-template-rows: max-content max-content max-content;
-    row-gap: 1rem;
-  }
-
-  &__loading-panel-header,
-  &__loading-pagination {
-    align-items: center;
-    display: flex;
-    gap: 0.55rem;
-    justify-content: space-between;
-    min-width: 0;
-  }
-
-  &__loading-panel-title {
-    flex: 1 1 auto;
-    width: min(58%, 12rem);
-  }
-
-  &__loading-panel-secondary {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    border-radius: 999px;
-    flex: 0 0 auto;
-    height: 1.75rem;
-    width: 4.75rem;
-  }
-
-  &__loading-search-filter-region {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  &__loading-filter-cluster {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    height: 2.25rem;
-    width: min(42%, 11rem);
-  }
-
-  &__loading-structure-tools {
-    align-items: start;
-    box-sizing: border-box;
-    display: grid;
-    gap: 0.55rem;
-    grid-template-columns: minmax(0, 1fr) minmax(7rem, 0.45fr);
-    max-inline-size: 100%;
-  }
-
-  &__loading-structure-tools &__loading-search {
-    grid-column: auto;
-    height: 2.25rem;
-  }
 
   &__loading-structure-list {
     margin-top: 0.15rem;
-  }
-
-  &__loading-pagination-rail {
-    background: var(--local-groupimport-easystud-loading-surface-soft);
-    border-radius: 0.55rem;
-    height: 2rem;
-    width: 7rem;
   }
 
   &__loading-participant-card,
@@ -352,21 +216,6 @@
 
   &__loading-participant-card {
     grid-template-columns: none;
-  }
-
-  &__loading-card-copy {
-    background:
-      linear-gradient(var(--local-groupimport-easystud-loading-surface-strong), var(--local-groupimport-easystud-loading-surface-strong)) left top / min(68%, 9rem) 0.56rem no-repeat,
-      linear-gradient(var(--local-groupimport-easystud-loading-surface), var(--local-groupimport-easystud-loading-surface)) left bottom / min(88%, 13rem) 0.42rem no-repeat;
-    border: 0;
-    border-radius: 0;
-    height: 1.5rem;
-    min-width: 0;
-    width: min(100%, 13rem);
-  }
-
-  &__loading-structure-card &__loading-card-copy {
-    width: min(100%, 16rem);
   }
 
   // Component skeletons (T061): the lists that wait for the course state use the
@@ -445,20 +294,6 @@
 
     @media (min-width: 521px) {
     }
-
-  &__loading-view-toggle {
-    max-width: none;
-    padding: 0.3rem;
-    width: 100%;
-    }
-
-    &__loading-view-toggle-item {
-      height: var(--easyedu-touch-target-min);
-    }
-
-    &__loading-panel--structure {
-      display: none;
-    }
   }
 
   @media (max-width: 64rem) {
@@ -471,29 +306,6 @@
     // The native-zoom viewport can reduce the available inline space to 160 CSS
     // px. Give the compact Navigation Skeleton its resolved mobile block size
     // explicitly so its frame remains measurable independently of grid sizing.
-
-    &__loading-panel-header,
-    &__loading-pagination {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      justify-content: normal;
-      max-inline-size: 100%;
-      min-inline-size: 0;
-    }
-
-    &__loading-panel-secondary,
-    &__loading-pagination-summary,
-    &__loading-pagination-rail {
-      inline-size: 100%;
-      max-inline-size: 100%;
-      min-inline-size: 0;
-      width: auto;
-    }
-
-    &__loading-panel-secondary {
-      justify-self: start;
-      max-inline-size: 4.75rem;
-    }
   }
 
   @media (min-width: 1025px) {
@@ -524,10 +336,6 @@
       animation: none;
       display: none;
     }
-  }
-
-  &__loading-view-toggle.local-groupimport-easystud__loading-view-toggle--two {
-    @include easyedu.skeleton-selector-options(2);
   }
 
   &-discovery {
@@ -1054,12 +862,6 @@
     @include easyedu.empty-state-positive;
   }
 
-}
-
-[dir="rtl"] .local-groupimport-easystud__loading-card-copy {
-  background:
-    linear-gradient(var(--local-groupimport-easystud-loading-surface-strong), var(--local-groupimport-easystud-loading-surface-strong)) right top / min(68%, 9rem) 0.56rem no-repeat,
-    linear-gradient(var(--local-groupimport-easystud-loading-surface), var(--local-groupimport-easystud-loading-surface)) right bottom / min(88%, 13rem) 0.42rem no-repeat;
 }
 
 // Icons wait for their font (js/loading_state_bootstrap.js): no missing-glyph box, same size.

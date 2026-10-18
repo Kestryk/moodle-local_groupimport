@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25E: retire unused SM selector, panel, filter and pagination placeholders; preserve live list skeletons and unrelated ordered CSS.
+
 - 2026-10-18 [N0] K16-80 F23D: share stable details shell, body paint/insets, compact footer inset and preview extent; preserve exact ordered CSS.
 
 - 2026-10-18 [N0] K16-80 F25D: share resting hairlines, responsive card insets, terminal row divider and contextual focus border priority with exact ordered CSS parity.
