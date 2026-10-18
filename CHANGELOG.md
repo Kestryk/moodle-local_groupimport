@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 : consigner le bilan de pile 196 → 18 et classer les adaptations, décisions et chemins non recettés, sans changement produit.
+
 - 2026-10-18 [N0] K16-80 F25S: raccorder au Kit les quatre suppressions de plafond CSS des listes pilotées par le contrôleur, sans changer leurs fenêtres ni leurs transitions.
 
 - 2026-10-18 [N0] K16-80 F04C: raccorder les deux peintures prioritaires du compteur de groupement à sa variante Kit, sans modifier la cascade.

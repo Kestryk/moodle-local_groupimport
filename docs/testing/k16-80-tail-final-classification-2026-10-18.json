@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 1,
+  "base": "3a298191",
+  "unique": 18,
+  "counts": {
+    "a_risque": 5,
+    "justifiee": 11,
+    "decision_kevin": 2
+  },
+  "scannerExceptionsChanged": false,
+  "inventoryReviewed": true,
+  "humanAccepted": false,
+  "findings": [
+    {
+      "file": "scss/components/_easyedu-guide.scss",
+      "line": 52,
+      "column": 5,
+      "selector": ".local-groupimport-easystud-easyedu-guide.easyedu-guide .easyedu-guide-step-pill--warning",
+      "mixins": [],
+      "conditions": [],
+      "property": "background",
+      "value": "var(--easyedu-warning-soft, #fff4df)",
+      "important": false,
+      "families": [
+        "F05"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "a_risque",
+      "reason": "Chemin conditionnel Guide warning : candidat F05D conservé, parité CSS prouvée mais aucun hôte peint dans la recette actuelle. Choisir maintien avec une recette de cet hôte, ou retrait de la compatibilité historique ; ne pas supprimer ni annoncer une validation native.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/components/_easyedu-guide.scss",
+      "line": 53,
+      "column": 5,
+      "selector": ".local-groupimport-easystud-easyedu-guide.easyedu-guide .easyedu-guide-step-pill--warning",
+      "mixins": [],
+      "conditions": [],
+      "property": "border-color",
+      "value": "rgba(154, 101, 15, 0.32)",
+      "important": false,
+      "families": [
+        "F05"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "a_risque",
+      "reason": "Chemin conditionnel Guide warning : candidat F05D conservé, parité CSS prouvée mais aucun hôte peint dans la recette actuelle. Choisir maintien avec une recette de cet hôte, ou retrait de la compatibilité historique ; ne pas supprimer ni annoncer une validation native.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/components/_easyedu-guide.scss",
+      "line": 54,
+      "column": 5,
+      "selector": ".local-groupimport-easystud-easyedu-guide.easyedu-guide .easyedu-guide-step-pill--warning",
+      "mixins": [],
+      "conditions": [],
+      "property": "color",
+      "value": "var(--easyedu-warning, #9a650f)",
+      "important": false,
+      "families": [
+        "F05"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "a_risque",
+      "reason": "Chemin conditionnel Guide warning : candidat F05D conservé, parité CSS prouvée mais aucun hôte peint dans la recette actuelle. Choisir maintien avec une recette de cet hôte, ou retrait de la compatibilité historique ; ne pas supprimer ni annoncer une validation native.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/components/_easyedu-guide.scss",
+      "line": 57,
+      "column": 7,
+      "selector": ".local-groupimport-easystud-easyedu-guide.easyedu-guide .easyedu-guide-step-pill--warning .fa",
+      "mixins": [],
+      "conditions": [],
+      "property": "color",
+      "value": "var(--easyedu-warning, #9a650f)",
+      "important": false,
+      "families": [
+        "F05"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "a_risque",
+      "reason": "Chemin conditionnel Guide warning : candidat F05D conservé, parité CSS prouvée mais aucun hôte peint dans la recette actuelle. Choisir maintien avec une recette de cet hôte, ou retrait de la compatibilité historique ; ne pas supprimer ni annoncer une validation native.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/components/_entity-dialog.scss",
+      "line": 53,
+      "column": 5,
+      "selector": ".local-groupimport-easystud-entity .local-groupimport-easystud-modal__body.local-groupimport-easystud-entity__body",
+      "mixins": [],
+      "conditions": [],
+      "property": "max-block-size",
+      "value": "none",
+      "important": false,
+      "families": [
+        "F23"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Adaptateur de structure du corps de la vraie modale Moodle : désactive la borne du conteneur interne pour laisser le shell du thème et son unique corps défilant gérer la hauteur. Aucun contrôle réutilisable redéfini.",
+      "previousClassification": "Justifié — zone de défilement",
+      "previousReason": "Le shell borne la fenêtre et le corps flex défile ; annulation de plafond du thème, pas une hauteur de contrôle."
+    },
+    {
+      "file": "scss/components/_layout.scss",
+      "line": 601,
+      "column": 7,
+      "selector": ".local-groupimport-easystud__panel > .card-body",
+      "mixins": [],
+      "conditions": [],
+      "property": "height",
+      "value": "100%",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Remplissage du wrapper natif Moodle .card-body dans la grille de la page ; relation de layout du consommateur, pas une dimension de composant.",
+      "previousClassification": "Justifié — conteneur de page",
+      "previousReason": "Contrat d’étirement/réduction du corps de colonne dans le workspace ; ne définit pas la taille d’un contrôle."
+    },
+    {
+      "file": "scss/components/_structure.scss",
+      "line": 1063,
+      "column": 5,
+      "selector": ".local-groupimport-easystud-group-email",
+      "mixins": [],
+      "conditions": [],
+      "property": "padding",
+      "value": "0.7rem",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "decision_kevin",
+      "reason": "Ajout par texte exclu de F25P : cadres mobiles 38.78125/26px, centre vertical -0.703125px et horizontal FR -13.1015625px avant/après. Choisir une composition Kit avec hauteur commune et repli mobile ; changement de géométrie non trivial. Preuves unvalidated-inline-entry-native.json.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/components/_structure.scss",
+      "line": 1107,
+      "column": 5,
+      "selector": ".local-groupimport-easystud-group-email__result",
+      "mixins": [],
+      "conditions": [],
+      "property": "font-size",
+      "value": "0.82rem",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "decision_kevin",
+      "reason": "Ajout par texte exclu de F25P : cadres mobiles 38.78125/26px, centre vertical -0.703125px et horizontal FR -13.1015625px avant/après. Choisir une composition Kit avec hauteur commune et repli mobile ; changement de géométrie non trivial. Preuves unvalidated-inline-entry-native.json.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/responsive/_desktop.scss",
+      "line": 34,
+      "column": 7,
+      "selector": ".local-groupimport-import.has-preview .local-groupimport-import-card",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 1200px)"
+      ],
+      "property": "min-height",
+      "value": "auto",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "La page Import massif répartit ses colonnes après apparition d’un aperçu ; annulation contextuelle du minimum du panneau, sans modifier le style de la carte.",
+      "previousClassification": "À traiter — géométrie contextuelle",
+      "previousReason": "Qualifier instance/contrainte de défilement ou variante du composant Kit ; préserver la densité et les transitions mesurées avant extraction."
+    },
+    {
+      "file": "scss/responsive/_desktop.scss",
+      "line": 401,
+      "column": 9,
+      "selector": ".local-groupimport-easystud__panel > .card-body",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 1024px)"
+      ],
+      "property": "height",
+      "value": "auto",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Budget vertical de la colonne de la page (hauteur disponible et entête Moodle), propre au breakpoint ; le Kit ne connaît ni la grille ni la hauteur du thème.",
+      "previousClassification": "Justifié — conteneur de page",
+      "previousReason": "Contrat d’étirement/réduction du corps de colonne dans le workspace ; ne définit pas la taille d’un contrôle."
+    },
+    {
+      "file": "scss/responsive/_desktop.scss",
+      "line": 402,
+      "column": 9,
+      "selector": ".local-groupimport-easystud__panel > .card-body",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 1024px)"
+      ],
+      "property": "min-height",
+      "value": "min(38rem, calc(100vh - 10rem))",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Budget vertical de la colonne de la page (hauteur disponible et entête Moodle), propre au breakpoint ; le Kit ne connaît ni la grille ni la hauteur du thème.",
+      "previousClassification": "À traiter — géométrie contextuelle",
+      "previousReason": "Qualifier instance/contrainte de défilement ou variante du composant Kit ; préserver la densité et les transitions mesurées avant extraction."
+    },
+    {
+      "file": "scss/responsive/_desktop.scss",
+      "line": 561,
+      "column": 7,
+      "selector": ".local-groupimport-easystud--responsive-workspace\r\n      .local-groupimport-easystud-tree__section[data-easystud-grouping-id].is-expanded:has(\r\n        > .local-groupimport-easystud-container-search.is-open,\r\n        > .local-groupimport-easystud-group-email.is-open\r\n      )\r\n      > .local-groupimport-easystud-tree__children",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 1024px)"
+      ],
+      "property": "border-left",
+      "value": "0",
+      "important": false,
+      "families": [
+        "F03",
+        "F08",
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Raccord du panneau de recherche à l’arbre parent : retire son filet et son indentation à cet emplacement précis. Le composant de champ/recherche reste entièrement Kit.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/responsive/_desktop.scss",
+      "line": 562,
+      "column": 7,
+      "selector": ".local-groupimport-easystud--responsive-workspace\r\n      .local-groupimport-easystud-tree__section[data-easystud-grouping-id].is-expanded:has(\r\n        > .local-groupimport-easystud-container-search.is-open,\r\n        > .local-groupimport-easystud-group-email.is-open\r\n      )\r\n      > .local-groupimport-easystud-tree__children",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 1024px)"
+      ],
+      "property": "padding-left",
+      "value": "0",
+      "important": false,
+      "families": [
+        "F03",
+        "F08",
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Raccord du panneau de recherche à l’arbre parent : retire son filet et son indentation à cet emplacement précis. Le composant de champ/recherche reste entièrement Kit.",
+      "previousClassification": "À traiter — composant local",
+      "previousReason": "Raccorder au composant Kit ou à sa variante acceptée ; comparer la cascade et mesurer le vrai état avant/après. Un jeton utilisé localement n’est pas une justification."
+    },
+    {
+      "file": "scss/responsive/_mobile.scss",
+      "line": 88,
+      "column": 9,
+      "selector": ".local-groupimport-easystud__panel > .card-body",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 768px)"
+      ],
+      "property": "min-height",
+      "value": "0",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Libération de la contrainte intrinsèque du wrapper natif dans la grille responsive. L’inset réutilisable est désormais fourni par le Kit en F25R.",
+      "previousClassification": "Justifié — conteneur de page",
+      "previousReason": "Contrat d’étirement/réduction du corps de colonne dans le workspace ; ne définit pas la taille d’un contrôle."
+    },
+    {
+      "file": "scss/responsive/_mobile.scss",
+      "line": 377,
+      "column": 7,
+      "selector": ".local-groupimport-easystud-group__actions .btn, .local-groupimport-easystud-group__mail-button, .local-groupimport-easystud-group__rename-button, .local-groupimport-easystud-group__duplicate-button, .local-groupimport-easystud-group__unlink-button, .local-groupimport-easystud-grouping__rename-button, .local-groupimport-easystud-grouping__duplicate-button",
+      "mixins": [],
+      "conditions": [
+        "@media (max-width: 768px)"
+      ],
+      "property": "min-height",
+      "value": "2rem",
+      "important": false,
+      "families": [
+        "F16",
+        "F22",
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "a_risque",
+      "reason": "Ancienne famille de commandes directes de carte (renommer/dupliquer/lier), également référencée par les compositions historiques. Les actions actuelles passent par les menus ; recette du chemin conditionnel non établie. Ne pas retirer ni converger la cible tactile sans vérifier le rendu effectivement utilisé.",
+      "previousClassification": "À traiter — géométrie contextuelle",
+      "previousReason": "Qualifier instance/contrainte de défilement ou variante du composant Kit ; préserver la densité et les transitions mesurées avant extraction."
+    },
+    {
+      "file": "scss/views/_mass-import.scss",
+      "line": 331,
+      "column": 5,
+      "selector": ".local-groupimport-import-card--results > .local-groupimport-import-empty",
+      "mixins": [],
+      "conditions": [],
+      "property": "min-block-size",
+      "value": "16rem",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Empreinte de la zone de résultats réservée par cette page, pas une taille d’icône/bouton ni une définition du message vide.",
+      "previousClassification": "À traiter — géométrie contextuelle",
+      "previousReason": "Qualifier instance/contrainte de défilement ou variante du composant Kit ; préserver la densité et les transitions mesurées avant extraction."
+    },
+    {
+      "file": "scss/views/_mass-import.scss",
+      "line": 351,
+      "column": 5,
+      "selector": ".local-groupimport-import.has-preview .local-groupimport-import-card",
+      "mixins": [],
+      "conditions": [],
+      "property": "min-height",
+      "value": "min(72vh, 52rem)",
+      "important": false,
+      "families": [
+        "F25"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Budget de viewport du panneau d’aperçu d’Import massif ; placement de la page, dont les valeurs dépendent de son entête.",
+      "previousClassification": "À traiter — géométrie contextuelle",
+      "previousReason": "Qualifier instance/contrainte de défilement ou variante du composant Kit ; préserver la densité et les transitions mesurées avant extraction."
+    },
+    {
+      "file": "scss/views/_mass-import.scss",
+      "line": 680,
+      "column": 5,
+      "selector": ".local-groupimport-import-modal__form",
+      "mixins": [],
+      "conditions": [],
+      "property": "min-block-size",
+      "value": "0",
+      "important": false,
+      "families": [
+        "F23"
+      ],
+      "focus": false,
+      "dynamic": false,
+      "boundedSelectorExpansion": false,
+      "status": "à examiner — redéfinition locale candidate, pas un défaut visuel prouvé",
+      "classification": "justifiee",
+      "reason": "Contrainte flex du formulaire imbriqué dans le shell de fenêtre : permet au seul corps de défiler. Aucun rendu de contrôle redéfini.",
+      "previousClassification": "Justifié — conteneur de formulaire",
+      "previousReason": "Permet la réduction flex du formulaire dans la fenêtre bornée ; aucun contrôle ni palette redéfini."
+    }
+  ]
+}
