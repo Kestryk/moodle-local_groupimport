@@ -1307,7 +1307,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-user__avatar {align-items: center;display: inline-flex;justify-content: center;
 }
 .local-groupimport-easystud-user__avatar img,
-.local-groupimport-easystud-user__avatar .userinitials {border: 2px solid #fff;border-radius: 50%;box-shadow: 0 0.2rem 0.5rem rgba(31, 42, 55, 0.1);display: inline-flex;font-size: 1.35rem;height: 5.35rem !important;line-height: 5.35rem;width: 5.35rem !important;
+.local-groupimport-easystud-user__avatar .userinitials {border: 2px solid #fff;border-radius: 50%;box-shadow: 0 0.2rem 0.5rem rgba(31, 42, 55, 0.1);display: inline-flex;font-size: 1.35rem;height: 5.35rem !important;line-height: normal;width: 5.35rem !important;
 }
 .local-groupimport-easystud-user__avatar .userinitials {align-items: center;justify-content: center;
 }

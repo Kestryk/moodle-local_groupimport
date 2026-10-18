@@ -301,7 +301,7 @@
 
   &--compact-users &-user__email {
     display: block;
-    font-size: 0.8rem;
+    @include easyedu.person-card-secondary-copy-type(compact);
     margin-left: 0;
     min-width: 0;
   }

@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] K16-80 F25I: raccorder les variantes tactiles de densité, rail, avatar et texte secondaire aux composants Kit existants ; recentrer les initiales bureau.
+
 - 2026-10-18 [N0] K16-80 F02B: retirer neuf déclarations historiques du libellé de lanceur dont l’hôte n’existe plus, sans ajouter de recette de masquage.
 
 - 2026-10-18 [N0] K16-80 F23G: réutiliser les recettes Kit de retrait d’overlay et de peinture de surface, sans changer de valeur ni de placement.

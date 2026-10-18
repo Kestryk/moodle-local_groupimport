@@ -226,19 +226,16 @@
     &-user {
       gap: 0.65rem;
       grid-template-columns: 3.8rem minmax(0, 1fr);
-      padding: 0.72rem 0.72rem 0.72rem 0.82rem;
+      @include easyedu.person-card-inset(touch-detailed);
     }
 
     &--compact-users &-user {
-      min-height: 2.45rem;
-      padding-left: 3.85rem;
+      @include easyedu.person-card-inset(touch-compact);
     }
 
     &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected {
       grid-template-columns: 3.8rem minmax(0, 1fr);
-      max-height: 38rem;
-      min-height: 7rem;
-      padding: 0.72rem 0.72rem 0.72rem 0.82rem;
+      @include easyedu.person-card-inset(touch-expanded);
     }
 
    &-user > .local-groupimport-easystud-selector,
@@ -256,15 +253,12 @@
 
     &-user__rail,
     &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__rail {
-      padding-top: 1.05rem;
+      @include easyedu.person-card-rail-inset($touch: true);
     }
 
     &-user__avatar img,
     &-user__avatar .userinitials {
-      font-size: 1rem;
-      height: 3.25rem !important;
-      line-height: 3.25rem;
-      width: 3.25rem !important;
+      @include easyedu.identity-avatar-large($touch: true);
     }
 
     &-user__headline {
@@ -279,7 +273,7 @@
     }
 
     &-user__email {
-      font-size: 0.82rem;
+      @include easyedu.person-card-secondary-copy-type(touch);
     }
 
     &-user__meta {
@@ -689,7 +683,7 @@
 
     &-user {
       grid-template-columns: minmax(0, 1fr);
-      padding-left: 1.85rem;
+      @include easyedu.person-card-inset(narrow-detailed);
     }
 
     // Full responsive cards retain their metadata width. Only the identity
@@ -699,7 +693,7 @@
     }
 
     &--compact-users &-user {
-      padding-left: 3.85rem;
+      @include easyedu.person-card-inset(touch-compact, $frame: false);
     }
 
     &-mobile-actions {
@@ -727,8 +721,7 @@
 
     &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected {
       grid-template-columns: minmax(0, 1fr);
-      max-height: 42rem;
-      padding-left: 1.85rem;
+      @include easyedu.person-card-inset(narrow-expanded);
     }
 
     &-user__rail,
