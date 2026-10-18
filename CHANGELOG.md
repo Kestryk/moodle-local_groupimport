@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F23H: raccorder le minimum des actions de pied et la limite de défilement du corps de fenêtre à leurs variantes Kit.
+
 - 2026-10-18 [N0] K16-80 F25N: raccorder le cadre de création et l’inset de la carte participant dense aux variantes du Kit, sans changement des valeurs.
 
 - 2026-10-18 [N0] K16-80 F26C: raccorder les deux marges internes des composants en attente d’Import massif et des réglages au composant Skeleton du Kit.

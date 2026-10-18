@@ -341,7 +341,7 @@
       flex-wrap: wrap;
 
       .btn {
-        min-height: 2.35rem;
+        @include easyedu.dialog-touch-action-minimum;
       }
     }
 
@@ -796,7 +796,7 @@
 
 
     &-modal__body {
-      max-height: calc(100vh - 7rem);
+      @include easyedu.dialog-touch-scroll-limit;
       overflow: auto;
     }
 

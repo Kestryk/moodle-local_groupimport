@@ -996,3 +996,9 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 @mixin modal-overlay-paint($opacity: 0.45) {
   background: rgba(15, 23, 42, $opacity);
 }
+
+
+// Accepted narrow-dialog adaptations; hosts retain their media and modal lifecycle.
+@mixin dialog-touch-action-minimum { min-height: 2.35rem; }
+
+@mixin dialog-touch-scroll-limit { max-height: calc(100vh - 7rem); }
