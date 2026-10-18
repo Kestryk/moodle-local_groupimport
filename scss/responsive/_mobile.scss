@@ -441,7 +441,7 @@
     }
 
     &-pagination {
-      font-size: 0.78rem;
+      @include easyedu.pagination-responsive-metric;
       gap: 0.3rem;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       justify-items: stretch;
@@ -777,7 +777,7 @@
     }
 
     &-pagination .btn {
-      height: 1.85rem;
+      @include easyedu.pagination-responsive-metric($button: true);
       width: 1.85rem;
     }
 

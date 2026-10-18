@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F12T: raccorder le cadre de barre, l’inset des outils, l’encre des libellés et les métriques responsive à la pagination du Kit.
+
 - 2026-10-18 [N0] K16-80 F13B: raccorder les couleurs sémantiques et les retraits des titres de dépliage aux variantes du Kit, sans changer leurs valeurs ni Motion.
 
 - 2026-10-18 [N1] K16-80 F25M: raccorder les dégagements des actions, l’inset des membres, le pied de récupération et le padding nul des actions au Kit ; centrer le libellé de récupération sans modifier son cadre.
