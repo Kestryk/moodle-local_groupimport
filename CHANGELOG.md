@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F23I: raccorder l’encre des mentions de fenêtre et le type Regular des actions d’historique au Kit, sans changer les valeurs.
+
 - 2026-10-18 [N0] K16-80 F23H: raccorder le minimum des actions de pied et la limite de défilement du corps de fenêtre à leurs variantes Kit.
 
 - 2026-10-18 [N0] K16-80 F25N: raccorder le cadre de création et l’inset de la carte participant dense aux variantes du Kit, sans changement des valeurs.

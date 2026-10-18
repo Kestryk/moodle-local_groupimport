@@ -1002,3 +1002,9 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 @mixin dialog-touch-action-minimum { min-height: 2.35rem; }
 
 @mixin dialog-touch-scroll-limit { max-height: calc(100vh - 7rem); }
+
+
+// Eyebrow tone and Regular type modifier of existing dialog components.
+@mixin dialog-eyebrow-ink($color: var(--easyedu-primary)) { color: $color; }
+
+@mixin dialog-text-action-regular-type { font-size: 0.875rem; }

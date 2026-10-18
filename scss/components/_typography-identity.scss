@@ -10,7 +10,7 @@
   &-settings-modal__eyebrow {
     @include easyedu.type-eyebrow;
 
-    color: var(--local-groupimport-easystud-primary);
+    @include easyedu.dialog-eyebrow-ink(var(--local-groupimport-easystud-primary));
   }
 
   &__intro {

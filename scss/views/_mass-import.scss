@@ -669,7 +669,7 @@
   }
 
   &-modal__dialog--confirm &-modal__header .easyedu-entity-dialog__eyebrow {
-    color: var(--easyedu-danger);
+    @include easyedu.dialog-eyebrow-ink(var(--easyedu-danger));
   }
 
   &-modal__form {
@@ -777,7 +777,7 @@
   &-history__action {
     @include recipes.dialog-text-action;
 
-    font-size: 0.875rem;
+    @include easyedu.dialog-text-action-regular-type;
     font-weight: var(--easyedu-font-weight-semibold);
   }
 
