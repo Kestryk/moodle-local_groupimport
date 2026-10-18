@@ -586,7 +586,7 @@
 
   &-empty--preview-search {
     margin-top: 0.85rem;
-    padding: 1.2rem 1rem;
+    @include easyedu.search-empty-state-roomy-inset;
   }
 
 

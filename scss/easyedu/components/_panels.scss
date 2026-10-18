@@ -376,3 +376,7 @@
 
 // Compact identity strip already used by the native settings page.
 @mixin page-identity-compact-inset { padding-block: 0.15rem; }
+
+
+// Accepted compact panel body inset, independent of the surrounding Moodle grid.
+@mixin workspace-panel-touch-inset { padding: 0.82rem; }

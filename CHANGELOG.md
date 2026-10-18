@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N0] K16-80 F25R: raccorder les insets des panneaux et filtres tactiles, leur borne historique et l’état vide de recherche au Kit, sans changement de valeurs.
+
 - 2026-10-18 [N0] K16-80 F25P: raccorder l’inset du résumé d’appartenances et le padding prioritaire du contrôle de débordement au Kit ; conserver le candidat d’ajout par texte hors branche.
 
 - 2026-10-18 [N0] K16-80 F25O: raccorder l’inset du bandeau d’identité des réglages et l’encre des titres de champs au Kit.
