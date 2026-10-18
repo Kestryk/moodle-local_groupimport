@@ -439,6 +439,27 @@ export const resize = (element, mutate, options = {}) => {
     });
 };
 
+/**
+ * Give an illustrated click the shared full-motion press/rebound feedback.
+ *
+ * Reduced and minimal levels never scale the target. A supplied scene clock
+ * retains ownership of pause, skip and cancellation; other callers use Motion.
+ *
+ * @param {HTMLElement} element Clicked illustration, never a live Moodle command.
+ * @param {Object} options Optional root and owned animation clock.
+ * @returns {Promise} Completion of the effect, or an immediate no-motion result.
+ */
+export const clickFeedback = (element, options = {}) => {
+    const root = options.root || element?.closest('[data-easyedu-motion-level]') || element;
+    const level = options.level || root?.getAttribute('data-easyedu-motion-level');
+    if (!element || (level && level !== 'full') || !isEnabled(root)) {
+        return Promise.resolve(true);
+    }
+    const frames = [{transform: 'scale(1)'}, {transform: 'scale(.94)'}, {transform: 'scale(1)'}];
+    const timing = {duration: durations.normal, easing};
+    return options.animate ? options.animate(element, frames, timing) : play(element, frames, timing, () => undefined);
+};
+
 export const enter = (element, options = {}) => {
     if (!element) {
         return Promise.resolve();

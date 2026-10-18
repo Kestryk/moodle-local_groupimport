@@ -80,8 +80,63 @@
             </div>
         </div>
         {{/grouping}}
+        {{#mipage}}
+        <div class="easyedu-ui easyedu-guide-anatomy__page">
+            <div class="easyedu-guide-anatomy__page-head">
+                <strong class="easyedu-guide-anatomy__page-title">{{pagetitle}}</strong>
+                <span class="easyedu-guide-anatomy__page-nav">
+                    <span class="easyedu-guide-anatomy__page-link is-active">{{pagetitle}}</span>
+                    <span class="easyedu-guide-anatomy__page-link easyedu-guide-anatomy__target">{{navtemplate}}<span class="easyedu-guide-anatomy__pin" data-n="4">4</span></span>
+                    <span class="easyedu-guide-anatomy__page-link easyedu-guide-anatomy__target">{{navhistory}}<span class="easyedu-guide-anatomy__pin" data-n="5">5</span></span>
+                </span>
+            </div>
+            <div class="easyedu-guide-anatomy__page-columns">
+                <section class="easyedu-panel easyedu-guide-anatomy__page-card easyedu-guide-anatomy__target">
+                    <span class="easyedu-guide-anatomy__pin" data-n="1">1</span>
+                    <div class="easyedu-panel__header easyedu-panel__header--compact-icon">
+                        <span class="easyedu-icon-tile easyedu-icon-tile--compact" aria-hidden="true"><span class="fa fa-upload"></span></span>
+                        <div class="easyedu-panel__copy"><h3 class="easyedu-panel__title">{{uploadtitle}}</h3></div>
+                    </div>
+                    <div class="easyedu-file-deposit--moodle">
+                        <div class="easyedu-file-deposit__heading">
+                            <span class="easyedu-file-deposit__icon easyedu-icon-tile"><span class="fa fa-upload" aria-hidden="true"></span></span>
+                            <strong class="easyedu-file-deposit__title">{{depositlabel}}</strong>
+                        </div>
+                    </div>
+                    <div class="easyedu-information easyedu-guide-anatomy__page-detect easyedu-guide-anatomy__target">
+                        <span class="easyedu-guide-anatomy__pin" data-n="2">2</span>
+                        <strong class="easyedu-information__title">{{detecttitle}}</strong>
+                        <span class="easyedu-tag-list">{{#fields}}<span class="easyedu-tag">{{.}}</span>{{/fields}}</span>
+                    </div>
+                </section>
+                <section class="easyedu-panel easyedu-panel--success easyedu-guide-anatomy__page-card easyedu-guide-anatomy__target">
+                    <span class="easyedu-guide-anatomy__pin" data-n="3">3</span>
+                    <div class="easyedu-panel__header easyedu-panel__header--compact-icon">
+                        <span class="easyedu-icon-tile easyedu-icon-tile--compact easyedu-icon-tile--success" aria-hidden="true"><span class="fa fa-clipboard-check"></span></span>
+                        <div class="easyedu-panel__copy"><h3 class="easyedu-panel__title">{{resultstitle}}</h3></div>
+                    </div>
+                    <p class="easyedu-guide-anatomy__page-empty"><span class="fa fa-inbox" aria-hidden="true"></span><span>{{emptytext}}</span></p>
+                </section>
+            </div>
+        </div>
+        {{/mipage}}
+        {{#mihistory}}
+        <ul class="easyedu-ui local-groupimport-import-history easyedu-guide-anatomy__history">
+            <li class="local-groupimport-import-history__item local-groupimport-import-history__item--applied">
+                <div class="local-groupimport-import-history__item-main">
+                    <strong class="local-groupimport-import-history__file"><span class="easyedu-guide-anatomy__pin" data-n="1">1</span><span>{{filename}}</span></strong>
+                    <span class="local-groupimport-import-history__meta"><span class="easyedu-guide-anatomy__pin" data-n="2">2</span><span>{{meta}}</span></span>
+                </div>
+                <span class="local-groupimport-import-history__state local-groupimport-import-history__state--applied"><span class="easyedu-guide-anatomy__pin" data-n="3">3</span><span>{{state}}</span></span>
+                <div class="local-groupimport-import-history__actions">
+                    <span class="local-groupimport-import-history__action local-groupimport-import-history__rollback"><span class="easyedu-guide-anatomy__pin" data-n="4">4</span><span>{{restore}}</span></span>
+                    <span class="local-groupimport-import-history__action local-groupimport-import-history__export"><span class="easyedu-guide-anatomy__pin" data-n="5">5</span><span class="fa fa-file-excel" aria-hidden="true"></span><span>{{export}}</span></span>
+                </div>
+            </li>
+        </ul>
+        {{/mihistory}}
     </div>
-    <p class="easyedu-guide-anatomy__hover"><span class="fa fa-hand-pointer" aria-hidden="true"></span><span>{{hovernote}}</span></p>
+    {{#hovernote}}<p class="easyedu-guide-anatomy__hover"><span class="fa fa-hand-pointer" aria-hidden="true"></span><span>{{.}}</span></p>{{/hovernote}}
     <ol class="easyedu-guide-anatomy__legend" aria-label="{{legendlabel}}">
         {{#legend}}
         <li data-n="{{n}}"><span class="easyedu-guide-anatomy__pin" aria-hidden="true">{{n}}</span><span>{{label}}</span></li>

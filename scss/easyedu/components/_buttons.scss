@@ -824,3 +824,13 @@
   @content;
   padding: 0.45rem 0.55rem;
 }
+
+
+// Guide Start/Replay: same solid action, frame and natural text-line metrics.
+@mixin demonstration-action {
+  @include selection-action($solid: true);
+  > :not(.fa) { line-height: normal; }
+  @media (max-width: 40rem), (pointer: coarse) {
+    min-block-size: var(--easyedu-touch-target-min);
+  }
+}

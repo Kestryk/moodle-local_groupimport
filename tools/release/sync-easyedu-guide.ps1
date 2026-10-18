@@ -48,6 +48,18 @@ $canonicalTemplatePath = Resolve-OwnedPath $kitRoot "guide\templates\easyedu_gui
 $canonicalStylesPath = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_guide.scss"
 
 $canonicalJavascript = Read-NormalizedText $canonicalJavascriptPath
+if ($canonicalJavascript.Contains('Motion.clickFeedback(')) {
+    # A Guide-only copy must never silently introduce an unavailable Motion API.
+    $motionFiles = @(
+        (Resolve-OwnedPath $kitRoot 'motion\amd\src\easyedu_motion.js'),
+        (Resolve-OwnedPath $pluginRootPath 'amd\src\motion.js')
+    )
+    foreach ($motionFile in $motionFiles) {
+        if ((Read-NormalizedText $motionFile) -notmatch '(?m)^export const clickFeedback =') {
+            throw 'Synchronize the shared Motion clickFeedback primitive before the Guide.'
+        }
+    }
+}
 $fullscreenPath = Resolve-OwnedPath $kitRoot "guide\amd\src\easyedu_guide_fullscreen.js"
 $fullscreenSource = Read-NormalizedText $fullscreenPath
 $fullscreenImport = "import {createFullscreenController} from './easyedu_guide_fullscreen';"

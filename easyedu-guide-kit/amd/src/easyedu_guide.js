@@ -984,6 +984,8 @@ const inflateRect = (rect, margin) => ({
 });
 
 const foldChecklistAwayFromTarget = (root, checklist, target) => {
+  // K18-12: restoring is an explicit request to read this step, not a new automatic fold.
+  if (root.easyeduGuideChecklistExpandedTarget === target) { return; }
   root.easyeduGuideAvoidTarget = target;
   if (checklist.classList.contains('is-minimized')) {
     return;
@@ -1135,9 +1137,11 @@ const restoreChecklistFocus = (root, formerTarget) => {
   const destination = dialog ? formerTarget : root.easyeduGuideChecklistReturnFocus;
   if (isVisibleElement(destination)) { focusTarget(destination); }
   root.easyeduGuideChecklistReturnFocus = null;
+  root.easyeduGuideChecklistExpandedTarget = null;
 };
 
 const hideChecklist = (root, config, clearProgress = false, restoreFocus = false) => {
+  root.easyeduGuideChecklistExpandedTarget = null;
   const formerTarget = root.easyeduGuideCurrentTarget;
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
@@ -1708,6 +1712,7 @@ const runLoupeDemo = (root, demo) => {
   let active = true;
   const reset = () => {
     trigger.classList.remove('is-pointed');
+    Motion.cancel(trigger);
     // K17-39: a closed panel keeps its place (invisible, not removed from the layout).
     panel.toggleAttribute('data-guide-loupe-closed', true);
     input.textContent = '';
@@ -1760,6 +1765,7 @@ const runLoupeDemo = (root, demo) => {
   after(LOUPE_PHASE_MS[0], () => {
     caption.textContent = demo.dataset.phase2;
     trigger.classList.remove('is-pointed');
+    void Motion.clickFeedback(trigger, {root, level: getMotionLevel(root)});
     panel.toggleAttribute('data-guide-loupe-closed', false);
     enter(panel);
     [...query].forEach((char, index) => after(450 + index * 330, () => {
@@ -2296,6 +2302,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       touchRipple(cursorEl);
     }
   };
+  // One Motion primitive; the scene retains Pause, Next phase and departure ownership.
+  const clickFeedback = (element, cursorEl) => Promise.all([
+    compact ? touchPointer.tap(cursorEl) : Promise.resolve(),
+    Motion.clickFeedback(element, {root, level: getMotionLevel(root), animate: (node, frames, timing) =>
+      animate(node, frames, timing.duration, false)})
+  ]);
   // The modality can change under a running demo (rotation, window resize): it returns to "Ready".
   const modalityQueries = [GUIDE_NARROW_QUERY, GUIDE_TOUCH_QUERY].map(query => window.matchMedia?.(query)).filter(Boolean);
   const onModalityChange = () => {
@@ -2488,9 +2500,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
           }
         });
       };
-      const press = element => element ? Promise.all([compact ? touchPointer.tap(cursor) : Promise.resolve(),
-        animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'}, {transform: 'scale(1)'}], 220, false)]) :
-        Promise.resolve();
+      const press = element => element ? clickFeedback(element, cursor) : Promise.resolve();
       const type = async(input, text, step = 45) => {
         if (!input) { return; }
         input.value = '';
@@ -2536,9 +2546,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await reveal(stage);
         await pointAt(field('group'));
         await say(1);
-        if (compact) {
-          await touchPointer.tap(cursor);
-        }
+        await press(field('group'));
         await type(field('group'), sample('name'));
         await pointAt(submit('group'));
         await say(2);
@@ -2550,9 +2558,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await show(groupingStage);
         await pointAt(field('grouping'));
         await say(3);
-        if (compact) {
-          await touchPointer.tap(cursor);
-        }
+        await press(field('grouping'));
         await type(field('grouping'), sample('grouping'));
         if (compact) {
           await pointAt(submit('grouping'));
@@ -2624,9 +2630,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await reveal(stage);
         await pointAt(input);
         await say(1);
-        if (compact) {
-          await touchPointer.tap(cursor);
-        }
+        await press(input);
         await type(input, attr('list'));
         let cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
         await reveal(groupOut);
@@ -2668,9 +2672,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await reveal(stage);
         await pointAt(input);
         await say(1);
-        if (compact) {
-          await touchPointer.tap(cursor);
-        }
+        await press(input);
         await type(input, attr('filters-query'), 170);
         await Promise.all(cards.filter(card => !isMatch(card)).map(card => animate(card, [{opacity: 1}, {opacity: 0}], 220)));
         cards.filter(card => !isMatch(card)).forEach(card => {
@@ -2798,7 +2800,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await phase('orient');
       if (controller.signal.aborted) { return; }
       if (compact) {
-        await touchPointer.tap(cursor);
+        await clickFeedback(compactTrigger, cursor);
         menu.hidden = false;
         await reveal(menu);
         await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
@@ -2808,7 +2810,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       }
       await phase('open');
       if (controller.signal.aborted) { return; }
-      if (compact) { await touchPointer.tap(cursor); }
+      await clickFeedback(compact ? menu.querySelector('strong') : trigger, cursor);
       await hidePointer();
       menu.hidden = true;
       await disclose(true);
@@ -2818,7 +2820,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await pointAt(input);
       await phase('enter');
       if (controller.signal.aborted) { return; }
-      if (compact) { await touchPointer.tap(cursor); }
+      await clickFeedback(input, cursor);
       await hidePointer();
       // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
       chips.style.opacity = '0';
@@ -2833,7 +2835,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       if (cancel) { await pointAt(cancel); }
       await phase('return');
       if (controller.signal.aborted) { return; }
-      if (compact) { await touchPointer.tap(cursor); }
+      await clickFeedback(cancel, cursor);
       await hidePointer();
       // K17-28: the card returns to its resting size behind the common short fade.
       await restFlash(() => {
@@ -2932,7 +2934,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     };
     await reveal(person);
     await travel(person, 750, true);
-    if (compact) { await touchPointer.tap(cursor); }
+    await clickFeedback(person, cursor);
     stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
     stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
     await phase('select');
@@ -2952,11 +2954,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       }));
       if (controller.signal.aborted) { return; }
       await travel(menu.querySelector('strong'));
-      if (compact) {
-        await touchPointer.tap(cursor);
-      } else if (!still) {
-        await animate(cursor, [{opacity: 1}, {opacity: 0.45}, {opacity: 1}], 180);
-      }
+      await clickFeedback(menu.querySelector('strong'), cursor);
       await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
       if (controller.signal.aborted) { return; }
       menu.hidden = true;
@@ -2965,13 +2963,13 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       if (compact) {
         // Touch: choose the destination field of the confirmation before pressing the button.
         await travel(confirm.querySelector('.easyedu-guide-scene__destination'));
-        await touchPointer.tap(cursor);
+        await clickFeedback(confirm.querySelector('.easyedu-guide-scene__destination'), cursor);
       }
       const submit = confirm.querySelector('[data-guide-simulated-submit]');
       await phase('validate');
       await reveal(submit);
       await travel(submit);
-      if (compact) { await touchPointer.tap(cursor); }
+      await clickFeedback(submit, cursor);
       await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
         {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
       if (controller.signal.aborted) { return; }
@@ -4182,6 +4180,7 @@ const bindGuide = (root, config) => {
         const minimized = !checklist.classList.contains('is-minimized');
         checklist.classList.toggle('is-minimized', minimized);
         checklist.classList.remove('is-avoiding');
+        root.easyeduGuideChecklistExpandedTarget = minimized ? null : root.easyeduGuideCurrentTarget;
         if (isCompactChecklistViewport()) {
           checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
         }
@@ -4570,6 +4569,7 @@ export const destroy = rootOrSelector => {
   root.easyeduGuideConfig = null;
   root.easyeduGuideReturnFocus = null;
   root.easyeduGuideChecklistReturnFocus = null;
+  root.easyeduGuideChecklistExpandedTarget = null;
 };
 
 export const init = (rootOrSelector, rawConfig) => {
