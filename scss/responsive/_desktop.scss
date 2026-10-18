@@ -208,9 +208,7 @@
     }
 
     &-card-menu__icon.fa {
-      color: inherit;
-      font-size: 0.95rem;
-      line-height: 1;
+      @include easyedu.card-overflow-icon;
       margin: 0;
     }
 

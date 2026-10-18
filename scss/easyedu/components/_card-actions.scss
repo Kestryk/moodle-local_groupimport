@@ -3,6 +3,37 @@
 @use "focus";
 @use "buttons";
 
+// One token for the accepted direct target, desktop menu and compact visual.
+// Composition preserves the existing declaration order and 29.6px header row.
+@function card-action-target-size() {
+  @return var(--easyedu-card-action-target);
+}
+
+@mixin card-action-target($composition: direct) {
+  @if $composition == direct {
+    align-items: center;
+  }
+  block-size: card-action-target-size();
+  @if $composition == direct {
+    display: inline-flex;
+  }
+  inline-size: card-action-target-size();
+  @if $composition == direct {
+    justify-content: center;
+  }
+  @if $composition != visual {
+    margin-block: calc((1.85rem - var(--easyedu-card-action-target)) / 2);
+    min-block-size: card-action-target-size();
+    min-inline-size: card-action-target-size();
+  }
+}
+
+@mixin card-overflow-icon {
+  color: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
 // Foundations / Card quick actions / Overflow trigger (desktop).
 // Source-preserving extraction: responsive positioning and 44px touch-target
 // composition remain with mobile-card-menu-trigger and the consumer adapter.
@@ -124,7 +155,8 @@
       font-size: inherit;
       height: 0.95rem;
       justify-content: center;
-      line-height: 1;
+      // Natural font metrics centre the glyph inside the unchanged fixed frame.
+      line-height: normal;
       margin: 0;
       width: 0.95rem;
     }

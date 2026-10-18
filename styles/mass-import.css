@@ -3166,7 +3166,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-direct-icon > .fa,
 .easyedu-ui .easyedu-direct-icon > .icon,
 .easyedu-ui .easyedu-direct-icon.btn > .fa,
-.easyedu-ui .easyedu-direct-icon.btn > .icon {align-items: center;display: inline-flex;flex: 0 0 0.95rem;font-size: inherit;height: 0.95rem;justify-content: center;line-height: 1;margin: 0;width: 0.95rem;
+.easyedu-ui .easyedu-direct-icon.btn > .icon {align-items: center;display: inline-flex;flex: 0 0 0.95rem;font-size: inherit;height: 0.95rem;justify-content: center;line-height: normal;margin: 0;width: 0.95rem;
 }
 .easyedu-ui .easyedu-direct-icon:hover,
 .easyedu-ui .easyedu-direct-icon:focus-visible,
