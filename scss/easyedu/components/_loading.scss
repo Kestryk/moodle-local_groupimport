@@ -418,3 +418,11 @@ $skeleton-entity-block-sizes: (
     @error "Unknown skeleton copy tone: #{$tone}.";
   }
 }
+
+
+// Existing pending-content insets. Page placement and readiness remain consumer-owned.
+@mixin skeleton-pending-inset($kind) {
+  @if $kind == settings { padding: 0.5rem 0.25rem 1rem; }
+  @else if $kind == import { padding-block: 0.45rem 0.9rem; }
+  @else { @error "Unknown pending skeleton inset: #{$kind}."; }
+}

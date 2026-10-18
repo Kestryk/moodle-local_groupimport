@@ -82,7 +82,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   .local-groupimport-admin-settings__loading-skeleton {
     display: none;
     gap: 1rem;
-    padding: 0.5rem 0.25rem 1rem;
+    @include easyedu.skeleton-pending-inset(settings);
     @include easyedu.loading-appearance;
   }
 
