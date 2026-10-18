@@ -801,20 +801,14 @@
       @include easyedu.modal-surface-compact;
     }
 
-    &-modal__dialog--tutorial {
-      height: calc(100vh - 1.3rem);
-      min-height: 0;
-    }
+
 
     &-modal__body {
       max-height: calc(100vh - 7rem);
       overflow: auto;
     }
 
-    &-modal__dialog--tutorial &-modal__body {
-      max-height: none;
-      overflow: hidden;
-    }
+
 
     &-tutorial__steps {
       padding-right: 0;

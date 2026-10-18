@@ -2988,10 +2988,6 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-modal.is-closing {animation: local-groupimport-easystud-modal-backdrop-out var(--easyedu-motion-fast) ease both;pointer-events: none;
 }
-.local-groupimport-easystud-modal.is-opening .local-groupimport-easystud-modal__dialog--tutorial {animation: easyedu-modal-in var(--easyedu-motion-slow) var(--easyedu-motion-ease) both;
-}
-.local-groupimport-easystud-modal.is-closing .local-groupimport-easystud-modal__dialog--tutorial {animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
-}
 .local-groupimport-easystud-modal__dialog--user {background: var(--easyedu-surface);border: 1px solid var(--easyedu-modal-border);border-radius: var(--easyedu-modal-radius);box-shadow: var(--easyedu-modal-shadow);overflow: hidden;background: linear-gradient(180deg, #f7fbff 0%, var(--easyedu-surface) 11rem);--easyedu-context-modal-accent: var(--easyedu-modal-primary-accent);--easyedu-context-modal-header-bg: var(--easyedu-modal-header-primary-bg);
 }
 .local-groupimport-easystud-modal__dialog--user .local-groupimport-easystud-modal__header {background: var(--easyedu-context-modal-header-bg, var(--easyedu-modal-header-bg));border-bottom: 1px solid var(--easyedu-modal-border);
@@ -2999,10 +2995,6 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-modal__dialog--user .local-groupimport-easystud-modal__body {background: var(--easyedu-modal-body-bg);
 }
 .local-groupimport-easystud-modal__dialog--user .local-groupimport-easystud-modal__footer {background: var(--easyedu-modal-footer-bg);border-top: 1px solid var(--easyedu-modal-border);
-}
-.local-groupimport-easystud-modal__dialog--tutorial {display: flex;flex-direction: column;height: min(90vh, 46rem);max-height: calc(100vh - 2rem);max-width: 72rem;min-height: min(42rem, 100vh - 2rem);overflow: hidden;width: min(96vw, 72rem);
-}
-.local-groupimport-easystud-modal__dialog--tutorial .local-groupimport-easystud-modal__body {display: flex;flex: 1 1 auto;flex-direction: column;max-height: none;min-height: 0;overflow: hidden;
 }
 .local-groupimport-easystud-modal__header {align-items: center;border-bottom: 1px solid var(--local-groupimport-easystud-border);display: flex;justify-content: space-between;padding: 1rem 1rem 0.9rem;
 }
@@ -8364,11 +8356,7 @@ body.easyedu-motion-disabled .local-groupimport-easystud-message-modal::after {a
   }
   .local-groupimport-easystud-modal__dialog {border-radius: 0.85rem;max-height: calc(100vh - 1.3rem);width: 100%;
   }
-  .local-groupimport-easystud-modal__dialog--tutorial {height: calc(100vh - 1.3rem);min-height: 0;
-  }
   .local-groupimport-easystud-modal__body {max-height: calc(100vh - 7rem);overflow: auto;
-  }
-  .local-groupimport-easystud-modal__dialog--tutorial .local-groupimport-easystud-modal__body {max-height: none;overflow: hidden;
   }
   .local-groupimport-easystud-tutorial__steps {padding-right: 0;
   }

@@ -43,13 +43,9 @@
     pointer-events: none;
   }
 
-  &-modal.is-opening &-modal__dialog--tutorial {
-    animation: easyedu-modal-in var(--easyedu-motion-slow) var(--easyedu-motion-ease) both;
-  }
 
-  &-modal.is-closing &-modal__dialog--tutorial {
-    animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
-  }
+
+
 
   // Participant details: entity dialog geometry lives in _entity-dialog.scss.
   &-modal__dialog--user {
@@ -61,25 +57,9 @@
     @include easyedu.context-modal-variant(primary);
   }
 
-  &-modal__dialog--tutorial {
-    display: flex;
-    flex-direction: column;
-    height: min(90vh, 46rem);
-    max-height: calc(100vh - 2rem);
-    max-width: 72rem;
-    min-height: min(42rem, calc(100vh - 2rem));
-    overflow: hidden;
-    width: min(96vw, 72rem);
-  }
 
-  &-modal__dialog--tutorial &-modal__body {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    max-height: none;
-    min-height: 0;
-    overflow: hidden;
-  }
+
+
 
   &-modal__header {
     @include easyedu.modal-header-frame(var(--local-groupimport-easystud-border));
