@@ -1085,21 +1085,16 @@
 
   input:checked + .easyedu-selection-checkbox__ui,
   input:checked + span {
-    background: $checked-color;
-    border-color: $checked-color;
-    box-shadow: 0 0 0 0.18rem color-mix(in srgb, #{$checked-color} 14%, transparent);
+    @include selection-checkbox-checked-paint($checked-color);
 
     &::after {
-      opacity: 1;
-      transform: translate(-50%, -58%) rotate(45deg) scale(1);
+      @include selection-checkbox-checked-mark;
     }
   }
 
   input:indeterminate + .easyedu-selection-checkbox__ui,
   input:indeterminate + span {
-    background: $checked-color;
-    border-color: $checked-color;
-    box-shadow: 0 0 0 0.18rem color-mix(in srgb, #{$checked-color} 14%, transparent);
+    @include selection-checkbox-checked-paint($checked-color);
 
     &::after {
       background: #fff;
@@ -1561,4 +1556,16 @@
 @mixin toggle-choice-rounded {
   border-radius: 999px !important;
   white-space: nowrap;
+}
+
+// Checked/indeterminate share one paint; the owning predicate stays native.
+@mixin selection-checkbox-checked-paint($color) {
+  background: $color;
+  border-color: $color;
+  box-shadow: 0 0 0 0.18rem color-mix(in srgb, #{$color} 14%, transparent);
+}
+
+@mixin selection-checkbox-checked-mark {
+  opacity: 1;
+  transform: translate(-50%, -58%) rotate(45deg) scale(1);
 }

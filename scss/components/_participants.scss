@@ -63,17 +63,10 @@
 
   [data-selectable-type].is-selected > .local-groupimport-easystud-selector .local-groupimport-easystud-selector__ui,
   &-selector input:checked + &-selector__ui {
-    background: var(--local-groupimport-easystud-selector-color);
-    border-color: var(--local-groupimport-easystud-selector-color);
-    box-shadow: 0 0 0 0.18rem color-mix(
-      in srgb,
-      var(--local-groupimport-easystud-selector-color) 14%,
-      transparent
-    );
+    @include easyedu.selection-checkbox-checked-paint(var(--local-groupimport-easystud-selector-color));
 
     &::after {
-      opacity: 1;
-      transform: translate(-50%, -58%) rotate(45deg) scale(1);
+      @include easyedu.selection-checkbox-checked-mark;
     }
   }
 
