@@ -4,6 +4,8 @@
 
 - 2026-10-18 [N1] K16-80: centre the shared menu chevron with its natural line box; native FR/EN 1600/390 passes without changing button heights.
 
+- 2026-10-18 [N0] G2D: mirror accepted Guide/shared recipes in the canonical Kit and refresh the five retired source contracts without changing the consumer UI.
+
 - 2026-10-18 [N1] K16-80 champs : recherche et selects adoptent leurs recettes Kit, variantes tactiles/flèche native opt-in ; recette native :8051 bloquée par HTTP404.
 
 

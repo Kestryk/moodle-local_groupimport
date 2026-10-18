@@ -2,7 +2,8 @@ $ErrorActionPreference = 'Stop'
 
 $pluginRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $structure = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_structure.scss')
-$styles = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'styles.css')
+$styles = (& node (Join-Path $PSScriptRoot 'read-css-contract.cjs') (Join-Path $pluginRoot 'styles\student-management.css')) -join "`n"
+if ($LASTEXITCODE) { throw 'Cannot parse the active Student Management stylesheet.' }
 $tokens = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\_tokens.scss')
 
 if ($structure -notmatch '(?s)&-tree__section--ungrouped \{.*?--local-groupimport-easystud-ungrouped: #79506f;.*?identity-rail\(var\(--easyedu-icon-grouping\)\).*?&\.is-expanded:focus-within \{.*?card-focus-context' -or

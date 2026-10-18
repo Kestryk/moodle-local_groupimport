@@ -15,11 +15,13 @@ function Read-RequiredFile {
 $template = Read-RequiredFile 'templates/manage.mustache'
 $layout = Read-RequiredFile 'scss/components/_layout.scss'
 $forms = Read-RequiredFile 'scss/components/_forms.scss'
-$settingsModal = Read-RequiredFile 'scss/components/_settings-modal.scss'
+$settingsModal = Read-RequiredFile 'scss/components/_entity-dialog.scss'
+$dialogRecipes = Read-RequiredFile 'scss/components/_dialog-recipes.scss'
 $controlTypography = Read-RequiredFile 'scss/components/_control-typography.scss'
 $workspace = Read-RequiredFile 'scss/easyedu/_workspace-classes.scss'
 $responsive = Read-RequiredFile 'scss/responsive/_desktop.scss'
-$styles = Read-RequiredFile 'styles.css'
+$styles = (& node (Join-Path $PSScriptRoot 'read-css-contract.cjs') (Join-Path $pluginRoot 'styles/student-management.css')) -join "`n"
+if ($LASTEXITCODE) { throw 'Cannot parse the active Student Management stylesheet.' }
 $scenario = Read-RequiredFile 'tools/playwright/easystud-action-button-alignment.spec.js'
 $supervisor = Read-RequiredFile 'tools/playwright/Invoke-EasyStudActionButtonAlignmentSupervised.ps1'
 $fixture = Read-RequiredFile 'tools/playwright/easystud-action-button-alignment-fixture.php'
@@ -35,8 +37,7 @@ foreach ($needle in @(
     'gap: var(--easyedu-action-icon-gap);',
     '&::after {',
     'margin-inline-start: 0;',
-    '@include easyedu.action-button(small);',
-    'margin-inline: 0 !important;',
+    '@include easyedu.card-overflow-trigger;',
     '[data-easystud-panel-actions-menu] .btn',
     'text-decoration: none !important;'
 )) {
@@ -55,9 +56,10 @@ foreach ($obsolete in @(
 }
 
 foreach ($source in @($settingsModal)) {
-    if (-not $source.Contains('@include easyedu.action-button(small);') -or
-            -not $source.Contains('margin-inline: 0 !important;')) {
-        throw 'Native-profile action does not use the shared action-button contract.'
+    if (-not $source.Contains('&-entity__native {') -or
+            -not $source.Contains('@include recipes.dialog-footer-link;') -or
+            -not $dialogRecipes.Contains('@mixin dialog-footer-link')) {
+        throw 'T048 native-profile action does not use the shared entity footer-link contract.'
     }
 }
 
@@ -69,7 +71,6 @@ if ($forms.Contains('@include easyedu.action-button(small);')) {
 }
 
 if (-not $responsive.Contains('&-mobile-actions__buttons') -or
-        -not $responsive.Contains('@include easyedu.action-button(small);') -or
         -not $responsive.Contains('@include easyedu.mobile-action-tray-button;')) {
     throw 'Responsive selected-action buttons do not preserve the shared centred action contract.'
 }
@@ -80,7 +81,7 @@ foreach ($needle in @(
     'margin-inline-start: 0',
     '.local-groupimport-easystud__panel-actions',
     '--easyedu-action-icon-gap: 0.35rem',
-    '.local-groupimport-easystud-settings-modal__native > .btn',
+    '.local-groupimport-easystud-entity__native',
     '.local-groupimport-easystud-rename__edit [type=submit]',
     '[data-easystud-panel-actions-menu] .btn'
 )) {

@@ -1,8 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $pluginRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$source = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\src\course_manager.js')
-$build = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\build\course_manager.min.js')
+$source = (@('cards', 'filters', 'group_card_controls', 'list_controls', 'navigation', 'workspace', 'context_menu', 'pagination', 'layout') |
+    ForEach-Object { Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $pluginRoot ('amd\src\local\cm\' + $_ + '.js')) }) -join "`n"
+$build = (@('cards', 'filters', 'group_card_controls', 'list_controls', 'navigation', 'workspace', 'context_menu', 'pagination', 'layout') |
+    ForEach-Object { Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $pluginRoot ('amd\build\local\cm\' + $_ + '.min.js')) }) -join "`n"
 $structure = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_structure.scss')
 $responsive = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\responsive\_desktop.scss')
 $controlTypography = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_control-typography.scss')
@@ -10,7 +12,7 @@ $sharedControlTreatment = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot '
 $tokens = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\_tokens.scss')
 
 $requiredSource = @(
-    'is-easystud-card-action-overflow',
+    'is-actions-menu-open',
     'event.stopImmediatePropagation()',
     'is-sort-menu-open',
     'pagination.classList.toggle',
@@ -28,7 +30,7 @@ foreach ($needle in $requiredSource) {
     }
 }
 
-foreach ($needle in @('is-easystud-card-action-overflow', 'is-sort-menu-open')) {
+foreach ($needle in @('is-actions-menu-open', 'is-sort-menu-open')) {
     if (-not $build.Contains($needle)) {
         throw "Missing generated AMD contract: $needle"
     }
@@ -46,9 +48,9 @@ if (-not $build.Contains('inside&&"bottom"===position&&list.appendChild(paginati
 }
 
 foreach ($needle in @(
-    '&-group__actions-toggle.local-groupimport-easystud-card-menu',
-    'border: 0;',
-    'border-radius: 0.4rem;'
+    '&-card-menu {',
+    '@include easyedu.mobile-card-menu-trigger;',
+    '[data-easystud-group-actions-toggle][data-easystud-card-menu][hidden]'
 )) {
     if (-not $responsive.Contains($needle)) {
         throw "Missing responsive More-actions contract: $needle"
@@ -61,8 +63,12 @@ if (-not $tokens.Contains('--easyedu-font-family-ui: inherit;') -or
     throw 'Missing inherited typography contract for More filters, counters or Sort.'
 }
 
-if ($source -notmatch 'ensureNestedGroupActionMenus\(root\);\s+// A nested-card action change[\s\S]*?scheduleGroupGroupingOverflow\(root\);' -or
-        $source -notmatch 'const refreshResponsiveUi = \(\) => \{\s+scheduleResponsiveUiRefresh\(root\);\s+scheduleCompleteListAlignment\(root\);\s+scheduleGroupGroupingOverflow\(root\);') {
+# T055 moved these lifecycles into their actual owning modules.
+$render = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\src\local\cm\render.js')
+$navigation = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\src\local\cm\navigation.js')
+if ($render -notmatch 'scheduleGroupGroupingOverflow\(root\);' -or
+        $navigation -notmatch 'scheduleResponsiveUiRefresh\(root, \{pagination: false\}\);\s+scheduleCompleteListAlignment\(root\);' -or
+        $navigation -notmatch '(?s)trackLayoutSwap.*?then\(\(\) => \{.*?scheduleCompleteListAlignment\(root\);') {
     throw 'Missing Grouping-label resize recovery contract.'
 }
 

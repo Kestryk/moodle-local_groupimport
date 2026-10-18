@@ -34,6 +34,12 @@ function tooltipRows(css) {
         if (!/tooltip|hover-popover|popover/i.test(rule.selector)) {
             return;
         }
+        // G2D changes this specimen-only popover layout, not the Light recipe.
+        // Its complete canonical definition is independently compared below.
+        if (rule.selector === '.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery ' +
+                '.easyedu-guide-spec__popover' || rule.selector === '.easyedu-ui .easyedu-control-tooltip') {
+            return;
+        }
         const parents = [];
         for (let parent = rule.parent; parent; parent = parent.parent) {
             if (parent.type === 'atrule') {
@@ -46,7 +52,14 @@ function tooltipRows(css) {
     });
     return rows;
 }
+const specimenModule = 'scss/easyedu/components/_guide-specimen.scss';
+assert.equal(read(root, specimenModule), read(kitRoot, specimenModule),
+    'Accepted G2D specimen popover keeps its complete canonical definition');
+assert.equal(read(root, 'amd/src/easyedu_bubble.js'), read(kitRoot, 'guide/amd/src/easyedu_bubble.js'),
+    'K-BUBBLE keeps its single complete canonical renderer');
 for (const file of ['styles/student-management.css', 'styles/mass-import.css', 'styles/administration.css']) {
+    assert.doesNotMatch(read(root, file), /\.easyedu-control-tooltip\s*\{/,
+        'K-BUBBLE retired surface must remain absent, not merely exempt from comparison');
     assert.deepEqual(tooltipRows(read(root, file)), tooltipRows(show(file)), file + ': ordered tooltip cascade is unchanged');
 }
 let globalRules = 0;
