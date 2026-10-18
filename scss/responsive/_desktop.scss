@@ -507,14 +507,14 @@
     &--responsive-workspace &-group__members > &-member {
       // Revealed members already use a 2.35rem cap. Give the initial preview
       // rows the same block size so opening the list keeps one visual rhythm.
-      block-size: 2.35rem;
+      @include easyedu.related-person-row-compact-frame {
       // This row has horizontal padding. Its responsive width must include that
       // padding, otherwise the content-box calculation extends member rows past
       // the nested Group card at compact widths.
       box-sizing: border-box;
       margin-block: 0;
       max-width: 100%;
-      min-block-size: 2.35rem;
+      }
       min-width: 0;
       width: 100%;
     }

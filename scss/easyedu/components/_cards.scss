@@ -163,7 +163,10 @@
 // Selectable object/container header with space reserved for the existing
 // overlay checkbox. Child semantics, rename state and mobile menus stay with
 // the consumer. Do not add clipping: menus may extend outside this row.
-@mixin selectable-card-header($density: regular) {
+@mixin selectable-card-header($density: regular, $touch-inset: false) {
+  @if $touch-inset {
+    padding-left: if($density == container, 3.35rem, 3.25rem);
+  } @else {
   @if $density != regular and $density != container {
     @error "selectable-card-header expects regular or container.";
   }
@@ -180,6 +183,7 @@
 
   @if $density == regular {
     position: relative;
+  }
   }
 }
 
@@ -1038,8 +1042,8 @@
   border-left: $width solid $color;
 }
 
-@mixin object-card-inset {
-  padding: 0.6rem 0.7rem 0.62rem;
+@mixin object-card-inset($touch: false) {
+  padding: if($touch, 0.68rem 0.68rem 0.72rem, 0.6rem 0.7rem 0.62rem);
 }
 
 @mixin object-card-catalog-inset {
@@ -1052,4 +1056,17 @@
 
 @mixin card-title-object-leading {
   line-height: 1.25;
+}
+
+
+// Accepted responsive title size; the host retains the containing breakpoint.
+@mixin card-title-responsive-size($nested: false) {
+  font-size: if($nested, 0.84rem, 0.94rem);
+}
+
+// Preserve existing member-row cap and intervening native flow declarations.
+@mixin related-person-row-compact-frame {
+  block-size: 2.35rem;
+  @content;
+  min-block-size: 2.35rem;
 }
