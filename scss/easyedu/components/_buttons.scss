@@ -223,50 +223,57 @@
   }
 }
 
-// Compact neutral reset used inside filter panels. It intentionally shares the
-// selection-action interaction contract while keeping reset-specific sizing.
-@mixin filter-reset {
-  @include selection-action(neutral);
+// OLD-B R13: one Core action / Secondary / M definition for Cancel and Reset.
+// Compact inline actions remain a separate explicit density.
+@mixin secondary-action {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-text);
+  display: inline-flex;
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  @include control-state-transition;
 
-  & {
-    align-self: center;
-    justify-content: center;
-    border-color: var(--easyedu-control-border);
-    color: var(--easyedu-primary-strong);
-    font-size: var(--easyedu-font-size-caption);
-    min-height: 1.9rem;
-    padding: 0.32rem 0.7rem;
-    width: auto;
+  &:focus {
+    background: var(--easyedu-surface);
+    color: var(--easyedu-text);
   }
 
   &:not(:disabled):not([aria-disabled="true"]):not(.disabled):hover,
   &:not(:disabled):not([aria-disabled="true"]):not(.disabled):active {
     background: var(--easyedu-primary-soft);
-    color: var(--easyedu-primary-strong);
+    color: var(--easyedu-text);
+    text-decoration: none;
   }
 
-  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):focus {
-    color: var(--easyedu-primary-strong);
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
   }
 
-  @media (max-width: 52rem), (pointer: coarse) {
-    min-height: var(--easyedu-touch-target-min);
-  }
-}
-
-// Explicit field-peer density. Compose after filter-reset; retain its caption,
-// paint, intrinsic width, padding and state Motion. Regular fields use 38px,
-// not the generic button's 37.6px. Legacy Reset consumers remain unchanged.
-@mixin filter-reset-field-peer {
-  & {
-    box-sizing: border-box;
-    min-height: 2.375rem;
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled {
+    background: var(--easyedu-surface-soft);
+    color: var(--easyedu-text-muted);
   }
 
   @media (max-width: 52rem), (pointer: coarse) {
-    min-height: var(--easyedu-touch-target-min);
+    min-block-size: var(--easyedu-touch-target-min);
   }
 }
+
+// Compatibility aliases, never a second Reset geometry.
+@mixin filter-reset { @include secondary-action; }
+@mixin filter-reset-field-peer { @include secondary-action; }
 
 // K16-80 (Kevin 16/10, standardise reusable controls): ONE Kit Close. The cross is drawn by the
 // component itself (two 1.5 px strokes, centred by geometry), so every close button looks and

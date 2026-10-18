@@ -147,7 +147,12 @@ export const buildGroupCardContext = (model, group, variant) => {
             userid,
             fullname: user.fullname,
             email: user.email || '',
-            removeuserlabel: (strings.removeuserfromgroup || '').replace('__name__', user.fullname),
+            removeuserlabel: (strings.removemembernamedgroup || strings.removeuserfromgroup || '')
+                .replace('__member__', () => user.fullname)
+                .replace('__group__', () => group.rawname || group.name)
+                .replace('__name__', () => user.fullname)
+                .replace('{}', () => user.fullname),
+            removeuserhelp: strings.removefromgrouplabel || '',
             selectableid: group.id + ':' + userid,
         };
     });

@@ -93,6 +93,10 @@ $managerinitargs = [
         'groupstrings' => [
             'memberscount' => local_groupimport_count_template('memberscount'),
             'removeuserfromgroup' => get_string('removeuserfromgroup', 'local_groupimport', '__name__'),
+            'removemembernamedgroup' => get_string('removemembernamedgroup', 'local_groupimport', (object)[
+                'member' => '__member__', 'group' => '__group__',
+            ]),
+            'removefromgrouplabel' => get_string('contextremovemember', 'local_groupimport'),
             'nomemberslabel' => get_string('nogroupmembers', 'local_groupimport'),
             'nomembershelplabel' => get_string('emptygrouphelp', 'local_groupimport'),
             'nomembershelptouchlabel' => get_string('emptygrouphelptouch', 'local_groupimport'),
@@ -363,6 +367,10 @@ function local_groupimport_build_manage_template_data(
         'pluginname' => get_string('pluginname', 'local_groupimport'),
         'nativedetails' => get_string('opennativeprofile', 'local_groupimport'),
         'removeuser' => str_replace('{}', '{name}', get_string('removeuserfromgroup', 'local_groupimport')),
+        'removemembernamedgroup' => get_string('removemembernamedgroup', 'local_groupimport', (object)[
+            'member' => '{name}', 'group' => '{group}',
+        ]),
+        'contextremovemember' => get_string('contextremovemember', 'local_groupimport'),
         'selectionmode' => get_string('selectionmode', 'local_groupimport'),
         // Accessible names of the selection checkboxes; {name} is replaced in the browser.
         'selectparticipantnamed' => get_string('selectparticipantnamed', 'local_groupimport', '{name}'),
@@ -2831,7 +2839,7 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
     ]);
     foreach ($group['memberids'] as $userid) {
         if (isset($users[$userid])) {
-            $out .= local_groupimport_render_group_member($group['id'], $users[$userid]);
+            $out .= local_groupimport_render_group_member($group['id'], $users[$userid], $group['name']);
         }
     }
     if (empty($group['memberids'])) {
@@ -2849,9 +2857,10 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
  *
  * @param int $groupid Group id.
  * @param array $user User data.
+ * @param string $groupname Name of the source group, when available.
  * @return string
  */
-function local_groupimport_render_group_member(int $groupid, array $user): string {
+function local_groupimport_render_group_member(int $groupid, array $user, string $groupname = ''): string {
     return html_writer::tag(
         'li',
         html_writer::span(s($user['fullname']), 'local-groupimport-easystud-member__name') .
@@ -2860,12 +2869,14 @@ function local_groupimport_render_group_member(int $groupid, array $user): strin
             html_writer::span('&minus;', '', ['aria-hidden' => 'true']),
             [
                 'type' => 'button',
-                'class' => 'btn btn-link p-0 local-groupimport-easystud-member__remove',
+                'class' => 'btn btn-link p-0 local-groupimport-easystud-member__remove easyedu-related-person-row__remove',
                 'data-easystud-remove-member' => '1',
                 'data-group-id' => $groupid,
                 'data-user-id' => $user['id'],
-                'aria-label' => get_string('removeuserfromgroup', 'local_groupimport', $user['fullname']),
-                'data-easystud-hover-help' => get_string('removeuserfromgroup', 'local_groupimport', $user['fullname']),
+                'aria-label' => get_string('removemembernamedgroup', 'local_groupimport', (object)[
+                    'member' => $user['fullname'], 'group' => $groupname !== '' ? $groupname : (string)$groupid,
+                ]),
+                'data-easystud-hover-help' => get_string('contextremovemember', 'local_groupimport'),
             ]
         ),
         [
