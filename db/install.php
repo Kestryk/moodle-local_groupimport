@@ -15,6 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Local Group Import plugin for Moodle.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @author Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+/**
  * Installation hook.
  *
  * K18-08: the plugin no longer installs Moodle user tours; the EasyEdu Guide replaces them.

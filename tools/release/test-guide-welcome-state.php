@@ -165,4 +165,5 @@ check(guide_welcome::should_offer(), 'Stale acknowledgement preserves invitation
 check(guide_welcome::mark_opened($next) && !guide_welcome::should_offer(), 'New opening acknowledged');
 $userid = 0;
 check(!guide_welcome::should_offer(), 'Logged-out user not offered');
-echo "PASS isolated welcome generation, actual opening, per-user scope, stale tab and guarded O(1) reset; no database/runtime writes\n";
+echo "PASS isolated welcome generation, actual opening, per-user scope, stale tab " .
+    "and guarded O(1) reset; no database/runtime writes\n";
