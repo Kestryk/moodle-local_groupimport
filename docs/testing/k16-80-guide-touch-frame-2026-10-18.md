@@ -1,0 +1,15 @@
+# K16-80 — Retrait des anciens cadres mobiles du Guide
+
+Base `8355f6f5`, famille F21. Les deux adaptateurs de commande sous `.local-groupimport-easystud-mobile-guide-slot` sont inutilisés : aucun template/PHP/JS actuel ne crée cet hôte. Le lanceur réel passe par la navigation Kit au bureau et son tiroir mobile. Suppression bornée des deux anciennes règles de cadre, sans nouvelle variante Kit, moteur, narration, cible, template ou SCSS spécifique du Guide. La tentative initiale d’extraction `icon-touch-frame` est abandonnée, non livrée.
+
+F21 :2→0 déclarations locales, aucune nouvelle. Parité exhaustive de toutes les déclarations CSS ordonnées après retrait annoncé de deux règles, chacune composée uniquement de `display:inline-flex!important`, hauteur/marge/hauteur minimale/largeur, sous le seul média≤1024px. Liste exacte et comparaison stricte dans `retirement-parity.json`. Aucune autre suppression ni valeur modifiée ;52 SCSS partagés identiques au Kit candidat, global0 règle. Le Kit part de e282935 avec les définitions de libellés de bascule8355f6f5 réconciliées, sans nouveau composant. Aucun AMD/PHP/template modifié, aucune hausse ESLint AMD.
+
+Build conservative Node22.11.0/Sass1.79.1, checker officiel non-PHP0 erreur/0 avertissement, sync/T037/T038/aller-retour PASS. Recette native PASS :8 mesures FR/EN1600/390 au repos, avant/après,0 erreur console, cadres/paddings/rayons/couleurs exactement identiques. Preuves `C:/dev/artifacts/k16-80-guide-touch-frame-20261018/native.json`. CSS en mémoire sur :8051 sous bail. Le scénario vérifie l’absence réelle de l’ancien hôte et ouvre le tiroir mobile pour accéder au vrai lanceur ; il mesure les cadres/peintures et le glyphe dans son support, sans nouveau rejeu du Guide. Cours/comptes synthétiques supprimés, bail libéré. Aucune publication ou modification de fichier runtime/cache.
+
+Les prédécesseurs sont conservés : un premier scénario cherchait le lanceur derrière le tiroir fermé ; un autre comparait à tort le glyphe seul au centre de la ligne de navigation288×48px. Cette ligne utilise un contenu aligné au début : aucune revendication de centrage du contenu de toute la ligne. La mesure stricte±0,5px du glyphe concerne son propre support ; le cadre complet de navigation reste comparé avant/après. Aucun style produit ou seuil de tolérance changé pour corriger les cibles du scénario.
+
+Mesures finales : commande bureau40,796875px carrée, écart du glyphe0,0078125px ; commande mobile288×48px, support d’icône34,390625px carré, écart maximal0,4453125px. Toutes ces valeurs sont identiques avant/après dans les deux langues. Cours314 et comptes supprimés, bail libéré.
+
+## Report Penpot
+
+Aucune variante nouvelle ou modifiée. Retrait de deux anciens adaptateurs sans instance source/native. Le lanceur actuel et sa ligne dans le tiroir restent inchangés en1600/390 ; ne pas créer une nouvelle planche de cadre carré44px pour un composant qui n’existe plus. La validation native des cadres ne remplace pas une validation humaine du Guide.

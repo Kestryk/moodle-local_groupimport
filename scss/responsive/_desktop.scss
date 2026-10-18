@@ -100,25 +100,8 @@
       min-height: var(--easyedu-touch-target-min);
     }
 
-    &-mobile-guide-slot > [data-easyedu-guide-launcher],
-    &-mobile-guide-slot > &-tour-button {
-      display: inline-flex !important;
-      height: var(--easyedu-touch-target-min);
-      margin: 0;
-      min-height: var(--easyedu-touch-target-min);
-      width: var(--easyedu-touch-target-min);
-    }
-
     &-mobile-guide-slot > [data-easyedu-guide-root] {
       display: contents;
-    }
-
-    &-mobile-guide-slot > [data-easyedu-guide-root] > [data-easyedu-guide-open] {
-      display: inline-flex !important;
-      height: var(--easyedu-touch-target-min);
-      margin: 0;
-      min-height: var(--easyedu-touch-target-min);
-      width: var(--easyedu-touch-target-min);
     }
 
     &-mobile-guide-slot [data-easyedu-guide-open] .easyedu-guide__launcher-label {
