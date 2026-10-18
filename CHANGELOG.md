@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N0] K16-80 F03C: raccorder trois états de peinture du groupement ouvert à la table canonique des cartes d’identité, sans changer les couleurs.
+
 - 2026-10-18 [N1] K16-80 F25I: raccorder les variantes tactiles de densité, rail, avatar et texte secondaire aux composants Kit existants ; recentrer les initiales bureau.
 
 - 2026-10-18 [N0] K16-80 F02B: retirer neuf déclarations historiques du libellé de lanceur dont l’hôte n’existe plus, sans ajouter de recette de masquage.
