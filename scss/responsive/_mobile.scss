@@ -800,11 +800,7 @@
     }
 
     &-pagination__select {
-      font-size: 0.64rem;
-      max-width: 7.8rem;
-      min-width: max-content;
-      padding: 0 0.45rem;
-      width: auto !important;
+      @include easyedu.pagination-select-compact;
     }
 
     &-modal {
