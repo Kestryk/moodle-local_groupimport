@@ -152,9 +152,9 @@
       grid-template-columns: minmax(0, 1fr);
       inline-size: 100%;
       max-inline-size: 100%;
-      min-height: 23rem;
-      min-width: 0;
-      padding: 1rem;
+      @include easyedu.skeleton-card-frame(workspace) {
+        min-width: 0;
+      }
     }
   }
 
@@ -176,20 +176,20 @@
   }
 
   &__loading-card-title {
-    height: 1rem;
+    @include easyedu.skeleton-entity-block-size(card-title, $physical: true);
     width: min(13rem, 64%);
   }
 
   &__loading-field {
     box-sizing: border-box;
-    height: 6.2rem;
+    @include easyedu.skeleton-entity-block-size(control-tall, $physical: true);
     margin-top: 0.2rem;
     max-inline-size: 100%;
     width: 100%;
   }
 
   &__loading-field--short {
-    height: 2.7rem;
+    @include easyedu.skeleton-entity-block-size(control-regular, $physical: true);
     width: 72%;
   }
 
@@ -202,7 +202,7 @@
 
   &__loading-button {
     box-sizing: border-box;
-    height: 2.45rem;
+    @include easyedu.skeleton-entity-block-size(action, $physical: true);
     margin-top: auto;
     max-inline-size: 100%;
     width: 10.5rem;
@@ -908,6 +908,6 @@
   }
 
   .local-groupimport-import__loading-card {
-    min-height: 18rem;
+    @include easyedu.skeleton-card-frame(workspace-compact);
   }
 }
