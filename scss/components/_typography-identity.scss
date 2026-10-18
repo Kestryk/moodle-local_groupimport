@@ -3,12 +3,6 @@
 // semantic-role bindings in `views/`.
 @use "../easyedu" as easyedu;
 
-@mixin type-more-filters-label {
-  @include easyedu.type-eyebrow;
-
-  letter-spacing: 0.03em;
-}
-
 .local-groupimport-easystud {
   font-family: var(--easyedu-font-family-ui);
 
@@ -36,9 +30,7 @@
   }
 
   &-advanced-filters &__filter-label {
-    @include type-more-filters-label;
-
-    color: var(--easyedu-text-muted);
+    @include easyedu.filter-section-label;
   }
 
   &-modal__header h3,

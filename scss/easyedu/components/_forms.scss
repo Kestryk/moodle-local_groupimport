@@ -1569,3 +1569,18 @@
   opacity: 1;
   transform: translate(-50%, -58%) rotate(45deg) scale(1);
 }
+
+
+@mixin filter-disclosure-icon {
+  font-size: 0.68rem;
+  line-height: 1;
+  transition: transform var(--easyedu-motion-fast) ease;
+}
+
+
+@mixin filter-section-label {
+  @include typography.type-eyebrow;
+
+  letter-spacing: 0.03em;
+  color: var(--easyedu-text-muted);
+}
