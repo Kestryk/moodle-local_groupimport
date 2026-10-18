@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
-$plugin->version = 2026101800;   // K18-08 tours off (after K17-09 background import jobs, 2026101702).
+$plugin->version = 2026101801;   // MOVE-BG: durable background member transfers table.
 $plugin->requires = 2025100600;  // Moodle 5.1 minimum.
 $plugin->maturity = MATURITY_BETA;
 $plugin->release = '0.4.2-beta';
