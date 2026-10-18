@@ -297,7 +297,8 @@ $v3-touch-query: "(max-width: 40rem)";
     inset-block-start: var(--easyedu-v3-banner-top, 1rem);
     left: var(--easyedu-v3-banner-left, 1rem);
     position: fixed;
-    z-index: 1070;
+    // Above Boost's fixed drawer togglers (1200), which otherwise cover the touch banner edge.
+    z-index: 1201;
   }
 
   // Notification stack: top end, under Moodle's fixed navbar; centred on touch.
