@@ -63,16 +63,11 @@
     }
 
     small {
-      color: var(--easyedu-text-muted);
-      font-size: inherit;
-      font-weight: var(--easyedu-font-weight-semibold);
+      @include easyedu.toggle-check-caption;
     }
   }
 
   &-settings-modal__image-toggle-label {
-    @include easyedu.type-caption;
-
-    color: #40566c;
-    font-weight: var(--easyedu-font-weight-semibold);
+    @include easyedu.toggle-check-caption($label: true);
   }
 }

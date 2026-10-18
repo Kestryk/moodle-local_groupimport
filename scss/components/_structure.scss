@@ -1097,12 +1097,7 @@
   }
 
   &-toggle-check {
-    align-items: center;
-    color: #516679;
-    display: inline-flex;
-    gap: 0.45rem;
-    margin: 0;
-    white-space: nowrap;
+    @include easyedu.toggle-check-line;
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__email {
