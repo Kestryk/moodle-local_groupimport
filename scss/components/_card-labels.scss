@@ -43,31 +43,17 @@
   .local-groupimport-easystud-grouping__header > .btn-link:not(.local-groupimport-easystud-card-menu),
   .local-groupimport-easystud-group__header .local-groupimport-easystud-rename__toggle,
   .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle {
-    align-items: center;
-    block-size: var(--easyedu-card-action-target);
-    display: inline-flex;
-    inline-size: var(--easyedu-card-action-target);
-    justify-content: center;
-    // The larger target overflows the previous 29.6 px action row evenly, so
-    // card headers keep their height.
-    margin-block: calc((1.85rem - var(--easyedu-card-action-target)) / 2);
-    min-block-size: var(--easyedu-card-action-target);
-    min-inline-size: var(--easyedu-card-action-target);
+    @include easyedu.card-action-target;
   }
 
   &:not(.local-groupimport-easystud--responsive-workspace) .local-groupimport-easystud-card-menu {
-    block-size: var(--easyedu-card-action-target);
-    inline-size: var(--easyedu-card-action-target);
-    margin-block: calc((1.85rem - var(--easyedu-card-action-target)) / 2);
-    min-block-size: var(--easyedu-card-action-target);
-    min-inline-size: var(--easyedu-card-action-target);
+    @include easyedu.card-action-target(menu);
   }
 
   // The compact card menu keeps its 44 px touch target; its visible surface
   // joins the 32 px family.
   &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-card-menu > :first-child {
-    block-size: var(--easyedu-card-action-target);
-    inline-size: var(--easyedu-card-action-target);
+    @include easyedu.card-action-target(visual);
   }
 
   // Member rows: checkbox, name and remove button centred on one 40 px line.
