@@ -12,7 +12,7 @@
     @include recipes.dialog-shell(45rem);
 
     // Penpot window M keeps one height while details load (no header jump).
-    min-block-size: min(45rem, calc(100dvh - 2rem));
+    @include easyedu.modal-stable-details-block;
   }
 
   &-entity__tile.easyedu-entity-dialog__icon {
@@ -46,12 +46,12 @@
   &-entity &-modal__body.local-groupimport-easystud-entity__body {
     @include recipes.dialog-scroll-body;
 
-    background: var(--easyedu-surface);
+    @include easyedu.modal-body-paint;
     display: grid;
     gap: 1.5rem;
     align-content: start;
     max-block-size: none;
-    padding: 1.5rem 1.25rem;
+    @include easyedu.modal-body-inset(details);
   }
 
   &-entity__content {
@@ -436,11 +436,11 @@
 
   &-entity__image-preview.local-groupimport-easystud-settings-modal__image {
     justify-self: stretch;
-    min-block-size: 7rem;
+    @include easyedu.image-preview-compact-extent;
     inline-size: auto;
 
     img {
-      max-block-size: 7rem;
+      @include easyedu.image-preview-compact-extent($image: true);
     }
   }
 
@@ -542,7 +542,7 @@
     }
 
     &-entity &-modal__body.local-groupimport-easystud-entity__body {
-      padding: 1.25rem 1rem;
+      @include easyedu.modal-body-inset(compact);
     }
 
     &-entity__fields,
@@ -557,7 +557,7 @@
 
     &-entity &-modal__footer.local-groupimport-easystud-entity__footer {
       display: flex;
-      padding: 0.75rem 1rem;
+      @include easyedu.modal-footer-compact-inset;
 
       .btn {
         inline-size: auto;
