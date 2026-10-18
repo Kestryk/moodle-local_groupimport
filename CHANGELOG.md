@@ -2,6 +2,8 @@
 
 - 2026-10-18 [N1] K18-B : conserver l’anneau Kit des groupes sélectionnés, aligner les trois filtres Participants et limiter les squelettes des fiches aux données différées.
 
+- 2026-10-18 [N0] K16-80 F05C: raccorder la variante de pastille 22 px de l’historique à la définition de métadonnée du Kit, sans changer les valeurs.
+
 - 2026-10-18 [N0] K16-80 F23E: centraliser le cadre, le corps défilant, la tuile sémantique et la feuille tactile dans le Kit, sans changer leur cascade.
 
 - 2026-10-18 [N1] K16-80 F09R: reprendre la recette Kit du pied de fenêtre et de son lien secondaire ; centrer les libellés par les métriques naturelles de la police.
