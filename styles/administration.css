@@ -13,29 +13,50 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 @property --easyedu-guide-press {syntax: "<number>";inherits: true;initial-value: 0;
 }
 
-body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {display: grid !important;
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)),
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker {pointer-events: none;
 }
-body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {transition: opacity 180ms var(--easyedu-motion-ease, ease);
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)),
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker {background: var(--easyedu-loading-surface);border-radius: var(--easyedu-loading-radius);display: block;max-inline-size: 100%;min-inline-size: 0;position: relative;
 }
-body.jsenabled.local-groupimport-admin-settings-page--loading:is(.easyedu-motion-reduced, .easyedu-motion-disabled) [data-easystud-loading-skeleton] {transition-duration: 0.001ms;
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker::after {animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;background-image: linear-gradient(108deg, transparent 30%, var(--easyedu-loading-shimmer-soft) 42%, var(--easyedu-loading-shimmer-highlight) 50%, var(--easyedu-loading-shimmer-soft) 58%, transparent 70%);background-position: 180% 0;background-repeat: no-repeat;background-size: 190% 100%;border-radius: inherit;content: "";inset: 0;pointer-events: none;position: absolute;
+}
+[data-easyedu-motion-policy=disabled] body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+.is-easyedu-motion-off body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+[data-easyedu-motion-policy=disabled] body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker::after,
+.is-easyedu-motion-off body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker::after {animation: none;
+}
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading:is(.easyedu-motion-reduced, .easyedu-motion-disabled) #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading:is(.easyedu-motion-reduced, .easyedu-motion-disabled) #adminsettings .form-item .easyedu-color-picker::after {animation: none;
 }
 
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport.is-easystud-loading-skeleton-exiting [data-easystud-loading-skeleton] {animation: none;opacity: 0;pointer-events: none;
+@media (forced-colors: active) {
+  body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker::after {animation: none;
+  }
 }
-
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > * {display: none;
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)):dir(rtl)::after,
+[dir=rtl] body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker:dir(rtl)::after,
+[dir=rtl] body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker::after {animation-direction: reverse;
 }
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > .formsettingheading:first-of-type {display: block;margin: 0;
+@media (forced-colors: active) {
+  body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)),
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker {background: CanvasText;border: 0.0625rem solid CanvasText;
+  }
+  body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker))::after,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker::after {background-image: none;
+  }
 }
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset:first-of-type {display: block;margin: 0;
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)),
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker {min-block-size: var(--easyedu-control-height);
 }
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset:first-of-type > * {display: none !important;
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)) > *,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .easyedu-color-picker > * {visibility: hidden;
 }
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset:first-of-type > .formsettingheading:first-of-type {display: block !important;margin: 0;
-}
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport [data-easystud-loading-skeleton] {display: grid;
-}
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings .settingsform .local-groupimport-admin-settings__loading-skeleton[data-easystud-loading-skeleton] {display: grid;
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > .form-defaultinfo,
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings .form-item .form-setting > .form-text.mt-2 {visibility: visible;
 }
 
 #page-admin-setting-local_groupimport {--easyedu-empty-border: #cdddea;--easyedu-file-deposit-drag-over-surface: #edf6fc;--easyedu-file-deposit-danger-surface: #fff4f2;--easyedu-file-deposit-danger-border: #d96b63;--easyedu-file-deposit-danger-title: #9b2c24;--easyedu-page-header-gap: 1.125rem;--easyedu-gap: 1rem;--easyedu-navigation-following-gap: 2.5rem;--easyedu-navigation-panel-width: 88vw;--easyedu-navigation-panel-max-width: 22rem;--easyedu-navigation-item-indent: 0.8rem;--easyedu-navigation-trigger-inline-start: 0.75rem;--easyedu-navigation-trigger-gap: 0.5rem;--easyedu-navigation-trigger-fallback-top: 0.75rem;--easyedu-navigation-trigger-safe-edge: 0.75rem;--easyedu-navigation-layer-trigger: 1064;--easyedu-navigation-layer-backdrop: 1065;--easyedu-navigation-layer-panel: 1066;--easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);--easyedu-navigation-drawer-surface: var(--easyedu-surface);--easyedu-navigation-drawer-border: var(--easyedu-border);--easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);--easyedu-navigation-guide-surface: linear-gradient(
@@ -64,328 +85,136 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport:is([data-easyedu-motion-level=reduced], .easyedu-motion-reduced, [data-easyedu-motion-level=minimal], .easyedu-motion-disabled).is-action-busy::before {animation: none;
 }
 
-#page-admin-setting-local_groupimport #adminsettings {--easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif;--easyedu-line-height-title: 1.2;--easyedu-line-height-body: 1.2;font-family: var(--easyedu-font-family-ui);font-optical-sizing: none;font-synthesis: none;font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;
+#page-admin-setting-local_groupimport #adminsettings {--easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif;--easyedu-line-height-title: 1.2;--easyedu-line-height-body: 1.2;font-family: var(--easyedu-font-family-ui);font-optical-sizing: none;font-synthesis: none;font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;--easyedu-line-height-title: 1.5;--easyedu-line-height-body: 1.5;
 }
-#page-admin-setting-local_groupimport.is-easystud-loading-content-entering #adminsettings .settingsform {opacity: 0;pointer-events: none;
+#page-admin-setting-local_groupimport.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
 }
-#page-admin-setting-local_groupimport.is-easystud-loading-content-entering #adminsettings .settingsform {transition: opacity 180ms var(--easyedu-motion-ease, ease);
+#page-admin-setting-local_groupimport.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {animation: none;
 }
-#page-admin-setting-local_groupimport.is-easystud-loading-content-entering:is(.easyedu-motion-reduced, .easyedu-motion-disabled) #adminsettings .settingsform {transition-duration: 0.001ms;
-}
-
-#page-admin-setting-local_groupimport.is-easystud-loading-content-entered #adminsettings .settingsform {opacity: 1;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {display: none;gap: 1rem;padding: 0.5rem 0.25rem 1rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {animation: easyedu-skeleton-appear var(--easyedu-loading-appearance-duration) var(--easyedu-motion-ease, ease) backwards;
-}
-[data-easyedu-motion-policy=disabled] #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton,
-.is-easyedu-motion-off #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {animation: none;
-}
-#page-admin-setting-local_groupimport:is(.easyedu-motion-reduced, .easyedu-motion-disabled) .local-groupimport-admin-settings__loading-skeleton {animation: none;
+#page-admin-setting-local_groupimport:is(.easyedu-motion-reduced, .easyedu-motion-disabled).is-easystud-admin-entering #adminsettings .form-item .form-setting > * {animation: none;
 }
 
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {animation: none;
+#page-admin-setting-local_groupimport .settingsform {box-sizing: border-box;margin-inline: auto;max-inline-size: 100rem;padding-inline: 2rem;
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport .settingsform {padding-inline: 1rem;
   }
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-header {box-sizing: border-box;display: grid;gap: 0.7rem;max-inline-size: 100%;min-height: 0;min-width: 0;padding: 0.2rem 0.4rem 0.35rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-sections {display: grid;gap: 1.25rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-section {display: grid;gap: 0.75rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-section-title {height: 0.9rem;width: min(15rem, 42%);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-rows {display: grid;gap: 0.65rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {align-items: center;display: grid;gap: 0.8rem;grid-template-columns: minmax(8rem, 0.36fr) minmax(0, 1fr);min-height: 5.4rem;padding: 0.9rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {background: var(--easyedu-loading-section-surface);border: 0.0625rem solid var(--easyedu-loading-section-border);border-radius: var(--easyedu-loading-section-radius);display: block;min-width: 0;overflow: hidden;position: relative;
-}
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {background: Canvas;border-color: CanvasText;
-  }
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
-}
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {border-inline-start-color: CanvasText;
-  }
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {animation: none;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {display: grid;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-label {height: 0.75rem;width: min(12rem, 82%);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-control {height: 2.7rem;width: min(100%, 34rem);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-control--tall {height: 6.2rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {align-items: start;display: grid;gap: 0.8rem;grid-template-columns: 2.55rem minmax(0, 1fr);min-height: 6.5rem;padding: 1rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {background: var(--easyedu-loading-section-surface);border: 0.0625rem solid var(--easyedu-loading-section-border);border-radius: var(--easyedu-loading-section-radius);display: block;min-width: 0;overflow: hidden;position: relative;
-}
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {background: Canvas;border-color: CanvasText;
-  }
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
-}
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {border-inline-start-color: CanvasText;
-  }
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {animation: none;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {display: grid;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview--wide {min-height: 11rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview-icon {height: 2.55rem;width: 2.55rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview-copy {display: grid;gap: 0.65rem;min-width: 0;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {background: var(--easyedu-loading-surface);border: 0.0625rem solid var(--easyedu-loading-border);border-radius: 0.68rem;display: block;min-width: 0;overflow: hidden;position: relative;
-}
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {background: Canvas;border-color: CanvasText;
-  }
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;background-color: var(--easyedu-loading-surface);background-image: linear-gradient(90deg, transparent 30%, var(--easyedu-loading-highlight) 50%, transparent 70%);background-repeat: no-repeat;background-size: 190% 100%;
-}
-[data-easyedu-motion-policy=disabled] #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface,
-.is-easyedu-motion-off #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {animation: none;
-}
-#page-admin-setting-local_groupimport:is(.easyedu-motion-reduced, .easyedu-motion-disabled) .local-groupimport-admin-settings__loading-surface {animation: none;
-}
-
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {animation: none;
-  }
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-eyebrow {height: 0.7rem;width: min(9rem, 32%);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-title {height: 1.55rem;width: min(22rem, 72%);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-intro {height: 0.9rem;width: min(38rem, 94%);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-card-title {height: 1.15rem;width: 62%;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-field {height: 2.6rem;width: 100%;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-field--short {height: 2.6rem;width: 72%;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-row {height: 0.85rem;width: 84%;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-row--short {width: 58%;
-}
-#page-admin-setting-local_groupimport .settingsform {margin-left: auto;margin-right: auto;max-width: 76rem;
-}
-#page-admin-setting-local_groupimport #adminsettings {margin-left: auto;margin-right: auto;max-width: min(100%, 76rem);
+#page-admin-setting-local_groupimport #adminsettings {margin-inline: auto;max-inline-size: 100%;
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > h2 {display: none;
 }
-#page-admin-setting-local_groupimport #admin-pageidentity {margin: 0 0 1.2rem;
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {border: 0;column-count: 2;column-gap: 2rem;margin: 0;min-inline-size: 0;padding: 0;
 }
-#page-admin-setting-local_groupimport #admin-pageidentity .form-description,
-#page-admin-setting-local_groupimport #admin-pageidentity .form-setting {max-width: none;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-identity {display: block;padding-block: 0.15rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-title {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-page-title);font-weight: var(--easyedu-font-weight-strong);line-height: var(--easyedu-line-height-title);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-description {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-body);line-height: var(--easyedu-line-height-body);
-}
-#page-admin-setting-local_groupimport #adminsettings .settingsform > h3.main,
-#page-admin-setting-local_groupimport #adminsettings .settingsform > fieldset > h3.main {margin-block-start: var(--easyedu-admin-section-gap, 2.5rem);
-}
-@media (max-width: 48rem) {
-  #page-admin-setting-local_groupimport #adminsettings .settingsform > h3.main,
-#page-admin-setting-local_groupimport #adminsettings .settingsform > fieldset > h3.main {margin-block-start: var(--easyedu-admin-section-gap-narrow, 2rem);
+@media (max-width: 64rem) {
+  #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {column-count: 1;
   }
 }
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .clearer {display: none;
+}
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading {background: transparent;border: 0;margin: 0;padding: 0;
+}
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading .form-description,
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading .form-setting {max-width: none;
+}
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading:has(.local-groupimport-admin-settings__page-identity) {column-span: all;margin: 0 0 1.5rem;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-identity {display: block;padding-block: 0;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-eyebrow {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;display: block;line-height: var(--easyedu-line-height-body);
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-title {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-page-title);font-weight: var(--easyedu-font-weight-strong);line-height: var(--easyedu-line-height-title);border: 0;font-weight: var(--easyedu-font-weight-semibold);margin: 0;padding: 0;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-description {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-body);line-height: var(--easyedu-line-height-body);margin: 0.25rem 0 0;max-inline-size: 58rem;
+}
 #page-admin-setting-local_groupimport #adminsettings h3.main,
-#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-section-title);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-title);
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-section-title);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-title);border: 0;break-after: avoid;margin: 2rem 0 0.25rem;padding: 0;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings {background: var(--easyedu-surface);border: 1px solid var(--easyedu-border);border-radius: calc(var(--easyedu-radius) + 0.2rem);box-shadow: var(--easyedu-shadow);min-width: 0;overflow: visible;position: relative;background: var(--easyedu-semantic-panel-bg);display: grid;gap: 1rem;margin: 0.65rem 0 1.15rem;overflow: hidden;padding: 1rem;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy {break-before: avoid;margin-block-end: 1rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero {align-items: flex-start;display: grid;gap: 0.9rem;grid-template-columns: auto minmax(0, 1fr);
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy p {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-body);line-height: var(--easyedu-line-height-body);margin: 0 0 0.5rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero > .fa {font-size: var(--easyedu-font-size-body);align-items: center;background: var(--easyedu-primary-soft);border: 1px solid var(--easyedu-semantic-border-primary);border-radius: var(--easyedu-section-icon-radius);box-sizing: border-box;color: var(--easyedu-primary);display: inline-flex;flex: 0 0 var(--easyedu-section-icon-size);height: var(--easyedu-section-icon-size);justify-content: center;line-height: 1;width: var(--easyedu-section-icon-size);
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy .easyedu-caption {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;line-height: var(--easyedu-line-height-body);
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero > .fa::before,
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero > .fa > .fa,
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero > .fa > [aria-hidden=true] {display: block;line-height: 1;max-height: 1em;max-width: 100%;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy .easyedu-form-note {margin-block-start: 0.5rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero-copy {min-width: 0;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-grid {align-items: stretch;display: grid;gap: 0.75rem;grid-template-columns: repeat(2, minmax(0, 1fr));margin-block: 0.5rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero-copy h3 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-panel-title);font-weight: var(--easyedu-font-weight-strong);line-height: var(--easyedu-line-height-title);border: 0;margin: 0 0 0.35rem;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-card {background: var(--easyedu-surface-soft);border: 1px solid var(--easyedu-filter-border);border-radius: var(--easyedu-radius);box-shadow: var(--easyedu-shadow-soft);min-width: 0;padding: 0.75rem;align-content: start;display: grid;gap: 0.5rem;padding: 0.5rem 0.75rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero-copy p {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-body);line-height: var(--easyedu-line-height-body);margin: 0;max-width: 58rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-grid {align-items: stretch;display: grid;gap: 0.85rem;grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-card {background: var(--easyedu-surface-soft);border: 1px solid var(--easyedu-filter-border);border-radius: var(--easyedu-radius);box-shadow: var(--easyedu-shadow-soft);min-width: 0;padding: 0.75rem;align-content: start;display: grid;gap: 0.65rem;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-card h4 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;color: var(--easyedu-text-muted);margin: 0;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-card h4 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;border: 0;color: var(--easyedu-text-muted);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-body);margin: 0;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__chips {display: flex;flex-wrap: wrap;gap: 0.42rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip {align-items: center;background: var(--easyedu-info-soft);border: 1px solid #c8dff1;border-radius: 999px;color: var(--easyedu-primary-strong);display: inline-flex;font-size: 0.78rem;font-weight: 700;line-height: 1.2;min-height: 1.45rem;padding: 0.16rem 0.54rem;gap: 0.38rem;max-width: 100%;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip {align-items: center;background: var(--easyedu-info-soft);border: 1px solid var(--easyedu-semantic-border-primary);border-radius: 999px;color: var(--easyedu-primary-strong);display: inline-flex;font-size: 0.78rem;font-weight: 700;line-height: 1.2;min-height: 1.45rem;padding: 0.16rem 0.54rem;gap: 0.38rem;max-width: 100%;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip .fa {font-size: 0.72rem;opacity: 0.82;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip--custom {background: var(--easyedu-accent-soft);border-color: #c5e4d4;color: color-mix(in srgb, var(--easyedu-accent) 82%, #000 18%);
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip--custom {background: var(--easyedu-accent-soft);border-color: var(--easyedu-semantic-border-success);color: color-mix(in srgb, var(--easyedu-accent) 82%, var(--easyedu-text) 18%);
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip-label,
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip-key {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip-label {max-width: 16rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip-key {color: color-mix(in srgb, currentColor 68%, #fff 32%);font-weight: var(--easyedu-font-weight-medium);max-width: 12rem;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__chip-key {color: color-mix(in srgb, currentColor 68%, var(--easyedu-surface) 32%);font-weight: var(--easyedu-font-weight-medium);max-width: 12rem;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__empty {align-items: center;background: linear-gradient(180deg, var(--easyedu-empty-bg-start) 0%, var(--easyedu-empty-bg-end) 100%);border: 1px dashed var(--easyedu-empty-border);border-radius: 0.85rem;color: var(--easyedu-text-muted);display: flex;flex-direction: column;gap: 0.45rem;justify-content: center;padding: 0.9rem 1rem;text-align: center;min-height: 3.2rem;padding: 0.7rem 0.85rem;font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;align-items: flex-start;min-height: 2.7rem;text-align: left;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hint {align-items: flex-start;background: color-mix(in srgb, var(--easyedu-accent-soft) 72%, #fff 28%);border: 1px solid #c8e4d5;border-radius: var(--easyedu-control-radius);color: #315b48;display: grid;gap: 0.15rem;padding: 0.75rem 0.85rem;
+#page-admin-setting-local_groupimport #adminsettings .form-item.row {break-inside: avoid;display: block;margin: 0 0 1rem;padding: 0;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hint strong {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;color: color-mix(in srgb, var(--easyedu-accent) 76%, #000 24%);
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-label,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting {box-sizing: border-box;flex: none;max-inline-size: 100%;padding: 0;text-align: start;width: 100%;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__hint span {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting {display: block;
 }
-#page-admin-setting-local_groupimport #admin-identifieroverview {margin-bottom: 0.85rem;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-label {align-items: flex-start;display: flex;flex-direction: column;margin-block-end: 0.25rem;
 }
-#page-admin-setting-local_groupimport #admin-identifieroverview .form-description,
-#page-admin-setting-local_groupimport #admin-identifieroverview .form-setting {max-width: none;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-label label {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;color: var(--easyedu-text);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-body);margin: 0;
 }
-#page-admin-setting-local_groupimport #admin-featuresoverview {margin-bottom: 0.85rem;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-label .form-shortname {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;line-height: var(--easyedu-line-height-body);margin: 0;
 }
-#page-admin-setting-local_groupimport #admin-featuresoverview .form-description,
-#page-admin-setting-local_groupimport #admin-featuresoverview .form-setting {max-width: none;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-description,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting > .form-text.mt-2,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting > .form-defaultinfo {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;line-height: var(--easyedu-line-height-body);margin-block: 0.25rem 0;max-inline-size: none;
 }
-#page-admin-setting-local_groupimport #admin-appearanceoverview {margin-bottom: 0.85rem;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-text.mt-2 p {margin: 0;
 }
-#page-admin-setting-local_groupimport #admin-appearanceoverview .form-description,
-#page-admin-setting-local_groupimport #admin-appearanceoverview .form-setting {max-width: none;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text] {font-family: var(--easyedu-font-family-ui);font-size: 0.875rem;font-weight: 400;line-height: 1.2;height: auto;min-height: 2.375rem;min-width: 0;padding: 0.6rem 0.8125rem;background: var(--easyedu-surface);border: 0.0625rem solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;box-sizing: border-box;color: var(--easyedu-field-text);transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;box-sizing: border-box;inline-size: 100%;max-inline-size: 100%;
 }
-#page-admin-setting-local_groupimport #admin-participantdisplayoverview {margin-bottom: 0.85rem;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text]::placeholder {color: var(--easyedu-text-muted);opacity: 1;
 }
-#page-admin-setting-local_groupimport #admin-participantdisplayoverview .form-description,
-#page-admin-setting-local_groupimport #admin-participantdisplayoverview .form-setting {max-width: none;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text]:hover:not(:disabled):not([aria-disabled=true]):not(:focus):not(:focus-visible):not([aria-invalid=true]) {border-color: var(--easyedu-field-hover-border);
 }
-#page-admin-setting-local_groupimport #admin-alloweduserfields,
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview,
-#page-admin-setting-local_groupimport #admin-showcompleteview,
-#page-admin-setting-local_groupimport #admin-defaultlayoutmode,
-#page-admin-setting-local_groupimport #admin-enableanimations,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor,
-#page-admin-setting-local_groupimport #admin-themegroupcolor,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 {background: var(--easyedu-surface-soft);border: 1px solid var(--easyedu-filter-border);border-radius: var(--easyedu-radius);box-shadow: var(--easyedu-shadow-soft);min-width: 0;padding: 0.75rem;box-sizing: border-box;margin-left: 0;margin-right: 0;margin-top: 0.75rem;max-width: 100%;width: 100%;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text]:focus,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text]:focus-visible {background: var(--easyedu-surface);color: var(--easyedu-field-text);border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
-#page-admin-setting-local_groupimport #admin-alloweduserfields .form-label label,
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-label label,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-label label,
-#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-label label,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-label label,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-label label,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-label label,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-label label,
-#page-admin-setting-local_groupimport #admin-themegroupcolor .form-label label,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-label label,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-label label,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-label label,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-label label,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-label label,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-label label {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text][aria-invalid=true] {border-color: var(--easyedu-field-error-border);color: var(--easyedu-field-error-text);
 }
-#page-admin-setting-local_groupimport #admin-alloweduserfields .form-description,
-#page-admin-setting-local_groupimport #admin-alloweduserfields .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-alloweduserfields .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-description,
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-description,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-description,
-#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-description,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-description,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-description,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-description,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-themegroupcolor .form-description,
-#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-description,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-description,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-description,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-description,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-description,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-setting > .form-defaultinfo,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-description,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-setting > .form-text,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-setting > .form-defaultinfo {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;margin-top: 0.3rem;max-width: 56rem;
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text][aria-invalid=true]::placeholder {color: var(--easyedu-field-error-text);
 }
-#page-admin-setting-local_groupimport #admin-alloweduserfields .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-setting > div:first-child {max-width: min(100%, 34rem);
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text]:disabled,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text][aria-disabled=true] {background: var(--easyedu-field-disabled-surface);border-color: var(--easyedu-control-border);box-shadow: none;color: var(--easyedu-field-disabled-text);cursor: not-allowed;opacity: 1;
 }
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-setting > div:first-child {max-width: min(100%, 22rem);
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text]:disabled::placeholder,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text][aria-disabled=true]::placeholder {color: var(--easyedu-field-disabled-text);
 }
-#page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-check,
-#page-admin-setting-local_groupimport #admin-showcompleteview .form-check,
-#page-admin-setting-local_groupimport #admin-enableanimations .form-check {align-items: center;display: flex;min-height: 2.6rem;
+#page-admin-setting-local_groupimport:is(.easyedu-motion-reduced, .easyedu-motion-disabled) #adminsettings .form-item .form-setting input.form-control[type=text] {transition: none;
 }
-#page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-setting > div:first-child,
-#page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-setting > div:first-child {max-width: min(100%, 22rem);
+
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting > .defaultsnext:not(.easyedu-ui) {max-inline-size: 100%;
+}
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .form-check,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .form-checkbox {align-items: center;display: flex;min-block-size: var(--easyedu-control-height);
+}
+#page-admin-setting-local_groupimport #admin-historyretentiondays input.form-control[type=text],
+#page-admin-setting-local_groupimport #admin-importmaxrows input.form-control[type=text] {inline-size: 8rem;
+}
+#page-admin-setting-local_groupimport #admin-historyretentiondays .form-setting > .defaultsnext,
+#page-admin-setting-local_groupimport #admin-importmaxrows .form-setting > .defaultsnext {display: inline-block;margin-inline-end: 0.75rem;vertical-align: middle;
+}
+#page-admin-setting-local_groupimport #admin-historyretentiondays .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-importmaxrows .form-setting > .form-defaultinfo {display: inline-block;margin-block: 0;vertical-align: middle;
 }
 #page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting,
 #page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting,
@@ -445,16 +274,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting {column-gap: 1rem;
   }
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings--participant-display {background: var(--easyedu-semantic-panel-bg);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings--participant-display .local-groupimport-admin-settings__hero > .fa {align-items: center;background: var(--local-groupimport-easystud-accent-soft);border: 1px solid var(--easyedu-semantic-border-success);border-radius: var(--easyedu-section-icon-radius);box-sizing: border-box;color: var(--local-groupimport-easystud-accent);display: inline-flex;flex: 0 0 var(--easyedu-section-icon-size);height: var(--easyedu-section-icon-size);justify-content: center;line-height: 1;width: var(--easyedu-section-icon-size);
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings--participant-display .local-groupimport-admin-settings__hero > .fa::before,
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings--participant-display .local-groupimport-admin-settings__hero > .fa > .fa,
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings--participant-display .local-groupimport-admin-settings__hero > .fa > [aria-hidden=true] {display: block;line-height: 1;max-height: 1em;max-width: 100%;
-}
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings--features {background: var(--easyedu-semantic-panel-bg);
-}
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child {margin-left: 0;margin-right: 0;align-items: center;display: flex;gap: 0.55rem;justify-content: center;margin-top: 1.25rem;padding-top: 1rem;
 }
 @media (max-width: 36rem) {
@@ -468,28 +287,28 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child > [class*=offset-] {flex: 0 0 auto;margin-left: 0;max-width: none;padding-left: 0;padding-right: 0;width: auto;
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child button:focus-visible,
-#page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child input[type=submit]:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);border-color: var(--easyedu-control-focus-border) !important;box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child input[type=submit]:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child button:focus:not(:focus-visible),
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > .row:last-child input[type=submit]:focus:not(:focus-visible) {outline: 0;
 }
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enablesimplifiedview:focus-visible,
 #page-admin-setting-local_groupimport #id_s_local_groupimport_showcompleteview:focus-visible,
-#page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);border-color: var(--easyedu-control-focus-border) !important;box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+#page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
 }
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enablesimplifiedview:focus:not(:focus-visible),
 #page-admin-setting-local_groupimport #id_s_local_groupimport_showcompleteview:focus:not(:focus-visible),
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus:not(:focus-visible) {outline: 0;
 }
 #page-admin-setting-local_groupimport .form-setting > .easyedu-ui,
-#page-admin-setting-local_groupimport .form-setting .easyedu-searchable-choice {box-sizing: border-box;min-inline-size: min(100%, 12rem);inline-size: min(100%, 28rem);max-inline-size: min(100%, 28rem);
+#page-admin-setting-local_groupimport .form-setting .easyedu-searchable-choice {box-sizing: border-box;min-inline-size: min(100%, 12rem);inline-size: min(100%, 28rem);max-inline-size: min(100%, 28rem);inline-size: 100%;max-inline-size: 100%;
 }
 @media (max-width: 48rem) {
   #page-admin-setting-local_groupimport .form-setting > .easyedu-ui,
 #page-admin-setting-local_groupimport .form-setting .easyedu-searchable-choice {inline-size: 100%;max-inline-size: 100%;
   }
 }
-#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;display: block;overflow: auto;min-height: 10.5rem;padding: 0.35rem;width: min(100%, 34rem) !important;
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;display: block;overflow: auto;min-height: 10.5rem;padding: 0.35rem;width: 100%;
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:focus,
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
@@ -501,7 +320,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] option:checked {background: linear-gradient(180deg, var(--easyedu-primary-soft), var(--easyedu-primary-soft));color: var(--easyedu-primary-strong);font-weight: 700;
 }
-#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;box-sizing: border-box;min-inline-size: min(100%, 12rem);inline-size: min(100%, 28rem);max-inline-size: min(100%, 28rem);width: min(100%, 28rem) !important;
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;box-sizing: border-box;min-inline-size: min(100%, 12rem);inline-size: min(100%, 28rem);max-inline-size: min(100%, 28rem);width: 100%;
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):focus,
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
@@ -513,26 +332,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {inline-size: 100%;max-inline-size: 100%;
   }
 }
-@media (max-width: 48rem) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings {padding: 0.85rem;
+@media (max-width: 48rem), (pointer: coarse) {
+  #page-admin-setting-local_groupimport #adminsettings .form-item .form-setting input.form-control[type=text],
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .easyedu-searchable-choice__trigger {min-block-size: var(--easyedu-touch-target-min);
   }
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero,
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-grid {grid-template-columns: minmax(0, 1fr);
+  #page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .form-check,
+#page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .form-checkbox {min-block-size: var(--easyedu-touch-target-min);
   }
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {align-items: stretch;grid-template-columns: minmax(0, 1fr);
+  #page-admin-setting-local_groupimport #adminsettings h3.main,
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {margin-block-start: 1.5rem;
   }
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {grid-template-columns: 2.2rem minmax(0, 1fr);
+  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-grid {grid-template-columns: minmax(0, 1fr);
   }
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview-icon {height: 2.2rem;width: 2.2rem;
-  }
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-control {width: 100%;
-  }
-}
-@media (forced-colors: active) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {animation: none;
-  }
-}
-#page-admin-setting-local_groupimport:is(.easyedu-motion-reduced, .easyedu-motion-disabled) .local-groupimport-admin-settings__loading-surface {animation: none;
 }
 @keyframes easyedu-modal-in {
   from {opacity: 0;transform: translateY(0.55rem) scale(0.985);

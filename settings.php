@@ -272,22 +272,6 @@ if ($hassiteconfig) {
         $customfieldoptions[$key] = format_string($field->name);
         $fieldoptions[$key] = $customfieldoptions[$key];
     }
-    $settings->add(new admin_setting_configtext(
-        'local_groupimport/historyretentiondays',
-        get_string('historyretentiondays', 'local_groupimport'),
-        get_string('historyretentiondays_desc', 'local_groupimport'),
-        365,
-        PARAM_INT
-    ));
-
-    $settings->add(new admin_setting_configtext(
-        'local_groupimport/importmaxrows',
-        get_string('importmaxrows', 'local_groupimport'),
-        get_string('importmaxrows_desc', 'local_groupimport'),
-        50000,
-        PARAM_INT
-    ));
-
     $participantdisplayfieldoptions = ['' => get_string('none')] + $customfieldoptions;
 
     $renderchips = static function (array $fields, string $modifier): string {
@@ -310,57 +294,10 @@ if ($hassiteconfig) {
 
         return html_writer::div(implode('', $chips), 'local-groupimport-admin-settings__chips');
     };
+    $paragraph = static function (string $text, string $class = ''): string {
+        return html_writer::tag('p', $text, $class === '' ? [] : ['class' => $class]);
+    };
 
-    $introhtml = html_writer::div(
-        html_writer::div(
-            html_writer::span('', 'fa fa-search', ['aria-hidden' => 'true']) .
-                html_writer::div(
-                    html_writer::tag('h3', get_string('adminidentifiersheroheading', 'local_groupimport')) .
-                        html_writer::tag('p', get_string('adminidentifiersherobody', 'local_groupimport')),
-                    'local-groupimport-admin-settings__hero-copy'
-                ),
-            'local-groupimport-admin-settings__hero'
-        ) .
-            html_writer::div(
-                html_writer::div(
-                    html_writer::tag('h4', get_string('adminidentifierscorefields', 'local_groupimport')) .
-                        $renderchips($corefieldoptions, 'core'),
-                    'local-groupimport-admin-settings__field-card'
-                ) .
-                    html_writer::div(
-                        html_writer::tag('h4', get_string('adminidentifierscustomfields', 'local_groupimport')) .
-                            $renderchips($customfieldoptions, 'custom'),
-                        'local-groupimport-admin-settings__field-card'
-                    ),
-                'local-groupimport-admin-settings__field-grid'
-            ) .
-            html_writer::div(
-                html_writer::tag('strong', get_string('adminidentifiershowtitle', 'local_groupimport')) .
-                    html_writer::tag('span', get_string('adminidentifiershowbody', 'local_groupimport')),
-                'local-groupimport-admin-settings__hint'
-            ),
-        'local-groupimport-admin-settings',
-        ['data-local-groupimport-admin-settings' => '1']
-    );
-
-    $featureshtml = html_writer::div(
-        html_writer::div(
-            html_writer::span('', 'fa fa-sliders', ['aria-hidden' => 'true']) .
-                html_writer::div(
-                    html_writer::tag('h3', get_string('adminfeaturesheroheading', 'local_groupimport')) .
-                        html_writer::tag('p', get_string('adminfeaturesherobody', 'local_groupimport')),
-                    'local-groupimport-admin-settings__hero-copy'
-                ),
-            'local-groupimport-admin-settings__hero'
-        ) .
-            html_writer::div(
-                html_writer::tag('strong', get_string('adminfeatureshowtitle', 'local_groupimport')) .
-                    html_writer::tag('span', get_string('adminfeatureshowbody', 'local_groupimport')),
-                'local-groupimport-admin-settings__hint'
-            ),
-        'local-groupimport-admin-settings local-groupimport-admin-settings--features',
-        ['data-local-groupimport-admin-features' => '1']
-    );
     // The confirmation opens in place (js/admin_guide_reset.js); the link stays the
     // no-JavaScript fallback to the standalone confirmation page.
     $resetdialog = '';
@@ -381,127 +318,9 @@ if ($hassiteconfig) {
             'motionlevel' => \local_groupimport\local\motion::level(),
         ]);
     }
-    $featureshtml .= html_writer::div(
-        html_writer::link(
-            new moodle_url('/local/groupimport/reset_guide_welcome.php'),
-            get_string('guidewelcomereset', 'local_groupimport'),
-            ['class' => 'easyedu-button--secondary', 'data-local-groupimport-welcome-reset-open' => '1']
-        ) .
-        $resetdialog .
-        html_writer::tag(
-            'p',
-            get_string('guidewelcomeresethelp', 'local_groupimport'),
-            ['class' => 'easyedu-caption easyedu-form-note']
-        ),
-        'easyedu-ui'
-    );
 
-    $appearancehtml = html_writer::div(
-        html_writer::div(
-            html_writer::span('', 'fa fa-palette', ['aria-hidden' => 'true']) .
-                html_writer::div(
-                    html_writer::tag('h3', get_string('adminappearanceheroheading', 'local_groupimport')) .
-                        html_writer::tag('p', get_string('adminappearanceherobody', 'local_groupimport')),
-                    'local-groupimport-admin-settings__hero-copy'
-                ),
-            'local-groupimport-admin-settings__hero'
-        ) .
-            html_writer::div(
-                html_writer::tag('strong', get_string('adminappearancehowtitle', 'local_groupimport')) .
-                    html_writer::tag('span', get_string('adminappearancehowbody', 'local_groupimport')),
-                'local-groupimport-admin-settings__hint'
-            ),
-        'local-groupimport-admin-settings local-groupimport-admin-settings--appearance',
-        ['data-local-groupimport-admin-appearance' => '1']
-    );
-    $appearancehtml .= html_writer::div(
-        html_writer::tag('button', get_string('restoredefaultcolours', 'local_groupimport'), [
-            'type' => 'button',
-            'class' => 'easyedu-button--secondary',
-            'data-easystud-restore-colours' => '1',
-            'hidden' => 'hidden',
-            'aria-describedby' => 'easystud-restore-colours-help',
-        ]) . html_writer::tag('p', get_string('restoredefaultcolours_help', 'local_groupimport'), [
-            'id' => 'easystud-restore-colours-help',
-            'class' => 'easyedu-caption easyedu-form-note',
-        ]) . html_writer::tag('span', '', [
-            'role' => 'status',
-            'data-easystud-restore-colours-status' => get_string('restoredefaultcolours_pending', 'local_groupimport'),
-        ]),
-        'easyedu-ui'
-    );
-
-    // Mirror the live settings page rather than drawing an unrelated card
-    // dashboard. Each item represents one real overview panel or native
-    // setting row in the same five-section order used below.
-    $adminloadingskeletonspec = [
-        ['overview', 'control'],
-        ['overview', 'control', 'control', 'control', 'control', 'control'],
-        ['control'],
-        ['overview-wide', 'control-tall'],
-        ['overview', 'control', 'control', 'control', 'control', 'control'],
-    ];
-    $adminloadingskeletonsections = [];
-    foreach ($adminloadingskeletonspec as $sectionrows) {
-        $rows = [];
-        foreach ($sectionrows as $rowtype) {
-            if (str_starts_with($rowtype, 'overview')) {
-                $overviewclass = 'local-groupimport-admin-settings__loading-overview';
-                if ($rowtype === 'overview-wide') {
-                    $overviewclass .= ' local-groupimport-admin-settings__loading-overview--wide';
-                }
-
-                $rows[] = html_writer::div(
-                    html_writer::tag('span', '', [
-                        'class' => 'local-groupimport-admin-settings__loading-surface ' .
-                            'local-groupimport-admin-settings__loading-overview-icon',
-                    ]) .
-                        html_writer::div(
-                            html_writer::tag('span', '', [
-                                'class' => 'local-groupimport-admin-settings__loading-surface ' .
-                                    'local-groupimport-admin-settings__loading-card-title',
-                            ]) .
-                                html_writer::tag('span', '', [
-                                    'class' => 'local-groupimport-admin-settings__loading-surface ' .
-                                        'local-groupimport-admin-settings__loading-row',
-                                ]) .
-                                html_writer::tag('span', '', [
-                                    'class' => 'local-groupimport-admin-settings__loading-surface ' .
-                                        'local-groupimport-admin-settings__loading-row ' .
-                                        'local-groupimport-admin-settings__loading-row--short',
-                                ]),
-                            'local-groupimport-admin-settings__loading-overview-copy'
-                        ),
-                    $overviewclass
-                );
-                continue;
-            }
-
-            $controlclass = 'local-groupimport-admin-settings__loading-surface ' .
-                'local-groupimport-admin-settings__loading-form-control';
-            if ($rowtype === 'control-tall') {
-                $controlclass .= ' local-groupimport-admin-settings__loading-form-control--tall';
-            }
-            $rows[] = html_writer::div(
-                html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface ' .
-                        'local-groupimport-admin-settings__loading-form-label',
-                ]) .
-                    html_writer::tag('span', '', ['class' => $controlclass]),
-                'local-groupimport-admin-settings__loading-form-row'
-            );
-        }
-
-        $adminloadingskeletonsections[] = html_writer::div(
-            html_writer::tag('span', '', [
-                'class' => 'local-groupimport-admin-settings__loading-surface ' .
-                    'local-groupimport-admin-settings__loading-section-title',
-            ]) .
-                html_writer::div(implode('', $rows), 'local-groupimport-admin-settings__loading-form-rows'),
-            'local-groupimport-admin-settings__loading-section'
-        );
-    }
-
+    // The real page is present from the first frame: only the pending field controls
+    // wait behind component skeletons (js/admin_settings_loading.js, administration.css).
     $adminpageidentityhtml = html_writer::div(
         html_writer::span(
             get_string('easystudlabel', 'local_groupimport'),
@@ -518,58 +337,11 @@ if ($hassiteconfig) {
                 ['class' => 'local-groupimport-import__intro local-groupimport-admin-settings__page-description']
             ),
         'local-groupimport-admin-settings__page-identity',
-        ['data-easystud-page-identity' => 'administration']
-    );
-
-    // The classic bootstrap owns the normal loading lifecycle. Without scripts,
-    // restore native settings instead of retaining the decorative placeholder.
-    // admin_setting_heading renders its description through Markdown Extra.
-    // `noscript` is a context block there only when its tags occupy their own
-    // lines; otherwise the fallback style is wrapped in a paragraph and does
-    // not reliably participate in the no-script cascade.
-    $adminnoscriptfallback = html_writer::tag(
-        'noscript',
-        "\n" . html_writer::tag(
-            'style',
-            'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > ' .
-                '.settingsform > * { display: block !important; }' .
-                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > ' .
-                    '.settingsform > fieldset:first-of-type > * { display: block !important; }' .
-                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport ' .
-                    '[data-easystud-loading-skeleton] { display: none !important; }' .
-                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings ' .
-                    '.settingsform .local-groupimport-admin-settings__loading-skeleton[data-easystud-loading-skeleton] { ' .
-                    'display: none !important; }'
-        ) . "\n"
-    );
-
-    $adminloadingskeletonhtml = $adminnoscriptfallback . html_writer::div(
-        html_writer::div(
-            html_writer::tag('span', '', [
-                'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-eyebrow',
-            ]) .
-                html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-title',
-                ]) .
-                html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-intro',
-                ]),
-            'local-groupimport-admin-settings__loading-header'
-        ) .
-        html_writer::div(implode('', $adminloadingskeletonsections), 'local-groupimport-admin-settings__loading-sections'),
-        'local-groupimport-admin-settings__loading-skeleton',
         [
-            'data-easystud-loading-skeleton' => '1',
+            'data-easystud-page-identity' => 'administration',
             'data-easyedu-action-busy-label' => get_string('actioninprogress', 'local_groupimport'),
-            'aria-hidden' => 'true',
         ]
     );
-
-    $settings->add(new admin_setting_heading(
-        'local_groupimport/loadingoverview',
-        '',
-        $adminloadingskeletonhtml
-    ));
 
     $settings->add(new admin_setting_heading(
         'local_groupimport/pageidentity',
@@ -577,10 +349,30 @@ if ($hassiteconfig) {
         $adminpageidentityhtml
     ));
 
+    // Section 1: operation and views.
+    $operationhtml = html_writer::div(
+        $paragraph(get_string('adminfeaturesherobody', 'local_groupimport')) .
+            $paragraph(get_string('adminfeatureshowbody', 'local_groupimport'), 'easyedu-caption') .
+            html_writer::div(
+                html_writer::link(
+                    new moodle_url('/local/groupimport/reset_guide_welcome.php'),
+                    get_string('guidewelcomereset', 'local_groupimport'),
+                    ['class' => 'easyedu-button--secondary', 'data-local-groupimport-welcome-reset-open' => '1']
+                ) .
+                    $resetdialog .
+                    $paragraph(
+                        get_string('guidewelcomeresethelp', 'local_groupimport'),
+                        'easyedu-caption easyedu-form-note'
+                    ),
+                'easyedu-ui'
+            ),
+        'local-groupimport-admin-settings__section-copy local-groupimport-admin-settings--features',
+        ['data-local-groupimport-admin-features' => '1']
+    );
     $settings->add(new admin_setting_heading(
-        'local_groupimport/featuresoverview',
-        get_string('adminfeaturestitle', 'local_groupimport'),
-        $featureshtml
+        'local_groupimport/sectionoperation',
+        get_string('adminsectionoperation', 'local_groupimport'),
+        $operationhtml
     ));
 
     $settings->add(new admin_setting_configcheckbox(
@@ -609,10 +401,32 @@ if ($hassiteconfig) {
         ]
     ));
 
+    // Section 2: display and accessibility.
+    $displayhtml = html_writer::div(
+        $paragraph(get_string('adminsectiondisplaydesc', 'local_groupimport')) .
+            html_writer::div(
+                html_writer::tag('button', get_string('restoredefaultcolours', 'local_groupimport'), [
+                    'type' => 'button',
+                    'class' => 'easyedu-button--secondary',
+                    'data-easystud-restore-colours' => '1',
+                    'hidden' => 'hidden',
+                    'aria-describedby' => 'easystud-restore-colours-help',
+                ]) . html_writer::tag('p', get_string('restoredefaultcolours_help', 'local_groupimport'), [
+                    'id' => 'easystud-restore-colours-help',
+                    'class' => 'easyedu-caption easyedu-form-note',
+                ]) . html_writer::tag('span', '', [
+                    'role' => 'status',
+                    'data-easystud-restore-colours-status' => get_string('restoredefaultcolours_pending', 'local_groupimport'),
+                ]),
+                'easyedu-ui'
+            ),
+        'local-groupimport-admin-settings__section-copy local-groupimport-admin-settings--appearance',
+        ['data-local-groupimport-admin-appearance' => '1']
+    );
     $settings->add(new admin_setting_heading(
-        'local_groupimport/interfaceaccessibility',
-        get_string('interfaceaccessibility', 'local_groupimport'),
-        get_string('interfaceaccessibility_desc', 'local_groupimport')
+        'local_groupimport/sectiondisplay',
+        get_string('adminsectiondisplay', 'local_groupimport'),
+        $displayhtml
     ));
 
     // Default animation level; each user may choose their own (preference easyedu_motion_level).
@@ -626,12 +440,6 @@ if ($hassiteconfig) {
             'reduced' => get_string('motionlevelreduced', 'local_groupimport'),
             'minimal' => get_string('motionlevelminimal', 'local_groupimport'),
         ]
-    ));
-
-    $settings->add(new admin_setting_heading(
-        'local_groupimport/appearanceoverview',
-        get_string('adminappearancetitle', 'local_groupimport'),
-        $appearancehtml
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -689,45 +497,6 @@ if ($hassiteconfig) {
         0.11
     ));
 
-    $settings->add(new admin_setting_heading(
-        'local_groupimport/identifieroverview',
-        get_string('adminidentifierstitle', 'local_groupimport'),
-        $introhtml
-    ));
-
-    $settings->add(new admin_setting_configmultiselect(
-        'local_groupimport/alloweduserfields',
-        get_string('alloweduserfields', 'local_groupimport'),
-        get_string('alloweduserfields_desc', 'local_groupimport'),
-        ['username', 'email'],
-        $fieldoptions
-    ));
-
-    $participantdisplayhtml = html_writer::div(
-        html_writer::div(
-            html_writer::span('', 'fa fa-id-badge', ['aria-hidden' => 'true']) .
-                html_writer::div(
-                    html_writer::tag('h3', get_string('adminparticipantdisplayheroheading', 'local_groupimport')) .
-                        html_writer::tag('p', get_string('adminparticipantdisplayherobody', 'local_groupimport')),
-                    'local-groupimport-admin-settings__hero-copy'
-                ),
-            'local-groupimport-admin-settings__hero'
-        ) .
-            html_writer::div(
-                html_writer::tag('strong', get_string('adminparticipantdisplayhowtitle', 'local_groupimport')) .
-                    html_writer::tag('span', get_string('adminparticipantdisplayhowbody', 'local_groupimport')),
-                'local-groupimport-admin-settings__hint'
-            ),
-        'local-groupimport-admin-settings local-groupimport-admin-settings--participant-display',
-        ['data-local-groupimport-admin-participant-display' => '1']
-    );
-
-    $settings->add(new admin_setting_heading(
-        'local_groupimport/participantdisplayoverview',
-        get_string('adminparticipantdisplaytitle', 'local_groupimport'),
-        $participantdisplayhtml
-    ));
-
     $settings->add(new admin_setting_configselect(
         'local_groupimport/participantprimarybadgefield',
         get_string('participantprimarybadgefield', 'local_groupimport'),
@@ -766,5 +535,65 @@ if ($hassiteconfig) {
         get_string('participantdetailfield2_desc', 'local_groupimport'),
         '',
         $participantdisplayfieldoptions
+    ));
+
+    // Section 3: identification and import.
+    $identificationhtml = html_writer::div(
+        $paragraph(get_string('adminidentifiersherobody', 'local_groupimport')) .
+            html_writer::div(
+                html_writer::div(
+                    html_writer::tag('h4', get_string('adminidentifierscorefields', 'local_groupimport')) .
+                        $renderchips($corefieldoptions, 'core'),
+                    'local-groupimport-admin-settings__field-card'
+                ) .
+                    html_writer::div(
+                        html_writer::tag('h4', get_string('adminidentifierscustomfields', 'local_groupimport')) .
+                            $renderchips($customfieldoptions, 'custom'),
+                        'local-groupimport-admin-settings__field-card'
+                    ),
+                'local-groupimport-admin-settings__field-grid'
+            ) .
+            $paragraph(get_string('adminidentifiershowbody', 'local_groupimport'), 'easyedu-caption'),
+        'local-groupimport-admin-settings__section-copy',
+        ['data-local-groupimport-admin-settings' => '1']
+    );
+    $settings->add(new admin_setting_heading(
+        'local_groupimport/sectionidentification',
+        get_string('adminsectionidentification', 'local_groupimport'),
+        $identificationhtml
+    ));
+
+    $settings->add(new admin_setting_configmultiselect(
+        'local_groupimport/alloweduserfields',
+        get_string('alloweduserfields', 'local_groupimport'),
+        get_string('alloweduserfields_desc', 'local_groupimport'),
+        ['username', 'email'],
+        $fieldoptions
+    ));
+
+    $settings->add(new admin_setting_configtext(
+        'local_groupimport/importmaxrows',
+        get_string('importmaxrows', 'local_groupimport'),
+        get_string('importmaxrows_desc', 'local_groupimport'),
+        50000,
+        PARAM_INT
+    ));
+
+    // Section 4: history and privacy.
+    $settings->add(new admin_setting_heading(
+        'local_groupimport/sectionhistory',
+        get_string('adminsectionhistory', 'local_groupimport'),
+        html_writer::div(
+            $paragraph(get_string('adminsectionhistorydesc', 'local_groupimport')),
+            'local-groupimport-admin-settings__section-copy'
+        )
+    ));
+
+    $settings->add(new admin_setting_configtext(
+        'local_groupimport/historyretentiondays',
+        get_string('historyretentiondays', 'local_groupimport'),
+        get_string('historyretentiondays_desc', 'local_groupimport'),
+        365,
+        PARAM_INT
     ));
 }

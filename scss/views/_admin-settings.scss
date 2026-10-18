@@ -3,59 +3,45 @@
 // This file only targets the Moodle admin settings page for this plugin. It
 // keeps Moodle's native admin form controls and applies the EasyEdu visual
 // language around them so settings remain accessible and theme-overridable.
+//
+// K18-15: four sections (operation and views, display and accessibility,
+// identification and import, history and privacy) on the Student Management
+// proportions: Inter 20/30 page title, 16/24 section titles, 14.4/21.6 text,
+// 12.16/18.24 labels, 38 px fields (44 px touch), 32 px page margins and two
+// 752 px columns spaced by 32 px on a 1600 px viewport, stacked at 390 px.
+// K18-18: the real page is painted from the first frame; only the field
+// controls that wait for Moodle's dependency logic sit behind Kit skeletons.
 @use "../easyedu" as easyedu;
 @use "../easyedu/foundation-classes" as foundations;
 
 // `local-groupimport-admin-settings-page--loading` is server-rendered even
 // without scripts. Moodle adds `jsenabled` only from its early body bootstrap,
 // so it is the reliable gate for this decorative JavaScript-only state.
-body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {
-  // Moodle's generated settings CSS uses an ID-qualified `display: none` for
-  // this same node. The loading marker is the deliberate exception.
-  display: grid !important;
-  @include easyedu.loading-opacity-transition(180ms);
-}
+// Component skeletons (as in Student Management): each pending control keeps its
+// exact footprint, shows the Kit skeleton surface with its shimmer and hides its
+// content. Titles, descriptions, labels and actions are never masked.
+// The page id is carried by the body itself, so the loading gate is a compound selector.
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings {
+  .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)),
+  .form-item .easyedu-color-picker {
+    @include easyedu.navigation-skeleton-cue-overlay;
 
-body.jsenabled.local-groupimport-admin-settings-page--loading
-  #page-admin-setting-local_groupimport.is-easystud-loading-skeleton-exiting
-  [data-easystud-loading-skeleton] {
-  @include easyedu.loading-opacity-hidden;
-}
+    pointer-events: none;
 
-body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport {
-  #adminsettings > .settingsform > * {
-    display: none;
-  }
-
-  #adminsettings > .settingsform > .formsettingheading:first-of-type {
-    display: block;
-    margin: 0;
-  }
-
-  #adminsettings > .settingsform > fieldset:first-of-type {
-    display: block;
-    margin: 0;
+    // Natural control size first, then the Kit field floor, so the footprint matches.
+    & {
+      min-block-size: var(--easyedu-control-height);
+    }
 
     > * {
-      display: none !important;
-    }
-
-    > .formsettingheading:first-of-type {
-      display: block !important;
-      margin: 0;
+      visibility: hidden;
     }
   }
 
-  [data-easystud-loading-skeleton] {
-    display: grid;
-  }
-
-  // Moodle's broad settingsform child reset has two IDs and wins over the
-  // generic loading selector above. Match the skeleton explicitly so the
-  // structural placeholder remains visible during the loading state.
-  #adminsettings .settingsform
-    .local-groupimport-admin-settings__loading-skeleton[data-easystud-loading-skeleton] {
-    display: grid;
+  // The default value and the description of a pending field stay readable text.
+  .form-item .form-setting > .form-defaultinfo,
+  .form-item .form-setting > .form-text.mt-2 {
+    visibility: visible;
   }
 }
 
@@ -67,176 +53,75 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   #adminsettings {
     @include foundations.foundation-scope;
     @include easyedu.type-ui-base;
+
+    // Measured Student Management rhythm (Penpot K18-15): every role uses a 1.5 line height.
+    --easyedu-line-height-title: 1.5;
+    --easyedu-line-height-body: 1.5;
   }
 
-  &.is-easystud-loading-content-entering #adminsettings .settingsform {
-    opacity: 0;
-    pointer-events: none;
-    @include easyedu.loading-opacity-transition(180ms);
+  // Controls replacing their skeletons fade in once, as the lists of Student Management do.
+  &.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {
+    animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
   }
 
-  &.is-easystud-loading-content-entered #adminsettings .settingsform {
-    opacity: 1;
+  &.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {
+    animation: none;
   }
 
-  .local-groupimport-admin-settings__loading-skeleton {
-    display: none;
-    gap: 1rem;
-    padding: 0.5rem 0.25rem 1rem;
-    @include easyedu.loading-appearance;
-  }
-
-  .local-groupimport-admin-settings__loading-header {
-    @include easyedu.skeleton-page-heading;
-  }
-
-  .local-groupimport-admin-settings__loading-sections {
-    display: grid;
-    gap: 1.25rem;
-  }
-
-  .local-groupimport-admin-settings__loading-section {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .local-groupimport-admin-settings__loading-section-title {
-    height: 0.9rem;
-    width: min(15rem, 42%);
-  }
-
-  .local-groupimport-admin-settings__loading-form-rows {
-    display: grid;
-    gap: 0.65rem;
-  }
-
-  .local-groupimport-admin-settings__loading-form-row {
-    align-items: center;
-    display: grid;
-    gap: 0.8rem;
-    grid-template-columns: minmax(8rem, 0.36fr) minmax(0, 1fr);
-    min-height: 5.4rem;
-    padding: 0.9rem;
-
-    @include easyedu.skeleton-section-frame;
-
-    & {
-      display: grid;
+  @include easyedu.motion-restricted {
+    &.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {
+      animation: none;
     }
   }
 
-  .local-groupimport-admin-settings__loading-form-label {
-    height: 0.75rem;
-    width: min(12rem, 82%);
-  }
-
-  .local-groupimport-admin-settings__loading-form-control {
-    height: 2.7rem;
-    width: min(100%, 34rem);
-  }
-
-  .local-groupimport-admin-settings__loading-form-control--tall {
-    height: 6.2rem;
-  }
-
-  .local-groupimport-admin-settings__loading-overview {
-    align-items: start;
-    display: grid;
-    gap: 0.8rem;
-    grid-template-columns: 2.55rem minmax(0, 1fr);
-    min-height: 6.5rem;
-    padding: 1rem;
-
-    @include easyedu.skeleton-section-frame;
-
-    & {
-      display: grid;
-    }
-  }
-
-  .local-groupimport-admin-settings__loading-overview--wide {
-    min-height: 11rem;
-  }
-
-  .local-groupimport-admin-settings__loading-overview-icon {
-    height: 2.55rem;
-    width: 2.55rem;
-  }
-
-  .local-groupimport-admin-settings__loading-overview-copy {
-    display: grid;
-    gap: 0.65rem;
-    min-width: 0;
-  }
-
-  .local-groupimport-admin-settings__loading-surface {
-    @include easyedu.skeleton-surface($radius: 0.68rem);
-    @include easyedu.skeleton-shimmer-direct(
-      $duration: var(--easyedu-loading-shimmer-duration)
-    );
-  }
-
-  .local-groupimport-admin-settings__loading-eyebrow {
-    height: 0.7rem;
-    width: min(9rem, 32%);
-  }
-
-  .local-groupimport-admin-settings__loading-title {
-    height: 1.55rem;
-    width: min(22rem, 72%);
-  }
-
-  .local-groupimport-admin-settings__loading-intro {
-    height: 0.9rem;
-    width: min(38rem, 94%);
-  }
-
-  .local-groupimport-admin-settings__loading-card-title {
-    height: 1.15rem;
-    width: 62%;
-  }
-
-  .local-groupimport-admin-settings__loading-field {
-    height: 2.6rem;
-    width: 100%;
-  }
-
-  .local-groupimport-admin-settings__loading-field--short {
-    height: 2.6rem;
-    width: 72%;
-  }
-
-  .local-groupimport-admin-settings__loading-row {
-    height: 0.85rem;
-    width: 84%;
-  }
-
-  .local-groupimport-admin-settings__loading-row--short {
-    width: 58%;
-  }
-
+  // Page frame: content 1536 px with 32 px margins on a wide viewport, 16 px on a phone.
   .settingsform {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 76rem;
+    box-sizing: border-box;
+    margin-inline: auto;
+    max-inline-size: 100rem;
+    padding-inline: 2rem;
+
+    @media (max-width: 48rem) {
+      padding-inline: 1rem;
+    }
   }
 
   #adminsettings {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: min(100%, 76rem);
+    margin-inline: auto;
+    max-inline-size: 100%;
   }
 
   // Moodle prints the settings-page name as a direct H2. The custom identity
-  // immediately below now carries that same product name plus the dedicated
-  // Administration title and description, so retaining the native H2 produced
-  // the two visible EasyStud labels reported in Wave 10 review.
+  // immediately below carries the product name plus the dedicated Administration
+  // title and description, so the native H2 would repeat the EasyStud label.
   #adminsettings > .settingsform > h2 {
     display: none;
   }
 
-  #admin-pageidentity {
-    margin: 0 0 1.2rem;
+  #adminsettings > .settingsform > fieldset {
+    border: 0;
+    column-count: 2;
+    column-gap: 2rem;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+
+    // Sections stack on narrow viewports (24 px rhythm between them).
+    @media (max-width: 64rem) {
+      column-count: 1;
+    }
+
+    > .clearer {
+      display: none;
+    }
+  }
+
+  // Moodle's generic heading box carries a card padding and border: reset it.
+  #adminsettings .formsettingheading {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
 
     .form-description,
     .form-setting {
@@ -244,83 +129,79 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     }
   }
 
+  #adminsettings .formsettingheading:has(.local-groupimport-admin-settings__page-identity) {
+    column-span: all;
+    margin: 0 0 1.5rem;
+  }
+
   .local-groupimport-admin-settings__page-identity {
     display: block;
-    padding-block: 0.15rem;
+    padding-block: 0;
+  }
+
+  .local-groupimport-admin-settings__page-eyebrow {
+    @include easyedu.type-caption;
+
+    display: block;
+    line-height: var(--easyedu-line-height-body);
   }
 
   // Project Moodle's native headings onto the measured Foundation roles.
-  // The Mass Import class is retained for compatibility, not for its density.
   .local-groupimport-admin-settings__page-title {
     @include easyedu.type-page-title;
+
+    border: 0;
+    font-weight: var(--easyedu-font-weight-semibold);
+    margin: 0;
+    padding: 0;
   }
 
   .local-groupimport-admin-settings__page-description {
     @include easyedu.type-body;
+
+    margin: 0.25rem 0 0;
+    max-inline-size: 58rem;
   }
 
-  // Shared section flow adapts Moodle's native fieldset, not individual rows.
-  #adminsettings .settingsform {
-    @include easyedu.moodle-admin-section-spacing;
-  }
-
-  // core_admin/setting_heading renders h3.main beside (not inside) its
-  // .formsettingheading description. Keep the compatibility form as well.
+  // Section titles: native h3.main, 16/24 semibold, kept with their description.
   #adminsettings h3.main,
   #adminsettings .formsettingheading h3 {
     @include easyedu.type-section-title;
+
+    border: 0;
+    break-after: avoid;
+    margin: 2rem 0 0.25rem;
+    padding: 0;
   }
 
-  .local-groupimport-admin-settings {
-    @include easyedu.panel-shell;
-
-    // Keep administration panels on the same quiet surface family as the
-    // Student Management cards. The former radial/diagonal treatment made
-    // the identifier explanation compete with the actual setting controls.
-    background: var(--easyedu-semantic-panel-bg);
-    display: grid;
-    gap: 1rem;
-    margin: 0.65rem 0 1.15rem;
-    overflow: hidden;
-    padding: 1rem;
-  }
-
-  .local-groupimport-admin-settings__hero {
-    align-items: flex-start;
-    display: grid;
-    gap: 0.9rem;
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-
-  .local-groupimport-admin-settings__hero > .fa {
-    font-size: var(--easyedu-font-size-body);
-
-    @include easyedu.section-icon-tile;
-  }
-
-  .local-groupimport-admin-settings__hero-copy {
-    min-width: 0;
-
-    h3 {
-      @include easyedu.type-panel-title;
-
-      border: 0;
-      margin: 0 0 0.35rem;
-    }
+  .local-groupimport-admin-settings__section-copy {
+    break-before: avoid;
+    margin-block-end: 1rem;
 
     p {
       @include easyedu.type-body;
 
-      margin: 0;
-      max-width: 58rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .easyedu-caption {
+      @include easyedu.type-caption;
+
+      line-height: var(--easyedu-line-height-body);
+    }
+
+    .easyedu-form-note {
+      margin-block-start: 0.5rem;
     }
   }
 
+  // Identifier fields: two compact lists of Kit chips.
   .local-groupimport-admin-settings__field-grid {
     align-items: stretch;
     display: grid;
-    gap: 0.85rem;
+    gap: 0.75rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-block: 0.5rem;
   }
 
   .local-groupimport-admin-settings__field-card {
@@ -328,12 +209,16 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 
     align-content: start;
     display: grid;
-    gap: 0.65rem;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
 
     h4 {
-      @include easyedu.type-control-label;
+      @include easyedu.type-caption;
 
+      border: 0;
       color: var(--easyedu-text-muted);
+      font-weight: var(--easyedu-font-weight-semibold);
+      line-height: var(--easyedu-line-height-body);
       margin: 0;
     }
   }
@@ -345,7 +230,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__chip {
-    @include easyedu.token-pill(var(--easyedu-info-soft), #c8dff1, var(--easyedu-primary-strong));
+    @include easyedu.token-pill(var(--easyedu-info-soft), var(--easyedu-semantic-border-primary), var(--easyedu-primary-strong));
 
     gap: 0.38rem;
     max-width: 100%;
@@ -358,8 +243,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 
   .local-groupimport-admin-settings__chip--custom {
     background: var(--easyedu-accent-soft);
-    border-color: #c5e4d4;
-    color: color-mix(in srgb, var(--easyedu-accent) 82%, #000 18%);
+    border-color: var(--easyedu-semantic-border-success);
+    color: color-mix(in srgb, var(--easyedu-accent) 82%, var(--easyedu-text) 18%);
   }
 
   .local-groupimport-admin-settings__chip-label,
@@ -376,7 +261,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__chip-key {
-    color: color-mix(in srgb, currentColor 68%, #fff 32%);
+    color: color-mix(in srgb, currentColor 68%, var(--easyedu-surface) 32%);
     font-weight: var(--easyedu-font-weight-medium);
     max-width: 12rem;
   }
@@ -388,134 +273,112 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     @include easyedu.inline-empty-state-compact;
   }
 
-  .local-groupimport-admin-settings__hint {
-    align-items: flex-start;
-    background: color-mix(in srgb, var(--easyedu-accent-soft) 72%, #fff 28%);
-    border: 1px solid #c8e4d5;
-    border-radius: var(--easyedu-control-radius);
-    color: #315b48;
-    display: grid;
-    gap: 0.15rem;
-    padding: 0.75rem 0.85rem;
-
-    strong {
-      @include easyedu.type-control-label;
-
-      color: color-mix(in srgb, var(--easyedu-accent) 76%, #000 24%);
-    }
-
-    span {
-      @include easyedu.type-caption;
-    }
+  // Setting rows: label above the control, never kept in a card (the previous
+  // card-per-setting recipe made every element too large).
+  #adminsettings .form-item.row {
+    break-inside: avoid;
+    display: block;
+    margin: 0 0 1rem;
+    padding: 0;
   }
 
-  #admin-identifieroverview {
-    margin-bottom: 0.85rem;
-
-    .form-description,
-    .form-setting {
-      max-width: none;
-    }
-  }
-
-  #admin-featuresoverview {
-    margin-bottom: 0.85rem;
-
-    .form-description,
-    .form-setting {
-      max-width: none;
-    }
-  }
-
-  #admin-appearanceoverview {
-    margin-bottom: 0.85rem;
-
-    .form-description,
-    .form-setting {
-      max-width: none;
-    }
-  }
-
-  #admin-participantdisplayoverview {
-    margin-bottom: 0.85rem;
-
-    .form-description,
-    .form-setting {
-      max-width: none;
-    }
-  }
-
-  #admin-alloweduserfields,
-  #admin-enablesimplifiedview,
-  #admin-showcompleteview,
-  #admin-defaultlayoutmode,
-  #admin-enableanimations,
-  #admin-themeprimarycolor,
-  #admin-themeaccentcolor,
-  #admin-themeparticipantcolor,
-  #admin-themegroupcolor,
-  #admin-themegroupingcolor,
-  #admin-participantprimarybadgefield,
-  #admin-participantprimarybadgebgcolor,
-  #admin-participantprimarybadgetextcolor,
-  #admin-participantdetailfield1,
-  #admin-participantdetailfield2 {
-    @include easyedu.filter-shell;
-
+  #adminsettings .form-item .form-label,
+  #adminsettings .form-item .form-setting {
     box-sizing: border-box;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0.75rem;
-    max-width: 100%;
+    flex: none;
+    max-inline-size: 100%;
+    padding: 0;
+    text-align: start;
     width: 100%;
+  }
 
-    .form-label label {
-      @include easyedu.type-control-label;
+  #adminsettings .form-item .form-setting {
+    display: block;
+  }
+
+  // Moodle right-aligns the label column with an important utility; a start-aligned
+  // flex column keeps the label and its technical name at the inline start.
+  #adminsettings .form-item .form-label {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-block-end: 0.25rem;
+
+    label {
+      @include easyedu.type-caption;
+
+      color: var(--easyedu-text);
+      font-weight: var(--easyedu-font-weight-semibold);
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
     }
 
-    // Moodle renders admin_setting descriptions as .form-text, not the
-    // .form-description used by other forms. Keep both on the Kit caption role.
+    .form-shortname {
+      @include easyedu.type-caption;
+
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
+    }
+  }
+
+  // Moodle renders admin_setting descriptions as .form-text, not the
+  // .form-description used by other forms. Keep both on the Kit caption role.
+  #adminsettings .form-item {
     .form-description,
-    .form-setting > .form-text,
+    .form-setting > .form-text.mt-2,
     .form-setting > .form-defaultinfo {
       @include easyedu.type-caption;
 
-      margin-top: 0.3rem;
-      max-width: 56rem;
+      line-height: var(--easyedu-line-height-body);
+      margin-block: 0.25rem 0;
+      max-inline-size: none;
     }
 
-    .form-setting > div:first-child {
-      max-width: min(100%, 34rem);
+    .form-text.mt-2 p {
+      margin: 0;
     }
   }
 
-  #admin-enablesimplifiedview,
-  #admin-showcompleteview,
-  #admin-enableanimations {
-    .form-setting > div:first-child {
-      max-width: min(100%, 22rem);
+  // Fields: 38 px (Kit control height) on desktop, 44 px (Kit touch target) on touch.
+  #adminsettings .form-item .form-setting {
+    input.form-control[type="text"] {
+      @include easyedu.foundation-text-field;
+
+      box-sizing: border-box;
+      inline-size: 100%;
+      max-inline-size: 100%;
     }
 
-    .form-check {
+    > .defaultsnext:not(.easyedu-ui) {
+      max-inline-size: 100%;
+    }
+
+    .form-check,
+    .form-checkbox {
       align-items: center;
       display: flex;
-      min-height: 2.6rem;
+      min-block-size: var(--easyedu-control-height);
     }
   }
 
-  #admin-participantprimarybadgefield,
-  #admin-themeprimarycolor,
-  #admin-themeaccentcolor,
-  #admin-themeparticipantcolor,
-  #admin-themegroupcolor,
-  #admin-themegroupingcolor,
-  #admin-participantprimarybadgebgcolor,
-  #admin-participantprimarybadgetextcolor,
-  #admin-participantdetailfield1,
-  #admin-participantdetailfield2 {
-    .form-setting > div:first-child {
-      max-width: min(100%, 22rem);
-    }
+  // Short numeric fields keep a compact width instead of stretching.
+  #admin-historyretentiondays input.form-control[type="text"],
+  #admin-importmaxrows input.form-control[type="text"] {
+    inline-size: 8rem;
+  }
+
+  #admin-historyretentiondays .form-setting > .defaultsnext,
+  #admin-importmaxrows .form-setting > .defaultsnext {
+    display: inline-block;
+    margin-inline-end: 0.75rem;
+    vertical-align: middle;
+  }
+
+  #admin-historyretentiondays .form-setting > .form-defaultinfo,
+  #admin-importmaxrows .form-setting > .form-defaultinfo {
+    display: inline-block;
+    margin-block: 0;
+    vertical-align: middle;
   }
 
   // Keep the native setting markup and use the public Kit layout adapter:
@@ -528,22 +391,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   #admin-participantprimarybadgebgcolor,
   #admin-participantprimarybadgetextcolor {
     @include easyedu.moodle-admin-color-setting;
-  }
-
-  .local-groupimport-admin-settings--participant-display {
-    background: var(--easyedu-semantic-panel-bg);
-
-    .local-groupimport-admin-settings__hero > .fa {
-      @include easyedu.section-icon-tile(
-        var(--local-groupimport-easystud-accent),
-        var(--local-groupimport-easystud-accent-soft),
-        var(--easyedu-semantic-border-success)
-      );
-    }
-  }
-
-  .local-groupimport-admin-settings--features {
-    background: var(--easyedu-semantic-panel-bg);
   }
 
   #adminsettings > .settingsform > .row:last-child {
@@ -565,8 +412,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     input[type="submit"] {
       &:focus-visible {
         @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-        border-color: var(--easyedu-control-focus-border) !important;
-        box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+        border-color: var(--easyedu-control-focus-border);
+        box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
       }
 
       &:focus:not(:focus-visible) {
@@ -580,8 +427,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   #id_s_local_groupimport_enableanimations {
     &:focus-visible {
       @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+      border-color: var(--easyedu-control-focus-border);
+      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
     }
 
     &:focus:not(:focus-visible) {
@@ -594,61 +441,47 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   .form-setting > .easyedu-ui,
   .form-setting .easyedu-searchable-choice {
     @include easyedu.setting-choice-width;
+
+    inline-size: 100%;
+    max-inline-size: 100%;
   }
+
   // The native fallback covers every plugin setting, including future fields.
   // Enhanced controls use public Kit markup/classes instead of private paint.
   select[name^="s_local_groupimport_"][multiple] {
     @include easyedu.multi-select-list;
 
-    width: min(100%, 34rem) !important;
+    width: 100%;
   }
 
   select[name^="s_local_groupimport_"]:not([multiple]) {
     @include easyedu.native-select-control;
 
     @include easyedu.setting-choice-width;
-    width: min(100%, 28rem) !important;
+    width: 100%;
   }
 
-  @media (max-width: 48rem) {
-    .local-groupimport-admin-settings {
-      padding: 0.85rem;
+  // Touch targets: the Kit touch size for every field of the page.
+  @media (max-width: 48rem), (pointer: coarse) {
+    #adminsettings .form-item .form-setting {
+      input.form-control[type="text"],
+      .easyedu-searchable-choice__trigger {
+        min-block-size: var(--easyedu-touch-target-min);
+      }
+
+      .form-check,
+      .form-checkbox {
+        min-block-size: var(--easyedu-touch-target-min);
+      }
     }
 
-    .local-groupimport-admin-settings__hero,
+    #adminsettings h3.main,
+    #adminsettings .formsettingheading h3 {
+      margin-block-start: 1.5rem;
+    }
+
     .local-groupimport-admin-settings__field-grid {
       grid-template-columns: minmax(0, 1fr);
-    }
-
-    .local-groupimport-admin-settings__loading-form-row {
-      align-items: stretch;
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .local-groupimport-admin-settings__loading-overview {
-      grid-template-columns: 2.2rem minmax(0, 1fr);
-    }
-
-    .local-groupimport-admin-settings__loading-overview-icon {
-      height: 2.2rem;
-      width: 2.2rem;
-    }
-
-    .local-groupimport-admin-settings__loading-form-control {
-      width: 100%;
-    }
-  }
-
-  @media (forced-colors: active) {
-    .local-groupimport-admin-settings__loading-surface {
-      animation: none;
-    }
-  }
-
-  // This rule starts on the page body: the Kit mixin reads the level classes on it.
-  @include easyedu.motion-restricted {
-    .local-groupimport-admin-settings__loading-surface {
-      animation: none;
     }
   }
 }
