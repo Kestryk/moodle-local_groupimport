@@ -299,8 +299,6 @@ body:has(.easyedu-guided-panel[data-easyedu-guide-path]:not([hidden])) .easyedu-
 }
 .local-groupimport-easystud__header-actions .easyedu-guide__launcher {flex: 0 0 auto;margin-right: 0;
 }
-.local-groupimport-easystud__header-actions .easyedu-guide__launcher-label {border: 0;clip: rect(0 0 0 0);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;white-space: nowrap;width: 1px;
-}
 
 .local-groupimport-easystud .easyedu-guided-panel {background: rgba(255, 255, 255, 0.96);border: 1px solid #cfe1ef;border-left: 0.35rem solid #29724d;border-radius: 1rem;bottom: calc(1.45rem + var(--easyedu-guide-bottom-obstruction, 0px));box-shadow: 0 0.75rem 1.8rem rgba(31, 42, 55, 0.14);box-sizing: border-box;display: grid;gap: 0.65rem;grid-template-rows: auto minmax(0, 1fr) auto auto;left: 1.25rem;max-height: calc(100vh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));max-height: calc(100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));inline-size: min(26rem, 100vw - 2.5rem);max-inline-size: calc(100vw - 2.5rem);max-width: min(92vw, 28rem);min-width: 0;overflow: hidden;padding: 0.78rem;position: fixed;right: auto;transition: max-width 0.28s var(--easyedu-motion-ease), padding 0.24s ease, gap 0.24s ease, left 0.24s ease, right 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;width: min(26rem, 100vw - 2.5rem);z-index: 1070;
 }
