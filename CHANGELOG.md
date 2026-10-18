@@ -1,3 +1,5 @@
+- 2026-10-18 [N1] K16-80 F25M: raccorder les dégagements des actions, l’inset des membres, le pied de récupération et le padding nul des actions au Kit ; centrer le libellé de récupération sans modifier son cadre.
+
 - 2026-10-18 [N0] K16-80 F25L: raccorder les variantes tactiles de cadre et d’en-tête, la taille responsive des titres et le cadre compact des lignes liées au Kit.
 
 - 2026-10-18 [N0] K16-80 F25K: raccorder les empreintes de champs, titres, actions et cartes d’attente aux recettes de chargement Kit, sans changer leurs dimensions.

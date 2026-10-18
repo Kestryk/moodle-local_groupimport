@@ -204,7 +204,7 @@
 // Quiet recovery action inside an already framed selection capsule. Keep the
 // normal selection-action density, type, icon gap, state Motion and keyboard
 // ring; the outer capsule owns the persistent border, not this inner control.
-@mixin selection-recovery-action($natural-icons: false) {
+@mixin selection-recovery-action($natural-icons: false, $natural-labels: false) {
   @include selection-action(neutral, $icon-line-height: if($natural-icons, normal, 1));
   & { background: transparent; border-color: transparent; }
   &:focus { background: transparent; }
@@ -218,6 +218,9 @@
   &:disabled,
   &[aria-disabled="true"],
   &.disabled { background: transparent; border-color: transparent; }
+  @if $natural-labels {
+    & { line-height: normal; }
+  }
 }
 
 // Compact neutral reset used inside filter panels. It intentionally shares the
@@ -823,4 +826,10 @@
   min-height: 2.35rem;
   @content;
   padding: 0.45rem 0.55rem;
+}
+
+
+// The existing small recovery action owns the companion row's accepted extent.
+@mixin selection-recovery-row-extent {
+  block-size: 1.9rem;
 }

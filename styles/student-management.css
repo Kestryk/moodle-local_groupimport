@@ -2181,6 +2181,8 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-group__select-all.btn[aria-disabled=true],
 .local-groupimport-easystud-group__select-all.btn.disabled {background: transparent;border-color: transparent;
 }
+.local-groupimport-easystud-group__select-all.btn {line-height: normal;
+}
 .local-groupimport-easystud-grouping__groups {--local-groupimport-grouping-groups-collapsed-height: 16rem;--local-groupimport-grouping-groups-expanded-height: 48rem;max-height: none;overflow: visible;position: relative;transition: margin var(--easyedu-motion-fast) ease;
 }
 .local-groupimport-easystud-grouping__groups.has-extra-groups:not(.is-expanded) {max-height: none;
