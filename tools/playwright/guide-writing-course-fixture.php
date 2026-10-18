@@ -106,11 +106,13 @@ if ($action === 'cleanup') {
     if ($course) {
         $snapshot['groups'] = array_values($DB->get_records('groups', ['courseid' => $id], 'id', 'id,name'));
         $snapshot['memberships'] = array_values($DB->get_records_sql(
-            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?',
+            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm ' .
+                'JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?',
             [$id]
         ));
         $snapshot['groupingAssignments'] = array_values($DB->get_records_sql(
-            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?',
+            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg ' .
+                'JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?',
             [$id]
         ));
     }

@@ -256,8 +256,10 @@ $check(isset($config['pathLabels'][mass_import_guide::PATH_ID]), 'guided path la
 foreach (['en', 'fr'] as $lang) {
     $currentlanguage = $lang;
     $slide = mass_import_guide::template_data(['allowedfields' => ['Username']])['slides'][4];
-    $check($slide['guidedpath'] === mass_import_guide::PATH_ID && trim($slide['guidedpathwarning']) !== '',
-        $lang . ': lesson 5 carries the path card and its K18-07 warning');
+    $check(
+        $slide['guidedpath'] === mass_import_guide::PATH_ID && trim($slide['guidedpathwarning']) !== '',
+        $lang . ': lesson 5 carries the path card and its K18-07 warning'
+    );
 }
 
 if ($failures) {

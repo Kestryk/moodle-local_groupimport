@@ -196,8 +196,10 @@ final class batch_reader {
             }
         }
         // The is_enrolled function checks the current actor's active cached enrolment first.
-        if (!empty($USER->id) && ($userids === null || in_array((int)$USER->id, $userids, true)) &&
-                is_enrolled($context, $USER->id)) {
+        if (
+            !empty($USER->id) && ($userids === null || in_array((int)$USER->id, $userids, true)) &&
+                is_enrolled($context, $USER->id)
+        ) {
             $users[$USER->id] = (object)['id' => $USER->id];
         }
         foreach ($users as $id => $user) {
@@ -235,9 +237,11 @@ final class batch_reader {
             [$groupwhere, $groupparams] = self::bounded_where('g.id', $groupchunk, 'relgroup');
             foreach ($userchunks as $userchunk) {
                 [$userwhere, $userparams] = self::bounded_where('m.userid', $userchunk, 'reluser');
-                $records = $DB->get_recordset_sql('SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
+                $records = $DB->get_recordset_sql(
+                    'SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
                     'JOIN {groups} g ON g.id = m.groupid WHERE g.courseid = :courseid' . $groupwhere . $userwhere,
-                    ['courseid' => $courseid] + $groupparams + $userparams);
+                    ['courseid' => $courseid] + $groupparams + $userparams
+                );
                 try {
                     foreach ($records as $record) {
                         $members[(int)$record->groupid][(int)$record->userid] = true;
@@ -246,9 +250,11 @@ final class batch_reader {
                     $records->close();
                 }
             }
-            $records = $DB->get_recordset_sql('SELECT a.id, a.groupid, a.groupingid FROM {groupings_groups} a ' .
+            $records = $DB->get_recordset_sql(
+                'SELECT a.id, a.groupid, a.groupingid FROM {groupings_groups} a ' .
                 'JOIN {groups} g ON g.id = a.groupid WHERE g.courseid = :courseid' . $groupwhere,
-                ['courseid' => $courseid] + $groupparams);
+                ['courseid' => $courseid] + $groupparams
+            );
             try {
                 foreach ($records as $record) {
                     $assignments[(int)$record->groupid][(int)$record->groupingid] = true;
