@@ -273,8 +273,7 @@ echo html_writer::tag('script', json_encode([
 ]);
 
 // The shared navigation replaces the legacy Mass Import action row only. The
-// Skeleton lifecycle, its root attributes and real-content wrapper stay owned
-// by the loading implementation.
+// The loading implementation keeps the real frame visible while binding its controls.
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
 // The Guide launcher sits first in the navigation (compass only, no welcome bubble: Kevin 18/10, Q4).
 $navigationdata['hasguide'] = true;
@@ -285,6 +284,13 @@ $navigationdata['guidehtml'] = $OUTPUT->render_from_template(
         'motionlevel' => $motionlevel,
         'motionpolicy' => $motionlevel === 'minimal' ? 'disabled' : 'enabled',
     ])
+);
+// Opt this native launcher into the page's pending-control treatment, without
+// changing the shared Guide template, content or readiness callbacks.
+$navigationdata['guidehtml'] = str_replace(
+    'data-easyedu-guide-open="1"',
+    'data-easyedu-guide-open="1" data-easyedu-loading-control="1"',
+    $navigationdata['guidehtml']
 );
 $themestyle = local_groupimport_get_theme_style();
 $themerailroles = local_groupimport_get_theme_rail_roles();
@@ -307,6 +313,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'data-easyedu-motion-policy' => $motionlevel === 'minimal' ? 'disabled' : 'enabled',
     'data-easystud-loading-state' => 'loading',
     'data-easyedu-loading-bootstrap' => '1',
+    'data-easyedu-loading-frame' => '1',
     'data-easyedu-loading-ready-attribute' => 'data-easyedu-loading-ready',
     'data-easyedu-loading-recover-late-ready' => '1',
     'data-easyedu-action-busy-label' => get_string('actioninprogress', 'local_groupimport'),
@@ -316,72 +323,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'style' => $themestyle,
         ]);
 
-echo html_writer::start_div('local-groupimport-import__loading-skeleton', [
-    'data-easystud-loading-skeleton' => '1',
-    'data-easyedu-navigation-skeleton' => '1',
-    'aria-hidden' => 'true',
-]);
-echo html_writer::start_div('local-groupimport-import__loading-header');
-echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-    'local-groupimport-import__loading-eyebrow']);
-echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-title']);
-echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-intro']);
-echo html_writer::end_div();
-echo html_writer::start_div('local-groupimport-import__loading-navigation', [
-    'aria-hidden' => 'true',
-]);
-echo html_writer::tag(
-    'div',
-    html_writer::tag('span', '', [
-        'class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-navigation-guide',
-    ]) .
-    html_writer::tag(
-        'div',
-        html_writer::tag('span', '', [
-            'class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-navigation-cue',
-        ]),
-        ['class' => 'local-groupimport-import__loading-navigation-cues']
-    ),
-    ['class' => 'local-groupimport-import__loading-navigation-frame']
-);
-echo html_writer::end_div();
-echo html_writer::start_div('local-groupimport-import__loading-grid');
-for ($skeletoncard = 0; $skeletoncard < 2; $skeletoncard++) {
-    echo html_writer::start_div('local-groupimport-import__loading-card');
-    echo html_writer::tag(
-        'div',
-        html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-            'local-groupimport-import__loading-icon']) .
-        html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-            'local-groupimport-import__loading-card-title']),
-        ['class' => 'local-groupimport-import__loading-card-header']
-    );
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-        'local-groupimport-import__loading-field']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-        'local-groupimport-import__loading-field local-groupimport-import__loading-field--short']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-        'local-groupimport-import__loading-row']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-        'local-groupimport-import__loading-row']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
-        'local-groupimport-import__loading-button']);
-    echo html_writer::end_div();
-}
-echo html_writer::end_div();
-echo html_writer::end_div();
-
-// Without JavaScript the classic bootstrap cannot release the loading state.
-// Reveal the already server-rendered form and navigation instead of leaving a
-// decorative Skeleton as the only visible Mass Import surface.
-echo html_writer::tag('noscript', html_writer::tag(
-    'style',
-    '#local-groupimport-import[data-easystud-loading-state="loading"] > [data-easystud-loading-skeleton] { display: none ' .
-        '!important; }' .
-        '#local-groupimport-import[data-easystud-loading-state="loading"] > [data-easystud-real-content] { display: block ' .
-            '!important; }'
-));
-
+// The server frame stays visible; only unbound controls use Kit capsules.
 echo html_writer::start_div('local-groupimport-import__content', [
     'data-easystud-real-content' => '1',
 ]);
@@ -482,7 +424,7 @@ echo html_writer::tag(
 );
 
 // Moodle form (with filepicker).
-echo html_writer::start_div('local-groupimport-import-form easyedu-form--deposit', [
+echo html_writer::start_div('local-groupimport-import-form easyedu-form--deposit easyedu-form--workspace', [
     'id' => 'local_groupimport-form',
     'data-local-groupimport-import-form' => '1',
 ]);

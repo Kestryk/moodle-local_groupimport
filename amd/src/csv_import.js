@@ -28,12 +28,21 @@ const hasFiles = event => {
     return types.indexOf('Files') !== -1;
 };
 
+// The Guide contains inert import specimens before the real form in DOM order.
+const findImportForm = root => root.querySelector('[data-local-groupimport-import-form]');
+const findDeposit = root => findImportForm(root)?.querySelector('.easyedu-file-deposit--moodle') || null;
+
 const findFileInput = root => {
-    return root.querySelector('input[type="file"]');
+    return findImportForm(root)?.querySelector('input[type="file"]') || null;
 };
 
 const findFilePicker = root => {
     if (!window.M || !M.core_filepicker || !M.core_filepicker.instances) {
+        return null;
+    }
+
+    const form = findImportForm(root);
+    if (!form) {
         return null;
     }
 
@@ -49,7 +58,7 @@ const findFilePicker = root => {
         const wrapper = document.getElementById(`filepicker-wrapper-${clientId}`);
         const info = document.getElementById(`file_info_${clientId}`);
 
-        if ((element && root.contains(element)) || (wrapper && root.contains(wrapper)) || (info && root.contains(info))) {
+        if ((element && form.contains(element)) || (wrapper && form.contains(wrapper)) || (info && form.contains(info))) {
             return {
                 clientId: clientId,
                 options: options,
@@ -98,6 +107,42 @@ const waitForFilePicker = (root, timeout = 8000) => {
             window.setTimeout(inspect, 80);
         };
         inspect();
+    });
+};
+
+// Moodle reveals the native wrapper after binding its YUI picker. Keep watching
+// that single component after a cold-load timeout so the page can recover late.
+const initImportPickerReadiness = (root, attribute) => {
+    const form = findImportForm(root);
+    if (!form) {
+        root.setAttribute(attribute, '1');
+        return;
+    }
+    let observer;
+    const complete = () => {
+        if (!findFilePicker(root)) {
+            return false;
+        }
+        observer?.disconnect();
+        root.removeAttribute('data-easyedu-picker-unavailable');
+        root.setAttribute(attribute, '1');
+        return true;
+    };
+    observer = new MutationObserver(complete);
+    observer.observe(form, {childList: true, subtree: true, attributes: true, attributeFilter: ['style']});
+    if (complete()) {
+        return;
+    }
+    waitForFilePicker(root, 30000).then(picker => {
+        if (picker) {
+            complete();
+        } else {
+            root.setAttribute('data-easyedu-picker-unavailable', '1');
+        }
+        return null;
+    }).catch(() => {
+        // Keep the classic degraded fallback and the late-binding observer.
+        root.setAttribute('data-easyedu-picker-unavailable', '1');
     });
 };
 
@@ -193,7 +238,7 @@ const assignDroppedFile = (root, file) => {
 };
 
 const forwardDroppedFileToMoodle = (root, file) => {
-    const target = root.querySelector('.filepicker-filelist');
+    const target = findImportForm(root)?.querySelector('.filepicker-filelist');
     if (!target || !file || typeof DataTransfer === 'undefined' || typeof DragEvent === 'undefined') {
         return false;
     }
@@ -267,7 +312,7 @@ const clearImportFileRequirement = deposit => {
 };
 
 const initImportFileRequirement = root => {
-    const deposit = root.querySelector('.easyedu-file-deposit--moodle');
+    const deposit = findDeposit(root);
     const form = deposit?.closest('form');
     const notice = form?.querySelector('[data-local-groupimport-file-required]');
     if (!form || !notice || form.dataset.easyeduImportRequirementBound === '1') {
@@ -321,7 +366,7 @@ const deleteSelectedFile = async(root, filename) => {
 };
 
 const syncSelectedFileState = root => {
-    const deposit = root.querySelector('.easyedu-file-deposit--moodle');
+    const deposit = findDeposit(root);
     if (!deposit) {
         return;
     }
@@ -369,7 +414,7 @@ const syncSelectedFileState = root => {
 };
 
 const initSelectedFileState = root => {
-    const deposit = root.querySelector('.easyedu-file-deposit--moodle');
+    const deposit = findDeposit(root);
     if (!deposit || deposit.dataset.easyeduSelectedFileBound === '1') {
         return;
     }
@@ -867,7 +912,9 @@ export const init = (rootId) => {
     initRollbackModal(root);
 
     const loadingReadyAttribute = root.dataset.easyeduLoadingReadyAttribute || 'data-easyedu-loading-ready';
-    root.setAttribute(loadingReadyAttribute, '1');
+    // Server content is already visible. Keep the actual picker/submit capsules
+    // until Moodle has bound this form's picker, not an inert Guide specimen.
+    initImportPickerReadiness(root, loadingReadyAttribute);
 
     const overlay = root.querySelector('[data-local-groupimport-drop-overlay]');
     if (!overlay) {
@@ -876,7 +923,7 @@ export const init = (rootId) => {
 
     let dragdepth = 0;
     let routingdrop = false;
-    const deposit = root.querySelector('.easyedu-file-deposit');
+    const deposit = findDeposit(root);
     const isDepositEvent = event => deposit && deposit.contains(event.target);
 
     if (deposit) {

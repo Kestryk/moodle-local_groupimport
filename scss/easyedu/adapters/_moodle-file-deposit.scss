@@ -5,6 +5,21 @@
 @use "../components/panels";
 @use "../foundation-classes" as foundations;
 
+// The native picker needs an action rail as well as its icon/text rail. Keep a
+// readable track when a Moodle drawer reduces the available page width.
+@mixin moodle-file-deposit-workspace-tokens {
+  --easyedu-workspace-deposit-min-inline-size: 18rem;
+  --easyedu-workspace-deposit-action-min-inline-size: 11.25rem;
+}
+
+// Moodle initially hides this wrapper inline until its picker binds. Reserve
+// that exact native footprint while the consumer keeps the region inert.
+@mixin moodle-file-deposit-pending {
+  [id^="filepicker-wrapper-"] {
+    display: grid !important;
+  }
+}
+
 @mixin moodle-file-deposit-classes {
   .easyedu-ui .easyedu-form--deposit .mform {
     margin: 0;
@@ -279,6 +294,21 @@
   }
   .easyedu-ui .easyedu-form-actions + .easyedu-form-note {
     text-align: center;
+  }
+  // Applied form-workspace composition: the native picker promotes the same
+  // Secondary Core Action to the existing touch target, even on desktop.
+  .easyedu-ui .easyedu-form--workspace .fp-btn-choose {
+    @include foundations.foundation-button($secondary: true, $matched-size: true);
+    min-block-size: var(--easyedu-touch-target-min);
+    min-inline-size: min(var(--easyedu-workspace-deposit-action-min-inline-size, 11.25rem), 100%);
+  }
+  .easyedu-ui .easyedu-form--workspace input:is([type="button"], [type="submit"]) {
+    @include typography.control-label-natural-metrics($native: true);
+  }
+  @media (max-width: 52rem) {
+    .easyedu-ui .easyedu-form--workspace .easyedu-form-actions [type="submit"] {
+      min-block-size: var(--easyedu-touch-target-min);
+    }
   }
   // Explicit embedded-heading density. Keep the standalone regular picker
   // unchanged; the tile and its text track must shrink together.

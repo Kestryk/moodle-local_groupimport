@@ -1,5 +1,6 @@
 @use "../easyedu" as easyedu;
 @use "../components/dialog-recipes" as recipes;
+@use "../easyedu/adapters/moodle-file-deposit" as deposit;
 
 .local-groupimport-import [data-local-groupimport-file-required] {
   margin-block-end: 1rem;
@@ -9,6 +10,12 @@
   @include easyedu.token-defaults;
   @include easyedu.groupimport-compat-tokens;
   @include easyedu.type-ui-base;
+  @include easyedu.workspace-lane-tokens;
+  @include deposit.moodle-file-deposit-workspace-tokens;
+  // Opt-in reading tokens must survive the shared .easyedu-ui defaults.
+  &.easyedu-ui {
+    @include easyedu.workspace-reading-rhythm;
+  }
 
   box-sizing: border-box;
   color: var(--local-groupimport-easystud-text);
@@ -24,263 +31,40 @@
 
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
 
-  &[data-easystud-loading-state="loading"] {
-    overflow: hidden;
-
-    > [data-easystud-real-content] {
-      display: none;
-    }
-
-    > [data-easystud-loading-skeleton] {
-      display: grid;
-    }
-  }
-
-  > [data-easystud-loading-skeleton][hidden] {
-    display: none !important;
-  }
-
-  &.is-easystud-loading-skeleton-exiting > [data-easystud-loading-skeleton] {
-    @include easyedu.loading-opacity-hidden;
-  }
-
-  &.is-easystud-loading-content-entering > [data-easystud-real-content] {
+  // The server-rendered frame is always present. Moodle's no-JS fallback
+  // keeps native controls visible; only a JS-enabled pending page uses capsules.
+  > [data-easystud-real-content] {
     display: block;
-    opacity: 0;
-    pointer-events: none;
-    @include easyedu.loading-opacity-transition(180ms);
   }
 
-  &.is-easystud-loading-content-entered > [data-easystud-real-content] {
-    opacity: 1;
+  &[data-easystud-loading-state="loading"]:where(.jsenabled *) .local-groupimport-import-form .easyedu-file-deposit {
+    @include deposit.moodle-file-deposit-pending;
   }
 
-  &__loading-skeleton {
-    box-sizing: border-box;
-    display: none;
-    gap: 1.1rem;
-    inline-size: 100%;
-    max-inline-size: 100%;
-    min-width: 0;
-    @include easyedu.skeleton-pending-inset(import);
-    @include easyedu.loading-opacity-transition(180ms);
-    @include easyedu.loading-appearance;
+  &[data-easystud-loading-state="loading"]:where(.jsenabled *) :is(
+    .local-groupimport-import-form .fp-btn-choose,
+    .local-groupimport-import-form [type="submit"],
+    .local-groupimport-import-preview button,
+    [data-easyedu-navigation-open],
+    [data-easyedu-loading-control]
+  ) {
+    @include easyedu.loading-control-capsule;
   }
 
-  &__loading-header {
-    @include easyedu.skeleton-page-heading;
+  &[data-easystud-loading-state="ready"] :is(
+    .local-groupimport-import-form .fp-btn-choose,
+    .local-groupimport-import-form [type="submit"],
+    .local-groupimport-import-preview button
+  ) {
+    @include easyedu.loading-control-reveal;
   }
 
-  &__loading-grid {
-    align-items: stretch;
-    box-sizing: border-box;
-    display: grid;
-    gap: 1.15rem;
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-    inline-size: 100%;
-    max-inline-size: 100%;
-    min-width: 0;
+  &.easyedu-ui &__title {
+    @include easyedu.type-workspace-reading-title;
   }
 
-  &__loading-surface {
-    @include easyedu.navigation-skeleton-cue($radius: 0.72rem);
-  }
-
-  &__loading-navigation {
-    @include easyedu.skeleton-section-navigation-gap;
-  }
-
-  &__loading-navigation-frame {
-    @include easyedu.navigation-skeleton-compact-frame(
-      $surface: var(--easyedu-loading-frame-surface),
-      $border: var(--easyedu-loading-border),
-      $radius: 1rem
-    );
-  }
-
-  &__loading-navigation-guide {
-    @include easyedu.navigation-skeleton-guide-start-cue;
-  }
-
-  &__loading-navigation-cues {
-    @include easyedu.navigation-skeleton-single-line;
-  }
-
-  &__loading-navigation-cue {
-    @include easyedu.navigation-skeleton-compact-cue($radius: 0.72rem);
-
-  }
-
-  &__loading-eyebrow {
-    height: 0.72rem;
-    width: min(9rem, 32%);
-  }
-
-  &__loading-title {
-    height: 1.55rem;
-    width: min(21rem, 58%);
-  }
-
-  &__loading-intro {
-    height: 0.82rem;
-    width: min(42rem, 82%);
-  }
-
-  &__loading-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 0.25rem;
-  }
-
-  &__loading-action {
-    height: 2.25rem;
-    width: 8.8rem;
-  }
-
-  &__loading-card {
-    @include easyedu.skeleton-structural-container-frame(
-      $surface: var(--easyedu-loading-frame-surface),
-      $border: var(--easyedu-loading-border),
-      $radius: 1rem
-    );
-
-    & {
-      box-sizing: border-box;
-      display: grid;
-      gap: 0.75rem;
-      grid-template-columns: minmax(0, 1fr);
-      inline-size: 100%;
-      max-inline-size: 100%;
-      @include easyedu.skeleton-card-frame(workspace) {
-        min-width: 0;
-      }
-    }
-  }
-
-  &__loading-card-header {
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    gap: 0.75rem;
-    inline-size: 100%;
-    max-inline-size: 100%;
-    min-width: 0;
-  }
-
-  &__loading-icon {
-    border-radius: 0.75rem;
-    flex: 0 0 2.55rem;
-    height: 2.55rem;
-    width: 2.55rem;
-  }
-
-  &__loading-card-title {
-    @include easyedu.skeleton-entity-block-size(card-title, $physical: true);
-    width: min(13rem, 64%);
-  }
-
-  &__loading-field {
-    box-sizing: border-box;
-    @include easyedu.skeleton-entity-block-size(control-tall, $physical: true);
-    margin-top: 0.2rem;
-    max-inline-size: 100%;
-    width: 100%;
-  }
-
-  &__loading-field--short {
-    @include easyedu.skeleton-entity-block-size(control-regular, $physical: true);
-    width: 72%;
-  }
-
-  &__loading-row {
-    box-sizing: border-box;
-    height: 2.65rem;
-    max-inline-size: 100%;
-    width: 100%;
-  }
-
-  &__loading-button {
-    box-sizing: border-box;
-    @include easyedu.skeleton-entity-block-size(action, $physical: true);
-    margin-top: auto;
-    max-inline-size: 100%;
-    width: 10.5rem;
-  }
-
-  &[data-easyedu-motion-policy="disabled"] &__loading-surface,
-  &.is-easyedu-motion-off &__loading-surface {
-    animation: none;
-  }
-
-  @media (max-width: 64rem) {
-    &__loading-navigation-frame {
-      @include easyedu.navigation-skeleton-compact-mobile;
-    }
-  }
-
-  // Preserve the full card frame at extreme effective widths such as a 320 px
-  // window viewed at native 200% zoom. Only decorative cues stack or shrink here.
-  @media (max-width: 20rem) {
-    // The native-zoom viewport can reduce the available inline space to 160 CSS
-    // px. Give the compact Navigation Skeleton its resolved mobile block size
-    // explicitly so its frame remains measurable independently of grid sizing.
-    &__loading-navigation-frame {
-      block-size: var(--easyedu-navigation-skeleton-compact-min-block-size);
-      box-sizing: border-box;
-    }
-
-    // At native 200% zoom, keep the compact circle clear of the label's
-    // rounded edge: the localized label wraps here, so its visual centre sits
-    // above and inward from the shared bottom/end anchor.
-    &.is-action-busy::after {
-      bottom: 1.95rem;
-      border-width: 0.18rem;
-      box-shadow: none;
-      height: 1.6rem;
-      right: 2.1rem;
-      width: 1.6rem;
-    }
-
-    // At a 320 px viewport with native 200% zoom, preserve one usable frame
-    // width and make each decorative cue track shrink with that frame.
-    &__loading-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    &__loading-card-header {
-      display: grid;
-      gap: 0.5rem;
-      grid-template-columns: minmax(0, min(2.55rem, 40%)) minmax(0, 1fr);
-    }
-
-    &__loading-icon {
-      inline-size: 100%;
-      min-inline-size: 0;
-      width: auto;
-    }
-
-    &__loading-actions {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      max-inline-size: 100%;
-      min-inline-size: 0;
-    }
-
-    &__loading-action {
-      inline-size: 100%;
-      max-inline-size: 100%;
-      min-inline-size: 0;
-      width: auto;
-    }
-
-    &__loading-card-title {
-      flex: 1 1 0;
-      inline-size: 100%;
-      max-inline-size: 100%;
-      min-inline-size: 0;
-      width: auto;
-    }
+  & &-card.easyedu-panel {
+    @include easyedu.workspace-lane-content-inset;
   }
 
   &__header {
@@ -311,7 +95,8 @@
     align-items: stretch;
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    // Applied K18-15 composition: 429.34/1082.66 in the available 1512px.
+    grid-template-columns: minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr) minmax(0, 0.716fr);
     @include easyedu.layout-disclosure-transition(grid-template-columns);
     will-change: grid-template-columns;
 
@@ -337,7 +122,7 @@
   }
 
   &.has-preview &__grid {
-    grid-template-columns: minmax(4.85rem, 0.62fr) minmax(0, 1.38fr);
+    grid-template-columns: minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr) minmax(0, 0.716fr);
   }
 
   &.has-preview.is-upload-collapsed &__grid {
@@ -900,14 +685,5 @@
 
       color: var(--local-groupimport-easystud-text-muted);
     }
-  }
-}
-@media (max-width: 1024px) {
-  .local-groupimport-import__loading-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .local-groupimport-import__loading-card {
-    @include easyedu.skeleton-card-frame(workspace-compact);
   }
 }
