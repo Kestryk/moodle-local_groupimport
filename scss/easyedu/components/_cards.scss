@@ -694,7 +694,8 @@
 @mixin card-focus-context(
   $base-shadow: null,
   $preserve-identity-rail: false,
-  $identity-rail-color: null
+  $identity-rail-color: null,
+  $strong-border: false
 ) {
   @include focus.contained-context-ring(
     $border-color: var(--easyedu-control-focus-border),
@@ -702,6 +703,9 @@
     $preserve-identity-rail: $preserve-identity-rail,
     $identity-rail-color: $identity-rail-color
   );
+  @if $strong-border {
+    border-color: var(--easyedu-control-focus-border) !important;
+  }
 }
 
 @mixin selectable-card($identity-color) {
@@ -926,4 +930,9 @@
   height: 5.35rem !important;
   line-height: 5.35rem;
   width: 5.35rem !important;
+}
+
+// Suppress only the terminal divider; keep row geometry and interaction.
+@mixin related-person-row-terminal-divider {
+  border-bottom-color: transparent;
 }

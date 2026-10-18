@@ -9,8 +9,8 @@
 .local-groupimport-easystud {
   &-user.is-selected:focus-within {
     @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
-    @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14));
-    border-color: var(--easyedu-control-focus-border) !important;
+    @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14), $strong-border: true);
+    // Border priority is owned by the contextual Kit variant.
   }
 
   &-group.is-selected:focus-within {
