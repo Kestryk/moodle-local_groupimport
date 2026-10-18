@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F22C: share compact workspace action geometry and centre view/recovery labels and glyphs with natural font metrics; preserve outer frames and unrelated CSS.
+
 - 2026-10-18 [N0] K16-80 F25C: share awaiting-card frame, avatar and copy-line recipes without changing loading or ordered CSS.
 
 - 2026-10-18 [N0] K16-80 F23B: retire six unused tutorial-dialog blocks; preserve every active modal and Guide rule.

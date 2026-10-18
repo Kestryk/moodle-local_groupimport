@@ -904,7 +904,7 @@
   }
 
   &__clear-selection {
-    @include easyedu.sticky-selection-button;
+    @include easyedu.sticky-selection-button($natural-labels: true);
 
     // R10-12: only the recovery capsule owns a resting border.
     &.btn {

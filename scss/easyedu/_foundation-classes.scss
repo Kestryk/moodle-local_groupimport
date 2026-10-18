@@ -331,7 +331,7 @@
     @include buttons.selection-action-tray-density;
   }
   .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {
-    @include buttons.selection-recovery-action;
+    @include buttons.selection-recovery-action($natural-icons: true);
   }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-filter-reset.easyedu-filter-reset--field-peer { @include buttons.filter-reset-field-peer; }

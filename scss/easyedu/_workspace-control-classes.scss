@@ -3,6 +3,7 @@
 @use "foundation-classes" as foundations;
 @use "components/focus";
 @use "components/animations";
+@use "components/typography";
 
 // Shared accepted frame/choice compositions; the consumer retains placement.
 @mixin workspace-view-frame {
@@ -237,5 +238,13 @@
   }
   @include animations.motion-restricted {
     .easyedu-ui .easyedu-search-field { transition: none; }
+  }
+
+  // The same label metrics in the tiled desktop selector and touch tabs.
+  .easyedu-workspace-view-switcher {
+    > button,
+    .btn {
+      @include typography.control-label-natural-metrics($icons: true);
+    }
   }
 }
