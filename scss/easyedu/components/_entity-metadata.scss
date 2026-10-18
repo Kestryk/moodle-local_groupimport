@@ -388,3 +388,8 @@
   padding-block: 0;
   padding-inline: 0.5rem;
 }
+
+
+// Companion grouping-summary inset and legacy utility priority of token disclosure.
+@mixin membership-summary-inset { padding-right: 0.58rem; }
+@mixin metadata-overflow-flush { padding: 0 !important; }
