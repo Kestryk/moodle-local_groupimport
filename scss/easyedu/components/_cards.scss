@@ -400,6 +400,18 @@
   white-space: nowrap;
 }
 
+// One size token for the public control and its legacy logical-size adapter.
+@function related-person-remove-size() {
+  @return var(--easyedu-related-person-remove-size);
+}
+
+@mixin related-person-remove-target {
+  block-size: related-person-remove-size();
+  inline-size: related-person-remove-size();
+  min-block-size: related-person-remove-size();
+  min-inline-size: related-person-remove-size();
+}
+
 @mixin related-person-remove {
   align-items: center;
   background: #f8fbfe;
@@ -414,12 +426,12 @@
   flex: 0 0 auto;
   font-size: 1rem;
   font-weight: 700;
-  height: 1.45rem;
+  height: related-person-remove-size();
   line-height: 1;
   place-items: center;
   padding: 0 !important;
   text-decoration: none !important;
-  width: 1.45rem;
+  width: related-person-remove-size();
 
   span {
     display: block;

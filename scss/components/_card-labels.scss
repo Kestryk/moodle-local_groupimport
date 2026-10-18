@@ -79,10 +79,7 @@
   }
 
   .local-groupimport-easystud-member__remove.easyedu-related-person-row__remove {
-    block-size: var(--easyedu-related-person-remove-size);
-    inline-size: var(--easyedu-related-person-remove-size);
-    min-block-size: var(--easyedu-related-person-remove-size);
-    min-inline-size: var(--easyedu-related-person-remove-size);
+    @include easyedu.related-person-remove-target;
   }
 
   // K16-31/K16-32 (Kevin, 15/10 evening): the list toolbar keeps the Kit sizes of each control
