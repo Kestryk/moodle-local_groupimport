@@ -376,7 +376,7 @@
 
 
 @mixin pagination-number-label {
-      color: var(--easyedu-text);
+      @include pagination-label-ink;
       font-size: 0.72rem;
       font-weight: 650;
       line-height: 1;
@@ -388,4 +388,24 @@
   box-sizing: border-box;
   min-height: $height;
   padding-block: 0;
+}
+
+
+// Accepted compact bar frame; grid placement and external margins stay native.
+@mixin pagination-bar-extent($top: false) {
+  @if $top { padding-top: 0.1rem; }
+  @else { min-height: 1.65rem; }
+}
+
+@mixin pagination-tools-compact-inset {
+  padding: 0.08rem;
+}
+
+@mixin pagination-label-ink {
+  color: var(--easyedu-text);
+}
+
+@mixin pagination-responsive-metric($button: false) {
+  @if $button { height: 1.85rem; }
+  @else { font-size: 0.78rem; }
 }

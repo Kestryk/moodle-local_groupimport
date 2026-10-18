@@ -1248,7 +1248,7 @@
 
     gap: 0.34rem;
     margin-top: 0.35rem;
-    min-height: 1.65rem;
+    @include easyedu.pagination-bar-extent;
     z-index: 8;
 
     &.is-sort-menu-open {
@@ -1267,7 +1267,7 @@
     &--top {
       margin-bottom: 0.36rem;
       margin-top: 0.12rem;
-      padding-top: 0.1rem;
+      @include easyedu.pagination-bar-extent($top: true);
       z-index: 12;
     }
 
@@ -1310,7 +1310,7 @@
 
       align-self: center;
       margin: 0;
-      padding: 0.08rem;
+      @include easyedu.pagination-tools-compact-inset;
     }
 
     .local-groupimport-easystud-pagination__count {
@@ -1345,7 +1345,7 @@
     }
 
     [data-easystud-list-sort-label] {
-      color: var(--easyedu-text);
+      @include easyedu.pagination-label-ink;
     }
 
     // EED-KIT-2026-0001: its public primitive supersedes the compact local
