@@ -983,14 +983,14 @@
   &-grouping__groups {
     --local-groupimport-grouping-groups-collapsed-height: 16rem;
     --local-groupimport-grouping-groups-expanded-height: 48rem;
-    max-height: none;
+    @include easyedu.card-relation-list-unbounded;
     overflow: visible;
     position: relative;
     transition: margin var(--easyedu-motion-fast) ease;
   }
 
   &-grouping__groups.has-extra-groups:not(.is-expanded) {
-    max-height: none;
+    @include easyedu.card-relation-list-unbounded;
   }
 
   &-grouping__groups-toggle {

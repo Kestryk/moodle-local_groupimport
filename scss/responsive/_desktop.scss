@@ -359,7 +359,7 @@
     }
 
     &--responsive-workspace &-user.is-selected {
-      max-height: none;
+      @include easyedu.person-card-selected-unbounded;
     }
 
     &--responsive-workspace &-user__details,

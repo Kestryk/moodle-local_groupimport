@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-80 F25S: raccorder au Kit les quatre suppressions de plafond CSS des listes pilotées par le contrôleur, sans changer leurs fenêtres ni leurs transitions.
+
 - 2026-10-18 [N0] K16-80 F04C: raccorder les deux peintures prioritaires du compteur de groupement à sa variante Kit, sans modifier la cascade.
 
 - 2026-10-18 [N0] K16-80 F22G: raccorder le cadre compact de l’œil et l’état survolé du débordement de rôles de la fiche au Kit, sans changer leurs valeurs.

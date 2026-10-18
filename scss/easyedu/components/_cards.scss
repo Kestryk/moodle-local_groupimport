@@ -1117,3 +1117,10 @@
   padding-bottom: 0.38rem;
   padding-top: 0.38rem;
 }
+
+
+// Long-list/Motion controllers own the window; remove only the legacy CSS cap.
+@mixin card-relation-list-unbounded { max-height: none; }
+
+// Selected responsive person cards retain their accepted expanded extent.
+@mixin person-card-selected-unbounded { max-height: none; }
