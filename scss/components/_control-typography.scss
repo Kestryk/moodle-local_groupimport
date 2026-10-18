@@ -22,13 +22,10 @@
     @include easyedu.inline-edit-action;
   }
 
-  // K16: both peers use the same regular secondary recipe and explicit height.
+  // OLD-B R13: Cancel and Reset consume the same regular secondary component.
   [data-easystud-container-search-cancel],
   .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {
     @include foundations.foundation-button($secondary: true);
-    & {
-      @include foundations.foundation-field-peer-frame;
-    }
   }
 
   [data-easystud-advanced-filters-toggle],

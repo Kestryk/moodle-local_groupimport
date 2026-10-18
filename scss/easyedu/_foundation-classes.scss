@@ -46,11 +46,8 @@
     background: var(--easyedu-surface);
     border-color: var(--easyedu-deposit-border);
     color: var(--easyedu-secondary-text);
-    @if not $matched-size {
-      border-radius: 0.58rem;
-      font-size: 0.75rem;
-      min-block-size: 2rem;
-    }
+    // $matched-size remains API-compatible; regular secondary actions now all
+    // consume the one Secondary / M recipe below (OLD-B R13).
   }
   @if $danger {
     // Same measured Core Action geometry; only its semantic palette changes.
@@ -100,6 +97,10 @@
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
   }
   &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }
+
+  @if $secondary and $density == regular {
+    @include buttons.secondary-action;
+  }
 }
 
 // Dialog action pairs share density, not width: translations may have different
@@ -337,6 +338,7 @@
   .easyedu-ui .easyedu-filter-reset.easyedu-filter-reset--field-peer { @include buttons.filter-reset-field-peer; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
   .easyedu-ui .easyedu-filter-toggle { @include forms.filter-toggle; }
+  .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--standalone { @include forms.filter-toggle-standalone; }
   .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--trailing { @include forms.filter-toggle-trailing; }
   .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--track-focus { @include forms.filter-toggle-track-focus; }
   .easyedu-ui .easyedu-filter-actions { @include forms.filter-actions; }
@@ -417,13 +419,5 @@
 
 
 @mixin foundation-field-peer-frame {
-  align-self: stretch;
-  block-size: 2.375rem;
-
-  // Native host classes also receive a later Foundation font shorthand.
-  // Qualify the shared metric so that shorthand cannot undo the centring.
-  &.btn,
-  &.easyedu-button--secondary {
-    line-height: normal;
-  }
+  @include buttons.secondary-action;
 }

@@ -210,7 +210,9 @@ export const entityMemberRows = (rows, options = {}) => {
             (options.removable ? '<button type="button" class="btn btn-link p-0 ' +
                 'local-groupimport-easystud-member__remove easyedu-related-person-row__remove" ' +
                 'data-easystud-entity-remove="' + escapeHtml(row.id) + '" aria-label="' +
-                escapeHtml((options.removeLabel || '').replace('{name}', row.name)) + '">' +
+                escapeHtml((options.removeLabel || '').replace('{name}', () => row.name)
+                    .replace('{group}', () => options.groupName || '')) + '" data-easystud-hover-help="' +
+                escapeHtml(options.removeHelp || '') + '">' +
                 '<span aria-hidden="true">&minus;</span></button>' : '') +
         '</li>';
     };

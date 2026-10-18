@@ -375,14 +375,14 @@ if ($hassiteconfig) {
         $operationhtml
     ));
 
-    $settings->add(new admin_setting_configcheckbox(
+    $settings->add(new \local_groupimport\local\admin_setting_switch(
         'local_groupimport/enablesimplifiedview',
         get_string('enablesimplifiedview', 'local_groupimport'),
         get_string('enablesimplifiedview_desc', 'local_groupimport'),
         1
     ));
 
-    $settings->add(new admin_setting_configcheckbox(
+    $settings->add(new \local_groupimport\local\admin_setting_switch(
         'local_groupimport/showcompleteview',
         get_string('showcompleteview', 'local_groupimport'),
         get_string('showcompleteview_desc', 'local_groupimport'),

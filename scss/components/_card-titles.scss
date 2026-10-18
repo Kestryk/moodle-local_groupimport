@@ -56,8 +56,7 @@
   // appear only while their own card / row is hovered, focused or selected (touch keeps them).
   // A Guide target or an open menu always stays visible.
   $quiet: ":not(.is-easyedu-guide-highlight-target):not([aria-expanded=\"true\"])";
-  #{$actions},
-  .local-groupimport-easystud-member__remove {
+  #{$actions} {
     transition: color var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
   }
 
@@ -77,8 +76,7 @@
     .local-groupimport-easystud-group#{$rest} > .local-groupimport-easystud-group__header .local-groupimport-easystud-rename__toggle#{$quiet},
     .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header > .btn-link#{$quiet},
     .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header > .local-groupimport-easystud-card-menu#{$quiet},
-    .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle#{$quiet},
-    .local-groupimport-easystud-member:not(:hover):not(:focus-within) .local-groupimport-easystud-member__remove#{$quiet} {
+    .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle#{$quiet} {
       opacity: 0;
     }
   }
