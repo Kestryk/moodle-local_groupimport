@@ -267,9 +267,7 @@
     }
 
     &-user__detail-button {
-      height: 1.85rem;
-      min-width: 1.85rem;
-      width: 1.85rem;
+      @include easyedu.card-detail-touch-frame;
     }
 
     &-user__email {

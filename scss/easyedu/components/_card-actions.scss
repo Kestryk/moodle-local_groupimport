@@ -220,3 +220,11 @@
 @mixin card-action-zero-inset {
   padding: 0;
 }
+
+
+// Existing compact eye frame, kept at its current narrow breakpoint by the host.
+@mixin card-detail-touch-frame {
+  height: 1.85rem;
+  min-width: 1.85rem;
+  width: 1.85rem;
+}
