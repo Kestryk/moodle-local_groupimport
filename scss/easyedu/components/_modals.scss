@@ -950,3 +950,39 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
   max-block-size: 100dvh;
   max-inline-size: 100%;
 }
+
+
+// Quiet action of a dialog: compose accepted type, state and focus recipes.
+@mixin dialog-text-action {
+  @include typography.type-ui-base;
+
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0.375rem;
+  color: var(--easyedu-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--easyedu-font-size-caption);
+  font-weight: var(--easyedu-font-weight-strong);
+  gap: 0.3rem;
+  line-height: normal;
+  padding: 0.2rem 0.25rem;
+  text-decoration: none;
+  @include buttons.control-state-transition;
+
+  &:hover:not(:disabled) {
+    color: var(--easyedu-primary-strong);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &:disabled {
+    color: var(--easyedu-text-muted);
+    cursor: default;
+    opacity: 0.6;
+  }
+}
