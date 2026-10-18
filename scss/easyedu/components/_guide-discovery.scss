@@ -1209,7 +1209,8 @@
     }
     &__steps { padding-inline-start: 1.5rem; }
     &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }
-    &__note { @include typography.type-caption; margin-block: 1rem 1.5rem; }
+    // The Guide navigation never wraps and the reading area inherits it: this note wraps itself.
+    &__note { @include typography.type-caption; margin-block: 1rem 1.5rem; min-inline-size: 0; overflow-wrap: anywhere; white-space: normal; }
     &__context {
       display: grid;
       gap: 0.375rem;
