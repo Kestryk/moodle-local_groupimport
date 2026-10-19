@@ -1506,3 +1506,5 @@ $string['mi_guide_run_progress'] = 'Import en cours 1 200 / 3 000';
 $string['mi_guide_run_notification_body'] = 'Le rapport de votre import est disponible.';
 $string['mi_guide_path_warning'] = 'Ce parcours utilise votre fichier et peut modifier le cours. Prévisualiser ne change rien. Arrêtez-vous sur Annuler : cliquer sur Lancer l’import modifie réellement le cours.';
 $string['mi_guide_history_sample_date'] = '18/10/2026 10:42';
+
+$string['removechoiceselection'] = 'Retirer « __label__ » de la sélection';

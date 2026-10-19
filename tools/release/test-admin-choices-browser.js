@@ -8,12 +8,12 @@ const root = path.resolve(__dirname, '../..');
     const browser = await chromium.launch({headless: true});
     try {
       for (const width of [1600, 768, 390]) {
-       for (const motion of ['reduce', 'no-preference', 'disabled']) {
+       for (const motion of ['full', 'reduced', 'minimal']) {
         const page = await browser.newPage();
         await page.setViewportSize({width, height: 1000});
         const errors = [];
         page.on('pageerror', error => errors.push(error.message));
-        await page.emulateMedia({reducedMotion: motion === 'reduce' ? 'reduce' : 'no-preference'});
+        await page.emulateMedia({reducedMotion: 'no-preference'});
         await page.setContent(`<main id="page-admin-setting-local_groupimport"><form id="adminsettings">
             <div><label for="mode">Default view</label><select id="mode" name="s_local_groupimport_defaultlayoutmode">
                 <option value="both" selected>Complete</option><option value="groups">Groups</option></select></div>
@@ -35,24 +35,35 @@ const root = path.resolve(__dirname, '../..');
         for (const module of ['motion', 'searchable_choices', 'admin_choices']) {
             await page.addScriptTag({path: path.join(root, 'amd/build', `${module}.min.js`)});
         }
-        await page.evaluate(animationsEnabled => {
+        await page.evaluate(level => {
+            document.querySelector('#adminsettings').setAttribute('data-easyedu-motion-level', level);
             const labels = {search: 'Search', empty: 'No matches', none: 'None', count: '__count__ selected', clear: 'Clear'};
-            window.modules['local_groupimport/admin_choices'].init(labels, animationsEnabled);
-            window.modules['local_groupimport/admin_choices'].init(labels, animationsEnabled);
-        }, motion !== 'disabled');
+            window.modules['local_groupimport/admin_choices'].init(labels, level !== 'minimal');
+            window.modules['local_groupimport/admin_choices'].init(labels, level !== 'minimal');
+        }, motion);
         assert.equal(await page.locator('.easyedu-searchable-choice').count(), 2, 'Idempotent adapter');
         assert.equal(await page.locator('.easyedu-searchable-choice--framed').count(), 2, 'Canonical framed Motion');
         assert.equal(await page.locator('#required').isVisible(), true, 'Required native fallback');
         const hosts = page.locator('.easyedu-searchable-choice');
-        await hosts.nth(0).locator('button').first().click();
-        if (motion === 'disabled' || motion === 'reduce') {
+        await hosts.nth(0).locator('.easyedu-searchable-choice__trigger').click();
+        if (motion === 'minimal') {
             assert.equal(await hosts.nth(0).locator('.easyedu-searchable-choice__panel')
                 .evaluate(panel => panel.getAnimations().length), 0, 'Static policy keeps framed controls static');
+        } else if (motion === 'reduced') {
+            const effects = await hosts.nth(0).locator('.easyedu-searchable-choice__panel').evaluate(panel =>
+                panel.getAnimations().map(animation => ({duration: animation.effect.getTiming().duration,
+                    frames: animation.effect.getKeyframes()})));
+            assert.equal(effects.length, 1, 'Reduced level retains its short fade');
+            assert(effects.every(effect => effect.duration <= 120 && effect.frames.every(frame =>
+                'opacity' in frame && !('height' in frame) && !('transform' in frame))), 'Reduced level is opacity only');
+        } else {
+            assert.equal(await hosts.nth(0).locator('.easyedu-searchable-choice__panel')
+                .evaluate(panel => panel.classList.contains('is-easyedu-disclosing')), true, 'Full retains framed disclosure');
         }
         await hosts.nth(0).locator('input[type=search]').fill('Groups');
         await hosts.nth(0).getByRole('button', {name: 'Groups', exact: true}).click();
         assert.equal(await page.locator('#mode').inputValue(), 'groups');
-        await hosts.nth(1).locator('button').first().click();
+        await hosts.nth(1).locator('.easyedu-searchable-choice__trigger').click();
         await hosts.nth(1).getByRole('button', {name: 'Username', exact: true}).click();
         assert.deepEqual(await page.locator('#fields').evaluate(s => [...s.selectedOptions].map(o => o.value)),
             ['email', 'username']);

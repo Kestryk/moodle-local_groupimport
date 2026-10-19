@@ -19,7 +19,7 @@ export const init = (labels, animationsEnabled = true) => {
         const label = [...select.labels].map(node => node.textContent.trim()).join(' ') || select.name;
         select.parentElement.classList.add('easyedu-ui');
         const enhance = select.multiple ? enhanceMultipleSelect : enhanceSelect;
-        const controller = enhance(select, {...labels, label}, {motion: Motion});
+        const controller = enhance(select, {...labels, label}, {motion: Motion, taggedValues: select.multiple});
         controllers.push(controller);
         // Moodle dependencies may disable a setting after initialisation.
         // Observe native state only, never the generated Kit subtree.

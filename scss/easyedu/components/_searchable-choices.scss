@@ -3,6 +3,141 @@
 @use "forms";
 @use "focus";
 @use "animations";
+@use "buttons";
+@use "feedback";
+
+// Selection chip / S, Foundations 08.4.1 (K17-10): a public reusable value.
+@mixin selection-chip {
+  @include feedback.token-pill(var(--easyedu-selection-chip-surface, #f4f8fc), transparent,
+    var(--easyedu-primary-strong));
+  block-size: 1.5rem;
+  border: 0;
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  line-height: normal;
+  gap: 0;
+  max-inline-size: 100%;
+  min-block-size: 1.5rem;
+  min-inline-size: 0;
+  padding: 0 0.5rem;
+}
+
+@mixin selection-chip-remove {
+  // Use the shared Kit Close geometry, never another font-dependent cross.
+  @include buttons.close-button(small);
+  background: transparent;
+  block-size: 1.5rem;
+  border: 0;
+  color: inherit;
+  flex: 0 0 1.5rem;
+  height: 1.5rem;
+  inline-size: 1.5rem;
+  min-block-size: 1.5rem;
+  min-height: 1.5rem;
+  min-inline-size: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0;
+  width: 1.5rem;
+  &:hover,
+  &:focus-visible {
+    background: var(--easyedu-primary-soft);
+    border-color: transparent;
+    color: var(--easyedu-primary-strong);
+  }
+}
+
+// Opt-in to the existing multiple-choice controller. Single/count modes keep
+// their previous DOM, geometry and lifecycle; the native select owns values.
+@mixin tagged-choice-classes {
+  .easyedu-ui .easyedu-selection-chip { @include selection-chip; }
+  .easyedu-ui .easyedu-selection-chip__label {
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .easyedu-ui .easyedu-selection-chip__remove { @include selection-chip-remove; }
+  .easyedu-ui .easyedu-searchable-choice--tagged {
+    --easyedu-choice-frame-height: 2.375rem;
+    --easyedu-choice-trigger-size: 2rem;
+    --easyedu-choice-clear-size: 1.75rem;
+
+    .easyedu-searchable-choice__field {
+      @include text-fields.foundation-text-field;
+      align-items: center;
+      display: flex;
+      inline-size: 100%;
+      min-block-size: var(--easyedu-choice-frame-height);
+      padding-block: calc((var(--easyedu-choice-frame-height) - 1.5rem - 0.125rem) / 2);
+      padding-inline: 0.5rem calc(var(--easyedu-choice-trigger-size) + var(--easyedu-choice-clear-size) + 0.5rem);
+      position: relative;
+      &:focus-within { @include focus.ring($border-color: var(--easyedu-control-focus-border)); }
+    }
+    .easyedu-searchable-choice__summary {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      overflow: visible;
+      white-space: normal;
+    }
+    .easyedu-searchable-choice__trigger {
+      @include buttons.icon-button(small);
+      background: transparent;
+      block-size: var(--easyedu-choice-trigger-size);
+      border: 0;
+      box-shadow: none;
+      height: var(--easyedu-choice-trigger-size);
+      inline-size: var(--easyedu-choice-trigger-size);
+      inset-block-start: 50%;
+      inset-inline-end: 0;
+      min-block-size: var(--easyedu-choice-trigger-size);
+      min-height: var(--easyedu-choice-trigger-size);
+      min-inline-size: var(--easyedu-choice-trigger-size);
+      min-width: var(--easyedu-choice-trigger-size);
+      padding: 0;
+      position: absolute;
+      transform: translateY(-50%);
+      width: var(--easyedu-choice-trigger-size);
+      .fa { line-height: normal; }
+      &:active { transform: translateY(-50%); }
+      &:focus-visible { box-shadow: none; }
+    }
+    .easyedu-searchable-choice__clear {
+      @include buttons.close-button(small);
+      background: transparent;
+      block-size: var(--easyedu-choice-clear-size);
+      border: 0;
+      height: var(--easyedu-choice-clear-size);
+      inline-size: var(--easyedu-choice-clear-size);
+      inset-block-start: 50%;
+      inset-inline-end: var(--easyedu-choice-trigger-size);
+      position: absolute;
+      min-block-size: var(--easyedu-choice-clear-size);
+      min-height: var(--easyedu-choice-clear-size);
+      min-inline-size: var(--easyedu-choice-clear-size);
+      min-width: var(--easyedu-choice-clear-size);
+      transform: translateY(-50%);
+      width: var(--easyedu-choice-clear-size);
+      &:active { transform: translateY(-50%); }
+      &:hover,
+      &:focus-visible { background: var(--easyedu-primary-soft); color: var(--easyedu-primary-strong); }
+      &[hidden] { display: none; }
+    }
+    &[class~="easyedu-searchable-choice--compact"] { --easyedu-choice-frame-height: 2rem; }
+  }
+  @media (max-width: 48rem), (pointer: coarse) {
+    .easyedu-ui .easyedu-searchable-choice--tagged {
+      --easyedu-choice-frame-height: 2.75rem;
+      --easyedu-choice-trigger-size: 2.75rem;
+      --easyedu-choice-clear-size: 2.75rem;
+      &[class~="easyedu-searchable-choice--compact"] { --easyedu-choice-frame-height: 2.75rem; }
+    }
+  }
+}
 
 @mixin searchable-choice-classes {
   .easyedu-ui .easyedu-searchable-choice {
@@ -188,6 +323,7 @@
       .easyedu-searchable-choice__clear { inset-block-start: 0.25rem; }
     }
   }
+  @include tagged-choice-classes;
   @include animations.motion-restricted {
     .easyedu-ui .easyedu-searchable-choice {
       --easyedu-choice-disclosure-duration: 0.01ms;

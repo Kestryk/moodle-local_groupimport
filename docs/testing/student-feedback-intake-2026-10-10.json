@@ -1,4 +1,75 @@
 {
+  "oldCAdminTaggedChoices20261019": {
+    "base": "5dc4215c",
+    "scope": "OLD-C / K17-10: opt-in native multiple choices with selected-value chips in administration",
+    "kitCommit": "3d1b5951a1757eb6909b56a777a0ea60866ebf1d",
+    "kitBranch": "work/codex1/easyedu-kit-old-c-20261019",
+    "reference": "Foundations 08.4.1 Selection chip/S; PENPOT-PASSE/PASSE-2026-10-17.md",
+    "isolated": {
+      "cases": 16,
+      "locales": [
+        "fr",
+        "en"
+      ],
+      "widths": [
+        1600,
+        390
+      ],
+      "consoleErrors": 0,
+      "fieldHeights": [
+        38,
+        44
+      ],
+      "compactFieldHeights": [
+        32,
+        44
+      ],
+      "chipHeight": 24,
+      "chipFont": 11,
+      "chipGap": 8,
+      "chipInlinePadding": 8,
+      "removeTarget": 24,
+      "caretTargets": [
+        32,
+        44
+      ],
+      "clearTargets": [
+        28,
+        44
+      ],
+      "maxTextCentreDelta": 0,
+      "maxControlCentreDelta": 0,
+      "maxVerticalOverflow": 0,
+      "maxHorizontalOverflow": 0
+    },
+    "checks": {
+      "moodlecsErrors": 0,
+      "moodlecsWarnings": 19,
+      "phpLint": 3,
+      "eslint": "0 errors; 2 existing warnings; no increase",
+      "adapterCases": 9,
+      "builds": "admin_choices/searchable_choices AMD; conservative page styles; Node 22.11.0 / Sass 1.79.1",
+      "escaping": "PASS",
+      "filterEngine": "PASS",
+      "amdExports": "PASS",
+      "cssParity": "Existing ordered rules unchanged; only tagged/chip selectors added; global CSS 0 rules"
+    },
+    "native": {
+      "status": "BLOCKED",
+      "reason": "Protocol secret files removed; replacement path requested",
+      "pool": 8052,
+      "candidateCopied": false,
+      "serverWrites": 0,
+      "leaseReleased": true
+    },
+    "report": "docs/testing/old-c-admin-tags-2026-10-19.md",
+    "proof": "C:/dev/artifacts/old-c-20261019/validated-page-css-focus/results.json",
+    "limits": [
+      "No native Moodle PASS claimed",
+      "Native 4.5 and speech screen-reader checks remain open",
+      "Pre-existing Intl/M3 controller differences preserved; tagged helper and full SCSS match canonical Kit"
+    ]
+  },
   "k1779ParticipantFilterSpacing20261017": {
     "base": "4474ffde",
     "scope": "K17-79: participant filter spacing shared across Complete and Participants/groups views",
