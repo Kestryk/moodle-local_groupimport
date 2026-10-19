@@ -2820,8 +2820,8 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 @media (max-width: 52rem), (pointer: coarse) {
   .local-groupimport-easystud-message-modal .modal-header [data-action=hide],
-  .local-groupimport-easystud-message-modal .modal-header .close,
-  .local-groupimport-easystud-message-modal .modal-header .btn-close {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+.local-groupimport-easystud-message-modal .modal-header .close,
+.local-groupimport-easystud-message-modal .modal-header .btn-close {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
   }
 }
 .local-groupimport-easystud-message-modal .modal-header [data-action=hide],
@@ -2902,8 +2902,8 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 @media (max-width: 52rem), (pointer: coarse) {
   .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button,
-  .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary,
-  .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+.local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary,
+.local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
   }
 }
 .local-groupimport-easystud-message-modal .modal-footer {flex: 0 0 auto;padding: 0.8rem 1rem;
@@ -4204,7 +4204,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 @media (max-width: 52rem), (pointer: coarse) {
   .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__dismiss,
-  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__close {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__close {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
   }
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__minimize {align-items: center;border-radius: var(--easyedu-control-radius);display: inline-flex;justify-content: center;line-height: 1;font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
@@ -9383,8 +9383,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 @media (max-width: 52rem), (pointer: coarse) {
   .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button,
-  .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--secondary,
-  .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+.easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--secondary,
+.easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
   }
 }
 .easyedu-ui .easyedu-entity-dialog__actions {border-block-start: 0.0625rem solid var(--easyedu-modal-border);margin-block-start: 0.75rem;min-inline-size: 0;padding-block-start: 0.75rem;
@@ -9451,8 +9451,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 @media (max-width: 52rem), (pointer: coarse) {
   .easyedu-ui .easyedu-dialog-actions > .easyedu-button,
-  .easyedu-ui .easyedu-dialog-actions > .easyedu-button--secondary,
-  .easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+.easyedu-ui .easyedu-dialog-actions > .easyedu-button--secondary,
+.easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
   }
 }
 
@@ -9542,8 +9542,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 @media (max-width: 52rem), (pointer: coarse) {
   .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button,
-  .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--secondary,
-  .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+.easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--secondary,
+.easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
   }
 }
 .easyedu-ui .easyedu-confirmation-dialog__actions {margin-block-start: 1rem;

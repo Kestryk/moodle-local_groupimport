@@ -1467,6 +1467,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-dialog-close:hover,
 .easyedu-ui .easyedu-dialog-close:focus-visible {background: var(--easyedu-danger-soft);border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);color: var(--easyedu-danger);
 }
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-dialog-close {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+  }
+}
 .easyedu-ui .easyedu-dialog-close {flex: 0 0 auto;font-size: 1rem;margin: 0;
 }
 .easyedu-ui .easyedu-dialog-close > .fa {display: inline-flex;align-items: center;justify-content: center;line-height: 1;margin: 0;
@@ -1550,6 +1554,12 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--danger:disabled {background: var(--easyedu-surface-soft);color: var(--easyedu-text-muted);
 }
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button,
+.easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--secondary,
+.easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+  }
+}
 .easyedu-ui .easyedu-entity-dialog__actions {border-block-start: 0.0625rem solid var(--easyedu-modal-border);margin-block-start: 0.75rem;min-inline-size: 0;padding-block-start: 0.75rem;
 }
 
@@ -1611,6 +1621,12 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger:disabled {background: var(--easyedu-surface-soft);color: var(--easyedu-text-muted);
+}
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-dialog-actions > .easyedu-button,
+.easyedu-ui .easyedu-dialog-actions > .easyedu-button--secondary,
+.easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+  }
 }
 
 .easyedu-ui .easyedu-dialog-body {padding: 1.25rem;min-inline-size: 0;margin: 0;
@@ -1696,6 +1712,12 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger:disabled {background: var(--easyedu-surface-soft);color: var(--easyedu-text-muted);
+}
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button,
+.easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--secondary,
+.easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger {min-block-size: var(--easyedu-touch-target-min);
+  }
 }
 .easyedu-ui .easyedu-confirmation-dialog__actions {margin-block-start: 1rem;
 }
@@ -2271,7 +2293,11 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 
 @media (max-width: 48rem) {
   .easyedu-ui .easyedu-search-field,
-.easyedu-ui .easyedu-create-icon-button {min-block-size: 2.65rem;
+.easyedu-ui .easyedu-create-icon-button {min-block-size: var(--easyedu-touch-target-min);
+  }
+  .easyedu-ui .easyedu-search-field > input {block-size: var(--easyedu-touch-target-min);
+  }
+  .easyedu-ui .easyedu-create-icon-button {block-size: var(--easyedu-touch-target-min);inline-size: var(--easyedu-touch-target-min);min-inline-size: var(--easyedu-touch-target-min);
   }
 }
 :is(.easyedu-ui[data-easyedu-motion-level=reduced], body.easyedu-motion-reduced, [data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .easyedu-ui .easyedu-search-field {transition: none;
@@ -2500,6 +2526,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 .easyedu-v3-banner__close:hover,
 .easyedu-v3-banner__close:focus-visible {background: var(--easyedu-danger-soft);border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);color: var(--easyedu-danger);
+}
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-v3-banner__close {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+  }
 }
 .easyedu-v3-banner__close {inset-block-start: 0.8rem;inset-inline-end: 1.05rem;margin: 0;position: absolute;z-index: 4;
 }
