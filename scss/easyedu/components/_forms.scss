@@ -1548,8 +1548,9 @@
   }
 }
 
+// K16-80 / Q17-T44: was 2.65rem (42.4 px), under the Kit's 44 px touch minimum.
 @mixin inline-create-touch-field {
-  min-height: 2.65rem;
+  min-height: var(--easyedu-touch-target-min);
 }
 
 // Existing pill-shaped role choices, kept separate from native selects.

@@ -341,6 +341,16 @@
     border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);
     color: var(--easyedu-danger);
   }
+
+  // K16-80 / Q17-T44: one Kit Close, desktop and touch variants. The glyph is
+  // centred by geometry (inset 50% + transform), so growing the frame cannot
+  // desync the drawn cross from its square.
+  @media (max-width: 52rem), (pointer: coarse) {
+    height: var(--easyedu-touch-target-min);
+    min-height: var(--easyedu-touch-target-min);
+    min-width: var(--easyedu-touch-target-min);
+    width: var(--easyedu-touch-target-min);
+  }
 }
 
 @mixin overflow-button($size: regular) {

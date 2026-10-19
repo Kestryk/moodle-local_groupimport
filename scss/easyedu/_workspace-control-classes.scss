@@ -230,10 +230,21 @@
     transition: none;
   }
 
+  // K16-80 / Q17-T44: participant search field, one Kit touch minimum.
+  // The prior 2.65rem bump left the frame under 44 px, and the inner
+  // input kept a fixed 2.25rem block-size regardless of the wrapper.
   @media (max-width: 48rem) {
     .easyedu-ui .easyedu-search-field,
     .easyedu-ui .easyedu-create-icon-button {
-      min-block-size: 2.65rem;
+      min-block-size: var(--easyedu-touch-target-min);
+    }
+    .easyedu-ui .easyedu-search-field > input {
+      block-size: var(--easyedu-touch-target-min);
+    }
+    .easyedu-ui .easyedu-create-icon-button {
+      block-size: var(--easyedu-touch-target-min);
+      inline-size: var(--easyedu-touch-target-min);
+      min-inline-size: var(--easyedu-touch-target-min);
     }
   }
   @include animations.motion-restricted {

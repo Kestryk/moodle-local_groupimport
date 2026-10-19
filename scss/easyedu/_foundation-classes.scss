@@ -128,6 +128,17 @@
   > .easyedu-button--danger {
     @include foundation-button($density: $density, $matched-size: true, $danger: true);
   }
+
+  // K16-80 / Q17-T44: Annuler/Confirmer (modal windows) and the entity drawer's
+  // own footer actions share this one Kit recipe. Bump the touch variant to
+  // the Kit minimum here, not screen by screen.
+  @media (max-width: 52rem), (pointer: coarse) {
+    > .easyedu-button,
+    > .easyedu-button--secondary,
+    > .easyedu-button--danger {
+      min-block-size: var(--easyedu-touch-target-min);
+    }
+  }
 }
 
 @mixin foundation-font($url) {
