@@ -189,6 +189,7 @@ const SELECTORS = {
   checklistMessage: '[data-easyedu-guide-checklist-message]',
   checklistMinimize: '[data-easyedu-guide-checklist-minimize], [data-easyedu-guide-checklist-restore]',
   checklistReturn: '[data-easyedu-guide-checklist-return]',
+  checklistRestart: '[data-easyedu-guide-checklist-restart]',
   checklistSubtitle: '[data-easyedu-guide-checklist-subtitle]',
   checklistTitle: '[data-easyedu-guide-checklist-title]',
   interfaceReturn: '[data-easyedu-guide-interface-return]',
@@ -4859,6 +4860,29 @@ const bindGuide = (root, config) => {
     addTrackedListener(root, returnToGuide, 'click', () => {
       hideChecklist(root, config);
       openModal(root, config);
+    });
+  }
+
+  // TRI n°2: from the end box of a completed guided path, restart it from step 1 without
+  // leaving the checklist panel. Mirrors the start-path reset below (isPathComplete guard),
+  // never touches other paths or Moodle course data.
+  const restartPath = root.querySelector(SELECTORS.checklistRestart);
+  if (restartPath) {
+    addTrackedListener(root, restartPath, 'click', () => {
+      const activeConfig = root.easyeduGuideConfig || config;
+      const checklist = root.querySelector(SELECTORS.checklist);
+      const pathName = checklist ? checklist.getAttribute('data-easyedu-guide-path') : '';
+      if (!checklist || !pathName || !isPathComplete(activeConfig, pathName)) {
+        return;
+      }
+      captureChecklistFocus(root, restartPath);
+      resetPathProgress(activeConfig, pathName);
+      syncSlideLocks(root, activeConfig);
+      renderChecklist(root, activeConfig, pathName);
+      syncPathInvitation(root, activeConfig);
+      focusChecklist(root);
+      const steps = activeConfig.paths[pathName] || [];
+      highlightChecklistStep(root, activeConfig, steps[0] || null);
     });
   }
 

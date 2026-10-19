@@ -311,6 +311,7 @@ final class mass_import_guide {
             'guidechecklistdonelabel' => get_string('tutorialguidedpanelcomplete', $component),
             'guidechecklistreturnlabel' => get_string('tutorialguidedpanelreturn', $component),
             'guidechecklistendclose' => get_string('tutorialguidedpanelendclose', $component),
+            'guidechecklistrestartlabel' => get_string('tutorialguidedpanelrestart', $component),
             'guidesteplabel' => get_string('tutorialstepof', $component, (object) [
                 'current' => '__current__',
                 'total' => '__total__',

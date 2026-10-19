@@ -764,6 +764,11 @@
                 <span class="fa fa-route" aria-hidden="true"></span>
                 <span>{{guidechecklistreturnlabel}}</span>
             </button>
+            {{! TRI n°2: once this guided path is complete, restart it from step 1 (Kit secondary button, same replay icon as the demo). }}
+            <button type="button" class="btn btn-outline-secondary btn-sm easyedu-guided-panel__restart" data-easyedu-guide-checklist-restart="1">
+                <span class="fa fa-rotate-right" aria-hidden="true"></span>
+                <span>{{guidechecklistrestartlabel}}</span>
+            </button>
             <button type="button" class="btn btn-primary btn-sm easyedu-guided-panel__end-close" data-easyedu-guide-checklist-close="1">{{guidechecklistendclose}}</button>
         </div>
     </aside>

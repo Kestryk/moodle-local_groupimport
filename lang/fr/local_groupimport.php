@@ -1075,6 +1075,8 @@ $string['tutorialguidedpanelcomplete'] = 'Vous pouvez revenir au Guide pour cont
 $string['tutorialguidedpanelcompletetitle'] = 'Tout est bon';
 $string['tutorialguidedpanelreturn'] = 'Revenir au Guide';
 $string['tutorialguidedpanelendclose'] = 'Fermer';
+// TRI n°2: once the guided path is complete, restart it from step 1 without leaving the end box.
+$string['tutorialguidedpanelrestart'] = 'Recommencer';
 $string['tutorialguidedpanelhint'] = 'Choisissez un objectif. EasyStud ouvre la bonne zone et garde ce parcours visible.';
 $string['tutorialguidedpanelprogress'] = '{$a->done}/{$a->total} étapes faites';
 $string['tutorialguidedpaneltitle'] = 'Parcours guidé';

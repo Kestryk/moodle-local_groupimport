@@ -1555,6 +1555,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guidechecklistdonelabel' => $templatedata['tutorialguidedpanelcomplete'],
         'guidechecklistreturnlabel' => get_string('tutorialguidedpanelreturn', 'local_groupimport'),
         'guidechecklistendclose' => get_string('tutorialguidedpanelendclose', 'local_groupimport'),
+        'guidechecklistrestartlabel' => get_string('tutorialguidedpanelrestart', 'local_groupimport'),
         'guidesteplabel' => $templatedata['tutorialstepof'],
         'slides' => $slides,
         'slidecount' => $slidecount,

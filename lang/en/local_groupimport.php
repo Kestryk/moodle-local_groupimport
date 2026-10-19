@@ -780,6 +780,8 @@ $string['tutorialguidedpanelcomplete'] = 'You can return to the Guide to continu
 $string['tutorialguidedpanelcompletetitle'] = 'All set';
 $string['tutorialguidedpanelreturn'] = 'Back to the Guide';
 $string['tutorialguidedpanelendclose'] = 'Close';
+// TRI n°2: once the guided path is complete, restart it from step 1 without leaving the end box.
+$string['tutorialguidedpanelrestart'] = 'Start over';
 $string['tutorialguidedpanelhint'] = 'Choose an objective. EasyStud opens the right area and keeps this checklist visible.';
 $string['tutorialguidedpanelprogress'] = '{$a->done}/{$a->total} steps completed';
 $string['tutorialguidedpaneltitle'] = 'Guided path';

@@ -1451,7 +1451,8 @@
     // E2 (K9): end box of a guided path: green check, "All set", "6 / 6 steps done", message,
     // then "Back to the Guide" (secondary) and "Close" (primary). The cross stays the Kit close.
     .easyedu-guided-panel__done,
-    .easyedu-guided-panel__end-close { display: none; }
+    .easyedu-guided-panel__end-close,
+    .easyedu-guided-panel__restart { display: none; }
     &.is-complete {
       text-align: start;
       .easyedu-guided-panel__done {
@@ -1485,7 +1486,8 @@
       &:not(.is-minimized) .easyedu-guided-panel__minimize { display: none; }
       // Reduced by the user: the compact bar keeps its own check-less layout.
       &.is-minimized .easyedu-guided-panel__done,
-      &.is-minimized .easyedu-guided-panel__end-close { display: none; }
+      &.is-minimized .easyedu-guided-panel__end-close,
+      &.is-minimized .easyedu-guided-panel__restart { display: none; }
       // Core action M (38 px): the two end box buttons share one height.
       .easyedu-guided-panel__footer .btn { min-height: 2.375rem; padding-inline: 1rem; width: auto; }
       .easyedu-guided-panel__end-close {
@@ -1493,6 +1495,15 @@
         @include buttons.button-size(small);
         display: inline-flex;
         min-width: 0;
+      }
+      // TRI n°2: "Recommencer" sits with the end box's other buttons once the path is complete.
+      .easyedu-guided-panel__restart {
+        @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+        @include buttons.button-size(small);
+        display: inline-flex;
+        gap: var(--easyedu-action-icon-gap);
+        min-width: 0;
+        .fa { color: var(--easyedu-accent); }
       }
     }
     &[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
