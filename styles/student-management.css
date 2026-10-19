@@ -9298,6 +9298,10 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {transit
 .easyedu-ui .easyedu-selection-chip__remove:hover,
 .easyedu-ui .easyedu-selection-chip__remove:focus-visible {background: var(--easyedu-danger-soft);border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);color: var(--easyedu-danger);
 }
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-selection-chip__remove {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+  }
+}
 .easyedu-ui .easyedu-selection-chip__remove:hover,
 .easyedu-ui .easyedu-selection-chip__remove:focus-visible {background: var(--easyedu-primary-soft);border-color: transparent;color: var(--easyedu-primary-strong);
 }
@@ -9355,6 +9359,10 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {transit
 }
 .easyedu-ui .easyedu-searchable-choice--tagged .easyedu-searchable-choice__clear:hover,
 .easyedu-ui .easyedu-searchable-choice--tagged .easyedu-searchable-choice__clear:focus-visible {background: var(--easyedu-danger-soft);border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);color: var(--easyedu-danger);
+}
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-searchable-choice--tagged .easyedu-searchable-choice__clear {height: var(--easyedu-touch-target-min);min-height: var(--easyedu-touch-target-min);min-width: var(--easyedu-touch-target-min);width: var(--easyedu-touch-target-min);
+  }
 }
 .easyedu-ui .easyedu-searchable-choice--tagged .easyedu-searchable-choice__clear:active {transform: translateY(-50%);
 }
