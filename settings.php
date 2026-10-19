@@ -248,6 +248,7 @@ if ($hassiteconfig) {
             'none' => get_string('none'),
             'count' => local_groupimport_count_template('filterselectioncount'),
             'clear' => get_string('clearfilterselection', 'local_groupimport'),
+            'remove' => get_string('removechoiceselection', 'local_groupimport'),
         ], $motionlevel !== 'minimal']);
     }
 

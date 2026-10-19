@@ -1,3 +1,40 @@
+## OLD-C / K17-10 — opt-in selected-value chips (2026-10-19)
+
+Use enhanceMultipleSelect(select, labels, {taggedValues: true, motion: Motion})
+for the searchable multiple-choice variant from Foundations 08.4.1. Single
+selects and multiple controls without this option keep their existing count
+summary, markup and behaviour. The native select still owns values, submitted
+form data, disabled options and form reset. No new persistence or request API.
+
+- Selection chip / S: 24 px high, 11 px regular text, 8 px inline padding and
+  8 px between chips, primary-strong ink on #f4f8fc. Width follows translated
+  content; very long labels use ellipsis. The removal button has the full value
+  as its accessible name. Supply localized labels.remove with __label__.
+- Field: minimum 38 px (regular), 32 px (compact), 44 px for touch or <=768 px.
+  Chips wrap and the field grows instead of clipping them. The caret and clear
+  targets are 32/28 px on desktop and 44/44 px on touch; they remain contained.
+- Reusable recipes: selection-chip, selection-chip-remove, and
+  tagged-choice-classes. Removal reuses the Kit Close strokes, with a 24 px
+  target and primary hover variant. No second cross glyph or product CSS.
+- Buttons are siblings of the disclosure trigger, never nested buttons.
+  Per-value removal sends one native change and returns focus to the trigger
+  (closed or closing) or search (open). Disabled selected options cannot be removed;
+  clear-all preserves them. Required native controls retain their fallback.
+- Consumers that observe native disabled/options attributes must call refresh;
+  the administration adapter already does this and refreshes after form reset.
+
+Evidence: EasyStud test-admin-tagged-choices-browser.cjs covers both controllers
+in FR/EN at 1600/390, real Inter/FA fonts, geometry, compact/Touch44, safe text,
+native form data, disabled options, reset and destruction. It also accepts
+--page-css to exercise the complete generated administration cascade.
+test-admin-choices-browser.js covers compiled AMD and full/reduced/minimal
+Motion, including physical Reset below an open list. Native Moodle validation
+is a separate gate; isolated HTML does not certify its layout or credentials.
+
+The pre-existing consumer Intl plural/M3 priority differences are deliberately
+preserved in this lot. The tagged render helper and shared SCSS are identical;
+this is scoped feature parity, not a claim of whole-file controller identity.
+
 # Searchable choices
 
 ## Intrinsic inline width (0.4.109, SM-55)

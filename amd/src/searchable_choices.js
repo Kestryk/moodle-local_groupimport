@@ -16,6 +16,11 @@ const countLabel = (template, count) => {
 };
 const normalise = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase();
 
+// Selected options keep native identity and disabled/optgroup constraints.
+const optionIsDisabled = option => option.disabled ||
+    (option.parentElement.tagName === 'OPTGROUP' && option.parentElement.disabled);
+
+
 /**
  * Keep the original select as the authoritative value and no-JS fallback.
  * The disclosure contains a labelled search and native pressed choice buttons;
@@ -23,7 +28,7 @@ const normalise = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, ''
  *
  * @param {HTMLSelectElement} select Existing labelled single-select.
  * @param {Object} labels Localised label/search/empty strings, never HTML.
- * @param {Object} options Optional canonical Motion module for framed disclosure.
+ * @param {Object} options Optional Motion module; taggedValues enables selected-value chips on multiple choices.
  * @returns {Object} Controller with host, trigger, refresh and close methods.
  */
 export const enhanceSelect = (select, labels, options = {}) => enhanceNativeSelect(select, labels, false, options);
@@ -69,6 +74,7 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
     // Opt-in dependency injection keeps standalone consumers and their existing
     // slow-token lifecycle unchanged. No private copy of the geometry engine.
     const motion = options.motion;
+    const tagged = multiple && options.taggedValues === true;
     if (motion && (typeof motion.disclosePanel !== 'function' || typeof motion.cancel !== 'function')) {
         throw new Error('Framed choices require the canonical Motion disclosure and cancellation API.');
     }
@@ -77,6 +83,7 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
     const host = document.createElement('div');
     host.className = 'easyedu-searchable-choice';
     host.classList.toggle('easyedu-searchable-choice--multiple', multiple);
+    host.classList.toggle('easyedu-searchable-choice--tagged', tagged);
     host.classList.toggle('easyedu-searchable-choice--framed', !!motion);
     const trigger = document.createElement('button');
     trigger.type = 'button';
@@ -120,9 +127,26 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
     empty.setAttribute('role', 'status');
     empty.hidden = true;
     panel.append(searchLabel, list, empty);
-    host.append(trigger);
-    if (clear) {
-        host.append(clear);
+    let field = null;
+    if (tagged) {
+        field = document.createElement('div');
+        field.className = 'easyedu-searchable-choice__field';
+        field.setAttribute('role', 'group');
+        field.append(summary, trigger);
+        if (clear) {
+            field.append(clear);
+        }
+        field.addEventListener('click', event => {
+            if (!event.target.closest('button') && !trigger.disabled) {
+                trigger.click();
+            }
+        });
+        host.append(field);
+    } else {
+        host.append(trigger);
+        if (clear) {
+            host.append(clear);
+        }
     }
     host.append(panel);
     const originalLabels = [...select.labels];
@@ -273,16 +297,67 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
             trigger.focus();
         }
     };
+    // Buttons are siblings of the disclosure button, never nested controls.
+    const renderTaggedValues = selected => {
+        field.setAttribute('aria-label', labels.label);
+        if (!selected.length) {
+            summary.removeAttribute('role');
+            summary.textContent = labels.none || '';
+        } else {
+            summary.setAttribute('role', 'list');
+            const chips = selected.map(option => {
+                const chip = document.createElement('span');
+                chip.className = 'easyedu-selection-chip';
+                chip.setAttribute('role', 'listitem');
+                const text = document.createElement('span');
+                text.className = 'easyedu-selection-chip__label';
+                text.textContent = option.textContent;
+                const remove = document.createElement('button');
+                remove.type = 'button';
+                remove.className = 'easyedu-selection-chip__remove';
+                remove.dataset.easyeduSelectionValue = option.value;
+                const template = labels.remove || labels.clear || labels.label;
+                const name = template.includes('__label__') ?
+                    template.replace('__label__', () => option.textContent) : template + ': ' + option.textContent;
+                remove.setAttribute('aria-label', name);
+                remove.disabled = select.disabled || optionIsDisabled(option);
+                remove.addEventListener('click', () => {
+                    if (select.disabled || optionIsDisabled(option)) {
+                        return;
+                    }
+                    option.selected = false;
+                    select.dispatchEvent(new Event('change', {bubbles: true}));
+                    if (trigger.getAttribute('aria-expanded') !== 'true') {
+                        trigger.focus();
+                    } else {
+                        search.focus();
+                    }
+                });
+                chip.append(text, remove);
+                return chip;
+            });
+            summary.replaceChildren(...chips);
+        }
+        const names = selected.length ? selected.map(option => option.textContent).join(', ') : labels.none || '';
+        trigger.setAttribute('aria-label', labels.label + ': ' + names);
+    };
     const syncValue = () => {
         const options = [...select.selectedOptions];
-        summary.textContent = multiple ? (options.length === 0 ? labels.none || '' : options.length === 1 ?
-            options[0].textContent : countLabel(labels.count || '__count__', options.length)) :
-            (options[0] ? options[0].textContent : '');
-        trigger.setAttribute('aria-label', `${labels.label}: ${summary.textContent}`);
+        if (tagged) {
+            renderTaggedValues(options);
+        } else {
+            summary.textContent = multiple ? (options.length === 0 ? labels.none || '' : options.length === 1 ?
+                options[0].textContent : countLabel(labels.count || '__count__', options.length)) :
+                (options[0] ? options[0].textContent : '');
+            trigger.setAttribute('aria-label', `${labels.label}: ${summary.textContent}`);
+        }
         trigger.disabled = select.disabled || !select.options.length;
+        if (field) {
+            field.setAttribute('aria-disabled', String(trigger.disabled));
+        }
         if (clear) {
             clear.hidden = options.length === 0;
-            clear.disabled = select.disabled;
+            clear.disabled = select.disabled || (tagged && options.every(optionIsDisabled));
             clear.setAttribute('aria-label', labels.clear || labels.none || labels.label);
         }
         rows.forEach(row => {
@@ -360,7 +435,7 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
     search.addEventListener('input', filter);
     if (clear) {
         clear.addEventListener('click', () => {
-            const selected = [...select.selectedOptions];
+            const selected = [...select.selectedOptions].filter(option => !tagged || !optionIsDisabled(option));
             if (!selected.length) {
                 return;
             }

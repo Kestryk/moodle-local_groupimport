@@ -1,3 +1,5 @@
+- 2026-10-19 [N1] OLD-C / K17-10 : afficher les valeurs des sélections multiples de l’administration en étiquettes Kit retirables, tout en conservant le select natif et les autres modes à compteur.
+
 
 - 2026-10-18 [N1] OLD-B temps2 : construire les contrôles partagés, contenir la cible tactile Retirer, centrer les libellés Reset/Annuler et vérifier les switches nommés en FR/EN aux quatre largeurs.
 

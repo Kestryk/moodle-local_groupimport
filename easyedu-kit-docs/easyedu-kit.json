@@ -4,6 +4,13 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "oldCAdminTaggedChoices20261019": {
+      "kitCommit": "3d1b5951a1757eb6909b56a777a0ea60866ebf1d",
+      "kitBranch": "work/codex1/easyedu-kit-old-c-20261019",
+      "scope": "Selection chip/S and tagged searchable multiple-choice variant; administration opt-in only",
+      "isolatedProof": "docs/testing/old-c-admin-tags-2026-10-19.md",
+      "nativeStatus": "blocked; missing protocol secret file; no runtime acceptance"
+    },
     "oldBNative20261018": {
       "branch": "work/codex1/easyedu-kit-old-b-20261018",
       "commit": "cff748730597e7782b05fc3350fe1e80528c2c96",

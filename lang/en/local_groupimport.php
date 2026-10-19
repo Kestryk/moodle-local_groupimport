@@ -1507,3 +1507,5 @@ $string['mi_guide_run_progress'] = 'Import in progress 1,200 / 3,000';
 $string['mi_guide_run_notification_body'] = 'The report of your import is available.';
 $string['mi_guide_path_warning'] = 'This tour uses your file and may change the course. Previewing changes nothing. Stop at Cancel: clicking Run import really changes the course.';
 $string['mi_guide_history_sample_date'] = '18/10/2026 10:42';
+
+$string['removechoiceselection'] = 'Remove “__label__” from the selection';
