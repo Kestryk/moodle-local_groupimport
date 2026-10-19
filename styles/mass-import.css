@@ -676,7 +676,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-import__header-actions .btn[aria-current=page]:focus-visible,
 .local-groupimport-import__header-actions .btn[aria-pressed=true]:focus-visible {box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring), inset 0 -0.2rem 0 var(--easyedu-primary);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
-.local-groupimport-import__grid {align-items: stretch;display: grid;gap: 1.5rem;grid-template-columns: minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr) minmax(0, 0.716fr);transition-duration: var(--easyedu-motion-layout);transition-property: grid-template-columns;transition-timing-function: var(--easyedu-motion-disclosure-ease);will-change: grid-template-columns;
+.local-groupimport-import__grid {align-items: stretch;display: grid;gap: 1.5rem;grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);transition-duration: var(--easyedu-motion-layout);transition-property: grid-template-columns;transition-timing-function: var(--easyedu-motion-disclosure-ease);will-change: grid-template-columns;
 }
 :is(.easyedu-ui[data-easyedu-motion-level=reduced], body.easyedu-motion-reduced, [data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .local-groupimport-import__grid {will-change: auto;
 }

@@ -95,8 +95,10 @@
     align-items: stretch;
     display: grid;
     gap: 1.5rem;
-    // Applied K18-15 composition: 429.34/1082.66 in the available 1512px.
-    grid-template-columns: minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr) minmax(0, 0.716fr);
+    // Default (premier état, no file added yet): original wider deposit
+    // column. [K19-01] The K18-15 narrow ratio below belongs only to the
+    // has-preview state; it had regressed onto this default rule too.
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
     @include easyedu.layout-disclosure-transition(grid-template-columns);
     will-change: grid-template-columns;
 
@@ -122,6 +124,7 @@
   }
 
   &.has-preview &__grid {
+    // Applied K18-15 composition: 429.34/1082.66 in the available 1512px.
     grid-template-columns: minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr) minmax(0, 0.716fr);
   }
 
