@@ -1146,3 +1146,10 @@ CSS0rules and exact ordered pre-existing page CSS. Require current Guide/Kit
 parity and T037/T038/roundtrip/Light gates; no duplicate native tooltip or
 Guide-controller adaptation belongs in this utility. See
 docs/testing/a10-visually-hidden-817dea20-2026-10-17.md.
+
+K20-18 participant density resolves its existing 20/15-card page and tag overflow
+inside the Motion mutation before the target height is read. Deferred responsive
+work must not repaginate that same disclosure. Preserve the shared Motion API,
+normal/reduced/minimal policy, metadata contents and filter/sort scope. Native
+frame traces and audit remain distinct from the isolated controller contract.
+See docs/testing/participant-density-k20-18-2026-10-21.md.

@@ -25,7 +25,8 @@ import * as Motion from '../../motion';
 import {compactClass, isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
 import {showEasyStudModal, hideEasyStudModal, bindCardModalKeyboard} from './modal';
 import {lazyKnownUserIdentifiers, renderIdentifierPreview} from './identifiers';
-import {scheduleResponsiveUiRefresh, syncParticipantDensity} from './workspace';
+import {scheduleResponsiveUiRefresh, syncParticipantDensity, syncPagination} from './workspace';
+import {syncParticipantTagOverflow} from './cards';
 
 export const bindOptionalTools = root => {
     const densityToggle = root.querySelector('[data-easystud-density-toggle]');
@@ -92,7 +93,11 @@ export const bindOptionalTools = root => {
                 root.querySelectorAll('.is-density-expanded').forEach(card => card.classList.remove('is-density-expanded'));
                 root.easystudExpandedParticipant = null;
                 syncParticipantDensity(root, {animate: false});
-                scheduleResponsiveUiRefresh(root);
+                // Density changes the page size (20 compact / 15 full): render that page
+                // and resolve its tag rows before Motion.swap measures the final height.
+                syncPagination(root);
+                syncParticipantTagOverflow(participantList || root);
+                scheduleResponsiveUiRefresh(root, {pagination: false});
             };
             if (participantList) {
                 Motion.swap(participantList, applyDensity, {

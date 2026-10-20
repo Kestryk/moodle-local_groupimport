@@ -1,3 +1,5 @@
+- 2026-10-21 [K20-18] Déplier les informations complètes des participants en un seul mouvement : calculer la pagination existante et le débordement des pastilles avant la mesure de hauteur de l’animation, sans second ajustement différé.
+
 - 2026-10-20 [K20-13] Rendre son habillage à la page Administration sans toucher aux tailles de texte K18-C : une carte Kit par section (cadre, 24 px entre sections, filets fins entre réglages) et retour des deux colonnes libellé | contrôle (contrôles alignés sur une même verticale, empilés sous 48rem) ; deux adaptateurs Kit en CSS pur sur le DOM natif de Moodle (`moodle-admin-section-card`, `moodle-admin-setting-row`).
 
 - 2026-10-20 [K20-09] Ne plus afficher « Une erreur inattendue… vos modifications n’ont peut-être pas été enregistrées » au chargement de Student Management quand la lecture passive des transferts en cours échoue (table MOVE-BG absente tant que la mise à niveau 2026101801 n’est pas jouée) ; l’échec est journalisé.
