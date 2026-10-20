@@ -1,3 +1,5 @@
+- 2026-10-20 [A10] Allow installation from Moodle 4.5 without changing the schema version or declaring native certification; retain the existing Bootstrap 4/5 fallbacks and add offline compatibility checks.
+
 - 2026-10-20 [K20-02] Stack the pending guided-path invitation above Guide navigation while its dialog is open; preserve the same floating invitation after close.
 
 - 2026-10-20 [K20-01] Unify checklist Close/Restore/Minimize on the same Kit frame and Touch44 variant.

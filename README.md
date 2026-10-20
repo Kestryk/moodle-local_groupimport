@@ -98,9 +98,10 @@ for export and deletion of this data.
 - Personal Display and animations (ANIM/G1): `docs/display-preferences-2026-10-17.md`.
 - Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
 
-- The manifest currently requires Moodle 5.1 (`version.php`). Compatibility
-  with Moodle 4.5 and 5.3 needs its own version-specific release evidence; do
-  not infer support from the minimum-version field alone.
+- The manifest allows installation from Moodle 4.5 (`version.php`). Native
+  Moodle 4.5 installation, upgrade and functional certification remain pending
+  phase 10 (K18-04). Moodle 5.3 also needs its version-specific release evidence;
+  do not infer certified support from the minimum-version field alone.
 - SCSS entry point: `scss/easystud.scss`.
 - Build page styles with the pinned Node executable and the conservative
   builder: `tools/release/build-styles.cjs SASS_ROOT styles.css conservative POSTCSS_ROOT`.
