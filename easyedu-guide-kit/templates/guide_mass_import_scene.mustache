@@ -92,18 +92,9 @@
 <section class="easyedu-guide-scene__recap easyedu-guide-mi-recap" data-guide-recap data-guide-mi-recap hidden>
     <button type="button" class="easyedu-guide-scene__recap-toggle" data-guide-recap-toggle aria-expanded="true"><strong>{{recaptitle}}</strong><span class="fa fa-chevron-down" aria-hidden="true"></span></button>
     <div class="easyedu-guide-scene__recap-body" data-guide-recap-body>
-        <ol class="easyedu-guide-scene__steps easyedu-guide-mi-recap__steps">
+        <ol class="easyedu-guide-scene__steps">
             {{#recap}}
-            <li class="easyedu-guide-mi-recap__step">
-                <span class="easyedu-ui easyedu-guide-mi-recap__view" aria-hidden="true" inert>
-                    {{#viewfile}}<span class="easyedu-guide-mi-recap__file"><span class="fa fa-file-excel" aria-hidden="true"></span><span>{{filename}}</span></span>{{/viewfile}}
-                    {{#viewsubmit}}<span class="btn btn-primary easyedu-guide-mi-recap__button">{{previewlabel}}</span>{{/viewsubmit}}
-                    {{#viewsummary}}<span class="easyedu-status"><strong>{{rowscount}}</strong>&nbsp;{{rowslabel}}</span><span class="easyedu-status easyedu-status--warning"><strong>{{warningscount}}</strong>&nbsp;{{warningslabel}}</span>{{/viewsummary}}
-                    {{#viewstatuses}}<span class="easyedu-status">{{statusready}}</span><span class="easyedu-status easyedu-status--warning">{{statusflagged}}</span>{{/viewstatuses}}
-                    {{#viewexcluded}}<span class="easyedu-guide-mi-recap__row is-excluded"><input type="checkbox" tabindex="-1"><span>{{value}}</span></span>{{/viewexcluded}}
-                    {{#viewcorrected}}<span class="easyedu-guide-mi-recap__row"><input type="text" class="form-control" value="{{value}}" readonly tabindex="-1"></span>{{/viewcorrected}}
-                    {{#viewunchanged}}<span class="easyedu-status easyedu-status--warning">{{value}}</span>{{/viewunchanged}}
-                </span>
+            <li>
                 <span class="easyedu-guide-mi-recap__text">{{text}}</span>
             </li>
             {{/recap}}

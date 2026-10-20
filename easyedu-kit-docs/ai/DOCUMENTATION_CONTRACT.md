@@ -1146,3 +1146,13 @@ CSS0rules and exact ordered pre-existing page CSS. Require current Guide/Kit
 parity and T037/T038/roundtrip/Light gates; no duplicate native tooltip or
 Guide-controller adaptation belongs in this utility. See
 docs/testing/a10-visually-hidden-817dea20-2026-10-17.md.
+
+
+## Guide recap ownership (K20-14 to K20-17, 20 October 2026)
+
+Mass Import Steps to remember are text only, across every recap. Keep its animated
+stages intact, and preserve Student Management recap renderings (K17-44). Simple
+creation ends with the existing four-phase collapsible recap. Membership Replay
+uses the existing single-mode completion header; comparison choices return on
+replay. Assignment descriptions wrap in the Kit information-card recipe.
+See `docs/testing/guide-k20-14-17-2026-10-20.md`.

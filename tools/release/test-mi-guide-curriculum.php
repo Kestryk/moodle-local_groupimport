@@ -163,11 +163,9 @@ foreach (['en', 'fr'] as $lang) {
         && count(array_filter(array_column($review['rows'], 'warning'))) === 2, $lang . ': mipreview demonstration');
     foreach ([$drop, $review] as $scene) {
         foreach ($scene['recap'] ?? [] as $item) {
-            $views = array_intersect_key($item, array_flip(['viewfile', 'viewsubmit', 'viewsummary', 'viewstatuses',
-                'viewexcluded', 'viewcorrected', 'viewunchanged']));
             $check(
-                trim($item['text']) !== '' && count($views) === 7 && count(array_filter($views)) === 1,
-                $lang . ': one explicit view and one narration per recap step'
+                trim($item['text']) !== '' && array_keys($item) === ['text'],
+                $lang . ': K20-17 narration only, no visual payload in any recap step'
             );
         }
     }
