@@ -2664,13 +2664,19 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 
 .easyedu-v3-banner--notification {inline-size: min(30rem, 100vw - 2rem);pointer-events: auto;
 }
-.easyedu-v3-banner--notification .easyedu-v3-banner__panel {min-block-size: 7.75rem;
+.easyedu-v3-banner--notification .easyedu-v3-banner__panel {min-block-size: 4.5rem;
 }
-.easyedu-v3-banner--notification .easyedu-v3-banner__content {display: block;padding: 1rem 1.5rem 1.875rem;
+.easyedu-v3-banner--notification .easyedu-v3-banner__content {display: block;padding: 0.5rem 1.5rem;
 }
 .easyedu-v3-banner--notification .easyedu-v3-banner__heading {padding-inline-end: 3rem;
 }
-.easyedu-v3-banner--notification .easyedu-v3-banner__text {margin-block-start: 0.625rem;
+.easyedu-v3-banner--notification .easyedu-v3-banner__eyebrow {line-height: 0.75rem;
+}
+.easyedu-v3-banner--notification .easyedu-v3-banner__title {line-height: 1.25rem;margin-block-start: 0;
+}
+.easyedu-v3-banner--notification .easyedu-v3-banner__text {line-height: 1.125rem;margin-block-start: 0.375rem;
+}
+.easyedu-v3-banner--notification .easyedu-v3-banner__close {block-size: 2.75rem;inline-size: 2.75rem;min-block-size: 2.75rem;min-inline-size: 2.75rem;inset-block-start: 0.5rem;
 }
 
 @media (max-width: 40rem) {
@@ -2697,14 +2703,6 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   .easyedu-v3-banner--welcome .easyedu-v3-banner__actions > .easyedu-v3-banner__action--secondary {grid-column: 1;
   }
   .easyedu-v3-banner--notification {inline-size: min(22.375rem, 100vw - 2rem);max-inline-size: 100%;
-  }
-  .easyedu-v3-banner--notification .easyedu-v3-banner__panel {min-block-size: 9.25rem;
-  }
-  .easyedu-v3-banner--notification .easyedu-v3-banner__content {padding-block-end: 1.125rem;
-  }
-  .easyedu-v3-banner--notification .easyedu-v3-banner__title {min-block-size: 3rem;
-  }
-  .easyedu-v3-banner--notification .easyedu-v3-banner__text {margin-block-start: 0.125rem;min-block-size: 2.625rem;
   }
 }
 .easyedu-v3-banner--anchored {inset-block-start: var(--easyedu-v3-banner-top, 1rem);left: var(--easyedu-v3-banner-left, 1rem);position: fixed;z-index: 1201;
