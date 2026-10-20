@@ -216,6 +216,9 @@
     &__tile { margin: 0; align-content: start; }
     &__tile .easyedu-information__title { margin: 0; }
     &__tile .easyedu-information__header { align-items: center; }
+    // K20-04: the longer English recap sentences (eg. "Create groups") must wrap inside the
+    // tile rather than spill past its border; French is shorter and hid the missing safeguard.
+    &__tile .easyedu-information__description { overflow-wrap: anywhere; word-break: break-word; }
 
     &__review {
       @include buttons.selection-recovery-action;
