@@ -11,6 +11,7 @@
     <a
         class="easyedu-navigation__item {{#current}}active{{/current}} {{#destructive}}easyedu-navigation__item--destructive{{/destructive}}"
         {{^disabled}}{{#url}}href="{{url}}"{{/url}}{{/disabled}}
+        {{#download}}download{{/download}}
         {{#current}}aria-current="page"{{/current}}
         {{#disabled}}aria-disabled="true" tabindex="-1"{{/disabled}}
         {{#accessiblelabel}}aria-label="{{accessiblelabel}}"{{/accessiblelabel}}

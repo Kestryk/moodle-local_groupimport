@@ -870,6 +870,20 @@ const resolveActiveChecklistTarget = root => {
   return resolveStepHighlightTarget(config, step);
 };
 
+// GMI-C4-FINITIONS (K18-25): same lookup as resolveActiveChecklistTarget, for the optional
+// avoidance-only companion of the currently active step (never highlighted or clicked itself).
+const resolveActiveChecklistCompanion = root => {
+  const checklist = root.querySelector(SELECTORS.checklist);
+  const config = root.easyeduGuideConfig;
+  if (!checklist || checklist.hidden || checklist.classList.contains('is-complete') || !config) {
+    return null;
+  }
+  const active = checklist.querySelector('[data-easyedu-guide-step-id].is-active:not(.is-complete)');
+  const steps = config.paths[checklist.getAttribute('data-easyedu-guide-path')] || [];
+  const step = active && steps.find(item => item.id === active.getAttribute('data-easyedu-guide-step-id'));
+  return step && step.avoidCompanion ? resolveTarget(config, step.avoidCompanion) : null;
+};
+
 const observeHighlightedTarget = (root, target) => {
   if (!window.MutationObserver) {
     return;
@@ -1011,7 +1025,7 @@ const scheduleHighlightRefresh = (root, target, shouldDock = true) => {
       return;
     }
     if (root.easyeduGuideRefreshShouldDock) {
-      dockChecklistAwayFromTarget(root, refreshTarget);
+      dockChecklistAwayFromTarget(root, refreshTarget, resolveActiveChecklistCompanion(root));
     }
     updateHighlight(root, refreshTarget);
   });
@@ -1155,7 +1169,7 @@ const unfoldAvoidingChecklist = (root, checklist) => {
   syncChecklistMinimizeControl(root);
 };
 
-const dockChecklistAwayFromTarget = (root, target) => {
+const dockChecklistAwayFromTarget = (root, target, avoidCompanion) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const externalDialog = getExternalTargetDialog(root, target);
   root.toggleAttribute('data-easyedu-guide-target-in-dialog', !!externalDialog);
@@ -1179,6 +1193,15 @@ const dockChecklistAwayFromTarget = (root, target) => {
   unfoldAvoidingChecklist(root, checklist);
 
   const zone = inflateRect(target.getBoundingClientRect(), CHECKLIST_AVOID_MARGIN);
+  // GMI-C4-FINITIONS (K18-25): a companion (e.g. a warning right next to the real target)
+  // widens the zone the checklist must clear, without ever being highlighted or clicked itself.
+  if (avoidCompanion && isVisibleElement(avoidCompanion)) {
+    const companionZone = inflateRect(avoidCompanion.getBoundingClientRect(), CHECKLIST_AVOID_MARGIN);
+    zone.left = Math.min(zone.left, companionZone.left);
+    zone.right = Math.max(zone.right, companionZone.right);
+    zone.top = Math.min(zone.top, companionZone.top);
+    zone.bottom = Math.max(zone.bottom, companionZone.bottom);
+  }
   if (isCompactChecklistViewport()) {
     if (!rectsOverlap(zone, checklist.getBoundingClientRect())) {
       return;
@@ -1421,7 +1444,9 @@ const scrollToTarget = (root, target, options = {}) => {
   // A new step supersedes its predecessor before scrolling, including instant
   // reduced/minimal scrolling that finishes before the next highlight frame.
   root.easyeduGuideRefreshTarget = target;
-  dockChecklistAwayFromTarget(root, target);
+  // GMI-C4-FINITIONS (K18-25): same live lookup as the other dockChecklistAwayFromTarget call
+  // sites (resolveActiveChecklistCompanion), so the active step's own data is always current.
+  dockChecklistAwayFromTarget(root, target, resolveActiveChecklistCompanion(root));
 
   const topOffset = getScrollTopOffset();
   const checklistBottomClearance = getCompactChecklistBottomClearance(root);
@@ -4065,6 +4090,20 @@ const markChecklistStepComplete = (root, config, stepIdOrIndex, activeStep) => {
   saveChecklistProgress(root, config, pathName, Math.min(activeIndex + 1, Math.max(steps.length - 1, 0)));
   renderChecklist(root, config, pathName);
   updateChecklistMessage(root, config, activeStep || null);
+  // GMI-C4-FINITIONS (K18-25): same autoHighlightNext contract as completeStep, so a manually
+  // clicked informative step (no completion event of its own) still re-highlights and re-docks
+  // the checklist for the next step, instead of leaving it at the completed step's old position.
+  if (steps[activeIndex]?.autoHighlightNext && !isPathComplete(config, pathName)) {
+    const next = checklist.querySelector('[data-easyedu-guide-step-index]:not(.is-complete):not(.is-locked)');
+    if (next) {
+      setStepOpenTimeout(root, () => {
+        if (!checklist.hidden && checklist.getAttribute('data-easyedu-guide-path') === pathName) {
+          const step = setActiveChecklistStep(root, config, Number(next.dataset.easyeduGuideStepIndex));
+          highlightChecklistStep(root, config, step);
+        }
+      }, 260);
+    }
+  }
 };
 
 const runStepOpenAction = (root, config, step, callback) => {
@@ -4195,7 +4234,7 @@ const refreshActiveHighlight = (root, shouldDock = false) => {
   }
 
   if (shouldDock) {
-    dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget);
+    dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget, resolveActiveChecklistCompanion(root));
   }
 
   updateHighlight(root, root.easyeduGuideCurrentTarget);
@@ -4583,7 +4622,7 @@ const bindGuide = (root, config) => {
         // C2-15-01: the new size may now cover the current step's control.
         if (isVisibleElement(root.easyeduGuideCurrentTarget)) {
           releaseChecklistTopDock(root);
-          dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget);
+          dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget, resolveActiveChecklistCompanion(root));
         }
         const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
           '[data-easyedu-guide-checklist-minimize]');

@@ -364,6 +364,10 @@ final class mass_import_guide {
                 'miStrategy' => ['.local-groupimport-import-preview__strategy', '#local_groupimport-results'],
                 'miRunImport' => ['[data-local-groupimport-preview-submit]', '#local_groupimport-results'],
                 'miPreviewCancel' => '[data-local-groupimport-preview-cancel]',
+                // GMI-C4-FINITIONS (K18-25): avoidance-only companion for 'cancel-preview' (see
+                // avoidCompanion in review_path()), so the checklist zone also covers the warning
+                // above Cancel without changing what gets highlighted or what completes the step.
+                'miGuidePathWarning' => '[data-local-groupimport-guide-path-warning]',
                 'miJobProgress' => '[data-import-job]',
                 'miExportReport' => '.local-groupimport-import__export-results',
                 'miTemplateLink' => '#local-groupimport-import-navigation ' .
@@ -449,8 +453,10 @@ final class mass_import_guide {
             ['id' => 'exclude-row', 'target' => 'miFlaggedRowInclude', 'open' => 'mi:close-navigation',
                 'completionMode' => 'event'],
             ['id' => 'read-strategy', 'target' => 'miStrategy', 'open' => 'mi:close-navigation'],
-            ['id' => 'cancel-preview', 'target' => 'miPreviewCancel', 'open' => 'mi:close-navigation',
-                'completeOnClick' => true],
+            // GMI-C4-FINITIONS (K18-25): avoidCompanion only widens the checklist's avoidance zone
+            // (the warning sits right above Cancel); it never changes the highlight or the click target.
+            ['id' => 'cancel-preview', 'target' => 'miPreviewCancel', 'avoidCompanion' => 'miGuidePathWarning',
+                'open' => 'mi:close-navigation', 'completeOnClick' => true],
         ];
         $path = [];
         foreach ($steps as $index => $step) {

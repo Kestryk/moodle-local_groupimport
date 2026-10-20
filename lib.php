@@ -548,6 +548,8 @@ function local_groupimport_build_mass_import_navigation_context(stdClass $course
         'destructive' => false,
         'badge' => '',
         'haschildren' => false,
+        // GMI-C4-FINITIONS: force a direct download of the template file, never a new tab.
+        'download' => true,
     ];
 
     $items[] = [

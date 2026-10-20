@@ -21,7 +21,7 @@ const PATH = 'mi-review-without-importing';
 const WARNING = {
     fr: 'Ce parcours utilise votre fichier et peut modifier le cours. Prévisualiser ne change rien. ' +
         'Arrêtez-vous sur Annuler\u00a0: cliquer sur Lancer l’import modifie réellement le cours.',
-    en: 'This tour uses your file and may change the course. Previewing changes nothing. ' +
+    en: 'This guided path uses your file and may change the course. Previewing changes nothing. ' +
         'Stop at Cancel: clicking Run import really changes the course.',
 };
 const STEPS = ['download-example', 'add-file', 'preview-file', 'exclude-row', 'read-strategy', 'cancel-preview'];
@@ -282,6 +282,22 @@ const expandChecklist = async page => {
                 assert.equal(row.runWarning.text, WARNING[lang]);
                 assert.ok(row.runWarning.visible && row.runWarning.nextIsActions && row.runWarning.above,
                     'warning immediately before Run import');
+                // GMI-C4-FINITIONS (K18-25): the guided path checklist must never sit on top of this
+                // warning at desktop width (1600 px), the same J-G3 "never covers its target" rule,
+                // now widened by an avoidance-only companion (miGuidePathWarning) for this step.
+                if (!compact) {
+                    row.checklistVsWarning = await page.evaluate(() => {
+                        const checklist = document.querySelector('[data-easyedu-guide-checklist]');
+                        const warning = document.querySelector('[data-local-groupimport-guide-path-warning]');
+                        const panel = checklist.getBoundingClientRect();
+                        const box = warning.getBoundingClientRect();
+                        const overlap = !(panel.left >= box.right || panel.right <= box.left ||
+                            panel.top >= box.bottom || panel.bottom <= box.top);
+                        return {overlap, panel, box};
+                    });
+                    assert.equal(row.checklistVsWarning.overlap, false,
+                        'the guided path checklist never covers the Run import warning at 1600 px');
+                }
                 if (process.env.MI_SHOTS) {
                     await page.screenshot({path: path.join(outputPath, 'gmi-c4-path-cancel-' + width + '-' + lang + '.png')});
                 }
