@@ -91,12 +91,12 @@
 }
 
 @mixin workspace-lane($rail, $segment: whole) {
-  // Keep the lane boundary distinguishable on both white and native grey hosts.
-  // The inset does not change card widths, hit targets or the lane geometry.
-  --easyedu-lane-border-colour: color-mix(in srgb, var(--easyedu-lane-rail-colour, #{$rail}) 55%, var(--easyedu-text) 45%);
+  // K20-06 (Kevin, 20/10): no boundary line around lanes. The K16-19/21 dark inset hairline
+  // (rail 55% + text 45%) framed the tab band and the whole two-lane panel on Moodle 5.1;
+  // any 5.3 grey-host separation must go through Penpot first, not a hairline here.
   background: var(--easyedu-surface-soft);
   border: 0;
-  box-shadow: inset 0 0 0 1px var(--easyedu-lane-border-colour);
+  box-shadow: none;
   min-inline-size: 0;
   @include workspace-lane-content-inset;
   @if $segment == whole or $segment == start {
