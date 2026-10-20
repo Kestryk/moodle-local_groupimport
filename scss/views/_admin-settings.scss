@@ -98,17 +98,25 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     display: none;
   }
 
-  // K18-37: back to a single reading column at every width, as in Student
-  // Management and Mass Import. The two-column split made the page harder to
-  // scan and is reverted here; sections keep their 24 px rhythm.
+  // K18-37: one reading column of sections at every width, as in Student
+  // Management and Mass Import (no column-count split of the sections).
+  // K20-13: each section is a Kit card again (frame, hairlines between rows,
+  // 24 px between cards), drawn on the native siblings by the Kit adapter.
   #adminsettings > .settingsform > fieldset {
     border: 0;
     margin: 0;
     min-inline-size: 0;
     padding: 0;
 
+    @include easyedu.moodle-admin-section-card;
+
     > .clearer {
       display: none;
+    }
+
+    // The page identity already ends with its own 24 px gap.
+    > .formsettingheading:has(.local-groupimport-admin-settings__page-identity) + h3.main {
+      margin-block-start: 0;
     }
   }
 
@@ -160,19 +168,24 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
   }
 
   // Section titles: native h3.main, 16/24 semibold, kept with their description.
+  // Margins and padding belong to the section card (moodle-admin-section-card).
   #adminsettings h3.main,
   #adminsettings .formsettingheading h3 {
     @include easyedu.type-section-title;
 
     border: 0;
     break-after: avoid;
-    margin: 2rem 0 0.25rem;
+    margin: 0;
     padding: 0;
   }
 
   .local-groupimport-admin-settings__section-copy {
     break-before: avoid;
-    margin-block-end: 1rem;
+    margin-block-end: 0;
+
+    > :last-child {
+      margin-block-end: 0;
+    }
 
     p {
       @include easyedu.type-body;
@@ -269,13 +282,13 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     @include easyedu.inline-empty-state-compact;
   }
 
-  // Setting rows: label above the control, never kept in a card (the previous
-  // card-per-setting recipe made every element too large).
+  // Setting rows: no card per setting (K18-15, that made every element too
+  // large); K20-13 restores the native label | control columns inside the
+  // section card, with the Kit hairline between rows. Stacked on phones.
   #adminsettings .form-item.row {
     break-inside: avoid;
-    display: block;
-    margin: 0 0 1rem;
-    padding: 0;
+
+    @include easyedu.moodle-admin-setting-row;
   }
 
   #adminsettings .form-item .form-label,
@@ -467,11 +480,6 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
       .form-checkbox {
         min-block-size: var(--easyedu-touch-target-min);
       }
-    }
-
-    #adminsettings h3.main,
-    #adminsettings .formsettingheading h3 {
-      margin-block-start: 1.5rem;
     }
 
     .local-groupimport-admin-settings__field-grid {

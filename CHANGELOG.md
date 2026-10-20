@@ -1,3 +1,5 @@
+- 2026-10-20 [K20-13] Rendre son habillage à la page Administration sans toucher aux tailles de texte K18-C : une carte Kit par section (cadre, 24 px entre sections, filets fins entre réglages) et retour des deux colonnes libellé | contrôle (contrôles alignés sur une même verticale, empilés sous 48rem) ; deux adaptateurs Kit en CSS pur sur le DOM natif de Moodle (`moodle-admin-section-card`, `moodle-admin-setting-row`).
+
 - 2026-10-20 [K20-09] Ne plus afficher « Une erreur inattendue… vos modifications n’ont peut-être pas été enregistrées » au chargement de Student Management quand la lecture passive des transferts en cours échoue (table MOVE-BG absente tant que la mise à niveau 2026101801 n’est pas jouée) ; l’échec est journalisé.
 
 - 2026-10-20 [K20-06] Retirer le filet intérieur sombre (rail 55 % + texte 45 %) de la recette des couloirs : plus de trait autour du bandeau d’onglets ni du cadre général des colonnes ; la séparation sur fond gris 5.3 (K16-19/21) repasse par Penpot.

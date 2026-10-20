@@ -1480,6 +1480,99 @@
   }
 }
 
+// K20-13: one card per Moodle admin section, drawn on the native DOM. Moodle
+// prints h3.main, its description box and the setting rows as flat siblings of
+// the fieldset (no section wrapper), so each run "heading -> description ->
+// rows" is painted as contiguous card segments: frame on both sides, top edge
+// and radius on the heading, a Kit hairline between rows, bottom edge and
+// radius on the last row of the section. No wrapper, no script, nothing hidden
+// (the E5 attempt of 15/10 rewrote the DOM and broke the page). Include it on
+// the fieldset that holds the headings.
+@mixin moodle-admin-section-card($heading: "h3.main") {
+  --easyedu-admin-card-padding: 1.25rem;
+
+  @media (max-width: 48rem) {
+    --easyedu-admin-card-padding: 1rem;
+  }
+
+  > #{$heading},
+  > #{$heading} + .formsettingheading,
+  > .form-item {
+    background: var(--easyedu-surface);
+    border-inline: 1px solid var(--easyedu-card-border);
+    box-sizing: border-box;
+    padding-inline: var(--easyedu-admin-card-padding);
+  }
+
+  > #{$heading} {
+    border-block-start: 1px solid var(--easyedu-card-border);
+    border-start-end-radius: var(--easyedu-card-radius);
+    border-start-start-radius: var(--easyedu-card-radius);
+    margin-block: var(--easyedu-admin-section-gap, 1.5rem) 0;
+    padding-block: var(--easyedu-admin-card-padding) 0.25rem;
+
+    @media (max-width: 48rem) {
+      margin-block-start: var(--easyedu-admin-section-gap-narrow, 1rem);
+    }
+  }
+
+  > #{$heading} + .formsettingheading {
+    margin: 0;
+    padding-block: 0 1rem;
+  }
+
+  > .form-item {
+    border-block-start: 1px solid var(--easyedu-card-hairline);
+    margin: 0;
+    padding-block: 1rem;
+  }
+
+  // Section end: the row (or a description without rows) right before the next
+  // heading, or the last child of the fieldset.
+  > .form-item:is(:has(+ #{$heading}), :last-child),
+  > #{$heading} + .formsettingheading:is(:has(+ #{$heading}), :last-child) {
+    border-block-end: 1px solid var(--easyedu-card-border);
+    border-end-end-radius: var(--easyedu-card-radius);
+    border-end-start-radius: var(--easyedu-card-radius);
+    padding-block-end: var(--easyedu-admin-card-padding);
+  }
+}
+
+// K20-13: the native admin row keeps its two columns, label | control (Moodle's
+// col-sm-3 / col-sm-9), on the Kit grid: a bounded label column, the control
+// column starting on one shared vertical line, stacked on phones. The label's
+// first line is centred on the first control row (the label line height is 1.5em).
+@mixin moodle-admin-setting-row($label-column: minmax(12rem, 22rem)) {
+  align-items: start;
+  column-gap: 2rem;
+  display: grid;
+  grid-template-columns: $label-column minmax(0, 1fr);
+  row-gap: 0.25rem;
+
+  > .form-label,
+  > .form-setting {
+    inline-size: auto;
+    max-inline-size: none;
+    min-inline-size: 0;
+  }
+
+  > .form-label {
+    margin-block-end: 0;
+  }
+
+  > .form-label label {
+    padding-block-start: max(0px, calc((var(--easyedu-control-height) - 1.5em) / 2));
+  }
+
+  @media (max-width: 48rem) {
+    grid-template-columns: minmax(0, 1fr);
+
+    > .form-label label {
+      padding-block-start: 0;
+    }
+  }
+}
+
 // Moodle admin_setting renders a progressive colour control, its default
 // value and help as siblings. Keep the control/default on one responsive row
 // while allowing a conditional notice to consume a separate full-width row.

@@ -30,6 +30,21 @@ themeable. Direct and fieldset `h3.main` anatomy is supported; typography,
 end margins, setting rows/controls and Save stay unchanged. Native evidence:
 `docs/admin-section-spacing-successor-2026-10-05.md`. Human checklist OPEN.
 
+### Section cards and setting rows (K20-13, 20/10/2026)
+
+- `moodle-admin-section-card($heading: "h3.main")`, included on the fieldset
+  that holds the native headings: each run heading -> description box -> setting
+  rows is painted as one card from contiguous segments (surface, 1px
+  `--easyedu-card-border` frame, `--easyedu-card-radius` corners, 1px
+  `--easyedu-card-hairline` between rows, 20px inner padding / 16px at <=48rem,
+  `--easyedu-admin-section-gap` 24px between cards / 16px narrow). Pure CSS on
+  Moodle's flat siblings: no wrapper, no script, nothing hidden.
+- `moodle-admin-setting-row($label-column: minmax(12rem, 22rem))`, included on
+  `.form-item.row`: native label | control columns on a grid (2rem gap, one
+  shared control line), label first line centred on the 38px control row,
+  stacked at <=48rem.
+- Typography is untouched (the consumer keeps its own roles).
+
 
 ## Trailing catalogue actions — SM-43B candidate
 

@@ -104,9 +104,32 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > h2 {display: none;
 }
-#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {border: 0;margin: 0;min-inline-size: 0;padding: 0;
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {border: 0;margin: 0;min-inline-size: 0;padding: 0;--easyedu-admin-card-padding: 1.25rem;
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset {--easyedu-admin-card-padding: 1rem;
+  }
+}
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > h3.main,
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > h3.main + .formsettingheading,
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .form-item {background: var(--easyedu-surface);border-inline: 1px solid var(--easyedu-card-border);box-sizing: border-box;padding-inline: var(--easyedu-admin-card-padding);
+}
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > h3.main {border-block-start: 1px solid var(--easyedu-card-border);border-start-end-radius: var(--easyedu-card-radius);border-start-start-radius: var(--easyedu-card-radius);margin-block: var(--easyedu-admin-section-gap, 1.5rem) 0;padding-block: var(--easyedu-admin-card-padding) 0.25rem;
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > h3.main {margin-block-start: var(--easyedu-admin-section-gap-narrow, 1rem);
+  }
+}
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > h3.main + .formsettingheading {margin: 0;padding-block: 0 1rem;
+}
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .form-item {border-block-start: 1px solid var(--easyedu-card-hairline);margin: 0;padding-block: 1rem;
+}
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .form-item:is(:has(+ h3.main), :last-child),
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > h3.main + .formsettingheading:is(:has(+ h3.main), :last-child) {border-block-end: 1px solid var(--easyedu-card-border);border-end-end-radius: var(--easyedu-card-radius);border-end-start-radius: var(--easyedu-card-radius);padding-block-end: var(--easyedu-admin-card-padding);
 }
 #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .clearer {display: none;
+}
+#page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset > .formsettingheading:has(.local-groupimport-admin-settings__page-identity) + h3.main {margin-block-start: 0;
 }
 #page-admin-setting-local_groupimport #adminsettings .formsettingheading {background: transparent;border: 0;margin: 0;padding: 0;
 }
@@ -124,9 +147,11 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-description {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-body);line-height: var(--easyedu-line-height-body);margin: 0.25rem 0 0;max-inline-size: 58rem;
 }
 #page-admin-setting-local_groupimport #adminsettings h3.main,
-#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-section-title);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-title);border: 0;break-after: avoid;margin: 2rem 0 0.25rem;padding: 0;
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-section-title);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-title);border: 0;break-after: avoid;margin: 0;padding: 0;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy {break-before: avoid;margin-block-end: 1rem;
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy {break-before: avoid;margin-block-end: 0;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy > :last-child {margin-block-end: 0;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__section-copy p {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-body);line-height: var(--easyedu-line-height-body);margin: 0 0 0.5rem;
 }
@@ -157,7 +182,20 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__empty {align-items: center;background: linear-gradient(180deg, var(--easyedu-empty-bg-start) 0%, var(--easyedu-empty-bg-end) 100%);border: 1px dashed var(--easyedu-empty-border);border-radius: 0.85rem;color: var(--easyedu-text-muted);display: flex;flex-direction: column;gap: 0.45rem;justify-content: center;padding: 0.9rem 1rem;text-align: center;min-height: 3.2rem;padding: 0.7rem 0.85rem;font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;align-items: flex-start;min-height: 2.7rem;text-align: left;
 }
-#page-admin-setting-local_groupimport #adminsettings .form-item.row {break-inside: avoid;display: block;margin: 0 0 1rem;padding: 0;
+#page-admin-setting-local_groupimport #adminsettings .form-item.row {break-inside: avoid;align-items: start;column-gap: 2rem;display: grid;grid-template-columns: minmax(12rem, 22rem) minmax(0, 1fr);row-gap: 0.25rem;
+}
+#page-admin-setting-local_groupimport #adminsettings .form-item.row > .form-label,
+#page-admin-setting-local_groupimport #adminsettings .form-item.row > .form-setting {inline-size: auto;max-inline-size: none;min-inline-size: 0;
+}
+#page-admin-setting-local_groupimport #adminsettings .form-item.row > .form-label {margin-block-end: 0;
+}
+#page-admin-setting-local_groupimport #adminsettings .form-item.row > .form-label label {padding-block-start: max(0px, (var(--easyedu-control-height) - 1.5em) / 2);
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport #adminsettings .form-item.row {grid-template-columns: minmax(0, 1fr);
+  }
+  #page-admin-setting-local_groupimport #adminsettings .form-item.row > .form-label label {padding-block-start: 0;
+  }
 }
 #page-admin-setting-local_groupimport #adminsettings .form-item .form-label,
 #page-admin-setting-local_groupimport #adminsettings .form-item .form-setting {box-sizing: border-box;flex: none;max-inline-size: 100%;padding: 0;text-align: start;width: 100%;
@@ -334,9 +372,6 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
   }
   #page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .form-check,
 #page-admin-setting-local_groupimport #adminsettings .form-item .form-setting .form-checkbox {min-block-size: var(--easyedu-touch-target-min);
-  }
-  #page-admin-setting-local_groupimport #adminsettings h3.main,
-#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {margin-block-start: 1.5rem;
   }
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-grid {grid-template-columns: minmax(0, 1fr);
   }
