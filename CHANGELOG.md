@@ -1,3 +1,5 @@
+- 2026-10-20 [K20-01] Unify checklist Close/Restore/Minimize on the same Kit frame and Touch44 variant.
+
 - 2026-10-19 [N1] OLD-C / K17-10 : afficher les valeurs des sélections multiples de l’administration en étiquettes Kit retirables, tout en conservant le select natif et les autres modes à compteur.
 
 

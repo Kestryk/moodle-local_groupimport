@@ -342,6 +342,11 @@
     color: var(--easyedu-danger);
   }
 
+  // Alternate command glyphs use the same paint as the geometric cross.
+  @if not $glyph {
+    .fa { color: currentColor; }
+  }
+
   // K16-80 / Q17-T44: one Kit Close, desktop and touch variants. The glyph is
   // centred by geometry (inset 50% + transform), so growing the frame cannot
   // desync the drawn cross from its square.
