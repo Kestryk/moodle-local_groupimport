@@ -4017,6 +4017,13 @@ const renderChecklist = (root, config, pathName) => {
   saveChecklistProgress(root, config, pathName, firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0);
   updateChecklistHeader(root, config, firstItem ? steps[Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0)] : (steps[0] || null));
   syncChecklistMinimizeControl(root);
+  // The initial right dock must not paint over a companion while close/open
+  // actions or highlight scheduling are still pending. The complete content
+  // and active step now exist: resolve and dock synchronously before yielding.
+  const initialTarget = resolveActiveChecklistTarget(root);
+  if (initialTarget) {
+    dockChecklistAwayFromTarget(root, initialTarget, resolveActiveChecklistCompanion(root));
+  }
 };
 
 const updateChecklistMessage = (root, config, activeStep) => {
@@ -4069,6 +4076,10 @@ const setActiveChecklistStep = (root, config, index) => {
   });
   saveChecklistProgress(root, config, pathName, safeIndex);
   updateChecklistMessage(root, config, steps[safeIndex]);
+  const activeTarget = resolveActiveChecklistTarget(root);
+  if (activeTarget) {
+    dockChecklistAwayFromTarget(root, activeTarget, resolveActiveChecklistCompanion(root));
+  }
   return steps[safeIndex] || null;
 };
 

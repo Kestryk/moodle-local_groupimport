@@ -1,3 +1,7 @@
+- 2026-10-20 [GMI-R-FIX] Placer la checklist selon sa cible et l’avertissement associé dès le rendu et le changement d’étape, avant les callbacks différés de surlignage.
+
+- 2026-10-20 [K20-03] Réduire le rythme des notifications Kit à 72 px, avec croissance naturelle du texte long, typographie conservée et fermeture de 44 × 44 px.
+
 - 2026-10-20 [K16-19/K16-21] Renforcer la séparation des couloirs sur les fonds natifs gris par un filet intérieur Kit, sans modifier leur géométrie ; revérifier le démarrage JSON et les gardes de navigation/réglages déjà intégrés.
 
 - 2026-10-20 [A10] Allow installation from Moodle 4.5 without changing the schema version or declaring native certification; retain the existing Bootstrap 4/5 fallbacks and add offline compatibility checks.
