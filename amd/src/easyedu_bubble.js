@@ -28,6 +28,11 @@
 export const BUBBLE_CLASS = 'local-groupimport-easystud-hover-popover';
 // WCAG 1.4.13 grace period: the pointer may cross the gap between a trigger and its bubble.
 export const GRACE_MS = 220;
+// K20-05: a brief hover-in delay so a simple mouse pass during navigation does not pop every bubble it
+// crosses. Keyboard focus stays instant (callers pass {immediate: true}); only the mouse path waits.
+// 400ms sits inside Kevin's requested 300-500ms range: long enough to filter an incidental pass, short
+// enough that a deliberate hover still feels responsive (Windows' own hover-tooltip delay is similar).
+export const SHOW_DELAY_MS = 400;
 const LONG_TEXT = 110;
 const MARGIN = 8;
 const GAP = 10;
@@ -73,13 +78,17 @@ const place = (bubble, node) => {
  * @param {Function} options.mount Returns the element that receives the bubble for a trigger
  *     (the fullscreen element when there is one, so the bubble stays visible).
  * @param {Function} [options.decorate] Called with each new bubble before it is mounted.
- * @return {Object} show(node, text), hide(immediate), dismiss(), release(), scheduleHide(), cancelGrace(),
- *     isOpen(), isActive(node), contains(node).
+ * @return {Object} show(node, text, {immediate}), hide(immediate), dismiss(), release(), scheduleHide(),
+ *     cancelGrace(), isOpen(), isActive(node), contains(node).
  */
 export const createBubbleController = ({Motion, mount, decorate = null}) => {
     let tip = null;
     let anchor = null;
     let graceTimer = null;
+    let showTimer = null;
+    // The trigger a delayed show is pending for (K20-05), so isActive() still gates a caller's hide path
+    // while the bubble itself has not opened yet.
+    let pendingNode = null;
     // Escape dismissal: no bubble reopens until the pointer really moves. Removing the bubble makes the browser
     // replay the last pointer position over whatever is now under it (often a trigger): those replays carry the
     // same coordinates, a real move does not.
@@ -116,9 +125,18 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
         graceTimer = null;
     };
 
+    const cancelShowTimer = () => {
+        if (showTimer !== null) {
+            window.clearTimeout(showTimer);
+        }
+        showTimer = null;
+        pendingNode = null;
+    };
+
     // A leaving bubble is inert and fades out (instant at the Minimal motion level).
     const hide = (immediate = true) => {
         cancelGrace();
+        cancelShowTimer();
         const leaving = tip;
         tip = null;
         anchor = null;
@@ -142,7 +160,7 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
         graceTimer = window.setTimeout(() => hide(false), GRACE_MS);
     };
 
-    const show = (node, text) => {
+    const open = (node, text) => {
         const copy = String(text || '').trim();
         if (dismissed) {
             return;
@@ -189,6 +207,23 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
         void Motion.enter(bubble, {distance: '0rem', duration: Motion.timing.normal});
     };
 
+    // K20-05: mouse hover waits SHOW_DELAY_MS before a bubble opens, so a simple pass during navigation does
+    // not pop one at every icon it crosses. Callers pass {immediate: true} for keyboard focus, which must stay
+    // instant. A pending delayed open is cancelled by any hide() in the meantime (leaving before it fires).
+    const show = (node, text, {immediate = false} = {}) => {
+        cancelShowTimer();
+        if (immediate || (tip && anchor === node)) {
+            open(node, text);
+            return;
+        }
+        pendingNode = node;
+        showTimer = window.setTimeout(() => {
+            showTimer = null;
+            pendingNode = null;
+            open(node, text);
+        }, SHOW_DELAY_MS);
+    };
+
     // Escape (WCAG 1.4.13): close at once, even with the pointer on the bubble, and stay closed until the pointer
     // really moves (or focus leaves, see release).
     const dismiss = () => {
@@ -209,7 +244,9 @@ export const createBubbleController = ({Motion, mount, decorate = null}) => {
         scheduleHide,
         cancelGrace,
         isOpen: () => tip !== null,
-        isActive: node => tip !== null && anchor === node,
+        // True once a bubble is open for this node, or (K20-05) while its delayed show is still pending,
+        // so a caller's pointerout/focusout path still gates its hide the same way during the wait.
+        isActive: node => (tip !== null && anchor === node) || pendingNode === node,
         contains: node => tip !== null && node instanceof tip.ownerDocument.defaultView.Node && tip.contains(node),
     };
 };

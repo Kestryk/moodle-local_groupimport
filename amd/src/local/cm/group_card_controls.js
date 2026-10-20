@@ -581,15 +581,17 @@ export const bindHoverPopovers = root => {
     // is really cut off.
     const isCutOff = node => node.scrollWidth > node.clientWidth + 1;
 
-    const showTip = node => {
+    const showTip = (node, options) => {
         const content = node.getAttribute('data-easystud-hover-help') || '';
         if (!content || (node.hasAttribute('data-easystud-hover-help-truncated') && !isCutOff(node))) {
             bubble.hide();
             return;
         }
-        bubble.show(node, content);
+        bubble.show(node, content, options);
     };
 
+    // K20-05: the mouse path keeps the default show delay (filters an incidental pass while navigating
+    // cards); keyboard focus below stays immediate.
     root.addEventListener('mouseenter', event => {
         const node = event.target.closest('[data-easystud-hover-help]');
         if (node && root.contains(node)) {
@@ -613,7 +615,7 @@ export const bindHoverPopovers = root => {
     root.addEventListener('focusin', event => {
         const node = event.target.closest('[data-easystud-hover-help]');
         if (node && root.contains(node)) {
-            showTip(node);
+            showTip(node, {immediate: true});
         }
     });
 

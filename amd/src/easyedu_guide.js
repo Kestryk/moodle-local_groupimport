@@ -4334,14 +4334,15 @@ const bindGuideBubbles = root => {
     bubble.hide(immediate);
   };
   root.easyeduGuideTooltipHide = hide;
-  const show = element => {
+  // K20-05: keyboard focus stays instant; the pointer path (below) keeps the shared show delay.
+  const show = (element, options) => {
     const text = (element?.getAttribute('data-easyedu-guide-bubble') || '').trim();
     if (!text || modal.hidden ||
         (element.dataset.easyeduGuideBubbleWhen === 'truncated' && !isClippedCopy(element))) {
       hide(false);
       return;
     }
-    bubble.show(element, text);
+    bubble.show(element, text, options);
   };
   const bubbleFor = element => element?.closest?.(GUIDE_BUBBLE);
   addTrackedListener(root, modal, 'pointerover', event => {
@@ -4360,7 +4361,7 @@ const bindGuideBubbles = root => {
   });
   addTrackedListener(root, modal, 'focusin', event => {
     const element = bubbleFor(event.target);
-    if (element?.matches(':focus-visible')) show(element);
+    if (element?.matches(':focus-visible')) show(element, {immediate: true});
   });
   addTrackedListener(root, modal, 'focusout', () => {
     bubble.release();

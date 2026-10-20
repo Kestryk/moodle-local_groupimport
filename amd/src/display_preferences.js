@@ -40,7 +40,8 @@ function(Templates, UserRepository, Notification, Motion, Bubble) {
                     trigger.matches(':active') || (event.type === 'focusin' && !trigger.matches(':focus-visible'))) {
                 return;
             }
-            bubble.show(trigger, trigger.getAttribute('aria-label'));
+            // K20-05: keyboard focus stays instant; the pointer path keeps the shared show delay.
+            bubble.show(trigger, trigger.getAttribute('aria-label'), {immediate: event.type === 'focusin'});
         };
         document.addEventListener('pointerover', showTooltip);
         document.addEventListener('focusin', showTooltip);
