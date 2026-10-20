@@ -1,3 +1,5 @@
+- 2026-10-20 [K20-16] Autoriser le retour à la ligne des descriptions de la carte Devoir du Guide, dans son cadre Kit existant, sans raccourcir les traductions.
+
 - 2026-10-20 [K20-15] Placer Rejouer sur la rangée Kit standard de fin de démonstration ; les choix Ajouter/Déplacer reviennent à la réinitialisation.
 
 - 2026-10-20 [K20-14] Ajouter les quatre étapes à retenir à la fin de la démonstration de création simple, avec le récapitulatif dépliable et les rendus Student Management conservés.
