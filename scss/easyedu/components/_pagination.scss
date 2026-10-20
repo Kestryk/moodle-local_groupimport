@@ -195,6 +195,19 @@
   font: inherit;
 }
 
+// Preserve the existing workspace quiet palette as an explicit opt-in.
+@mixin pagination-deselect-palette($quiet: false) {
+  @if $quiet {
+    background: #f7fafc;
+    border-color: #b9c6d4;
+    color: #40566c;
+  } @else {
+    background: var(--easyedu-surface-soft);
+    border-color: var(--easyedu-border-strong);
+    color: color-mix(in srgb, var(--easyedu-text) 80%, var(--easyedu-text-muted) 20%);
+  }
+}
+
 @mixin pagination-select-button {
   align-items: center;
   align-self: center;
