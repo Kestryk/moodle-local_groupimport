@@ -2116,6 +2116,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const syncPlayback = (state, advancing = false) => {
     if (sceneHeader) {
       sceneHeader.dataset.guidePlaybackState = state;
+      // K20-15: the completed comparison uses the same end-card row as every single-mode lesson.
+      sceneHeader.classList.toggle('easyedu-guide-scene__header--single', kind !== 'membership' || state === 'finished');
+      const comparison = sceneHeader.querySelector('[data-guide-modes]');
+      if (comparison) {
+        comparison.hidden = state === 'finished';
+      }
       const controls = sceneHeader.querySelector('.easyedu-guide-scene__playback');
       if (controls) { controls.hidden = !['playing', 'paused'].includes(state); }
       // Collapse the useless disabled mode/Start row through canonical CSS
