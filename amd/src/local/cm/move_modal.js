@@ -21,6 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import Log from 'core/log';
 import * as Motion from '../../motion';
 import {enhanceSelect} from '../../searchable_choices';
 import {snapshotMemberPairs} from '../../member_selection';
@@ -125,10 +126,12 @@ export const bindMoveModal = (root, courseId) => {
         update(job);
     };
     // Restore running jobs after a page visit, without ever repeating the mutation.
+    // K20-09: this passive read changes nothing, so a failure must never raise the
+    // "your changes may not have been saved" banner on page load; log it and keep the page usable.
     readProgress().then(response => {
-        response.jobs.forEach(monitor);
+        (response.jobs || []).forEach(monitor);
         return response;
-    }).catch(error => handleActionError(root, error));
+    }).catch(error => Log.debug('local_groupimport: move progress restore unavailable: ' + (error?.message || '')));
 
     let contextType = '';
     let memberSnapshot = [];

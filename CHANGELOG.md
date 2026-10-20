@@ -1,3 +1,5 @@
+- 2026-10-20 [K20-09] Ne plus afficher « Une erreur inattendue… vos modifications n’ont peut-être pas été enregistrées » au chargement de Student Management quand la lecture passive des transferts en cours échoue (table MOVE-BG absente tant que la mise à niveau 2026101801 n’est pas jouée) ; l’échec est journalisé.
+
 - 2026-10-20 [K20-06] Retirer le filet intérieur sombre (rail 55 % + texte 45 %) de la recette des couloirs : plus de trait autour du bandeau d’onglets ni du cadre général des colonnes ; la séparation sur fond gris 5.3 (K16-19/21) repasse par Penpot.
 
 - 2026-10-20 [F06] Centrer exactement les trois points de tous les déclencheurs ⋯ (Kit overflow-ellipsis-glyph) : les points sont désormais dessinés dans la boîte même du déclencheur, comme le disque de 24 px, au lieu d’une boîte 15 × 3 px centrée sur un demi-pixel puis arrondie à la grille (écart peint jusqu’à 0,5 px).
