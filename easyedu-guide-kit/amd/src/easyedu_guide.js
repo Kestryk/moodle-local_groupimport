@@ -592,11 +592,27 @@ const scheduleNoticeExpiry = (root, notice, timerKey, delay, expire) => {
   update();
 };
 
+// K20-02: one notice keeps its handlers/timer while joining the modal's
+// bottom flow. Outside a modal it retains the existing floating invitation.
+const placeResume = root => {
+  const notice = root.querySelector('[data-easyedu-guide-resume]');
+  const modal = root.querySelector(SELECTORS.modal);
+  const slot = modal?.querySelector('[data-easyedu-guide-resume-slot]');
+  if (!notice || !slot) {
+    return;
+  }
+  const parent = modal.hidden ? root : slot;
+  if (notice.parentElement !== parent) {
+    parent.append(notice);
+  }
+};
+
 const offerResume = (root, config, pathName) => {
   const notice = root.querySelector('[data-easyedu-guide-resume]');
   if (!notice || isPathComplete(config, pathName)) { return; }
   notice.dataset.easyeduGuideResumePathName = pathName;
   notice.hidden = false;
+  placeResume(root);
   scheduleNoticeExpiry(root, notice, 'easyeduGuideResumeTimer', 45000, () => dismissResume(root, true));
 };
 
@@ -3547,6 +3563,7 @@ const openModal = (root, config) => {
   hideChecklist(root, config);
   lockPageScroll(root);
   modal.hidden = false;
+  placeResume(root);
   modal.classList.add('is-open');
   modal.setAttribute('aria-modal', 'true');
   modal.setAttribute('tabindex', '-1');
@@ -3583,6 +3600,7 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
   const finish = () => {
     modal.classList.remove('is-open');
     modal.hidden = true;
+    placeResume(root);
     stopDiscoveryScene(root);
     modal.removeAttribute('aria-modal');
     unlockPageScroll(root);
