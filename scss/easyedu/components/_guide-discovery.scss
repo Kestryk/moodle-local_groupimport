@@ -510,6 +510,22 @@
     &[hidden] { display: none; }
   }
 
+  // K20-02: the notice and navigation share the dialog's final auto row.
+  // Natural wrapping grows the notice upward; Previous/Next keep their 64px row.
+  .easyedu-guide-modal__footer-stack { min-width: 0; }
+  .easyedu-guide-modal__resume-slot {
+    &:empty { display: none; }
+    > .easyedu-guide-resume {
+      position: static;
+      width: auto;
+      max-width: 100%;
+      margin: 0;
+      border-inline: 0;
+      border-radius: 0;
+      > span { min-width: 0; overflow-wrap: anywhere; }
+    }
+  }
+
   .easyedu-guide-resume {
     display: flex;
     align-items: center;

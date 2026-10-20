@@ -1,0 +1,384 @@
+{
+  "base": "0ea1977f",
+  "scope": "K20-02: move the single pending-path invitation into a footer stack while the Guide modal is open; restore floating invitation after close",
+  "sourceK2001": "80bce9e0441d7a8f8dfcecb935f0747046ac5ea8",
+  "kitK2001": "e949375d7026c5651fb72f716b33ffc7daea0053",
+  "proof": "headless real curriculum/Mustache, generated Guide/Motion/Bubble AMD and full page CSS; isolated HTTP route, no Moodle DB/runtime",
+  "results": [
+    {
+      "lang": "fr",
+      "width": 768,
+      "before": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 30.390625,
+          "height": 30.390625,
+          "radius": "12.8px",
+          "background": "rgb(255, 255, 255)",
+          "color": "color(srgb 0.308157 0.366588 0.429804)",
+          "border": "1px solid color(srgb 0.868863 0.899922 0.934431)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0.0078125
+          ]
+        },
+        "overlap": 47.390625
+      },
+      "after": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0
+          ]
+        },
+        "notice": {
+          "x": 33,
+          "y": 878.609375,
+          "w": 702,
+          "h": 56.390625,
+          "right": 735,
+          "bottom": 935
+        },
+        "footer": {
+          "x": 33,
+          "y": 935,
+          "w": 702,
+          "h": 64,
+          "right": 735,
+          "bottom": 999
+        },
+        "overlap": 0,
+        "hitAll": true,
+        "outside": {
+          "visible": true,
+          "parentIsRoot": true,
+          "position": "fixed"
+        }
+      },
+      "consoleErrors": 0
+    },
+    {
+      "lang": "fr",
+      "width": 390,
+      "before": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 30.390625,
+          "height": 30.390625,
+          "radius": "12.8px",
+          "background": "rgb(255, 255, 255)",
+          "color": "color(srgb 0.308157 0.366588 0.429804)",
+          "border": "1px solid color(srgb 0.868863 0.899922 0.934431)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0.0078125
+          ]
+        },
+        "overlap": 64
+      },
+      "after": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0
+          ]
+        },
+        "notice": {
+          "x": 17,
+          "y": 665.21875,
+          "w": 356,
+          "h": 96.78125,
+          "right": 373,
+          "bottom": 762
+        },
+        "footer": {
+          "x": 17,
+          "y": 762,
+          "w": 356,
+          "h": 64,
+          "right": 373,
+          "bottom": 826
+        },
+        "overlap": 0,
+        "hitAll": true,
+        "outside": {
+          "visible": true,
+          "parentIsRoot": true,
+          "position": "fixed"
+        }
+      },
+      "consoleErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "before": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 30.390625,
+          "height": 30.390625,
+          "radius": "12.8px",
+          "background": "rgb(255, 255, 255)",
+          "color": "color(srgb 0.308157 0.366588 0.429804)",
+          "border": "1px solid color(srgb 0.868863 0.899922 0.934431)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0.0078125
+          ]
+        },
+        "overlap": 47.390625
+      },
+      "after": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0
+          ]
+        },
+        "notice": {
+          "x": 33,
+          "y": 878.609375,
+          "w": 702,
+          "h": 56.390625,
+          "right": 735,
+          "bottom": 935
+        },
+        "footer": {
+          "x": 33,
+          "y": 935,
+          "w": 702,
+          "h": 64,
+          "right": 735,
+          "bottom": 999
+        },
+        "overlap": 0,
+        "hitAll": true,
+        "outside": {
+          "visible": true,
+          "parentIsRoot": true,
+          "position": "fixed"
+        }
+      },
+      "consoleErrors": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "before": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 30.390625,
+          "height": 30.390625,
+          "radius": "12.8px",
+          "background": "rgb(255, 255, 255)",
+          "color": "color(srgb 0.308157 0.366588 0.429804)",
+          "border": "1px solid color(srgb 0.868863 0.899922 0.934431)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0.0078125
+          ]
+        },
+        "overlap": 64
+      },
+      "after": {
+        "close": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0,
+            0
+          ]
+        },
+        "restore": {
+          "width": 44,
+          "height": 44,
+          "radius": "11.52px",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(92, 108, 125)",
+          "glyphColor": "rgb(92, 108, 125)",
+          "border": "1px solid rgb(217, 226, 236)",
+          "hit": true,
+          "glyphCentre": [
+            0.0078125,
+            0
+          ]
+        },
+        "notice": {
+          "x": 17,
+          "y": 665.21875,
+          "w": 356,
+          "h": 96.78125,
+          "right": 373,
+          "bottom": 762
+        },
+        "footer": {
+          "x": 17,
+          "y": 762,
+          "w": 356,
+          "h": 64,
+          "right": 373,
+          "bottom": 826
+        },
+        "overlap": 0,
+        "hitAll": true,
+        "outside": {
+          "visible": true,
+          "parentIsRoot": true,
+          "position": "fixed"
+        }
+      },
+      "consoleErrors": 0
+    }
+  ],
+  "checks": {
+    "moodlecsPhp": {
+      "errors": 0,
+      "warnings": 27,
+      "fixable": 0
+    },
+    "eslint": {
+      "before": [
+        41,
+        475
+      ],
+      "after": [
+        41,
+        475
+      ]
+    },
+    "guideT037": "PASS",
+    "guideT038": "PASS",
+    "escaping": "PASS",
+    "filterEngine": "PASS",
+    "roundtrip": "Preexisting AMD adapter round trip mismatch reproduced on 0ea1977f; not repaired",
+    "build": "Node22.11.0/Sass1.79.1; conservative CSS and Guide AMD rebuilt",
+    "codecheckerScope": "PHP full plugin: 0 errors; legacy JS scan not a zero-error gate (preexisting ESLint 41/475 unchanged)"
+  },
+  "noPublication": true,
+  "noKeyboardInput": true,
+  "noNativeMoodleClaim": true
+}

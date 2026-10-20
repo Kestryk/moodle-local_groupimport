@@ -1795,6 +1795,14 @@ body:has(.easyedu-guided-panel[data-easyedu-guide-path]:not([hidden])) .easyedu-
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-welcome[hidden] {display: none;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-stack {min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__resume-slot:empty {display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__resume-slot > .easyedu-guide-resume {position: static;width: auto;max-width: 100%;margin: 0;border-inline: 0;border-radius: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__resume-slot > .easyedu-guide-resume > span {min-width: 0;overflow-wrap: anywhere;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-resume {display: flex;align-items: center;flex-wrap: wrap;gap: 0.625rem;position: fixed;inset-block-end: 1rem;inset-inline-end: 1rem;width: min(30rem, 100vw - 2rem);padding: 0.75rem;border: 1px solid var(--easyedu-border);border-radius: var(--easyedu-radius-lg);background: var(--easyedu-surface);z-index: 1070;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-resume > span {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;flex: 1 1 10rem;

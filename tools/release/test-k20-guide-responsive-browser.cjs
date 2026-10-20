@@ -17,7 +17,7 @@ const render = {module:{exports:{}}};
 vm.runInNewContext(fs.readFileSync(mustacheFile,'utf8').replace('export default mustache;','module.exports = mustache;'),render);
 const css=fs.readFileSync(baseline?path.join(baseline,'baseline.css'):path.join(root,'styles/student-management.css'),'utf8');
 const template=fs.readFileSync(baseline?path.join(baseline,'baseline.mustache'):path.join(root,'templates/easyedu_guide.mustache'),'utf8');
-const guide=fs.readFileSync(baseline?path.join(baseline,'baseline-guide.js'):path.join(root,'amd/src/easyedu_guide.js'),'utf8');
+const guide=fs.readFileSync(baseline?path.join(baseline,'baseline-guide.js'):path.join(root,'amd/build/easyedu_guide.min.js'),'utf8');
 const read=n=>fs.readFileSync(path.join(root,n),'utf8');
 const partial=name=>{
     const file=path.join(root,'templates',name.replace(/^local_groupimport\//,'')+'.mustache');
@@ -65,6 +65,10 @@ const rows=[];
             await page.locator('[data-easyedu-guide-open]').first().click();
             const modal=page.locator('[data-easyedu-guide-modal]');
             await modal.waitFor({state:'visible'});
+            // Both navigation actions must be enabled for the hit-test (Previous
+            // is intentionally disabled on the first slide).
+            await modal.locator('[data-easyedu-guide-next]').click();
+            await page.waitForFunction(()=>document.querySelector('[data-easyedu-guide-root]').getAttribute('data-easyedu-guide-current-slide')==='1');
             await modal.evaluate(async n=>Promise.all(n.getAnimations({subtree:true}).filter(a=>a.effect?.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))));
             const stack=await page.evaluate(()=>{
                 const box=n=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom};};
@@ -72,11 +76,26 @@ const rows=[];
                 const n=box(notice),f=box(footer);
                 return {notice:n,footer:f,insideDialog:!!notice.closest('.easyedu-guide-modal__dialog'),
                     overlap:Math.max(0,Math.min(n.bottom,f.bottom)-Math.max(n.y,f.y)),
+                    resumeActions:[...notice.querySelectorAll('button')].map(b=>{const r=box(b);return {box:r,
+                        hit:b.contains(document.elementFromPoint(r.x+r.w/2,r.y+r.h/2))};}),
                     buttons:[...footer.querySelectorAll('button')].map(b=>{const r=box(b);return {box:r,
                         hit:b.contains(document.elementFromPoint(r.x+r.w/2,r.y+r.h/2)),name:b.getAttribute('aria-label')||b.textContent.trim()};})};
             });
             const k2002=stack.insideDialog&&stack.overlap===0&&stack.notice.bottom<=stack.footer.y&&
-                stack.buttons.every(b=>b.hit&&b.box.bottom<=stack.footer.bottom&&b.box.right<=width);
+                stack.buttons.every(b=>b.hit&&b.box.bottom<=stack.footer.bottom&&b.box.right<=width)&&
+                stack.resumeActions.every(b=>b.hit&&b.box.bottom<=stack.notice.bottom&&b.box.right<=width);
+            await page.screenshot({path:path.join(output,`guide-${lang}-${width}.png`)});
+            // Leave/re-enter with the invitation still pending: the same live
+            // notice must return outside the hidden modal and retain both actions.
+            await modal.locator('[data-easyedu-guide-close]').click();
+            await modal.waitFor({state:'hidden'});
+            const outside=await notice.evaluate(n=>({visible:!n.hidden,parentIsRoot:n.parentElement.matches('[data-easyedu-guide-root]'),
+                position:getComputedStyle(n).position}));
+            assert(outside.visible&&outside.parentIsRoot&&outside.position==='fixed','Outside invitation preserved');
+            assert.equal(await notice.count(),1,'No duplicate live region or handlers');
+            await page.locator('[data-easyedu-guide-open]').first().click();
+            await modal.waitFor({state:'visible'});
+            await modal.evaluate(async n=>Promise.all(n.getAnimations({subtree:true}).filter(a=>a.effect?.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))));
             await notice.locator('[data-easyedu-guide-resume-path]').click();
             const checklist=page.locator('[data-easyedu-guide-checklist]');await checklist.waitFor({state:'visible'});
             await modal.locator('[data-easyedu-guide-close]').click();
@@ -88,6 +107,7 @@ const rows=[];
                 const r=b.getBoundingClientRect(),s=getComputedStyle(b),i=b.querySelector('.fa'),ir=i?.getBoundingClientRect();
                 const cross=getComputedStyle(b,'::before');
                 return {width:r.width,height:r.height,radius:s.borderRadius,background:s.backgroundColor,color:s.color,
+                    glyphColor:ir?getComputedStyle(i).color:cross.backgroundColor,
                     border:s.border,hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)),
                     glyphCentre:ir?[Math.abs(r.x+r.width/2-ir.x-ir.width/2),Math.abs(r.y+r.height/2-ir.y-ir.height/2)]:
                         [Math.abs(parseFloat(cross.left)-r.width/2+parseFloat(s.borderLeftWidth)),Math.abs(parseFloat(cross.top)-r.height/2+parseFloat(s.borderTopWidth))]};
@@ -99,7 +119,7 @@ const rows=[];
             else await checklist.evaluate(n=>n.querySelector('[data-easyedu-guide-checklist-minimize]').click());
             const restoreButton=page.locator('[data-easyedu-guide-checklist-restore]');await restoreButton.waitFor({state:'visible'});
             const restore=await measure('[data-easyedu-guide-checklist-restore]');
-            const k2001=['width','height','radius','background','color','border'].every(k=>close[k]===restore[k])&&
+            const k2001=['width','height','radius','background','color','glyphColor','border'].every(k=>close[k]===restore[k])&&
                 close.height===44&&restore.height===44&&close.glyphCentre.every(n=>n<=0.5)&&restore.glyphCentre.every(n=>n<=0.5)&&close.hit&&restore.hit;
             await restoreButton.click();
             // The standalone page has no course targets; docking may immediately
@@ -107,7 +127,7 @@ const rows=[];
             // is the invariant of this presentation-only fixture.
             assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('k20.qa.checklist')).path),firstPath);
             assert.deepEqual(errors,[]);
-            rows.push({lang,width,stack,close,restore,k2001,k2002,errors});
+            rows.push({lang,width,stack,outside,close,restore,k2001,k2002,errors});
             fs.writeFileSync(path.join(output,'results.json'),JSON.stringify(rows,null,2));
             if(!baseline){assert(k2001,'K20-01 '+JSON.stringify({lang,width,close,restore}));
                 if(process.env.K20_ONLY!=='01')assert(k2002,'K20-02 '+JSON.stringify({lang,width,stack}));}
