@@ -1,0 +1,26 @@
+{
+  "compat53LaneBoundary20261020": {
+    "base": "cc8231dd",
+    "sourceBranch": "work/codex1/easystud-compat53-k16-19-21-20261020",
+    "kitBranch": "work/codex1/easyedu-kit-compat53-lanes-20261020",
+    "kitCommit": "0bd27a1",
+    "change": "Single Kit workspace-lane recipe adds a 1px semantic inset boundary; existing geometry, surface and text remain unchanged.",
+    "alreadyIntegrated": {
+      "jsonBootstrap": "d3d2ac51",
+      "adminUrlGuard": "d9fa9f09",
+      "reactNavigation": "a5d0ffab",
+      "moodle45Baseline": "c45dfdb4"
+    },
+    "isolatedProof": {
+      "measurements": 12,
+      "minimumBoundaryContrast": 4.49,
+      "geometryDeltaPx": 0,
+      "consoleErrors": 0,
+      "phpErrors": 0,
+      "phpWarnings": 0
+    },
+    "native53": "Partial: SM ready in four FR/EN 1600/390 cases and no PHP notices; course/drawer AJAX parsing errors remain under diagnosis. No global 5.3 certification.",
+    "native45": "Pending phase 10 / K18-04",
+    "publication": false
+  }
+}

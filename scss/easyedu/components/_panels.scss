@@ -57,9 +57,12 @@
 }
 
 @mixin workspace-lane($rail, $segment: whole) {
+  // Keep the lane boundary distinguishable on both white and native grey hosts.
+  // The inset does not change card widths, hit targets or the lane geometry.
+  --easyedu-lane-border-colour: color-mix(in srgb, var(--easyedu-lane-rail-colour, #{$rail}) 55%, var(--easyedu-text) 45%);
   background: var(--easyedu-surface-soft);
   border: 0;
-  box-shadow: none;
+  box-shadow: inset 0 0 0 1px var(--easyedu-lane-border-colour);
   min-inline-size: 0;
   @include workspace-lane-content-inset;
   @if $segment == whole or $segment == start {
