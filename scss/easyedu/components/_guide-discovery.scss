@@ -1396,23 +1396,10 @@
     }
     .easyedu-guided-panel__header-actions { max-width: none; }
     .easyedu-guided-panel__close { @include buttons.close-button; }
-    // Header commands are icon buttons of one size: minimize, expand and close.
-    .easyedu-guided-panel__restore {
-      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
-      & { @include buttons.button-size(small); width: 1.9rem; height: 1.9rem; min-height: 1.9rem; padding: 0; }
-    }
-    .easyedu-guided-panel__minimize {
-      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
-      // Emit after the utility's nested paint block: otherwise Sass hoists
-      // these declarations and the regular 2.1rem utility minimum wins.
-      & {
-        @include buttons.button-size(small);
-        width: 1.9rem;
-        height: 1.9rem;
-        min-height: 1.9rem;
-        padding: 0;
-      }
-    }
+    // K20-01: the same Kit frame/paint and touch variant as the Close action.
+    // Keep the expand/minus glyph rather than drawing a second close cross.
+    .easyedu-guided-panel__restore,
+    .easyedu-guided-panel__minimize { @include buttons.close-button($glyph: false); }
     .easyedu-guided-panel__steps {
       grid-auto-rows: max-content;
       align-content: start;
