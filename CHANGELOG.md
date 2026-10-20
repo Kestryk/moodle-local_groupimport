@@ -1,3 +1,5 @@
+- 2026-10-20 [K20-08] Rétablir le retour à la ligne des vignettes récapitulatives du Guide, indépendamment du white-space du lanceur de navigation.
+
 - 2026-10-20 [GMI-R-FIX] Placer la checklist selon sa cible et l’avertissement associé dès le rendu et le changement d’étape, avant les callbacks différés de surlignage.
 
 - 2026-10-20 [K20-03] Réduire le rythme des notifications Kit à 72 px, avec croissance naturelle du texte long, typographie conservée et fermeture de 44 × 44 px.

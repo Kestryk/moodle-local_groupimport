@@ -202,6 +202,9 @@
       padding: 0;
       pointer-events: auto;
       user-select: auto;
+      // A portalled recap can inherit nowrap from the Navigation launcher.
+      // Information tiles own paragraph wrapping, independently of that host.
+      white-space: normal;
     }
 
     &__tiles {
