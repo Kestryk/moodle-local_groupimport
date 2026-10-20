@@ -4,6 +4,8 @@
 
 - 2026-10-20 [F06] Centrer exactement les trois points de tous les déclencheurs ⋯ (Kit overflow-ellipsis-glyph) : les points sont désormais dessinés dans la boîte même du déclencheur, comme le disque de 24 px, au lieu d’une boîte 15 × 3 px centrée sur un demi-pixel puis arrondie à la grille (écart peint jusqu’à 0,5 px).
 
+- 2026-10-20 [K20-08] Rétablir le retour à la ligne des vignettes récapitulatives du Guide, indépendamment du white-space du lanceur de navigation.
+
 - 2026-10-20 [GMI-R-FIX] Placer la checklist selon sa cible et l’avertissement associé dès le rendu et le changement d’étape, avant les callbacks différés de surlignage.
 
 - 2026-10-20 [K20-03] Réduire le rythme des notifications Kit à 72 px, avec croissance naturelle du texte long, typographie conservée et fermeture de 44 × 44 px.

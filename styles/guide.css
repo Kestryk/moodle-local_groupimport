@@ -3082,7 +3082,7 @@ body:has(.easyedu-guided-panel[data-easyedu-guide-path]:not([hidden])) .easyedu-
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec .easyedu-entity-card-empty--grouping .easyedu-entity-card-empty__help {color: var(--easyedu-text-muted);font-size: 12px;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec--ready {background: transparent;border: 0;margin-block: 1.5rem;padding: 0;pointer-events: auto;user-select: auto;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec--ready {background: transparent;border: 0;margin-block: 1.5rem;padding: 0;pointer-events: auto;user-select: auto;white-space: normal;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__tiles {display: grid;gap: 0.75rem;grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));list-style: none;margin: 0;padding: 0;
 }
