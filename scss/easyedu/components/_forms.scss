@@ -7,6 +7,7 @@
 // Theme override tokens:
 // --easyedu-surface, --easyedu-dropdown-border, --easyedu-dropdown-radius,
 // --easyedu-dropdown-shadow.
+@use "accessibility";
 @use "feedback";
 @use "focus";
 @use "panels";
@@ -375,16 +376,21 @@
 
 // Text hierarchy for switch helpers and their section label. Consumers retain
 // placement; the accepted caption type and paint have one definition here.
+//
+// K16-46/K20-10: the on/off word ("Enable"/"Disable", "Activé"/"Désactivé")
+// next to a Kit toggle is never shown as visible text, on any toggle that
+// uses this mixin without $label — the native checkbox state already carries
+// the meaning for sighted users. The node and its accessible text stay in the
+// DOM (visually-hidden, not display:none) so screen readers still announce it.
 @mixin toggle-check-caption($label: false) {
   @if $label {
     @include typography.type-caption;
 
     color: #40566c;
+    font-weight: var(--easyedu-font-weight-semibold);
   } @else {
-    color: var(--easyedu-text-muted);
-    font-size: inherit;
+    @include accessibility.visually-hidden;
   }
-  font-weight: var(--easyedu-font-weight-semibold);
 }
 
 // Plain native-checkbox line composes with the selected filter-toggle variant.
