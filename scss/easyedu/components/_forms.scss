@@ -140,10 +140,6 @@
   }
 }
 
-@mixin inline-create-touch-field {
-  min-height: 2.65rem;
-}
-
 @mixin segmented-toggle {
   background: var(--easyedu-surface-strong);
   border: 1px solid var(--easyedu-card-border);
