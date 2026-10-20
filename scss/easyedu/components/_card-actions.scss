@@ -44,19 +44,32 @@
 }
 
 // K17-53 (Foundations "Autres actions", horizontal ellipsis): the ONE glyph of every overflow
-// trigger. Three 3 px dots, 6 px apart (15 x 3 px), painted in currentColor on the glyph's
-// ::before so it is exactly centred by the trigger's flex box (no font metrics) and needs no
-// icon font or raster. Applied by card-overflow-trigger and mobile-card-menu-trigger.
+// trigger. Three 3 px dots, 6 px apart (15 x 3 px ink), painted in currentColor on the glyph's
+// ::before: no font metrics, no icon font, no raster. Applied by card-overflow-trigger and
+// mobile-card-menu-trigger, which own the positioned box the dots are drawn in.
+//
+// F06 (K16-80, 20/10): the dots are drawn in the trigger's own box (inset 0), centred at 50% and
+// 50% +/- 6 px exactly like the 24 px disc (radial at 50% 50% of the same box). The former 15 x 3 px
+// flex child sat on a half pixel in every even target (44 - 15 and 44 - 3 are odd) and on arbitrary
+// fractions in rem-sized ones; Chrome snaps that small box to the pixel grid before painting, so the
+// ink drifted up to 0.5 px from the disc. One shared box removes both the parity and the snapping gap.
+// K17-77 still holds: every dot is whole (nothing clips its 0.6 px edge any more).
+@function overflow-ellipsis-dot($x) {
+  @return radial-gradient(circle at $x 50%, currentColor 0 1.5px, transparent calc(1.5px + 0.6px));
+}
+
 @mixin overflow-ellipsis-glyph {
   &::before {
-    // K17-77: the dots sit at 1.5 / 7.5 / 13.5 px (the 6 px tile is shifted by 1.5 px), so the third
-    // dot is no longer cut in half and the 15 px ink is centred in its trigger.
-    background: radial-gradient(circle, currentColor 0 1.5px, transparent calc(1.5px + 0.6px)) -1.5px 0 / 6px 3px repeat-x;
+    background:
+      overflow-ellipsis-dot(calc(50% - 6px)),
+      overflow-ellipsis-dot(50%),
+      overflow-ellipsis-dot(calc(50% + 6px));
     content: "";
     display: block;
     font-size: 0;
-    height: 3px;
-    width: 15px;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
   }
 }
 
@@ -75,6 +88,8 @@
   height: 2rem;
   justify-content: center;
   line-height: 1;
+  // Owns the box the ellipsis dots and the disc share (F06); consumers may still place it absolutely.
+  position: relative;
   width: 2rem;
 
   > .fa {

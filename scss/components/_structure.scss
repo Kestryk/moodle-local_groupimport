@@ -891,7 +891,9 @@
     margin-inline-start: auto;
     order: 2;
     @include easyedu.card-action-zero-inset;
-    position: static;
+    // In flow; relative (no offset) only so the Kit dots keep the trigger as their box (F06).
+    inset: auto;
+    position: relative;
   }
 
   &-group__mail-button,

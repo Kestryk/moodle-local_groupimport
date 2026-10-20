@@ -328,6 +328,8 @@
   justify-content: center;
   min-width: var(--easyedu-touch-target-min);
   padding: 0;
+  // Owns the box the ellipsis dots and the disc share (F06); consumers may still place it absolutely.
+  position: relative;
 
   // Keep the visual control deliberately smaller than its touch target. The
   // trigger must contain one glyph/surface only so legacy buttons can be
