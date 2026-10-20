@@ -2672,9 +2672,9 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 .easyedu-v3-banner--notification .easyedu-v3-banner__eyebrow {line-height: 0.75rem;
 }
-.easyedu-v3-banner--notification .easyedu-v3-banner__title {line-height: 1.25rem;margin-block-start: 0;
+.easyedu-v3-banner--notification .easyedu-v3-banner__title {font-size: 0.875rem;line-height: 1.25rem;margin-block-start: 0;
 }
-.easyedu-v3-banner--notification .easyedu-v3-banner__text {line-height: 1.125rem;margin-block-start: 0.375rem;
+.easyedu-v3-banner--notification .easyedu-v3-banner__text {font-size: 0.8125rem;line-height: 1.125rem;margin-block-start: 0.375rem;
 }
 .easyedu-v3-banner--notification .easyedu-v3-banner__close {block-size: 2.75rem;inline-size: 2.75rem;min-block-size: 2.75rem;min-inline-size: 2.75rem;inset-block-start: 0.5rem;
 }
