@@ -1,0 +1,10 @@
+{
+  "k2008NativeConfirmation20261021": {
+    "request": "K20-08 residual Ready recap overflow after K20-04",
+    "status": "PASS: existing production fix 1a478d72 revalidated on c3c04450",
+    "proof": "docs/testing/k20-08-native-2026-10-21.json",
+    "protocol": "docs/testing/k20-08-native-2026-10-21.md",
+    "productChanged": false,
+    "publication": false
+  }
+}

@@ -1153,3 +1153,11 @@ work must not repaginate that same disclosure. Preserve the shared Motion API,
 normal/reduced/minimal policy, metadata contents and filter/sort scope. Native
 frame traces and audit remain distinct from the isolated controller contract.
 See docs/testing/participant-density-k20-18-2026-10-21.md.
+
+
+Ready recap successors measure painted text against both the tile border and its
+right padding after actual fonts/Motion settle. Preserve the original oracle;
+strengthen zero-overflow checks without weakening its actions. Never persist
+authentication state. A previously integrated fix needs fresh scoped native
+proof, not another runtime edit. Reused full audits must match the exact product
+revision and be labelled as reused. See docs/testing/k20-08-native-2026-10-21.md.

@@ -1,0 +1,206 @@
+{
+  "base": "c3c044501e3a795613341755d5e40201f3c5bc3a",
+  "productionFix": "1a478d72",
+  "productChanged": false,
+  "freshNative": {
+    "status": "PASS",
+    "cases": 16,
+    "tiles": 64,
+    "consoleErrors": 0,
+    "overflowRight": 0,
+    "overflowLeft": 0,
+    "contentOverflowRight": 0,
+    "verticalOverflow": 0,
+    "originalSourceSha256": "b00cb410da6c116e3af042afd6854f5f82d5790618c510806f3e88df4c1e5d41",
+    "harnessAdaptation": "Disable disk authentication persistence only; existing DOM and paint checks retained"
+  },
+  "rows": [
+    {
+      "surface": "sm",
+      "lang": "en",
+      "width": 1600,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "en",
+      "width": 1280,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "en",
+      "width": 768,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "en",
+      "width": 390,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "fr",
+      "width": 1600,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "fr",
+      "width": 1280,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "fr",
+      "width": 768,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "sm",
+      "lang": "fr",
+      "width": 390,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "en",
+      "width": 1600,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "en",
+      "width": 1280,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "en",
+      "width": 768,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "en",
+      "width": 390,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "fr",
+      "width": 1600,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "fr",
+      "width": 1280,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "fr",
+      "width": 768,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    },
+    {
+      "surface": "mass",
+      "lang": "fr",
+      "width": 390,
+      "tiles": 4,
+      "overflowRight": 0,
+      "overflowLeft": 0,
+      "paddingEncroachment": 0,
+      "verticalOverflow": 0
+    }
+  ],
+  "historicalBefore": {
+    "base": "48faa2be",
+    "replayed": false,
+    "en1600": 6.625,
+    "en1280": 11.375,
+    "unit": "px beyond the tile border",
+    "source": "C:/dev/artifacts/k20-08-guide-ready-20261020/before-strict.json"
+  },
+  "reusedGates": {
+    "base": "c3c044501e3a795613341755d5e40201f3c5bc3a",
+    "replayed": false,
+    "auditFrPass": 89,
+    "auditEnPass": 89,
+    "auditFail": 0,
+    "phpErrors": 0,
+    "phpWarnings": 27,
+    "provenance": "C:/dev/artifacts/k20-08-native-20261021/gate-reuse-provenance.json"
+  },
+  "cleanup": {
+    "restoredFiles": 1284,
+    "runtime": "http://localhost:8052",
+    "noSchemaChange": true,
+    "restoredCachePurged": true,
+    "leaseReleased": true,
+    "hashesIdentical": true,
+    "status": "PASS"
+  }
+}
