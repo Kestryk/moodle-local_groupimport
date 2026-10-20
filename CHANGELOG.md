@@ -12,6 +12,8 @@
 
 - 2026-10-21 [K20-18] Déplier les informations complètes des participants en un seul mouvement : calculer la pagination existante et le débordement des pastilles avant la mesure de hauteur de l’animation, sans second ajustement différé.
 
+- 2026-10-20 [K20-16] Autoriser le retour à la ligne des descriptions de la carte Devoir du Guide, dans son cadre Kit existant, sans raccourcir les traductions.
+
 - 2026-10-20 [K20-15] Placer Rejouer sur la rangée Kit standard de fin de démonstration ; les choix Ajouter/Déplacer reviennent à la réinitialisation.
 
 
