@@ -1161,3 +1161,12 @@ Preserve widths/type/copy and the separate Ready rule. Native proofs measure
 all three descriptions against card/padding bounds in FR/EN at four widths;
 retain baseline overflow and keep unrelated mirror debt explicit. See
 docs/testing/k21-01-assignment-wrapping-2026-10-21.md.
+
+## Guide recap ownership (K20-14 to K20-17, 20 October 2026)
+
+Mass Import Steps to remember are text only, across every recap. Keep its animated
+stages intact, and preserve Student Management recap renderings (K17-44). Simple
+creation ends with the existing four-phase collapsible recap. Membership Replay
+uses the existing single-mode completion header; comparison choices return on
+replay. Assignment descriptions wrap in the Kit information-card recipe.
+See `docs/testing/guide-k20-14-17-2026-10-20.md`.

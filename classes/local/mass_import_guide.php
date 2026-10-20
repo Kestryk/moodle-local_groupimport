@@ -97,7 +97,7 @@ final class mass_import_guide {
     /**
      * GMI-C3: scene of a Mass Import demonstration, "midrop" (3 phases) or "mipreview" (4 phases).
      *
-     * Illustration only, played by the Guide engine with a manual start. The recap repeats the end state of
+     * Illustration only, played by the Guide engine with a manual start. The text-only recap repeats the teaching steps of
      * each phase with its narration: it is the lesson at the minimal animation level, and the summary after
      * the demonstration at the other levels. Example rows are those of the example file (guide_specimen).
      *
@@ -131,12 +131,7 @@ final class mass_import_guide {
         for ($n = 1; $n <= $phases; $n++) {
             $scene['phase' . $n] = get_string($prefix . 'phase' . $n, $component);
         }
-        // Every recap view flag is explicit: Mustache would otherwise read a missing key from a parent context.
-        $view = static fn(string $flag, string $text, string $value = ''): array => array_merge(
-            array_fill_keys(['viewfile', 'viewsubmit', 'viewsummary', 'viewstatuses', 'viewexcluded', 'viewcorrected',
-                'viewunchanged'], false),
-            [$flag => true, 'text' => $text, 'value' => $value]
-        );
+        // K20-17: Mass Import recap steps contain narration only; demonstrations retain their own visuals.
         if ($kind === 'midrop') {
             $scene += [
                 'phase2compact' => get_string('mi_guide_drop_phase2_compact', $component),
@@ -156,9 +151,9 @@ final class mass_import_guide {
                 // The preview opens on its first three rows.
                 'rows' => array_slice($rows, 0, 3),
                 'recap' => [
-                    $view('viewfile', $scene['phase1']),
-                    $view('viewsubmit', $scene['phase2']),
-                    $view('viewsummary', $scene['phase3']),
+                    ['text' => $scene['phase1']],
+                    ['text' => $scene['phase2']],
+                    ['text' => $scene['phase3']],
                 ],
             ];
         } else {
@@ -171,10 +166,10 @@ final class mass_import_guide {
                 'statusready' => $ready,
                 'statusflagged' => $rows[3]['status'],
                 'recap' => [
-                    $view('viewstatuses', $scene['phase1']),
-                    $view('viewexcluded', $scene['phase2'], $rows[3]['identifier']),
-                    $view('viewcorrected', $scene['phase3'], $typed),
-                    $view('viewunchanged', $scene['phase4'], $rows[4]['status']),
+                    ['text' => $scene['phase1']],
+                    ['text' => $scene['phase2']],
+                    ['text' => $scene['phase3']],
+                    ['text' => $scene['phase4']],
                 ],
             ];
         }
