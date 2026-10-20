@@ -3038,8 +3038,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       }
       const specimenRecap = kind === 'filters' ?
         scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') :
-        ['midrop', 'mipreview'].includes(kind) ? scene.querySelector('[data-guide-mi-recap]') : null;
+        ['simplecreate', 'midrop', 'mipreview'].includes(kind) ? scene.querySelector('[data-guide-recap]') : null;
       if (specimenRecap) {
+        specimenRecap.querySelectorAll('[data-guide-phase]').forEach(item => {
+          item.textContent = item.textContent.replace(/^\d+\s*[\u00b7.]\s*/, '');
+          item.removeAttribute('aria-current');
+        });
         specimenRecap.style.opacity = '0';
         specimenRecap.hidden = false;
         await reveal(specimenRecap);
