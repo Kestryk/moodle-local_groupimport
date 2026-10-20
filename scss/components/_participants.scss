@@ -16,8 +16,9 @@
     position: relative;
     @include easyedu.density-transition;
 
-    &:hover {
-      @include easyedu.identity-card-paint(person, hover);
+    // K16-53 écart2: common identity-card hover (real pointer only, Kit soft
+    // shadow, no lift), declared before focus and selection so they keep priority.
+    @include easyedu.identity-card-hover(person) {
       @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant-rail));
     }
 

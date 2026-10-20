@@ -7,13 +7,22 @@
 @use "../easyedu" as easyedu;
 
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace {
-  $rest: ":not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target)";
+  $rest-touch: ":not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target)";
+  $rest: ":not(:hover)#{$rest-touch}";
 
   .local-groupimport-easystud-user,
   .local-groupimport-easystud-group,
   .local-groupimport-easystud-tree__section {
     &#{$rest} {
       @include easyedu.identity-card-rest-hairlines;
+    }
+
+    // K16-53 écart2: without a real pointer, :hover only survives a tap. The
+    // card then keeps its flat resting hairlines instead of a sticky hover.
+    @media not all and (hover: hover) and (pointer: fine) {
+      &#{$rest-touch} {
+        @include easyedu.identity-card-rest-hairlines;
+      }
     }
   }
 

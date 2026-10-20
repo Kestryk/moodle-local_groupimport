@@ -500,7 +500,6 @@
 
     @include easyedu.identity-card-paint(unassigned);
     @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-ungrouped-rail));
-    box-shadow: var(--local-groupimport-easystud-shadow-soft);
 
     &:focus-within {
       @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-ungrouped-rail));
@@ -734,8 +733,8 @@
       border-color var(--easyedu-motion-fast) ease,
       box-shadow var(--easyedu-motion-fast) ease;
 
-    &:hover {
-      @include easyedu.identity-card-paint(object, hover);
+    // K16-53 écart2: common identity-card hover, before focus/selection/drop.
+    @include easyedu.identity-card-hover(object) {
       @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
     }
 
@@ -1490,14 +1489,13 @@
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .local-groupimport-easystud-tree__section[data-easystud-grouping-id] {
-    @include easyedu.non-draggable-card-hover(
-      linear-gradient(180deg, #fff 0%, #f2f6f9 100%),
-      #bdcbd7,
-      0 0.48rem 1rem rgba(75, 96, 116, 0.12)
-    );
-  }
+// K16-53 écart2: the grouping uses the common identity-card hover (real pointer
+// only, Kit soft shadow, no lift). Emitted after the expanded state so an open
+// grouping at rest still answers the pointer; selection and drop keep their own
+// paint, and the keyboard focus context keeps priority through its specificity.
+.local-groupimport-easystud-tree__section[data-easystud-grouping-id] {
+  cursor: default;
+  @include easyedu.identity-card-hover(container, ":not(.is-selected):not(.is-drop-target)");
 }
 
 @include easyedu.motion-restricted {

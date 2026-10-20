@@ -26,9 +26,22 @@
     box-shadow 0.22s ease,
     transform 0.22s ease;
 
-  &:hover {
+  @include pointer-hover {
     border-color: color-mix(in srgb, #{$identity-color} 32%, var(--easyedu-card-border) 68%);
     box-shadow: var(--easyedu-shadow-soft);
+  }
+}
+
+// The single reusable card hover (K16-53 écart2): only a pointer that can
+// really hover paints it, so a tap on a touch screen never leaves a sticky
+// hover state. The hover never moves geometry (no translate, scale or height).
+// `$guard` lets an owner exclude states that keep their own signal, e.g.
+// ":not(.is-selected)".
+@mixin pointer-hover($guard: "") {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover#{$guard} {
+      @content;
+    }
   }
 }
 
@@ -44,7 +57,7 @@
     border-color var(--easyedu-motion-fast) ease,
     box-shadow var(--easyedu-motion-fast) ease;
 
-  &:hover {
+  @include pointer-hover {
     background: $background;
     border-color: $border;
     box-shadow: $shadow;
