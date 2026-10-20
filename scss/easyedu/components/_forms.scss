@@ -14,6 +14,7 @@
 @use "typography";
 @use "control-treatment" as controls;
 @use "animations";
+@use "../scale";
 
 // Solid large deposit surface from Foundations. The consumer keeps its native
 // upload control, validation and progress inside __control; no simulated input.
@@ -687,18 +688,16 @@
     border-color var(--easyedu-motion-fast) ease,
     box-shadow var(--easyedu-motion-fast) ease;
 
-  @if $size == small {
-    font-size: 0.82rem;
-    min-height: 2.15rem;
-    padding: 0.32rem 0.55rem;
-  } @else if $size == large {
-    font-size: 0.98rem;
-    min-height: 2.85rem;
-    padding: 0.5rem 0.78rem;
+  // Shared scale (../_scale.scss); s/m/l keep the production select
+  // derivatives. `touch` is regular geometry on the 44 px touch floor.
+  @if $size == touch {
+    font-size: scale.select-font(m);
+    min-height: var(--easyedu-touch-target-min);
+    padding: scale.select-padding(m);
   } @else {
-    font-size: 0.9rem;
-    min-height: if($size == touch, var(--easyedu-touch-target-min), var(--easyedu-control-height));
-    padding: 0.45rem 0.65rem;
+    font-size: scale.select-font($size);
+    min-height: scale.select-height($size);
+    padding: scale.select-padding($size);
   }
 
   &:focus,

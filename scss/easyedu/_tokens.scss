@@ -8,6 +8,9 @@
 // Keep this file boring and explicit: tokens are the public contract between the
 // plugin author, Moodle theme authors and future EasyEdu plugins.
 
+@use "scale";
+@use "tones";
+
 @mixin token-defaults {
   --easyedu-empty-border: #cdddea;
   --easyedu-file-deposit-drag-over-surface: #edf6fc;
@@ -327,6 +330,10 @@
   --easyedu-icon-group: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.2 7.35a2.85 2.85 0 1 0 0-5.7 2.85 2.85 0 0 0 0 5.7Zm5.25.55a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM6.2 8.65c-2.9 0-5.05 1.65-5.48 4.05-.08.45.27.85.73.85h9.5c.46 0 .81-.4.73-.85-.43-2.4-2.58-4.05-5.48-4.05Zm5.25.55c-.42 0-.82.04-1.2.13 1.15.77 1.96 1.86 2.25 3.2h2.04c.47 0 .83-.42.72-.88-.36-1.55-1.81-2.45-3.81-2.45Z'/%3E%3C/svg%3E");
   --easyedu-icon-grouping: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm7 0h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1ZM6 9.3h4a1 1 0 0 1 1 1V13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2.7a1 1 0 0 1 1-1ZM4 7.3h1.2v1.1h5.6V7.3H12v2H8.6v-1H7.4v1H4v-2Z'/%3E%3C/svg%3E");
   --easyedu-drag-handle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Ccircle cx='2' cy='2' r='1.2'/%3E%3Ccircle cx='6' cy='2' r='1.2'/%3E%3Ccircle cx='2' cy='7' r='1.2'/%3E%3Ccircle cx='6' cy='7' r='1.2'/%3E%3Ccircle cx='2' cy='12' r='1.2'/%3E%3Ccircle cx='6' cy='12' r='1.2'/%3E%3C/svg%3E");
+
+  // Size scale (xs/s/m/l/xl) and semantic tones: see _scale.scss, _tones.scss.
+  @include scale.scale-token-defaults;
+  @include tones.tone-token-defaults;
 }
 
 // EasyStud compatibility aliases.

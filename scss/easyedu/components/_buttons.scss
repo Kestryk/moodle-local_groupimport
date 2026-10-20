@@ -5,10 +5,17 @@
 // toolbar actions or square icon buttons.
 //
 // Theme override tokens:
-// --easyedu-control-radius, --easyedu-control-height.
+// --easyedu-control-radius, --easyedu-control-height,
+// --easyedu-button-{height,font,padding}-{s,m,l}, --easyedu-size-* (xs, xl).
+//
+// Sizes follow the shared scale (../_scale.scss): xs, s, m, l, xl, with the
+// historical names small = s, regular = m, large = l. Tones follow
+// ../_tones.scss (destructive is an alias of danger).
 
 @use "focus";
 @use "sass:list";
+@use "../scale";
+@use "../tones";
 
 // Shared visual transition for controls whose semantic state changes in place
 // (pressed, selected, expanded or enabled). Consumers should not redefine a
@@ -23,23 +30,13 @@
     transform $duration var(--easyedu-motion-ease);
 }
 
+// Five-step button density. s/m/l keep the production button derivatives
+// (30.4 / 37.6 / 45.6 px); xs/xl read the shared scale directly.
 @mixin button-size($size: regular) {
-  @if $size == small {
-    font-size: 0.78rem;
-    min-height: 1.9rem;
-    min-width: 1.9rem;
-    padding: 0.22rem 0.5rem;
-  } @else if $size == large {
-    font-size: 0.98rem;
-    min-height: 2.85rem;
-    min-width: 2.85rem;
-    padding: 0.48rem 0.95rem;
-  } @else {
-    font-size: 0.88rem;
-    min-height: var(--easyedu-control-height);
-    min-width: var(--easyedu-control-height);
-    padding: 0.36rem 0.75rem;
-  }
+  font-size: scale.button-font($size);
+  min-height: scale.button-height($size);
+  min-width: scale.button-height($size);
+  padding: scale.button-padding($size);
 }
 
 @mixin button-interaction-states(
@@ -137,21 +134,17 @@
 // Palette is explicit so native Bootstrap focus/hover cannot replace the
 // semantic role. Keep overflow/routing/selection ownership in the consumer.
 @mixin selection-action($tone: primary, $solid: false, $tray: false, $icon-line-height: 1) {
+  $tone: tones.tone-name($tone);
   @if not list.index((primary, neutral, danger), $tone) {
     @error "selection-action expects primary, neutral or danger.";
   }
-  $ink: var(--easyedu-primary);
-  $soft: var(--easyedu-primary-soft);
-  $strong: var(--easyedu-primary-strong);
-  $ring: var(--easyedu-focus-ring);
-  @if $tone == neutral {
-    $ink: var(--easyedu-text-muted);
-  } @else if $tone == danger {
-    $ink: var(--easyedu-danger);
-    $soft: var(--easyedu-danger-soft);
-    $strong: var(--easyedu-danger);
-    $ring: var(--easyedu-focus-ring-danger);
-  }
+  // Neutral changes only the resting ink: its hover stays on the primary
+  // tint (accepted EasyStud behaviour), so soft/strong/ring remain primary.
+  $palette: if($tone == danger, danger, primary);
+  $ink: tones.tone($tone, ink);
+  $soft: tones.tone($palette, soft);
+  $strong: tones.tone($palette, strong);
+  $ring: tones.tone($palette, ring);
   @include action-content(0.35rem, $icon-line-height);
   @include button-size(small);
   @include control-state-transition;
@@ -270,23 +263,20 @@
     color: var(--easyedu-primary-strong);
   }
 
-  @media (max-width: 52rem), (pointer: coarse) {
-    min-height: var(--easyedu-touch-target-min);
-  }
+  @include scale.touch-target-floor;
 }
 
 // Explicit field-peer density. Compose after filter-reset; retain its caption,
-// paint, intrinsic width, padding and state Motion. Regular fields use 38px,
-// not the generic button's 37.6px. Legacy Reset consumers remain unchanged.
+// paint, intrinsic width, padding and state Motion. Regular fields use scale M
+// (38px), not the generic button's 37.6px derivative. Legacy Reset consumers
+// remain unchanged.
 @mixin filter-reset-field-peer {
   & {
     box-sizing: border-box;
-    min-height: 2.375rem;
+    min-height: scale.scale-size(m);
   }
 
-  @media (max-width: 52rem), (pointer: coarse) {
-    min-height: var(--easyedu-touch-target-min);
-  }
+  @include scale.touch-target-floor;
 }
 
 // K16-80 (Kevin 16/10, standardise reusable controls): ONE Kit Close. The cross is drawn by the
@@ -301,11 +291,11 @@
   border: 1px solid var(--easyedu-card-border);
   box-sizing: border-box;
   color: var(--easyedu-text-muted);
-  height: 1.9rem;
-  min-height: 1.9rem;
-  min-width: 1.9rem;
+  height: scale.button-height($size);
+  min-height: scale.button-height($size);
+  min-width: scale.button-height($size);
   padding: 0;
-  width: 1.9rem;
+  width: scale.button-height($size);
 
   @if $glyph {
     position: relative;
@@ -350,12 +340,7 @@
   // K16-80 / Q17-T44: one Kit Close, desktop and touch variants. The glyph is
   // centred by geometry (inset 50% + transform), so growing the frame cannot
   // desync the drawn cross from its square.
-  @media (max-width: 52rem), (pointer: coarse) {
-    height: var(--easyedu-touch-target-min);
-    min-height: var(--easyedu-touch-target-min);
-    min-width: var(--easyedu-touch-target-min);
-    width: var(--easyedu-touch-target-min);
-  }
+  @include scale.touch-target-floor((height, min-height, min-width, width));
 }
 
 @mixin overflow-button($size: regular) {
@@ -562,6 +547,9 @@
 }
 
 @mixin admin-primary-nav-action($variant: default) {
+  // Canonical tone name (../_tones.scss); destructive stays accepted.
+  @if $variant == danger { $variant: destructive; }
+
   @include action-button(regular);
 
   & {
@@ -682,6 +670,8 @@
 }
 
 @mixin guide-adjacent-action($variant: default, $size: regular, $override-legacy: false) {
+  // Canonical tone name (../_tones.scss); destructive stays accepted.
+  @if $variant == danger { $variant: destructive; }
   // Opt-in only for a Guide host with historical forced solid-action paint.
   // It reuses this exact family/state palette instead of a consumer repaint.
   $priority: null;
@@ -714,7 +704,7 @@
   // Small is the published Guide utility density, not a regular-sized action
   // with a Small argument silently overridden by this family's declarations.
   // Keep the existing quiet paint, focus and transitions at every density.
-  @if $size == small {
+  @if scale.scale-step($size) == s {
     & { @include button-size(small); min-width: 0; font-weight: 600; }
     .fa { font-size: 0.875rem; width: 0.875rem; }
   }
@@ -787,6 +777,9 @@
 }
 
 @mixin admin-secondary-action($variant: default) {
+  // Canonical tone name (../_tones.scss); destructive stays accepted.
+  @if $variant == danger { $variant: destructive; }
+
   @include action-button(small);
 
   & {

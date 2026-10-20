@@ -10,6 +10,7 @@
 
 @use "typography";
 @use "focus";
+@use "../tones";
 
 // Collapsible deposit shell: retain the accepted open/folded/stacked inset.
 // The caller keeps its breakpoint, grid placement and disclosure behaviour.
@@ -284,6 +285,7 @@
 }
 
 @mixin semantic-accent-panel($variant: primary, $rail-height: 0.35rem) {
+  $variant: tones.tone-name($variant);
   $rail-color: var(--easyedu-semantic-rail-primary);
 
   @include panel-shell;
@@ -308,13 +310,13 @@
   position: relative;
 
   @if $variant == success {
-    border-color: var(--easyedu-semantic-border-success);
+    border-color: tones.tone(success, border);
   } @else if $variant == warning {
-    border-color: var(--easyedu-semantic-border-warning);
+    border-color: tones.tone(warning, border);
   } @else if $variant == danger {
-    border-color: var(--easyedu-semantic-border-danger);
+    border-color: tones.tone(danger, border);
   } @else {
-    border-color: var(--easyedu-semantic-border-primary);
+    border-color: tones.tone(primary, border);
   }
 }
 

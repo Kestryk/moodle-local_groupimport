@@ -1,6 +1,7 @@
 // EasyEdu data tables, preview reports and status rows.
 
 @use "typography";
+@use "../tones";
 
 @mixin data-table {
   background: var(--easyedu-surface);
@@ -107,19 +108,20 @@
 }
 
 @mixin semantic-table-surface($variant: primary) {
+  $variant: tones.tone-name($variant);
   @include data-table-surface;
 
   @if $variant == success {
-    --easyedu-table-semantic-border: var(--easyedu-semantic-border-success);
+    --easyedu-table-semantic-border: #{tones.tone(success, border)};
     --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-success);
   } @else if $variant == warning {
-    --easyedu-table-semantic-border: var(--easyedu-semantic-border-warning);
+    --easyedu-table-semantic-border: #{tones.tone(warning, border)};
     --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-warning);
   } @else if $variant == danger {
-    --easyedu-table-semantic-border: var(--easyedu-semantic-border-danger);
+    --easyedu-table-semantic-border: #{tones.tone(danger, border)};
     --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-danger);
   } @else {
-    --easyedu-table-semantic-border: var(--easyedu-semantic-border-primary);
+    --easyedu-table-semantic-border: #{tones.tone(primary, border)};
     --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-primary);
   }
 
@@ -151,6 +153,8 @@
 }
 
 @mixin table-status-row($variant) {
+  // error is the historical name of the danger tone (../_tones.scss).
+  @if $variant == danger { $variant: error; }
   @if $variant == success {
     background: var(--easyedu-table-success-bg);
   } @else if $variant == warning {

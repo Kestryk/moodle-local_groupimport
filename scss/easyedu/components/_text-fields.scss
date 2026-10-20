@@ -1,33 +1,37 @@
 // Native single-line fields measured from Foundations 08.4 / 08.4.1.
 // Apply to the input itself, never to a search wrapper or its adjacent actions.
+//
+// Text field is the reference family of the shared size scale (../_scale.scss):
+// S/M/L are exactly scale s/m/l (32/38/48 px); xs and xl extend it. Historical
+// names small/regular/large stay accepted.
+@use "sass:map";
 @use "field-paint";
+@use "../scale";
+
+// Block padding = (height - 1.2 line-height x font size - 2 px border) / 2,
+// which gives the measured 0.875rem painted text inset at every step.
+$-field-block-padding: (
+  xs: 0.4rem,
+  s: 0.4875rem,
+  m: 0.6rem,
+  l: 0.9125rem,
+  xl: 1.0875rem,
+);
 
 @mixin foundation-text-field($size: regular) {
-  $height: 2.375rem;
-  $font-size: 0.875rem;
-  $block-padding: 0.6rem;
-  @if $size == small {
-    $height: 2rem;
-    $font-size: 0.75rem;
-    $block-padding: 0.4875rem;
-  } @else if $size == large {
-    $height: 3rem;
-    $block-padding: 0.9125rem;
-  } @else if $size != regular {
-    @error "foundation-text-field expects small, regular or large.";
-  }
+  $step: scale.scale-step($size);
 
   // The family token may resolve to `inherit`, which is invalid inside `font`.
   // Longhands preserve the measured density while inheriting the Moodle family.
   font-family: var(--easyedu-font-family-ui);
-  font-size: $font-size;
+  font-size: scale.scale-font($step);
   font-weight: 400;
   line-height: 1.2;
   height: auto;
-  min-height: $height;
+  min-height: scale.scale-size($step);
   min-width: 0;
   // Border plus padding gives the measured 0.875rem painted text inset.
-  padding: $block-padding 0.8125rem;
+  padding: map.get($-field-block-padding, $step) 0.8125rem;
 
   @include field-paint.paint;
 }

@@ -8,4 +8,6 @@
 // component CSS unless a plugin includes a mixin under its own root selector.
 
 @forward "tokens";
+@forward "scale";
+@forward "tones";
 @forward "components";

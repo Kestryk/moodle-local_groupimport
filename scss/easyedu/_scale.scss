@@ -1,0 +1,183 @@
+// EasyEdu size scale: xs / s / m / l / xl (Kit chantier, 20/10/2026).
+//
+// One public scale for every interactive control of every EasyEdu plugin.
+// Values come from what EasyStud already ships, not from a blank page:
+//
+// | Step | Height          | Text             | Source in production                                  |
+// |------|-----------------|------------------|-------------------------------------------------------|
+// | xs   | 1.75rem (28 px) | 0.6875rem (11 px) | filter capsules, quiet 28 px section tile             |
+// | s    | 2rem    (32 px) | 0.75rem   (12 px) | Text field S (Foundations 08.4), list toolbar, card actions |
+// | m    | 2.375rem (38 px) | 0.875rem (14 px) | Text field M (Foundations 08.4), field peers, Guide footers |
+// | l    | 3rem    (48 px) | 0.875rem (14 px) | Text field L (Foundations 08.4), admin primary navigation |
+// | xl   | 3.5rem  (56 px) | 1rem      (16 px) | large segmented choices                               |
+//
+// Touch is a floor, not a step (Q17-T44 / OLD-D): below 52rem or on a coarse
+// pointer, any control smaller than `--easyedu-touch-target-min` (44 px) grows
+// to it through `touch-target-floor`. That keeps S/M/L names identical to the
+// published Penpot Text-field S/M/L while every tap target still reaches 44 px.
+//
+// Family derivatives. Buttons and native selects were sized before this scale
+// existed (rem values 1.9 / 2.35 / 2.85). They are in production and accepted
+// (K16-42, OLD-B R13 "37.6 / 44 px"), so their exact values are kept as named
+// family tokens instead of literals. Converging them on the scale later is a
+// one-token change per step, to be decided in Penpot first.
+//
+// Theme authors override the CSS custom properties; plugin code calls the
+// functions below and never repeats a literal size.
+
+@use "sass:list";
+@use "sass:map";
+
+$scale-steps: (xs, s, m, l, xl);
+
+// Historical density names accepted by the existing mixins.
+$scale-aliases: (
+  small: s,
+  regular: m,
+  large: l,
+);
+
+// Normalise a size argument to one of the five scale steps.
+@function scale-step($size) {
+  @if map.has-key($scale-aliases, $size) {
+    @return map.get($scale-aliases, $size);
+  }
+  @if list.index($scale-steps, $size) {
+    @return $size;
+  }
+  @error "EasyEdu scale expects xs, s, m, l or xl (or small, regular, large); got `#{$size}`.";
+}
+
+@function scale-size($size) {
+  @return var(--easyedu-size-#{scale-step($size)});
+}
+
+@function scale-font($size) {
+  @return var(--easyedu-size-#{scale-step($size)}-font);
+}
+
+@function scale-padding($size) {
+  @return var(--easyedu-size-#{scale-step($size)}-padding-inline);
+}
+
+@function scale-icon($size) {
+  @return var(--easyedu-size-#{scale-step($size)}-icon);
+}
+
+// Family helpers: buttons and native selects read their own derivative tokens
+// for s/m/l and fall back on the shared scale for xs/xl.
+@function button-height($size) {
+  $step: scale-step($size);
+  @if list.index((s, m, l), $step) {
+    @return var(--easyedu-button-height-#{$step});
+  }
+  @return scale-size($step);
+}
+
+@function button-font($size) {
+  $step: scale-step($size);
+  @if list.index((s, m, l), $step) {
+    @return var(--easyedu-button-font-#{$step});
+  }
+  @return scale-font($step);
+}
+
+@function button-padding($size) {
+  $step: scale-step($size);
+  @if list.index((s, m, l), $step) {
+    @return var(--easyedu-button-padding-#{$step});
+  }
+  @return 0 scale-padding($step);
+}
+
+@function select-height($size) {
+  $step: scale-step($size);
+  @if list.index((s, m, l), $step) {
+    @return var(--easyedu-select-height-#{$step});
+  }
+  @return scale-size($step);
+}
+
+@function select-font($size) {
+  $step: scale-step($size);
+  @if list.index((s, m, l), $step) {
+    @return var(--easyedu-select-font-#{$step});
+  }
+  @return scale-font($step);
+}
+
+@function select-padding($size) {
+  $step: scale-step($size);
+  @if list.index((s, m, l), $step) {
+    @return var(--easyedu-select-padding-#{$step});
+  }
+  @return 0 scale-padding($step);
+}
+
+// Public scale tokens. Included once by `token-defaults`.
+@mixin scale-token-defaults {
+  // Shared control heights.
+  --easyedu-size-xs: 1.75rem;
+  --easyedu-size-s: 2rem;
+  --easyedu-size-m: 2.375rem;
+  --easyedu-size-l: 3rem;
+  --easyedu-size-xl: 3.5rem;
+  // Text inside a control of that step.
+  --easyedu-size-xs-font: 0.6875rem;
+  --easyedu-size-s-font: 0.75rem;
+  --easyedu-size-m-font: 0.875rem;
+  --easyedu-size-l-font: 0.875rem;
+  --easyedu-size-xl-font: 1rem;
+  // Inline padding of a labelled action of that step.
+  --easyedu-size-xs-padding-inline: 0.5rem;
+  --easyedu-size-s-padding-inline: 0.5rem;
+  --easyedu-size-m-padding-inline: 0.75rem;
+  --easyedu-size-l-padding-inline: 1rem;
+  --easyedu-size-xl-padding-inline: 1.25rem;
+  // Glyph inside a control of that step.
+  --easyedu-size-xs-icon: 0.625rem;
+  --easyedu-size-s-icon: 0.75rem;
+  --easyedu-size-m-icon: 0.875rem;
+  --easyedu-size-l-icon: 1rem;
+  --easyedu-size-xl-icon: 1.125rem;
+
+  // Button derivatives (production values, see header).
+  --easyedu-button-height-s: 1.9rem;
+  --easyedu-button-height-m: var(--easyedu-control-height);
+  --easyedu-button-height-l: 2.85rem;
+  --easyedu-button-font-s: 0.78rem;
+  --easyedu-button-font-m: 0.88rem;
+  --easyedu-button-font-l: 0.98rem;
+  --easyedu-button-padding-s: 0.22rem 0.5rem;
+  --easyedu-button-padding-m: 0.36rem 0.75rem;
+  --easyedu-button-padding-l: 0.48rem 0.95rem;
+
+  // Native select derivatives (production values, see header).
+  --easyedu-select-height-s: 2.15rem;
+  --easyedu-select-height-m: var(--easyedu-control-height);
+  --easyedu-select-height-l: 2.85rem;
+  --easyedu-select-font-s: 0.82rem;
+  --easyedu-select-font-m: 0.9rem;
+  --easyedu-select-font-l: 0.98rem;
+  --easyedu-select-padding-s: 0.32rem 0.55rem;
+  --easyedu-select-padding-m: 0.45rem 0.65rem;
+  --easyedu-select-padding-l: 0.5rem 0.78rem;
+}
+
+// Q17-T44 / OLD-D: the one touch floor. Pass every dimension the control
+// fixes (a square close button passes height, min-height, min-width, width).
+@mixin touch-target-floor($properties: min-height) {
+  @media (max-width: 52rem), (pointer: coarse) {
+    @each $property in $properties {
+      #{$property}: var(--easyedu-touch-target-min);
+    }
+  }
+}
+
+// Generic labelled control on the shared scale, for new components that have
+// no historical derivative. Geometry only: paint and states stay in the family.
+@mixin control-scale($size: m) {
+  font-size: scale-font($size);
+  min-height: scale-size($size);
+  padding-inline: scale-padding($size);
+}
