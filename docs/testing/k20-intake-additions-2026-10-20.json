@@ -17,5 +17,12 @@
     "status": "PASS native FR/EN ×768/390/1600/1280; bilingual conformity audits 0 failures",
     "proof": "docs/testing/k20-01-native-2026-10-21.json",
     "noProductChanges": true
+  },
+  "k2002NativeVerification20261021": {
+    "source": "39e856d0",
+    "validatedRevision": "c3c04450",
+    "status": "PASS native FR/EN ×768/390/1600/1280; bilingual conformity audits 0 failures",
+    "proof": "docs/testing/k20-02-native-2026-10-21.json",
+    "noProductChanges": true
   }
 }

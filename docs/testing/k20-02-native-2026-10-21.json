@@ -1,0 +1,134 @@
+{
+  "lot": "K20-02",
+  "productionCommit": "39e856d0",
+  "validatedRevision": "c3c04450",
+  "scope": "native verification of already integrated fix; no product changes",
+  "status": "PASS",
+  "consoleErrors": 0,
+  "phpcs": {
+    "errors": 0,
+    "warnings": 27,
+    "fixable": 0
+  },
+  "audits": [
+    {
+      "lang": "fr",
+      "pass": 89,
+      "fail": 0,
+      "file": "C:/dev/tools/codex-relay/logs/audit-2026-10-20T23-36-23-171Z.json"
+    },
+    {
+      "lang": "en",
+      "pass": 89,
+      "fail": 0,
+      "file": "C:\\dev\\artifacts\\k20-01-02-native-20261021/logs/audit-2026-10-20T23-41-02-256Z.json"
+    }
+  ],
+  "fullMeasurements": "C:/dev/artifacts/k20-01-02-native-20261021/native-accepted/native.json",
+  "rows": [
+    {
+      "lang": "fr",
+      "width": 768,
+      "bannerHeight": 56.390625,
+      "footerHeight": 64,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "fr",
+      "width": 390,
+      "bannerHeight": 96.78125,
+      "footerHeight": 64,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "fr",
+      "width": 1600,
+      "bannerHeight": 56.390625,
+      "footerHeight": 63,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "fr",
+      "width": 1280,
+      "bannerHeight": 56.390625,
+      "footerHeight": 63,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "bannerHeight": 56.390625,
+      "footerHeight": 64,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "bannerHeight": 96.78125,
+      "footerHeight": 64,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 1600,
+      "bannerHeight": 56.390625,
+      "footerHeight": 63,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "bannerHeight": 56.390625,
+      "footerHeight": 63,
+      "overlap": 0,
+      "insideDialog": true,
+      "footerControlsHit": true,
+      "bannerControlsHit": true,
+      "oneNotice": true,
+      "horizontalOverflow": 0,
+      "navigationAndResume": "PASS"
+    }
+  ]
+}

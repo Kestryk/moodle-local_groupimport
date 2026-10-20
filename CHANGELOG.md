@@ -1,3 +1,5 @@
+- 2026-10-21 [K20-02] Confirmer sur Moodle natif en FR/EN les commandes de navigation et le bandeau de reprise empilé au-dessus du pied du Guide ; correctif existant conservé, aucun changement produit.
+
 - 2026-10-21 [K20-01] Confirmer sur Moodle natif en FR/EN les cadres Kit identiques de Fermer/Réagrandir de la checklist ; correctif existant conservé, aucun changement produit.
 
 - 2026-10-21 [K20-18] Déplier les informations complètes des participants en un seul mouvement : calculer la pagination existante et le débordement des pastilles avant la mesure de hauteur de l’animation, sans second ajustement différé.

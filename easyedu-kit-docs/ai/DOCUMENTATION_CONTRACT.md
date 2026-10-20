@@ -1158,3 +1158,8 @@ K20-01 native successors measure the real visible Close/Restore controls after
 Motion settles, using the same coarse-pointer/viewport state and no hover.
 Preserve existing Kit frames; isolated presentation proof is distinct from
 authenticated Moodle evidence. See docs/testing/k20-01-native-2026-10-21.md.
+
+K20-02 native resume acceptance starts a real path, reloads without reseeding
+progress, then verifies live notice placement, navigation clicks and Resume.
+The same notice returns outside a closed modal; test compact launch through
+the native drawer. See docs/testing/k20-02-native-2026-10-21.md.
