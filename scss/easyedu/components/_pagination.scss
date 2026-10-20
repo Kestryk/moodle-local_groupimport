@@ -27,6 +27,52 @@
   }
 }
 
+// Accepted round frame composes after pagination-arrow-button. The host keeps
+// its selector/cascade; frame, states, touch and forced colours belong here.
+@mixin pagination-round-arrow {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 50%;
+  height: 1.62rem;
+  // Natural text metrics centre native arrow glyphs in the fixed circle.
+  line-height: normal;
+  inline-size: 1.62rem;
+  min-height: 1.62rem;
+  min-inline-size: 1.62rem;
+  min-width: 1.62rem;
+  width: 1.62rem;
+
+  &:not(:disabled):hover {
+    background: var(--easyedu-primary-soft);
+    border-color: var(--easyedu-control-border);
+  }
+
+  &:focus-visible {
+    @include focus.ring;
+  }
+
+  &:disabled {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  @media (pointer: coarse) {
+    height: 2.75rem;
+    inline-size: 2.75rem;
+    min-height: 2.75rem;
+    min-inline-size: 2.75rem;
+    min-width: 2.75rem;
+    width: 2.75rem;
+  }
+
+  @media (forced-colors: active) {
+    &:focus-visible,
+    &:not(:disabled):hover {
+      border-color: ButtonText;
+    }
+  }
+}
+
 // Use for pagination labels and buttons whose visible content must remain
 // centred even when the consumer changes copy or injects an icon.
 @mixin pagination-content-centre {
