@@ -1153,3 +1153,8 @@ work must not repaginate that same disclosure. Preserve the shared Motion API,
 normal/reduced/minimal policy, metadata contents and filter/sort scope. Native
 frame traces and audit remain distinct from the isolated controller contract.
 See docs/testing/participant-density-k20-18-2026-10-21.md.
+
+K20-01 native successors measure the real visible Close/Restore controls after
+Motion settles, using the same coarse-pointer/viewport state and no hover.
+Preserve existing Kit frames; isolated presentation proof is distinct from
+authenticated Moodle evidence. See docs/testing/k20-01-native-2026-10-21.md.

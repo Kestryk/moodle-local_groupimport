@@ -10,5 +10,12 @@
     "proof": "docs/testing/k20-guide-responsive-2026-10-20.json",
     "status": "4 isolated headless cases PASS; PHP codechecker0; inherited JS lint and roundtrip debt explicit",
     "noPublication": true
+  },
+  "k2001NativeVerification20261021": {
+    "source": "dca5ccba",
+    "validatedRevision": "c3c04450",
+    "status": "PASS native FR/EN ×768/390/1600/1280; bilingual conformity audits 0 failures",
+    "proof": "docs/testing/k20-01-native-2026-10-21.json",
+    "noProductChanges": true
   }
 }
