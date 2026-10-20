@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
 $plugin->version = 2026101801;   // MOVE-BG: durable background member transfers table.
-$plugin->requires = 2025100600;  // Moodle 5.1 minimum.
+$plugin->requires = 2024100700;  // Moodle 4.5 installation baseline; native certification is pending.
 $plugin->maturity = MATURITY_BETA;
 $plugin->release = '0.4.2-beta';
 $plugin->license = 'GPLv3';

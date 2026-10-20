@@ -1,0 +1,18 @@
+{
+  "a10InstallationBaseline20261020": {
+    "status": "candidate; native certification pending phase 10 / K18-04",
+    "base": "39e856d0",
+    "minimum": 2024100700,
+    "internalVersion": 2026101801,
+    "changes": [
+      "version.php installation floor only",
+      "README certification boundary"
+    ],
+    "proof": [
+      "test-a10-bootstrap-baseline.cjs",
+      "test-a10-bootstrap-browser.cjs",
+      "test-readfilter-compat.cjs"
+    ],
+    "native45": false
+  }
+}
