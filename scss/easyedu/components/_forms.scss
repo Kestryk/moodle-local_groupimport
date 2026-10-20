@@ -118,6 +118,32 @@
   color: var(--easyedu-primary-strong);
 }
 
+// Inline editing composes the accepted control frames without owning the
+// consumer's grid placement. The content slot preserves its cascade order.
+@mixin inline-edit-touch-control {
+  min-height: var(--easyedu-touch-target-min);
+}
+
+@mixin inline-edit-surface {
+  background: color-mix(in srgb, var(--easyedu-surface) 92%, var(--easyedu-primary-soft) 8%);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-control-radius);
+  @content;
+  padding: 0.35rem;
+}
+
+@mixin inline-edit-action($compact: false) {
+  @if $compact {
+    padding-inline: 0.65rem;
+  } @else {
+    line-height: normal;
+  }
+}
+
+@mixin inline-create-touch-field {
+  min-height: 2.65rem;
+}
+
 @mixin segmented-toggle {
   background: var(--easyedu-surface-strong);
   border: 1px solid var(--easyedu-card-border);
