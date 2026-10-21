@@ -1,3 +1,5 @@
+- 2026-10-21 [I14] Split the Guide discovery-scene playback into one player per scene kind behind a dispatch table (shared playback clock unchanged, identical observable behaviour).
+
 - 2026-10-21 [K21-36] Declare the Moodle support range, align Privacy job metadata with nextrow, and remove only plugin-owned welcome preferences on uninstall.
 
 - 2026-10-21 [K21-35] Enforce LF for JS/SCSS/CSS and publish the full remaining ESLint and MoodleCS inventory without changing runtime contents.
