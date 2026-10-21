@@ -22,11 +22,6 @@
     @include easyedu.inline-edit-action;
   }
 
-  // Cancel keeps the regular secondary component; Reset keeps its own Kit density (K21-02).
-  [data-easystud-container-search-cancel] {
-    @include foundations.foundation-button($secondary: true);
-  }
-
   [data-easystud-advanced-filters-toggle],
   &-pagination__sort > span,
   [data-easystud-list-sort-dropdown] > &-dropdown__button {
