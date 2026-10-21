@@ -1153,3 +1153,13 @@ work must not repaginate that same disclosure. Preserve the shared Motion API,
 normal/reduced/minimal policy, metadata contents and filter/sort scope. Native
 frame traces and audit remain distinct from the isolated controller contract.
 See docs/testing/participant-density-k20-18-2026-10-21.md.
+
+
+A targeted native migration uses the allocated copy guard and a verified SQL
+backup before the delivered upgrade hook. Finish Moodle upgrade lifecycle and
+retain business-data fingerprints. A Delete image switch is a pending Save
+command: its action label stays visible; Kit clips only its secondary on/off
+caption, retaining native checkbox semantics. Wait for editor readiness before
+paired captures, close without Save, and distinguish existing fixes from new
+changes. See docs/testing/k20-09-migration-2026-10-21.md and
+docs/testing/k20-10-image-toggle-2026-10-21.md.

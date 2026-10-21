@@ -1,0 +1,240 @@
+{
+  "base": "c3c04450",
+  "migration": {
+    "copy": "http://localhost:8052",
+    "database": "moodle51claude",
+    "before": {
+      "version": 2026101800,
+      "table": false
+    },
+    "after": {
+      "version": 2026101801,
+      "table": true,
+      "columns": [
+        "id",
+        "courseid",
+        "userid",
+        "destinationid",
+        "requestkey",
+        "fingerprint",
+        "payload",
+        "status",
+        "nextitem",
+        "total",
+        "added",
+        "removed",
+        "unchanged",
+        "failcount",
+        "timenotified",
+        "timecreated",
+        "timemodified"
+      ],
+      "indexes": {
+        "mdl_locagroumove_req_uix": {
+          "unique": true,
+          "columns": [
+            "requestkey"
+          ]
+        },
+        "mdl_locagroumove_fin_ix": {
+          "unique": false,
+          "columns": [
+            "fingerprint"
+          ]
+        },
+        "mdl_locagroumove_couuse_ix": {
+          "unique": false,
+          "columns": [
+            "courseid",
+            "userid"
+          ]
+        }
+      },
+      "initialRows": 0,
+      "idempotent": true
+    },
+    "businessDataUnchanged": true,
+    "backup": {
+      "bytes": 38261012,
+      "sha256": "df7645cd776c652b2b14d81d2b3dc23c2ef593a588a7761ce439d6ae7bc6d044",
+      "privateFile": true
+    },
+    "nativeVisits": 10,
+    "movestatus": "10/10 HTTP200 success:true jobs:[]",
+    "consoleErrors": 0,
+    "beforeUnloadDialogs": 0,
+    "transfers": {
+      "direct": {
+        "added": 2,
+        "removed": 2,
+        "unchanged": 0
+      },
+      "worker": {
+        "status": "completed",
+        "added": 2,
+        "removed": 2,
+        "done": 2,
+        "total": 2,
+        "deduplicated": true
+      },
+      "notificationsNotTested": true,
+      "status": "PASS",
+      "fixtureRolledBack": true,
+      "businessTablesIdentical": true
+    }
+  },
+  "toggle": {
+    "existingProductionFix": "80e47210",
+    "newProductChange": false,
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "action": "Supprimer l’image à l’enregistrement",
+        "frame": {
+          "width": 270.171875,
+          "height": 36.796875
+        },
+        "dimensionsUnchangedWhenChecked": true,
+        "unchecked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "checked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "accessibleInBothStates": true
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "action": "Supprimer l’image à l’enregistrement",
+        "frame": {
+          "width": 270.171875,
+          "height": 36.796875
+        },
+        "dimensionsUnchangedWhenChecked": true,
+        "unchecked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "checked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "accessibleInBothStates": true
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "action": "Delete the image on save",
+        "frame": {
+          "width": 201.21875,
+          "height": 36.796875
+        },
+        "dimensionsUnchangedWhenChecked": true,
+        "unchecked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "checked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "accessibleInBothStates": true
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "action": "Delete the image on save",
+        "frame": {
+          "width": 201.21875,
+          "height": 36.796875
+        },
+        "dimensionsUnchangedWhenChecked": true,
+        "unchecked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "checked": {
+          "clip": "rect(0px, 0px, 0px, 0px)",
+          "clipPath": "none",
+          "width": "1px",
+          "height": "1px",
+          "position": "absolute",
+          "overflow": "hidden",
+          "display": "block",
+          "visibility": "visible"
+        },
+        "accessibleInBothStates": true
+      }
+    ],
+    "consoleErrors": 0,
+    "writes": 0
+  },
+  "auditedNow": true,
+  "audits": [
+    {
+      "lang": "fr",
+      "pass": 89,
+      "fail": 0,
+      "info": 12
+    },
+    {
+      "lang": "en",
+      "pass": 89,
+      "fail": 0,
+      "info": 12
+    }
+  ],
+  "codechecker": {
+    "errors": 0,
+    "warnings": 22,
+    "fixable": 0
+  },
+  "noMainRuntimeAccess": true,
+  "noProductCodeChange": true
+}

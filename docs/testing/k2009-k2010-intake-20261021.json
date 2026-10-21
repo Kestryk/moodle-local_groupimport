@@ -1,0 +1,10 @@
+{
+  "k2009MigrationAndK2010ToggleClosure20261021": {
+    "authorization": "Kevin21/10: migrate only the allocated test copy before checking the Delete image label",
+    "migration": "Existing1801 hook applied to8052 only after full SQL backup",
+    "toggleProductionFixAlreadyIntegrated": "80e47210",
+    "noProductCodeChange": true,
+    "proof": "docs/testing/k2009-k2010-20261021.json",
+    "scope": "K20-09 on8052; K20-10/K16-46 native confirmation; no localhost publication"
+  }
+}
