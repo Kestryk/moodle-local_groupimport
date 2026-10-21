@@ -141,5 +141,91 @@
       ]
     },
     "artifactRoot": "C:/dev/artifacts/k21-02-05-native-20261021"
+  },
+  "k2104StepLabels20261021": {
+    "passed": true,
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "subject": "steps",
+        "count": 6,
+        "background": "rgba(255, 255, 255, 0.74)",
+        "radius": "999px",
+        "padding": "2.88px 7.04px",
+        "height": 22.765625
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "subject": "mi-steps",
+        "count": 6,
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "padding": "0px",
+        "height": 17.015625
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "subject": "steps",
+        "count": 6,
+        "background": "rgba(255, 255, 255, 0.74)",
+        "radius": "999px",
+        "padding": "2.88px 7.04px",
+        "height": 22.765625
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "subject": "mi-steps",
+        "count": 6,
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "padding": "0px",
+        "height": 17.015625
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "subject": "steps",
+        "count": 6,
+        "background": "rgba(255, 255, 255, 0.74)",
+        "radius": "999px",
+        "padding": "2.88px 7.04px",
+        "height": 22.765625
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "subject": "mi-steps",
+        "count": 6,
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "padding": "0px",
+        "height": 17.015625
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "subject": "steps",
+        "count": 6,
+        "background": "rgba(255, 255, 255, 0.74)",
+        "radius": "999px",
+        "padding": "2.88px 7.04px",
+        "height": 22.765625
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "subject": "mi-steps",
+        "count": 6,
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "padding": "0px",
+        "height": 17.015625
+      }
+    ],
+    "kitScssIdentical": true
   }
 }
