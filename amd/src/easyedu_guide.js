@@ -2876,6 +2876,242 @@ const DISCOVERY_SCENE_PLAYERS = {
   actions: playMembershipScene,
 };
 
+// Reflect one playback state (idle, playing, paused, finished) on the scene header, its Start control and
+// the live region's Pause/Next controls.
+const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, applicablePhases, startControl, live, activity,
+  pauseControl, nextControl, updateClearance, getHeaderObserver}) => (state, advancing = false) => {
+  if (sceneHeader) {
+    sceneHeader.dataset.guidePlaybackState = state;
+    // K20-15: the completed comparison uses the same end-card row as every single-mode lesson.
+    sceneHeader.classList.toggle('easyedu-guide-scene__header--single', kind !== 'membership' || state === 'finished');
+    const comparison = sceneHeader.querySelector('[data-guide-modes]');
+    if (comparison) {
+      comparison.hidden = state === 'finished';
+    }
+    const controls = sceneHeader.querySelector('.easyedu-guide-scene__playback');
+    if (controls) { controls.hidden = !['playing', 'paused'].includes(state); }
+    // Collapse the useless disabled mode/Start row through canonical CSS
+    // Motion; inert prevents invisible controls retaining keyboard focus.
+    sceneHeader.querySelector('.easyedu-guide-scene__header-controls')?.toggleAttribute('inert',
+      ['playing', 'paused'].includes(state));
+    if (phaseCaption) {
+      const labels = sceneHeader.dataset;
+      const modeLabel = kind === 'membership' ? (mode === 'add' ? labels.addLabel : labels.moveLabel) : '';
+      const current = applicablePhases.findIndex(item => item.dataset.guidePhase === scene.dataset.guidePhase) + 1;
+      phaseCaption.hidden = !labels.stepLabel || state === 'finished';
+      phaseCaption.textContent = state === 'idle' ? labels.readyLabel :
+        (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' + Math.max(1, current) + '/' + applicablePhases.length;
+      if (modeLabel) { phaseCaption.textContent += ' · ' + modeLabel; }
+    }
+    updateClearance();
+    if (state === 'finished') { getHeaderObserver()?.disconnect(); }
+  }
+  if (startControl) {
+    const busy = ['playing', 'paused'].includes(state);
+    startControl.disabled = busy;
+    startControl.setAttribute('aria-busy', String(busy));
+    startControl.querySelector('[data-guide-start-label]').textContent = busy ?
+      startControl.dataset.runningLabel : state === 'finished' ?
+        startControl.dataset.replayLabel : startControl.dataset.startLabel;
+    scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
+      '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
+      '[data-guide-scene-command="clear"]').forEach(button => {
+      button.disabled = busy;
+    });
+  }
+  if (!live) { return; }
+  live.dataset.guidePlaybackState = state;
+  if (activity) { activity.hidden = !['playing', 'paused'].includes(state); }
+  if (pauseControl) {
+    pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
+    pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
+    pauseControl.setAttribute('aria-label', state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
+    pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
+  }
+  if (nextControl) { nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state); }
+};
+
+// Return the scene to its resting illustration: live copy, recap, memberships (moved into the header as the
+// expected outcome while previewing a mode) and the touch/mouse variants of the inspection trigger.
+const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveCopy, liveAnnouncement, sceneHeader,
+  startControl, readingBody, compact, requestedMode, start}) => {
+  if (live) {
+    liveCopy.textContent = scene.easyeduGuideResultOriginal;
+    if (liveAnnouncement) { liveAnnouncement.textContent = scene.easyeduGuideResultOriginal; }
+    liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
+    live.removeAttribute('data-guide-live-state');
+    const completionIcon = live.querySelector('[data-guide-live-complete]');
+    if (completionIcon) { completionIcon.hidden = true; }
+  }
+  delete scene.dataset.guidePhase;
+  const recap = scene.querySelector('[data-guide-recap]');
+  if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
+  // GMI-C3: at the minimal level the Mass Import recap is the lesson itself, shown at rest.
+  if (recap && ['midrop', 'mipreview'].includes(kind)) { recap.hidden = getMotionLevel(root) !== 'minimal'; }
+  // K17-44: the four renderings of the filter slide are the recap shown once its demonstration ends.
+  const filtersRecap = kind === 'filters' ?
+    scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
+  if (filtersRecap) {
+    filtersRecap.hidden = true;
+  }
+  const origin = scene.querySelector('[data-guide-membership-origin]');
+  const target = scene.querySelector('[data-guide-membership-target]');
+  if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }
+  if (target) { target.classList.add('is-absent'); target.querySelector('b').textContent = target.dataset.absent; }
+  scene.querySelectorAll('[data-guide-phase]').forEach(item => {
+    item.removeAttribute('aria-current');
+    item.hidden = false;
+    if (!item.dataset.original) { item.dataset.original = item.textContent; }
+    item.textContent = item.dataset.original;
+  });
+  // At rest, the membership strip is explicitly an expected outcome. Starting
+  // restores actual illustrated memberships until the existing final phase.
+  const memberships = scene.querySelector('[data-guide-memberships]');
+  if (memberships && sceneHeader) {
+    // One component and one set of IDs/state: only its placement changes.
+    // The anchor survives idle mode changes, Reset and repeated play cycles.
+    if (!memberships.easyeduGuideHome) {
+      memberships.easyeduGuideHome = document.createComment('Guide membership result location');
+      memberships.before(memberships.easyeduGuideHome);
+    }
+  }
+  const membershipTitle = memberships?.querySelector('[data-guide-membership-title]');
+  if (membershipTitle && !membershipTitle.dataset.original) { membershipTitle.dataset.original = membershipTitle.textContent; }
+  const preview = !!sceneHeader && !!startControl && (requestedMode === 'reset' || !start) && kind === 'membership';
+  if (memberships && sceneHeader) {
+    if (preview) { sceneHeader.appendChild(memberships); }
+    else { memberships.easyeduGuideHome.after(memberships); }
+  }
+  if (memberships) { memberships.toggleAttribute('data-guide-membership-preview', preview); }
+  if (membershipTitle) { membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original; }
+  if (preview) {
+    if (origin) {
+      origin.classList.toggle('is-removed', mode === 'move');
+      origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
+    }
+    if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
+    if (liveCopy) {
+      liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
+      liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+      liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
+    }
+    // A phone may not fit title, introduction and the complete ready header at
+    // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
+    // never scroll the Moodle page or leave the expected outcome below the fold.
+    if (readingBody) {
+      const bodyBounds = readingBody.getBoundingClientRect(), headerBounds = sceneHeader.getBoundingClientRect();
+      if (headerBounds.bottom > bodyBounds.bottom - 8) {
+        animateScrollTo(root, readingBody, readingBody.scrollTop + headerBounds.bottom - bodyBounds.bottom + 8);
+      }
+    }
+  }
+  scene.toggleAttribute('data-guide-mobile-actions', compact);
+  if (kind === 'inspection') {
+    stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
+    const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
+    if (compactTrigger) { compactTrigger.hidden = !compact; }
+  }
+  return {recap, origin, target};
+};
+
+// Illustrated pointer (mouse travel or touch gestures) and click feedback, on the scene's pausable clock.
+const createScenePointerKit = ({root, compact, still, reduced, fadeLevel, gate, assertActive, animate}) => {
+  // Illustrated pointer placed at its destination without travel ('minimal'), or faded in there ('reduced').
+  const placeCursor = async(cursorEl, transform) => {
+    await gate();
+    assertActive();
+    const wasHidden = cursorEl.hidden;
+    cursorEl.style.transform = transform;
+    cursorEl.hidden = false;
+    if (fadeLevel && wasHidden) {
+      await animate(cursorEl, [{opacity: 0}, {opacity: 1}], REDUCED_FADE_MS, false);
+    }
+  };
+  // J-G2 (AN-2): a pointer that is not shown yet appears near its target (160 ms fade, then a
+  // 24 px approach) instead of crossing the stage from its top-left corner; any travel keeps a
+  // readable speed (0.8 px/ms at most, DISCOVERY_POINTER_SPEED).
+  const movePointer = async(cursorEl, x, y, duration) => {
+    const destination = `translate(${x}px, ${y}px)`;
+    if (cursorEl.hidden) {
+      const near = `translate(${x - 24}px, ${y + 12}px)`;
+      cursorEl.style.transform = near;
+      cursorEl.hidden = false;
+      await animate(cursorEl, [{transform: near, opacity: 0}, {transform: near, opacity: 1}], 160);
+      await animate(cursorEl, [{transform: near}, {transform: destination}], 220);
+      return;
+    }
+    const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
+    const distance = Math.hypot(x - from.m41, y - from.m42);
+    await animate(cursorEl, [{transform: from.toString()}, {transform: destination}],
+      Math.max(duration, Math.round(distance / DISCOVERY_POINTER_SPEED)));
+  };
+  // J-G1 (K15-30, P-G3): touch pointer gestures on the same WAAPI clock (animate/wait/gate), so Pause, Next phase
+  // and departure own them. A finger does not travel: it lifts (80 ms fade), is placed (160 ms fade and 0.8 to 1
+  // scale), taps (90 ms press, 360 ms ripple), presses and holds (450 ms ring) or drags (follows the card ghost).
+  // 'reduced' keeps the fades only; 'minimal' places the pointer and shows no gesture.
+  const touchDisc = cursorEl => cursorEl.querySelector('[data-guide-cursor-touch]') || cursorEl;
+  const touchRipple = cursorEl => {
+    const ripple = cursorEl.querySelector('[data-guide-cursor-ripple]');
+    // Not awaited: the ripple overlaps the next step and stays owned by the clock (pause, next, departure).
+    if (ripple) {
+      animate(ripple, [{opacity: 0.5, transform: 'scale(1)'}, {opacity: 0, transform: 'scale(1.8)'}], 360, false)
+        .catch(() => { /* Cancelled by departure. */ });
+    }
+  };
+  const touchPointer = {
+    place: async(cursorEl, x, y) => {
+      cursorEl.dataset.guidePointer = 'touch';
+      const destination = `translate(${x}px, ${y}px)`;
+      if (still) { await placeCursor(cursorEl, destination); return; }
+      await gate();
+      assertActive();
+      if (!cursorEl.hidden) { await animate(cursorEl, [{opacity: 1}, {opacity: 0}], 80, false); }
+      cursorEl.style.transform = destination;
+      cursorEl.hidden = false;
+      await animate(cursorEl, [{opacity: 0, transform: `${destination} scale(.8)`},
+        {opacity: 1, transform: `${destination} scale(1)`}], 160, false);
+    },
+    tap: async cursorEl => {
+      if (!cursorEl || cursorEl.hidden) { return; }
+      await gate();
+      assertActive();
+      if (reduced) { return; }
+      touchRipple(cursorEl);
+      await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'},
+        {transform: 'scale(1)'}], 90, false);
+    },
+    longPress: async cursorEl => {
+      if (!cursorEl || cursorEl.hidden) { return; }
+      await gate();
+      assertActive();
+      if (reduced) { return; }
+      await animate(touchDisc(cursorEl), [{transform: 'scale(1)', '--easyedu-guide-press': 0},
+        {transform: 'scale(.86)', '--easyedu-guide-press': 1}], 450, false);
+      touchRipple(cursorEl);
+    },
+    // Press, then follow the card ghost (the caller animates it on the same clock), then release with a ripple.
+    drag: async(cursorEl, dx, dy, duration, companions = []) => {
+      if (!cursorEl || cursorEl.hidden) { return; }
+      const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
+      await gate();
+      assertActive();
+      if (reduced) { return; }
+      await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'}], 90);
+      await Promise.all([animate(cursorEl, [{transform: from.toString()},
+        {transform: `translate(${from.m41 + dx}px, ${from.m42 + dy}px)`}], duration), ...companions]);
+      touchRipple(cursorEl);
+    }
+  };
+  // One Motion primitive; the scene retains Pause, Next phase and departure ownership.
+  const clickFeedback = (element, cursorEl) => Promise.all([
+    compact ? touchPointer.tap(cursorEl) : Promise.resolve(),
+    Motion.clickFeedback(element, {root, level: getMotionLevel(root), animate: (node, frames, timing) =>
+      animate(node, frames, timing.duration, false)})
+  ]);
+  return {placeCursor, movePointer, touchPointer, clickFeedback};
+};
+
 const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   stopDiscoveryScene(root);
   if (!scene) { return; }
@@ -2958,135 +3194,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     } else { restoreClearance(); }
   };
   let headerObserver = null;
-  const syncPlayback = (state, advancing = false) => {
-    if (sceneHeader) {
-      sceneHeader.dataset.guidePlaybackState = state;
-      // K20-15: the completed comparison uses the same end-card row as every single-mode lesson.
-      sceneHeader.classList.toggle('easyedu-guide-scene__header--single', kind !== 'membership' || state === 'finished');
-      const comparison = sceneHeader.querySelector('[data-guide-modes]');
-      if (comparison) {
-        comparison.hidden = state === 'finished';
-      }
-      const controls = sceneHeader.querySelector('.easyedu-guide-scene__playback');
-      if (controls) { controls.hidden = !['playing', 'paused'].includes(state); }
-      // Collapse the useless disabled mode/Start row through canonical CSS
-      // Motion; inert prevents invisible controls retaining keyboard focus.
-      sceneHeader.querySelector('.easyedu-guide-scene__header-controls')?.toggleAttribute('inert',
-        ['playing', 'paused'].includes(state));
-      if (phaseCaption) {
-        const labels = sceneHeader.dataset;
-        const modeLabel = kind === 'membership' ? (mode === 'add' ? labels.addLabel : labels.moveLabel) : '';
-        const current = applicablePhases.findIndex(item => item.dataset.guidePhase === scene.dataset.guidePhase) + 1;
-        phaseCaption.hidden = !labels.stepLabel || state === 'finished';
-        phaseCaption.textContent = state === 'idle' ? labels.readyLabel :
-          (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' + Math.max(1, current) + '/' + applicablePhases.length;
-        if (modeLabel) { phaseCaption.textContent += ' · ' + modeLabel; }
-      }
-      updateClearance();
-      if (state === 'finished') { headerObserver?.disconnect(); }
-    }
-    if (startControl) {
-      const busy = ['playing', 'paused'].includes(state);
-      startControl.disabled = busy;
-      startControl.setAttribute('aria-busy', String(busy));
-      startControl.querySelector('[data-guide-start-label]').textContent = busy ?
-        startControl.dataset.runningLabel : state === 'finished' ?
-          startControl.dataset.replayLabel : startControl.dataset.startLabel;
-      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
-        '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
-        '[data-guide-scene-command="clear"]').forEach(button => {
-        button.disabled = busy;
-      });
-    }
-    if (!live) { return; }
-    live.dataset.guidePlaybackState = state;
-    if (activity) { activity.hidden = !['playing', 'paused'].includes(state); }
-    if (pauseControl) {
-      pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
-      pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
-      pauseControl.setAttribute('aria-label', state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
-      pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
-    }
-    if (nextControl) { nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state); }
-  };
+  const syncPlayback = createPlaybackSync({scene, kind, mode, sceneHeader, phaseCaption, applicablePhases,
+    startControl, live, activity, pauseControl, nextControl, updateClearance, getHeaderObserver: () => headerObserver});
   syncPlayback('idle');
-  if (live) {
-    liveCopy.textContent = scene.easyeduGuideResultOriginal;
-    if (liveAnnouncement) { liveAnnouncement.textContent = scene.easyeduGuideResultOriginal; }
-    liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
-    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
-    live.removeAttribute('data-guide-live-state');
-    const completionIcon = live.querySelector('[data-guide-live-complete]');
-    if (completionIcon) { completionIcon.hidden = true; }
-  }
-  delete scene.dataset.guidePhase;
-  const recap = scene.querySelector('[data-guide-recap]');
-  if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
-  // GMI-C3: at the minimal level the Mass Import recap is the lesson itself, shown at rest.
-  if (recap && ['midrop', 'mipreview'].includes(kind)) { recap.hidden = getMotionLevel(root) !== 'minimal'; }
-  // K17-44: the four renderings of the filter slide are the recap shown once its demonstration ends.
-  const filtersRecap = kind === 'filters' ?
-    scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
-  if (filtersRecap) {
-    filtersRecap.hidden = true;
-  }
-  const origin = scene.querySelector('[data-guide-membership-origin]');
-  const target = scene.querySelector('[data-guide-membership-target]');
-  if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }
-  if (target) { target.classList.add('is-absent'); target.querySelector('b').textContent = target.dataset.absent; }
-  scene.querySelectorAll('[data-guide-phase]').forEach(item => {
-    item.removeAttribute('aria-current');
-    item.hidden = false;
-    if (!item.dataset.original) { item.dataset.original = item.textContent; }
-    item.textContent = item.dataset.original;
-  });
-  // At rest, the membership strip is explicitly an expected outcome. Starting
-  // restores actual illustrated memberships until the existing final phase.
-  const memberships = scene.querySelector('[data-guide-memberships]');
-  if (memberships && sceneHeader) {
-    // One component and one set of IDs/state: only its placement changes.
-    // The anchor survives idle mode changes, Reset and repeated play cycles.
-    if (!memberships.easyeduGuideHome) {
-      memberships.easyeduGuideHome = document.createComment('Guide membership result location');
-      memberships.before(memberships.easyeduGuideHome);
-    }
-  }
-  const membershipTitle = memberships?.querySelector('[data-guide-membership-title]');
-  if (membershipTitle && !membershipTitle.dataset.original) { membershipTitle.dataset.original = membershipTitle.textContent; }
-  const preview = !!sceneHeader && !!startControl && (requestedMode === 'reset' || !start) && kind === 'membership';
-  if (memberships && sceneHeader) {
-    if (preview) { sceneHeader.appendChild(memberships); }
-    else { memberships.easyeduGuideHome.after(memberships); }
-  }
-  if (memberships) { memberships.toggleAttribute('data-guide-membership-preview', preview); }
-  if (membershipTitle) { membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original; }
-  if (preview) {
-    if (origin) {
-      origin.classList.toggle('is-removed', mode === 'move');
-      origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
-    }
-    if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
-    if (liveCopy) {
-      liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
-      liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
-      liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
-    }
-    // A phone may not fit title, introduction and the complete ready header at
-    // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
-    // never scroll the Moodle page or leave the expected outcome below the fold.
-    if (readingBody) {
-      const bodyBounds = readingBody.getBoundingClientRect(), headerBounds = sceneHeader.getBoundingClientRect();
-      if (headerBounds.bottom > bodyBounds.bottom - 8) {
-        animateScrollTo(root, readingBody, readingBody.scrollTop + headerBounds.bottom - bodyBounds.bottom + 8);
-      }
-    }
-  }
-  scene.toggleAttribute('data-guide-mobile-actions', compact);
-  if (kind === 'inspection') {
-    stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
-    const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
-    if (compactTrigger) { compactTrigger.hidden = !compact; }
-  }
+  const {recap, origin, target} = restoreSceneAtRest({root, scene, kind, mode, stage, result, live, liveCopy,
+    liveAnnouncement, sceneHeader, startControl, readingBody, compact, requestedMode, start});
   if (requestedMode === 'reset' || !start) { return; }
 
   const controller = new AbortController();
@@ -3233,98 +3345,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       animations.delete(back);
     }
   };
-  // Illustrated pointer placed at its destination without travel ('minimal'), or faded in there ('reduced').
-  const placeCursor = async(cursorEl, transform) => {
-    await gate();
-    assertActive();
-    const wasHidden = cursorEl.hidden;
-    cursorEl.style.transform = transform;
-    cursorEl.hidden = false;
-    if (fadeLevel && wasHidden) {
-      await animate(cursorEl, [{opacity: 0}, {opacity: 1}], REDUCED_FADE_MS, false);
-    }
-  };
-  // J-G2 (AN-2): a pointer that is not shown yet appears near its target (160 ms fade, then a
-  // 24 px approach) instead of crossing the stage from its top-left corner; any travel keeps a
-  // readable speed (0.8 px/ms at most, DISCOVERY_POINTER_SPEED).
-  const movePointer = async(cursorEl, x, y, duration) => {
-    const destination = `translate(${x}px, ${y}px)`;
-    if (cursorEl.hidden) {
-      const near = `translate(${x - 24}px, ${y + 12}px)`;
-      cursorEl.style.transform = near;
-      cursorEl.hidden = false;
-      await animate(cursorEl, [{transform: near, opacity: 0}, {transform: near, opacity: 1}], 160);
-      await animate(cursorEl, [{transform: near}, {transform: destination}], 220);
-      return;
-    }
-    const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
-    const distance = Math.hypot(x - from.m41, y - from.m42);
-    await animate(cursorEl, [{transform: from.toString()}, {transform: destination}],
-      Math.max(duration, Math.round(distance / DISCOVERY_POINTER_SPEED)));
-  };
-  // J-G1 (K15-30, P-G3): touch pointer gestures on the same WAAPI clock (animate/wait/gate), so Pause, Next phase
-  // and departure own them. A finger does not travel: it lifts (80 ms fade), is placed (160 ms fade and 0.8 to 1
-  // scale), taps (90 ms press, 360 ms ripple), presses and holds (450 ms ring) or drags (follows the card ghost).
-  // 'reduced' keeps the fades only; 'minimal' places the pointer and shows no gesture.
-  const touchDisc = cursorEl => cursorEl.querySelector('[data-guide-cursor-touch]') || cursorEl;
-  const touchRipple = cursorEl => {
-    const ripple = cursorEl.querySelector('[data-guide-cursor-ripple]');
-    // Not awaited: the ripple overlaps the next step and stays owned by the clock (pause, next, departure).
-    if (ripple) {
-      animate(ripple, [{opacity: 0.5, transform: 'scale(1)'}, {opacity: 0, transform: 'scale(1.8)'}], 360, false)
-        .catch(() => { /* Cancelled by departure. */ });
-    }
-  };
-  const touchPointer = {
-    place: async(cursorEl, x, y) => {
-      cursorEl.dataset.guidePointer = 'touch';
-      const destination = `translate(${x}px, ${y}px)`;
-      if (still) { await placeCursor(cursorEl, destination); return; }
-      await gate();
-      assertActive();
-      if (!cursorEl.hidden) { await animate(cursorEl, [{opacity: 1}, {opacity: 0}], 80, false); }
-      cursorEl.style.transform = destination;
-      cursorEl.hidden = false;
-      await animate(cursorEl, [{opacity: 0, transform: `${destination} scale(.8)`},
-        {opacity: 1, transform: `${destination} scale(1)`}], 160, false);
-    },
-    tap: async cursorEl => {
-      if (!cursorEl || cursorEl.hidden) { return; }
-      await gate();
-      assertActive();
-      if (reduced) { return; }
-      touchRipple(cursorEl);
-      await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'},
-        {transform: 'scale(1)'}], 90, false);
-    },
-    longPress: async cursorEl => {
-      if (!cursorEl || cursorEl.hidden) { return; }
-      await gate();
-      assertActive();
-      if (reduced) { return; }
-      await animate(touchDisc(cursorEl), [{transform: 'scale(1)', '--easyedu-guide-press': 0},
-        {transform: 'scale(.86)', '--easyedu-guide-press': 1}], 450, false);
-      touchRipple(cursorEl);
-    },
-    // Press, then follow the card ghost (the caller animates it on the same clock), then release with a ripple.
-    drag: async(cursorEl, dx, dy, duration, companions = []) => {
-      if (!cursorEl || cursorEl.hidden) { return; }
-      const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
-      await gate();
-      assertActive();
-      if (reduced) { return; }
-      await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'}], 90);
-      await Promise.all([animate(cursorEl, [{transform: from.toString()},
-        {transform: `translate(${from.m41 + dx}px, ${from.m42 + dy}px)`}], duration), ...companions]);
-      touchRipple(cursorEl);
-    }
-  };
-  // One Motion primitive; the scene retains Pause, Next phase and departure ownership.
-  const clickFeedback = (element, cursorEl) => Promise.all([
-    compact ? touchPointer.tap(cursorEl) : Promise.resolve(),
-    Motion.clickFeedback(element, {root, level: getMotionLevel(root), animate: (node, frames, timing) =>
-      animate(node, frames, timing.duration, false)})
-  ]);
+  const {placeCursor, movePointer, touchPointer, clickFeedback} = createScenePointerKit({root, compact, still, reduced,
+    fadeLevel, gate, assertActive, animate});
   // The modality can change under a running demo (rotation, window resize): it returns to "Ready".
   const modalityQueries = [GUIDE_NARROW_QUERY, GUIDE_TOUCH_QUERY].map(query => window.matchMedia?.(query)).filter(Boolean);
   const onModalityChange = () => {
