@@ -366,6 +366,16 @@
     ],
     "mainRuntimePublished": false,
     "scenario": "tools/release/test-k21-visual-controls-native.cjs",
-    "classification": "native-candidate"
+    "classification": "native-candidate",
+    "cleanup": {
+      "hashesIdentical": true,
+      "leaseReleased": true,
+      "mainRuntimePublished": false,
+      "runtime": "http://localhost:8052",
+      "restoredFiles": 1284,
+      "courseDataChanged": false,
+      "status": "PASS",
+      "schemaChanged": false
+    }
   }
 }
