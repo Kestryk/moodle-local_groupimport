@@ -430,6 +430,15 @@ if ($hassiteconfig) {
         $displayhtml
     ));
 
+    // K21-16 (Kevin 21/10): participant cards collapse their roles/groups/groupings details by
+    // default so a crowded course list stays scannable; a chevron on each card still expands it.
+    $settings->add(new \local_groupimport\local\admin_setting_switch(
+        'local_groupimport/participantcardcollapsed',
+        get_string('participantcardcollapsed', 'local_groupimport'),
+        get_string('participantcardcollapsed_desc', 'local_groupimport'),
+        1
+    ));
+
     // Default animation level; each user may choose their own (preference easyedu_motion_level).
     $settings->add(new admin_setting_configselect(
         'local_groupimport/motionlevel',

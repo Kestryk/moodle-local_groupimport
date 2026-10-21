@@ -35,7 +35,10 @@
         "groupidscsv": "",
         "groupingidscsv": "",
         "viewdetailslabel": "View details",
-        "rolesmeta": {"label": "Roles", "tokens": [{"label": "Student", "class": "local-groupimport-easystud-token"}]}
+        "rolesmeta": {"label": "Roles", "tokens": [{"label": "Student", "class": "local-groupimport-easystud-token"}]},
+        "metacollapsed": true,
+        "metaariaexpanded": "false",
+        "metatogglelabel": "Show details"
     }
 }}
 <div
@@ -85,7 +88,11 @@
                 <span class="fa fa-eye" aria-hidden="true"></span>
             </button>
         </div>
-        <div class="local-groupimport-easystud-user__meta easyedu-person-card__meta">
+        <div
+            class="local-groupimport-easystud-user__meta easyedu-person-card__meta"
+            data-easystud-user-meta="1"
+            {{#metacollapsed}}hidden{{/metacollapsed}}
+        >
             {{#rolesmeta}}
                 <div class="local-groupimport-easystud-user__meta-group easyedu-person-card__meta-group local-groupimport-easystud-user__meta-group--inline">
                     <span class="local-groupimport-easystud-user__meta-label easyedu-person-card__meta-label">{{label}}</span>
@@ -179,5 +186,17 @@
                 </div>
             {{/customfieldsmeta}}
         </div>
+        <button
+            type="button"
+            class="local-groupimport-easystud-user__meta-toggle"
+            data-easystud-user-meta-toggle="1"
+            aria-expanded="{{metaariaexpanded}}"
+            aria-label="{{metatogglelabel}}"
+            data-easystud-hover-help="{{metatogglelabel}}"
+            data-expand-label="{{expandmetalabel}}"
+            data-collapse-label="{{collapsemetalabel}}"
+        >
+            <span class="fa fa-chevron-down" aria-hidden="true"></span>
+        </button>
     </div>
 </div>

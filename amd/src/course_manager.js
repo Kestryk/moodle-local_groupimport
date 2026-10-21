@@ -33,7 +33,7 @@ import {scheduleCompleteListAlignment} from './local/cm/layout';
 import {syncResponsiveDragAvailability} from './local/cm/drag_support';
 import {
     normaliseAllGroupGroupingTags, scheduleGroupGroupingOverflow, scheduleParticipantTagOverflow,
-    syncGroupingChildrenState, syncUngroupedState,
+    syncGroupingChildrenState, syncUngroupedState, bindParticipantMetaToggles,
 } from './local/cm/cards';
 import {
     normaliseMemberRemoveLabels, updateGroupingBadge, syncAllCountBadges, ensureDuplicateButtons,
@@ -67,8 +67,10 @@ import {bindContextMenu} from './local/cm/context_menu';
 import {bindSharedGuideTargets} from './local/cm/guide';
 
 /**
- * SM-RENDU: say in the participant list that the course state could not be loaded, with a
- * Reload button, instead of an empty exception dialog over the page.
+ * SM-RENDU (K21-17): say in the participant list that the course state could not be loaded, with
+ * a Reload button, instead of an empty exception dialog over the page. Kit warning notice (the
+ * same recipe as the entity dialog's error state, templates/sm/participant_card and
+ * local/cm/entity_dialog.entityErrorNotice), not a raw Bootstrap alert.
  *
  * @param {HTMLElement} root EasyStud root.
  * @param {Object} strings Participant card labels from manage.php (loaderror, reload).
@@ -79,17 +81,23 @@ const showOnDemandLoadError = (root, strings) => {
         return;
     }
     const message = document.createElement('div');
-    message.className = 'alert alert-warning d-flex align-items-center justify-content-between flex-wrap';
+    message.className = 'easyedu-notice easyedu-notice--warning local-groupimport-easystud__sm-error';
     message.setAttribute('role', 'alert');
     message.setAttribute('data-easystud-sm-error', '1');
-    const text = document.createElement('span');
+    const icon = document.createElement('span');
+    icon.className = 'fa fa-exclamation-triangle';
+    icon.setAttribute('aria-hidden', 'true');
+    const copy = document.createElement('div');
+    copy.className = 'local-groupimport-easystud__sm-error-copy';
+    const text = document.createElement('p');
     text.textContent = strings.loaderror || '';
     const reload = document.createElement('button');
     reload.type = 'button';
-    reload.className = 'btn btn-sm btn-outline-secondary';
+    reload.className = 'btn easyedu-button--secondary local-groupimport-easystud__sm-error-reload';
     reload.textContent = strings.reload || '';
     reload.addEventListener('click', () => window.location.reload());
-    message.append(text, reload);
+    copy.append(text, reload);
+    message.append(icon, copy);
     const top = list.querySelector(':scope > [data-easystud-pagination="top"]');
     list.insertBefore(message, top ? top.nextSibling : list.firstChild);
 };
@@ -204,6 +212,7 @@ export const init = (rootId, courseId, options = {}) => {
             () => bindGroupMemberSearch(root),
             () => bindAdvancedFilters(root),
             () => bindGroupMemberToggles(root),
+            () => bindParticipantMetaToggles(root),
             () => bindTagToggles(root),
             () => bindPagination(root),
             () => bindParticipantModal(root),
