@@ -1313,8 +1313,8 @@ $string['displaymotionreduced'] = 'Short fades only. Static loading placeholders
 $string['displaymotionminimal'] = 'No transitions: everything is static and costly effects are removed.';
 $string['displaymotionrecommended'] = 'Recommended for modest computers';
 $string['displaymotionreading'] = 'Reading times (Guide, messages) and functionality stay the same at all three levels.';
-$string['displaymotiondefault'] = 'Institution default:';
-$string['displaymotionreset'] = 'Return to the institution default';
+$string['displaymotiondefault'] = 'Platform default:';
+$string['displaymotionreset'] = 'Return to the platform default';
 $string['displaymotionsaveerror'] = 'Your choice could not be saved. Please try again.';
 // K17-09: bounded, resumable background imports.
 $string['importmaxrows'] = 'Maximum rows per import';
