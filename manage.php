@@ -49,6 +49,9 @@ $PAGE->set_course($course);
 $PAGE->set_pagelayout('incourse');
 $PAGE->set_pagetype('course-view-participants');
 $PAGE->set_secondary_active_tab('participants');
+if (local_groupimport_is_moodle53()) {
+    $PAGE->add_body_class('local-groupimport-host-moodle53');
+}
 $PAGE->set_title(get_string('easystudmanager', 'local_groupimport'));
 $PAGE->set_heading(format_string($course->fullname));
 // Animation level (user choice, else administrator default): root attributes and body classes.

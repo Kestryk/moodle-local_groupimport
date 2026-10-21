@@ -23,6 +23,16 @@
  */
 
 /**
+ * Whether the current host is Moodle 5.3 (not a theme or a user-agent heuristic).
+ *
+ * @return bool
+ */
+function local_groupimport_is_moodle53(): bool {
+    global $CFG;
+    return (string)($CFG->branch ?? '') === '503';
+}
+
+/**
  * Extends the course navigation with the EasyStud entries (course "More" menu).
  *
  * @param navigation_node $coursenode The course navigation node.

@@ -438,12 +438,12 @@
 
 @mixin admin-primary-nav {
   align-items: stretch;
-  background: linear-gradient(
+  background: var(--easyedu-navigation-desktop-surface, linear-gradient(
     105deg,
     color-mix(in srgb, var(--easyedu-primary-soft) 34%, #fff 66%) 0%,
     color-mix(in srgb, var(--easyedu-surface) 96%, #fff 4%) 48%,
     color-mix(in srgb, var(--easyedu-accent-soft) 26%, #fff 74%) 100%
-  );
+  ));
   border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 72%, #fff 28%);
   border-radius: calc(var(--easyedu-control-radius) + 0.12rem);
   box-shadow: none;

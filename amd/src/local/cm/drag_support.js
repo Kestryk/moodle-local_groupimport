@@ -161,7 +161,16 @@ export const dragAutoScroll = (() => {
         }
         const before = scroller.scrollTop;
         if (delta) {
-            scroller.scrollTop = before + Math.round(delta);
+            const nextScrollTop = before + Math.round(delta);
+            if (document.body?.classList.contains('local-groupimport-host-moodle53')) {
+                // Moodle 5.3 can route this drag scroll to Boost's smooth-scrolling page root.
+                // A deferred scrollTop write can leave the immediate read unchanged and stop this rAF loop.
+                // Apply each 5.3 frame immediately instead of restarting scrolling in dragover pulses.
+                scroller.scrollTo({top: nextScrollTop, behavior: 'instant'});
+            } else {
+                // Preserve the existing behavior on Moodle 4.5/5.1.
+                scroller.scrollTop = nextScrollTop;
+            }
         }
         if (delta && scroller.scrollTop !== before) {
             frame = window.requestAnimationFrame(step);

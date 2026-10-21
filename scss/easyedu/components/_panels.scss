@@ -12,6 +12,11 @@
 @use "focus";
 @use "../tones";
 
+// Explicit host opt-in: keep the shared soft surface unless the caller supplies a surface.
+@mixin workspace-lane-surface {
+  background: var(--easyedu-lane-surface, var(--easyedu-surface-soft));
+}
+
 // Collapsible deposit shell: retain the accepted open/folded/stacked inset.
 // The caller keeps its breakpoint, grid placement and disclosure behaviour.
 @mixin deposit-shell-inset($state: preview) {
@@ -95,7 +100,7 @@
   // K20-06 (Kevin, 20/10): no boundary line around lanes. The K16-19/21 dark inset hairline
   // (rail 55% + text 45%) framed the tab band and the whole two-lane panel on Moodle 5.1;
   // any 5.3 grey-host separation must go through Penpot first, not a hairline here.
-  background: var(--easyedu-surface-soft);
+  @include workspace-lane-surface;
   border: 0;
   box-shadow: none;
   min-inline-size: 0;

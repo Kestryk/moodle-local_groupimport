@@ -1719,6 +1719,7 @@
 
 // Existing pill-shaped role choices, kept separate from native selects.
 @mixin toggle-choice-rounded {
+  @include typography.control-label-natural-metrics;
   border-radius: 999px !important;
   white-space: nowrap;
 }

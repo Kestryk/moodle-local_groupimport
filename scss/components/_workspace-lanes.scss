@@ -1,6 +1,12 @@
 // Approved lift SM (14 October), CSS only. List alignment remains controller-owned.
 @use "../easyedu" as easyedu;
 
+// The server opt-in is restricted to Moodle branch 503. Other hosts keep the Kit default.
+body.local-groupimport-host-moodle53 #local-groupimport-easystud {
+  --easyedu-lane-surface: var(--easyedu-surface);
+  --easyedu-navigation-desktop-surface: var(--easyedu-surface);
+}
+
 #local-groupimport-easystud {
   @include easyedu.workspace-lane-tokens;
   container: easystud-workspace / inline-size;
