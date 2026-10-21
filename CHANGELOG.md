@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-15] Refondre la mise en page de l’Administration sur le panneau Kit de Mass Import : carte de section avec liseré primaire, tuile d’icône compacte et description alignée sur le titre, marges 24 px et lignes de réglage aérées (20 px), valeur par défaut centrée à côté des interrupteurs, nombres et couleurs, sourcil EASYSTUD à l’encre primaire. Tailles de police et de contrôles inchangées.
+
 - 2026-10-21 [K21-07/08/12/24] Réserver à Moodle 5.3 les colonnes et la navigation blanches et les mises à jour immédiates de défilement pendant un drag ; centrer les libellés de rôles avec le slot partagé du Kit. Conserver le récapitulatif Mass Import déjà textuel (K21-11).
 
 - 2026-10-21 [K21-05] Aérer la mini-démo de la diapositive Participant avec 32 px avant et après, issus du jeton d’espacement Kit, sans changer les cartes ni les autres scènes.

@@ -370,10 +370,11 @@ if ($hassiteconfig) {
         'local-groupimport-admin-settings__section-copy local-groupimport-admin-settings--features',
         ['data-local-groupimport-admin-features' => '1']
     );
-    $settings->add(new admin_setting_heading(
+    $settings->add(new \local_groupimport\local\admin_setting_section_heading(
         'local_groupimport/sectionoperation',
         get_string('adminsectionoperation', 'local_groupimport'),
-        $operationhtml
+        $operationhtml,
+        'fa-sliders'
     ));
 
     $settings->add(new \local_groupimport\local\admin_setting_switch(
@@ -424,10 +425,11 @@ if ($hassiteconfig) {
         'local-groupimport-admin-settings__section-copy local-groupimport-admin-settings--appearance',
         ['data-local-groupimport-admin-appearance' => '1']
     );
-    $settings->add(new admin_setting_heading(
+    $settings->add(new \local_groupimport\local\admin_setting_section_heading(
         'local_groupimport/sectiondisplay',
         get_string('adminsectiondisplay', 'local_groupimport'),
-        $displayhtml
+        $displayhtml,
+        'fa-palette'
     ));
 
     // K21-16 (Kevin 21/10): participant cards collapse their roles/groups/groupings details by
@@ -567,10 +569,11 @@ if ($hassiteconfig) {
         'local-groupimport-admin-settings__section-copy',
         ['data-local-groupimport-admin-settings' => '1']
     );
-    $settings->add(new admin_setting_heading(
+    $settings->add(new \local_groupimport\local\admin_setting_section_heading(
         'local_groupimport/sectionidentification',
         get_string('adminsectionidentification', 'local_groupimport'),
-        $identificationhtml
+        $identificationhtml,
+        'fa-id-card'
     ));
 
     $settings->add(new admin_setting_configmultiselect(
@@ -590,13 +593,14 @@ if ($hassiteconfig) {
     ));
 
     // Section 4: history and privacy.
-    $settings->add(new admin_setting_heading(
+    $settings->add(new \local_groupimport\local\admin_setting_section_heading(
         'local_groupimport/sectionhistory',
         get_string('adminsectionhistory', 'local_groupimport'),
         html_writer::div(
             $paragraph(get_string('adminsectionhistorydesc', 'local_groupimport')),
             'local-groupimport-admin-settings__section-copy'
-        )
+        ),
+        'fa-clock-rotate-left'
     ));
 
     $settings->add(new admin_setting_configtext(

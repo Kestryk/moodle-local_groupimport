@@ -1518,11 +1518,25 @@
 // radius on the last row of the section. No wrapper, no script, nothing hidden
 // (the E5 attempt of 15/10 rewrote the DOM and broke the page). Include it on
 // the fieldset that holds the headings.
-@mixin moodle-admin-section-card($heading: "h3.main") {
-  --easyedu-admin-card-padding: 1.25rem;
+// K21-15: the card follows the Kit panel of Mass Import (1.5 rem inset, semantic
+// primary rail on top, compact icon tile beside the section title with the
+// description aligned on the title text) and gives every setting row 1.25 rem
+// of vertical air. Type sizes and control sizes are unchanged. The icon tile is
+// optional: `$icon` is the class of a decorative element inside the heading.
+@mixin moodle-admin-section-card($heading: "h3.main", $icon: null) {
+  --easyedu-admin-card-padding: 1.5rem;
+  --easyedu-admin-row-padding: 1.25rem;
+  --easyedu-admin-heading-gap: 0.75rem;
+  --easyedu-admin-copy-inset: 0rem;
+
+  @if $icon {
+    --easyedu-admin-copy-inset: calc(var(--easyedu-section-icon-size-compact) + var(--easyedu-admin-heading-gap));
+  }
 
   @media (max-width: 48rem) {
     --easyedu-admin-card-padding: 1rem;
+    --easyedu-admin-row-padding: 1rem;
+    --easyedu-admin-copy-inset: 0rem;
   }
 
   > #{$heading},
@@ -1535,26 +1549,49 @@
   }
 
   > #{$heading} {
+    background-image: var(--easyedu-semantic-rail-primary);
+    background-repeat: no-repeat;
+    background-size: 100% 0.35rem;
     border-block-start: 1px solid var(--easyedu-card-border);
     border-start-end-radius: var(--easyedu-card-radius);
     border-start-start-radius: var(--easyedu-card-radius);
     margin-block: var(--easyedu-admin-section-gap, 1.5rem) 0;
-    padding-block: var(--easyedu-admin-card-padding) 0.25rem;
+    padding-block: var(--easyedu-admin-card-padding) 0.5rem;
 
     @media (max-width: 48rem) {
       margin-block-start: var(--easyedu-admin-section-gap-narrow, 1rem);
+    }
+
+    @if $icon {
+      align-items: center;
+      display: flex;
+      gap: var(--easyedu-admin-heading-gap);
+
+      .#{$icon} {
+        @include panels.section-icon-tile($size: compact);
+
+        // Same glyph size as the Kit compact tile (.easyedu-icon-tile--compact).
+        font-size: 1.0625rem;
+      }
     }
   }
 
   > #{$heading} + .formsettingheading {
     margin: 0;
-    padding-block: 0 1rem;
+    padding-block: 0 var(--easyedu-admin-card-padding);
+    padding-inline-start: calc(var(--easyedu-admin-card-padding) + var(--easyedu-admin-copy-inset));
   }
 
   > .form-item {
     border-block-start: 1px solid var(--easyedu-card-hairline);
     margin: 0;
-    padding-block: 1rem;
+    padding-block: var(--easyedu-admin-row-padding);
+  }
+
+  // The header (title, description, section actions) is closed by the card
+  // border colour, the rows between them keep the lighter Kit hairline.
+  > #{$heading} + .formsettingheading + .form-item {
+    border-block-start-color: var(--easyedu-card-border);
   }
 
   // Section end: the row (or a description without rows) right before the next
@@ -1572,6 +1609,8 @@
 // col-sm-3 / col-sm-9), on the Kit grid: a bounded label column, the control
 // column starting on one shared vertical line, stacked on phones. The label's
 // first line is centred on the first control row (the label line height is 1.5em).
+// K21-15: a row whose first control is taller than a field (Kit switch at the
+// touch-target size) sets --easyedu-admin-row-control-height to that token.
 @mixin moodle-admin-setting-row($label-column: minmax(12rem, 22rem)) {
   align-items: start;
   column-gap: 2rem;
@@ -1591,7 +1630,7 @@
   }
 
   > .form-label label {
-    padding-block-start: max(0px, calc((var(--easyedu-control-height) - 1.5em) / 2));
+    padding-block-start: max(0px, calc((var(--easyedu-admin-row-control-height, var(--easyedu-control-height)) - 1.5em) / 2));
   }
 
   @media (max-width: 48rem) {

@@ -43,6 +43,17 @@ end margins, setting rows/controls and Save stay unchanged. Native evidence:
   `.form-item.row`: native label | control columns on a grid (2rem gap, one
   shared control line), label first line centred on the 38px control row,
   stacked at <=48rem.
+- K21-15 (21/10/2026), aligned on the Kit panel of Mass Import:
+  `moodle-admin-section-card($heading, $icon: null)` now uses a 24px inset
+  (16px at <=48rem), 20px vertical padding per setting row
+  (`--easyedu-admin-row-padding`), the 0.35rem `--easyedu-semantic-rail-primary`
+  on the heading segment, and closes the section header with the card border
+  colour. With `$icon` (class of a decorative element inside the heading), the
+  heading shows a compact `section-icon-tile` and the description is aligned on
+  the title text. `moodle-admin-setting-row` reads
+  `--easyedu-admin-row-control-height` (default `--easyedu-control-height`) to
+  centre the label on a taller first control (the Kit switch at
+  `--easyedu-touch-target-min`).
 - Typography is untouched (the consumer keeps its own roles).
 
 
