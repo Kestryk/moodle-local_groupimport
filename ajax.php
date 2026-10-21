@@ -654,10 +654,23 @@ try {
     } else if ($action === 'movestatus') {
         $jobid = optional_param('jobid', 0, PARAM_INT);
         $conditions = ['courseid' => $course->id, 'userid' => $USER->id];
+        $selection = 'courseid = :courseid AND userid = :userid';
         if ($jobid) {
             $conditions['id'] = $jobid;
+            $selection .= ' AND id = :id';
+        } else {
+            // The list polls active jobs; an explicit id must still expose the final result.
+            [$statussql, $statusparams] = $DB->get_in_or_equal(['queued', 'running', 'retry'], SQL_PARAMS_NAMED, 'movestatus');
+            $selection .= ' AND status ' . $statussql;
+            $conditions += $statusparams;
         }
-        $jobs = $DB->get_records('local_groupimport_moves', $conditions, 'id DESC');
+        $jobs = $DB->get_records_select(
+            'local_groupimport_moves',
+            $selection,
+            $conditions,
+            'id DESC',
+            'id, status, nextitem, total'
+        );
         $response['jobs'] = [];
         foreach ($jobs as $job) {
             if (($jobid && (int)$job->id === $jobid) || (!$jobid && in_array($job->status, ['queued', 'running', 'retry']))) {
@@ -962,16 +975,7 @@ function local_groupimport_remove_group_from_other_groupings(
     }
 }
 
-/**
- * Extract normalised email addresses from pasted text.
- *
- * @param string $text Pasted text.
- * @return array
- */
-function local_groupimport_extract_emails(string $text): array {
-    preg_match_all('/[^\s,;<>]+@[^\s,;<>]+/u', core_text::strtolower($text), $matches);
-    return array_values(array_unique($matches[0] ?? []));
-}
+
 
 /**
  * Extract user identifier tokens from pasted text.
@@ -1203,43 +1207,7 @@ function local_groupimport_extract_group_tokens(string $text, array $coursegroup
  * @return array
  */
 function local_groupimport_extract_create_names(string $text): array {
-    if (core_text::strlen($text) > 131072) {
-        throw new moodle_exception('invaliddata', 'error');
-    }
-    $total = 0;
-    $parts = preg_split('/[\r\n,;|]+/u', $text);
-    $names = [];
-    foreach ($parts ?: [] as $part) {
-        $part = trim($part);
-        if ($part === '') {
-            continue;
-        }
-
-        if (preg_match('/^(.*?)([#@])\s*\*\s*(\d+)$/u', $part, $matches)) {
-            $prefix = rtrim($matches[1]);
-            $marker = $matches[2];
-            $count = max(0, min(200, (int)$matches[3]));
-            $total += $count;
-            if ($total > \local_groupimport\local\ajax_security::MAX_NAMES) {
-                throw new moodle_exception('invaliddata', 'error');
-            }
-            for ($index = 1; $index <= $count; $index++) {
-                $suffix = $marker === '#' ? (string)$index : local_groupimport_number_to_letters($index);
-                $names[] = trim($prefix . ' ' . $suffix);
-            }
-            continue;
-        }
-
-        if (++$total > \local_groupimport\local\ajax_security::MAX_NAMES) {
-            throw new moodle_exception('invaliddata', 'error');
-        }
-        $names[] = $part;
-    }
-
-    foreach ($names as $name) {
-        \local_groupimport\local\ajax_security::validate_name($name);
-    }
-    return array_values(array_unique($names));
+    return \local_groupimport\local\create_names::extract($text);
 }
 
 /**
@@ -1249,11 +1217,5 @@ function local_groupimport_extract_create_names(string $text): array {
  * @return string
  */
 function local_groupimport_number_to_letters(int $number): string {
-    $letters = '';
-    while ($number > 0) {
-        $number--;
-        $letters = chr(65 + ($number % 26)) . $letters;
-        $number = intdiv($number, 26);
-    }
-    return $letters;
+    return \local_groupimport\local\create_names::number_to_letters($number);
 }

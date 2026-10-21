@@ -2,6 +2,14 @@
 
 - 2026-10-21 [I14] Split the Guide discovery-scene playback into one player per scene kind behind a dispatch table (shared playback clock unchanged, identical observable behaviour).
 
+- 2026-10-21 [K21-40 / I1] Retirer le code de rendu et d’enrichissement inutilisé en production ainsi que le module d’accent orphelin ; conserver les preuves historiques et les callbacks Moodle.
+
+- 2026-10-21 [K21-41 / I2] Mutualiser le parseur de création, les champs participants et le contraste ; conserver les contrôles de visibilité Moodle et les sorties des producteurs actifs.
+
+- 2026-10-21 [K21-42 / I5] Construire les réglages uniquement pour l’arbre complet d’administration, tout en enregistrant la page dans l’arbre partiel.
+
+- 2026-10-21 [K21-43 / I7] Limiter les lectures de progression des déplacements aux colonnes utiles et aux tâches actives ; conserver la réponse finale lors du suivi d’un identifiant précis.
+
 - 2026-10-21 [K21-36] Declare the Moodle support range, align Privacy job metadata with nextrow, and remove only plugin-owned welcome preferences on uninstall.
 
 - 2026-10-21 [K21-35] Enforce LF for JS/SCSS/CSS and publish the full remaining ESLint and MoodleCS inventory without changing runtime contents.
@@ -340,6 +348,8 @@
 - 2026-10-17 [N0] P2: retire inactive tutorial markup and main stylesheet; preserve active workspace rules and current Guide rendering/cascade. Reserved legacy JS cleanup remains for Claude.
 
 # Changelog
+
+- 2026-10-22 [K21-40/41/42/43] Rejouer le nettoyage I1/I2/I5/I7 après l’extraction I3, conserver les constructeurs dans classes/output et retirer leurs calculs inutilisés ; parité JSON stricte vérifiée contre les producteurs post-I3.
 
 - 2026-10-17 [N1] S2: expose subject-scoped import history through Privacy user lists/export/erasure; add configurable 365-day retention and daily history-only purge.
 

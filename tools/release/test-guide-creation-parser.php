@@ -29,6 +29,12 @@ if (!MOODLE_INTERNAL) {
 }
 
 require_once(__DIR__ . '/../../tools/release/fixtures/source_file.php');
+require_once(__DIR__ . '/fixtures/doubles/security_s4_isolated/global/fixture_security_s4_isolated_core_text.php');
+class_alias('fixture_security_s4_isolated_core_text', 'core_text');
+require_once(__DIR__ . '/fixtures/doubles/security_s4_isolated/global/fixture_security_s4_isolated_moodle_exception.php');
+class_alias('fixture_security_s4_isolated_moodle_exception', 'moodle_exception');
+require_once(__DIR__ . '/../../classes/local/ajax_security.php');
+require_once(__DIR__ . '/../../classes/local/create_names.php');
 $source = file_get_contents(__DIR__ . '/../../ajax.php');
 $start = strpos($source, 'function local_groupimport_extract_create_names(');
 if ($start === false) {
