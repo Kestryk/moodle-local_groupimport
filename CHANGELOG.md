@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-35] Enforce LF for JS/SCSS/CSS and publish the full remaining ESLint and MoodleCS inventory without changing runtime contents.
+
 - 2026-10-21 [K21-34] Validate fallback and AJAX renames; bound group/grouping copies and grouping deletion in atomic native transactions.
 
 - 2026-10-21 [K21-33] Remove duplicate Guide language assignments and guard unique FR/EN keys.
