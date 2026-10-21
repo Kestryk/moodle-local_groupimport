@@ -242,34 +242,12 @@
   }
 }
 
-// Compact neutral reset used inside filter panels. It intentionally shares the
-// selection-action interaction contract while keeping reset-specific sizing.
+// Quiet filter reset follows the same Kit recipe as the group-card "Select all"
+// action. Keep one interaction and geometry contract for both recovery actions.
 @mixin filter-reset {
-  @include selection-action(neutral);
-
-  & {
-    align-self: center;
-    justify-content: center;
-    border-color: var(--easyedu-control-border);
-    color: var(--easyedu-primary-strong);
-    font-size: var(--easyedu-font-size-caption);
-    // Natural text metrics keep the restored caption centred without a pixel offset.
-    line-height: normal;
-    min-height: 1.9rem;
-    padding: 0.32rem 0.7rem;
-    width: auto;
-  }
-
-  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):hover,
-  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):active {
-    background: var(--easyedu-primary-soft);
-    color: var(--easyedu-primary-strong);
-  }
-
-  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):focus {
-    color: var(--easyedu-primary-strong);
-  }
-
+  @include selection-recovery-action($natural-labels: true);
+  align-self: center;
+  width: auto;
   @include scale.touch-target-floor;
 }
 

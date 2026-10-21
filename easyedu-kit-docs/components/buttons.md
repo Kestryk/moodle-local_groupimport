@@ -8,25 +8,20 @@ secondary-action component. Enabled text uses `--easyedu-secondary-text`
 geometry remain inherited. The member-list More action opts in; Cancel,
 Less, View all and Select all retain their existing recipes.
 
-## Reset and Cancel — K21-02 scoped restoration
+## Reset and Cancel
 
-Cancel retains `buttons.secondary-action`: 37.6px desktop / 44px dialog touch,
-14.08px text, 12px inline padding and the canonical control radius.
-Reset alone returns to `filter-reset`: blue primary-strong ink, white surface,
-control border, caption type (12.16px), 30.4px desktop / 44px touch minimum,
-5.12px block and 11.2px inline padding. Natural line metrics centre the caption.
-The opt-in `filter-reset-field-peer` remains 38px desktop / 44px touch.
-The four current native filter Reset controls use the compact default.
-No Cancel, member-removal target or standalone switch recipe is reverted.
+Cancel uses `buttons.secondary-action`: 37.6px desktop / 44px dialog touch,
+14.08px text and 12px inline padding. Filter Reset uses the same quiet
+`selection-recovery-action` recipe as the group-card Select all action. Its
+label, states and focus ring therefore stay consistent across filter panels;
+`filter-reset-field-peer` only adds its field-height alignment and touch floor.
 
-## Field-peer Reset scoped adoption (Kit0.4.168, restored by K21-02)
+## Field-peer Reset alignment
 
 `easyedu-filter-reset--field-peer` composes with `easyedu-filter-reset` beside
-Regular fields:38px desktop /44px touch, keeping legacy30.4px, caption type,
-intrinsic width, paint, radius, padding and all existing state Motion. Source
-adopts exactly four native Reset buttons; commands/visibility stay unchanged.
-No full Kit sync or private per-filter CSS. Generic responsive Search specimens
-are42.4px, so compact Reset target proof is distinct from equal-height proof.
+regular fields: 38px desktop /44px touch. It retains the common quiet recovery
+paint and interaction states while adding only the field-height alignment.
+Commands and visibility remain consumer-owned.
 
 ## Quiet selection recovery (0.4.115 opt-in)
 
