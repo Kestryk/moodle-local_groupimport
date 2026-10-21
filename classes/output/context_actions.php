@@ -29,7 +29,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class context_actions {
-
     /**
      * Build context menu entry data for Mustache.
      *
