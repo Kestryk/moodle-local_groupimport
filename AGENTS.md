@@ -1,5 +1,13 @@
 # EasyEdu agent contract
 
+Quick-create names share `local/create_names`; compatibility functions in the
+two page scripts only delegate. Participant field definitions, profile visibility
+and colour normalization share `local/participant_fields`. Preserve the existing
+context-sensitive profile checks (including signup=0), not the retired page policy.
+General move-status polling selects active jobs in SQL with four progress columns;
+an explicit job id must still return completed/cancelled/failed outcomes. See
+`docs/testing/refactor-mechanical-2026-10-21.md` and its exact JSON parity gate.
+
 Initial Student Management state is a single-use authenticated document payload,
 not a persistent participant cache. Reuse get_state::execute for the original
 permissions, schema and errors; preserve network fallback and every later refresh.

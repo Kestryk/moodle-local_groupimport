@@ -209,3 +209,18 @@ mutations. In rare non-unique field/name cases, preserve the legacy first/two-ro
 API behavior rather than impose a new ordering or ambiguity policy. Dynamically
 created rollback names use native lookup on snapshot misses. No global/request
 cache or invalidation contract is invented in this lot.
+
+## Historical profile-chunk proof after I1 retirement
+
+The two legacy page enrichment functions are no longer used by production.
+Their unchanged AP-E7 bodies live in `fixtures/legacy-profile-fields.php` solely
+for `verify-profile-chunks.php`. Pass a historical `manage.php` snapshot as
+`--before` and that fixture as `--after`. This preserves the 21 original checks
+(0/1/999/1000/1001/3000/10000 users, chunk bounds and recordset closure), including
+the old userid-first-column collision; it does not certify today's renderer.
+
+The current producer is `course_state`. Use
+`tools/release/test-refactor-mechanical.cjs <absolute-php> <external-evidence-dir>`
+for strict before/after JSON and privacy-policy parity on its current methods
+and the page builder. Historical `verify-student-management --grouped-20261013`
+remains pinned to its original source producers; it is not a current-page gate.

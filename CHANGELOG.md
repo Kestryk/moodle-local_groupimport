@@ -1,3 +1,11 @@
+- 2026-10-21 [K21-40 / I1] Retirer le code de rendu et d’enrichissement inutilisé en production ainsi que le module d’accent orphelin ; conserver les preuves historiques et les callbacks Moodle.
+
+- 2026-10-21 [K21-41 / I2] Mutualiser le parseur de création, les champs participants et le contraste ; conserver les contrôles de visibilité Moodle et les sorties des producteurs actifs.
+
+- 2026-10-21 [K21-42 / I5] Construire les réglages uniquement pour l’arbre complet d’administration, tout en enregistrant la page dans l’arbre partiel.
+
+- 2026-10-21 [K21-43 / I7] Limiter les lectures de progression des déplacements aux colonnes utiles et aux tâches actives ; conserver la réponse finale lors du suivi d’un identifiant précis.
+
 - 2026-10-21 [K21-36] Declare the Moodle support range, align Privacy job metadata with nextrow, and remove only plugin-owned welcome preferences on uninstall.
 
 - 2026-10-21 [K21-35] Enforce LF for JS/SCSS/CSS and publish the full remaining ESLint and MoodleCS inventory without changing runtime contents.

@@ -162,6 +162,7 @@ function load_functions(string $file, array $names): void {
     }
 }
 $file = ($argv[1] ?? 'ajax') === 'manage' ? 'manage.php' : 'ajax.php';
+require_once($root . '/classes/local/create_names.php');
 load_functions($root . '/' . $file, ['local_groupimport_extract_create_names', 'local_groupimport_number_to_letters']);
 $DB = new memory_db();
 $CFG = (object)['groupenrolmentkeypolicy' => false];
