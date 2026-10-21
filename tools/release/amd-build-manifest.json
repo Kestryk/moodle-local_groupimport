@@ -1,0 +1,59 @@
+{
+  "description": "Manifeste pilotant tools/release/build-amd.cjs (I15). Chaque entree remplace un ancien build-*-amd.* qui reecrivait les imports ESM par substitution de chaine. Seuls les modules migres ici sont retires de la liste manuelle ; les autres build-*-amd.* restent inchanges et fonctionnels.",
+  "toolchainPattern": "terser-only",
+  "migrated": [
+    {
+      "id": "admin_choices",
+      "replacedScript": "build-admin-choices-amd.js",
+      "source": "amd/src/admin_choices.js",
+      "output": "admin_choices.min.js",
+      "amdName": "local_groupimport/admin_choices",
+      "guards": [
+        "import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';",
+        "import * as Motion from './motion';"
+      ],
+      "deps": [
+        {"amd": "local_groupimport/searchable_choices", "param": "Choices"},
+        {"amd": "local_groupimport/motion", "param": "Motion"}
+      ],
+      "replacements": [
+        {"find": "import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';", "with": "const {enhanceSelect, enhanceMultipleSelect} = Choices;"},
+        {"find": "import * as Motion from './motion';", "with": ""},
+        {"find": "export const init =", "with": "const init ="}
+      ],
+      "exports": ["init"]
+    },
+    {
+      "id": "member_selection",
+      "replacedScript": "build-member-selection-amd.js",
+      "source": "amd/src/member_selection.js",
+      "output": "member_selection.min.js",
+      "amdName": "local_groupimport/member_selection",
+      "guards": ["export const snapshotMemberPairs ="],
+      "deps": [],
+      "replacements": [
+        {"find": "export const snapshotMemberPairs =", "with": "const snapshotMemberPairs ="}
+      ],
+      "exports": ["snapshotMemberPairs"]
+    },
+    {
+      "id": "searchable_choices",
+      "replacedScript": "build-searchable-choices-amd.js",
+      "source": "amd/src/searchable_choices.js",
+      "output": "searchable_choices.min.js",
+      "amdName": "local_groupimport/searchable_choices",
+      "guards": ["export const enhanceSelect ="],
+      "deps": [],
+      "replacements": [
+        {"find": "export const ", "with": "const ", "global": true}
+      ],
+      "exports": "auto",
+      "exportsRequired": ["closeChoicesWithin"]
+    }
+  ],
+  "notes": [
+    "exports: 'auto' extrait tous les `export const NOM =` du source (meme regle que build-searchable-choices-amd.js) ; 'exportsRequired' verifie qu'un nom precis y figure bien.",
+    "Les modules I14 (easyedu_guide.js, context_menu.js, move_modal.js, et donc build-easyedu-guide-amd.js / build-course-manager-amd.js) ne sont pas migres dans ce lot : un autre sous-agent decoupe leurs fonctions en parallele.",
+    "Les scripts a toolchain Babel (ex. build-motion-amd.js) ne sont pas de ce format et restent hors manifeste pour l'instant."
+  ]
+}
