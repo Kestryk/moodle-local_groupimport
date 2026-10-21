@@ -20,7 +20,7 @@ const jsNames = dir => fs.readdirSync(path.join(srcRoot, 'local', dir)).filter(n
 // SM-RENDU modules and each other, never course_manager itself, and never in a cycle: the
 // course manager AMD wrapper reads their exports once, at definition time.
 const cmExternal = ['../../motion', '../../easyedu_bubble', '../../easyedu_guide', '../../searchable_choices', '../../member_selection',
-    'core/log', 'core/notification'];
+    'core/log', 'core/notification', 'core/pubsub', 'core/drawer_events'];
 const checkCmModules = () => {
     const names = jsNames('cm').map(name => name.replace(/\.js$/, ''));
     const smNames = jsNames('sm').map(name => name.replace(/\.js$/, ''));
