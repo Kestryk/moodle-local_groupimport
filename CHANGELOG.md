@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-34] Validate fallback and AJAX renames; bound group/grouping copies and grouping deletion in atomic native transactions.
+
 - 2026-10-21 [K21-33] Remove duplicate Guide language assignments and guard unique FR/EN keys.
 
 - 2026-10-21 [K21-15] Refondre la mise en page de l’Administration sur le panneau Kit de Mass Import : carte de section avec liseré primaire, tuile d’icône compacte et description alignée sur le titre, marges 24 px et lignes de réglage aérées (20 px), valeur par défaut centrée à côté des interrupteurs, nombres et couleurs, sourcil EASYSTUD à l’encre primaire. Tailles de police et de contrôles inchangées.
