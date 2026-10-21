@@ -38,7 +38,7 @@
     <div class="local-groupimport-easystud__header">
         <div class="easyedu-page-header">
           <div class="easyedu-workspace-identity">
-            <span class="easyedu-workspace-eyebrow">{{eyebrow}}</span>
+            <span class="easyedu-workspace-eyebrow">{{#str}}easystudlabel, local_groupimport{{/str}}</span>
             {{#navigation}}
                 {{#hasparticipantdropdown}}
                     <div
@@ -511,9 +511,9 @@
                             <div class="local-groupimport-easystud-grouping-mobile-filters">
                                 <span class="local-groupimport-easystud__filter-label">{{groupingoccupancylabel}}</span>
                                 <div class="local-groupimport-easystud-grouping-mobile-filters__choices" role="group" aria-label="{{groupingoccupancylabel}}">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary is-active" data-easystud-grouping-occupancy="all" aria-pressed="true">{{filteralllabel}}</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-grouping-occupancy="filled" aria-pressed="false">{{filterwithgroupslabel}}</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-grouping-occupancy="empty" aria-pressed="false">{{filteremptylabel}}</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary is-active" data-easystud-grouping-occupancy="all" aria-pressed="true">{{#str}}filterall, local_groupimport{{/str}}</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-grouping-occupancy="filled" aria-pressed="false">{{#str}}filterwithgroups, local_groupimport{{/str}}</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-grouping-occupancy="empty" aria-pressed="false">{{#str}}filterempty, local_groupimport{{/str}}</button>
                                 </div>
                                 <div class="easyedu-filter-actions"><button type="button" class="easyedu-button easyedu-button--secondary easyedu-filter-reset local-groupimport-easystud__filters-reset local-groupimport-easystud__filters-reset--groupings" data-easystud-reset-grouping-filters="1">{{resetfilterslabel}}</button></div>
                             </div>
@@ -741,7 +741,7 @@
     >
         <div class="local-groupimport-easystud-modal__dialog easyedu-lookup-dialog">
             <div class="local-groupimport-easystud-modal__header easyedu-lookup-dialog__header">
-                <h3 id="local-groupimport-easystud-clipboard-title" class="easyedu-modal-title">{{clipboardlabel}}</h3>
+                <h3 id="local-groupimport-easystud-clipboard-title" class="easyedu-modal-title">{{#str}}clipboardtools, local_groupimport{{/str}}</h3>
                 <button
                     type="button"
                     class="local-groupimport-easystud-modal__close"
@@ -752,7 +752,7 @@
                 </button>
             </div>
             <div class="local-groupimport-easystud-modal__body easyedu-lookup-dialog__body">
-                <p class="easyedu-lookup-dialog__description">{{clipboarddesc}}</p>
+                <p class="easyedu-lookup-dialog__description">{{#str}}clipboardtools_desc, local_groupimport{{/str}}</p>
                 <textarea
                     class="form-control"
                     rows="6"
