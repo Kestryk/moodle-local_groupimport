@@ -657,13 +657,20 @@
 
 // Catalogue controls stay adjacent rather than sitting at opposite ends of a
 // stretched grid. Native Reset closure/filter predicates remain product-owned.
-@mixin filter-actions {
+@mixin filter-actions($spread: false) {
   align-items: center;
   box-sizing: border-box;
   display: flex;
   gap: 0.75rem;
   grid-column: 1 / -1;
   min-inline-size: 0;
+
+  @if $spread {
+    justify-content: space-between;
+    flex-direction: row;
+    > .easyedu-filter-toggle { inline-size: auto; }
+    > .easyedu-filter-reset { align-self: center; }
+  }
 
   > .easyedu-filter-toggle {
     flex: 0 1 auto;
@@ -983,34 +990,43 @@
   }
 }
 
-// Active-filter count inside the text capsule: an 18 px primary pill.
-@mixin filter-disclosure-count {
+// Active-filter count inside the text capsule. Compact is the small badge
+// variant for More filters; regular remains available to other consumers.
+@mixin filter-disclosure-count($size: regular) {
+  $diameter: 16px;
+  $font-size: 10px;
+  @if $size == compact {
+    $diameter: 14px;
+    $font-size: 9px;
+  } @else if $size != regular {
+    @error "filter-disclosure-count expects regular or compact.";
+  }
   align-items: center;
   background: var(--easyedu-primary);
-  block-size: 16px;
+  block-size: $diameter;
   border-radius: 999px;
   box-sizing: border-box;
   color: #fff;
   display: inline-flex;
-  font-size: 10px;
+  font-size: $font-size;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   justify-content: center;
   line-height: 1;
-  inline-size: 16px;
-  min-inline-size: 16px;
+  inline-size: $diameter;
+  min-inline-size: $diameter;
   padding: 0;
   // Own pixel-snapped layer: the digit keeps the same place in the disc whatever the
   // fractional position of the capsule (Moins/Plus de filtres differed by half a pixel).
   will-change: transform;
 
-  // K16-04/K16-47: centre the digit's ink, not its font box. The line box is trimmed to the
-  // cap height, then placed in the middle of the 16 px disc (text-box needs a block container).
+  // Centre the digit's ink, not its font box. The line box is trimmed to the
+  // cap height, then placed in the middle of the disc.
   @supports (text-box: trim-both cap alphabetic) and (padding-top: 1cap) {
     display: inline-block;
     // K16-86 (17/10, ink measured at 200 % on "1"): the digit sat 0.75 px above the disc centre with
     // the former -0.6 px: the digits' ink is centred on the cap box itself.
-    padding-block-start: calc((16px - 1cap) / 2);
+    padding-block-start: calc(($diameter - 1cap) / 2);
     text-align: center;
     text-box: trim-both cap alphabetic;
     vertical-align: middle;

@@ -376,6 +376,7 @@
   .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--trailing { @include forms.filter-toggle-trailing; }
   .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--track-focus { @include forms.filter-toggle-track-focus; }
   .easyedu-ui .easyedu-filter-actions { @include forms.filter-actions; }
+  .easyedu-ui .easyedu-filter-actions--inline { @include forms.filter-actions($spread: true); }
   .easyedu-ui .easyedu-color-picker { @include forms.color-picker-control; }
   .easyedu-ui .easyedu-color-picker--small { @include forms.color-picker-control(small); }
   .easyedu-ui .easyedu-color-picker--large { @include forms.color-picker-control(large); }

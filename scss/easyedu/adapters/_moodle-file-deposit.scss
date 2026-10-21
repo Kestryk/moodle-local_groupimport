@@ -127,10 +127,12 @@
       }
     }
     .fp-btn-choose {
-      @include foundations.foundation-button(true);
-      min-inline-size: min(10.5rem, 100%);
+      @include foundations.foundation-button($secondary: true, $density: compact);
+      display: flex;
+      inline-size: fit-content;
+      min-inline-size: 0;
       max-inline-size: 100%;
-      margin: 0;
+      margin: 0 auto;
     }
     .filepicker-filelist {
       background: var(--easyedu-surface);
@@ -298,15 +300,25 @@
   // Applied form-workspace composition: the native picker promotes the same
   // Secondary Core Action to the existing touch target, even on desktop.
   .easyedu-ui .easyedu-form--workspace .fp-btn-choose {
-    @include foundations.foundation-button($secondary: true, $matched-size: true);
-    min-block-size: var(--easyedu-touch-target-min);
-    min-inline-size: min(var(--easyedu-workspace-deposit-action-min-inline-size, 11.25rem), 100%);
+    @include foundations.foundation-button($secondary: true, $density: compact, $matched-size: true);
+    display: flex;
+    inline-size: fit-content;
+    margin-inline: auto;
+    min-inline-size: 0;
   }
   .easyedu-ui .easyedu-form--workspace input:is([type="button"], [type="submit"]) {
     @include typography.control-label-natural-metrics($native: true);
   }
   @media (max-width: 52rem) {
+    .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose {
+      min-block-size: var(--easyedu-touch-target-min);
+    }
     .easyedu-ui .easyedu-form--workspace .easyedu-form-actions [type="submit"] {
+      min-block-size: var(--easyedu-touch-target-min);
+    }
+  }
+  @media (pointer: coarse) {
+    .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose {
       min-block-size: var(--easyedu-touch-target-min);
     }
   }
