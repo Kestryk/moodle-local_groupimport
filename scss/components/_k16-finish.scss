@@ -18,6 +18,10 @@
   .easyedu-filter-actions {
     @include easyedu.filter-actions-stacked;
   }
+  .easyedu-filter-actions--inline {
+    @include easyedu.filter-actions($spread: true);
+    margin-block-start: 12px;
+  }
   [data-easystud-advanced-filters] > div:not(.local-groupimport-easystud__filters-grid) {
     @include easyedu.filter-panel-trailing-actions;
   }

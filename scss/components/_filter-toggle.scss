@@ -17,6 +17,6 @@
   }
 
   .local-groupimport-easystud-advanced-filters__count {
-    @include easyedu.filter-disclosure-count;
+    @include easyedu.filter-disclosure-count(compact);
   }
 }

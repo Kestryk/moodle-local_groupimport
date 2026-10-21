@@ -168,6 +168,12 @@ Expected structure:
 </label>
 ```
 
+The active-filter count has a regular 16px variant and a compact 14px variant.
+Use the compact variant for a count inside the More filters capsule.
+
+The Moodle file-deposit adapter uses the compact secondary action for Choose a
+file, centred in its action track; workspace forms retain the 44px touch target.
+
 ## Selection checkboxes
 
 Use `selection-checkbox` for card/list multi-selection controls. Keep a real
