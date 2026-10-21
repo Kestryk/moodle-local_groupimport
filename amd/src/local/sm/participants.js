@@ -98,11 +98,29 @@ export const createParticipantModel = (raw, strings) => Loader.getTemplate(templ
         selected: new Set(),
         detached: new Map(),
         pageCards: new Map(),
+        // K21-16: null follows the admin default (collapsed); the "full information" density
+        // toggle (local/cm/optional_tools.bindOptionalTools) forces every card's meta open or
+        // back to that default, since cards are rebuilt from this context on each density change.
+        metaExpandedOverride: null,
     };
     Mustache.parse(source);
     refreshModel(model);
     return model;
 });
+
+/**
+ * K21-16: force every participant card's roles/groups/groupings/custom-fields block open or
+ * closed regardless of the admin default, so the "full information" density mode keeps showing
+ * complete cards. Pass null to go back to following the admin default.
+ *
+ * @param {Object} model Participant model.
+ * @param {Boolean|null} expanded True/false to override, null to follow the admin default.
+ */
+export const setMetaExpandedOverride = (model, expanded) => {
+    if (model) {
+        model.metaExpandedOverride = expanded;
+    }
+};
 
 /**
  * Rebuild lookups and the search index after the state changed.
@@ -122,6 +140,18 @@ export const refreshModel = model => {
     // Lets the lists skip re-rendering an unchanged page.
     model.revision = (model.revision || 0) + 1;
 };
+
+/**
+ * K21-16: whether a card's roles/groups/groupings/custom-fields block starts collapsed. The
+ * "full information" density mode (model.metaExpandedOverride) overrides the admin default so it
+ * still shows complete cards; null follows that default.
+ *
+ * @param {Object} model Participant model.
+ * @param {Object} strings Card labels from manage.php.
+ * @returns {Boolean}
+ */
+const isMetaCollapsed = (model, strings) => model.metaExpandedOverride === null ?
+    strings.metacollapsedbydefault !== false : !model.metaExpandedOverride;
 
 /**
  * Template context of one card, as manage.php builds it for the legacy page.
@@ -145,9 +175,7 @@ export const buildCardContext = (model, user) => {
         label: field.label,
         value: (user.identifiers || {})[field.key] || '',
     }));
-    // K21-16: cards start collapsed (roles/groups/groupings/custom fields hidden) unless the
-    // site admin disabled the setting; a chevron on each card expands or collapses it.
-    const metacollapsed = strings.metacollapsedbydefault !== false;
+    const metacollapsed = isMetaCollapsed(model, strings);
 
     return {
         id: user.id,

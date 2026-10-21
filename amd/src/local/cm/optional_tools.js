@@ -27,6 +27,8 @@ import {showEasyStudModal, hideEasyStudModal, bindCardModalKeyboard} from './mod
 import {lazyKnownUserIdentifiers, renderIdentifierPreview} from './identifiers';
 import {scheduleResponsiveUiRefresh, syncParticipantDensity, syncPagination} from './workspace';
 import {syncParticipantTagOverflow} from './cards';
+import {getOnDemandModel} from './state';
+import {setMetaExpandedOverride} from '../sm/participants';
 
 export const bindOptionalTools = root => {
     const densityToggle = root.querySelector('[data-easystud-density-toggle]');
@@ -92,6 +94,10 @@ export const bindOptionalTools = root => {
                 root.classList.remove('local-groupimport-easystud--single-participant-selected');
                 root.querySelectorAll('.is-density-expanded').forEach(card => card.classList.remove('is-density-expanded'));
                 root.easystudExpandedParticipant = null;
+                // K21-16: "full information" (not compact) always shows complete cards; back to
+                // compact restores the admin default. Set before the re-render below, which
+                // rebuilds cards from this context (local/sm/participants.buildCardContext).
+                setMetaExpandedOverride(getOnDemandModel(root), compact ? null : true);
                 syncParticipantDensity(root, {animate: false});
                 // Density changes the page size (20 compact / 15 full): render that page
                 // and resolve its tag rows before Motion.swap measures the final height.
