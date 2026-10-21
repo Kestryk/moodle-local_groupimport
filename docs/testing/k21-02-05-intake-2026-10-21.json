@@ -1,0 +1,54 @@
+{
+  "k2102Reset20261021": {
+    "base": "0a413f1d",
+    "scope": "filter-reset only",
+    "status": "native-pass",
+    "audit": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "pass": 43,
+        "fail": [],
+        "info": 8
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "pass": 43,
+        "fail": [],
+        "info": 8
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      }
+    ],
+    "proof": "C:/dev/artifacts/k21-02-05-native-20261021",
+    "cancelUnchanged": true,
+    "otherOldBUnchanged": true
+  }
+}

@@ -22,9 +22,8 @@
     @include easyedu.inline-edit-action;
   }
 
-  // OLD-B R13: Cancel and Reset consume the same regular secondary component.
-  [data-easystud-container-search-cancel],
-  .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {
+  // Cancel keeps the regular secondary component; Reset keeps its own Kit density (K21-02).
+  [data-easystud-container-search-cancel] {
     @include foundations.foundation-button($secondary: true);
   }
 
