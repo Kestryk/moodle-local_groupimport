@@ -1,0 +1,42 @@
+{
+  "base": "c737a2e2",
+  "alreadyIntegrated": "c45dfdb4",
+  "original": "5bde4dc1f346d3ff2dcf9f6073a4e8970cb0f3a0",
+  "productChanged": false,
+  "requires": 2024100700,
+  "bootstrapCases": 8,
+  "selects": 48,
+  "readfilterInterfaces": 2,
+  "readfilterCasesPerInterface": 19,
+  "codechecker": {
+    "errors": 0,
+    "warnings": 22,
+    "fixable": 0
+  },
+  "audits": [
+    {
+      "lang": "fr",
+      "file": "C:\\dev\\artifacts\\roadmap-l1-l4-20261021\\l2\\successor/logs/audit-2026-10-21T08-01-14-522Z.json",
+      "pass": 89,
+      "fail": [],
+      "info": 12
+    },
+    {
+      "lang": "en",
+      "file": "C:\\dev\\artifacts\\roadmap-l1-l4-20261021\\l2\\successor/split/progress.json",
+      "pass": 89,
+      "fail": [],
+      "info": 12
+    }
+  ],
+  "cleanup": {
+    "restoredFiles": 1284,
+    "runtime": "http://localhost:8052",
+    "authorizedMigrationRetained": 2026101801,
+    "restoredCachePurged": true,
+    "leaseReleased": true,
+    "hashesIdentical": true,
+    "status": "PASS"
+  },
+  "native45": "Still pending phase10; no runtime45 accessed"
+}
