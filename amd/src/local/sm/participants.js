@@ -145,6 +145,9 @@ export const buildCardContext = (model, user) => {
         label: field.label,
         value: (user.identifiers || {})[field.key] || '',
     }));
+    // K21-16: cards start collapsed (roles/groups/groupings/custom fields hidden) unless the
+    // site admin disabled the setting; a chevron on each card expands or collapses it.
+    const metacollapsed = strings.metacollapsedbydefault !== false;
 
     return {
         id: user.id,
@@ -173,6 +176,11 @@ export const buildCardContext = (model, user) => {
             .map(field => buildMetaTags(field.label, [display[field.key]],
                 tokenClass + ' ' + tokenClass + '--custom-info', '', strings.showless || '')),
         viewdetailslabel: strings.viewdetailslabel || '',
+        metacollapsed,
+        metaariaexpanded: metacollapsed ? 'false' : 'true',
+        metatogglelabel: metacollapsed ? (strings.expandmetalabel || '') : (strings.collapsemetalabel || ''),
+        expandmetalabel: strings.expandmetalabel || '',
+        collapsemetalabel: strings.collapsemetalabel || '',
         // Light detail payload for the participant modal; heavy fields come from get_details.
         userdetailjson: JSON.stringify({
             id: user.id,

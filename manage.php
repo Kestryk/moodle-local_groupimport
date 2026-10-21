@@ -88,6 +88,12 @@ $managerinitargs = [
             // Shown in the list when the course state cannot be loaded.
             'loaderror' => get_string('smstateloaderror', 'local_groupimport'),
             'reload' => get_string('reload'),
+            // K21-16: participant cards collapse their meta details by default (admin setting).
+            // Unset config (fresh install, before the settings page defaults are applied) keeps
+            // the collapsed behaviour: only an explicit "0" switches it off.
+            'metacollapsedbydefault' => get_config('local_groupimport', 'participantcardcollapsed') !== '0',
+            'expandmetalabel' => get_string('participantcardexpand', 'local_groupimport'),
+            'collapsemetalabel' => get_string('participantcardcollapse', 'local_groupimport'),
         ],
         // Labels of the catalog group card rendered in the browser (templates/sm/group_card).
         'groupstrings' => [

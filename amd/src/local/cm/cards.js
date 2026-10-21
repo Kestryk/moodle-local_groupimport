@@ -1200,3 +1200,42 @@ export const getOnDemandList = (root, list) => {
         select: (ids, selected) => setOnDemandGroupsSelected(root, key, ids, selected),
     };
 };
+
+/**
+ * K21-16: expand or collapse one participant card's roles/groups/groupings/custom-fields block.
+ *
+ * @param {HTMLElement} toggle The card's meta toggle button.
+ * @param {Boolean} expanded Target state.
+ */
+const setParticipantMetaExpanded = (toggle, expanded) => {
+    const card = toggle.closest('[data-easystud-user]');
+    const meta = card && card.querySelector('[data-easystud-user-meta]');
+    if (!meta) {
+        return;
+    }
+    meta.hidden = !expanded;
+    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    const label = expanded ?
+        (toggle.getAttribute('data-collapse-label') || '') :
+        (toggle.getAttribute('data-expand-label') || '');
+    if (label) {
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('data-easystud-hover-help', label);
+    }
+};
+
+/**
+ * Bind the participant card fold chevron (K21-16): each card keeps its own expanded/collapsed
+ * state independently of the admin default used to render it.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+export const bindParticipantMetaToggles = root => {
+    root.addEventListener('click', event => {
+        const toggle = event.target.closest('[data-easystud-user-meta-toggle]');
+        if (!toggle || !root.contains(toggle)) {
+            return;
+        }
+        setParticipantMetaExpanded(toggle, toggle.getAttribute('aria-expanded') !== 'true');
+    });
+};

@@ -850,6 +850,25 @@
     @include easyedu.empty-state-positive;
   }
 
+  // K21-17 (Kevin 21/10): the participant list's "could not be loaded" state reuses the Kit
+  // warning notice (same recipe as the entity dialog's error state), not a raw Bootstrap alert.
+  &__sm-error {
+    margin: 0 0 0.7rem;
+  }
+
+  &__sm-error-copy {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.875rem;
+    justify-content: space-between;
+    min-inline-size: 0;
+
+    > p {
+      margin: 0;
+    }
+  }
+
 }
 
 // Icons wait for their font (js/loading_state_bootstrap.js): no missing-glyph box, same size.

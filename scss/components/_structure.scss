@@ -1020,6 +1020,15 @@
     margin-inline-start: calc(2.55rem - 0.5rem);
   }
 
+  // K21-16 (Kevin 21/10): same Kit fold chevron as the group member list, applied to the
+  // participant card's roles/groups/groupings/custom-fields block (collapsed by default,
+  // admin setting local_groupimport/participantcardcollapsed).
+  &-user__meta-toggle {
+    @include easyedu.card-fold-chevron;
+
+    margin-top: 0.3rem;
+  }
+
   &-advanced-filters__toggle.local-groupimport-easystud-group__members-toggle {
     @include easyedu.filter-disclosure-trigger(compact);
 
