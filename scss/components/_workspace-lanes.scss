@@ -5,6 +5,18 @@
 body.local-groupimport-host-moodle53 #local-groupimport-easystud {
   --easyedu-lane-surface: var(--easyedu-surface);
   --easyedu-navigation-desktop-surface: var(--easyedu-surface);
+
+  // Moodle drawers can leave a full participant card with a very narrow main.
+  // Query that content slot, rather than the viewport or the two-column panel.
+  .local-groupimport-easystud-user__main {
+    container: easystud-participant-main / inline-size;
+  }
+}
+
+@container easystud-participant-main (max-width: 12rem) {
+  body.local-groupimport-host-moodle53 #local-groupimport-easystud .local-groupimport-easystud-user__meta-group {
+    @include easyedu.card-metadata-row-stacked($wrap-label: true);
+  }
 }
 
 #local-groupimport-easystud {

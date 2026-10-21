@@ -1860,10 +1860,11 @@
       "moduleBlob": "c46260faf9a98871d23eb9e3746a6be876fc2c99"
     },
     "studentMetadataExtraction": {
-      "status": "source validated, CSS unchanged, visual reconciliation pending",
-      "sourceCommit": "d18196e9c8c36962460419959f04e7285539ef7c",
+      "status": "default CSS unchanged; K21-32 opt-in wrapping labels for narrow Moodle 5.3 participant content",
+      "sourceCommit": "4c7595d38d58321cf0c7a53848d7c3630922d61c",
+      "extractionSourceCommit": "d18196e9c8c36962460419959f04e7285539ef7c",
       "module": "scss/easyedu/components/_card-metadata.scss",
-      "moduleBlob": "d3e0430f9c339c0b31f03508a8b53a1f2c42066f"
+      "moduleBlob": "f6ff987845de0f7ca3b765954a41ab28469423d5"
     },
     "entityCardOverflowExtraction": {
       "status": "source-only canonical overflow extraction; complete CSS unchanged; not new visual acceptance",

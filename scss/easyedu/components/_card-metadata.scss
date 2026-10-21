@@ -17,10 +17,22 @@
 }
 
 // Apply at the consumer's existing breakpoint, after the base row recipe.
-@mixin card-metadata-row-stacked {
+@mixin card-metadata-row-stacked($wrap-label: false) {
   align-items: flex-start;
   gap: 0.2rem;
   grid-template-columns: 1fr;
+
+  // Opt in when the actual identity content column is narrower than a label.
+  // Keep the historical stacked recipe unchanged for existing consumers.
+  @if $wrap-label {
+    grid-template-columns: minmax(0, 1fr);
+
+    > .easyedu-person-card__meta-label {
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+  }
 }
 
 @mixin card-metadata-label {

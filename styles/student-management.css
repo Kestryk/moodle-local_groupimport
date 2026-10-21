@@ -10738,7 +10738,15 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 
 body.local-groupimport-host-moodle53 #local-groupimport-easystud {--easyedu-lane-surface: var(--easyedu-surface);--easyedu-navigation-desktop-surface: var(--easyedu-surface);
 }
+body.local-groupimport-host-moodle53 #local-groupimport-easystud .local-groupimport-easystud-user__main {container: easystud-participant-main/inline-size;
+}
 
+@container easystud-participant-main (max-width: 12rem) {
+  body.local-groupimport-host-moodle53 #local-groupimport-easystud .local-groupimport-easystud-user__meta-group {align-items: flex-start;gap: 0.2rem;grid-template-columns: 1fr;grid-template-columns: minmax(0, 1fr);
+  }
+  body.local-groupimport-host-moodle53 #local-groupimport-easystud .local-groupimport-easystud-user__meta-group > .easyedu-person-card__meta-label {min-inline-size: 0;overflow-wrap: anywhere;white-space: normal;
+  }
+}
 #local-groupimport-easystud {--easyedu-lane-radius: 0.75rem;--easyedu-lane-inset: 1rem;--easyedu-lane-gap: 1.5rem;--easyedu-lane-stack-gap: 1rem;--easyedu-lane-rail-width: 3px;--easyedu-card-radius-rest: 0.8rem;--easyedu-card-shadow-rest: none;container: easystud-workspace/inline-size;
 }
 #local-groupimport-easystud .local-groupimport-easystud__layout {gap: var(--easyedu-lane-gap);

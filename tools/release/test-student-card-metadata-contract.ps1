@@ -16,7 +16,7 @@ $embedded = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot $relative)
 if ($canonical.Replace("`r`n", "`n") -cne $embedded.Replace("`r`n", "`n")) {
     throw 'Canonical and embedded metadata modules differ.'
 }
-if ($canonical -match '(?m)^\s*(transition|animation|overflow|display:\s*none)|@media') {
+if ($canonical -match '(?m)^\s*(transition|animation|overflow(?:-[xy])?\s*:|display:\s*none)|@media') {
     throw 'Metadata recipe must not own motion, clipping, visibility or breakpoints.'
 }
 $participants = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss/components/_participants.scss')
@@ -36,11 +36,13 @@ $fixture = @'
 .label { @include kit.card-metadata-label; }
 .values { @include kit.card-metadata-values; }
 .stacked { @include kit.card-metadata-row-stacked; }
+.narrow { @include kit.card-metadata-row-stacked($wrap-label: true); }
 '@
 $publicCss = ($fixture | & sass --stdin "--load-path=$KitRoot/scss" --no-source-map) -join "`n"
 if ($LASTEXITCODE -ne 0) { throw 'Canonical public metadata API failed to compile.' }
 foreach ($declaration in @('grid-template-columns: 5.25rem minmax(0, 1fr);',
-        'grid-template-columns: 1fr;', 'font-size: 0.67rem;', 'flex-wrap: wrap;')) {
+        'grid-template-columns: 1fr;', 'font-size: 0.67rem;', 'flex-wrap: wrap;',
+        'grid-template-columns: minmax(0, 1fr);', 'overflow-wrap: anywhere;', 'white-space: normal;')) {
     if (-not $publicCss.Contains($declaration)) { throw "Missing declaration: $declaration" }
 }
 $compiled = (& sass (Join-Path $pluginRoot 'scss/easystud.scss') --no-source-map) -join "`n"
