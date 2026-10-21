@@ -2031,6 +2031,851 @@ const renderDiscoveryNames = (root, scene, command) => {
   run().catch(() => { stopDiscoveryScene(root); });
 };
 
+// I14: one player per discovery scene kind, dispatched from DISCOVERY_SCENE_PLAYERS. Each player receives
+// the playback context built by playDiscoveryScene (scene nodes, Motion level, and the shared pausable
+// clock: gate, wait, animate, reveal, phase, narrate...), so Pause, Next phase and departure keep owning
+// every step exactly as before.
+
+// J-G2 (AN-2): any pointer travel keeps a readable speed (0.8 px/ms at most).
+const DISCOVERY_POINTER_SPEED = 0.8;
+
+// J-G4 (P-G5), K17-36, K17-44: illustration only. Readonly fields and disabled buttons, never a Moodle
+// command. Pointer, typing, narration and reading clock are shared by the specimen demonstrations.
+const createSpecimenTools = ctx => {
+  const {stage, compact, still, animations, assertActive, gate, wait, animate, placeCursor, movePointer, touchPointer,
+    clickFeedback, reveal} = ctx;
+  const pick = selector => stage.querySelector(selector);
+  const cursor = pick('[data-guide-cursor]');
+  const field = role => pick(`[data-guide-simplecreate-input="${role}"]`);
+  const submit = role => pick(`[data-guide-simplecreate-submit="${role}"]`);
+  const created = role => pick(`[data-guide-simplecreate-result="${role}"]`);
+  const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
+  const pointAt = async element => {
+    assertActive();
+    if (!cursor || !element) { return; }
+    await gate();
+    const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+    const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
+    if (compact) { await touchPointer.place(cursor, x, y); return; }
+    if (still) {
+      await placeCursor(cursor, `translate(${x}px, ${y}px)`);
+      return;
+    }
+    await movePointer(cursor, x, y, 520);
+  };
+  const hidePointer = async() => {
+    if (!cursor || cursor.hidden) { return; }
+    if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
+    cursor.hidden = true;
+    // The retained travel animations of a hidden pointer are released with it.
+    animations.forEach(animation => {
+      if (animation.effect?.target === cursor) {
+        animation.cancel();
+        animations.delete(animation);
+      }
+    });
+  };
+  const press = element => element ? clickFeedback(element, cursor) : Promise.resolve();
+  const type = async(input, text, step = 45) => {
+    if (!input) { return; }
+    input.value = '';
+    for (const character of text) {
+      assertActive();
+      input.value += character;
+      await wait(still ? 0 : step);
+    }
+    input.value = text;
+  };
+  const show = async element => {
+    if (!element) { return; }
+    element.hidden = false;
+    await reveal(element);
+    await animate(element, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}],
+      160, false);
+  };
+  return {pick, cursor, field, submit, created, sample, pointAt, hidePointer, press, type, show};
+};
+
+// Create ONE group, then ONE grouping, then rename the group.
+const playSimpleCreateSteps = async(ctx, tools) => {
+  const {compact, still, wait, reveal, restFlash, narrate: say} = ctx;
+  const {pick, field, submit, created, sample, pointAt, press, type, show} = tools;
+  const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
+  const cardName = pick('[data-guide-simplecreate-card-name]');
+  const edit = pick('[data-guide-simplecreate-edit]');
+  const rename = pick('[data-guide-simplecreate-rename]');
+  await reveal(ctx.stage);
+  await pointAt(field('group'));
+  await say(1);
+  await press(field('group'));
+  await type(field('group'), sample('name'));
+  await pointAt(submit('group'));
+  await say(2);
+  await press(submit('group'));
+  if (field('group')) {
+    field('group').value = '';
+  }
+  await show(created('group'));
+  await show(groupingStage);
+  await pointAt(field('grouping'));
+  await say(3);
+  await press(field('grouping'));
+  await type(field('grouping'), sample('grouping'));
+  if (compact) {
+    await pointAt(submit('grouping'));
+  }
+  await press(submit('grouping'));
+  if (field('grouping')) {
+    field('grouping').value = '';
+  }
+  await show(created('grouping'));
+  await pointAt(edit);
+  await say(4);
+  await press(edit);
+  if (cardName && rename) {
+    // K17-32: the rename is slow enough to be read (pause, typing at about 2.5 times the former pace,
+    // pause), then the title returns through the common fade.
+    cardName.hidden = true;
+    rename.hidden = false;
+    await wait(still ? 0 : 600);
+    await type(rename, sample('renamed'), 115);
+    await wait(still ? 0 : 1000);
+    await restFlash(() => {
+      cardName.textContent = sample('renamed');
+      rename.hidden = true;
+      cardName.hidden = false;
+    });
+  }
+};
+
+// K17-36: names separated by a comma or a semicolon, then a formula, then the same for groupings.
+const playCreationSteps = async(ctx, tools) => {
+  const {stage, animate, reveal, narrate: say} = ctx;
+  const {pick, pointAt, press, type} = tools;
+  const input = pick('[data-guide-pattern]');
+  const label = pick('[data-guide-pattern-label]');
+  const groupOut = pick('[data-guide-names]');
+  const groupingBlock = pick('[data-guide-grouping-block]');
+  const groupingOut = pick('[data-guide-grouping-names]');
+  const warning = pick('[data-guide-warning-host]');
+  const attr = name => stage.getAttribute(`data-guide-creation-${name}`) || '';
+  const fill = (out, selector, names) => {
+    const template = pick(selector);
+    out.replaceChildren();
+    names.forEach(name => {
+      const card = template.content.firstElementChild.cloneNode(true);
+      const title = card.querySelector('[data-guide-name]');
+      if (title) {
+        title.textContent = name;
+      }
+      card.style.opacity = '0';
+      out.appendChild(card);
+    });
+    return [...out.children];
+  };
+  const appear = async cards => {
+    for (const card of cards) {
+      await animate(card, [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}],
+        200, false);
+      card.style.removeProperty('opacity');
+    }
+  };
+  input.readOnly = true;
+  input.value = '';
+  input.removeAttribute('aria-invalid');
+  groupOut.replaceChildren();
+  groupingOut.replaceChildren();
+  groupingBlock.hidden = true;
+  if (warning) {
+    warning.hidden = true;
+  }
+  if (label && !label.dataset.original) {
+    label.dataset.original = label.textContent;
+  }
+  await reveal(stage);
+  await pointAt(input);
+  await say(1);
+  await press(input);
+  await type(input, attr('list'));
+  let cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
+  await reveal(groupOut);
+  await appear(cards);
+  await say(2);
+  await type(input, attr('formula'));
+  cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
+  await appear(cards);
+  await say(3);
+  if (label) {
+    label.textContent = label.dataset.groupingLabel || label.textContent;
+  }
+  await type(input, attr('groupings'));
+  groupingBlock.hidden = false;
+  cards = fill(groupingOut, '[data-guide-grouping-card]', expandCreateNames(input.value) || []);
+  await reveal(groupingBlock);
+  await appear(cards);
+  input.readOnly = false;
+};
+
+// GMI-C3: drag "td-2026.xlsx" into the deposit (touch: browse), Preview, then the preview opens and
+// the file column folds. 'minimal' shows the final state and the recap at once, with no clock.
+const playMassImportDropSteps = async(ctx, tools) => {
+  const {stage, compact, still, reduced, wait, animate, placeCursor, reveal, restFlash, narrate: say} = ctx;
+  const {pick, cursor, pointAt, hidePointer, press, show} = tools;
+  const deposit = pick('[data-guide-mi-deposit]');
+  const file = pick('[data-guide-mi-file]');
+  const submit = pick('[data-guide-mi-submit]');
+  const ghost = pick('[data-guide-mi-ghost]');
+  const results = pick('[data-guide-mi-results]');
+  const openPreview = () => {
+    stage.classList.add('is-previewed');
+    ['[data-guide-mi-upload-body]', '[data-guide-mi-empty]'].forEach(selector => {
+      const node = pick(selector);
+      if (node) {
+        node.hidden = true;
+      }
+    });
+    ['[data-guide-mi-toggle]', '[data-guide-mi-preview]'].forEach(selector => {
+      const node = pick(selector);
+      if (node) {
+        node.hidden = false;
+      }
+    });
+  };
+  if (reduced) {
+    if (file) {
+      file.hidden = false;
+    }
+    openPreview();
+    return;
+  }
+  await reveal(stage);
+  if (compact || !ghost || !deposit || !results) {
+    const browse = pick('[data-guide-mi-browse]');
+    await pointAt(browse);
+    await say(1);
+    await press(browse);
+  } else {
+    // The file ghost starts over the results column and follows the pointer into the deposit.
+    const frame = stage.getBoundingClientRect();
+    const centre = element => {
+      const box = element.getBoundingClientRect();
+      return [box.left - frame.left + box.width / 2, box.top - frame.top + box.height / 2];
+    };
+    const [sx, sy] = centre(results);
+    const [ex, ey] = centre(deposit);
+    ghost.hidden = false;
+    const gx = ghost.offsetWidth / 2, gy = ghost.offsetHeight / 2;
+    const from = `translate(${sx - gx}px, ${sy - gy}px)`, to = `translate(${ex - gx}px, ${ey - gy}px)`;
+    ghost.style.transform = from;
+    await animate(ghost, [{opacity: 0}, {opacity: 1}], 160, false);
+    await pointAt(ghost);
+    await say(1);
+    if (still) {
+      ghost.style.transform = to;
+      await placeCursor(cursor, `translate(${ex}px, ${ey}px)`);
+    } else {
+      const duration = Math.max(700, Math.round(Math.hypot(ex - sx, ey - sy) / DISCOVERY_POINTER_SPEED));
+      const pointer = new DOMMatrixReadOnly(getComputedStyle(cursor).transform);
+      await Promise.all([
+        animate(ghost, [{transform: from}, {transform: to}], duration),
+        animate(cursor, [{transform: pointer.toString()}, {transform: `translate(${ex}px, ${ey}px)`}], duration)
+      ]);
+      ghost.style.transform = to;
+    }
+    // The deposit's own drag-over state names the drop ("Drop your import file here").
+    deposit.classList.add('is-dragover');
+    await wait(700);
+    deposit.classList.remove('is-dragover');
+    await animate(ghost, [{opacity: 1}, {opacity: 0}], 160, false);
+    ghost.hidden = true;
+  }
+  await show(file);
+  await pointAt(submit);
+  await say(2);
+  await press(submit);
+  await hidePointer();
+  await restFlash(openPreview);
+  if (results) {
+    await reveal(results);
+  }
+  await say(3);
+};
+
+// GMI-C3: read the statuses, leave row 5 out, correct row 6, see that its status does not change.
+const playMassImportPreviewSteps = async(ctx, tools) => {
+  const {stage, reduced, animate, reveal, narrate: say} = ctx;
+  const {pick, pointAt, press, type} = tools;
+  const wrap = pick('[data-guide-mi-table-wrap]');
+  const row = line => pick(`[data-guide-mi-row="${line}"]`);
+  const status = line => row(line)?.querySelector('[data-guide-mi-status]');
+  const include = row(5)?.querySelector('[data-guide-mi-include]');
+  const identifier = row(6)?.querySelector('[data-guide-mi-identifier]');
+  const typed = stage.getAttribute('data-guide-mi-typed') || '';
+  const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
+  const exclude = () => {
+    if (include) {
+      include.checked = false;
+    }
+    row(5)?.classList.add('is-excluded');
+  };
+  // A phone shows the table in its own horizontal frame: bring the phase's cell into it at once
+  // (never the page, never a second clock), before the pointer measures it.
+  const showCell = cell => {
+    if (!wrap || !cell) {
+      return;
+    }
+    const frame = wrap.getBoundingClientRect(), box = cell.getBoundingClientRect();
+    if (box.left < frame.left || box.right > frame.right) {
+      wrap.scrollLeft += box.left - frame.left - Math.max(0, (frame.width - box.width) / 2);
+    }
+  };
+  if (reduced) {
+    exclude();
+    if (identifier) {
+      identifier.value = typed;
+    }
+    return;
+  }
+  await reveal(stage);
+  showCell(status(5));
+  await pointAt(status(5));
+  ring(status(5), true);
+  ring(status(6), true);
+  await say(1);
+  ring(status(5), false);
+  ring(status(6), false);
+  showCell(include);
+  await pointAt(include);
+  await say(2);
+  await press(include);
+  exclude();
+  await animate(row(5), [{opacity: 1}, {opacity: 0.45}], 240, false);
+  showCell(identifier);
+  await pointAt(identifier);
+  await say(3);
+  await press(identifier);
+  await type(identifier, typed, 90);
+  showCell(status(6));
+  await pointAt(status(6));
+  ring(status(6), true);
+  await say(4);
+  ring(status(6), false);
+};
+
+// K17-44: search "TD", add the role filter, select the results, clear the selection.
+const playFiltersSteps = async(ctx, tools) => {
+  const {stage, animate, reveal, restFlash, narrate: say} = ctx;
+  const {pick, pointAt, hidePointer, press, type} = tools;
+  const input = pick('[data-guide-filters-input]');
+  const role = pick('[data-guide-filters-role]');
+  const select = pick('[data-guide-filters-select]');
+  const count = pick('[data-guide-filters-count]');
+  const selection = pick('[data-guide-filters-selection]');
+  const clear = pick('[data-guide-filters-clear]');
+  const cards = [...stage.querySelectorAll('[data-guide-filters-card]')];
+  const attr = name => stage.getAttribute(`data-guide-${name}`) || '';
+  const isMatch = card => card.dataset.guideFiltersMatch === '1';
+  const setSelected = on => cards.forEach(card => {
+    const selected = on && isMatch(card);
+    card.querySelector('.local-groupimport-easystud-user')?.classList.toggle('is-selected', selected);
+    const box = card.querySelector('input[type="checkbox"]');
+    if (box) {
+      box.checked = selected;
+    }
+  });
+  const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
+  await reveal(stage);
+  await pointAt(input);
+  await say(1);
+  await press(input);
+  await type(input, attr('filters-query'), 170);
+  await Promise.all(cards.filter(card => !isMatch(card)).map(card => animate(card, [{opacity: 1}, {opacity: 0}], 220)));
+  cards.filter(card => !isMatch(card)).forEach(card => {
+    card.hidden = true;
+  });
+  count.textContent = attr('count-filtered');
+  await say(2);
+  role.classList.remove('is-spacer');
+  role.removeAttribute('aria-hidden');
+  await animate(role, [{opacity: 0}, {opacity: 1}], 240);
+  await say(3);
+  await pointAt(select);
+  ring(select, true);
+  await press(select);
+  setSelected(true);
+  select.textContent = attr('deselect-label');
+  selection.hidden = false;
+  await animate(selection, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}], 200);
+  await say(4);
+  ring(select, false);
+  await pointAt(clear);
+  ring(clear, true);
+  await press(clear);
+  await hidePointer();
+  // K17-28: the list returns to its resting state behind the common short fade.
+  await restFlash(() => {
+    input.value = '';
+    cards.forEach(card => {
+      card.hidden = false;
+    });
+    setSelected(false);
+    count.textContent = attr('count-all');
+    role.classList.add('is-spacer');
+    role.setAttribute('aria-hidden', 'true');
+    select.textContent = attr('select-label');
+    selection.hidden = true;
+    ring(clear, false);
+  });
+};
+
+// Common specimen run: the scene's steps, then the end card and the recap (filters: the slide's recap).
+const playSpecimenScene = async(ctx, steps) => {
+  const {scene, kind, signal, animate, reveal, writeLive, markFinished, settleHeader} = ctx;
+  const tools = createSpecimenTools(ctx);
+  await steps(ctx, tools);
+  await tools.hidePointer();
+  if (signal.aborted) { return; }
+  await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+  if (signal.aborted) { return; }
+  markFinished();
+  await settleHeader();
+  if (signal.aborted) {
+    return;
+  }
+  const specimenRecap = kind === 'filters' ?
+    scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') :
+    ['simplecreate', 'midrop', 'mipreview'].includes(kind) ? scene.querySelector('[data-guide-recap]') : null;
+  if (specimenRecap) {
+    specimenRecap.querySelectorAll('[data-guide-phase]').forEach(item => {
+      item.textContent = item.textContent.replace(/^\d+\s*[·.]\s*/, '');
+      item.removeAttribute('aria-current');
+    });
+    specimenRecap.style.opacity = '0';
+    specimenRecap.hidden = false;
+    await reveal(specimenRecap);
+    await animate(specimenRecap, [{opacity: 0}, {opacity: 1}], 280);
+    specimenRecap.style.removeProperty('opacity');
+  }
+  if (!signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+};
+
+// Inspection: illustration only, never focus, click or resolve a native identifier. Reuse the shared
+// pointer paint and playback clock, not a mobile mouse.
+const createInspectionPointer = (ctx, stage, cursor) => {
+  const {compact, still, animations, assertActive, gate, animate, placeCursor, movePointer, touchPointer} = ctx;
+  const pointAt = async(element) => {
+    assertActive();
+    if (!cursor) { return; }
+    await gate();
+    assertActive();
+    const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+    const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
+    if (compact) { await touchPointer.place(cursor, x, y); return; }
+    if (still) {
+      await placeCursor(cursor, `translate(${x}px, ${y}px)`);
+      return;
+    }
+    await movePointer(cursor, x, y, 650);
+  };
+  const hidePointer = async() => {
+    assertActive();
+    if (still && cursor) {
+      cursor.hidden = true;
+      return;
+    }
+    if (!cursor || cursor.hidden) { return; }
+    await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
+    cursor.hidden = true;
+    animations.forEach(animation => {
+      if (animation.effect?.target === cursor) { animation.cancel(); animations.delete(animation); }
+    });
+  };
+  return {pointAt, hidePointer};
+};
+
+const playInspectionScene = async ctx => {
+  const {scene, stage, result, recap, compact, signal, gate, assertActive, animate, clickFeedback, reveal, restFlash,
+    phase, writeLive, markFinished, settleHeader} = ctx;
+  const card = stage.querySelector('[data-guide-inspection-card]');
+  const trigger = stage.querySelector('[data-guide-inspection-trigger]');
+  const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
+  const menu = stage.querySelector('[data-guide-inspection-menu]');
+  const panel = stage.querySelector('[data-guide-inspection-panel]');
+  const input = stage.querySelector('[data-guide-inspection-input]');
+  const chips = stage.querySelector('[data-guide-inspection-chips]');
+  const cancel = panel.querySelector('[data-guide-inspection-cancel]');
+  const cursor = stage.querySelector('[data-guide-inspection-cursor]');
+  const value = input.getAttribute('data-guide-example-value') || '';
+  trigger.hidden = compact;
+  if (compactTrigger) { compactTrigger.hidden = !compact; }
+  const {pointAt, hidePointer} = createInspectionPointer(ctx, stage, cursor);
+  // Animate the auto-sized card while keeping the natural field's layout.
+  // Same WAAPI set/clock as reading: Pause, Next and departure own both.
+  // J-G2 (AN-3): the card reaches its new size at once and only the panel fades and slides
+  // (transform/opacity, no animated height, so no layout work per frame and no stutter).
+  const disclose = async open => {
+    await gate();
+    assertActive();
+    if (open) {
+      panel.hidden = false;
+      await animate(panel, [{opacity: 0, transform: 'translateY(-4px)'},
+        {opacity: 1, transform: 'translateY(0)'}], 240, false);
+    } else {
+      await animate(panel, [{opacity: 1}, {opacity: 0}], 160, false);
+      panel.hidden = true;
+    }
+  };
+  await reveal(card);
+  // Touch: the finger rests above the card's menu button during the first phase, taps it, then rests on
+  // the menu entry it names (no mouse trajectory).
+  if (compact && compactTrigger) { await pointAt(compactTrigger); }
+  await phase('orient');
+  if (signal.aborted) { return; }
+  if (compact) {
+    await clickFeedback(compactTrigger, cursor);
+    menu.hidden = false;
+    await reveal(menu);
+    await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
+    await pointAt(menu.querySelector('strong'));
+  } else {
+    await pointAt(trigger);
+  }
+  await phase('open');
+  if (signal.aborted) { return; }
+  await clickFeedback(compact ? menu.querySelector('strong') : trigger, cursor);
+  await hidePointer();
+  menu.hidden = true;
+  await disclose(true);
+  await reveal(panel);
+  if (signal.aborted) { return; }
+  input.value = value;
+  await pointAt(input);
+  await phase('enter');
+  if (signal.aborted) { return; }
+  await clickFeedback(input, cursor);
+  await hidePointer();
+  // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
+  chips.style.opacity = '0';
+  chips.hidden = false;
+  if (signal.aborted) { return; }
+  await reveal(chips);
+  await animate(chips, [{opacity: 0}, {opacity: 1}], 260);
+  chips.style.removeProperty('opacity');
+  await phase('review');
+  if (signal.aborted) { return; }
+  if (cancel) { await reveal(cancel); }
+  if (cancel) { await pointAt(cancel); }
+  await phase('return');
+  if (signal.aborted) { return; }
+  await clickFeedback(cancel, cursor);
+  await hidePointer();
+  // K17-28: the card returns to its resting size behind the common short fade.
+  await restFlash(() => {
+    panel.hidden = true;
+    input.value = '';
+    chips.hidden = true;
+  });
+  if (signal.aborted) { return; }
+  result.textContent = result.dataset.inspection || scene.easyeduGuideResultOriginal;
+  await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+  if (signal.aborted) { return; }
+  markFinished();
+  await settleHeader();
+  if (signal.aborted) { return; }
+  if (recap) {
+    recap.style.opacity = '0';
+    recap.hidden = false;
+    recap.querySelectorAll('[data-guide-phase]').forEach(item => {
+      item.textContent = ((compact && item.dataset.compact) || item.dataset.original)
+        .replace(/^\d+\s*[·.]\s*/, '');
+      item.removeAttribute('aria-current');
+    });
+    await reveal(recap);
+    await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
+    recap.style.removeProperty('opacity');
+  }
+  if (!signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+};
+
+// The membership pointer keeps its original travel/drag clock. It is decorative and must not paint
+// through sticky chrome while its stage is being scrolled.
+const createMembershipPointer = (ctx, cursor) => {
+  const {stage, compact, still, signal, readingBody, sceneHeader, isFinished, assertActive, placeCursor, movePointer,
+    touchPointer} = ctx;
+  let cursorVisibilityFrame = null;
+  const cursorVisibility = cursor.style.visibility;
+  const updateCursorVisibility = () => {
+    if (signal.aborted || isFinished()) { return; }
+    const body = readingBody?.getBoundingClientRect();
+    const header = sceneHeader?.getBoundingClientRect();
+    const point = cursor.getBoundingClientRect();
+    const top = body && header && header.top <= body.top + 2 ? header.bottom : body?.top;
+    cursor.style.visibility = body && (point.top < top || point.bottom > body.bottom) ? 'hidden' : cursorVisibility;
+    // Only a gliding pointer or scroll needs a per-frame check; below the 'full' level it is
+    // evaluated when the pointer is placed and when the reading surface scrolls.
+    if (!still) { cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility); }
+  };
+  updateCursorVisibility();
+  if (still) {
+    readingBody?.addEventListener('scroll', updateCursorVisibility, {passive: true});
+  }
+  signal.addEventListener('abort', () => {
+    cancelAnimationFrame(cursorVisibilityFrame);
+    readingBody?.removeEventListener('scroll', updateCursorVisibility);
+    cursor.style.visibility = cursorVisibility;
+  }, {once: true});
+  const pointer = {
+    // Last illustrated pointer position, in stage coordinates.
+    point: null,
+    travelPoint: async(point, duration) => {
+      assertActive();
+      pointer.point = point;
+      if (compact) {
+        await touchPointer.place(cursor, point.x, point.y);
+        updateCursorVisibility();
+        return;
+      }
+      if (still) {
+        await placeCursor(cursor, `translate(${point.x}px, ${point.y}px)`);
+        updateCursorVisibility();
+        return;
+      }
+      await movePointer(cursor, point.x, point.y, duration);
+    },
+    travel: async(element, duration = 750, cardAnchor = false) => {
+      assertActive();
+      const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
+      const point = {
+        x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
+        y: a.top - b.top + (cardAnchor ? Math.min(28, a.height / 2) : a.height / 2)
+      };
+      await pointer.travelPoint(point, duration);
+    },
+    release: () => {
+      cancelAnimationFrame(cursorVisibilityFrame);
+      cursor.style.visibility = cursorVisibility;
+    }
+  };
+  return pointer;
+};
+
+// Native mobile Add uses Participants > Move participants (addusers),
+// not the member-transfer action that removes the source membership.
+const applyCompactAddCopy = (scene, stage, menu, confirm) => {
+  stage.querySelector('[data-guide-source-title]').textContent = scene.dataset.guideMobileParticipantsLabel;
+  menu.querySelector('strong').textContent = scene.dataset.guideMobileAddAction;
+  menu.querySelector('[data-guide-member-remove]').hidden = true;
+  confirm.querySelector('header strong').textContent = scene.dataset.guideMobileAddAction;
+  confirm.querySelector('[data-guide-simulated-submit]').textContent = scene.dataset.guideMobileAddSubmit ||
+    confirm.querySelector('[data-guide-simulated-submit]').textContent;
+  confirm.querySelector('[data-guide-consequence]').textContent = scene.dataset.guideMobileAddConsequence;
+};
+
+// Move (and every compact gesture): member actions menu, confirmation, then the selected cards travel.
+// Every early return happens on departure; the caller re-checks it before continuing.
+const playMembershipMenuFlow = async(ctx, pointer, {person, cursor, menu, confirm}) => {
+  const {stage, compact, still, signal, animate, clickFeedback, reveal, revealPrepared, phase} = ctx;
+  // Desktop follows the illustrated click. Compact/reduced scenes anchor
+  // to the same card without implying a mouse-only mobile interaction.
+  const stageBounds = stage.getBoundingClientRect(), cardBounds = person.getBoundingClientRect();
+  const point = pointer.point || {x: cardBounds.left - stageBounds.left + 24,
+    y: cardBounds.bottom - stageBounds.top};
+  await phase('menu', () => revealPrepared(menu, () => {
+    const menuBounds = menu.getBoundingClientRect();
+    stage.style.setProperty('--easyedu-guide-menu-x',
+      `${Math.max(0, Math.min(point.x + 12, stageBounds.width - menuBounds.width))}px`);
+    stage.style.setProperty('--easyedu-guide-menu-y',
+      `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
+  }));
+  if (signal.aborted) { return; }
+  await pointer.travel(menu.querySelector('strong'));
+  await clickFeedback(menu.querySelector('strong'), cursor);
+  await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
+  if (signal.aborted) { return; }
+  menu.hidden = true;
+  await phase('confirm', () => revealPrepared(confirm));
+  if (signal.aborted) { return; }
+  if (compact) {
+    // Touch: choose the destination field of the confirmation before pressing the button.
+    await pointer.travel(confirm.querySelector('.easyedu-guide-scene__destination'));
+    await clickFeedback(confirm.querySelector('.easyedu-guide-scene__destination'), cursor);
+  }
+  const submit = confirm.querySelector('[data-guide-simulated-submit]');
+  await phase('validate');
+  await reveal(submit);
+  await pointer.travel(submit);
+  await clickFeedback(submit, cursor);
+  await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
+    {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
+  if (signal.aborted) { return; }
+  await animate(confirm, [{opacity: 1}, {opacity: 0}], 220);
+  if (signal.aborted) { return; }
+  confirm.hidden = true;
+  // Move the natural selected cards only after the illustrated confirmation.
+  // Compact/reduced modes keep the same outcome without a mouse-only gesture.
+  // Confirmation can leave the scrollport focused on its destination field.
+  // Reveal the cards before measuring displacement; reuse the same paused,
+  // cancellable scene clock rather than scrolling the Moodle page behind it.
+  await reveal(stage);
+  if (signal.aborted) { return; }
+  if (!compact && !still) {
+    const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
+    const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
+    await Promise.all(selected.map((node, index) => {
+      const source = node.getBoundingClientRect();
+      return animate(node, [{transform: 'translate(0,0)', opacity: 1},
+        {transform: `translate(${destination.left - source.left}px, ${destination.top - source.top + 32 + index * 12}px)`,
+          opacity: 0.25}], 1200);
+    }));
+  }
+};
+
+// Desktop Add: drag a ghost of the participant card onto the destination group.
+const playMembershipDragFlow = async(ctx, pointer, person) => {
+  const {scene, stage, still, signal, wait, animate, phase, setDropFrame, cancelDropFrame} = ctx;
+  await phase('menu');
+  if (signal.aborted || still) { return; }
+  const ghost = person.cloneNode(true);
+  ghost.removeAttribute('data-guide-person');
+  ghost.setAttribute('data-guide-ghost', '');
+  ghost.setAttribute('aria-hidden', 'true');
+  ghost.querySelectorAll('small').forEach(node => node.remove());
+  ghost.classList.remove('is-selected');
+  const badge = document.createElement('span');
+  badge.className = 'easyedu-guide-scene__drag-badge';
+  const grip = document.createElement('span');
+  grip.className = 'fa fa-grip-vertical';
+  badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
+  ghost.appendChild(badge);
+  stage.appendChild(ghost);
+  const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
+  ghost.style.left = `${a.left - b.left}px`;
+  ghost.style.top = `${a.top - b.top}px`;
+  await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
+  const destinationNode = stage.querySelector('[data-guide-destination]');
+  const destination = destinationNode.getBoundingClientRect();
+  const dx = destination.left - a.left, dy = destination.top - a.top + 32;
+  const startPoint = {...pointer.point};
+  // One displacement, duration and easing for ghost and pointer. Track
+  // actual animated paint to reveal the destination only while hovering.
+  const trackDrop = () => {
+    if (signal.aborted || !ghost.isConnected) { return; }
+    const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
+    destinationNode.classList.toggle('is-guide-drop-target',
+      card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
+    setDropFrame(requestAnimationFrame(trackDrop));
+  };
+  trackDrop();
+  await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
+    {transform: `translate(${dx}px,${dy}px)`}], 1200),
+    pointer.travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
+  if (signal.aborted) { return; }
+  cancelDropFrame();
+  // K17-43: the participant card stays where it was dropped and only fades out; it no longer
+  // travels back to the left.
+  await wait(220);
+  destinationNode.classList.remove('is-guide-drop-target');
+  await animate(ghost, [{opacity: 1}, {opacity: 0}], 220);
+  ghost.remove();
+};
+
+// K17-28, K17-45: the final state (member shown in the destination, moved cards gone) replaces the
+// animated one behind the common short fade, then the end card and the recap.
+const finishMembershipScene = async(ctx, pointer, {cursor, member}) => {
+  const {scene, stage, mode, compact, result, recap, origin, target, signal, animate, reveal, restFlash, writeLive,
+    markFinished, settleHeader} = ctx;
+  await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
+  if (signal.aborted) { return; }
+  cursor.hidden = true;
+  pointer.release();
+  // The destination group no longer jumps.
+  await restFlash(() => {
+    member.hidden = false;
+    stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
+    stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => {
+      node.checked = false;
+    });
+    if (mode !== 'add') {
+      stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => {
+        node.hidden = true;
+      });
+      const empty = stage.querySelector('[data-guide-source-empty]');
+      if (empty) {
+        empty.hidden = false;
+      }
+    }
+  });
+  if (signal.aborted) {
+    return;
+  }
+  if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
+  if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
+  result.textContent = result.getAttribute(`data-${mode}`) || '';
+  await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+  markFinished();
+  await settleHeader();
+  if (signal.aborted) { return; }
+  if (recap) {
+    // Keep it transparent during insertion/reveal: previously one fully
+    // painted frame preceded the fade-in and caused the completion flash.
+    recap.style.opacity = '0';
+    recap.hidden = false;
+    // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.
+    recap.querySelectorAll('[data-guide-phase]').forEach(item => {
+      item.hidden = mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase);
+      const copy = (compact && mode === 'add' && item.dataset.compactAdd) ||
+        (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+      // The ordered list supplies recap numbering; live instructions retain their phase prefix.
+      item.textContent = copy.replace(/^\d+\s*[·.]\s*/, '');
+      item.removeAttribute('aria-current');
+    });
+    await reveal(recap);
+    await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
+    recap.style.removeProperty('opacity');
+  }
+  if (signal.aborted) { return; }
+  scene.dataset.guideSceneFinished = 'true';
+};
+
+// Membership and actions: select, then the menu/confirmation flow (Move, compact) or the drag (desktop Add).
+const playMembershipScene = async ctx => {
+  const {scene, stage, mode, compact, signal, clickFeedback, reveal, phase} = ctx;
+  const person = stage.querySelector('[data-guide-person]');
+  const member = stage.querySelector('[data-guide-member]');
+  const cursor = stage.querySelector('[data-guide-cursor]');
+  const menu = stage.querySelector('[data-guide-menu]');
+  const confirm = stage.querySelector('[data-guide-confirm]');
+  const pointer = createMembershipPointer(ctx, cursor);
+  if (compact && mode === 'add') {
+    applyCompactAddCopy(scene, stage, menu, confirm);
+  }
+  await reveal(person);
+  await pointer.travel(person, 750, true);
+  await clickFeedback(person, cursor);
+  stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
+  stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
+  await phase('select');
+  if (signal.aborted) { return; }
+  if (mode !== 'add' || compact) {
+    await playMembershipMenuFlow(ctx, pointer, {person, cursor, menu, confirm});
+  } else {
+    await playMembershipDragFlow(ctx, pointer, person);
+  }
+  if (signal.aborted) { return; }
+  await finishMembershipScene(ctx, pointer, {cursor, member});
+};
+
+const DISCOVERY_SCENE_PLAYERS = {
+  simplecreate: ctx => playSpecimenScene(ctx, playSimpleCreateSteps),
+  creation: ctx => playSpecimenScene(ctx, playCreationSteps),
+  filters: ctx => playSpecimenScene(ctx, playFiltersSteps),
+  midrop: ctx => playSpecimenScene(ctx, playMassImportDropSteps),
+  mipreview: ctx => playSpecimenScene(ctx, playMassImportPreviewSteps),
+  inspection: playInspectionScene,
+  membership: playMembershipScene,
+  actions: playMembershipScene,
+};
+
 const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   stopDiscoveryScene(root);
   if (!scene) { return; }
@@ -2049,7 +2894,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection', 'simplecreate', 'creation', 'filters', 'midrop', 'mipreview'].includes(kind)) {
+  if (!Object.prototype.hasOwnProperty.call(DISCOVERY_SCENE_PLAYERS, kind)) {
     return;
   }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
@@ -2401,8 +3246,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   };
   // J-G2 (AN-2): a pointer that is not shown yet appears near its target (160 ms fade, then a
   // 24 px approach) instead of crossing the stage from its top-left corner; any travel keeps a
-  // readable speed (0.8 px/ms at most).
-  const POINTER_SPEED = 0.8;
+  // readable speed (0.8 px/ms at most, DISCOVERY_POINTER_SPEED).
   const movePointer = async(cursorEl, x, y, duration) => {
     const destination = `translate(${x}px, ${y}px)`;
     if (cursorEl.hidden) {
@@ -2416,7 +3260,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
     const distance = Math.hypot(x - from.m41, y - from.m42);
     await animate(cursorEl, [{transform: from.toString()}, {transform: destination}],
-      Math.max(duration, Math.round(distance / POINTER_SPEED)));
+      Math.max(duration, Math.round(distance / DISCOVERY_POINTER_SPEED)));
   };
   // J-G1 (K15-30, P-G3): touch pointer gestures on the same WAAPI clock (animate/wait/gate), so Pause, Next phase
   // and departure own them. A finger does not travel: it lifts (80 ms fade), is placed (160 ms fade and 0.8 to 1
@@ -2626,6 +3470,27 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     }
     await wait(reading);
   };
+  // Same narration and reading clock as phase(), with the copy carried by the specimen stage's labels.
+  const narrate = async number => {
+    assertActive();
+    skipping = false;
+    // A touch variant of the narration, when the root supplies one (GMI-C3 "Tap" wording).
+    const text = (compact && stage.getAttribute(`data-guide-phase-${number}-compact-label`)) ||
+      stage.getAttribute(`data-guide-phase-${number}-label`) || '';
+    await writeLive(text, 'active');
+    if (controller.signal.aborted) { return; }
+    scene.dataset.guidePhase = String(number);
+    advancing = false;
+    syncPlayback(paused ? 'paused' : 'playing');
+    await gate();
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+    const maximum = Math.max(minimum,
+      Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+    const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+    const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+    await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
+  };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
     headerObserver?.disconnect();
@@ -2638,788 +3503,28 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-destination]')?.classList.remove('is-guide-drop-target');
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
-  const run = async() => {
-    if (['simplecreate', 'creation', 'filters', 'midrop', 'mipreview'].includes(kind)) {
-      // J-G4 (P-G5), K17-36, K17-44: illustration only. Readonly fields and disabled buttons, never a Moodle
-      // command. Pointer, typing, narration and reading clock are shared by the three demonstrations.
-      const pick = selector => stage.querySelector(selector);
-      const cursor = pick('[data-guide-cursor]');
-      const field = role => pick(`[data-guide-simplecreate-input="${role}"]`);
-      const submit = role => pick(`[data-guide-simplecreate-submit="${role}"]`);
-      const created = role => pick(`[data-guide-simplecreate-result="${role}"]`);
-      const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
-      const pointAt = async element => {
-        assertActive();
-        if (!cursor || !element) { return; }
-        await gate();
-        const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
-        const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
-        if (compact) { await touchPointer.place(cursor, x, y); return; }
-        if (still) {
-          await placeCursor(cursor, `translate(${x}px, ${y}px)`);
-          return;
-        }
-        await movePointer(cursor, x, y, 520);
-      };
-      const hidePointer = async() => {
-        if (!cursor || cursor.hidden) { return; }
-        if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
-        cursor.hidden = true;
-        // The retained travel animations of a hidden pointer are released with it.
-        animations.forEach(animation => {
-          if (animation.effect?.target === cursor) {
-            animation.cancel();
-            animations.delete(animation);
-          }
-        });
-      };
-      const press = element => element ? clickFeedback(element, cursor) : Promise.resolve();
-      const type = async(input, text, step = 45) => {
-        if (!input) { return; }
-        input.value = '';
-        for (const character of text) {
-          assertActive();
-          input.value += character;
-          await wait(still ? 0 : step);
-        }
-        input.value = text;
-      };
-      const show = async element => {
-        if (!element) { return; }
-        element.hidden = false;
-        await reveal(element);
-        await animate(element, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}],
-          160, false);
-      };
-      // Same narration and reading clock as phase(), with the copy carried by the root labels.
-      const say = async number => {
-        assertActive();
-        skipping = false;
-        // A touch variant of the narration, when the root supplies one (GMI-C3 "Tap" wording).
-        const text = (compact && stage.getAttribute(`data-guide-phase-${number}-compact-label`)) ||
-          stage.getAttribute(`data-guide-phase-${number}-label`) || '';
-        await writeLive(text, 'active');
-        if (controller.signal.aborted) { return; }
-        scene.dataset.guidePhase = String(number);
-        advancing = false;
-        syncPlayback(paused ? 'paused' : 'playing');
-        await gate();
-        const words = text.trim().split(/\s+/).filter(Boolean).length;
-        const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
-        const maximum = Math.max(minimum,
-          Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
-        const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
-        const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
-        await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
-      };
-      if (kind === 'simplecreate') {
-        // Create ONE group, then ONE grouping, then rename the group.
-        const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
-        const cardName = pick('[data-guide-simplecreate-card-name]');
-        const edit = pick('[data-guide-simplecreate-edit]');
-        const rename = pick('[data-guide-simplecreate-rename]');
-        await reveal(stage);
-        await pointAt(field('group'));
-        await say(1);
-        await press(field('group'));
-        await type(field('group'), sample('name'));
-        await pointAt(submit('group'));
-        await say(2);
-        await press(submit('group'));
-        if (field('group')) {
-          field('group').value = '';
-        }
-        await show(created('group'));
-        await show(groupingStage);
-        await pointAt(field('grouping'));
-        await say(3);
-        await press(field('grouping'));
-        await type(field('grouping'), sample('grouping'));
-        if (compact) {
-          await pointAt(submit('grouping'));
-        }
-        await press(submit('grouping'));
-        if (field('grouping')) {
-          field('grouping').value = '';
-        }
-        await show(created('grouping'));
-        await pointAt(edit);
-        await say(4);
-        await press(edit);
-        if (cardName && rename) {
-          // K17-32: the rename is slow enough to be read (pause, typing at about 2.5 times the former pace,
-          // pause), then the title returns through the common fade.
-          cardName.hidden = true;
-          rename.hidden = false;
-          await wait(still ? 0 : 600);
-          await type(rename, sample('renamed'), 115);
-          await wait(still ? 0 : 1000);
-          await restFlash(() => {
-            cardName.textContent = sample('renamed');
-            rename.hidden = true;
-            cardName.hidden = false;
-          });
-        }
-      } else if (kind === 'creation') {
-        // K17-36: names separated by a comma or a semicolon, then a formula, then the same for groupings.
-        const input = pick('[data-guide-pattern]');
-        const label = pick('[data-guide-pattern-label]');
-        const groupOut = pick('[data-guide-names]');
-        const groupingBlock = pick('[data-guide-grouping-block]');
-        const groupingOut = pick('[data-guide-grouping-names]');
-        const warning = pick('[data-guide-warning-host]');
-        const attr = name => stage.getAttribute(`data-guide-creation-${name}`) || '';
-        const fill = (out, selector, names) => {
-          const template = pick(selector);
-          out.replaceChildren();
-          names.forEach(name => {
-            const card = template.content.firstElementChild.cloneNode(true);
-            const title = card.querySelector('[data-guide-name]');
-            if (title) {
-              title.textContent = name;
-            }
-            card.style.opacity = '0';
-            out.appendChild(card);
-          });
-          return [...out.children];
-        };
-        const appear = async cards => {
-          for (const card of cards) {
-            await animate(card, [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}],
-              200, false);
-            card.style.removeProperty('opacity');
-          }
-        };
-        input.readOnly = true;
-        input.value = '';
-        input.removeAttribute('aria-invalid');
-        groupOut.replaceChildren();
-        groupingOut.replaceChildren();
-        groupingBlock.hidden = true;
-        if (warning) {
-          warning.hidden = true;
-        }
-        if (label && !label.dataset.original) {
-          label.dataset.original = label.textContent;
-        }
-        await reveal(stage);
-        await pointAt(input);
-        await say(1);
-        await press(input);
-        await type(input, attr('list'));
-        let cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
-        await reveal(groupOut);
-        await appear(cards);
-        await say(2);
-        await type(input, attr('formula'));
-        cards = fill(groupOut, '[data-guide-name-card]', expandCreateNames(input.value) || []);
-        await appear(cards);
-        await say(3);
-        if (label) {
-          label.textContent = label.dataset.groupingLabel || label.textContent;
-        }
-        await type(input, attr('groupings'));
-        groupingBlock.hidden = false;
-        cards = fill(groupingOut, '[data-guide-grouping-card]', expandCreateNames(input.value) || []);
-        await reveal(groupingBlock);
-        await appear(cards);
-        input.readOnly = false;
-      } else if (kind === 'midrop') {
-        // GMI-C3: drag "td-2026.xlsx" into the deposit (touch: browse), Preview, then the preview opens and
-        // the file column folds. 'minimal' shows the final state and the recap at once, with no clock.
-        const deposit = pick('[data-guide-mi-deposit]');
-        const file = pick('[data-guide-mi-file]');
-        const submit = pick('[data-guide-mi-submit]');
-        const ghost = pick('[data-guide-mi-ghost]');
-        const results = pick('[data-guide-mi-results]');
-        const openPreview = () => {
-          stage.classList.add('is-previewed');
-          ['[data-guide-mi-upload-body]', '[data-guide-mi-empty]'].forEach(selector => {
-            const node = pick(selector);
-            if (node) {
-              node.hidden = true;
-            }
-          });
-          ['[data-guide-mi-toggle]', '[data-guide-mi-preview]'].forEach(selector => {
-            const node = pick(selector);
-            if (node) {
-              node.hidden = false;
-            }
-          });
-        };
-        if (reduced) {
-          if (file) {
-            file.hidden = false;
-          }
-          openPreview();
-        } else {
-          await reveal(stage);
-          if (compact || !ghost || !deposit || !results) {
-            const browse = pick('[data-guide-mi-browse]');
-            await pointAt(browse);
-            await say(1);
-            await press(browse);
-          } else {
-            // The file ghost starts over the results column and follows the pointer into the deposit.
-            const frame = stage.getBoundingClientRect();
-            const centre = element => {
-              const box = element.getBoundingClientRect();
-              return [box.left - frame.left + box.width / 2, box.top - frame.top + box.height / 2];
-            };
-            const [sx, sy] = centre(results);
-            const [ex, ey] = centre(deposit);
-            ghost.hidden = false;
-            const gx = ghost.offsetWidth / 2, gy = ghost.offsetHeight / 2;
-            const from = `translate(${sx - gx}px, ${sy - gy}px)`, to = `translate(${ex - gx}px, ${ey - gy}px)`;
-            ghost.style.transform = from;
-            await animate(ghost, [{opacity: 0}, {opacity: 1}], 160, false);
-            await pointAt(ghost);
-            await say(1);
-            if (still) {
-              ghost.style.transform = to;
-              await placeCursor(cursor, `translate(${ex}px, ${ey}px)`);
-            } else {
-              const duration = Math.max(700, Math.round(Math.hypot(ex - sx, ey - sy) / POINTER_SPEED));
-              const pointer = new DOMMatrixReadOnly(getComputedStyle(cursor).transform);
-              await Promise.all([
-                animate(ghost, [{transform: from}, {transform: to}], duration),
-                animate(cursor, [{transform: pointer.toString()}, {transform: `translate(${ex}px, ${ey}px)`}], duration)
-              ]);
-              ghost.style.transform = to;
-            }
-            // The deposit's own drag-over state names the drop ("Drop your import file here").
-            deposit.classList.add('is-dragover');
-            await wait(700);
-            deposit.classList.remove('is-dragover');
-            await animate(ghost, [{opacity: 1}, {opacity: 0}], 160, false);
-            ghost.hidden = true;
-          }
-          await show(file);
-          await pointAt(submit);
-          await say(2);
-          await press(submit);
-          await hidePointer();
-          await restFlash(openPreview);
-          if (results) {
-            await reveal(results);
-          }
-          await say(3);
-        }
-      } else if (kind === 'mipreview') {
-        // GMI-C3: read the statuses, leave row 5 out, correct row 6, see that its status does not change.
-        const wrap = pick('[data-guide-mi-table-wrap]');
-        const row = line => pick(`[data-guide-mi-row="${line}"]`);
-        const status = line => row(line)?.querySelector('[data-guide-mi-status]');
-        const include = row(5)?.querySelector('[data-guide-mi-include]');
-        const identifier = row(6)?.querySelector('[data-guide-mi-identifier]');
-        const typed = stage.getAttribute('data-guide-mi-typed') || '';
-        const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
-        const exclude = () => {
-          if (include) {
-            include.checked = false;
-          }
-          row(5)?.classList.add('is-excluded');
-        };
-        // A phone shows the table in its own horizontal frame: bring the phase's cell into it at once
-        // (never the page, never a second clock), before the pointer measures it.
-        const showCell = cell => {
-          if (!wrap || !cell) {
-            return;
-          }
-          const frame = wrap.getBoundingClientRect(), box = cell.getBoundingClientRect();
-          if (box.left < frame.left || box.right > frame.right) {
-            wrap.scrollLeft += box.left - frame.left - Math.max(0, (frame.width - box.width) / 2);
-          }
-        };
-        if (reduced) {
-          exclude();
-          if (identifier) {
-            identifier.value = typed;
-          }
-        } else {
-          await reveal(stage);
-          showCell(status(5));
-          await pointAt(status(5));
-          ring(status(5), true);
-          ring(status(6), true);
-          await say(1);
-          ring(status(5), false);
-          ring(status(6), false);
-          showCell(include);
-          await pointAt(include);
-          await say(2);
-          await press(include);
-          exclude();
-          await animate(row(5), [{opacity: 1}, {opacity: 0.45}], 240, false);
-          showCell(identifier);
-          await pointAt(identifier);
-          await say(3);
-          await press(identifier);
-          await type(identifier, typed, 90);
-          showCell(status(6));
-          await pointAt(status(6));
-          ring(status(6), true);
-          await say(4);
-          ring(status(6), false);
-        }
-      } else {
-        // K17-44: search "TD", add the role filter, select the results, clear the selection.
-        const input = pick('[data-guide-filters-input]');
-        const role = pick('[data-guide-filters-role]');
-        const select = pick('[data-guide-filters-select]');
-        const count = pick('[data-guide-filters-count]');
-        const selection = pick('[data-guide-filters-selection]');
-        const clear = pick('[data-guide-filters-clear]');
-        const cards = [...stage.querySelectorAll('[data-guide-filters-card]')];
-        const attr = name => stage.getAttribute(`data-guide-${name}`) || '';
-        const isMatch = card => card.dataset.guideFiltersMatch === '1';
-        const setSelected = on => cards.forEach(card => {
-          const selected = on && isMatch(card);
-          card.querySelector('.local-groupimport-easystud-user')?.classList.toggle('is-selected', selected);
-          const box = card.querySelector('input[type="checkbox"]');
-          if (box) {
-            box.checked = selected;
-          }
-        });
-        const ring = (element, on) => element?.classList.toggle('is-guide-pointed', on);
-        await reveal(stage);
-        await pointAt(input);
-        await say(1);
-        await press(input);
-        await type(input, attr('filters-query'), 170);
-        await Promise.all(cards.filter(card => !isMatch(card)).map(card => animate(card, [{opacity: 1}, {opacity: 0}], 220)));
-        cards.filter(card => !isMatch(card)).forEach(card => {
-          card.hidden = true;
-        });
-        count.textContent = attr('count-filtered');
-        await say(2);
-        role.classList.remove('is-spacer');
-        role.removeAttribute('aria-hidden');
-        await animate(role, [{opacity: 0}, {opacity: 1}], 240);
-        await say(3);
-        await pointAt(select);
-        ring(select, true);
-        await press(select);
-        setSelected(true);
-        select.textContent = attr('deselect-label');
-        selection.hidden = false;
-        await animate(selection, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}], 200);
-        await say(4);
-        ring(select, false);
-        await pointAt(clear);
-        ring(clear, true);
-        await press(clear);
-        await hidePointer();
-        // K17-28: the list returns to its resting state behind the common short fade.
-        await restFlash(() => {
-          input.value = '';
-          cards.forEach(card => {
-            card.hidden = false;
-          });
-          setSelected(false);
-          count.textContent = attr('count-all');
-          role.classList.add('is-spacer');
-          role.setAttribute('aria-hidden', 'true');
-          select.textContent = attr('select-label');
-          selection.hidden = true;
-          ring(clear, false);
-        });
-      }
-      await hidePointer();
-      if (controller.signal.aborted) { return; }
-      await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
-      if (controller.signal.aborted) { return; }
+  // I14: the scene-specific choreography lives in DISCOVERY_SCENE_PLAYERS; this function owns the
+  // shared playback clock and hands it over through one context object.
+  const ctx = {
+    root, scene, kind, mode, stage, result, recap, origin, target, readingBody, sceneHeader,
+    compact, still, reduced, signal: controller.signal, animations,
+    assertActive, gate, wait, animate, restFlash, placeCursor, movePointer, touchPointer, clickFeedback,
+    writeLive, reveal, revealPrepared, phase, narrate, settleHeader,
+    isFinished: () => finished,
+    markFinished: () => {
       finished = true;
       advancing = false;
       syncPlayback('finished');
-      await settleHeader();
-      if (controller.signal.aborted) {
-        return;
-      }
-      const specimenRecap = kind === 'filters' ?
-        scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') :
-        ['simplecreate', 'midrop', 'mipreview'].includes(kind) ? scene.querySelector('[data-guide-recap]') : null;
-      if (specimenRecap) {
-        specimenRecap.querySelectorAll('[data-guide-phase]').forEach(item => {
-          item.textContent = item.textContent.replace(/^\d+\s*[\u00b7.]\s*/, '');
-          item.removeAttribute('aria-current');
-        });
-        specimenRecap.style.opacity = '0';
-        specimenRecap.hidden = false;
-        await reveal(specimenRecap);
-        await animate(specimenRecap, [{opacity: 0}, {opacity: 1}], 280);
-        specimenRecap.style.removeProperty('opacity');
-      }
-      if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
-      return;
+    },
+    setDropFrame: frame => { dropFrame = frame; },
+    cancelDropFrame: () => {
+      cancelAnimationFrame(dropFrame);
+      dropFrame = null;
     }
-    if (kind === 'inspection') {
-      const card = stage.querySelector('[data-guide-inspection-card]');
-      const trigger = stage.querySelector('[data-guide-inspection-trigger]');
-      const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
-      const menu = stage.querySelector('[data-guide-inspection-menu]');
-      const panel = stage.querySelector('[data-guide-inspection-panel]');
-      const input = stage.querySelector('[data-guide-inspection-input]');
-      const chips = stage.querySelector('[data-guide-inspection-chips]');
-      const cancel = panel.querySelector('[data-guide-inspection-cancel]');
-      const cursor = stage.querySelector('[data-guide-inspection-cursor]');
-      const value = input.getAttribute('data-guide-example-value') || '';
-      trigger.hidden = compact;
-      if (compactTrigger) { compactTrigger.hidden = !compact; }
-      // Illustration only: never focus, click or resolve a native identifier.
-      // Reuse the shared pointer paint and playback clock, not a mobile mouse.
-      const pointAt = async(element) => {
-        assertActive();
-        if (!cursor) { return; }
-        await gate();
-        assertActive();
-        const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
-        const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
-        if (compact) { await touchPointer.place(cursor, x, y); return; }
-        if (still) {
-          await placeCursor(cursor, `translate(${x}px, ${y}px)`);
-          return;
-        }
-        await movePointer(cursor, x, y, 650);
-      };
-      const hidePointer = async() => {
-        assertActive();
-        if (still && cursor) {
-          cursor.hidden = true;
-          return;
-        }
-        if (!cursor || cursor.hidden) { return; }
-        await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
-        cursor.hidden = true;
-        animations.forEach(animation => {
-          if (animation.effect?.target === cursor) { animation.cancel(); animations.delete(animation); }
-        });
-      };
-      // Animate the auto-sized card while keeping the natural field's layout.
-      // Same WAAPI set/clock as reading: Pause, Next and departure own both.
-      // J-G2 (AN-3): the card reaches its new size at once and only the panel fades and slides
-      // (transform/opacity, no animated height, so no layout work per frame and no stutter).
-      const disclose = async open => {
-        await gate();
-        assertActive();
-        if (open) {
-          panel.hidden = false;
-          await animate(panel, [{opacity: 0, transform: 'translateY(-4px)'},
-            {opacity: 1, transform: 'translateY(0)'}], 240, false);
-        } else {
-          await animate(panel, [{opacity: 1}, {opacity: 0}], 160, false);
-          panel.hidden = true;
-        }
-      };
-      await reveal(card);
-      // Touch: the finger rests above the card's menu button during the first phase, taps it, then rests on
-      // the menu entry it names (no mouse trajectory).
-      if (compact && compactTrigger) { await pointAt(compactTrigger); }
-      await phase('orient');
-      if (controller.signal.aborted) { return; }
-      if (compact) {
-        await clickFeedback(compactTrigger, cursor);
-        menu.hidden = false;
-        await reveal(menu);
-        await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
-        await pointAt(menu.querySelector('strong'));
-      } else {
-        await pointAt(trigger);
-      }
-      await phase('open');
-      if (controller.signal.aborted) { return; }
-      await clickFeedback(compact ? menu.querySelector('strong') : trigger, cursor);
-      await hidePointer();
-      menu.hidden = true;
-      await disclose(true);
-      await reveal(panel);
-      if (controller.signal.aborted) { return; }
-      input.value = value;
-      await pointAt(input);
-      await phase('enter');
-      if (controller.signal.aborted) { return; }
-      await clickFeedback(input, cursor);
-      await hidePointer();
-      // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
-      chips.style.opacity = '0';
-      chips.hidden = false;
-      if (controller.signal.aborted) { return; }
-      await reveal(chips);
-      await animate(chips, [{opacity: 0}, {opacity: 1}], 260);
-      chips.style.removeProperty('opacity');
-      await phase('review');
-      if (controller.signal.aborted) { return; }
-      if (cancel) { await reveal(cancel); }
-      if (cancel) { await pointAt(cancel); }
-      await phase('return');
-      if (controller.signal.aborted) { return; }
-      await clickFeedback(cancel, cursor);
-      await hidePointer();
-      // K17-28: the card returns to its resting size behind the common short fade.
-      await restFlash(() => {
-        panel.hidden = true;
-        input.value = '';
-        chips.hidden = true;
-      });
-      if (controller.signal.aborted) { return; }
-      result.textContent = result.dataset.inspection || scene.easyeduGuideResultOriginal;
-      await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
-      if (controller.signal.aborted) { return; }
-      finished = true;
-      advancing = false;
-      syncPlayback('finished');
-      await settleHeader();
-      if (controller.signal.aborted) { return; }
-      if (recap) {
-        recap.style.opacity = '0';
-        recap.hidden = false;
-        recap.querySelectorAll('[data-guide-phase]').forEach(item => {
-          item.textContent = ((compact && item.dataset.compact) || item.dataset.original)
-            .replace(/^\d+\s*[\u00b7.]\s*/, '');
-          item.removeAttribute('aria-current');
-        });
-        await reveal(recap);
-        await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
-        recap.style.removeProperty('opacity');
-      }
-      if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
-      return;
-    }
-    const person = stage.querySelector('[data-guide-person]');
-    const member = stage.querySelector('[data-guide-member]');
-    const cursor = stage.querySelector('[data-guide-cursor]');
-    const menu = stage.querySelector('[data-guide-menu]');
-    const confirm = stage.querySelector('[data-guide-confirm]');
-    // The pointer keeps its original travel/drag clock. It is decorative and
-    // must not paint through sticky chrome while its stage is being scrolled.
-    let cursorVisibilityFrame = null;
-    const cursorVisibility = cursor.style.visibility;
-    const updateCursorVisibility = () => {
-      if (controller.signal.aborted || finished) { return; }
-      const body = readingBody?.getBoundingClientRect();
-      const header = sceneHeader?.getBoundingClientRect();
-      const point = cursor.getBoundingClientRect();
-      const top = body && header && header.top <= body.top + 2 ? header.bottom : body?.top;
-      cursor.style.visibility = body && (point.top < top || point.bottom > body.bottom) ? 'hidden' : cursorVisibility;
-      // Only a gliding pointer or scroll needs a per-frame check; below the 'full' level it is
-      // evaluated when the pointer is placed and when the reading surface scrolls.
-      if (!still) { cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility); }
-    };
-    updateCursorVisibility();
-    if (still) {
-      readingBody?.addEventListener('scroll', updateCursorVisibility, {passive: true});
-    }
-    controller.signal.addEventListener('abort', () => {
-      cancelAnimationFrame(cursorVisibilityFrame);
-      readingBody?.removeEventListener('scroll', updateCursorVisibility);
-      cursor.style.visibility = cursorVisibility;
-    }, {once: true});
-    if (compact && mode === 'add') {
-      // Native mobile Add uses Participants > Move participants (addusers),
-      // not the member-transfer action that removes the source membership.
-      stage.querySelector('[data-guide-source-title]').textContent = scene.dataset.guideMobileParticipantsLabel;
-      menu.querySelector('strong').textContent = scene.dataset.guideMobileAddAction;
-      menu.querySelector('[data-guide-member-remove]').hidden = true;
-      confirm.querySelector('header strong').textContent = scene.dataset.guideMobileAddAction;
-      confirm.querySelector('[data-guide-simulated-submit]').textContent = scene.dataset.guideMobileAddSubmit ||
-        confirm.querySelector('[data-guide-simulated-submit]').textContent;
-      confirm.querySelector('[data-guide-consequence]').textContent = scene.dataset.guideMobileAddConsequence;
-    }
-    let cursorPoint = null;
-    const travelPoint = async(point, duration) => {
-      assertActive();
-      cursorPoint = point;
-      if (compact) {
-        await touchPointer.place(cursor, point.x, point.y);
-        updateCursorVisibility();
-        return;
-      }
-      if (still) {
-        await placeCursor(cursor, `translate(${point.x}px, ${point.y}px)`);
-        updateCursorVisibility();
-        return;
-      }
-      await movePointer(cursor, point.x, point.y, duration);
-    };
-    const travel = async(element, duration = 750, cardAnchor = false) => {
-      assertActive();
-      const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
-      const point = {
-        x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
-        y: a.top - b.top + (cardAnchor ? Math.min(28, a.height / 2) : a.height / 2)
-      };
-      await travelPoint(point, duration);
-    };
-    await reveal(person);
-    await travel(person, 750, true);
-    await clickFeedback(person, cursor);
-    stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
-    stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
-    await phase('select');
-    if (controller.signal.aborted) { return; }
-    if (mode !== 'add' || compact) {
-      // Desktop follows the illustrated click. Compact/reduced scenes anchor
-      // to the same card without implying a mouse-only mobile interaction.
-      const stageBounds = stage.getBoundingClientRect(), cardBounds = person.getBoundingClientRect();
-      const point = cursorPoint || {x: cardBounds.left - stageBounds.left + 24,
-        y: cardBounds.bottom - stageBounds.top};
-      await phase('menu', () => revealPrepared(menu, () => {
-        const menuBounds = menu.getBoundingClientRect();
-        stage.style.setProperty('--easyedu-guide-menu-x',
-          `${Math.max(0, Math.min(point.x + 12, stageBounds.width - menuBounds.width))}px`);
-        stage.style.setProperty('--easyedu-guide-menu-y',
-          `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
-      }));
-      if (controller.signal.aborted) { return; }
-      await travel(menu.querySelector('strong'));
-      await clickFeedback(menu.querySelector('strong'), cursor);
-      await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
-      if (controller.signal.aborted) { return; }
-      menu.hidden = true;
-      await phase('confirm', () => revealPrepared(confirm));
-      if (controller.signal.aborted) { return; }
-      if (compact) {
-        // Touch: choose the destination field of the confirmation before pressing the button.
-        await travel(confirm.querySelector('.easyedu-guide-scene__destination'));
-        await clickFeedback(confirm.querySelector('.easyedu-guide-scene__destination'), cursor);
-      }
-      const submit = confirm.querySelector('[data-guide-simulated-submit]');
-      await phase('validate');
-      await reveal(submit);
-      await travel(submit);
-      await clickFeedback(submit, cursor);
-      await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
-        {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
-      if (controller.signal.aborted) { return; }
-      await animate(confirm, [{opacity: 1}, {opacity: 0}], 220);
-      if (controller.signal.aborted) { return; }
-      confirm.hidden = true;
-      // Move the natural selected cards only after the illustrated confirmation.
-      // Compact/reduced modes keep the same outcome without a mouse-only gesture.
-      // Confirmation can leave the scrollport focused on its destination field.
-      // Reveal the cards before measuring displacement; reuse the same paused,
-      // cancellable scene clock rather than scrolling the Moodle page behind it.
-      await reveal(stage);
-      if (controller.signal.aborted) { return; }
-      if (!compact && !still) {
-        const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
-        const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
-        await Promise.all(selected.map((node, index) => {
-          const source = node.getBoundingClientRect();
-          return animate(node, [{transform: 'translate(0,0)', opacity: 1},
-            {transform: `translate(${destination.left - source.left}px, ${destination.top - source.top + 32 + index * 12}px)`,
-              opacity: 0.25}], 1200);
-        }));
-        if (controller.signal.aborted) { return; }
-      }
-    } else if (!compact) {
-      await phase('menu');
-      if (controller.signal.aborted) { return; }
-      if (!still) {
-        const ghost = person.cloneNode(true);
-        ghost.removeAttribute('data-guide-person');
-        ghost.setAttribute('data-guide-ghost', '');
-        ghost.setAttribute('aria-hidden', 'true');
-        ghost.querySelectorAll('small').forEach(node => node.remove());
-        ghost.classList.remove('is-selected');
-        const badge = document.createElement('span');
-        badge.className = 'easyedu-guide-scene__drag-badge';
-        const grip = document.createElement('span');
-        grip.className = 'fa fa-grip-vertical';
-        badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
-        ghost.appendChild(badge);
-        stage.appendChild(ghost);
-        const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
-        ghost.style.left = `${a.left - b.left}px`;
-        ghost.style.top = `${a.top - b.top}px`;
-        await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
-        const destinationNode = stage.querySelector('[data-guide-destination]');
-        const destination = destinationNode.getBoundingClientRect();
-        const dx = destination.left - a.left, dy = destination.top - a.top + 32;
-        const startPoint = {...cursorPoint};
-        // One displacement, duration and easing for ghost and pointer. Track
-        // actual animated paint to reveal the destination only while hovering.
-        const trackDrop = () => {
-          if (controller.signal.aborted || !ghost.isConnected) { return; }
-          const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
-          destinationNode.classList.toggle('is-guide-drop-target',
-            card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
-          dropFrame = requestAnimationFrame(trackDrop);
-        };
-        trackDrop();
-        await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
-          {transform: `translate(${dx}px,${dy}px)`}], 1200),
-          travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
-        if (controller.signal.aborted) { return; }
-        cancelAnimationFrame(dropFrame); dropFrame = null;
-        // K17-43: the participant card stays where it was dropped and only fades out; it no longer
-        // travels back to the left.
-        await wait(220);
-        destinationNode.classList.remove('is-guide-drop-target');
-        await animate(ghost, [{opacity: 1}, {opacity: 0}], 220);
-        ghost.remove();
-      }
-    }
-    if (controller.signal.aborted) { return; }
-    await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
-    if (controller.signal.aborted) { return; }
-    cursor.hidden = true;
-    cancelAnimationFrame(cursorVisibilityFrame);
-    cursor.style.visibility = cursorVisibility;
-    // K17-28, K17-45: the final state (member shown in the destination, moved cards gone) replaces the
-    // animated one behind the common short fade, so the destination group no longer jumps.
-    await restFlash(() => {
-      member.hidden = false;
-      stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
-      stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => {
-        node.checked = false;
-      });
-      if (mode !== 'add') {
-        stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => {
-          node.hidden = true;
-        });
-        const empty = stage.querySelector('[data-guide-source-empty]');
-        if (empty) {
-          empty.hidden = false;
-        }
-      }
-    });
-    if (controller.signal.aborted) {
-      return;
-    }
-    if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
-    if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
-    result.textContent = result.getAttribute(`data-${mode}`) || '';
-    await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
-    finished = true;
-    advancing = false;
-    syncPlayback('finished');
-    await settleHeader();
-    if (controller.signal.aborted) { return; }
-    if (recap) {
-      // Keep it transparent during insertion/reveal: previously one fully
-      // painted frame preceded the fade-in and caused the completion flash.
-      recap.style.opacity = '0';
-      recap.hidden = false;
-      // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.
-      recap.querySelectorAll('[data-guide-phase]').forEach(item => {
-        item.hidden = mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase);
-        const copy = (compact && mode === 'add' && item.dataset.compactAdd) ||
-          (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
-        // The ordered list supplies recap numbering; live instructions retain their phase prefix.
-        item.textContent = copy.replace(/^\d+\s*[\u00b7.]\s*/, '');
-        item.removeAttribute('aria-current');
-      });
-      await reveal(recap);
-      await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
-      recap.style.removeProperty('opacity');
-    }
-    if (controller.signal.aborted) { return; }
-    scene.dataset.guideSceneFinished = 'true';
   };
   // A stopped run may reject after its replacement starts. It must never
   // stop that newer run or write back into its restored illustration.
-  run().catch(() => { if (!controller.signal.aborted) { stopDiscoveryScene(root); } });
+  DISCOVERY_SCENE_PLAYERS[kind](ctx).catch(() => { if (!controller.signal.aborted) { stopDiscoveryScene(root); } });
 };
 
 const stopSlideTransition = root => {
