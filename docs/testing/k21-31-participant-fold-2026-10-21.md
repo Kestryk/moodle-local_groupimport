@@ -1,5 +1,12 @@
 # K21-31 — Participant fold footer containment
 
+**Superseded 21/10/2026 by K21-37**: the participant card's fold chevron (K21-16),
+whose footer this lot fixed the overflow of, was removed entirely. Selecting a
+card now expands it and deselecting it collapses it again, with no dedicated
+fold control; `person-card-fold-content` and its `&-user` call site became
+dead code (the selector they contained can no longer match) and were removed.
+This report is kept for history.
+
 Base: `168dbba0`, including K21-16 (`49fd12f4`, `ccfae488`).
 Allocated native test copy: `http://localhost:8054`, course 71.
 

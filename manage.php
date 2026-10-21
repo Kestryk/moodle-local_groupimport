@@ -93,10 +93,10 @@ $managerinitargs = [
             'reload' => get_string('reload'),
             // K21-16: participant cards collapse their meta details by default (admin setting).
             // Unset config (fresh install, before the settings page defaults are applied) keeps
-            // the collapsed behaviour: only an explicit "0" switches it off.
+            // the collapsed behaviour: only an explicit "0" switches it off. K21-37: there is no
+            // fold control any more, selecting the card is what expands it (restored pre-K21-16
+            // behaviour); this setting only affects the state of an unselected card.
             'metacollapsedbydefault' => get_config('local_groupimport', 'participantcardcollapsed') !== '0',
-            'expandmetalabel' => get_string('participantcardexpand', 'local_groupimport'),
-            'collapsemetalabel' => get_string('participantcardcollapse', 'local_groupimport'),
         ],
         // Labels of the catalog group card rendered in the browser (templates/sm/group_card).
         'groupstrings' => [

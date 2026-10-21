@@ -1153,19 +1153,6 @@
 }
 
 
-// A participant card with a real fold footer must size itself from its content.
-// Legacy compact cards without this Kit control keep their historical height cap.
-@mixin person-card-fold-content {
-  &:has(.easyedu-person-card__fold-toggle) {
-    max-height: none;
-
-    // An explicit per-card expansion takes precedence over the old compact density.
-    .easyedu-person-card__meta:not([hidden]) {
-      display: grid;
-    }
-  }
-}
-
 // Long-list/Motion controllers own the window; remove only the legacy CSS cap.
 @mixin card-relation-list-unbounded { max-height: none; }
 

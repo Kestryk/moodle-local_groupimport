@@ -205,10 +205,6 @@ export const buildCardContext = (model, user) => {
                 tokenClass + ' ' + tokenClass + '--custom-info', '', strings.showless || '')),
         viewdetailslabel: strings.viewdetailslabel || '',
         metacollapsed,
-        metaariaexpanded: metacollapsed ? 'false' : 'true',
-        metatogglelabel: metacollapsed ? (strings.expandmetalabel || '') : (strings.collapsemetalabel || ''),
-        expandmetalabel: strings.expandmetalabel || '',
-        collapsemetalabel: strings.collapsemetalabel || '',
         // Light detail payload for the participant modal; heavy fields come from get_details.
         userdetailjson: JSON.stringify({
             id: user.id,

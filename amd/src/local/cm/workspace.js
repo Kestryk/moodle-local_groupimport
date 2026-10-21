@@ -600,23 +600,32 @@ const renderMobileActionBar = (root, counts, activetype) => {
     setSelectionBar(bar, true);
 };
 
-export const updateSelectionActions = root => {
-    const selectedUsers = getSelectedItems(root, 'participant');
-    const selectedGroups = getSelectedItems(root, 'group');
-    const selectedGroupings = getSelectedItems(root, 'grouping');
-    const selectedMembers = getSelectedItems(root, 'member');
-    const hasSelection = selectedUsers.length || selectedGroups.length || selectedGroupings.length || selectedMembers.length;
-    const activetype = getActiveSelectionType(root);
-    const labels = getLabels(root);
+/**
+ * K21-39: resize the single-selected participant card into or out of its expanded density, when
+ * switching the single selection from one card to another in compact view, animate BOTH the card
+ * losing its density (avatar/meta collapsing) and the one gaining it (avatar/meta revealing), each
+ * under its own overflow:clip resize. Only animating the latter left the former's reveal controls
+ * snap open/closed instantly, out of step with the other card still resizing (avatar "popping out"
+ * before its own card had grown to contain it). Extracted out of updateSelectionActions to keep
+ * its own complexity down (unchanged behaviour otherwise).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement[]} selectedUsers Currently selected participant cards.
+ */
+const applyParticipantDensityChange = (root, selectedUsers) => {
     const willSingleParticipantSelected = selectedUsers.length === 1 && !isResponsiveWorkspace();
     const previousExpandedParticipant = root.easystudExpandedParticipant || null;
     const nextExpandedParticipant = willSingleParticipantSelected ? selectedUsers[0] : null;
     const participantToResize = nextExpandedParticipant || previousExpandedParticipant;
-
-    root.classList.toggle('local-groupimport-easystud--has-selection', !!hasSelection);
+    const switchingParticipant = !!(previousExpandedParticipant && nextExpandedParticipant &&
+        previousExpandedParticipant !== nextExpandedParticipant);
+    const switchingAnimated = switchingParticipant && root.classList.contains(compactClass);
+    const collapsePrevious = () => {
+        previousExpandedParticipant.classList.remove('is-density-expanded');
+    };
     const updateParticipantDensity = () => {
         root.classList.toggle('local-groupimport-easystud--single-participant-selected', willSingleParticipantSelected);
-        if (previousExpandedParticipant && previousExpandedParticipant !== nextExpandedParticipant) {
+        if (previousExpandedParticipant && previousExpandedParticipant !== nextExpandedParticipant && !switchingAnimated) {
             previousExpandedParticipant.classList.remove('is-density-expanded');
         }
         if (nextExpandedParticipant) {
@@ -627,7 +636,13 @@ export const updateSelectionActions = root => {
             syncParticipantTagOverflow(participantToResize);
         }
     };
-    if (participantToResize && previousExpandedParticipant !== nextExpandedParticipant &&
+    if (switchingAnimated) {
+        Motion.resize(previousExpandedParticipant, collapsePrevious, {duration: Motion.timing.normal});
+        Motion.resize(nextExpandedParticipant, updateParticipantDensity, {
+            duration: Motion.timing.normal,
+            onComplete: () => requestGuideHighlightRefresh(root),
+        });
+    } else if (participantToResize && previousExpandedParticipant !== nextExpandedParticipant &&
             root.classList.contains(compactClass)) {
         Motion.resize(participantToResize, updateParticipantDensity, {
             duration: Motion.timing.normal,
@@ -637,6 +652,19 @@ export const updateSelectionActions = root => {
         updateParticipantDensity();
     }
     root.easystudExpandedParticipant = nextExpandedParticipant;
+};
+
+export const updateSelectionActions = root => {
+    const selectedUsers = getSelectedItems(root, 'participant');
+    const selectedGroups = getSelectedItems(root, 'group');
+    const selectedGroupings = getSelectedItems(root, 'grouping');
+    const selectedMembers = getSelectedItems(root, 'member');
+    const hasSelection = selectedUsers.length || selectedGroups.length || selectedGroupings.length || selectedMembers.length;
+    const activetype = getActiveSelectionType(root);
+    const labels = getLabels(root);
+
+    root.classList.toggle('local-groupimport-easystud--has-selection', !!hasSelection);
+    applyParticipantDensityChange(root, selectedUsers);
     syncParticipantDensity(root);
     ['participant', 'member', 'group', 'grouping'].forEach(type => {
         root.classList.toggle('local-groupimport-easystud--selecting-' + type, activetype === type);

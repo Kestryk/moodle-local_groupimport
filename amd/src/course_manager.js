@@ -33,7 +33,7 @@ import {scheduleCompleteListAlignment} from './local/cm/layout';
 import {syncResponsiveDragAvailability} from './local/cm/drag_support';
 import {
     normaliseAllGroupGroupingTags, scheduleGroupGroupingOverflow, scheduleParticipantTagOverflow,
-    syncGroupingChildrenState, syncUngroupedState, bindParticipantMetaToggles,
+    syncGroupingChildrenState, syncUngroupedState,
 } from './local/cm/cards';
 import {
     normaliseMemberRemoveLabels, updateGroupingBadge, syncAllCountBadges, ensureDuplicateButtons,
@@ -212,7 +212,6 @@ export const init = (rootId, courseId, options = {}) => {
             () => bindGroupMemberSearch(root),
             () => bindAdvancedFilters(root),
             () => bindGroupMemberToggles(root),
-            () => bindParticipantMetaToggles(root),
             () => bindTagToggles(root),
             () => bindPagination(root),
             () => bindParticipantModal(root),
