@@ -174,6 +174,7 @@ try {
     } else if ($action === 'renamegroup') {
         $groupid = required_param('groupid', PARAM_INT);
         $name = trim(required_param('name', PARAM_TEXT));
+        ajax_security::validate_name($name);
         $group = groups_get_group($groupid);
 
         if (!$group || (int)$group->courseid !== (int)$course->id || $name === '') {
@@ -412,6 +413,13 @@ try {
             throw new moodle_exception('invalidgroupid', 'error');
         }
 
+        // Bound all copied relationships before loading them or creating the new group.
+        bulk_action::validate_size(
+            $DB->count_records('groups_members', ['groupid' => $groupid]) +
+            $DB->count_records('groupings_groups', ['groupid' => $groupid])
+        );
+        $members = groups_get_members($groupid, 'u.id, u.firstname, u.lastname') ?: [];
+        $records = $DB->get_records('groupings_groups', ['groupid' => $groupid], '', 'id, groupingid');
         $newgroup = (object)[
             'courseid' => $course->id,
             'name' => ajax_security::copy_name(
@@ -420,31 +428,41 @@ try {
                 get_string('duplicatedname', 'local_groupimport', $group->name)
             ),
         ];
-        $newgroupid = groups_create_group($newgroup);
-
-        $members = groups_get_members($groupid, 'u.id, u.firstname, u.lastname') ?: [];
-        foreach ($members as $member) {
-            groups_add_member($newgroupid, $member->id);
-        }
         $searchparts = [$newgroup->name];
         foreach ($members as $member) {
             $searchparts[] = fullname($member);
         }
 
         $groupingids = [];
-        $records = $DB->get_records('groupings_groups', ['groupid' => $groupid], '', 'id, groupingid');
         $groupings = \local_groupimport\local\batch_reader::records(
             'groupings',
             array_column($records, 'groupingid'),
             ['courseid' => $course->id]
         );
-        foreach ($records as $record) {
-            $grouping = $groupings[$record->groupingid] ?? null;
-            if ($grouping) {
-                groups_assign_grouping((int)$grouping->id, $newgroupid);
-                $groupingids[] = (int)$grouping->id;
+        $newgroupid = bulk_action::run(count($members) + count($records), static function () use (
+            $newgroup,
+            $members,
+            $records,
+            $groupings,
+            &$groupingids,
+        ): int {
+            $newgroupid = groups_create_group($newgroup);
+            foreach ($members as $member) {
+                if (!groups_add_member($newgroupid, $member->id)) {
+                    throw new moodle_exception('ajaxunexpectederror', 'local_groupimport');
+                }
             }
-        }
+            foreach ($records as $record) {
+                $grouping = $groupings[$record->groupingid] ?? null;
+                if ($grouping) {
+                    if (!groups_assign_grouping((int)$grouping->id, $newgroupid)) {
+                        throw new moodle_exception('ajaxunexpectederror', 'local_groupimport');
+                    }
+                    $groupingids[] = (int)$grouping->id;
+                }
+            }
+            return (int)$newgroupid;
+        });
 
         $response['success'] = true;
         $response['message'] = get_string('groupduplicated', 'local_groupimport');
@@ -479,6 +497,8 @@ try {
 
         $groupingid = required_param('groupingid', PARAM_INT);
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
+        bulk_action::validate_size($DB->count_records('groupings_groups', ['groupingid' => $groupingid]));
+        $records = $DB->get_records('groupings_groups', ['groupingid' => $groupingid], '', 'id, groupid');
         $newgrouping = (object)[
             'courseid' => $course->id,
             'name' => ajax_security::copy_name(
@@ -487,19 +507,28 @@ try {
                 get_string('duplicatedname', 'local_groupimport', $grouping->name)
             ),
         ];
-        $newgroupingid = groups_create_grouping($newgrouping);
-
         $groupids = [];
         $searchparts = [$newgrouping->name];
-        $records = $DB->get_records('groupings_groups', ['groupingid' => $groupingid], '', 'id, groupid');
-        foreach ($records as $record) {
-            $group = groups_get_group($record->groupid);
-            if ($group && (int)$group->courseid === (int)$course->id) {
-                groups_assign_grouping($newgroupingid, (int)$group->id);
-                $groupids[] = (int)$group->id;
-                $searchparts[] = $group->name;
+        $newgroupingid = bulk_action::run(count($records), static function () use (
+            $newgrouping,
+            $records,
+            $course,
+            &$groupids,
+            &$searchparts,
+        ): int {
+            $newgroupingid = groups_create_grouping($newgrouping);
+            foreach ($records as $record) {
+                $group = groups_get_group($record->groupid);
+                if ($group && (int)$group->courseid === (int)$course->id) {
+                    if (!groups_assign_grouping($newgroupingid, (int)$group->id)) {
+                        throw new moodle_exception('ajaxunexpectederror', 'local_groupimport');
+                    }
+                    $groupids[] = (int)$group->id;
+                    $searchparts[] = $group->name;
+                }
             }
-        }
+            return (int)$newgroupingid;
+        });
 
         $response['success'] = true;
         $response['message'] = get_string('groupingduplicated', 'local_groupimport');
@@ -843,6 +872,7 @@ try {
         global $DB;
 
         $groupingids = required_param_array('groupingids', PARAM_INT);
+        bulk_action::validate_size(count($groupingids));
         $deleted = 0;
 
         $groupings = \local_groupimport\local\batch_reader::records(
@@ -850,15 +880,19 @@ try {
             $groupingids,
             ['courseid' => $course->id]
         );
-        foreach (array_unique($groupingids) as $groupingid) {
-            $grouping = $groupings[$groupingid] ?? null;
-            if (!$grouping) {
-                continue;
-            }
+        bulk_action::run(count($groupingids), static function () use ($groupingids, $groupings, &$deleted) {
+            foreach (array_unique($groupingids) as $groupingid) {
+                $grouping = $groupings[$groupingid] ?? null;
+                if (!$grouping) {
+                    continue;
+                }
 
-            groups_delete_grouping($grouping);
-            $deleted++;
-        }
+                if (!groups_delete_grouping($grouping)) {
+                    throw new moodle_exception('ajaxunexpectederror', 'local_groupimport');
+                }
+                $deleted++;
+            }
+        });
 
         $response['success'] = true;
         $response['message'] = local_groupimport_count_string('groupingsdeleted', (int)$deleted);

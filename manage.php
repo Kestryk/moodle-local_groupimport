@@ -173,6 +173,7 @@ if ($action && data_submitted()) {
     } else if ($action === 'renamegroup') {
         $groupid = required_param('groupid', PARAM_INT);
         $name = required_param('name', PARAM_TEXT);
+        \local_groupimport\local\ajax_security::validate_name(trim($name));
         $group = groups_get_group($groupid);
         if ($group && (int)$group->courseid === (int)$course->id && trim($name) !== '') {
             $name = trim($name);
@@ -187,6 +188,7 @@ if ($action && data_submitted()) {
         global $DB;
         $groupingid = required_param('groupingid', PARAM_INT);
         $name = required_param('name', PARAM_TEXT);
+        \local_groupimport\local\ajax_security::validate_name(trim($name));
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
         if (trim($name) !== '') {
             $name = trim($name);
