@@ -873,7 +873,7 @@ class manage_page {
             'removefromgroupinglabel' => get_string('removegroupfromgrouping', 'local_groupimport'),
             'confirmlabel' => get_string('confirm', 'local_groupimport'),
             'cancellabel' => get_string('cancel'),
-            'contextactions' => local_groupimport_build_context_actions_template_data($alloweduserfields, $canmessageparticipants),
+            'contextactions' => context_actions::build_template_data($alloweduserfields, $canmessageparticipants),
         ];
 
         $templatedata['useeasyeduguide'] = true;
