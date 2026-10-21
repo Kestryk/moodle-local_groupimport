@@ -44,27 +44,7 @@ function local_groupimport_clean_cell(string $value): string {
     return trim($value);
 }
 
-/**
- * Detect the CSV delimiter (';' or ',') from a line.
- *
- * @param string $line The CSV header line.
- * @return string The detected delimiter.
- */
-function local_groupimport_detect_delimiter_line(string $line): string {
-    $line = trim($line);
-    if ($line === '') {
-        return ';';
-    }
 
-    $semicolons = substr_count($line, ';');
-    $commas = substr_count($line, ',');
-
-    if ($commas > $semicolons) {
-        return ',';
-    }
-
-    return ';';
-}
 
 /**
  * Parse CSV content into header + rows arrays.

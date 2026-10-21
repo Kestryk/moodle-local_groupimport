@@ -31,7 +31,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mass_import_preview {
-
     /**
      * Build the template context for the Mass Import results card body.
      *

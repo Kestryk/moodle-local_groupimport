@@ -29,7 +29,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class manage_page {
-
     /**
      * Build the EasyStud page template data.
      *
@@ -50,8 +49,6 @@ class manage_page {
         global $CFG, $USER;
 
         $alloweduserfields = local_groupimport_get_allowed_user_field_definitions();
-        $customuserfields = local_groupimport_get_custom_user_field_definitions();
-        $participantdisplay = local_groupimport_get_participant_display_settings($customuserfields);
         $compactparticipantsdefault = count($users) > 5;
         $layoutpreferences = local_groupimport_get_workspace_layout_preferences();
         $layoutmodedefinitions = [
