@@ -414,7 +414,7 @@ echo html_writer::tag(
                 ['class' => 'easyedu-information__description']
             )
         ),
-        ['class' => 'local-groupimport-import-fields__header easyedu-information__header easyedu-information__header--small-icon']
+        ['class' => 'local-groupimport-import-fields__header easyedu-information__header easyedu-information__header--small-icon easyedu-information__header--icon-title-copy']
     ) .
     html_writer::tag('p', get_string('importfieldsavailable', 'local_groupimport'), [
         'class' => 'local-groupimport-import-fields__label easyedu-information__label',
