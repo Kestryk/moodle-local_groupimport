@@ -8434,6 +8434,16 @@ body.easyedu-motion-disabled .local-groupimport-easystud-message-modal::after {a
 .easyedu-ui .easyedu-information__header--small-icon {grid-template-columns: var(--easyedu-section-icon-size-small) minmax(0, 1fr);
 }
 
+.easyedu-ui .easyedu-information__header--icon-title-copy {align-items: center;
+}
+.easyedu-ui .easyedu-information__header--icon-title-copy > div {display: contents;
+}
+.easyedu-ui .easyedu-information__header--icon-title-copy > div > .easyedu-information__title,
+.easyedu-ui .easyedu-information__header--icon-title-copy > div > .easyedu-information__description {grid-column: 2;
+}
+.easyedu-ui .easyedu-information__header--icon-title-copy > div > .easyedu-information__title {margin: 0;
+}
+
 .easyedu-ui .easyedu-information__title {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-card-title);font-weight: var(--easyedu-font-weight-semibold);line-height: var(--easyedu-line-height-title);display: block;margin: 0.6rem 0 0.75rem;
 }
 
