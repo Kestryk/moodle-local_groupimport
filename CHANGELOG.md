@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-02] Rétablir le bouton Réinitialiser compact et bleu ; conserver Annuler, les cibles de retrait et les interrupteurs d’OLD-B.
+
 - 2026-10-21 [PERF-GETSTATE] Transmettre l’état initial de Student Management dans le document authentifié pour éviter un second bootstrap Moodle ; consommer cet état une seule fois, avec repli et rafraîchissements par le service existant, sans cache persistant.
 
 - 2026-10-21 [K21-01] Contenir la note du devoir dans son spécimen du Guide : retour à la ligne dans la recette Kit Assignment, phrase acceptée conservée, sans changement de police ni de largeur.

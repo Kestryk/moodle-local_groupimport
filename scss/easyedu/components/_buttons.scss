@@ -216,7 +216,7 @@
   }
 }
 
-// OLD-B R13: one Core action / Secondary / M definition for Cancel and Reset.
+// Core action / Secondary / M definition for Cancel. Reset has its own compact recipe (K21-02).
 // Compact inline actions remain a separate explicit density.
 @mixin secondary-action {
   align-items: center;
@@ -240,29 +240,29 @@
 // Compact neutral reset used inside filter panels. It intentionally shares the
 // selection-action interaction contract while keeping reset-specific sizing.
 @mixin filter-reset {
-  @include secondary-action;
+  @include selection-action(neutral);
 
-  &:focus {
-    background: var(--easyedu-surface);
-    color: var(--easyedu-text);
+  & {
+    align-self: center;
+    justify-content: center;
+    border-color: var(--easyedu-control-border);
+    color: var(--easyedu-primary-strong);
+    font-size: var(--easyedu-font-size-caption);
+    // Natural text metrics keep the restored caption centred without a pixel offset.
+    line-height: normal;
+    min-height: 1.9rem;
+    padding: 0.32rem 0.7rem;
+    width: auto;
   }
 
   &:not(:disabled):not([aria-disabled="true"]):not(.disabled):hover,
   &:not(:disabled):not([aria-disabled="true"]):not(.disabled):active {
     background: var(--easyedu-primary-soft);
-    color: var(--easyedu-text);
-    text-decoration: none;
+    color: var(--easyedu-primary-strong);
   }
 
-  &:focus-visible {
-    @include focus.ring($border-color: var(--easyedu-control-focus-border));
-  }
-
-  &:disabled,
-  &[aria-disabled="true"],
-  &.disabled {
-    background: var(--easyedu-surface-soft);
-    color: var(--easyedu-text-muted);
+  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):focus {
+    color: var(--easyedu-primary-strong);
   }
 
   @include scale.touch-target-floor;
