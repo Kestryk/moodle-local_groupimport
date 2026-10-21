@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-36] Declare the Moodle support range, align Privacy job metadata with nextrow, and remove only plugin-owned welcome preferences on uninstall.
+
 - 2026-10-21 [K21-35] Enforce LF for JS/SCSS/CSS and publish the full remaining ESLint and MoodleCS inventory without changing runtime contents.
 
 - 2026-10-21 [K21-34] Validate fallback and AJAX renames; bound group/grouping copies and grouping deletion in atomic native transactions.
