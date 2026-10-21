@@ -1906,6 +1906,10 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-group,
 .local-groupimport-easystud-user {box-sizing: border-box;width: 100%;
 }
+.local-groupimport-easystud-user:has(.easyedu-person-card__fold-toggle) {max-height: none;
+}
+.local-groupimport-easystud-user:has(.easyedu-person-card__fold-toggle) .easyedu-person-card__meta:not([hidden]) {display: grid;
+}
 .local-groupimport-easystud-group.is-newly-created,
 .local-groupimport-easystud-tree__section[data-easystud-grouping-id].is-newly-created {background-color: var(--easyedu-success-soft);border-color: color-mix(in srgb, var(--easyedu-success) 48%, var(--easyedu-card-border) 52%);position: relative;transition: background-color var(--easyedu-motion-normal) ease, border-color var(--easyedu-motion-normal) ease;z-index: 2;
 }
