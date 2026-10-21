@@ -1310,8 +1310,8 @@ $string['displaymotionreduced'] = 'Fondus courts seulement. Squelettes statiques
 $string['displaymotionminimal'] = 'Aucune transition : tout est statique et les effets coûteux sont retirés.';
 $string['displaymotionrecommended'] = 'Recommandé pour les ordinateurs modestes';
 $string['displaymotionreading'] = 'Dans les trois niveaux, les durées de lecture (Guide, messages) et le fonctionnement restent identiques.';
-$string['displaymotiondefault'] = 'Valeur de l’établissement :';
-$string['displaymotionreset'] = 'Revenir à la valeur de l’établissement';
+$string['displaymotiondefault'] = 'Valeur par défaut de la plateforme :';
+$string['displaymotionreset'] = 'Revenir à la valeur par défaut de la plateforme';
 $string['displaymotionsaveerror'] = 'Votre choix n’a pas pu être enregistré. Veuillez réessayer.';
 // K17-09: bounded, resumable background imports.
 $string['importmaxrows'] = 'Nombre maximal de lignes par import';
