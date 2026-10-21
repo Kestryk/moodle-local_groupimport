@@ -1009,6 +1009,10 @@ export const syncCardSelection = (model, card) => {
     if (input) {
         input.checked = selected;
     }
+    // K21-37: selecting a participant card expands its roles/groups/groupings/custom-fields block;
+    // deselecting it collapses it again. Applied per card here, same as the rest of this function,
+    // so bulk paths (Select all / Select results) get it for free without a separate DOM pass.
+    setParticipantMetaExpanded(card, selected);
     return card;
 };
 
@@ -1202,40 +1206,17 @@ export const getOnDemandList = (root, list) => {
 };
 
 /**
- * K21-16: expand or collapse one participant card's roles/groups/groupings/custom-fields block.
+ * K21-16/K21-37: expand or collapse one participant card's roles/groups/groupings/custom-fields
+ * block. There is no dedicated fold control on the card (K21-37): selecting the card is what
+ * expands it, deselecting it is what collapses it again (the pre-K21-16 behaviour).
  *
- * @param {HTMLElement} toggle The card's meta toggle button.
+ * @param {HTMLElement|null} card The participant card ([data-easystud-user]).
  * @param {Boolean} expanded Target state.
  */
-const setParticipantMetaExpanded = (toggle, expanded) => {
-    const card = toggle.closest('[data-easystud-user]');
+export const setParticipantMetaExpanded = (card, expanded) => {
     const meta = card && card.querySelector('[data-easystud-user-meta]');
     if (!meta) {
         return;
     }
     meta.hidden = !expanded;
-    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    const label = expanded ?
-        (toggle.getAttribute('data-collapse-label') || '') :
-        (toggle.getAttribute('data-expand-label') || '');
-    if (label) {
-        toggle.setAttribute('aria-label', label);
-        toggle.setAttribute('data-easystud-hover-help', label);
-    }
-};
-
-/**
- * Bind the participant card fold chevron (K21-16): each card keeps its own expanded/collapsed
- * state independently of the admin default used to render it.
- *
- * @param {HTMLElement} root EasyStud root.
- */
-export const bindParticipantMetaToggles = root => {
-    root.addEventListener('click', event => {
-        const toggle = event.target.closest('[data-easystud-user-meta-toggle]');
-        if (!toggle || !root.contains(toggle)) {
-            return;
-        }
-        setParticipantMetaExpanded(toggle, toggle.getAttribute('aria-expanded') !== 'true');
-    });
 };

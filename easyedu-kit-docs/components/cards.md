@@ -576,14 +576,14 @@ metadata must grow below the header and must not recalculate the action's
 horizontal or vertical position. Keep the identity region `minmax(0, 1fr)` and
 truncate or wrap its optional metadata before moving the terminal action.
 
-## Participant fold footer containment (K21-31)
+## Participant fold footer containment (K21-31, superseded by K21-37)
 
-`person-card-fold-content` opts a person card into intrinsic height only when it
-contains `.easyedu-person-card__fold-toggle`. Include it on the card host. The
-control keeps the shared fold-chevron footer recipe, its accessible name and
-existing expanded state; the consumer owns folding. This removes the legacy
-compact height cap that would otherwise clip a footer added after the metadata.
-Explicitly opened metadata regains its normal grid despite the old compact
-density hiding rule; responsive compositions retain their existing flex recipe.
-Cards without the opt-in class, group/grouping fold controls, header geometry
-and Motion keep their existing recipes.
+K21-31 added `person-card-fold-content`, a mixin opting a person card into
+intrinsic height when it contained `.easyedu-person-card__fold-toggle` (the
+participant card's own fold chevron, added by K21-16). K21-37 (21/10) removed
+that chevron entirely: selecting a participant card now expands its
+roles/groups/groupings/custom-fields block, deselecting it collapses it again
+(the pre-K21-16 behaviour), with no dedicated fold control on the card. The
+mixin and its single call site on `.local-groupimport-easystud-user` were
+removed as dead code (the selector they contained can no longer match). Group
+and grouping fold controls, header geometry and Motion are unaffected.

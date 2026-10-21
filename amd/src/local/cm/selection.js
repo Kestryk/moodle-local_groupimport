@@ -30,7 +30,7 @@ import {getOnDemandModel, getOnDemandParticipants} from './state';
 import {getSelectedMemberRow} from '../sm/groups';
 import {
     syncGroupSelectAll, collapseGroupingSection, collapseAllGroupings, findParticipantCard,
-    findCatalogGroupCard,
+    findCatalogGroupCard, setParticipantMetaExpanded,
 } from './cards';
 
 export const getSelectedItemsForContext = (root, selector, target) => {
@@ -150,6 +150,10 @@ export const setItemSelected = (item, selected) => {
         const twin = item.isConnected ? model.detached.get(userid) :
             getOnDemandParticipants().root.querySelector(`[data-easystud-user][data-user-id="${userid}"]`);
         syncSelectionTwin(item, twin, selected);
+        // K21-37: selecting the card expands its roles/groups/groupings/custom-fields block,
+        // deselecting it collapses it again (no dedicated fold control any more).
+        setParticipantMetaExpanded(item, selected);
+        setParticipantMetaExpanded(twin, selected);
     }
     const membercard = item.getAttribute('data-selectable-type') === 'member' ?
         item.closest('[data-easystud-group-id]') : null;
@@ -224,6 +228,8 @@ export const clearSelection = (root, type) => {
         if (input) {
             input.checked = false;
         }
+        // K21-37: no-op on a group/member card (no [data-easystud-user-meta] block to find).
+        setParticipantMetaExpanded(card, false);
     };
     if (model && (!type || type === 'participant')) {
         model.selected.clear();
