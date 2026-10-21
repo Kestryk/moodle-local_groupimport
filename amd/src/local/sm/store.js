@@ -16,7 +16,7 @@
 /**
  * Student Management state store for on-demand rendering (SM-RENDU).
  *
- * The course state is loaded once from local_groupimport_get_state and kept in a
+ * The initial document snapshot (or local_groupimport_get_state fallback) is kept in a
  * core/reactive instance, so later steps can render from it and apply server deltas
  * through mutations. The raw payload is also kept for the search index, which must not
  * read thousands of entries through the reactive proxies.
@@ -87,6 +87,34 @@ export const fetchDetails = (courseId, type, ids) => Ajax.call([{
 }])[0].then(response => JSON.parse(response.items));
 
 /**
+ * Consume the current document's authenticated snapshot once, never a stored cache.
+ *
+ * A missing, malformed or foreign-course seed leaves the ordinary AJAX path intact.
+ *
+ * @param {HTMLElement} root Store root.
+ * @param {Number} courseId Course id.
+ * @returns {Object|null} Initial state, or null to fetch it normally.
+ */
+const takeInitialState = (root, courseId) => {
+    const element = root.ownerDocument.getElementById('easystud-initial-state');
+    if (!element) {
+        return null;
+    }
+    const content = element.textContent;
+    element.remove();
+    try {
+        const raw = JSON.parse(content);
+        if (raw?.meta?.schema !== 1 || Number(raw.meta.courseid) !== Number(courseId) ||
+                !['users', 'groups', 'groupings', 'roles'].every(key => Array.isArray(raw[key]))) {
+            return null;
+        }
+        return raw;
+    } catch (error) {
+        return null;
+    }
+};
+
+/**
  * Create the store and load the state.
  *
  * @param {HTMLElement} root EasyStud root element, used as the private event target.
@@ -102,7 +130,8 @@ export const createStore = (root, courseId) => {
         target: root,
         mutations,
     });
-    return fetchState(courseId).then(raw => {
+    const initial = takeInitialState(root, courseId);
+    return (initial ? Promise.resolve(initial) : fetchState(courseId)).then(raw => {
         reactive.setInitialState({
             meta: raw.meta,
             roles: raw.roles,

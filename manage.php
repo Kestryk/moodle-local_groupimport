@@ -195,6 +195,22 @@ if ($action && data_submitted()) {
 // page only loads the lean data it still needs (filters, counts, grouping headers).
 $state = \local_groupimport\service\course_state::page_data($course, $context);
 $state = local_groupimport_prepare_manage_names($state, $context);
+// The authenticated document and the first store share one fresh response snapshot.
+// No persistent cache: every reload rebuilds it, and later refreshes still use AJAX.
+$initialstatejson = false;
+try {
+    $initialresponse = \local_groupimport\external\get_state::execute((int)$course->id);
+    $initialstatejson = json_encode(
+        json_decode($initialresponse['state'], true, 512, JSON_THROW_ON_ERROR),
+        JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT |
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE
+    );
+    unset($initialresponse);
+} catch (\Throwable $exception) {
+    // Keep the existing AJAX error/retry path authoritative if preparation fails.
+    $initialstatejson = false;
+}
+
 $users = $state['users'];
 $groups = $state['groups'];
 $groupings = $state['groupings'];
@@ -212,6 +228,14 @@ echo html_writer::tag('script', json_encode([
     'type' => 'application/json',
     'id' => 'easystud-page-config',
 ]);
+
+if ($initialstatejson !== false) {
+    echo html_writer::tag('script', $initialstatejson, [
+        'type' => 'application/json',
+        'id' => 'easystud-initial-state',
+    ]);
+    unset($initialstatejson);
+}
 
 $navigationdata = local_groupimport_build_navigation_context($course, $PAGE, $OUTPUT);
 

@@ -1,0 +1,20 @@
+{
+  "perfGetstateAdmin20261021": {
+    "base": "06fe1aaf",
+    "scope": "Single-use authenticated initial state transport; actual administration profile",
+    "persistentParticipantCache": false,
+    "externalServiceChanged": false,
+    "administrationChanged": false,
+    "schemaChanged": false,
+    "published": false,
+    "humanAccepted": false,
+    "fullLoadCampaignRun": false,
+    "loadTargetsValidated": false,
+    "initialFlowMedianSecondsBefore": 5.0141918659210205,
+    "initialFlowMedianSecondsAfter": 2.7781357765197754,
+    "initialReadsBefore": 109,
+    "initialReadsAfter": 104,
+    "report": "docs/testing/perf-getstate-admin-2026-10-21.md",
+    "mergeInstruction": "Add only this key after repairing the pre-existing intake conflict markers; do not replace or reorder existing entries."
+  }
+}
