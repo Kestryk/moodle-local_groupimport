@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-04] Rendre aux étapes du cadre de parcours Student Management leur fond d’étiquette ; limiter le rendu texte seul prévu par K19-02 au Guide Mass Import.
+
 - 2026-10-21 [K21-03] Rétablir l’encre bleue du bouton Afficher de plus des listes de membres, sans changer sa géométrie ni les autres actions secondaires.
 
 - 2026-10-21 [K21-02] Rétablir le bouton Réinitialiser compact et bleu ; conserver Annuler, les cibles de retrait et les interrupteurs d’OLD-B.
