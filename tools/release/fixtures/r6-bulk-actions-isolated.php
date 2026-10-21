@@ -45,6 +45,8 @@ require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_r6_bulk
 class_alias('fixture_r6_bulk_actions_isolated_core_php_time_limit', 'core_php_time_limit');
 require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_r6_bulk_actions_isolated_memory_db.php');
 class_alias('fixture_r6_bulk_actions_isolated_memory_db', 'memory_db');
+require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_group_visibility.php');
+class_alias('fixture_group_visibility', 'core_group\\visibility');
 /**
  * Perform isolated fixture operation required_param.
  * @param mixed $key Fixture argument.
@@ -88,6 +90,8 @@ function groups_is_member($g, $u) {
  */
 function groups_add_member($g, $u) {
     $db = $GLOBALS['DB'];
+    $g = is_object($g) ? $g->id : $g;
+    $u = is_object($u) ? $u->id : $u;
     $db->mutate();
     $db->members["$g:$u"] = true;
     $db->events[] = "add:$g:$u";
@@ -100,6 +104,8 @@ function groups_add_member($g, $u) {
  * @return mixed Fixture result.
  */
 function groups_remove_member($g, $u) {
+    $g = is_object($g) ? $g->id : $g;
+    $u = is_object($u) ? $u->id : $u;
     $db = $GLOBALS['DB'];
     $db->mutate();
     unset($db->members["$g:$u"]);
@@ -295,7 +301,7 @@ function rejection($name, $input, $message) {
 reset_state();
 $r = action('addusers', ['groupid' => 10, 'userids' => range(1, 500)]);
 check($r['added'] === 500 && count($DB->members) === 500, '500 native writes');
-check($DB->queries === 1, 'one enrolment snapshot');
+check($DB->queries === 2, 'one enrolment snapshot and one bounded user snapshot');
 check($DB->commits === 1 && $DB->rollbacks === 0, 'commit once');
 check(core_php_time_limit::$calls === [180], 'raise once');
 reset_state();
@@ -315,7 +321,7 @@ reset_state();
 $r = action('addemails', ['groupid' => 10, 'emails' => 'user1 unknown user999 user2']);
 check(count($r['users']) === 2 && $r['missing'] === ['unknown', 'user999'], 'email partial matching response retained');
 check($r['skipped'] === 2 && str_contains($r['message'], 'bulkitemsskipped'), 'explicit email partial summary');
-check($DB->queries === 1 && $DB->commits === 1, 'email grouped enrolment/commit');
+check($DB->queries === 2 && $DB->commits === 1, 'email grouped enrolment/user snapshots and commit');
 reset_state();
 rejection(
     'addemails',

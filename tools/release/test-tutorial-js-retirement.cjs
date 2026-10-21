@@ -40,7 +40,11 @@ function currentContract(current){
  // data-easystud-guided-panel remains an accepted alias in the floating-control selector.
  check(nav.includes('[data-easystud-guided-panel]:not([hidden])'),'accepted floating-control alias retained');
  check(!/data-easystud-(?:open-tutorial|tutorial-modal|tutorial-return)/.test(nav),'no retired navigation selectors');
- for(const marker of ['data-easyedu-guide-root','data-easyedu-guide-modal','data-easyedu-guided-panel','data-easyedu-guide-return'])check(nav.includes(marker),'retains '+marker);
+ const launcher=current('amd/src/local/cm/guide_launcher.js');
+ check(nav.includes("import {bindGuideLauncher} from './guide_launcher';") &&
+     nav.includes('bindGuideLauncher(root, responsiveWorkspaceQuery)'), 'shared launcher remains wired');
+ check(launcher.includes('[data-easyedu-guide-root]'), 'shared launcher retains canonical Guide root');
+ for(const marker of ['data-easyedu-guide-modal','data-easyedu-guided-panel','data-easyedu-guide-return'])check(nav.includes(marker),'retains '+marker);
  const api=exportsOf(current('amd/build/local/cm/guide.min.js'));
  check(!('bindTutorialModal' in api),'current compiled legacy export absent');
  check(Object.keys(api).filter(k=>k!=='__esModule').sort().join(',')===Object.keys(oldApi).filter(k=>!['__esModule','bindTutorialModal'].includes(k)).sort().join(','),'all current compiled exports retained');
@@ -50,6 +54,7 @@ function currentContract(current){
 currentContract(read);
 const currentChecks=checks-historicalChecks;
 const mutations=[
+ ['amd/src/local/cm/guide_launcher.js',s=>s.replace(/data-easyedu-guide-root/g,'broken-guide-root')],
  [file,s=>s+'\nexport const bindTutorialModal = () => {};'],
  [file,s=>s.replace('const bindTryActionsCompactMove =','const BROKEN =')],
  ['amd/src/course_manager.js',s=>s.replace('() => bindSharedGuideTargets(root)','() => void root')],

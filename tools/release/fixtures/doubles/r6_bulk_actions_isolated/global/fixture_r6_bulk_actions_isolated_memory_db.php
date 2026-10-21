@@ -159,6 +159,9 @@ class fixture_r6_bulk_actions_isolated_memory_db {
      */
     public function get_records_select($table, $sql, $params, ...$rest) {
         $this->queries++;
+        if ($table === 'user') {
+            return array_intersect_key($this->enrolled, array_flip(array_values($params)));
+        }
         $course = $params['courseid'];
         unset($params['courseid']);
         $out = [];
