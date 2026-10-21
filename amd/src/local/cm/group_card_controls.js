@@ -608,6 +608,11 @@ export const bindHoverPopovers = root => {
             if (bubble.contains(event.relatedTarget)) {
                 return;
             }
+            // Moving directly to another help control in the same card must not start the grace
+            // timer: its shorter delay would cancel the next control's 400 ms hover-open timer.
+            if (isAdjacentHelpControl(root, node, event.relatedTarget)) {
+                return;
+            }
             bubble.scheduleHide();
         }
     }, true);
@@ -636,4 +641,10 @@ export const bindHoverPopovers = root => {
         event.preventDefault();
         event.stopPropagation();
     }, true);
+};
+
+const isAdjacentHelpControl = (root, node, relatedTarget) => {
+    const nextTrigger = relatedTarget instanceof Element ?
+        relatedTarget.closest('[data-easystud-hover-help]') : null;
+    return nextTrigger && root.contains(nextTrigger) && nextTrigger !== node;
 };
