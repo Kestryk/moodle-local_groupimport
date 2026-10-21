@@ -108,7 +108,7 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     min-inline-size: 0;
     padding: 0;
 
-    @include easyedu.moodle-admin-section-card;
+    @include easyedu.moodle-admin-section-card($icon: "local-groupimport-admin-settings__section-icon");
 
     > .clearer {
       display: none;
@@ -133,9 +133,10 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     }
   }
 
+  // K21-15: the identity stands apart from the first card by the narrow section gap.
   #adminsettings .formsettingheading:has(.local-groupimport-admin-settings__page-identity) {
     column-span: all;
-    margin: 0 0 1.5rem;
+    margin: 0 0 var(--easyedu-admin-section-gap-narrow);
   }
 
   .local-groupimport-admin-settings__page-identity {
@@ -143,11 +144,17 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     padding-block: 0;
   }
 
+  // K21-15: the EasyStud eyebrow wears the Mass Import ink and case (primary,
+  // uppercase, strong) while keeping its caption size.
   .local-groupimport-admin-settings__page-eyebrow {
     @include easyedu.type-caption;
 
+    color: var(--local-groupimport-easystud-primary);
     display: block;
+    font-weight: var(--easyedu-font-weight-strong);
     line-height: var(--easyedu-line-height-body);
+    margin-block-end: 0.25rem;
+    text-transform: uppercase;
   }
 
   // Project Moodle's native headings onto the measured Foundation roles.
@@ -163,7 +170,8 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
   .local-groupimport-admin-settings__page-description {
     @include easyedu.type-body;
 
-    margin: 0.25rem 0 0;
+    color: var(--easyedu-text-muted);
+    margin: 0.5rem 0 0;
     max-inline-size: 58rem;
   }
 
@@ -190,7 +198,13 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     p {
       @include easyedu.type-body;
 
+      color: var(--easyedu-text-muted);
       margin: 0 0 0.5rem;
+    }
+
+    // Section actions (reset guide, restore colours) sit one Kit gap below the copy.
+    > .easyedu-ui {
+      margin-block-start: var(--easyedu-gap);
     }
 
     .easyedu-caption {
@@ -291,6 +305,11 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     @include easyedu.moodle-admin-setting-row;
   }
 
+  // K21-15: the Kit switch is drawn at the touch-target size; its label centres on it.
+  #adminsettings .form-item.row:has(.form-setting > .form-checkbox.defaultsnext) {
+    --easyedu-admin-row-control-height: var(--easyedu-touch-target-min);
+  }
+
   #adminsettings .form-item .form-label,
   #adminsettings .form-item .form-setting {
     box-sizing: border-box;
@@ -332,14 +351,15 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 
   // Moodle renders admin_setting descriptions as .form-text, not the
   // .form-description used by other forms. Keep both on the Kit caption role.
+  // K21-15: :where() keeps this base below the layout adapters (colour and
+  // compact control lines), which own the margins of their default value.
   #adminsettings .form-item {
-    .form-description,
-    .form-setting > .form-text.mt-2,
-    .form-setting > .form-defaultinfo {
+    :where(.form-description, .form-setting > .form-text.mt-2, .form-setting > .form-defaultinfo) {
       @include easyedu.type-caption;
 
+      color: var(--easyedu-text-muted);
       line-height: var(--easyedu-line-height-body);
-      margin-block: 0.25rem 0;
+      margin-block: 0.5rem 0;
       max-inline-size: none;
     }
 
@@ -371,34 +391,49 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
   }
 
   // Short numeric fields keep a compact width instead of stretching.
-  #admin-historyretentiondays input.form-control[type="text"],
-  #admin-importmaxrows input.form-control[type="text"] {
+  #adminsettings #admin-historyretentiondays input.form-control[type="text"],
+  #adminsettings #admin-importmaxrows input.form-control[type="text"] {
     inline-size: 8rem;
   }
 
-  #admin-historyretentiondays .form-setting > .defaultsnext,
-  #admin-importmaxrows .form-setting > .defaultsnext {
-    display: inline-block;
-    margin-inline-end: 0.75rem;
-    vertical-align: middle;
-  }
+  // K21-15: compact controls (numbers, switches) share one control line: the
+  // control, then its default value centred on it, the description below.
+  // The controls keep their Kit sizes; only their placement changes.
+  #adminsettings #admin-historyretentiondays .form-setting,
+  #adminsettings #admin-importmaxrows .form-setting,
+  #adminsettings .form-item .form-setting:has(> .form-checkbox.defaultsnext) {
+    align-items: center;
+    column-gap: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
 
-  #admin-historyretentiondays .form-setting > .form-defaultinfo,
-  #admin-importmaxrows .form-setting > .form-defaultinfo {
-    display: inline-block;
-    margin-block: 0;
-    vertical-align: middle;
+    > .defaultsnext {
+      flex: none;
+      inline-size: auto;
+      min-inline-size: 0;
+      margin-block: 0;
+    }
+
+    > .form-defaultinfo {
+      margin-block: 0;
+    }
+
+    > .form-text:not(.defaultsnext) {
+      flex-basis: 100%;
+    }
   }
 
   // Keep the native setting markup and use the public Kit layout adapter:
   // the default value sits beside the M picker, with help/notice below.
-  #admin-themeprimarycolor,
-  #admin-themeaccentcolor,
-  #admin-themeparticipantcolor,
-  #admin-themegroupcolor,
-  #admin-themegroupingcolor,
-  #admin-participantprimarybadgebgcolor,
-  #admin-participantprimarybadgetextcolor {
+  // K21-15: scoped under #adminsettings so the adapter grid wins over the
+  // generic `.form-setting { display: block }` above (it never applied before).
+  #adminsettings #admin-themeprimarycolor,
+  #adminsettings #admin-themeaccentcolor,
+  #adminsettings #admin-themeparticipantcolor,
+  #adminsettings #admin-themegroupcolor,
+  #adminsettings #admin-themegroupingcolor,
+  #adminsettings #admin-participantprimarybadgebgcolor,
+  #adminsettings #admin-participantprimarybadgetextcolor {
     @include easyedu.moodle-admin-color-setting;
   }
 
@@ -407,6 +442,8 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
     margin-right: 0;
 
     @include easyedu.admin-form-actions(center);
+
+    margin-block-start: var(--easyedu-admin-section-gap);
 
     > [class*="offset-"] {
       flex: 0 0 auto;
