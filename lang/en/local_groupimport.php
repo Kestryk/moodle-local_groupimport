@@ -863,7 +863,6 @@ $string['discovery_simplecreate_grouping_body'] = 'An empty grouping gathers gro
 $string['discovery_simplecreate_edit_title'] = 'Edit or copy';
 $string['discovery_simplecreate_edit_body'] = 'The pencil renames. The copy icon makes a duplicate marked “(copy)”.';
 $string['discovery_creation_note'] = 'Then choose the grouping you want in the Moodle activity. Creating a grouping does not set up activities for you.';
-$string['discovery_simplecreate_edit_body'] = 'The pencil renames; the copy icon duplicates (“(copy)”).';
 // K17-36 / K17-44: animated demonstrations of the creation and filter slides.
 $string['discovery_creation_phase1'] = 'Type several names separated by a comma or a semicolon: each name becomes a group.';
 $string['discovery_creation_phase2'] = 'For a series, write a formula: “Workshop #*4” gives “Workshop 1” to “Workshop 4”.';
@@ -1511,7 +1510,6 @@ $string['mi_guide_run_frame2'] = 'More than 1,000 rows: progress is shown, and y
 $string['mi_guide_run_frame3'] = 'When it ends, Moodle sends you a notification.';
 $string['mi_guide_run_progress'] = 'Import in progress 1,200 / 3,000';
 $string['mi_guide_run_notification_body'] = 'The report of your import is available.';
-$string['mi_guide_path_warning'] = 'This guided path uses your file and may change the course. Previewing changes nothing. Stop at Cancel: clicking Run import really changes the course.';
 $string['mi_guide_history_sample_date'] = '18/10/2026 10:42';
 
 $string['removechoiceselection'] = 'Remove “__label__” from the selection';
