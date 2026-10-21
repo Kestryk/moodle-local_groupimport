@@ -1,5 +1,13 @@
 # Buttons
 
+## Secondary action with historical blue ink — K21-03
+
+`easyedu-button--secondary-accent` is an opt-in paint variant of the existing
+secondary-action component. Enabled text uses `--easyedu-secondary-text`
+(default #0b5ea8) in resting, hover and focus states. Disabled paint and all
+geometry remain inherited. The member-list More action opts in; Cancel,
+Less, View all and Select all retain their existing recipes.
+
 ## Reset and Cancel — K21-02 scoped restoration
 
 Cancel retains `buttons.secondary-action`: 37.6px desktop / 44px dialog touch,

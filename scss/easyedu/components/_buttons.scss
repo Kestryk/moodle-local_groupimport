@@ -235,6 +235,11 @@
   text-decoration: none;
   width: auto;
   @include control-state-transition;
+
+  // Opt-in secondary ink, without changing Cancel or the action geometry (K21-03).
+  &.easyedu-button--secondary-accent:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--easyedu-secondary-text);
+  }
 }
 
 // Compact neutral reset used inside filter panels. It intentionally shares the
