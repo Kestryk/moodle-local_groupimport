@@ -40,6 +40,11 @@ final class provider_test extends provider_testcase {
         $items = [];
         foreach ($metadata as $item) {
             $items[$item->get_name()] = $item->get_summary();
+            if ($item->get_name() === 'local_groupimport_jobs') {
+                $fields = $item->get_privacy_fields();
+                $this->assertArrayHasKey('nextrow', $fields);
+                $this->assertArrayNotHasKey('cursor', $fields);
+            }
         }
 
         $this->assertArrayHasKey('local_groupimport_history', $items);

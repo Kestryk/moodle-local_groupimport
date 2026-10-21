@@ -69,7 +69,7 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         $collection->add_database_table('local_groupimport_jobs', [
             'historyid' => 'privacy:metadata:importjobs',
             'status' => 'privacy:metadata:importjobs',
-            'cursor' => 'privacy:metadata:importjobs',
+            'nextrow' => 'privacy:metadata:importjobs',
             'failcount' => 'privacy:metadata:importjobs',
             'elapsedms' => 'privacy:metadata:importjobs',
             'peakbytes' => 'privacy:metadata:importjobs',
