@@ -305,7 +305,7 @@ class manage_page {
             'courseid' => $course->id,
             'detaillabelsjson' => json_encode($detaillabels),
             'navigation' => $navigationdata,
-            'eyebrow' => get_string('easystudlabel', 'local_groupimport'),
+            // 'eyebrow' is static text: templates/manage.mustache renders it inline via {{#str}}.
             'userkey' => (int)$USER->id,
             'description' => get_string('easystudmanager_desc', 'local_groupimport'),
             'loadingmanager' => get_string('loadingmanager', 'local_groupimport'),
@@ -323,7 +323,7 @@ class manage_page {
             // The column of that focus is revealed with the frame on desktop (loading bootstrap).
             'participantfocusdefault' => $layoutpreferences['defaultlayoutmode'] === 'participants',
             'structurefocusdefault' => $layoutpreferences['defaultlayoutmode'] === 'structure',
-            'clipboardlabel' => get_string('clipboardtools', 'local_groupimport'),
+            // 'clipboardlabel' is static text: templates/manage.mustache renders it inline via {{#str}}.
             'tutoriallabel' => get_string('tutoriallabel', 'local_groupimport'),
             'tutorialtitle' => get_string('tutorialtitle', 'local_groupimport'),
             'tutorialintro' => get_string('tutorialintro', 'local_groupimport'),
@@ -747,9 +747,8 @@ class manage_page {
             'groupingscolumnlabel' => get_string('groupingscolumnlabel', 'local_groupimport'),
             'groupingoccupancylabel' => get_string('groupingoccupancy', 'local_groupimport'),
             'backtotoplabel' => get_string('backtotop', 'local_groupimport'),
-            'filteralllabel' => get_string('filterall', 'local_groupimport'),
-            'filterwithgroupslabel' => get_string('filterwithgroups', 'local_groupimport'),
-            'filteremptylabel' => get_string('filterempty', 'local_groupimport'),
+            // 'filteralllabel', 'filterwithgroupslabel' and 'filteremptylabel' are static text:
+            // templates/manage.mustache renders them inline via {{#str}}.
             'mobileviewlabel' => get_string('mobileviewlabel', 'local_groupimport'),
             'mobileviewparticipants' => get_string('mobileviewparticipants', 'local_groupimport'),
             'mobileviewgroups' => get_string('mobileviewgroups', 'local_groupimport'),
@@ -848,7 +847,7 @@ class manage_page {
             'nogroupingsavailable' => get_string('nogroupingsavailable', 'local_groupimport'),
             'groupings' => [],
             'groupswithoutgrouping' => get_string('groupswithoutgrouping', 'local_groupimport'),
-            'clipboarddesc' => get_string('clipboardtools_desc', 'local_groupimport'),
+            // 'clipboarddesc' is static text: templates/manage.mustache renders it inline via {{#str}}.
             'pasteemailsplaceholder' => get_string('pasteemailsplaceholder', 'local_groupimport'),
             'participantdetailstitle' => get_string('participantdetails', 'local_groupimport'),
             'participantprofilelabel' => get_string('opennativeprofile', 'local_groupimport'),
