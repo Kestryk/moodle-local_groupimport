@@ -1,0 +1,10 @@
+{
+  "k2101AssignmentNoteWrapping20261021": {
+    "request": "Keep the accepted K18-25 Assignment note inside slide12 in FR and EN",
+    "scope": "Single Kit guide-specimen activity-description wrapping rule; no copy, geometry token or engine change",
+    "priorUnintegratedEquivalent": "4024ffa4",
+    "proof": "docs/testing/k21-01-assignment-wrapping-2026-10-21.json",
+    "protocol": "docs/testing/k21-01-assignment-wrapping-2026-10-21.md",
+    "mainRuntimePublished": false
+  }
+}
