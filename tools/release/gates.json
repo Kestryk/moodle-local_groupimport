@@ -1,0 +1,74 @@
+{
+  "$schema": "./gates.schema.md",
+  "description": "Barrieres V2 actuelles du plugin local_groupimport (EasyStud). Chaque entree est une commande que n'importe qui peut relancer telle quelle depuis la racine du worktree. Les scripts ponctuels d'un lot K clos ne figurent plus ici : voir tools/release/archive/.",
+  "updated": "2026-10-21",
+  "gates": [
+    {
+      "id": "native-audit-text-fr-en",
+      "label": "Audit natif des textes FR/EN (accents, cles dupliquees, placeholders)",
+      "category": "audit",
+      "kind": "static-source",
+      "requiresPool": false,
+      "command": "node tools/release/audit-texts.cjs",
+      "commandStrict": "node tools/release/audit-texts.cjs --strict",
+      "notes": "Pas de bootstrap Moodle, pas d'ecriture produit. --strict fait echouer sur une erreur de langue (les JS/case restent des avertissements)."
+    },
+    {
+      "id": "native-audit-css",
+      "label": "Audit CSS structurel (regles dupliquees, poids)",
+      "category": "audit",
+      "kind": "static-source",
+      "requiresPool": false,
+      "command": "node tools/release/audit-css.cjs",
+      "notes": "T053 : comptage structurel seul, pas une preuve de code mort sans couverture native."
+    },
+    {
+      "id": "transport-contract-initial-state",
+      "label": "Contrat de transport de l'etat initial (amd/src/local/sm/store.js)",
+      "category": "transport",
+      "kind": "static-source",
+      "requiresPool": false,
+      "command": "node tools/release/test-initial-state-transport.cjs",
+      "notes": "Isole (vm sandbox) : pas de bootstrap Moodle, pas de navigateur, pas de base.",
+      "nativeVariant": {
+        "id": "transport-contract-initial-state-native",
+        "label": "Variante native (copie de test reelle)",
+        "kind": "playwright-pool",
+        "requiresPool": true,
+        "command": "node tools/release/test-initial-state-transport-native.cjs <playwright-module> <lease.json> <password-file> <output-dir> <course> <language> <width>",
+        "notes": "Necessite un bail (lease.json) sur une copie du pool 8052/8054/8055, voir tools/release/lib/harness.cjs."
+      }
+    },
+    {
+      "id": "student-management-recipe",
+      "label": "Recette Student Management (contenu approuve, exact par commit producteur)",
+      "category": "student-management",
+      "kind": "static-source",
+      "requiresPool": false,
+      "command": "node tools/release/verify-student-management.cjs --grouped-20261013",
+      "notes": "Compare le code actuel aux commits producteurs approuves (git show). Pas de navigateur, pas de base."
+    },
+    {
+      "id": "mass-import-semantic-palette",
+      "label": "Audit Mass Import : palette semantique (mapping PHP + CSS compile)",
+      "category": "mass-import",
+      "kind": "playwright-static-dom",
+      "requiresPool": false,
+      "command": "node tools/release/audit-mass-import-semantic-palette.cjs <node_modules-dir-contenant-playwright>",
+      "notes": "Diagnostic, pas un test d'acceptation. Charge du HTML isole avec le vrai mapping PHP et le CSS compile ; jamais de config/session/DB Moodle."
+    },
+    {
+      "id": "admin-settings-loading-contract",
+      "label": "Contrat de chargement de la page Administration (settings.php/JS/SCSS)",
+      "category": "admin",
+      "kind": "static-source",
+      "requiresPool": false,
+      "command": "powershell -ExecutionPolicy Bypass -File tools/release/test-admin-settings-loading-contract.ps1",
+      "notes": "Verifie la presence des fragments contractuels dans settings.php, js/admin_settings_loading.js, scss/views/_admin-settings.scss et styles.css."
+    }
+  ],
+  "archive": {
+    "path": "tools/release/archive/",
+    "policy": "Deplacement seul (git mv), jamais de suppression. Un script y entre quand son lot K est clos et qu'il ne figure plus dans la liste des barrieres ci-dessus."
+  }
+}
