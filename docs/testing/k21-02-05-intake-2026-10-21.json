@@ -227,5 +227,145 @@
       }
     ],
     "kitScssIdentical": true
+  },
+  "k2105SpecimenSpacing20261021": {
+    "passed": true,
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "gapsBefore": {
+          "before": 24,
+          "after": 24,
+          "overflowX": 0,
+          "innerPadding": "24px"
+        },
+        "gapsAfter": {
+          "before": 32,
+          "after": 32,
+          "overflowX": 0,
+          "innerPadding": "24px"
+        },
+        "panel": {
+          "width": 1170,
+          "height": 307.8125
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "gapsBefore": {
+          "before": 24,
+          "after": 24,
+          "overflowX": 0,
+          "innerPadding": "12px"
+        },
+        "gapsAfter": {
+          "before": 32,
+          "after": 32,
+          "overflowX": 0,
+          "innerPadding": "12px"
+        },
+        "panel": {
+          "width": 341,
+          "height": 573.5
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "gapsBefore": {
+          "before": 24,
+          "after": 24,
+          "overflowX": 0,
+          "innerPadding": "24px"
+        },
+        "gapsAfter": {
+          "before": 32,
+          "after": 32,
+          "overflowX": 0,
+          "innerPadding": "24px"
+        },
+        "panel": {
+          "width": 1170,
+          "height": 307.8125
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "gapsBefore": {
+          "before": 24,
+          "after": 24,
+          "overflowX": 0,
+          "innerPadding": "12px"
+        },
+        "gapsAfter": {
+          "before": 32,
+          "after": 32,
+          "overflowX": 0,
+          "innerPadding": "12px"
+        },
+        "panel": {
+          "width": 341,
+          "height": 573.5
+        }
+      }
+    ],
+    "kitK2105DeltaIdentical": true,
+    "unchangedPreexistingKitDifference": {
+      "source": "K21-01 d05cebc3",
+      "exactLine": "&__activity .easyedu-information__description { white-space: normal; overflow-wrap: anywhere; }"
+    }
+  },
+  "k21FinalAudit20261021": {
+    "status": "pass",
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "pass": 43,
+        "fail": [],
+        "info": 8
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "pass": 43,
+        "fail": [],
+        "info": 8
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "pass": 23,
+        "fail": [],
+        "info": 2
+      }
+    ],
+    "mainRuntimePublished": false,
+    "scenario": "tools/release/test-k21-visual-controls-native.cjs",
+    "classification": "native-candidate"
   }
 }

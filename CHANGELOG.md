@@ -1,3 +1,5 @@
+- 2026-10-21 [K21-05] Aérer la mini-démo de la diapositive Participant avec 32 px avant et après, issus du jeton d’espacement Kit, sans changer les cartes ni les autres scènes.
+
 - 2026-10-21 [K21-04] Rendre aux étapes du cadre de parcours Student Management leur fond d’étiquette ; limiter le rendu texte seul prévu par K19-02 au Guide Mass Import.
 
 - 2026-10-21 [K21-03] Rétablir l’encre bleue du bouton Afficher de plus des listes de membres, sans changer sa géométrie ni les autres actions secondaires.
