@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Initial Student Management state is a single-use authenticated document payload,
+not a persistent participant cache. Reuse get_state::execute for the original
+permissions, schema and errors; preserve network fallback and every later refresh.
+Hex-escape the JSON script, validate its course/schema, and remove it on consumption.
+See docs/testing/perf-getstate-admin-2026-10-21.md and test-initial-state-transport.cjs.
+
 K17-11 user-tour updates require provenance captured immediately after an
 actual plugin import and an exact match of every tour/step/attachment field.
 Never adopt an existing tour by name, path, selector or even identical content.
