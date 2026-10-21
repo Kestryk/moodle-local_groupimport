@@ -93,7 +93,8 @@ export const syncLongListFooter = (owner, kind, state, paged = false) => {
             count.setAttribute('data-easystud-long-list-count', '1');
             footer.appendChild(count);
             ['more', 'less', 'all', 'select'].forEach(action => {
-                footer.appendChild(button(action, 'easyedu-button easyedu-button--secondary'));
+                const accent = action === 'more' ? ' easyedu-button--secondary-accent' : '';
+                footer.appendChild(button(action, 'easyedu-button easyedu-button--secondary' + accent));
             });
         }
         const selection = owner.querySelector(':scope > [data-easystud-group-select-all-row]');

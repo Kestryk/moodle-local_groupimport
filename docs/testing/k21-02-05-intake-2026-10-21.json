@@ -50,5 +50,96 @@
     "proof": "C:/dev/artifacts/k21-02-05-native-20261021",
     "cancelUnchanged": true,
     "otherOldBUnchanged": true
+  },
+  "k2103MoreInk20261021": {
+    "status": "native-pass",
+    "proof": {
+      "passed": true,
+      "rows": [
+        {
+          "lang": "fr",
+          "width": 1600,
+          "height": 30.390625,
+          "before": "rgb(31, 42, 55)",
+          "after": "rgb(11, 94, 168)",
+          "members": [
+            8,
+            17
+          ]
+        },
+        {
+          "lang": "fr",
+          "width": 390,
+          "height": 30.390625,
+          "before": "rgb(31, 42, 55)",
+          "after": "rgb(11, 94, 168)",
+          "members": [
+            8,
+            17
+          ]
+        },
+        {
+          "lang": "en",
+          "width": 1600,
+          "height": 30.390625,
+          "before": "rgb(31, 42, 55)",
+          "after": "rgb(11, 94, 168)",
+          "members": [
+            8,
+            17
+          ]
+        },
+        {
+          "lang": "en",
+          "width": 390,
+          "height": 30.390625,
+          "before": "rgb(31, 42, 55)",
+          "after": "rgb(11, 94, 168)",
+          "members": [
+            8,
+            17
+          ]
+        }
+      ],
+      "eslint": [
+        {
+          "label": "base",
+          "errors": 0,
+          "warnings": 1,
+          "messages": [
+            {
+              "ruleId": "promise/no-native",
+              "severity": 1,
+              "message": "\"Promise\" is not defined.",
+              "line": 286,
+              "column": 19,
+              "nodeType": "Identifier",
+              "messageId": "name",
+              "endLine": 286,
+              "endColumn": 26
+            }
+          ]
+        },
+        {
+          "label": "candidate",
+          "errors": 0,
+          "warnings": 1,
+          "messages": [
+            {
+              "ruleId": "promise/no-native",
+              "severity": 1,
+              "message": "\"Promise\" is not defined.",
+              "line": 287,
+              "column": 19,
+              "nodeType": "Identifier",
+              "messageId": "name",
+              "endLine": 287,
+              "endColumn": 26
+            }
+          ]
+        }
+      ]
+    },
+    "artifactRoot": "C:/dev/artifacts/k21-02-05-native-20261021"
   }
 }
