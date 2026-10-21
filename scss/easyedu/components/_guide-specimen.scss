@@ -43,7 +43,11 @@
     user-select: none;
     --easyedu-guide-spec-min: 16rem;
 
-    &--participant { --easyedu-guide-spec-min: 17rem; }
+    &--participant {
+      --easyedu-guide-spec-min: 17rem;
+      // K21-05: breathing room around the participant specimen, from the shared spacing token.
+      margin-block: calc(2 * var(--easyedu-gap));
+    }
     &--filters { --easyedu-guide-spec-min: 15rem; }
     &--identifiers { --easyedu-guide-spec-min: 21rem; }
 
