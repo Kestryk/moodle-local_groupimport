@@ -798,6 +798,10 @@
     width: 100%;
   }
 
+  &-user {
+    @include easyedu.person-card-fold-content;
+  }
+
   &-group.is-newly-created,
   &-tree__section[data-easystud-grouping-id].is-newly-created {
     @include easyedu.identity-card-mutation-paint(created);
