@@ -1218,5 +1218,9 @@ export const setParticipantMetaExpanded = (card, expanded) => {
     if (!meta) {
         return;
     }
-    meta.hidden = !expanded;
+    // "Full information" density (local/sm/participants.setMetaExpandedOverride) always shows
+    // complete cards: selection state must not re-collapse them while that override is active.
+    const model = getOnDemandModel();
+    const forced = Boolean(model && model.metaExpandedOverride === true);
+    meta.hidden = !(expanded || forced);
 };
