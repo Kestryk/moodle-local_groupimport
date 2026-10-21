@@ -555,7 +555,8 @@ class guide_config {
                 'memberMoveConfirm' => '[data-easystud-move-modal][data-easystud-move-context="member"] ' .
                     '[data-easystud-confirm-move]',
                 'groupEditorAction' => [
-                    '[data-easystud-structure-groups] [data-easystud-open-advanced-settings][data-easystud-advanced-target="group"]',
+                    '[data-easystud-structure-groups] [data-easystud-open-advanced-settings]' .
+                        '[data-easystud-advanced-target="group"]',
                     '[data-easystud-context-action="group-open-advanced-settings"]:not([hidden])',
                 ],
                 'groupingEditorAction' => [
