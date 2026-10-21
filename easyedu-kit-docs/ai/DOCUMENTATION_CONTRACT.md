@@ -1153,3 +1153,11 @@ work must not repaginate that same disclosure. Preserve the shared Motion API,
 normal/reduced/minimal policy, metadata contents and filter/sort scope. Native
 frame traces and audit remain distinct from the isolated controller contract.
 See docs/testing/participant-density-k20-18-2026-10-21.md.
+
+
+Assignment specimen descriptions own normal whitespace inside the shared Kit
+recipe. Navigation nowrap must not leak into their accepted localized note.
+Preserve widths/type/copy and the separate Ready rule. Native proofs measure
+all three descriptions against card/padding bounds in FR/EN at four widths;
+retain baseline overflow and keep unrelated mirror debt explicit. See
+docs/testing/k21-01-assignment-wrapping-2026-10-21.md.

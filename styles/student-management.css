@@ -5722,6 +5722,8 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__activity .easyedu-information__title {margin: 0;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__activity .easyedu-information__description {white-space: normal;overflow-wrap: anywhere;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec .is-guide-pointed,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec .is-guide-path {outline: 2px solid var(--easyedu-primary);outline-offset: 1px;
 }
