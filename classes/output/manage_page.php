@@ -877,7 +877,7 @@ class manage_page {
         ];
 
         $templatedata['useeasyeduguide'] = true;
-        $templatedata['easyeduguide'] = local_groupimport_build_easyedu_guide_template_data($templatedata);
+        $templatedata['easyeduguide'] = guide_config::build_template_data($templatedata);
 
         // SM-RENDU: the browser renders every card from the compact state (local_groupimport_get_state):
         // the current page of the participant list and of both group catalogs, and the group cards of
