@@ -437,6 +437,7 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
         ':scope > .local-groupimport-easystud-grouping__duplicate-button',
         ':scope > .local-groupimport-easystud-grouping__settings-button',
         ':scope > .local-groupimport-easystud-rename > .local-groupimport-easystud-rename__toggle',
+        ':scope > .local-groupimport-easystud-group__delete-button',
     ].join(', ');
 
     // Three phases, so the browser lays the page out once for all cards instead of once per
@@ -1125,6 +1126,49 @@ export const ensureAdvancedSettingsButtons = root => {
         );
         button.setAttribute('data-easystud-advanced-target', 'grouping');
         header.insertBefore(button, rename);
+    });
+};
+
+// K22-16: per-card delete action (same Kit direct action as Duplicate / Settings, fa-trash of the bulk
+// "Delete groups" action). Placed last in the header, after rename (and after unlink on a group in a grouping),
+// so the destructive action stays at the end of the card actions.
+export const ensureDeleteButtons = root => {
+    const labels = getLabels(root);
+    const targets = [
+        {
+            selector: '[data-easystud-group-id]',
+            header: '.local-groupimport-easystud-group__header',
+            attribute: 'data-easystud-delete-group-card',
+            idattribute: 'data-easystud-group-id',
+            className: 'local-groupimport-easystud-group__delete-button',
+            label: labels.deletegroupcard || '',
+        },
+        {
+            selector: '[data-easystud-grouping-id]',
+            header: '.local-groupimport-easystud-grouping__header',
+            attribute: 'data-easystud-delete-grouping-card',
+            idattribute: 'data-easystud-grouping-id',
+            className: 'local-groupimport-easystud-group__delete-button local-groupimport-easystud-grouping__delete-button',
+            label: labels.deletegroupingcard || '',
+        },
+    ];
+    targets.forEach(target => {
+        root.querySelectorAll(target.selector).forEach(card => {
+            const header = card.querySelector(':scope > ' + target.header);
+            const rename = header ? header.querySelector(':scope > .local-groupimport-easystud-rename') : null;
+            if (!header || !rename || header.querySelector('[' + target.attribute + ']')) {
+                return;
+            }
+            const button = createIconActionButton(
+                target.className,
+                target.attribute,
+                card.getAttribute(target.idattribute) || '',
+                target.label,
+                'fa-trash'
+            );
+            const unlink = header.querySelector(':scope > .local-groupimport-easystud-group__unlink-button');
+            (unlink || rename).after(button);
+        });
     });
 };
 

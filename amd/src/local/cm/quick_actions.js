@@ -22,7 +22,7 @@
  */
 
 import * as Guide from '../../guide_api';
-import {selectedClass, normalise, getLabels, showNotification} from './shared';
+import {selectedClass, normalise, getLabels, showNotification, formatCountMessage} from './shared';
 import {openConfirmModal} from './modal';
 import {
     lazyKnownUserIdentifiers, renderIdentifierPreview, renderSmartIdentifierPreview, getKnownGroupIdentifiers,
@@ -31,7 +31,7 @@ import {
     getGroupElementsById, rehydrateParticipantMembershipDetails, syncGroupingChildrenState, syncUngroupedState,
     setRenameEditing, setInlinePanelOpen,
 } from './cards';
-import {getSelectedItems, clearSelectionState} from './selection';
+import {getSelectedItems, clearSelectionState, releaseConfirmedSelection} from './selection';
 import {
     emitGuidedCompletion, emitPracticeCompletion, getActivityGuideRoot, emitActivityGroupingEntry,
 } from './guide_hooks';
@@ -527,6 +527,94 @@ export const bindParticipantMessaging = root => {
         button.addEventListener('click', () => {
             openParticipantMessageModal(root, getSelectedMessageUserIds(root));
         });
+    });
+};
+
+/**
+ * K22-16: count shown by a card badge (participants of a group, groups of a grouping).
+ *
+ * The badge holds the server count, so it stays right when the card lists only part of its content.
+ *
+ * @param {HTMLElement} card Group or grouping card.
+ * @param {String} header Header class of the card.
+ * @param {Function} fallback Count read from the rendered rows when the badge is missing.
+ * @returns {Number}
+ */
+const getCardContentCount = (card, header, fallback) => {
+    const value = card.querySelector(':scope > ' + header + ' [data-easystud-count-value]');
+    const count = value ? parseInt(value.textContent, 10) : NaN;
+    return Number.isNaN(count) ? fallback() : count;
+};
+
+/**
+ * K22-16: card name for the confirmation message.
+ *
+ * @param {HTMLElement} card Group or grouping card.
+ * @returns {String}
+ */
+const getCardName = card => card.getAttribute('data-easystud-advanced-name') || '';
+
+// K22-16: the trash action of one group or grouping card. Same server actions and card updates as the
+// bulk "Delete groups" / "Delete groupings" actions; the shared confirmation dialog opens only when the
+// card still has content (participants of a group, groups of a grouping), as the bulk actions do.
+export const bindCardDeleteActions = (root, courseId) => {
+    root.addEventListener('click', event => {
+        const button = event.target.closest('[data-easystud-delete-group-card], [data-easystud-delete-grouping-card]');
+        // An overflow menu entry forwards its click to the card button: handle the card button only.
+        if (!button || !root.contains(button) ||
+                button.classList.contains('local-groupimport-easystud-group__actions-menu-item')) {
+            return;
+        }
+        event.preventDefault();
+        const labels = getLabels(root);
+
+        if (button.hasAttribute('data-easystud-delete-group-card')) {
+            const groupid = button.getAttribute('data-easystud-delete-group-card');
+            const card = button.closest('[data-easystud-group-id]');
+            const count = card ? getCardContentCount(card, '.local-groupimport-easystud-group__header',
+                () => card.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]').length) : 0;
+            const runDelete = () => {
+                postDeleteGroupsInBatches(root, courseId, [groupid], done => {
+                    // The rest of the selection stays: only the deleted group and its members leave it.
+                    releaseConfirmedSelection(root, 'group', done, item => item.getAttribute('data-selectable-id'));
+                    releaseConfirmedSelection(root, 'member', done,
+                        item => String(item.getAttribute('data-selectable-id') || '').split(':')[0]);
+                    done.forEach(id => deleteGroupElement(root, id));
+                }).then(response => {
+                    showNotification(root, response.message || '', 'success');
+                }).catch(error => handleActionError(root, error));
+            };
+            if (count > 0) {
+                openConfirmModal(root, formatCountMessage(labels.confirmdeletegroupcard || '', count)
+                    .replace('__name__', getCardName(card)), runDelete);
+                return;
+            }
+            runDelete();
+            return;
+        }
+
+        const groupingid = button.getAttribute('data-easystud-delete-grouping-card');
+        const card = button.closest('[data-easystud-grouping-id]');
+        const count = card ? getCardContentCount(card, '.local-groupimport-easystud-grouping__header',
+            () => card.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]')
+                .length) : 0;
+        const runDelete = () => {
+            postAction({
+                courseid: courseId,
+                action: 'deletegroupings',
+                groupingids: [groupingid],
+            }).then(response => {
+                releaseConfirmedSelection(root, 'grouping', [groupingid], item => item.getAttribute('data-selectable-id'));
+                deleteGroupingElement(root, groupingid);
+                showNotification(root, response.message || '', 'success');
+            }).catch(error => handleActionError(root, error));
+        };
+        if (count > 0) {
+            openConfirmModal(root, formatCountMessage(labels.confirmdeletegroupingcard || '', count)
+                .replace('__name__', getCardName(card)), runDelete);
+            return;
+        }
+        runDelete();
     });
 };
 

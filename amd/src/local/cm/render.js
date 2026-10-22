@@ -34,7 +34,7 @@ import {updateSelectionAvailability} from './selection';
 import {
     withBatchedMemberHeights, ensureNestedGroupActionMenus, applyGroupMemberSearchToGroup,
     normaliseMemberRemoveLabels, setCountBadgeState, ensureDuplicateButtons, ensureAdvancedSettingsButtons,
-    ensureInlinePanelCancelButtons, syncGroupMembersCollapsible,
+    ensureInlinePanelCancelButtons, syncGroupMembersCollapsible, ensureDeleteButtons,
 } from './group_cards';
 import {getInputQuery, getStructureGroupSearchQuery} from './filters';
 import {animateListArrival, listPageChanged, resetListPage} from './transitions';
@@ -230,6 +230,7 @@ export const decorateOnDemandGroupCards = (root, cards) => {
     ensureInlinePanelCancelButtons(root);
     ensureDuplicateButtons(root);
     ensureAdvancedSettingsButtons(root);
+    ensureDeleteButtons(root);
     cards.forEach(card => card.querySelectorAll('.local-groupimport-easystud-group__groupings--inline')
         .forEach(container => normaliseGroupGroupingTags(root, container)));
     ensureNestedGroupActionMenus(root, cards);

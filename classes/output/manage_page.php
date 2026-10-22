@@ -210,6 +210,15 @@ class manage_page {
             'close' => get_string('closebuttontitle'),
             'confirmdeletegroups' => get_string('confirmdeletegroups', 'local_groupimport'),
             'confirmdeletegroupings' => get_string('confirmdeletegroupings', 'local_groupimport'),
+            // K22-16: trash action of one card; the confirmation templates read by countLabel() (singular|plural).
+            'deletegroupcard' => get_string('deletegroupcard', 'local_groupimport'),
+            'deletegroupingcard' => get_string('deletegroupingcard', 'local_groupimport'),
+            'confirmdeletegroupcard' =>
+                get_string('confirmdeletegroupcard_one', 'local_groupimport', ['name' => '__name__', 'count' => '__count__']) .
+                '|' . get_string('confirmdeletegroupcard', 'local_groupimport', ['name' => '__name__', 'count' => '__count__']),
+            'confirmdeletegroupingcard' =>
+                get_string('confirmdeletegroupingcard_one', 'local_groupimport', ['name' => '__name__', 'count' => '__count__']) .
+                '|' . get_string('confirmdeletegroupingcard', 'local_groupimport', ['name' => '__name__', 'count' => '__count__']),
             'selectall' => get_string('selectall', 'local_groupimport'),
             'deselectall' => get_string('deselectall', 'local_groupimport'),
             'selectallmembersof' => get_string('selectallmembersof', 'local_groupimport', '__name__'),

@@ -40,7 +40,7 @@ import {
     syncGroupingGroupsCollapsible, ensureNestedGroupActionMenus, createMemberItem, updateGroupingBadge,
     syncGroupMembersState, updateStructureSummary, updateStructureEmptyState, createGroupElement,
     createParticipantCatalogGroupElement, createGroupingElement, createIconActionButton, ensureDuplicateButtons,
-    ensureAdvancedSettingsButtons, writeCountBadge,
+    ensureAdvancedSettingsButtons, ensureDeleteButtons, writeCountBadge,
 } from './group_cards';
 import {
     expandGroupingSection, syncCatalogFilters, applyContainerGroupSearch, applyGroupMemberSearch,
@@ -583,6 +583,7 @@ export const insertGroupData = (root, groupdata) => {
     }
     ensureDuplicateButtons(root);
     ensureAdvancedSettingsButtons(root);
+    ensureDeleteButtons(root);
     updateCatalogGroupingTags(root, groupdata.id);
     syncCatalogFilters(root);
     applyContainerGroupSearch(root);
@@ -624,6 +625,7 @@ export const insertGroupingData = (root, groupingdata) => {
     collapseGroupingSection(grouping);
     ensureDuplicateButtons(root);
     ensureAdvancedSettingsButtons(root);
+    ensureDeleteButtons(root);
     syncCatalogFilters(root);
     applyContainerGroupSearch(root);
     updateStructureSummary(root);

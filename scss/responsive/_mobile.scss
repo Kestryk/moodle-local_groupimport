@@ -371,6 +371,7 @@
     &-group__mail-button,
     &-group__rename-button,
     &-group__duplicate-button,
+    &-group__delete-button,
     &-group__unlink-button,
     &-grouping__rename-button,
     &-grouping__duplicate-button {
@@ -761,6 +762,7 @@
     &-group__member-search-button,
     &-group__duplicate-button,
     &-group__settings-button,
+    &-group__delete-button,
     &-group__unlink-button,
     &-rename {
       flex: 0 0 auto;

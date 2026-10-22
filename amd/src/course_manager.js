@@ -37,7 +37,7 @@ import {
 } from './local/cm/cards';
 import {
     normaliseMemberRemoveLabels, updateGroupingBadge, syncAllCountBadges, ensureDuplicateButtons,
-    ensureAdvancedSettingsButtons, ensureInlinePanelCancelButtons,
+    ensureAdvancedSettingsButtons, ensureInlinePanelCancelButtons, ensureDeleteButtons,
 } from './local/cm/group_cards';
 import {updateParticipantEmptyState} from './local/cm/filters';
 import {bindAccessibleNames} from './local/cm/accessible_names';
@@ -53,7 +53,7 @@ import {
 } from './local/cm/group_card_controls';
 import {
     bindQuickCreate, bindRenameForms, bindGroupMemberActions, bindGroupingGroupActions, bindBulkActions,
-    bindParticipantMessaging, bindDuplicateActions,
+    bindParticipantMessaging, bindDuplicateActions, bindCardDeleteActions,
 } from './local/cm/quick_actions';
 import {bindResponsiveDragGuard, bindGroupDragDrop, bindUserDragDrop} from './local/cm/drag_drop';
 import {
@@ -205,9 +205,11 @@ export const init = (rootId, courseId, options = {}) => {
             () => bindParticipantMessaging(root),
             () => ensureDuplicateButtons(root),
             () => ensureAdvancedSettingsButtons(root),
+            () => ensureDeleteButtons(root),
             () => normaliseAllGroupGroupingTags(root),
             () => bindNestedGroupActionMenus(root),
             () => bindDuplicateActions(root, courseId),
+            () => bindCardDeleteActions(root, courseId),
             () => bindAdvancedSettings(root),
             () => bindContextMenu(root, courseId),
             () => bindCatalogFilters(root),

@@ -550,7 +550,8 @@
     .local-groupimport-easystud-group__mail-button,
     .local-groupimport-easystud-container-search__toggle,
     .local-groupimport-easystud-group__duplicate-button,
-    .local-groupimport-easystud-group__settings-button {
+    .local-groupimport-easystud-group__settings-button,
+    .local-groupimport-easystud-group__delete-button {
       display: none !important;
     }
   }
@@ -871,6 +872,7 @@
     .local-groupimport-easystud-group__member-search-button,
     .local-groupimport-easystud-group__duplicate-button,
     .local-groupimport-easystud-group__settings-button,
+    .local-groupimport-easystud-group__delete-button,
     .local-groupimport-easystud-group__unlink-button {
       display: none !important;
     }
@@ -899,7 +901,8 @@
   &-group__mail-button,
   &-group__duplicate-button,
   &-group__member-search-button,
-  &-group__settings-button {
+  &-group__settings-button,
+  &-group__delete-button {
     @include easyedu.card-direct-action;
   }
 
