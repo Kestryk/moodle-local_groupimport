@@ -606,9 +606,6 @@ try {
             $response['message'] .= ' ' . get_string('bulkitemsskipped', 'local_groupimport', $skipped);
         }
     } else if ($action === 'movemembers') {
-        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-            throw new moodle_exception('invaliddata', 'error');
-        }
         $destinationid = required_param('destinationid', PARAM_INT);
         $membersjson = optional_param('membersjson', '', PARAM_RAW);
         if ($membersjson !== '') {
@@ -679,8 +676,6 @@ try {
         }
         $response['success'] = true;
     } else if ($action === 'addemails') {
-        global $DB;
-
         $groupid = required_param('groupid', PARAM_INT);
         $rawemails = required_param('emails', PARAM_TEXT);
         $group = groups_get_group($groupid);
@@ -882,8 +877,6 @@ try {
         $response['deleted'] = (int)$deleted;
         $response['message'] = local_groupimport_count_string('groupsdeleted', (int)$deleted);
     } else if ($action === 'deletegroupings') {
-        global $DB;
-
         $groupingids = required_param_array('groupingids', PARAM_INT);
         bulk_action::validate_size(count($groupingids));
         $deleted = 0;
