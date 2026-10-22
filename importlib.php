@@ -401,23 +401,6 @@ function local_groupimport_validate_preview_rows(array $rows, context_course $co
 }
 
 /**
- * Whether the import history table is available in this plugin installation.
- *
- * @return bool
- */
-function local_groupimport_history_table_exists(): bool {
-    global $DB;
-
-    static $exists = null;
-    if ($exists !== null) {
-        return $exists;
-    }
-
-    $exists = $DB->get_manager()->table_exists(new xmldb_table('local_groupimport_history'));
-    return $exists;
-}
-
-/**
  * Record a confirmed course import in the course-level history.
  *
  * @param int $courseid Course id.
@@ -445,10 +428,6 @@ function local_groupimport_record_import_history(
     bool $triggerevent = true
 ): int {
     global $DB;
-
-    if (!local_groupimport_history_table_exists()) {
-        return 0;
-    }
 
     $record = (object)[
         'courseid' => $courseid,
@@ -482,10 +461,6 @@ function local_groupimport_record_import_history(
 function local_groupimport_get_import_history(int $courseid, int $limit = 20): array {
     global $DB;
 
-    if (!local_groupimport_history_table_exists()) {
-        return [];
-    }
-
     // Keep report/changes payloads on the explicit detail/export/restore paths only.
     $length = $DB->sql_length('changesjson');
     $sql = "SELECT id, filename, timecreated, rowcount, successcount, errorcount, timerolledback,
@@ -506,7 +481,7 @@ function local_groupimport_get_import_history(int $courseid, int $limit = 20): a
 function local_groupimport_get_matching_import_history(int $courseid, string $filehash): ?stdClass {
     global $DB;
 
-    if (!local_groupimport_history_table_exists() || $filehash === '') {
+    if ($filehash === '') {
         return null;
     }
 

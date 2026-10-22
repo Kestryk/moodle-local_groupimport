@@ -31,13 +31,6 @@ if (!MOODLE_INTERNAL) {
 require_once(__DIR__ . '/../../../tools/release/fixtures/source_file.php');
 $root = dirname(__DIR__, 3);
 $source = file_get_contents($root . '/index.php') . file_get_contents($root . '/importlib.php');
-/**
- * Perform isolated fixture operation local_groupimport_history_table_exists.
- * @return mixed Fixture result.
- */
-function local_groupimport_history_table_exists() {
-    return $GLOBALS['historyexists'];
-}
 $tokens = token_get_all($source);
 for ($i = 0; $i < count($tokens); $i++) {
     if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION) {
@@ -93,9 +86,6 @@ for ($i = 1; $i <= 25; $i++) {
     $insert->execute([$i, 5, 'Import ' . $i . '.csv', 1000 + $i, 3000, 2990, 10, $i % 2 ? 1234 : null, $changes, $detail, 'hash']);
 }
 $insert->execute([26, 6, 'foreign.csv', 9999, 1, 1, 0, null, $detail, $detail, 'foreign']);
-$historyexists = false;
-check(local_groupimport_get_import_history(5) === [] && $DB->calls === 0, 'missing table no query');
-$historyexists = true;
 $rows = local_groupimport_get_import_history(5);
 check(count($rows) === 20 && array_keys($rows) === range(25, 6), 'newest 20 scoped to course');
 foreach ($rows as $id => $r) {
