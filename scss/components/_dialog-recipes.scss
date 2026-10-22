@@ -31,7 +31,7 @@ $dialog-divider: easyedu.$dialog-divider;
   @include easyedu.dialog-tile($color, $soft);
 }
 
-// One height for every label of the family: 22px pills (Kevin 16/10 no. 4).
+// One height for every label of the family: 22px pills.
 @mixin dialog-pill($role: empty) {
   @include easyedu.dialog-pill($role);
 }

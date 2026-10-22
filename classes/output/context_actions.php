@@ -21,9 +21,6 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Builds the Student Management context menu entries.
  *
- * Extracted from manage.php (I3, 2026-10-21): same body as
- * local_groupimport_build_context_actions_template_data, moved verbatim.
- *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

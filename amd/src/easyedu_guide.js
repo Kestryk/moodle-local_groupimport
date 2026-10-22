@@ -1119,7 +1119,7 @@ const dockChecklistAboveTarget = (root, checklist, target, inDialog) => {
   root.easyeduGuideTopDockTarget = target;
 };
 
-// J-G3 (P-G2, validated by Kevin on 16/10/2026): the checklist never covers the step target.
+// J-G3 (P-G2): the checklist never covers the step target.
 // Canonical side: right on desktop and tablet, bottom on compact viewports. Before each step the
 // panel is compared with the target plus a 16 px margin; on overlap it moves to the opposite side
 // (left, or top on compact viewports). When neither side fits (target under both lanes, or a
@@ -3678,7 +3678,7 @@ const hideWelcome = root => {
   root.easyeduGuideWelcomeTarget = null;
 };
 
-// K18-16 (Kevin 18/10/2026): the V3 welcome banner sits next to the launcher
+// K18-16: the V3 welcome banner sits next to the launcher
 // at every width. A launcher hidden in a closed drawer hands over to the
 // visible control that opens that drawer (config.welcomeCompactTarget).
 const isInViewport = element => {

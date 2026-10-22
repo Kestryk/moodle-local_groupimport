@@ -30,7 +30,7 @@ export const BUBBLE_CLASS = 'local-groupimport-easystud-hover-popover';
 export const GRACE_MS = 220;
 // K20-05: a brief hover-in delay so a simple mouse pass during navigation does not pop every bubble it
 // crosses. Keyboard focus stays instant (callers pass {immediate: true}); only the mouse path waits.
-// 400ms sits inside Kevin's requested 300-500ms range: long enough to filter an incidental pass, short
+// 400ms sits inside the requested 300-500ms range: long enough to filter an incidental pass, short
 // enough that a deliberate hover still feels responsive (Windows' own hover-tooltip delay is similar).
 export const SHOW_DELAY_MS = 400;
 const LONG_TEXT = 110;

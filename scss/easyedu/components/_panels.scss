@@ -97,7 +97,7 @@
 }
 
 @mixin workspace-lane($rail, $segment: whole) {
-  // K20-06 (Kevin, 20/10): no boundary line around lanes. The K16-19/21 dark inset hairline
+  // K20-06: no boundary line around lanes. The K16-19/21 dark inset hairline
   // (rail 55% + text 45%) framed the tab band and the whole two-lane panel on Moodle 5.1;
   // any 5.3 grey-host separation must go through Penpot first, not a hairline here.
   @include workspace-lane-surface;
@@ -111,7 +111,7 @@
     } @else {
       border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;
     }
-    // K16-61 (Kevin, 16/10): the same top rail as the Mass Import panels (semantic-accent-panel):
+    // K16-61: the same top rail as the Mass Import panels (semantic-accent-panel):
     // a gradient band from the lane identity colour to its tint, painted inside the rounded lane.
     --easyedu-lane-rail-colour: #{$rail};
     background-image: linear-gradient(

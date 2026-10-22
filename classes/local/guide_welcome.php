@@ -45,7 +45,7 @@ final class guide_welcome {
         return (string)(get_config('local_groupimport', self::SETTING) ?: 'initial');
     }
 
-    /** Session marker of "Later": the invitation stays hidden until the next login (Kevin, 14/10/2026). */
+    /** Session marker of "Later": the invitation stays hidden until the next login. */
     public const SESSION_LATER = 'local_groupimport_guide_welcome_later';
 
     /**

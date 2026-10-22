@@ -121,7 +121,7 @@
   }
 }
 
-// K17-51 (Kevin 17/10): the one fold chevron of every group card (validated K16-76 look: icon only,
+// K17-51: the one fold chevron of every group card (validated K16-76 look: icon only,
 // the Kit recovery-action target, chevron down that turns up when unfolded). The consumer supplies
 // the native button, its accessible name and the fold behaviour; it stays at the foot of the card.
 @mixin card-fold-chevron {
@@ -178,7 +178,7 @@
 
     &:hover,
     &:focus-visible {
-      // K16-55 (Kevin 16/10: the circles had grown too big): a 24 px disc inside the unchanged
+      // K16-55 (keep the hover disc inside its target): a 24 px disc inside the unchanged
       // hit target, without the outline ring. A radial paint, so .p-0 / borders cannot resize it.
       @include card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
       border-color: transparent;

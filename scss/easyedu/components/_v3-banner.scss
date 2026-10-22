@@ -1,14 +1,14 @@
-// EasyEdu V3 banner (K18-16, Kevin 18/10/2026): one Kit component for the
+// EasyEdu V3 banner (K18-16): one Kit component for the
 // first-visit welcome and for notifications (former toasts).
-// Penpot Foundations masters, file revision 2470:
+// Foundations welcome masters; notifications use the current compact recipe below:
 // - EasyEdu / Feedback / V3 banner / Welcome / Desktop       600 x 174
 // - EasyEdu / Feedback / V3 banner / Welcome / Touch         358 x 314
-// - EasyEdu / Feedback / V3 banner / Notification / Desktop  480 x 124 (long text 480 x 144)
-// - EasyEdu / Feedback / V3 banner / Notification / Touch    358 x 148
+// - Notification / Desktop: up to 480px wide, 72px short copy / 90px long copy
+// - Notification / Touch: fluid width, the same 72px / 90px content heights
 // Common paint: white, inner 1px #cfe0ef stroke drawn above the content,
 // radius 8, 4px plugin accent on the left edge, shadow 0 8 24 #162d44 at 14 %.
-// Touch masters apply at 40rem and below. Geometry is the Penpot one,
-// including the Touch title/text boxes that keep the master height stable.
+// Touch variants apply at 40rem and below. The welcome title/text boxes
+// keep the welcome master height stable; notifications use their compact type.
 @use "buttons";
 @use "animations";
 @use "../foundation-classes" as foundation;
@@ -232,7 +232,7 @@ $v3-touch-query: "(max-width: 40rem)";
     }
     .easyedu-v3-banner__heading { padding-inline-end: 3rem; }
     .easyedu-v3-banner__eyebrow { line-height: 0.75rem; }
-    // K20-07: Kevin found the title and message too large after K20-03;
+    // K20-07: the title and message use smaller type than K20-03;
     // smaller font-size only, line-height kept so the 72/90px panel math is unchanged.
     .easyedu-v3-banner__title { font-size: 0.875rem; line-height: 1.25rem; margin-block-start: 0; }
     .easyedu-v3-banner__text { font-size: 0.8125rem; line-height: 1.125rem; margin-block-start: 0.375rem; }

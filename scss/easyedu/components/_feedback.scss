@@ -173,7 +173,7 @@
   padding: 0.7rem 0.85rem;
 }
 
-// Entity-card empty line (K16-77, Kevin 16/10: no dotted frame, Kit styles that respect the card):
+// Entity-card empty line (K16-77: no dotted frame):
 // an empty member row — the related-person-row veil and radius — with a bare entity glyph, the
 // message then the help. Only the drag state marks the drop target (entity-card-empty-drop-target).
 @mixin entity-card-empty-line($color, $lane: false) {

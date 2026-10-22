@@ -34,8 +34,7 @@ use local_groupimport\local\state_version;
  * copies. No HTML and no precomputed search text: the browser renders and indexes it.
  * Heavy, rarely displayed fields are served by {@see self::get_details()}.
  *
- * The legacy page still uses {@see course_structure::get_state()}; both coexist until
- * the parity milestone (ARCHITECTURE-SM-RENDU, step 6).
+ * The page shell uses page_data(); the initial client model uses build().
  *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac

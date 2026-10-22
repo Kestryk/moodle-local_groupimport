@@ -21,9 +21,6 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Builds the EasyStud Student Management page template data.
  *
- * Extracted from manage.php (I3, 2026-10-21): same body, moved verbatim into a
- * dedicated class so manage.php stops carrying an 848-line, 464-get_string function.
- *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

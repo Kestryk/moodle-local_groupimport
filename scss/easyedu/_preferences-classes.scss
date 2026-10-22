@@ -130,7 +130,7 @@
   // K17-62 (Penpot K17-62-69-PRODUCT-VIEWS-2026-10-18): the Display preferences family keeps one
   // definition (card-direct-action), reused as-is by compact navigation, the Guide footer and the
   // guided checklist. The Guide's root (<div class="easyedu-guide">) renders as its own sibling of
-  // .easyedu-ui, not inside it (confirmed on :8052, manage.php), so both ancestor scopes are listed
+  // .easyedu-ui, not inside it, so both ancestor scopes are listed
   // explicitly, comma-separated rather than :is(), so the page-CSS splitter (build-page-styles.cjs)
   // keeps evaluating each branch on its own: the plain .easyedu-ui branch still ships on every page
   // (admin/mass-import/sm) and the .easyedu-guide branch ships wherever a Guide actually renders.

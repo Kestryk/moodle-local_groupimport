@@ -922,7 +922,7 @@ export const setRenameEditing = (form, editing) => {
     }
 };
 
-// K16-85 (Kevin 16/10): one card shows one inline panel at a time. Opening the member search, the
+// K16-85: one card shows one inline panel at a time. Opening the member search, the
 // add-by-identifier box, the grouping search or the add-groups box closes the card's other open
 // panel (through its own Cancel when it has one, so a pending search is cleared too) and its
 // action loses its active state.

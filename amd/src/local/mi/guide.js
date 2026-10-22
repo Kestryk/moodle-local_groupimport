@@ -18,7 +18,7 @@
  * milestones of the guided path "Check a file without importing anything".
  *
  * Presentation only: no opener or milestone submits a form, and nothing here ever targets
- * "Run import" (the path ends on Cancel, Kevin 18/10, K18-07). Student Management modules are
+ * "Run import" (the path ends on Cancel, K18-07). Student Management modules are
  * not loaded: only the dependency-free shared launcher is.
  *
  * @module     local_groupimport/local/mi/guide

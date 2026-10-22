@@ -99,7 +99,7 @@ const ownClickSelector = 'button, a, input, textarea, select, form, summary, [co
 const selectorSelector = '.local-groupimport-easystud-selector';
 
 const isRangeEvent = event => !!event[RANGE_SELECTION_MODIFIER];
-// Ctrl/Cmd + click, and Alt + click (Kevin, 15/10), add or remove one item.
+// Ctrl/Cmd + click, and Alt + click, add or remove one item.
 const isToggleEvent = event => !!(event.ctrlKey || event.metaKey || event.altKey);
 
 /**

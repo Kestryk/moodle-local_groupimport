@@ -264,7 +264,7 @@
   @include scale.touch-target-floor;
 }
 
-// K16-80 (Kevin 16/10, standardise reusable controls): ONE Kit Close. The cross is drawn by the
+// K16-80: ONE Kit Close. The cross is drawn by the
 // component itself (two 1.5 px strokes, centred by geometry), so every close button looks and
 // centres the same whatever icon font or character the template carries (fa-times, &times;,
 // theme icon): that inner content is only kept for compatibility and hidden.

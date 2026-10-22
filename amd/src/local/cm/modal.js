@@ -34,7 +34,6 @@ const modalTabStops = modal => Array.from(modal.querySelectorAll(
 
 // Inline disclosures stay in document Tab order. Escape reuses native Cancel;
 // only the panel-owned focus is returned after the existing close animation.
-// (T058, Codex n°2, served before the T055 split; preserved verbatim.)
 const inlineKeyboardState = new WeakMap();
 export const prepareInlinePanelFocus = panel => {
     let state = inlineKeyboardState.get(panel);

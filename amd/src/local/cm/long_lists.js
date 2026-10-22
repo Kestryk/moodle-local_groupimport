@@ -175,7 +175,7 @@ export const syncMemberWindow = group => {
     }
     const ids = matchingMemberIds(model, id, query);
     const state = listWindow('members', ids.length, group.easystudMemberLimit);
-    // K16-84 (Kevin 16/10): a long group no longer opens its member search by itself; the search
+    // K16-84: a long group no longer opens its member search by itself; the search
     // stays one click away on the card's search action.
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
     const ungrouped = !!group.closest('.local-groupimport-easystud-tree__section--ungrouped');

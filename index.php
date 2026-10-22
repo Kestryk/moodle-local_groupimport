@@ -53,7 +53,7 @@ $PAGE->set_heading(format_string($course->fullname));
 // Animation level (user choice, else administrator default): root attributes and body classes.
 $motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
 $PAGE->requires->css('/local/groupimport/styles/mass-import.css');
-// The Guide rules are a separate sheet, requested on this page only (GMI-C1, Kevin 18/10).
+// The Guide rules are a separate sheet, requested on this page only (GMI-C1).
 $PAGE->requires->css('/local/groupimport/styles/guide.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation', 'init', [
@@ -275,7 +275,7 @@ echo html_writer::tag('script', json_encode([
 // The shared navigation replaces the legacy Mass Import action row only. The
 // The loading implementation keeps the real frame visible while binding its controls.
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
-// The Guide launcher sits first in the navigation (compass only, no welcome bubble: Kevin 18/10, Q4).
+// The Guide launcher sits first in the navigation (compass only, no welcome bubble; Q4).
 $navigationdata['hasguide'] = true;
 $navigationdata['guidehtml'] = $OUTPUT->render_from_template(
     'local_groupimport/easyedu_guide',
@@ -484,7 +484,7 @@ if ($backgroundjobid) {
 
 $hasreport = ($preview === null) && !(empty($success) && empty($errors));
 if ($hasreport) {
-    // K18-16 (Kevin 18/10/2026): the outcome is also announced with the Kit V3 notification.
+    // K18-16: the outcome is also announced with the Kit V3 notification.
     $notificationtype = empty($errors) ? 'success' : 'error';
     $PAGE->requires->js_call_amd('local_groupimport/easyedu_notification', 'show', [[
         'type' => $notificationtype,
@@ -516,7 +516,7 @@ echo html_writer::end_div(); // Card.
 
 echo html_writer::end_div(); // Grid.
 
-// T050/T051 (Kevin 16/10/2026 decision 6, Penpot S6-D5b/c): history and restore dialogs
+// T050/T051 (Penpot S6-D5b/c): history and restore dialogs
 // join the T045 dialog family (tile + EASYSTUD eyebrow + title + Kit close, sticky footer
 // with Kit buttons). Rows keep every action: restore (or restore again), annotated Excel
 // report, legacy notice and the last restoration date.
