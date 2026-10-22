@@ -71,3 +71,10 @@
   // K16-31/K16-32 (Kevin, 15/10 evening): the list toolbar keeps the Kit sizes of each control
   // (Select all, result count, sort, page arrows); the forced 32 px height and 32 px circles are gone.
 }
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .local-groupimport-easystud-user__meta .badge {
+    @include easyedu.card-label;
+  }
+}

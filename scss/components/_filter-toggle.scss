@@ -20,3 +20,20 @@
     @include easyedu.filter-disclosure-count(compact);
   }
 }
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .easyedu-filter-actions {
+    @include easyedu.filter-actions-stacked;
+  }
+  .easyedu-filter-actions--inline {
+    @include easyedu.filter-actions($spread: true);
+    margin-block-start: 12px;
+  }
+  [data-easystud-advanced-filters] > div:not(.local-groupimport-easystud__filters-grid) {
+    @include easyedu.filter-panel-trailing-actions;
+  }
+  .local-groupimport-easystud__filters-reset {
+    @include easyedu.filter-reset;
+  }
+}

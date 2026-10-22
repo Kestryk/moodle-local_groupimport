@@ -350,3 +350,24 @@
   }
 
 }
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and
+  // groupings" switch is the same compact Kit selection action as the desktop density switch, on its
+  // own line, left-aligned, with the lane's 0.75rem rhythm instead of a full-width tray button.
+  .local-groupimport-easystud__membership-toggle:not([hidden]) {
+    display: flex;
+    inline-size: fit-content;
+    margin-block: 0.25rem 0.75rem;
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+.local-groupimport-easystud {
+  &-user.is-selected:focus-within {
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
+    @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14), $strong-border: true);
+    // Border priority is owned by the contextual Kit variant.
+  }
+}

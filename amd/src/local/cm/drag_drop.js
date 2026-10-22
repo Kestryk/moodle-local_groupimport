@@ -23,6 +23,7 @@
 
 import * as Guide from '../../easyedu_guide';
 import {
+    responsiveWorkspaceQuery,
     draggingClass, dropTargetClass, structureFocusClass, participantFocusClass, requestGuideHighlightRefresh,
     formatCountMessage, formatMoveSummary, getLabels, showNotification, escapeHtml,
 } from './shared';
@@ -60,7 +61,7 @@ export const bindResponsiveDragGuard = root => {
 
     // The drag mode follows the viewport (1024 px, pointer type): keep the classes and hints in step.
     if (window.matchMedia) {
-        window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1024px)').addEventListener('change',
+        window.matchMedia(`(hover: none), (pointer: coarse), ${responsiveWorkspaceQuery}`).addEventListener('change',
             () => syncResponsiveDragAvailability(root));
     }
     root.addEventListener('pointerdown', guard, true);

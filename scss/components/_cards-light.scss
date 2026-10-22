@@ -144,3 +144,26 @@
     @include easyedu.card-action-icon-type;
   }
 }
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  // K16-37: the dense aligned recipe belongs to the light responsive cards only; desktop
+  // compact (one line) and full-information cards keep their own layouts.
+  // :where() keeps the original specificity, so later responsive refinements still win.
+  &:where(.local-groupimport-easystud--responsive-workspace) .local-groupimport-easystud-user {
+    @include easyedu.person-card-aligned-content;
+    > .local-groupimport-easystud-selector {
+      @include easyedu.person-card-aligned-selector(8px, 32px);
+    }
+  }
+  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+    @include easyedu.person-card-selection-column;
+    @include easyedu.person-card-metadata-below-actions;
+    > .local-groupimport-easystud-selector {
+      @include easyedu.person-card-aligned-selector(10px, 44px);
+    }
+    > .local-groupimport-easystud-card-menu {
+      top: calc(10px + (var(--easyedu-person-first-line) - 44px) / 2 + var(--easyedu-person-line-centre-adjust));
+    }
+  }
+}
