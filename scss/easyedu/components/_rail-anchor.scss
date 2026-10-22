@@ -387,6 +387,11 @@ $-rail-control-size: 2.5rem;
         inline-size: 1rem;
         min-inline-size: 1rem;
         transform: none;
+        // K22-24: the compass keeps its own compositing layer at rest. Otherwise the
+        // browser promotes it only while the hover rotation runs and drops the layer
+        // when it ends, re-rasterising the glyph with another antialiasing: a visible
+        // sharpness snap at the end of the animation.
+        will-change: transform;
 
         .fa {
           block-size: 1rem;
@@ -787,6 +792,7 @@ $-rail-control-size: 2.5rem;
 
     .easyedu-navigation--identity .easyedu-guide__launcher .easyedu-guide__launcher-icon {
       animation: none;
+      will-change: auto;
     }
   }
 
