@@ -221,10 +221,6 @@
     grid-template-rows: auto minmax(0, 1fr);
   }
 
-  &--participant-focus &__filters-grid {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
-  }
-
   &--participant-focus &__filter-group--participant-only {
     display: flex;
   }

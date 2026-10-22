@@ -123,8 +123,8 @@
       box-shadow: 0 0.75rem 1.35rem rgba(31, 42, 55, 0.13);
     }
 
+    // K22-18: __filters-grid keeps its auto-fit dropdown row (two side by side, then stacked).
     &__search-row,
-    &__filters-grid,
     &-group-catalog-filters,
     &-create-card__topline,
     &-create-row,
@@ -649,10 +649,6 @@
     &-group-catalog-filters,
     &-create-card__topline {
       gap: 0.5rem;
-    }
-
-    &--participant-focus &__filters-grid {
-      grid-template-columns: minmax(0, 1fr);
     }
 
     &__participant-content,

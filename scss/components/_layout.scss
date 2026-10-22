@@ -649,10 +649,17 @@
     width: 100%;
   }
 
+  // K22-18: the Roles chips own a full row; the dropdowns below share one row
+  // (two side by side) and only stack when a dropdown would fall under 9rem.
+  // Toggles and Reset stay in the trailing filter actions, below this grid.
   &__filters-grid {
     display: grid;
     gap: 0.65rem;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  }
+
+  &__filters-grid > &__filter-group--roles {
+    grid-column: 1 / -1;
   }
 
   &__filter-group {
