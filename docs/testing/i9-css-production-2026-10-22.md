@@ -46,7 +46,16 @@ rule. These measurements supersede estimates from an older audit checkpoint.
   duplicate copies of the default token catalogue.
 - The native candidate compares readable and production CSS in the same
   authenticated Moodle DOM at FR/EN 1600/768/390, on all four surfaces.
-  Evidence and the exact result are in the external review report.
+  Consolidated geometry/computed paint is neutral in 24/24 cases, with zero
+  page/console errors or business writes. Strict screenshots pass 20/24;
+  the four compact Guide cases remain raw failures. A four-case identical-CSS
+  control also fails those screenshot comparisons. The original full run,
+  control and resting-pointer compact successor are retained separately;
+  no pixel threshold or failed assertion is relaxed. The strict zero-failure
+  native criterion remains open. Configuration is restored exactly by hash.
+  Evidence, pixel counts and the raw failure measures are in the external
+  review report. Set `I9_IDENTICAL_CSS_CONTROL=1` for the four compact controls,
+  or `I9_COMPACT_GUIDE_ONLY=1` for the actual compact Guide comparison.
 
 ## Guide delivery options requiring approval
 
