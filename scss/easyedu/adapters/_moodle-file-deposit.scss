@@ -225,7 +225,10 @@
     .dndupload-arrow { display: none !important; }
     // Keep native type descriptions accessible. The visible equivalent is
     // generated from the same allowed formats by the consuming form.
+    // Moodle 5.3 wraps the intro label in a div.filetypes-descriptions-intro
+    // instead of a bare <p> (4.5/5.1); hide both forms identically.
     .form-filetypes-descriptions,
+    .filetypes-descriptions-intro,
     [id^="filepicker-wrapper-"] ~ p,
     .filepicker ~ p,
     .felement > p {
