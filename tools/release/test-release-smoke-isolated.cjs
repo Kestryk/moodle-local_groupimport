@@ -19,7 +19,7 @@ for(const [name,file,...args] of cases){
  let value;try{value=JSON.parse((run.stdout||'').trim());}catch{value=null;}
  results.push({name,exit:run.status,passed:run.status===0&&value?.passed===true,result:value,error:run.error?.message||((run.stderr||'').trim().slice(0,1000))});
 }
-for(const name of ['test-security-escaping.cjs','test-filter-engine.cjs']){
+for(const name of ['test-security-escaping.cjs','test-filter-engine.cjs','test-guide-path-facts-delivery.cjs']){
  const run=spawnSync(process.execPath,[path.join(__dirname,name)],{encoding:'utf8',timeout:60000,maxBuffer:1024*1024,cwd:root});
  results.push({name,exit:run.status,passed:run.status===0,error:run.error?.message||((run.stderr||'').trim().slice(0,1000))});
 }
