@@ -26,6 +26,7 @@ import {selectedClass, normalise, getLabels, showNotification, formatCountMessag
 import {openConfirmModal} from './modal';
 import {
     lazyKnownUserIdentifiers, renderIdentifierPreview, renderSmartIdentifierPreview, getKnownGroupIdentifiers,
+    resolveKnownUserTokens,
 } from './identifiers';
 import {
     getGroupElementsById, rehydrateParticipantMembershipDetails, syncGroupingChildrenState, syncUngroupedState,
@@ -266,10 +267,12 @@ export const bindGroupMemberActions = (root, courseId) => {
             if (!group || !box) {
                 return;
             }
-            postAddEmailsInBatches(root, courseId, groupid, box.value).then(response => {
+            const resolved = resolveKnownUserTokens(box.value, knownIdentifiers());
+            postAddEmailsInBatches(root, courseId, groupid, resolved.text).then(response => {
                 appendUsersToGroupCopies(root, groupid, response.users || [], labels);
                 if (result) {
-                    const missing = response.missing && response.missing.length ? ' - ' + response.missing.join(', ') : '';
+                    const missingTokens = (response.missing || []).map(token => resolved.typed.get(String(token)) || token);
+                    const missing = missingTokens.length ? ' - ' + missingTokens.join(', ') : '';
                     result.textContent = (response.message || '') + missing;
                     result.classList.toggle('text-danger', !!missing);
                 }

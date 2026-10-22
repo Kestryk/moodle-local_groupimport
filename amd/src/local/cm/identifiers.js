@@ -21,11 +21,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {splitTokens, createIdentifierIndex, matchIdentifierPhrases} from '../sm/filter_engine';
+import {normalise, splitTokens, createIdentifierIndex, matchIdentifierPhrases} from '../sm/filter_engine';
 import {getOnDemandModel} from './state';
 
+// Participant id behind each unambiguous key of a known-identifier Map (see resolveKnownUserTokens).
+const userOwnersByIndex = new WeakMap();
+
 const getKnownUserIdentifiers = root => {
-    const {known, add: addIdentifier} = createIdentifierIndex();
+    const {known, add: addIdentifier, owners} = createIdentifierIndex();
+    userOwnersByIndex.set(known, owners);
 
     const model = getOnDemandModel(root);
     // Read every participant from the state: only one page has cards. None is known while it loads.
@@ -71,6 +75,34 @@ export const lazyKnownUserIdentifiers = root => {
         }
         return known;
     };
+};
+
+/**
+ * K22-30: send what the preview recognised. The preview also knows the participants by the words of
+ * their name, among the course participants only and without ambiguity, but the server resolves only
+ * Moodle ids and the enabled identifier fields (AP-A5, no name guessing). Each recognised token is
+ * therefore sent as the participant's Moodle id; any other token is sent unchanged.
+ *
+ * @param {String} text Typed or pasted text.
+ * @param {Map} knownIdentifiers Map returned by lazyKnownUserIdentifiers().
+ * @returns {Object} {text: String to send, typed: Map Moodle id => first typed token}
+ */
+export const resolveKnownUserTokens = (text, knownIdentifiers) => {
+    const owners = userOwnersByIndex.get(knownIdentifiers) || new Map();
+    const typed = new Map();
+    const sent = [];
+    String(text || '').split(/[\s,;|]+/u).map(part => part.trim()).filter(Boolean).forEach(token => {
+        const owner = String(owners.get(normalise(token)) || '');
+        if (!/^\d+$/u.test(owner)) {
+            sent.push(token);
+            return;
+        }
+        if (!typed.has(owner)) {
+            typed.set(owner, token);
+            sent.push(owner);
+        }
+    });
+    return {text: sent.join('\n'), typed};
 };
 
 export const renderIdentifierPreview = (box, results, knownIdentifiers, separator = /[\s,;|]+/u) => {

@@ -160,7 +160,7 @@ export const filterEntryIds = (entries, filters) => {
  * Identifier registry for the paste and CSV paths: one normalised key per identifier; a key
  * claimed by two owners (two participants with the same last name...) is dropped, as ambiguous.
  *
- * @returns {Object} {known: Map key => display label, add(value, display, owner)}
+ * @returns {Object} {known: Map key => display label, owners: Map key => owner, add(value, display, owner)}
  */
 export const createIdentifierIndex = () => {
     const known = new Map();
@@ -180,7 +180,8 @@ export const createIdentifierIndex = () => {
         pending.set(key, owner);
         known.set(key, display || value);
     };
-    return {known, add};
+    // A conflicting key leaves both maps: owners only hold unambiguous keys.
+    return {known, add, owners: pending};
 };
 
 /**
