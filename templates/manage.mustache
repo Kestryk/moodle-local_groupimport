@@ -37,8 +37,10 @@
 
     {{!
         K21-51 "Rail-anchor" page structure (EasyEdu standard, see scss/easyedu/components/_rail-anchor.scss):
-        floor 1 = navigation band (identity rail, then view tabs), floor 2 = one main content frame
-        wrapping the whole view. DOM order equals reading and Tab order.
+        floor 1 = navigation band (identity rail only), floor 2 = one main content frame wrapping
+        the whole view. K22-09 (Penpot 09.5 "Piste 3"): the frame opens on one head row where the
+        view title + description (no eyebrow on desktop) share the line with the view tabs.
+        DOM order equals reading and Tab order: rail, title, tabs, content.
     }}
     <div class="local-groupimport-easystud__header easyedu-rail-anchor__band">
         <div class="local-groupimport-easystud__navigation easyedu-rail-anchor__rail">
@@ -46,23 +48,10 @@
                 {{> local_groupimport/easyedu_navigation}}
             {{/navigation}}
         </div>
-        <div class="local-groupimport-easystud__view-tabs easyedu-rail-anchor__tabs">
-            <div class="btn-group local-groupimport-easystud__layout-mode-group easyedu-workspace-view-switcher easyedu-view-tabs" role="group" aria-label="{{selectionmodelabel}}">
-                {{#layoutmodetoggles}}
-                    <button
-                        type="button"
-                        class="{{class}} easyedu-view-tabs__tab"
-                        {{{attribute}}}
-                    >
-                        <span class="fa {{icon}}" aria-hidden="true"></span>
-                        <span>{{label}}</span>
-                    </button>
-                {{/layoutmodetoggles}}
-            </div>
-        </div>
     </div>
 
     <div class="local-groupimport-easystud__frame easyedu-rail-anchor__frame">
+    <div class="local-groupimport-easystud__view-head easyedu-rail-anchor__head-row">
     <div class="easyedu-workspace-identity easyedu-rail-anchor__head">
         {{! The product eyebrow is compact-only: on desktop the rail carries the identity. }}
         <span class="easyedu-workspace-eyebrow easyedu-rail-anchor__compact-eyebrow">{{#str}}easystudlabel, local_groupimport{{/str}}</span>
@@ -82,6 +71,21 @@
             {{/hasparticipantdropdown}}
         {{/navigation}}
         <p class="easyedu-workspace-description">{{description}}</p>
+    </div>
+    <div class="local-groupimport-easystud__view-tabs easyedu-rail-anchor__tabs">
+        <div class="btn-group local-groupimport-easystud__layout-mode-group easyedu-workspace-view-switcher easyedu-view-tabs" role="group" aria-label="{{selectionmodelabel}}">
+            {{#layoutmodetoggles}}
+                <button
+                    type="button"
+                    class="{{class}} easyedu-view-tabs__tab"
+                    {{{attribute}}}
+                >
+                    <span class="fa {{icon}}" aria-hidden="true"></span>
+                    <span>{{label}}</span>
+                </button>
+            {{/layoutmodetoggles}}
+        </div>
+    </div>
     </div>
 
     {{! The selection recovery capsule stays a fixed bottom surface: it is not part of the header band. }}

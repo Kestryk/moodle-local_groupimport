@@ -876,8 +876,9 @@
 }
 
 // K21-51 "Rail-anchor" page structure (EasyEdu standard, Kit partial
-// easyedu/components/_rail-anchor.scss): navigation band (identity rail + view
-// tabs) above one main content frame. Id scope: Bootstrap button states and the
+// easyedu/components/_rail-anchor.scss): navigation band (identity rail) above
+// one main content frame whose head row carries the title and the view tabs
+// (K22-09, Penpot 09.5 "Piste 3"). Id scope: Bootstrap button states and the
 // separately loaded Guide sheet must not override the Kit rail.
 #local-groupimport-easystud {
   @include easyedu.rail-anchor-page(64rem);
