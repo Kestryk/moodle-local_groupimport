@@ -45,6 +45,31 @@ export const emitMemberPathCompletion = (root, step) => emitNativePathCompletion
 // Navigation can portal this exact node outside the workspace on compact screens.
 export const getActivityGuideRoot = root => root.easystudGuideOwner || root.querySelector('[data-easyedu-guide-root]');
 
+/**
+ * K22-15: publish the course facts behind guided-path prerequisites
+ * (guide_config::path_prerequisites). Called once the course state is loaded and after each
+ * model change, so a group created in the workspace unlocks its dependent paths at once.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Object|null} model On-demand participant model.
+ */
+export const publishGuidePathFacts = (root, model) => {
+    const guideRoot = getActivityGuideRoot(root);
+    const raw = model && model.raw;
+    if (!guideRoot || !raw || !Array.isArray(raw.users) || !Array.isArray(raw.groups)) {
+        return;
+    }
+    const users = new Set(raw.users.map(user => user.id));
+    const groups = raw.groups;
+    Guide.setPathFacts(guideRoot, {
+        participants: users.size > 0,
+        groups: groups.length > 0,
+        groupings: Array.isArray(raw.groupings) && raw.groupings.length > 0,
+        memberSource: groups.length > 1 &&
+            groups.some(group => (group.memberids || []).some(userid => users.has(userid))),
+    });
+};
+
 // The retained Actions path shares the modern ordered milestone authority.
 // A completed drag must also belong to the session that submitted the action.
 export const emitTryActionsCompletion = (root, step, token = null) => {

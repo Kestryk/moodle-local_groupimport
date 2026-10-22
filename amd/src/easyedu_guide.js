@@ -665,6 +665,89 @@ const syncPathInvitation = (root, config) => {
   });
 };
 
+// K22-15: a guided path can require a course state (for example an existing group).
+// The consumer publishes boolean facts on the Guide root; only an explicit false locks
+// a path, so an unknown or not yet loaded course state never blocks a start button.
+const PATH_CARD = '.easyedu-guide-guided-card';
+const unmetPathPrerequisites = (root, config, pathName) => {
+  const required = (config.pathPrerequisites || {})[pathName];
+  const facts = root.easyeduGuidePathFacts || {};
+  return Array.isArray(required) ? required.filter(key => facts[key] === false) : [];
+};
+
+const findPathCard = (root, pathName) => Array.from(root.querySelectorAll(PATH_CARD))
+  .find(card => card.querySelector(`:scope > [data-easyedu-guide-start-path="${pathName}"]`)) || null;
+
+const syncPathPrerequisites = (root, config) => {
+  if (!config) { return; }
+  const definitions = config.prerequisites || {};
+  root.querySelectorAll(PATH_CARD).forEach(card => {
+    const start = card.querySelector(':scope > [data-easyedu-guide-start-path]');
+    const notice = card.querySelector('[data-easyedu-guide-path-prerequisite]');
+    if (!start || !notice) { return; }
+    const missing = unmetPathPrerequisites(root, config, start.getAttribute('data-easyedu-guide-start-path'));
+    const definition = missing.length ? definitions[missing[0]] || {} : null;
+    const locked = Boolean(definition && definition.message);
+    card.classList.toggle('is-prerequisite-locked', locked);
+    start.disabled = locked;
+    notice.hidden = !locked;
+    if (locked) {
+      if (!notice.id) {
+        notice.id = `${root.id || 'easyedu-guide'}-prerequisite-${start.getAttribute('data-easyedu-guide-start-path')}`;
+      }
+      start.setAttribute('aria-describedby', notice.id);
+    } else {
+      start.removeAttribute('aria-describedby');
+      return;
+    }
+    notice.querySelector('[data-easyedu-guide-path-prerequisite-text]').textContent = definition.message;
+    const link = notice.querySelector('[data-easyedu-guide-path-prerequisite-link]');
+    const unlockPath = definition.unlockPath && findPathCard(root, definition.unlockPath) ? definition.unlockPath : '';
+    const href = unlockPath ? '#' : (definition.unlockUrl || '');
+    link.hidden = !href || !definition.unlockLabel;
+    link.textContent = definition.unlockLabel || '';
+    link.setAttribute('href', href || '#');
+    if (unlockPath) {
+      link.setAttribute('data-easyedu-guide-goto-path', unlockPath);
+    } else {
+      link.removeAttribute('data-easyedu-guide-goto-path');
+    }
+  });
+};
+
+// Show the slide whose guided card starts the unlocking path, then focus its action.
+const gotoPathCard = (root, config, pathName) => {
+  const card = findPathCard(root, pathName);
+  const slide = card ? card.closest(SELECTORS.slide) : null;
+  if (!slide) { return; }
+  syncSlideLocks(root, config);
+  setActiveSlide(root, Number(slide.getAttribute('data-easyedu-guide-slide') || 0), config,
+    {persistReading: true});
+  const focusCard = () => {
+    const start = card.querySelector(':scope > [data-easyedu-guide-start-path]');
+    const target = start && !start.disabled ? start :
+      card.querySelector('[data-easyedu-guide-path-prerequisite-link]:not([hidden])');
+    card.scrollIntoView({block: 'nearest'});
+    if (target) { target.focus({preventScroll: true}); }
+  };
+  // The target slide is revealed after the outgoing fade: focus once it is shown.
+  const focusWhenShown = (frame = 0) => {
+    if (slide.hidden || root.getAttribute('data-easyedu-guide-slide-transition') === 'out') {
+      if (frame < 90) { window.requestAnimationFrame(() => focusWhenShown(frame + 1)); }
+      return;
+    }
+    focusCard();
+  };
+  window.requestAnimationFrame(() => focusWhenShown());
+};
+
+/** Publish course facts for path prerequisites; safe before or after init. */
+const setPathFacts = (root, facts) => {
+  if (!root) { return; }
+  root.easyeduGuidePathFacts = Object.assign({}, facts || {});
+  syncPathPrerequisites(root, root.easyeduGuideConfig);
+};
+
 const dismissResume = (root, animate = false) => {
   clearTrackedTimeout(root, root.easyeduGuideResumeTimer);
   root.easyeduGuideResumeTimer = null;
@@ -3854,6 +3937,7 @@ const openModal = (root, config) => {
   // Opening or returning to the guide only changes the visible surface. It
   // must not discard a guided path's persisted completion state.
   hideChecklist(root, config);
+  syncPathPrerequisites(root, config);
   lockPageScroll(root);
   modal.hidden = false;
   placeResume(root);
@@ -4835,9 +4919,17 @@ const bindGuide = (root, config) => {
       return;
     }
 
+    const gotoPath = event.target.closest('[data-easyedu-guide-goto-path]');
+    if (gotoPath && root.contains(gotoPath)) {
+      event.preventDefault();
+      gotoPathCard(root, activeConfig, gotoPath.getAttribute('data-easyedu-guide-goto-path'));
+      return;
+    }
+
     const startPath = event.target.closest(SELECTORS.startPath);
     if (startPath && root.contains(startPath)) {
       event.preventDefault();
+      if (startPath.disabled) { return; }
       captureChecklistFocus(root, startPath);
       dismissResume(root);
       const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
@@ -5208,6 +5300,7 @@ const init = (rootOrSelector, rawConfig) => {
     offerResume(root, config, state.path);
   }
   syncPathInvitation(root, config);
+  syncPathPrerequisites(root, config);
   if (!state.path || !config.paths[state.path] || isPathComplete(config, state.path)) {
     offerWelcome(root, config);
   }
@@ -5236,6 +5329,7 @@ return {
   getPathContext: getPathContext,
   getPathContextToken: getPathContextToken,
   setPathContext: setPathContext,
+  setPathFacts: setPathFacts,
   init: init,
   guideModality: guideModality
 };

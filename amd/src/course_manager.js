@@ -45,6 +45,7 @@ import {
     syncCatalogFilters, scheduleResponsiveUiRefresh, syncPagination, applyFilters, updateSelectionActions,
 } from './local/cm/workspace';
 import {bindAdvancedSettings} from './local/cm/advanced_settings';
+import {publishGuidePathFacts} from './local/cm/guide_hooks';
 import {bindGroupSelectAll, bindSelection} from './local/cm/selection_controls';
 import {bindPagination, bindFilters, bindTree, bindCatalogFilters, bindAdvancedFilters} from './local/cm/list_controls';
 import {
@@ -126,6 +127,7 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
             // (the responsive layout drops this class and hides membership rows on its own).
             model.isCompactDensity = () => root.classList.contains(compactClass);
             setOnDemandParticipants({root, model, courseId});
+            publishGuidePathFacts(root, model);
             const renderStarted = window.performance.now();
             // The first cards replace the list skeletons with a short fade (CSS), once.
             root.classList.add('is-easystud-sm-entering');

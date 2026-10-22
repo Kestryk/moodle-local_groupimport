@@ -667,6 +667,18 @@ class guide_config {
                     ],
                 ],
             ],
+            // K22-15: course-state prerequisites. The workspace publishes the facts; a missing
+            // fact locks the path card, explains it and links to the path that fulfils it.
+            'pathPrerequisites' => [
+                'practice-membership' => ['participants'],
+                'inspect-group-settings' => ['groups'],
+                'inspect-grouping-settings' => ['groupings'],
+                'reorganise-source-members' => ['memberSource'],
+                'verify-with-filters' => ['participants'],
+                'try-actions' => ['participants'],
+                'prepare-activity-grouping' => ['groups'],
+            ],
+            'prerequisites' => self::path_prerequisites($courseid),
             'labels' => [
                 'hint' => get_string('tutorialguidedpanelhint', 'local_groupimport'),
                 'complete' => get_string('tutorialguidedpanelcomplete', 'local_groupimport'),
@@ -681,6 +693,38 @@ class guide_config {
                 'pathReset' => get_string('discovery_path_reset_feedback', 'local_groupimport'),
                 'pathCancelled' => get_string('discovery_path_cancelled_feedback', 'local_groupimport'),
             ],
+        ];
+    }
+
+    /**
+     * K22-15: message and unlocking route of each course-state prerequisite of a guided path.
+     *
+     * A route is the guided path that creates the missing data (its card is shown in the Guide),
+     * or the native Moodle page when no Guide path can create it (enrolment).
+     *
+     * @param int $courseid Course id.
+     * @return array Prerequisite definitions keyed by fact name.
+     */
+    public static function path_prerequisites(int $courseid): array {
+        $unlock = static function (string $path, string $titlekey): array {
+            return [
+                'unlockPath' => $path,
+                'unlockLabel' => get_string('guide_prereq_unlock', 'local_groupimport',
+                    get_string($titlekey, 'local_groupimport')),
+            ];
+        };
+        return [
+            'participants' => [
+                'message' => get_string('guide_prereq_participants', 'local_groupimport'),
+                'unlockUrl' => (new \moodle_url('/user/index.php', ['id' => $courseid]))->out(false),
+                'unlockLabel' => get_string('guide_prereq_participants_link', 'local_groupimport'),
+            ],
+            'groups' => ['message' => get_string('guide_prereq_groups', 'local_groupimport')] +
+                $unlock('practice-membership', 'discovery_path_title'),
+            'groupings' => ['message' => get_string('guide_prereq_groupings', 'local_groupimport')] +
+                $unlock('prepare-activity-grouping', 'activity_path_title'),
+            'memberSource' => ['message' => get_string('guide_prereq_membersource', 'local_groupimport')] +
+                $unlock('practice-membership', 'discovery_path_title'),
         ];
     }
 }

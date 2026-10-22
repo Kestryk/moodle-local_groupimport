@@ -504,6 +504,40 @@
       min-width: 0;
       &:empty { display: none; }
     }
+    // K22-15: the course lacks a prerequisite of this path. Same striped locked surface
+    // as the locked checklist item; the Kit warning notice names the missing data and
+    // links the path that creates it. Geometry and responsive flow stay unchanged.
+    &.is-prerequisite-locked {
+      background: repeating-linear-gradient(-45deg, transparent 0 0.5rem,
+        color-mix(in srgb, var(--easyedu-text-muted) 5%, transparent) 0.5rem 1rem), var(--easyedu-surface-soft);
+      border-color: var(--easyedu-card-border);
+      border-style: dashed;
+      .easyedu-guide-guided-card__icon {
+        background: var(--easyedu-surface);
+        box-shadow: inset 0 0 0 1px var(--easyedu-card-border);
+        color: var(--easyedu-text-muted);
+      }
+      .easyedu-guide-guided-card__body > small { color: var(--easyedu-text-muted); }
+      .easyedu-guide-guided-card__steps li::before { background: var(--easyedu-text-muted); }
+      .easyedu-guide-slide__start:disabled {
+        background: var(--easyedu-surface-soft) !important;
+        border-color: var(--easyedu-card-border) !important;
+        color: var(--easyedu-text-muted) !important;
+      }
+    }
+    &__prerequisite {
+      &[hidden] { display: none; }
+      > .easyedu-notice { margin-block-start: 0.5rem; }
+    }
+    &__prerequisite-link {
+      color: var(--easyedu-notice-warning-ink);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      &[hidden] { display: none; }
+      &:hover { color: var(--easyedu-notice-warning-ink); text-decoration-thickness: 2px; }
+      &:focus-visible { border-radius: 0.25rem; outline: 2px solid var(--easyedu-control-focus-border); outline-offset: 2px; }
+    }
   }
 
   // K18-16: the first-visit welcome is the Kit V3 banner

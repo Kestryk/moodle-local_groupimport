@@ -159,6 +159,20 @@ define(['require', 'core/log'], function(require, Log) {
         }
     };
 
+    // K22-15: course facts for path prerequisites. Kept on the root before the engine binds it,
+    // so the engine reads them on init; afterwards the engine re-renders the locked cards.
+    const setPathFacts = (rootOrSelector, facts) => {
+        const root = resolveRoot(rootOrSelector);
+        if (!root) {
+            return;
+        }
+        if (engine && typeof engine.setPathFacts === 'function') {
+            engine.setPathFacts(root, facts);
+            return;
+        }
+        root.easyeduGuidePathFacts = Object.assign({}, facts || {});
+    };
+
     // Before the engine binds a root there is no configuration: the engine itself returns null
     // (context, token) and false (write) in that case.
     const getPathContext = (root, pathName) => engine ? engine.getPathContext(root, pathName) : null;
@@ -185,5 +199,6 @@ define(['require', 'core/log'], function(require, Log) {
         isLoaded: () => !!engine,
         load: load,
         setPathContext: setPathContext,
+        setPathFacts: setPathFacts,
     };
 });

@@ -52,7 +52,7 @@ import {
 } from './selection';
 import {
     emitGuidedCompletion, emitPracticeCompletion, emitMemberPathCompletion, getActivityGuideRoot,
-    verifyActivityGrouping,
+    verifyActivityGrouping, publishGuidePathFacts,
 } from './guide_hooks';
 import {
     syncAllGroupMembersCollapsible, syncGroupMembersInContainer, getContainerGroups, syncGroupingGroupsCollapsible,
@@ -1015,6 +1015,7 @@ let onDemandRefreshAgain = false;
  */
 const renderAfterModelChange = (root, model) => {
     refreshModel(model);
+    publishGuidePathFacts(root, model);
     applyFilters(root);
     syncCatalogFilters(root);
     root.querySelectorAll('[data-easystud-tree] .local-groupimport-easystud-tree__section').forEach(section => {
