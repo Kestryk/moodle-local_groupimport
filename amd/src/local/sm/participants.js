@@ -150,7 +150,7 @@ export const refreshModel = model => {
  * @param {Object} strings Card labels from manage.php.
  * @returns {Boolean}
  */
-const isMetaCollapsed = (model, strings) => model.metaExpandedOverride === null ?
+export const isMetaCollapsed = (model, strings) => model.metaExpandedOverride === null ?
     strings.metacollapsedbydefault !== false : !model.metaExpandedOverride;
 
 /**

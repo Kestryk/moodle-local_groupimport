@@ -45,6 +45,7 @@ const createFullscreenController = (element, onChange = () => {}) => {
     html.classList.add('easyedu-guide-is-fullscreen');
   };
   let unparkTimer = null;
+  let unparkWaiters = [];
   // The viewport resize events of the exit reach the host while it is still pinned
   // (cheap); the page is released once they have settled.
   const scheduleUnpark = () => {
@@ -59,17 +60,25 @@ const createFullscreenController = (element, onChange = () => {}) => {
     }, 350);
   };
   const unparkHost = () => {
-    if (!parked.length) {
-      return;
+    if (parked.length) {
+      parked.forEach(sibling => {
+        sibling.removeAttribute('data-easyedu-guide-parked');
+        sibling.style.removeProperty('--easyedu-guide-parked-width');
+        sibling.style.removeProperty('--easyedu-guide-parked-height');
+      });
+      parked = [];
+      document.documentElement.classList.remove('easyedu-guide-is-fullscreen');
     }
-    parked.forEach(sibling => {
-      sibling.removeAttribute('data-easyedu-guide-parked');
-      sibling.style.removeProperty('--easyedu-guide-parked-width');
-      sibling.style.removeProperty('--easyedu-guide-parked-height');
-    });
-    parked = [];
-    document.documentElement.classList.remove('easyedu-guide-is-fullscreen');
+    unparkWaiters.splice(0).forEach(resolve => resolve());
   };
+  // M53 (22/10/2026): the modal used to hide as soon as document.exitFullscreen() resolved,
+  // while the host stayed parked (content-visibility:hidden, stale measured size) for another
+  // ~350ms — a visible flash once the modal was gone but the real layout not yet released.
+  // Callers that must cover the host until it is safe to see again (closeModal) await this.
+  const waitForUnpark = () => new Promise(resolve => {
+    if (!parked.length) { resolve(); return; }
+    unparkWaiters.push(resolve);
+  });
   const available = () => !disposed && window.innerWidth >= 1024 &&
     document.fullscreenEnabled === true && typeof element.requestFullscreen === 'function';
   const notify = () => {
@@ -83,7 +92,7 @@ const createFullscreenController = (element, onChange = () => {}) => {
     if (!ownsFullscreen()) return true;
     try { await document.exitFullscreen(); return true; }
     catch (error) { return false; }
-    finally { notify(); }
+    finally { notify(); await waitForUnpark(); }
   };
   const toggle = async() => {
     if (pending || disposed) return false;

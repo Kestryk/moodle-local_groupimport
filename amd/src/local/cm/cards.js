@@ -24,7 +24,7 @@
 
 import * as Motion from '../../motion';
 import {countLabel} from '../sm/index';
-import {getDetachedCard} from '../sm/participants';
+import {getDetachedCard, isMetaCollapsed} from '../sm/participants';
 import {getDetachedGroupCard} from '../sm/groups';
 import {
     selectedClass, isResponsiveWorkspace, requestGuideHighlightRefresh, normalise, getLabels, getSelectionInput,
@@ -1208,7 +1208,10 @@ export const getOnDemandList = (root, list) => {
 /**
  * K21-16/K21-37: expand or collapse one participant card's roles/groups/groupings/custom-fields
  * block. There is no dedicated fold control on the card (K21-37): selecting the card is what
- * expands it, deselecting it is what collapses it again (the pre-K21-16 behaviour).
+ * expands it, deselecting it is what collapses it again (the pre-K21-16 behaviour) — unless the
+ * shared admin-default/override policy (local/sm/participants.isMetaCollapsed) already says the
+ * card should stay open on its own (M53, 22/10/2026: deselecting a card used to always hide its
+ * meta block regardless of the "collapse participants by default" admin setting).
  *
  * @param {HTMLElement|null} card The participant card ([data-easystud-user]).
  * @param {Boolean} expanded Target state.
@@ -1218,9 +1221,7 @@ export const setParticipantMetaExpanded = (card, expanded) => {
     if (!meta) {
         return;
     }
-    // "Full information" density (local/sm/participants.setMetaExpandedOverride) always shows
-    // complete cards: selection state must not re-collapse them while that override is active.
     const model = getOnDemandModel();
-    const forced = Boolean(model && model.metaExpandedOverride === true);
-    meta.hidden = !(expanded || forced);
+    const followsPolicy = Boolean(model && !isMetaCollapsed(model, model.strings));
+    meta.hidden = !(expanded || followsPolicy);
 };
