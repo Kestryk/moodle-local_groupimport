@@ -299,11 +299,13 @@
   }
   // Applied form-workspace composition: the native picker promotes the same
   // Secondary Core Action to the existing touch target, even on desktop.
+  // K21-45: flush with the status text above it (Kit spec), not centred in
+  // the action row — a centred "Choose file" reads as floating mid-card.
   .easyedu-ui .easyedu-form--workspace .fp-btn-choose {
     @include foundations.foundation-button($secondary: true, $density: compact, $matched-size: true);
     display: flex;
     inline-size: fit-content;
-    margin-inline: auto;
+    margin-inline: 0;
     min-inline-size: 0;
   }
   .easyedu-ui .easyedu-form--workspace input:is([type="button"], [type="submit"]) {
