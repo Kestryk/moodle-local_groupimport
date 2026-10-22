@@ -187,6 +187,7 @@ const RAIL_YIELDED = 'is-rail-yielded';
 const RAIL_REFLOWING = 'is-rail-reflowing';
 const RAIL_MEASURING = 'is-rail-measuring';
 const RAIL_TIGHT = 'is-rail-tight';
+const RAIL_READY = 'is-rail-ready';
 const RAIL_SETTLE_MS = 400;
 // Below this width an unfolded capsule would show no useful part of its label.
 const RAIL_MIN_ROOM = 72;
@@ -387,6 +388,18 @@ const bindIdentityRailFit = root => {
             unfold(engaged);
         }
     };
+    // K22-21: the rail stays under its skeleton until this first fit. It is measured
+    // with transitions frozen, so it is revealed already fitted, in one step.
+    const firstFit = () => {
+        navigation.classList.add(RAIL_MEASURING);
+        try {
+            fit();
+        } finally {
+            void navigation.offsetWidth;
+            navigation.classList.remove(RAIL_MEASURING);
+            window.requestAnimationFrame(() => navigation.classList.add(RAIL_READY));
+        }
+    };
     let frame = 0;
     const schedule = () => {
         if (!frame) {
@@ -404,7 +417,7 @@ const bindIdentityRailFit = root => {
     if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(schedule).catch(() => undefined);
     }
-    fit();
+    firstFit();
 };
 
 const bindRoot = root => {

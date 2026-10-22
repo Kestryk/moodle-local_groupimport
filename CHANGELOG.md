@@ -1,3 +1,5 @@
+- 2026-10-22 [K22-21] Rail d’identité : squelette de chargement. Au lieu d’afficher la navigation libellés complets puis de la voir se replier élément par élément, le rail montre un squelette scintillant (tuile, identité, une capsule par destination, Guide, préférences) jusqu’au premier ajustement par le contrôleur, puis apparaît en fondu déjà ajusté. Sans JavaScript, le rail réel s’affiche directement ; le squelette n’est jamais conservé au-delà du chargement de la page (état prêt ou dégradé).
+
 - 2026-10-22 [K22-23] Rail d’identité : le cercle d’icône des destinations inactives prend une teinte légère dérivée de la couleur principale (jeton Kit `--easyedu-navigation-item-icon-surface`) pour rester visible sur la carte blanche du rail (K22-19), au repos comme au survol ; l’état actif est inchangé.
 
 - 2026-10-22 [K22-19] Rail d’identité (Student Management et Mass Import) : sur bureau, le rail de navigation et le cadre de contenu forment désormais une seule carte blanche arrondie (bordure de carte, coins de 16 px), séparés par un filet fin pleine largeur, conformément à la planche Penpot 09.5 « K22-H » (Piste 3). Le tiroir compact (≤ 1024 px) est inchangé.

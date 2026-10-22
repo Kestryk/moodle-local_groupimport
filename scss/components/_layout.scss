@@ -889,6 +889,11 @@
     @include easyedu.navigation-identity-rail(64rem);
   }
 
+  // K22-21: never keep the rail skeleton past the page loading.
+  &:is([data-easystud-loading-state="ready"], [data-easystud-loading-state="degraded"]) .easyedu-rail-anchor__rail {
+    @include easyedu.navigation-rail-skeleton-settled;
+  }
+
   .local-groupimport-easystud__layout-mode-group {
     @include easyedu.view-tabs;
   }

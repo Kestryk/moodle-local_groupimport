@@ -21,6 +21,15 @@
         aria-label="{{navigationlabel}}"
     >
         {{#identityrail}}
+        {{! K22-21: decorative skeleton shown until the controller has fitted the rail. }}
+        <span class="easyedu-navigation__rail-skeleton" data-easyedu-rail-skeleton="1" aria-hidden="true">
+            <span class="easyedu-navigation__rail-skeleton-tile"></span>
+            <span class="easyedu-navigation__rail-skeleton-lines"><span></span><span></span></span>
+            <span class="easyedu-navigation__rail-skeleton-divider"></span>
+            {{#sections}}{{#items}}<span class="easyedu-navigation__rail-skeleton-pill"></span>{{/items}}{{/sections}}
+            {{#hasguide}}<span class="easyedu-navigation__rail-skeleton-guide"></span>{{/hasguide}}
+            <span class="easyedu-navigation__rail-skeleton-square"></span>
+        </span>
         <div class="easyedu-navigation__identity">
             <span class="easyedu-navigation__identity-tile" aria-hidden="true"><span class="fa fa-graduation-cap"></span></span>
             <span class="easyedu-navigation__identity-text">

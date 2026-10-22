@@ -1,5 +1,6 @@
 @use "focus";
 @use "animations";
+@use "loading";
 
 // =============================================================================
 // EasyEdu "Rail-anchor" page structure (K21-51, validated by Kevin 22/10/2026)
@@ -622,6 +623,142 @@ $-rail-control-size: 2.5rem;
     }
   }
 
+  // K22-21 rail skeleton (EasyStud loading standard: a real page from the first
+  // frame, one shimmering skeleton per component). The navigation partial renders a
+  // decorative `.easyedu-navigation__rail-skeleton` (tile, identity lines, divider,
+  // one capsule per destination, Guide capsule, preferences square). With
+  // JavaScript, the real rail keeps its layout (so the controller can measure and
+  // fit it) but stays hidden under the skeleton until the controller marks it
+  // `.is-rail-ready` after its first fit; then the skeleton fades out and the rail
+  // fades in, already fitted. Without JavaScript, the skeleton never shows. The
+  // consumer adds `navigation-rail-skeleton-settled` on its settled page state as
+  // the fail-open path (the rail is never hidden longer than the page loading).
+  .easyedu-navigation--identity .easyedu-navigation__rail-skeleton {
+    display: none;
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    :where(.jsenabled) & .easyedu-navigation--identity [data-easyedu-navigation-desktop] {
+      > .easyedu-navigation__rail-skeleton {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        gap: 0.5rem;
+        inset: 0;
+        overflow: hidden;
+        padding: 0.75rem var(--easyedu-rail-anchor-inset, 2rem);
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
+
+        // One sweep across the whole row: the white highlight only shows on the
+        // shapes (the gaps are the white card), and the page stays light.
+        @include loading.skeleton-shimmer-overlay;
+
+        > span {
+          background: var(--easyedu-loading-surface);
+          box-sizing: border-box;
+          flex: 0 0 auto;
+          position: relative;
+        }
+      }
+
+      &:not(.is-rail-ready) > :not(.easyedu-navigation__rail-skeleton) {
+        visibility: hidden;
+      }
+
+      // Fade out only on the way out: the skeleton shows instantly with the page.
+      &.is-rail-ready > .easyedu-navigation__rail-skeleton {
+        opacity: 0;
+        transition:
+          opacity var(--easyedu-loading-reveal-duration, 180ms) var(--easyedu-motion-ease, ease),
+          visibility 0s linear var(--easyedu-loading-reveal-duration, 180ms);
+        visibility: hidden;
+      }
+
+      &.is-rail-ready > :not(.easyedu-navigation__rail-skeleton) {
+        @include loading.loading-appearance;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-tile {
+        background: var(--easyedu-loading-surface-strong);
+        block-size: $-rail-control-size;
+        border-radius: 0.75rem;
+        inline-size: $-rail-control-size;
+      }
+
+      // Two identity lines (product, active view) on a transparent holder.
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-lines {
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        margin-inline-end: 1.75rem;
+
+        > span {
+          background: var(--easyedu-loading-surface-strong);
+          block-size: 0.75rem;
+          border-radius: 999px;
+          inline-size: 4.5rem;
+
+          + span {
+            background: var(--easyedu-loading-surface);
+            block-size: 0.5rem;
+            inline-size: 3.5rem;
+          }
+        }
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-divider {
+        background: var(--easyedu-card-border);
+        block-size: 2rem;
+        inline-size: 0.0625rem;
+        margin-inline-end: 0.5625rem;
+      }
+
+      // Destination capsules with their icon circle; the first stands for the
+      // (longer) active view. They shrink to icon capsules on narrow rails.
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-pill {
+        block-size: $-rail-control-size;
+        border-radius: 1.25rem;
+        flex: 0 1 8.5rem;
+        min-inline-size: $-rail-control-size;
+
+        &::before {
+          background: var(--easyedu-loading-surface-strong);
+          block-size: 1.75rem;
+          border-radius: 50%;
+          content: "";
+          inline-size: 1.75rem;
+          inset-block-start: 0.375rem;
+          inset-inline-start: 0.375rem;
+          position: absolute;
+        }
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-divider + .easyedu-navigation__rail-skeleton-pill {
+        flex-basis: 13rem;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-guide {
+        block-size: $-rail-control-size;
+        border-radius: 1.25rem;
+        inline-size: 7.25rem;
+        margin-inline-start: auto;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-square {
+        block-size: $-rail-control-size;
+        border-radius: 0.75rem;
+        inline-size: $-rail-control-size;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-pill + .easyedu-navigation__rail-skeleton-square {
+        margin-inline-start: auto;
+      }
+    }
+  }
+
   @at-root (without: rule) {
     @keyframes easyedu-rail-compass-seek {
       0% { transform: rotate(0deg); }
@@ -660,6 +797,22 @@ $-rail-control-size: 2.5rem;
     .easyedu-navigation--identity .easyedu-guide__launcher {
       border: 0.0625rem solid CanvasText;
       forced-color-adjust: auto;
+    }
+  }
+}
+
+// K22-21 fail-open of the rail skeleton. Include on the identity-rail wrapper under
+// the consumer's settled page state (for instance
+// `#root[data-easystud-loading-state="ready"] .my-rail`): the real rail shows even
+// if the navigation controller never marked it ready.
+@mixin navigation-rail-skeleton-settled {
+  .easyedu-navigation--identity [data-easyedu-navigation-desktop]:not(.is-rail-ready) {
+    > .easyedu-navigation__rail-skeleton {
+      display: none;
+    }
+
+    > :not(.easyedu-navigation__rail-skeleton) {
+      visibility: visible;
     }
   }
 }
