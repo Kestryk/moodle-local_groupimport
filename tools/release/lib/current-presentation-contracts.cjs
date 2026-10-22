@@ -29,7 +29,16 @@ function selection() {
     assert(!postcss.parse(read('styles.css')).nodes.some(n => n.type !== 'comment'), 'No site-global component CSS');
 }
 function tiles() {
-    assert.match(read('templates/manage.mustache'), /easyedu-workspace-view-switcher--tiled/);
+    // K21-50/K21-51 (Kevin 22/10/2026): Student Management's desktop view toggle is the Kit
+    // "View tabs" component in the navigation band; the tiled recipe stays a Kit opt-in.
+    const markup = read('templates/manage.mustache');
+    assert.match(markup, /local-groupimport-easystud__layout-mode-group[^"]*easyedu-view-tabs/);
+    assert.doesNotMatch(markup, /easyedu-workspace-view-switcher--tiled/);
+    const tabRules = [];
+    postcss.parse(css).walkRules(r => { if (r.selector.includes('.easyedu-view-tabs__tab') && r.selector.includes('#local-groupimport-easystud')) tabRules.push(r); });
+    const decl = (predicate, prop) => { const r = tabRules.find(x => predicate(x.selector) && x.nodes.some(d => d.prop === prop)); return r && r.nodes.find(d => d.prop === prop).value; };
+    assert.equal(decl(s => s.endsWith('.easyedu-view-tabs__tab > .fa') || s.includes('.easyedu-view-tabs__tab > .fa,'), 'transition'), 'none', 'Atomic icon/tile paint');
+    assert.equal(decl(s => /aria-pressed=(")?true\1?\] > \.fa/.test(s), 'background'), 'var(--easyedu-primary)');
     if (process.argv[2]) {
         const file = 'scss/easyedu/_workspace-control-classes.scss';
         const section = text => text.slice(text.indexOf('  // Tiled desktop/tablet variant only.'), text.indexOf('  .easyedu-ui .easyedu-search-field {'));

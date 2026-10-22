@@ -37,6 +37,13 @@
       &::after { flex: 0 0 auto; margin-inline-start: 0; }
     }
   }
+  // K21-51: plain view title when no native participant selector is available.
+  .easyedu-ui .easyedu-workspace-title {
+    @include type.type-page-title;
+    color: var(--easyedu-workspace-title-color);
+    font-size: var(--easyedu-workspace-title-size);
+    margin: 0 0 0.75rem;
+  }
   .easyedu-ui .easyedu-workspace-description {
     @include type.type-body;
     color: var(--easyedu-workspace-description-color);

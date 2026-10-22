@@ -1,0 +1,554 @@
+@use "focus";
+@use "animations";
+
+// =============================================================================
+// EasyEdu "Rail-anchor" page structure (K21-51, validated by Kevin 22/10/2026)
+// =============================================================================
+//
+// STANDARD RULE for every EasyEdu view, in current plugins (EasyStud Student
+// Management, Mass Import...) and in every future EasyEdu plugin:
+//
+// 1. A view has exactly two structural floors, in this DOM order:
+//    a. The NAVIGATION BAND (`.easyedu-rail-anchor__band`), at the top of the view.
+//       It holds the primary rail (`.easyedu-rail-anchor__rail`) whose start is the
+//       plugin identity (tile + "Product / Active view"), the brand anchor of the
+//       plugin, then the view tabs (`.easyedu-rail-anchor__tabs`) when the view has
+//       several layouts. Tabs share the band: on the rail line when it is wide
+//       enough, otherwise wrapped directly under the rail, end-aligned.
+//    b. ONE MAIN CONTENT FRAME (`.easyedu-rail-anchor__frame`) under the band. It
+//       wraps everything else of the view: the head (`.easyedu-rail-anchor__head`:
+//       view title + description only), filters, panels, lists, pagination...
+// 2. The identity lives in the rail. The head never repeats a product eyebrow on
+//    desktop (`.easyedu-rail-anchor__compact-eyebrow` is shown on compact only).
+// 3. Modals, menus, notifications and floating trays (for instance the sticky
+//    "N selected / Clear all" capsule) are NOT part of the band; they keep their
+//    own surfaces. Nothing is reordered with CSS `order`: DOM = reading = Tab order.
+// 4. Compact layouts (<= $compact-breakpoint) keep their drawer navigation and its
+//    identity (K21-19 Option A); the band hides its desktop parts and the frame
+//    collapses into the plain flow.
+//
+// Penpot reference: "EasyEdu Foundations", page "08.10.1 - Library / navigation
+// items": "EasyEdu / Navigation / Primary rail / Identity"
+// (d5e0c76a-500a-80ad-8008-d418806fa087) and "EasyEdu / Navigation / View tabs"
+// (d5e0c76a-500a-80ad-8008-d4175667c4c3), Tab / Selected and Tab / Default.
+//
+// Markup contract:
+// - navigation partial (easyedu_navigation.mustache) with `identityrail: true`,
+//   `drawertitle` (product name) and `identitysubtitle` (active view);
+// - a Guide launcher may expose `.easyedu-guide__launcher-short` (capsule label);
+// - view tabs: `.easyedu-view-tabs` > `.easyedu-view-tabs__tab` buttons using
+//   `aria-pressed` and/or `.active`.
+//
+// Usage (consumer root selector must be an id or equivalent so Moodle/Bootstrap
+// button states and the separately loaded Guide sheet cannot win):
+//   #my-plugin-root {
+//     @include easyedu.rail-anchor-page;
+//     .my-navigation-wrapper { @include easyedu.navigation-identity-rail; }
+//     .my-view-tabs { @include easyedu.view-tabs; }
+//   }
+
+$-rail-block-size: 4rem;
+$-rail-control-size: 2.5rem;
+
+// Band + single content frame. Include once on the view root.
+@mixin rail-anchor-page($compact-breakpoint: 64rem) {
+  --easyedu-rail-anchor-inset: 2rem;
+  // The view root is the query container of the identity rail (narrow bands).
+  container-type: inline-size;
+
+  .easyedu-rail-anchor__band {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin: 0 0 1rem;
+    min-inline-size: 0;
+  }
+
+  .easyedu-rail-anchor__rail {
+    flex: 1 1 auto;
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  .easyedu-rail-anchor__tabs {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: flex-end;
+    margin-inline-start: auto;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    padding-inline-end: var(--easyedu-rail-anchor-inset);
+  }
+
+  .easyedu-rail-anchor__frame {
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-card-border);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding: 1.5rem var(--easyedu-rail-anchor-inset);
+  }
+
+  .easyedu-rail-anchor__head {
+    margin: 0 0 1.5rem;
+    min-inline-size: 0;
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    .easyedu-rail-anchor__compact-eyebrow {
+      display: none;
+    }
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) and (max-width: 75rem) {
+    --easyedu-rail-anchor-inset: 1.25rem;
+  }
+
+  @media (max-width: $compact-breakpoint) {
+    .easyedu-rail-anchor__band {
+      margin: 0;
+    }
+
+    .easyedu-rail-anchor__tabs {
+      display: none;
+    }
+
+    .easyedu-rail-anchor__frame {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
+}
+
+// Primary rail with integrated identity. Include on the element that already
+// includes `navigation-component` (the navigation wrapper).
+@mixin navigation-identity-rail($compact-breakpoint: 64rem) {
+  // Capsule label of the Guide launcher: only the identity rail shows it.
+  .easyedu-guide__launcher-short {
+    display: none;
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      border-radius: 1rem;
+      box-shadow: none;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      justify-content: flex-start;
+      margin: 0;
+      min-block-size: $-rail-block-size;
+      overflow: visible;
+      padding: 0.75rem var(--easyedu-rail-anchor-inset, 2rem);
+      position: relative;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      gap: 0.625rem;
+      margin-inline-end: 2.25rem;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-tile {
+      align-items: center;
+      background: var(--easyedu-primary);
+      border-radius: 0.75rem;
+      box-sizing: border-box;
+      color: var(--easyedu-identity-icon-color);
+      display: inline-flex;
+      flex: 0 0 $-rail-control-size;
+      block-size: $-rail-control-size;
+      inline-size: $-rail-control-size;
+      justify-content: center;
+
+      > .fa {
+        font-size: 0.875rem;
+        line-height: 1;
+      }
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.0625rem;
+      min-inline-size: 0;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-name {
+      color: var(--easyedu-text);
+      font: var(--easyedu-font-weight-strong) 1rem/1.2 var(--easyedu-font-family-ui);
+      white-space: nowrap;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-view {
+      color: var(--easyedu-text-muted);
+      font: var(--easyedu-font-weight-medium) 0.75rem/1.2 var(--easyedu-font-family-ui);
+      white-space: nowrap;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-divider {
+      background: var(--easyedu-card-border);
+      block-size: 2rem;
+      flex: 0 0 0.0625rem;
+      inline-size: 0.0625rem;
+      margin-inline-end: 1.0625rem;
+    }
+
+    // Destinations: one capsule family (Penpot "pill" / "pill active").
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] > .easyedu-navigation__sections {
+      flex: 0 1 auto;
+      justify-content: flex-start;
+      margin: -0.25rem;
+      min-inline-size: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.25rem;
+      scrollbar-width: none;
+      width: auto;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__items {
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item {
+      align-items: center;
+      background: var(--easyedu-surface);
+      border: 0;
+      border-radius: 1.25rem;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: var(--easyedu-text-muted);
+      display: inline-flex;
+      font: var(--easyedu-font-weight-medium) 0.875rem/1.2 var(--easyedu-font-family-ui);
+      gap: 0.625rem;
+      block-size: $-rail-control-size;
+      min-block-size: $-rail-control-size;
+      padding: 0 1.25rem 0 0.375rem;
+      transform: none;
+      white-space: nowrap;
+
+      > .easyedu-navigation__item-icon {
+        align-items: center;
+        background: var(--easyedu-surface-strong);
+        border-radius: 50%;
+        color: var(--easyedu-primary-strong);
+        display: inline-flex;
+        flex: 0 0 1.75rem;
+        font-size: 0.75rem;
+        block-size: 1.75rem;
+        inline-size: 1.75rem;
+        justify-content: center;
+        line-height: 1;
+        min-inline-size: 1.75rem;
+      }
+
+      &:hover {
+        background: color-mix(in srgb, var(--easyedu-primary-soft) 60%, var(--easyedu-surface) 40%);
+        box-shadow: none;
+        color: var(--easyedu-primary-strong);
+      }
+
+      &:focus-visible {
+        @include focus.ring;
+      }
+
+      &.active,
+      &[aria-current="page"] {
+        background: var(--easyedu-primary-soft);
+        box-shadow: none;
+        color: var(--easyedu-primary-strong);
+        font-weight: var(--easyedu-font-weight-semibold);
+
+        > .easyedu-navigation__item-icon {
+          background: var(--easyedu-primary);
+          color: var(--easyedu-identity-icon-color);
+        }
+      }
+
+      &.active:focus-visible,
+      &[aria-current="page"]:focus-visible {
+        @include focus.ring;
+      }
+    }
+
+    // Utilities grouped at the end: Guide capsule, then Display preferences.
+    .easyedu-navigation--identity .easyedu-navigation__utilities {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      gap: 0.625rem;
+      margin-inline-start: auto;
+      padding-inline-start: 1rem;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__guide-source,
+    .easyedu-navigation--identity .easyedu-navigation__preferences-source {
+      align-items: center;
+      display: flex;
+      inset: auto;
+      margin: 0;
+      position: static;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher {
+      align-items: center;
+      background: linear-gradient(90deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 100%);
+      border: 0;
+      border-radius: 1.25rem;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: var(--easyedu-identity-icon-color);
+      display: inline-flex;
+      gap: 0.625rem;
+      block-size: $-rail-control-size;
+      min-block-size: $-rail-control-size;
+      // Penpot capsule: 116 px, glyph at 18 px, label 10 px after it.
+      min-inline-size: 7.25rem;
+      padding: 0 2rem 0 1.125rem;
+      transform: none;
+      transition: box-shadow var(--easyedu-motion-fast, 160ms) ease;
+
+      .easyedu-guide__launcher-icon {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        color: inherit;
+        block-size: 1rem;
+        inline-size: 1rem;
+        min-inline-size: 1rem;
+        transform: none;
+
+        .fa {
+          block-size: 1rem;
+          font-size: 0.875rem;
+          inline-size: 1rem;
+        }
+      }
+
+      .easyedu-guide__launcher-label {
+        display: none;
+      }
+
+      .easyedu-guide__launcher-short {
+        color: inherit;
+        display: inline;
+        font: var(--easyedu-font-weight-semibold) 0.875rem/1.2 var(--easyedu-font-family-ui);
+        white-space: nowrap;
+      }
+
+      &:hover,
+      &:focus-visible {
+        background: linear-gradient(90deg, var(--easyedu-primary-strong) 0%, var(--easyedu-accent) 100%);
+        box-shadow: 0 0.25rem 0.6rem rgba(15, 108, 191, 0.24);
+        color: var(--easyedu-identity-icon-color);
+        transform: none;
+
+        .easyedu-guide__launcher-icon {
+          background: transparent;
+          box-shadow: none;
+          color: inherit;
+          transform: none;
+        }
+      }
+
+      &:focus-visible {
+        @include focus.ring($base-shadow: 0 0.25rem 0.6rem rgba(15, 108, 191, 0.24));
+      }
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__preferences-source .easyedu-direct-icon {
+      &,
+      &.btn {
+        background: var(--easyedu-surface);
+        background-image: none;
+        border: 0.0625rem solid var(--easyedu-card-border);
+        border-radius: 0.75rem;
+        color: var(--easyedu-primary);
+        block-size: $-rail-control-size;
+        inline-size: $-rail-control-size;
+
+        > .fa {
+          flex-basis: 1rem;
+          font-size: 0.875rem;
+          block-size: 1rem;
+          inline-size: 1rem;
+        }
+
+        &:hover,
+        &:focus-visible {
+          background: var(--easyedu-primary-soft);
+          background-image: none;
+          border-color: color-mix(in srgb, var(--easyedu-primary) 40%, var(--easyedu-card-border) 60%);
+          color: var(--easyedu-primary-strong);
+        }
+
+        &:focus-visible {
+          @include focus.ring;
+        }
+      }
+    }
+  }
+
+  // Narrow bands (queried on the view root, an inline-size container set by
+  // rail-anchor-page): inactive destinations, then the Guide, become icon-only
+  // capsules. Their accessible names stay their aria-label, and the navigation
+  // controller opts them into the Kit bubble. Never a truncated label.
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    @container (max-width: 71rem) {
+      .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item:not(.active):not([aria-current="page"]) {
+        gap: 0;
+        justify-content: center;
+        padding: 0 0.375rem;
+
+        > .easyedu-navigation__item-label {
+          display: none;
+        }
+      }
+    }
+
+    @container (max-width: 50rem) {
+      .easyedu-navigation--identity .easyedu-navigation__identity {
+        margin-inline-end: 1rem;
+      }
+
+      .easyedu-navigation--identity .easyedu-navigation__identity-divider {
+        margin-inline-end: 0.75rem;
+      }
+
+      .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher {
+        gap: 0;
+        inline-size: $-rail-control-size;
+        justify-content: center;
+        min-inline-size: $-rail-control-size;
+        padding: 0;
+
+        .easyedu-guide__launcher-short {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include animations.motion-restricted {
+    .easyedu-navigation--identity .easyedu-guide__launcher {
+      transition-duration: 0.01ms;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .easyedu-navigation--identity .easyedu-navigation__identity-tile,
+    .easyedu-navigation--identity .easyedu-guide__launcher {
+      border: 0.0625rem solid CanvasText;
+      forced-color-adjust: auto;
+    }
+  }
+}
+
+// View tabs (Penpot "EasyEdu / Navigation / View tabs"): a soft track of equal
+// capsules. Works for two or more tabs; long translations grow the capsules.
+@mixin view-tabs {
+  align-items: center;
+  background: var(--easyedu-surface-strong);
+  border: 0.0625rem solid var(--easyedu-card-border);
+  border-radius: 1.5rem;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  max-inline-size: 100%;
+  // 4 px design padding includes the 1 px inner stroke: 48 px outer track.
+  padding: calc(0.25rem - 0.0625rem);
+  width: auto;
+
+  > .easyedu-view-tabs__tab {
+    @include view-tab;
+  }
+
+  > .easyedu-view-tabs__tab.active,
+  > .easyedu-view-tabs__tab[aria-pressed="true"] {
+    @include view-tab-selected;
+  }
+}
+
+@mixin view-tab {
+  &,
+  &.btn {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.25rem;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: var(--easyedu-text-muted);
+    display: inline-flex;
+    flex: 1 1 0;
+    font: var(--easyedu-font-weight-medium) 0.875rem/1.2 var(--easyedu-font-family-ui);
+    gap: 0.5rem;
+    block-size: $-rail-control-size;
+    justify-content: center;
+    margin: 0;
+    min-block-size: $-rail-control-size;
+    min-inline-size: 13.75rem;
+    padding: 0 0.75rem;
+    white-space: nowrap;
+  }
+
+  > .fa {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border-radius: 50%;
+    color: var(--easyedu-text-muted);
+    display: inline-flex;
+    flex: 0 0 1.75rem;
+    font-size: 0.75rem;
+    block-size: 1.75rem;
+    inline-size: 1.75rem;
+    justify-content: center;
+    line-height: 1;
+    // Icon and tile change together: no blue glyph on a blue tile mid-transition.
+    transition: none;
+  }
+
+  &:hover,
+  &:focus {
+    background: color-mix(in srgb, var(--easyedu-surface) 60%, transparent);
+    box-shadow: none;
+    color: var(--easyedu-primary-strong);
+  }
+
+  &:focus-visible {
+    @include focus.ring;
+  }
+}
+
+@mixin view-tab-selected {
+  &,
+  &.btn {
+    background: var(--easyedu-surface);
+    box-shadow: 0 0.125rem 0.375rem rgba(21, 82, 132, 0.14);
+    color: var(--easyedu-primary-strong);
+    font-weight: var(--easyedu-font-weight-semibold);
+  }
+
+  > .fa {
+    background: var(--easyedu-primary);
+    color: var(--easyedu-identity-icon-color);
+  }
+
+  &:focus-visible {
+    @include focus.ring($base-shadow: 0 0.125rem 0.375rem rgba(21, 82, 132, 0.14));
+  }
+}

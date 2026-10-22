@@ -274,6 +274,8 @@ $templatedata['motionpolicy'] = $animationsenabled ? 'enabled' : 'disabled';
 // The Guide is portalled out of the root on compact layouts: it carries the level itself.
 $templatedata['easyeduguide']['motionlevel'] = $motionlevel;
 $templatedata['easyeduguide']['motionpolicy'] = $templatedata['motionpolicy'];
+// K21-51 Rail-anchor: the desktop rail shows the Guide as a labelled capsule.
+$templatedata['easyeduguide']['launchershortlabel'] = get_string('guidebadgelabel', 'local_groupimport');
 $templatedata['themestyle'] = local_groupimport_get_theme_style();
 $templatedata['themerailroles'] = local_groupimport_get_theme_rail_roles();
 $templatedata['navigation']['hasguide'] = true;
@@ -453,6 +455,9 @@ function local_groupimport_build_navigation_context(
         'emptylabel' => get_string('navigationempty', 'local_groupimport'),
         'drawertitle' => get_string('easystudlabel', 'local_groupimport'),
         'drawersubtitle' => get_string('easystudmanager', 'local_groupimport'),
+        // K21-51: the desktop rail carries the product identity and the active view.
+        'identityrail' => true,
+        'identitysubtitle' => get_string('participants'),
         'spaceslabel' => get_string('mobilenavigationspaces', 'local_groupimport'),
         'hasitems' => !empty($sections),
         'hasparticipantdropdown' => $native && !empty($native->options),

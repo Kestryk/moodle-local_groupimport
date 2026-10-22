@@ -3,10 +3,15 @@
 
     Reference wrapper for one normalized navigation context.
     Consumers must adapt the namespace of the shared item partial.
+
+    Optional K21-51 identity rail (EasyEdu "Rail-anchor" standard): set `identityrail` and
+    `identitysubtitle` (active view). The desktop rail then starts with the product identity
+    (tile + drawertitle / identitysubtitle) and groups the Guide capsule and Display
+    preferences at its end, in DOM order. The compact drawer is unchanged.
 }}
 <div
     id="{{rootid}}"
-    class="easyedu-navigation"
+    class="easyedu-navigation{{#identityrail}} easyedu-navigation--identity{{/identityrail}}"
     data-easyedu-navigation="1"
     {{#anchorselector}}data-easyedu-navigation-anchor-selector="{{anchorselector}}"{{/anchorselector}}
 >
@@ -15,11 +20,23 @@
         data-easyedu-navigation-desktop="1"
         aria-label="{{navigationlabel}}"
     >
+        {{#identityrail}}
+        <div class="easyedu-navigation__identity">
+            <span class="easyedu-navigation__identity-tile" aria-hidden="true"><span class="fa fa-graduation-cap"></span></span>
+            <span class="easyedu-navigation__identity-text">
+                <span class="easyedu-navigation__identity-name">{{drawertitle}}</span>
+                {{#identitysubtitle}}<span class="easyedu-navigation__identity-view">{{identitysubtitle}}</span>{{/identitysubtitle}}
+            </span>
+        </div>
+        <span class="easyedu-navigation__identity-divider" aria-hidden="true"></span>
+        {{/identityrail}}
+        {{^identityrail}}
         {{#hasguide}}
         <div class="easyedu-navigation__guide-source" data-easyedu-navigation-guide-source="1" data-easyedu-navigation-label-reveal="1">
             {{{guidehtml}}}
         </div>
         {{/hasguide}}
+        {{/identityrail}}
         {{#hasitems}}
         <div class="easyedu-navigation__sections">
             {{#sections}}
@@ -37,6 +54,14 @@
         {{^hasitems}}
         <p class="easyedu-navigation__empty">{{emptylabel}}</p>
         {{/hasitems}}
+        {{#identityrail}}
+        <div class="easyedu-navigation__utilities">
+            {{#hasguide}}
+            <div class="easyedu-navigation__guide-source" data-easyedu-navigation-guide-source="1">
+                {{{guidehtml}}}
+            </div>
+            {{/hasguide}}
+        {{/identityrail}}
         <div class="easyedu-navigation__preferences-source">
             <button type="button" class="easyedu-direct-icon" data-easyedu-display-open
                 data-easyedu-display-tooltip
@@ -44,6 +69,9 @@
                 <span class="fa fa-sliders" aria-hidden="true"></span>
             </button>
         </div>
+        {{#identityrail}}
+        </div>
+        {{/identityrail}}
     </nav>
 
     <div class="easyedu-navigation__trigger-row" data-easyedu-navigation-trigger-row="1">

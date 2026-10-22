@@ -170,6 +170,35 @@ const bindLabelReveal = root => {
     window.addEventListener('resize', onResize, {passive: true});
 };
 
+// K21-51 identity rail: narrow rails show some destinations (and the Guide) as
+// icon-only capsules through a container query. Only those collapsed controls
+// opt into the shared Kit hover/focus bubble, which reads their aria-label.
+const bindIdentityRailTooltips = root => {
+    const navigation = root.classList.contains('easyedu-navigation--identity') ?
+        root.querySelector('[data-easyedu-navigation-desktop]') : null;
+    if (!navigation || typeof window.ResizeObserver !== 'function') {
+        return;
+    }
+    let frame = 0;
+    const sync = () => {
+        frame = 0;
+        navigation.querySelectorAll('.easyedu-navigation__item, .easyedu-guide__launcher').forEach(control => {
+            const label = control.querySelector('.easyedu-navigation__item-label, .easyedu-guide__launcher-short');
+            const collapsed = !!label && control.hasAttribute('aria-label') &&
+                window.getComputedStyle(label).display === 'none';
+            if (control.hasAttribute('data-easyedu-display-tooltip') !== collapsed) {
+                control.toggleAttribute('data-easyedu-display-tooltip', collapsed);
+            }
+        });
+    };
+    new window.ResizeObserver(() => {
+        if (!frame) {
+            frame = window.requestAnimationFrame(sync);
+        }
+    }).observe(navigation);
+    sync();
+};
+
 const bindRoot = root => {
     if (!root || roots.has(root)) {
         return roots.get(root) || null;
@@ -330,6 +359,7 @@ const bindRoot = root => {
     window.addEventListener('scroll', scheduleTriggerPosition, {passive: true});
     bindDisclosure(root);
     bindLabelReveal(root);
+    bindIdentityRailTooltips(root);
     syncTriggerPosition();
     setOpen(false, false, false, false);
 

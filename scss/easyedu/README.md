@@ -35,6 +35,7 @@ scss/easyedu/
     _feedback.scss             Tokens, count badges, empty states.
     _loading.scss              Skeleton surfaces, shimmer, rhythm and fade.
     _navigation-skeleton.scss  Static navigation frames and internal cues.
+    _rail-anchor.scss          Rail-anchor page standard: identity rail, view tabs, one content frame.
     _overlays.scss             Drag/drop overlays and hover help surfaces.
 ```
 

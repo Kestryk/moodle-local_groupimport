@@ -35,45 +35,57 @@
     </div>
 
 
-    <div class="local-groupimport-easystud__header">
-        <div class="easyedu-page-header">
-          <div class="easyedu-workspace-identity">
-            <span class="easyedu-workspace-eyebrow">{{#str}}easystudlabel, local_groupimport{{/str}}</span>
+    {{!
+        K21-51 "Rail-anchor" page structure (EasyEdu standard, see scss/easyedu/components/_rail-anchor.scss):
+        floor 1 = navigation band (identity rail, then view tabs), floor 2 = one main content frame
+        wrapping the whole view. DOM order equals reading and Tab order.
+    }}
+    <div class="local-groupimport-easystud__header easyedu-rail-anchor__band">
+        <div class="local-groupimport-easystud__navigation easyedu-rail-anchor__rail">
             {{#navigation}}
-                {{#hasparticipantdropdown}}
-                    <div
-                        class="easyedu-workspace-title-control"
-                        data-easystud-participant-navigation="1"
-                    >
-                        {{#participantdropdown}}
-                            {{> core/select_menu}}
-                        {{/participantdropdown}}
-                    </div>
-                {{/hasparticipantdropdown}}
+                {{> local_groupimport/easyedu_navigation}}
             {{/navigation}}
-            <p class="easyedu-workspace-description">{{description}}</p>
-          </div>
-            <div class="local-groupimport-easystud__navigation">
-                {{#navigation}}
-                    {{> local_groupimport/easyedu_navigation}}
-                {{/navigation}}
+        </div>
+        <div class="local-groupimport-easystud__view-tabs easyedu-rail-anchor__tabs">
+            <div class="btn-group local-groupimport-easystud__layout-mode-group easyedu-workspace-view-switcher easyedu-view-tabs" role="group" aria-label="{{selectionmodelabel}}">
+                {{#layoutmodetoggles}}
+                    <button
+                        type="button"
+                        class="{{class}} easyedu-view-tabs__tab"
+                        {{{attribute}}}
+                    >
+                        <span class="fa {{icon}}" aria-hidden="true"></span>
+                        <span>{{label}}</span>
+                    </button>
+                {{/layoutmodetoggles}}
             </div>
         </div>
     </div>
 
-    <div class="local-groupimport-easystud__layout-toggles">
-        <div class="btn-group local-groupimport-easystud__layout-mode-group easyedu-workspace-view-switcher easyedu-workspace-view-switcher--tiled easyedu-workspace-view-switcher--stable-icon" role="group" aria-label="{{selectionmodelabel}}">
-            {{#layoutmodetoggles}}
-                <button
-                    type="button"
-                    class="{{class}}"
-                    {{{attribute}}}
+    <div class="local-groupimport-easystud__frame easyedu-rail-anchor__frame">
+    <div class="easyedu-workspace-identity easyedu-rail-anchor__head">
+        {{! The product eyebrow is compact-only: on desktop the rail carries the identity. }}
+        <span class="easyedu-workspace-eyebrow easyedu-rail-anchor__compact-eyebrow">{{#str}}easystudlabel, local_groupimport{{/str}}</span>
+        {{#navigation}}
+            {{#hasparticipantdropdown}}
+                <div
+                    class="easyedu-workspace-title-control"
+                    data-easystud-participant-navigation="1"
                 >
-                    <span class="fa {{icon}}" aria-hidden="true"></span>
-                    <span>{{label}}</span>
-                </button>
-            {{/layoutmodetoggles}}
-        </div>
+                    {{#participantdropdown}}
+                        {{> core/select_menu}}
+                    {{/participantdropdown}}
+                </div>
+            {{/hasparticipantdropdown}}
+            {{^hasparticipantdropdown}}
+                <h2 class="easyedu-workspace-title">{{drawersubtitle}}</h2>
+            {{/hasparticipantdropdown}}
+        {{/navigation}}
+        <p class="easyedu-workspace-description">{{description}}</p>
+    </div>
+
+    {{! The selection recovery capsule stays a fixed bottom surface: it is not part of the header band. }}
+    <div class="local-groupimport-easystud__layout-toggles">
         <div class="local-groupimport-easystud__clear-selection-frame" data-easystud-clear-selection-frame="1" hidden>
             <span class="local-groupimport-easystud__clear-selection-count" data-easystud-clear-selection-count="1"></span>
             <button
@@ -727,6 +739,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
