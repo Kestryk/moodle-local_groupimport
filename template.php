@@ -107,16 +107,22 @@ for ($row = 2; $row <= 6; $row++) {
 }
 
 $spreadsheet->setActiveSheetIndex(0);
-$tempdir = make_temp_directory('local_groupimport');
-$tempfile = $tempdir . DIRECTORY_SEPARATOR . uniqid('example_', true) . '.xlsx';
-$writer = new Xlsx($spreadsheet);
-$writer->save($tempfile);
-$spreadsheet->disconnectWorksheets();
-$content = file_get_contents($tempfile);
-@unlink($tempfile);
-
-if ($content === false) {
-    throw new moodle_exception('cannotcreatetempfile', 'error');
+$tempfile = tempnam(make_request_directory(), 'example_');
+try {
+    if ($tempfile === false) {
+        throw new moodle_exception('cannotcreatetempfile', 'error');
+    }
+    $writer = new Xlsx($spreadsheet);
+    $writer->save($tempfile);
+    $content = file_get_contents($tempfile);
+    if ($content === false) {
+        throw new moodle_exception('cannotcreatetempfile', 'error');
+    }
+} finally {
+    $spreadsheet->disconnectWorksheets();
+    if (is_string($tempfile) && is_file($tempfile)) {
+        unlink($tempfile);
+    }
 }
 
 // Send file via Moodle API.
