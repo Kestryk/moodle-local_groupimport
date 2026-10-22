@@ -653,13 +653,17 @@
   // (two side by side) and only stack when a dropdown would fall under 9rem.
   // Toggles and Reset stay in the trailing filter actions, below this grid.
   &__filters-grid {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.65rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  }
+
+  &__filters-grid > &__filter-group {
+    flex: 1 1 9rem;
   }
 
   &__filters-grid > &__filter-group--roles {
-    grid-column: 1 / -1;
+    flex-basis: 100%;
   }
 
   &__filter-group {
