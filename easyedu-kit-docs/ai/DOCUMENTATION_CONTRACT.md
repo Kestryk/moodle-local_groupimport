@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+I12 shared SCSS is published from reviewed Kit main. Reconcile newer consumer
+changes into that authority before copying. Consumer CSS byte identity is not
+a publication gate: retain the deltas and prove native visual non-regression
+at affected widths, locales and states. Source parity and Guide adapter parity
+remain separate checks. See docs/testing/i12-consumer-visual-publication-2026-10-22.md.
+
 G1 personal animation choice reuses the server M1 resolver and current-user
 Moodle preference repository. Keep Save explicit, Cancel/Escape reversible and
 the underlying Guide open. The embedded Kit owns the preference-window/radio

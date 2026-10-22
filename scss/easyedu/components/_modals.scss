@@ -1008,3 +1008,23 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 @mixin dialog-eyebrow-ink($color: var(--easyedu-primary)) { color: $color; }
 
 @mixin dialog-text-action-regular-type { font-size: 0.875rem; }
+
+
+// Shared neutral transparency canvas, ported unchanged from CCB 872ea1a.
+@mixin preview-checkerboard {
+  background-color: var(--easyedu-preview-checker-light);
+  background-image: conic-gradient(
+    var(--easyedu-preview-checker-dark) 25%,
+    transparent 0 50%,
+    var(--easyedu-preview-checker-dark) 0 75%,
+    transparent 0
+  );
+  background-position: 0 0;
+  background-size: var(--easyedu-preview-checker-size) var(--easyedu-preview-checker-size);
+  border: 1px solid var(--easyedu-preview-checker-border);
+
+  @media (forced-colors: active) {
+    background: Canvas;
+    border-color: CanvasText;
+  }
+}

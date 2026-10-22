@@ -7,6 +7,9 @@ const assert = require('node:assert/strict');
 const {execFileSync} = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
 const [kitArg, sassArg, postcssArg, outputArg] = process.argv.slice(2);
+// 22/10 arbitration: binary differences are forensic data, not visual acceptance.
+// Preserve the original strict check as an explicit diagnostic option only.
+const requireByteIdentity = process.argv.slice(6).includes('--require-byte-identity');
 assert.ok([kitArg, sassArg, postcssArg, outputArg].every(p => p && path.isAbsolute(p)),
     'Pass absolute Kit, Sass, PostCSS and external output paths');
 const [kit, sassModule, postcssModule, out] = [kitArg, sassArg, postcssArg, outputArg].map(p => path.resolve(p));
@@ -95,8 +98,9 @@ assert.deepEqual(inventory(path.join(kit, 'scss/easyedu')), kitBefore, 'Kit sour
 const result = {product: {root, head: git(root, 'rev-parse', 'HEAD')}, kit: {root: kit, head: git(kit, 'rev-parse', 'HEAD')},
     compiler: {node: process.versions.node, sass: require(sassModule).info.split('\n')[0]},
     changes, css, declarationDeltaCount: delta.length, expanded: compare('all-expanded.css'),
-    identical: css.every(r => r.identical), sourceUnchanged: true, runtimeAccess: false};
+    identical: css.every(r => r.identical), sourceUnchanged: true, runtimeAccess: false,
+    byteIdentityRequired: requireByteIdentity, nativeVisualAcceptance: 'not-evaluated-by-this-tool'};
 fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify(result, null, 2) + '\n');
 console.log(JSON.stringify({identical: result.identical, changedSourceFiles: changes.length, declarationDeltaCount: delta.length,
     css: css.map(({file, identical, beforeBytes, afterBytes}) => ({file, identical, beforeBytes, afterBytes})), sourceUnchanged: true}));
-if (!result.identical) process.exitCode = 1;
+if (requireByteIdentity && !result.identical) process.exitCode = 1;

@@ -335,7 +335,10 @@
 
 // Compact desktop recovery surface. Consumers reserve matching scroll space
 // while it is visible; touch layouts use the dedicated action tray instead.
-@mixin sticky-selection-panel($accent: var(--easyedu-primary), $bottom: 1.25rem) {
+// Physical viewport coordinates are supplied by the consumer after drawer changes.
+// The optional legacy third argument keeps explicitly positioned callers compatible.
+@mixin sticky-selection-panel($accent: var(--easyedu-primary), $bottom: 1.25rem, $left: null) {
+  $fallback-center: if($left == null, 50%, $left);
   align-items: center;
   background: var(--easyedu-surface);
   border: 1px solid color-mix(in srgb, #{$accent} 28%, var(--easyedu-card-border) 72%);
@@ -344,11 +347,11 @@
   box-shadow: var(--easyedu-shadow-soft);
   display: flex;
   gap: 0.6rem;
-  inset-inline-start: 50%;
+  left: var(--easyedu-sticky-selection-center, #{$fallback-center});
   max-width: min(calc(100vw - 2rem), 30rem);
   padding: 0.35rem 0.4rem 0.35rem 0.8rem;
   position: fixed;
-  transform: translateX(-50%);
+  transform: if($left == null, translateX(-50%), none);
   z-index: 1038;
 
   &[hidden] {

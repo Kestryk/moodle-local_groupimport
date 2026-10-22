@@ -1,5 +1,7 @@
 # I12 — verrou du miroir consommateur, 22/10/2026
 
+> Historique du verrou initial. L’arbitrage Kevin/Claude du 22/10 remplace l’identité CSS bit-à-bit par une preuve native de non-régression visuelle. Voir [le contrat et la publication visuelle](i12-consumer-visual-publication-2026-10-22.md). Les mesures et échecs binaires ci-dessous restent conservés ; ils ne constituent plus un refus de publication à eux seuls.
+
 **BLOQUÉ avant application : la copie exacte du Kit ne respecte pas l’identité CSS requise.** La branche de livraison contient le diagnostic et son outil reproductible uniquement. Aucun fichier produit SCSS, CSS, AMD, template, langue ou miroir n’est modifié.
 
 ## Références figées

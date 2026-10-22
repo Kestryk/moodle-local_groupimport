@@ -1,3 +1,5 @@
+- 2026-10-22 [I12] Publish the canonical Kit SCSS after preserving K21-37 and auditing native visual parity; compiled CSS byte differences remain documented evidence, not a publication failure by themselves.
+
 - 2026-10-21 [I14] Split the course manager context menu binding: action handlers grouped by target type (participant, group, grouping, member, common) behind one dispatch table, menu animator, submenus, long press, hover and keyboard in their own functions (identical observable behaviour).
 
 - 2026-10-21 [I14] Split the Guide discovery-scene playback into one player per scene kind behind a dispatch table (shared playback clock unchanged, identical observable behaviour).

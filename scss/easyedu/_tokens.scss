@@ -12,6 +12,20 @@
 @use "tones";
 
 @mixin token-defaults {
+  // Main API compatibility (CCB checkerboard and public navigation launcher).
+  --easyedu-preview-checker-light: #f7f7f7;
+  --easyedu-preview-checker-dark: #e3e3e3;
+  --easyedu-preview-checker-border: #c9c9c9;
+  --easyedu-preview-checker-size: 0.8rem;
+  --easyedu-navigation-guide-launcher-gradient: linear-gradient(
+    135deg,
+    var(--easyedu-primary) 0%,
+    var(--easyedu-accent) 100%
+  );
+  --easyedu-navigation-guide-launcher-border: rgba(255, 255, 255, 0.86);
+  --easyedu-navigation-guide-launcher-radius: 0.9rem;
+  --easyedu-navigation-guide-launcher-shadow: 0 0.48rem 1rem rgba(35, 93, 115, 0.28);
+
   --easyedu-empty-border: #cdddea;
   --easyedu-file-deposit-drag-over-surface: #edf6fc;
   --easyedu-file-deposit-danger-surface: #fff4f2;

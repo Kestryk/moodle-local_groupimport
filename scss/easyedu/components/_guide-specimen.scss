@@ -151,7 +151,7 @@
     // The desktop recovery capsule, placed in the flow instead of fixed to the window.
     &__selection {
       @include panels.sticky-selection-panel;
-      inset-inline-start: auto;
+      left: auto;
       justify-self: start;
       position: static;
       transform: none;

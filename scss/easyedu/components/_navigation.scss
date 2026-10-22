@@ -4,6 +4,18 @@
 @use "typography";
 @use "animations";
 
+// Public Guide launcher skin. CCB already published these names; EasyStud
+// supplied the same values through plugin-scoped aliases. The fallbacks keep the
+// capsule painted even when a consumer has not emitted `token-defaults` above
+// the navigation root.
+$guide-launcher-gradient: var(
+  --easyedu-navigation-guide-launcher-gradient,
+  linear-gradient(135deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 100%)
+);
+$guide-launcher-border: var(--easyedu-navigation-guide-launcher-border, rgba(255, 255, 255, 0.86));
+$guide-launcher-radius: var(--easyedu-navigation-guide-launcher-radius, 0.9rem);
+$guide-launcher-shadow: var(--easyedu-navigation-guide-launcher-shadow, 0 0.48rem 1rem rgba(35, 93, 115, 0.28));
+
 // Canonical navigation composition for EasyEdu plugin surfaces.
 //
 // Consumers render desktop and compact wrappers from one prepared context.
@@ -11,7 +23,7 @@
 // this component does not fork the established EasyStud/CCB contracts.
 // Consumer supplies the measured resting content edge. Preserve access to edge controls.
 @mixin navigation-content-clearance($content-edge) {
-  margin-inline-start: max(0px, calc(var(--easyedu-touch-target-min) + 4px - #{$content-edge}));
+  margin-inline-start: max(0rem, calc(var(--easyedu-touch-target-min) + 0.25rem - #{$content-edge}));
 }
 
 @mixin navigation-component($compact-breakpoint: 64rem, $phone-trigger-clearance: false) {
@@ -70,10 +82,10 @@
   // out of flow so revealing it cannot move the centered destination buttons.
   [data-easyedu-navigation-desktop] .easyedu-navigation__guide-source .easyedu-guide__launcher .easyedu-guide__launcher-label {
     align-items: center;
-    background: var(--local-groupimport-easystud-guide-launcher-gradient);
-    border: 1px solid var(--local-groupimport-easystud-guide-launcher-border);
-    border-radius: var(--local-groupimport-easystud-guide-launcher-radius);
-    box-shadow: var(--local-groupimport-easystud-guide-launcher-shadow);
+    background: $guide-launcher-gradient;
+    border: 0.0625rem solid $guide-launcher-border;
+    border-radius: $guide-launcher-radius;
+    box-shadow: $guide-launcher-shadow;
     clip: auto;
     color: var(--easyedu-identity-icon-color);
     display: inline-flex;
@@ -224,8 +236,8 @@
     @include buttons.icon-button(regular);
 
     background: color-mix(in srgb, var(--easyedu-card-border) 28%, var(--easyedu-surface) 72%);
-    border: 1px solid var(--easyedu-card-border);
-    border-radius: 0 999px 999px 0;
+    border: 0.0625rem solid var(--easyedu-card-border);
+    border-radius: 0 62.4375rem 62.4375rem 0;
     box-sizing: border-box;
     box-shadow: 0 0.125rem 0.25rem rgba(35, 53, 72, 0.16);
     color: var(--easyedu-primary-strong);
@@ -238,7 +250,7 @@
       max(
         var(--easyedu-navigation-trigger-safe-edge),
         calc(
-          var(--easyedu-navigation-native-trigger-edge, 0px) +
+          var(--easyedu-navigation-native-trigger-edge, 0rem) +
           (var(--easyedu-touch-target-min) / 2) +
           var(--easyedu-navigation-trigger-gap)
         )
@@ -300,7 +312,7 @@
           max(
             var(--easyedu-navigation-trigger-safe-edge),
             calc(
-              var(--easyedu-navigation-native-trigger-edge, 0px) +
+              var(--easyedu-navigation-native-trigger-edge, 0rem) +
               (var(--easyedu-touch-target-min) / 2) +
               var(--easyedu-navigation-trigger-gap)
             )
@@ -336,11 +348,11 @@
   .easyedu-navigation__panel {
     @include responsive.mobile-primary-nav-panel(var(--easyedu-navigation-layer-panel));
 
-    background: var(--easyedu-navigation-drawer-surface);
+    background: var(--easyedu-navigation-drawer-surface, var(--easyedu-surface));
     block-size: 100dvh;
     border: 0;
-    border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border);
-    box-shadow: var(--easyedu-navigation-drawer-shadow);
+    border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border, var(--easyedu-card-border));
+    box-shadow: var(--easyedu-navigation-drawer-shadow, 0.8rem 0 2rem rgba(31, 42, 55, 0.16));
     gap: 0;
     max-block-size: 100dvh;
     max-width: var(--easyedu-navigation-panel-max-width);
@@ -349,6 +361,24 @@
     overscroll-behavior: none;
     padding: 0;
     width: var(--easyedu-navigation-panel-width);
+
+    // Wrapper contract (K21, CCB adoption): the dedicated
+    // `.easyedu-navigation__panel-scroll` child owns scrolling. A consumer
+    // wrapper without it (CCB 872ea1a) keeps a scrollable panel with the same
+    // 16 px inset and 16 px rhythm, so the last destination stays reachable on
+    // short viewports. Never clip a panel that has no inner scroller.
+    &:not(:has(> .easyedu-navigation__panel-scroll)) {
+      gap: 1rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-block-end: calc(1rem + env(safe-area-inset-bottom));
+
+      > :not(.easyedu-navigation__panel-header) {
+        flex: 0 0 auto;
+        margin-inline: 1rem;
+      }
+    }
 
     &[aria-hidden="true"] {
       visibility: hidden;
@@ -387,14 +417,12 @@
   .easyedu-navigation__panel .easyedu-navigation__guide-slot .easyedu-guide__launcher {
     @include responsive.mobile-navigation-guide-row;
 
-    // The compact launcher is intentionally outside the portalled Guide root,
-    // so retain the established gradient token on the button itself.
-    --local-groupimport-easystud-guide-launcher-gradient:
-      linear-gradient(135deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 100%);
+    // The compact launcher is intentionally outside the portalled Guide root:
+    // it reads the public launcher token, never a Guide-root private alias.
     background-color: transparent;
     background-image:
       linear-gradient(135deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.28) 100%),
-      var(--local-groupimport-easystud-guide-launcher-gradient);
+      $guide-launcher-gradient;
     background-position: 0 0, 0 50%;
     background-size: 100% 100%, 190% 190%;
     border: 0.0625rem solid var(--easyedu-guide-launcher-resting-border);
@@ -415,7 +443,7 @@
     &:focus-visible {
       background-image:
         linear-gradient(var(--easyedu-surface), var(--easyedu-surface)),
-        var(--local-groupimport-easystud-guide-launcher-gradient);
+        $guide-launcher-gradient;
       background-origin: border-box;
       background-clip: padding-box, border-box;
       background-position: 0 0, 100% 50%;
@@ -475,7 +503,7 @@
     .easyedu-guide__launcher-icon,
     > .fa,
     .easyedu-guide__launcher-label {
-      background-image: var(--local-groupimport-easystud-guide-launcher-gradient);
+      background-image: $guide-launcher-gradient;
       background-clip: text;
       color: transparent;
       -webkit-background-clip: text;
@@ -736,7 +764,7 @@
       > .easyedu-navigation__item-icon {
         background: var(--easyedu-primary);
         border-color: var(--easyedu-primary);
-        color: var(--easyedu-identity-icon-color, #fff);
+        color: var(--easyedu-identity-icon-color, var(--easyedu-surface));
       }
     }
 
@@ -750,7 +778,7 @@
 
   .easyedu-navigation__panel .easyedu-navigation__guide-slot .easyedu-guide__launcher {
     background-color: transparent;
-    background-image: var(--local-groupimport-easystud-guide-launcher-gradient);
+    background-image: $guide-launcher-gradient;
     border-color: transparent;
     box-shadow: none;
     justify-content: flex-start;
@@ -809,6 +837,15 @@
   @at-root html.easyedu-navigation-open,
   html.easyedu-navigation-open body {
     @include navigation-document-open-state;
+  }
+
+  // J-G3 / CK-7 (P-G2, validated 16/10/2026): during a guided path the floating navigation trigger
+  // would sit on the checklist (390 px, bottom left); it steps aside until the path ends.
+  // Emitted by the mixin, never at module level: the Kit emits no CSS on `@use`.
+  @at-root body:has(.easyedu-guided-panel[data-easyedu-guide-path]:not([hidden])) .easyedu-navigation__trigger {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
@@ -882,13 +919,13 @@
   [dir="rtl"] & .easyedu-navigation__panel,
   &[dir="rtl"] .easyedu-navigation__panel {
     inset: 0 0 0 auto;
-    border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border);
+    border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border, var(--easyedu-card-border));
     transform: none;
   }
 
   [dir="rtl"] & .easyedu-navigation__trigger,
   &[dir="rtl"] .easyedu-navigation__trigger {
-    border-radius: 999px 0 0 999px;
+    border-radius: 62.4375rem 0 0 62.4375rem;
     inset-inline-end: 0;
     inset-inline-start: auto;
     padding-inline: 0.7rem 0.44rem;
@@ -903,12 +940,4 @@
 @mixin navigation-document-open-state {
   overflow: hidden;
   overscroll-behavior: none;
-}
-
-// J-G3 / CK-7 (P-G2, validated 16/10/2026): during a guided path the floating navigation trigger
-// would sit on the checklist (390 px, bottom left); it steps aside until the path ends.
-body:has(.easyedu-guided-panel[data-easyedu-guide-path]:not([hidden])) .easyedu-navigation__trigger {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
 }
