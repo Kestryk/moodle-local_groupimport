@@ -913,7 +913,7 @@ export const createGroupElement = (root, groupdata) => {
                     '<span class="fa fa-pen" aria-hidden="true"></span>' +
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
-                    '<input type="text" name="name" class="form-control form-control-sm" aria-label="' + escapeHtml(labels.rename || '') + '">' +
+                    '<input type="text" name="name" class="form-control form-control-sm" autocomplete="off" aria-label="' + escapeHtml(labels.rename || '') + '">' +
                     renameEditActions(labels) +
                 '</div>' +
             '</form>' +
@@ -1018,7 +1018,7 @@ export const createGroupingElement = (root, groupingdata) => {
                     '<span class="fa fa-pen" aria-hidden="true"></span>' +
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
-                    '<input type="text" name="name" class="form-control form-control-sm" aria-label="' + escapeHtml(labels.rename || '') + '">' +
+                    '<input type="text" name="name" class="form-control form-control-sm" autocomplete="off" aria-label="' + escapeHtml(labels.rename || '') + '">' +
                     renameEditActions(labels) +
                 '</div>' +
             '</form>' +
