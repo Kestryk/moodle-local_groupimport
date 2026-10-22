@@ -28,7 +28,7 @@ use local_groupimport\local\bulk_action;
  */
 final class duplicategrouping implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the duplicategrouping AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         global $DB;

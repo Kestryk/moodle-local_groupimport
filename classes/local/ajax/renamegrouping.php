@@ -27,7 +27,7 @@ use local_groupimport\local\ajax_security;
  */
 final class renamegrouping implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the renamegrouping AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         global $DB;

@@ -25,7 +25,7 @@ namespace local_groupimport\local\ajax;
  */
 final class userdetails implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the userdetails AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         $userid = required_param('userid', PARAM_INT);

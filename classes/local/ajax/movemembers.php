@@ -25,12 +25,11 @@ namespace local_groupimport\local\ajax;
  */
 final class movemembers implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the movemembers AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
-        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-            throw new \moodle_exception('invaliddata', 'error');
-        }
+        // X3: ajax_security::require_request() already enforced POST for every action
+        // before dispatch reached here, so this own check was redundant.
         $destinationid = required_param('destinationid', PARAM_INT);
         $membersjson = optional_param('membersjson', '', PARAM_RAW);
         if ($membersjson !== '') {

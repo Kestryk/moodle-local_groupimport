@@ -27,11 +27,9 @@ use local_groupimport\local\bulk_action;
  */
 final class deletegroupings implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the deletegroupings AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
-        global $DB;
-
         $groupingids = required_param_array('groupingids', PARAM_INT);
         bulk_action::validate_size(count($groupingids));
         $deleted = 0;

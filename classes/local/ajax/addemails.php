@@ -27,11 +27,9 @@ use local_groupimport\local\bulk_action;
  */
 final class addemails implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the addemails AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
-        global $DB;
-
         $groupid = required_param('groupid', PARAM_INT);
         $rawemails = required_param('emails', PARAM_TEXT);
         $group = groups_get_group($groupid);

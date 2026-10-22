@@ -28,7 +28,7 @@ use local_groupimport\local\bulk_action;
  */
 final class removemembers implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the removemembers AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         $groupids = required_param_array('groupids', PARAM_INT);

@@ -27,7 +27,7 @@ use local_groupimport\local\bulk_action;
  */
 final class addusers implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the addusers AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         $groupid = required_param('groupid', PARAM_INT);

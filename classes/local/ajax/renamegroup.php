@@ -27,7 +27,7 @@ use local_groupimport\local\ajax_security;
  */
 final class renamegroup implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the renamegroup AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         $groupid = required_param('groupid', PARAM_INT);

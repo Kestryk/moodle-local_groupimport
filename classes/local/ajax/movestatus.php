@@ -25,7 +25,7 @@ namespace local_groupimport\local\ajax;
  */
 final class movestatus implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the movestatus AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         global $DB, $USER;

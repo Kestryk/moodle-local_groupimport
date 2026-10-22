@@ -26,6 +26,8 @@ use local_groupimport\local\ajax_security;
 
 define('AJAX_SCRIPT', true);
 
+require_once(__DIR__ . '/../../config.php');
+
 /**
  * Routing table from action name to its handler class (I6, preparation for the S8 refactor).
  *
@@ -56,8 +58,6 @@ const LOCAL_GROUPIMPORT_AJAX_ACTIONS = [
     'deletegroups' => \local_groupimport\local\ajax\deletegroups::class,
     'deletegroupings' => \local_groupimport\local\ajax\deletegroupings::class,
 ];
-
-require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/lib.php');
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->libdir . '/gdlib.php');

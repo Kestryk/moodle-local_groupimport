@@ -27,7 +27,7 @@ use local_groupimport\local\ajax_security;
  */
 final class creategrouping implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the creategrouping AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         $names = \local_groupimport_extract_create_names(required_param('groupingname', PARAM_TEXT));

@@ -25,7 +25,7 @@ namespace local_groupimport\local\ajax;
  */
 final class addgroups implements ajax_action {
     /**
-     * @inheritDoc
+     * Handle the addgroups AJAX action.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         global $DB;
