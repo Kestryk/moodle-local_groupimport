@@ -876,3 +876,12 @@
 .easyedu-icon-font-pending .dropdown-toggle::after {
   visibility: hidden;
 }
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  @media (max-width: 30rem) {
+    .local-groupimport-easystud__panel {
+      @include easyedu.navigation-content-clearance(24px);
+    }
+  }
+}

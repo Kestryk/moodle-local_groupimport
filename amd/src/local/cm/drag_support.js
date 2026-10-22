@@ -21,6 +21,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import {responsiveWorkspaceQuery} from './shared';
+
 export const removeDragPreview = preview => {
     if (preview && preview.parentNode) {
         preview.parentNode.removeChild(preview);
@@ -198,7 +200,7 @@ export const dragAutoScroll = (() => {
 
 export const isResponsiveDragSuppressed = () => {
     return window.matchMedia &&
-        window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1024px)').matches;
+        window.matchMedia(`(hover: none), (pointer: coarse), ${responsiveWorkspaceQuery}`).matches;
 };
 
 const dragInteractiveSelector =

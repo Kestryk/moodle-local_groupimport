@@ -105,3 +105,29 @@
     }
   }
 }
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .local-groupimport-easystud-pagination__select {
+    @include easyedu.pagination-select-button;
+    white-space: nowrap;
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+.local-groupimport-easystud {
+  // K17-50: the pagination bar of a long section reuses the list columns' bar. The selection and
+  // its count take their own width, so the count never runs into the page arrows.
+  @media (min-width: 48.0625rem) {
+    &-pagination--section {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.34rem 0.75rem;
+
+      .local-groupimport-easystud-pagination__tools {
+        margin-inline-start: auto;
+      }
+    }
+  }
+}

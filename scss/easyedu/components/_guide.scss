@@ -542,10 +542,10 @@
   .easyedu-guide-slide__start {
     align-items: center;
     background: var(--easyedu-primary);
-    background-color: var(--easyedu-primary) !important;
-    border: 1px solid var(--easyedu-primary) !important;
+    background-color: var(--easyedu-primary);
+    border: 1px solid var(--easyedu-primary);
     border-radius: var(--easyedu-guide-action-radius);
-    color: #fff !important;
+    color: #fff;
     display: inline-flex;
     flex-wrap: wrap;
     font-weight: 720;
@@ -564,9 +564,9 @@
     &:hover,
     &:focus {
       background: var(--easyedu-primary-strong);
-      background-color: var(--easyedu-primary-strong) !important;
-      border-color: var(--easyedu-primary-strong) !important;
-      color: #fff !important;
+      background-color: var(--easyedu-primary-strong);
+      border-color: var(--easyedu-primary-strong);
+      color: #fff;
     }
 
     &:focus-visible {

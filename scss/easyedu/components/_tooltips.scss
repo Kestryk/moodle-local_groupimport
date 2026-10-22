@@ -211,7 +211,6 @@
   padding: 0 !important;
   text-align: center !important;
   text-decoration: none !important;
-  text-decoration-line: none !important;
   transition:
     background-color var(--easyedu-motion-fast) ease,
     border-color var(--easyedu-motion-fast) ease,
@@ -227,8 +226,7 @@
     border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%) !important;
     color: var(--easyedu-primary) !important;
     text-decoration: none !important;
-    text-decoration-line: none !important;
-  }
+    }
 
   &:focus-visible {
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
