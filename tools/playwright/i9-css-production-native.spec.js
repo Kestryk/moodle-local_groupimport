@@ -9,9 +9,15 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
     expect(origin).toBe('http://localhost:8051');
     const evidence = process.env.I9_CSS_EVIDENCE;
     expect(path.isAbsolute(evidence || '')).toBe(true);
-    const report = {rows: [], errors: [], consoleErrors: [], writes: []};
+    const control = process.env.I9_IDENTICAL_CSS_CONTROL === '1';
+    const compactGuideOnly = control || process.env.I9_COMPACT_GUIDE_ONLY === '1';
+    const report = {sourceSha256: crypto.createHash('sha256').update(fs.readFileSync(__filename)).digest('hex'),
+        identicalCssControl: control, compactGuideOnly, rows: [], errors: [], consoleErrors: [], writes: []};
     let phase = 'navigation';
     const save = () => fs.writeFileSync(info.outputPath('i9-native.json'), JSON.stringify(report, null, 2));
+    save();
+    page.setDefaultTimeout(20000);
+    page.setDefaultNavigationTimeout(120000);
     page.on('pageerror', e => { report.errors.push({phase, url: page.url(), stack: e.stack || e.message}); save(); });
     page.on('console', e => { if (e.type() === 'error') { report.consoleErrors.push(e.text()); save(); } });
     page.on('request', r => {
@@ -41,9 +47,9 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
                 paint: Object.fromEntries(properties.map(p => [p, s[p]]))};
         });
     });
-    for (const lang of ['fr', 'en']) for (const width of [1600, 768, 390]) {
+    for (const lang of ['fr', 'en']) for (const width of (compactGuideOnly ? [768, 390] : [1600, 768, 390])) {
         await page.setViewportSize({width, height: 1000});
-        for (const surface of ['sm', 'mass', 'admin', 'guide']) {
+        for (const surface of (compactGuideOnly ? ['guide'] : ['sm', 'mass', 'admin', 'guide'])) {
             const row = {key: `${lang}-${width}-${surface}`, lang, width, surface};
             report.rows.push(row); save();
             phase = 'navigation';
@@ -62,7 +68,17 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
                 await page.locator('[data-easyedu-guide-open]:visible').first().click();
                 await expect(page.locator('[data-easyedu-guide-modal]:visible')).toBeVisible();
                 await page.locator('[data-easyedu-guide-nav-item="1"]:visible').click();
+                await page.waitForFunction(() => {
+                    const nav = document.querySelector('[data-easyedu-guide-nav]');
+                    const value = [nav?.scrollLeft, nav?.scrollTop].join(':');
+                    const state = window.__i9Scroll || {value: null, frames: 0};
+                    state.frames = state.value === value ? state.frames + 1 : 0;
+                    state.value = value; window.__i9Scroll = state;
+                    return state.frames >= 12;
+                }, null, {polling: 'raf', timeout: 6000});
             }
+            await page.mouse.move(0, 0);
+            await expect(page.locator('.local-groupimport-easystud-hover-popover.show:visible')).toBeHidden();
             const files = await page.locator('link[rel="stylesheet"]').evaluateAll(links => links
                 .filter(e => e.href.includes('/local/groupimport/styles/')).map(e => new URL(e.href).pathname.split('/').pop()));
             expect(files.length).toBeGreaterThan(0);
@@ -71,7 +87,10 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
             const inline = css => css.replace(/url\((["']?)\.\.\/fonts\//g,
                 'url($1' + origin + '/local/groupimport/fonts/');
             const readable = Object.fromEntries(files.map(f => [f, inline(fs.readFileSync(path.join(evidence, 'readable', f), 'utf8'))]));
-            const production = Object.fromEntries(files.map(f => [f, inline(fs.readFileSync(path.join(evidence, 'production', f), 'utf8'))]));
+            const production = control ? readable : Object.fromEntries(files.map(f => [f, inline(fs.readFileSync(path.join(evidence, 'production', f), 'utf8'))]));
+            const rootSelector = surface === 'guide' ? '[data-easyedu-guide-modal]:visible'
+                : surface === 'admin' ? '#adminsettings' : surface === 'mass' ? '#local-groupimport-import' : '#local-groupimport-easystud';
+            await page.locator(rootSelector).first().scrollIntoViewIfNeeded();
             phase = 'readable-css';
             await page.evaluate(css => {
                 for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
@@ -93,8 +112,6 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
                 return document.getAnimations().map(a => ({target: elements.get(a.effect.target),
                     name: a.animationName || a.transitionProperty || '', time: a.currentTime}));
             });
-            const rootSelector = surface === 'guide' ? '[data-easyedu-guide-modal]:visible'
-                : surface === 'admin' ? '.local-groupimport-admin' : surface === 'mass' ? '#local-groupimport-import' : '#local-groupimport-easystud';
             const bounds = await page.locator(rootSelector).first().boundingBox();
             expect(bounds).not.toBeNull();
             const clip = {x: Math.max(0, bounds.x), y: Math.max(0, bounds.y),
