@@ -72,7 +72,7 @@ ne pas la réintroduire au prochain sync. Aucun changement K19-03 dans le plugin
 - Compatibilité4.5 : aucune API Moodle nouvelle, même module AMD et contrats
   publics. Aucun test natif4.5 n'est revendiqué. Aucune interaction Penpot/CCB.
 
-Preuves : C:/dev/artifacts/k20-guide-20261020/verified/results.json et4captures,
+Preuves : <workspace>/artifacts/k20-guide-20261020/verified/results.json et4captures,
 baseline-05/results.json, gates.json, eslint-final.json, moodlecs-php.json.
 Scénario versionné : tools/release/test-k20-guide-responsive-browser.cjs.
 

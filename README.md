@@ -95,46 +95,14 @@ for export and deletion of this data.
 
 ## Development
 
-- Personal Display and animations (ANIM/G1): `docs/display-preferences-2026-10-17.md`.
-- Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
+Source styles are maintained in `scss/easystud.scss`; build helpers and
+automated checks are included in `tools/`. The declared Moodle release range
+is recorded in `version.php`.
 
-- The manifest allows installation from Moodle 4.5 (`version.php`). Native
-  Moodle 4.5 installation, upgrade and functional certification remain pending
-  phase 10 (K18-04). Moodle 5.3 also needs its version-specific release evidence;
-  do not infer certified support from the minimum-version field alone.
-- SCSS entry point: `scss/easystud.scss`.
-- Build page styles with the pinned Node executable and the conservative
-  builder: `tools/release/build-styles.cjs SASS_ROOT styles.css conservative POSTCSS_ROOT`.
-  The site-wide `styles.css` is intentionally kept free of EasyStud rules.
-- Playwright documentation: `tools/playwright/README.md`.
-- Mass Import loading contract: `docs/testing/mass-import-loading-state.md`.
-- Administration settings loading contract: `docs/testing/admin-settings-loading-state.md`.
-- Authenticated Playwright checks use the DPAPI-backed
-  `tools/playwright/Invoke-EasyStudPlaywrightWithSavedCredentials.ps1` runner
-  with configurable local loader and orchestration paths.
-- Shared EasyEdu contracts: `easyedu-kit-docs/`.
-- Multi-machine workflow: follow the canonical
-  [EasyEdu handoff procedure](https://github.com/Kestryk/workstation-sync/blob/main/docs/PROJECT-HANDOFF.md).
-
-The embedded EasyEdu kit and development documentation are excluded from
-production packages through `.gitattributes` where appropriate.
+Maintainer references and historical engineering records are in `docs/`. Test
+plans and results under `docs/testing/` are internal QA records, not end-user
+instructions or release guarantees.
 
 ## License
 
 GNU General Public License v3 or later.
-
-Card-title accent AMD is generated from the canonical Kit source and checked
-for exact consumer parity. Rebuild it with the dedicated release builder, then
-run the page-bootstrap builder with the same Moodle build dependencies.
-
-### Release build toolchain provenance
-
-`tools/release/build-versions.json` pins Node 22.11.0 and Sass 1.79.1. Release
-builders reject a different Node version before build work; CSS builders also
-check the loaded Sass version. No dependency upgrade is required. Use the
-portable Node 22.11.0 executable and the existing Sass/PostCSS packages. The
-release check and parity evidence are documented in
-`docs/testing/tri38-exact-versions-2026-10-17.md` and
-`docs/testing/node22-build-parity-2026-10-17.md`. The older
-`tri38-toolchain-2026-10-17.md` report is a historical Node 20 inspection, not
-the current toolchain status.

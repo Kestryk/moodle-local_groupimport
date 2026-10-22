@@ -13,7 +13,7 @@
     "runtimeAccess": false
   },
   "zip": {
-    "archive": "C:\\dev\\artifacts\\easystud-claude-interface-review-20261011\\revue-2026-10-11\\paquets\\local_groupimport-a5d0ffab.zip",
+    "archive": "<workspace>\\artifacts\\easystud-claude-interface-review-20261011\\revue-2026-10-11\\paquets\\local_groupimport-a5d0ffab.zip",
     "sha256": "5113d999d2c5bd759e8a868b31daea3059677ebcaa91a4264cb938f2060a5797",
     "bytes": 1964949,
     "files": 306,
@@ -397,7 +397,7 @@
       "template": "core/select_menu"
     }
   ],
-  "proofDirectory": "C:\\dev\\artifacts\\p2-oracle-0810-20261017",
+  "proofDirectory": "<workspace>\\artifacts\\p2-oracle-0810-20261017",
   "productCodeChanged": false,
   "buildOrPublication": false
 }

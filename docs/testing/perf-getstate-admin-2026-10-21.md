@@ -1,7 +1,7 @@
 # Student Management initial transport and administration profile — 21/10/2026
 
 Base: `06fe1aaf`. Worktree and branch:
-`C:/dev/worktrees/easystud-codex1-perf-getstate-admin-20261021`,
+`<workspace>/worktrees/easystud-codex1-perf-getstate-admin-20261021`,
 `work/codex1/easystud-perf-getstate-admin-20261021`.
 
 ## Profile before implementation
@@ -99,7 +99,7 @@ preserved, not silently repaired here. The pending additive entry is supplied
 separately in `perf-getstate-admin-intake-20261021.json` for the integrator.
 
 Emplacements à réviser:
-`C:/dev/artifacts/perf-getstate-admin-20261021/measurements-final.json`,
+`<workspace>/artifacts/perf-getstate-admin-20261021/measurements-final.json`,
 `profile-summary-before.json`, `admin-profile-summary.json`, before/final
 bench logs and shutdown markers, paired captures and visual JSON;
 `RAPPORT-PERF-GETSTATE-ADMIN-20261021.md` in the review folder.

@@ -21,7 +21,7 @@ Livre d'abord le guide Student Management ; Mass Import reste un guide distinct.
   les serveurs/profils/MCP de cette fenêtre. Aucun nouveau moteur, CSS ou token.
 - Lis les sources en read-only. Rédige dans ton espace d'artefacts existant,
   avec un sous-dossier de livraison daté, sans écraser ta production historique.
-  Racine actuelle : C:\dev\artifacts\easystud-guide-20261005.
+  Racine actuelle : <workspace>\artifacts\easystud-guide-20261005.
 - Ne touche pas Penpot/Foundations sans attribution explicite du fichier/page
   et du canal. La rédaction peut progresser sans monopoliser Penpot.
 - Les illustrations ne font aucune commande Moodle. Les parcours réels ne
@@ -32,9 +32,9 @@ Livre d'abord le guide Student Management ; Mass Import reste un guide distinct.
 ## Sources et priorité des décisions
 
 Source actuelle, en lecture seule :
-C:\dev\worktrees\easystud-foundations-student-management-20260928.
+<workspace>\worktrees\easystud-foundations-student-management-20260928.
 Kit canonique, en lecture seule :
-C:\dev\worktrees\easyedu-ui-kit-phase0-mass-admin-20260927.
+<workspace>\worktrees\easyedu-ui-kit-phase0-mass-admin-20260927.
 Points de référence : Source2b22de1, Kit08c9abb/0.4.147. Vérifie les HEADs avant
 lecture : l'intégrateur peut avancer après cette passation.
 

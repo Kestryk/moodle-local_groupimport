@@ -35,4 +35,4 @@ are retained in the JSON; no rule severity or assertion is relaxed.
 
 All protected product sources, PHP, templates and AMD/CSS output remain
 unchanged. No runtime, service or localhost publication. Evidence:
-C:/dev/artifacts/tri38-389b832d-20261017/.
+<workspace>/artifacts/tri38-389b832d-20261017/.

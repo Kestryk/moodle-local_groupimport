@@ -22,4 +22,4 @@ ESLint sur le même nom de fichier/config Moodle, entrées normalisées LF :5err
 
 Éléments concernés : fiche groupe, ligne membre/case Kit et Fermer existants ; états sélection/retrait final/rafraîchissement, largeurs1600/768/390, FR/EN. Aucune évolution visuelle à reporter dans Penpot. Aucune publication sur localhost:80 ; Claude intègre/publie après revue.
 
-Les six erreurs MoodleCS sont documentées dans PRE-AUDIT-CODECHECKER-2026-10-17.md sans correction de politique. Le plan Kit est KIT-SYNC-PLAN-2026-10-17.md : aucune écriture sur main. Preuves détaillées et manifestes : C:/dev/artifacts/k16-15-fixes-20261017/ et C:/dev/artifacts/kit-sync-plan-20261017/.
+Les six erreurs MoodleCS sont documentées dans PRE-AUDIT-CODECHECKER-2026-10-17.md sans correction de politique. Le plan Kit est KIT-SYNC-PLAN-2026-10-17.md : aucune écriture sur main. Preuves détaillées et manifestes : <workspace>/artifacts/k16-15-fixes-20261017/ et <workspace>/artifacts/kit-sync-plan-20261017/.

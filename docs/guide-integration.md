@@ -1,7 +1,7 @@
 # EasyStud guide integration
 
 EasyStud consumes the canonical responsive guide from
-`C:\dev\easyedu-ui-kit` through the contract documented in
+`<workspace>\easyedu-ui-kit` through the contract documented in
 `docs/components/guide-adapter-integration.md` in that repository.
 
 The Moodle component remains `local_groupimport`.
@@ -43,14 +43,14 @@ Check without writing:
 
 ```powershell
 .\tools\release\sync-easyedu-guide.ps1 `
-  -CanonicalKitRoot C:\dev\easyedu-ui-kit
+  -CanonicalKitRoot <workspace>\easyedu-ui-kit
 ```
 
 Apply the four proven shared-source updates:
 
 ```powershell
 .\tools\release\sync-easyedu-guide.ps1 `
-  -CanonicalKitRoot C:\dev\easyedu-ui-kit `
+  -CanonicalKitRoot <workspace>\easyedu-ui-kit `
   -Apply
 ```
 
@@ -72,7 +72,7 @@ Run the focused source check after synchronization:
 
 ```powershell
 .\tools\release\test-easyedu-guide-integration.ps1 `
-  -CanonicalKitRoot C:\dev\easyedu-ui-kit
+  -CanonicalKitRoot <workspace>\easyedu-ui-kit
 ```
 
 ## Build and runtime boundary
@@ -201,7 +201,7 @@ the `terser` package from a separately validated local Moodle 5.1 toolchain:
 
 ```powershell
 node .\tools\release\build-easyedu-guide-amd.js `
-  C:\path\to\moodle\node_modules
+  <local-root>\to\moodle\node_modules
 ```
 
 This builder handles only the already-AMD guide source, injects the stable

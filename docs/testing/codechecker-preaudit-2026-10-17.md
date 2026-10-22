@@ -9,7 +9,7 @@ Base c752f775. MoodleCS on all 112 tracked PHP files, including tools/fixtures; 
 - Duplicate testsCrlf20261017 entry merged losslessly. No other existing evidence changed.
 
 Full before/after tables by rule/file and remaining decisions:
-C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PRE-AUDIT-CODECHECKER-2026-10-17.md
+<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PRE-AUDIT-CODECHECKER-2026-10-17.md
 
-Machine reports/logs: C:/dev/artifacts/codechecker-preaudit-20261017/.
+Machine reports/logs: <workspace>/artifacts/codechecker-preaudit-20261017/.
 Audit tools still return nonzero because existing findings remain; this is a bounded mechanical cleanup, not a clean-lint claim.

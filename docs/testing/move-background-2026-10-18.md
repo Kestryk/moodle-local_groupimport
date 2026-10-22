@@ -30,7 +30,7 @@ Le test `test-move-upgrade.php` passe dix contrôles avec les classes XMLDB rée
 
 ## Recette native isolée sur :8051
 
-Preuves : `C:/dev/artifacts/move-bg-20261018/native-v7.json` et `http-profile-result.json`, phases dans `http-phases.jsonl`.
+Preuves : `<workspace>/artifacts/move-bg-20261018/native-v7.json` et `http-profile-result.json`, phases dans `http-phases.jsonl`.
 Session Moodle réelle par Playwright `APIRequestContext`, pas de simulation de l’API métier ; worker natif exécuté manuellement, pas découverte par cron d’une installation mise à niveau. Jeu synthétique de 3 000 comptes, cours dédié, tâche et fournisseur temporaires ; données, schéma, préférences, notifications, route et bail restitués.
 
 | Appartenances | Voie | HTTP | Worker | Résultat |

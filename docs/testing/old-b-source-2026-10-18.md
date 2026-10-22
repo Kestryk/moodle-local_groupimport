@@ -49,7 +49,7 @@ Seuls les blocs OLD-B sont reportés : aucun écrasement d'autres définitions.
   aux fins de ligne, est conservée séparément dans les preuves.
 - `git diff --check` : PASS. Aucun fichier généré AMD/CSS modifié.
 
-Preuves : `C:/dev/artifacts/old-b-20261018/`, rapports `phpcs-touched.json`,
+Preuves : `<workspace>/artifacts/old-b-20261018/`, rapports `phpcs-touched.json`,
 `source-check.json`, `switch-check.json`, sondes PHP isolées et patches de
 report Kit. Ces contrôles ne compilent pas le Sass et ne valident pas le JS.
 

@@ -6,7 +6,7 @@ F14 :8→4 déclarations, aucune nouvelle. Les4 restantes correspondent au pied 
 
 Build conservative Node22.11.0/Sass1.79.1, checker officiel non-PHP0 erreur/0 avertissement, sync/T037/T038/aller-retour PASS. Aucun AMD/PHP/template modifié, aucune hausse ESLint AMD.
 
-Recette native PASS : commande réelle Tout sélectionner/Tout désélectionner, FR/EN1600/390,16 mesures avant/après. Hauteurs exactement25,90625px au bureau et29,59375px en mobile, paddings/rayons/couleurs/type identiques ; écart maximal de centre0,4375px, aucune erreur console. Preuves dans `C:/dev/artifacts/k16-80-selection-frames-20261018/native.json`. CSS candidat en mémoire sur :8051, cours300 et comptes synthétiques supprimés, bail libéré. Aucune publication ou modification de fichier runtime/cache.
+Recette native PASS : commande réelle Tout sélectionner/Tout désélectionner, FR/EN1600/390,16 mesures avant/après. Hauteurs exactement25,90625px au bureau et29,59375px en mobile, paddings/rayons/couleurs/type identiques ; écart maximal de centre0,4375px, aucune erreur console. Preuves dans `<workspace>/artifacts/k16-80-selection-frames-20261018/native.json`. CSS candidat en mémoire sur :8051, cours300 et comptes synthétiques supprimés, bail libéré. Aucune publication ou modification de fichier runtime/cache.
 
 ## Report Penpot
 

@@ -41,7 +41,7 @@ une acceptation humaine du rendu final.
 ## Source et arbitrages conservés
 
 Source lue intégralement :
-`C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROPOSITION-SM-COULOIRS-2026-10-12.md`.
+`<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROPOSITION-SM-COULOIRS-2026-10-12.md`.
 SHA256 : `8012fc8516ca2771f374fdd6f8d76f1b2a41ad116aeed6b22691f14c1c2df2ec`.
 
 Le document externe dit encore « à valider » ; le message explicite de Kevin

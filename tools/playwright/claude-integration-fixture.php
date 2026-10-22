@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
-// Deterministic, disposable fixture for the supervised Claude integration review.
+// Deterministic, disposable fixture for the integration review.
 // It never accepts credentials and records every mutable id in its manifest.
 
 /**

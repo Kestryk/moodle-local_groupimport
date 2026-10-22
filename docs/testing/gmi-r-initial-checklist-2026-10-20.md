@@ -61,6 +61,6 @@ placement desktop à l'origine du défaut GMI-R ; le parcours Mass Import natif
   d'avant correction et la liste exacte sont dans les preuves externes.
 
 Aucun accès/runtime modifié, publication, service redémarré, CCB ou Penpot.
-Preuves : `C:/dev/artifacts/k20-03-gmir-fix-20261020/`.
+Preuves : `<workspace>/artifacts/k20-03-gmir-fix-20261020/`.
 Report Penpot : K20-03 seulement, rythme 8 px, lignes 12/20/18 et Close44.
 GMI-R-FIX ne change pas la composition finale ; il la rend correcte dès t0.

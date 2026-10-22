@@ -51,4 +51,4 @@ Les26 déclarations liées aux candidats F09–F12 ne doivent pas être réimpl�
 
 Ordre utile pour la prochaine passe : corps et légendes de cartes (densité/restauration des états), relations et avatar de fiche, puis empreintes de chargement encore présentes dans Import massif/admin. Chaque lot reste borné à quatre sujets, avec le vrai état avant/après. Les recettes de fenêtre attendent aussi le raccord cohérent avec F09 ; aucun second composant parallèle ne doit être créé.
 
-Liste exhaustive fichier:ligne/sélecteur/propriété/valeur et qualification : `K16-80-RESTES-DETAILLES-2026-10-18.md` dans la revue ; JSON `classified-remaining.json` et toutes les preuves dans `C:/dev/artifacts/k16-80-remaining-20261018/`. Les rapports individuels énumèrent les variantes Kit pour Penpot. Codex n’a touché ni Penpot ni CCB.
+Liste exhaustive fichier:ligne/sélecteur/propriété/valeur et qualification : `K16-80-RESTES-DETAILLES-2026-10-18.md` dans la revue ; JSON `classified-remaining.json` et toutes les preuves dans `<workspace>/artifacts/k16-80-remaining-20261018/`. Les rapports individuels énumèrent les variantes Kit pour Penpot. Codex n’a touché ni Penpot ni CCB.

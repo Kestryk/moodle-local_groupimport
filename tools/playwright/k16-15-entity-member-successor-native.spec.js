@@ -1,4 +1,4 @@
-// Successor to Codex2 v2-entity-member-native.spec.js, preserving the six failed native oracles.
+// Successor preserving the six failed native oracles.
 const {test,expect}=require('@playwright/test'),fs=require('node:fs'),cp=require('node:child_process'),path=require('node:path');
 test.use({hasTouch:true});
 test('K16-15 pool checkbox click touch and stable focus FR EN',async({page},info)=>{

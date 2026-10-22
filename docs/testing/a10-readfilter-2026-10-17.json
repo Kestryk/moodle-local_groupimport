@@ -4,19 +4,19 @@
     "passed": true,
     "results": [
       {
-        "library": "C:/dev/Moodle45-Clean/server/moodle/lib",
+        "library": "<workspace>/Moodle45-Clean/server/moodle/lib",
         "passed": true,
         "cases": 19,
         "runtimeAccess": false
       },
       {
-        "library": "C:/dev/moodle51-build-501/public/lib",
+        "library": "<workspace>/moodle51-build-501/public/lib",
         "passed": true,
         "cases": 19,
         "runtimeAccess": false
       },
       {
-        "library": "C:/dev/Moodle 53/moodle/public/lib",
+        "library": "<workspace>/Moodle 53/moodle/public/lib",
         "passed": true,
         "cases": 19,
         "runtimeAccess": false

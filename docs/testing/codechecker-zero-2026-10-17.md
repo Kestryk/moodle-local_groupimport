@@ -53,7 +53,7 @@ aucun arrêt de service, aucun build produit et aucune publication localhost. Le
 Les captures natives du résultat sont dans le dossier de revue : `CODECHECKER-ZERO-PHP-2026-10-17.png`
 et `CODECHECKER-ZERO-PAQUET-2026-10-17.png`.
 
-Preuves externes : `C:/dev/artifacts/codechecker-zero-20261017/current-018/` :
+Preuves externes : `<workspace>/artifacts/codechecker-zero-20261017/current-018/` :
 `final-proof.json`, `phpcs.json`, `other-files.json`, `lint.json`, `smoke.json`, les logs d’import,
 les rapports du paquet, son manifeste et le manifeste SHA-256 des copies natives.
 Les essais précédents restent archivés ; leurs échecs de harnais et limites ne sont pas supprimés.

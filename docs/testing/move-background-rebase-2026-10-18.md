@@ -58,7 +58,7 @@ de classe de service dans la fixture de worker. Ne pas supprimer des gardes,
 changer l'authentification de fixtures ou restructurer leurs doubles pour
 faire disparaître ces avertissements dans ce rebase borné.
 
-Rapports bruts et sorties CLI : `C:/dev/artifacts/move-bg-rebase-20261018/`.
+Rapports bruts et sorties CLI : `<workspace>/artifacts/move-bg-rebase-20261018/`.
 MoodleCS : `phpcs-final.json`; syntaxe : `php-lint.log`; un journal par test.
 Le code de sortie MoodleCS reste 1 à cause des avertissements, avec zéro erreur.
 

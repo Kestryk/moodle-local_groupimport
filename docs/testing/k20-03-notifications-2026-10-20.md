@@ -18,4 +18,4 @@ fourni tient sur une ligne (72 px) ; à 390 il en prend deux (90 px).
 Build Node 22.11.0 / Sass 1.79.1 conservatif, trois feuilles de consommateurs.
 Aucun PHP ou AMD source modifié, aucune hausse ESLint, aucun comportement ou
 timer changé. Report canonique Kit identique ; aucune publication localhost.
-Preuves : `C:/dev/artifacts/k20-03-gmir-fix-20261020/notifications/`.
+Preuves : `<workspace>/artifacts/k20-03-gmir-fix-20261020/notifications/`.

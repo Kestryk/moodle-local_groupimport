@@ -50,14 +50,14 @@ La surbrillance doit correspondre à sa cible à2px près, sans recouvrement
 par la checklist et avec centre accessible par `elementFromPoint`.
 
 Les preuves détaillées restent dans
-`C:/dev/Moodle 51 Perf/moodle/local/guide-fixes-20261017`.
+`<workspace>/Moodle 51 Perf/moodle/local/guide-fixes-20261017`.
 Résultats définitifs : voir `recette-guide-fixes-17-10-2026.md` et son JSON.
 
 ## Report demandé à Codex n°1
 
 Le Kit n’est pas modifié par Codex n°2. Appliquer le patch
 `guide-fixes-kit-mirror-20261017.patch` à
-`C:/dev/worktrees/easyedu-ui-kit-guide-mirror-20261017` :
+`<workspace>/worktrees/easyedu-ui-kit-guide-mirror-20261017` :
 
 - `guide/amd/src/easyedu_guide.js` : temps de lecture et résolution de cible ;
 - `scss/easyedu/components/_guide-discovery.scss` : défaut de docking conditionnel.

@@ -14,7 +14,7 @@ Le test comparait tous les fichiers courants à `05a84c57`, avant le retrait et 
 
 ## Installation vierge : vérification statique du zip existant
 
-Le zip d’origine a été extrait dans un **nouveau dossier vide**, `C:/dev/artifacts/p2-oracle-0810-20261017/blank-extraction/groupimport`. L’audit ne résout jamais un chemin de plugin dans un worktree, une copie du pool ou une installation existante. Aucun fichier du plugin n’a été inclus/exécuté : seuls le lexeur PHP `token_get_all` et `php -l` ont été utilisés.
+Le zip d’origine a été extrait dans un **nouveau dossier vide**, `<workspace>/artifacts/p2-oracle-0810-20261017/blank-extraction/groupimport`. L’audit ne résout jamais un chemin de plugin dans un worktree, une copie du pool ou une installation existante. Aucun fichier du plugin n’a été inclus/exécuté : seuls le lexeur PHP `token_get_all` et `php -l` ont été utilisés.
 
 - **409 vérifications, zéro manque, zéro référence dynamique laissée sans examen** dans le périmètre : chemins déclarés par le PHP/db, déclarations et chemins autoload des classes du plugin, quatre méthodes de callbacks/tâche/services, sept appels AMD PHP, cinq appels de templates PHP, partiels récursifs, 52 modules AMD nommés et leurs 86 références locales, 52 couples source/build, deux fichiers JSON de tours.
 - Les callbacks `state_version::observe`, `get_state::execute`, `get_details::execute`, `purge_import_history::execute` sont présents dans les classes attendues. Les JSON de tours référencés par `db/install.php` et `db/upgrade.php` sont présents et valides.
@@ -23,4 +23,4 @@ Le zip d’origine a été extrait dans un **nouveau dossier vide**, `C:/dev/art
 
 **Manques constatés : aucun dans ce contrôle statique.** Une installation SQL/Moodle à blanc et son comportement ne sont pas certifiés : toute exécution runtime est interdite par la consigne. Le minimum déclaré reste Moodle 5.1 (`2025100600`).
 
-Rapport détaillé et scripts d’audit externes : `C:/dev/artifacts/p2-oracle-0810-20261017/` (clean-install-static.json, php-tokens.php, audit-clean-zip.py, journaux JS/CSS). Le rapport JSON versionné donne les références directes et l’inventaire des classes ; les données intégrales restent hors Git.
+Rapport détaillé et scripts d’audit externes : `<workspace>/artifacts/p2-oracle-0810-20261017/` (clean-install-static.json, php-tokens.php, audit-clean-zip.py, journaux JS/CSS). Le rapport JSON versionné donne les références directes et l’inventaire des classes ; les données intégrales restent hors Git.

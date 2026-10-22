@@ -26,7 +26,7 @@ There is no timer, replacement rendering path or Motion API addition.
 
 Allocated copy: `http://localhost:8052`, course 71, English and French. Never the
 main localhost runtime. Raw measurements, immutable failed harness runs and
-screenshots are outside Git in `C:/dev/artifacts/k20-18-20261021/`.
+screenshots are outside Git in `<workspace>/artifacts/k20-18-20261021/`.
 
 The desktop baseline records a 7,525.58 px animation target against a settled
 2,679.25 px list: 4,846.33 px excess. Ordinary participant cards briefly reach
@@ -52,8 +52,8 @@ node tools/release/test-participant-density-final-height.cjs
 node tools/release/test-mobile-participant-memberships.cjs
 node tools/release/test-security-escaping.cjs
 node tools/release/test-filter-engine.cjs
-node tools/release/build-sm-amd.js C:/dev/moodle51-build-501
-node tools/release/build-course-manager-amd.js C:/dev/moodle51-build-501/node_modules
+node tools/release/build-sm-amd.js <workspace>/moodle51-build-501
+node tools/release/build-course-manager-amd.js <workspace>/moodle51-build-501/node_modules
 node tools/release/test-participant-density-native.cjs <allocated pool URL> <Playwright module> <admin secret file> <new absolute output directory>
 ```
 

@@ -25,6 +25,6 @@ Le registre intake de la base contient des marqueurs de conflit (d?s la ligne 17
 
 ## Preuves et reproduction
 
-Dossier externe : C:/dev/artifacts/a10-bootstrap-20261020/ (inventaire, JSON navigateur, sondes PHP, MoodleCS). Tests versionn?s dans tools/release/test-a10-bootstrap-*.cjs.
+Dossier externe : <workspace>/artifacts/a10-bootstrap-20261020/ (inventaire, JSON navigateur, sondes PHP, MoodleCS). Tests versionn?s dans tools/release/test-a10-bootstrap-*.cjs.
 
 Commande navigateur : node tools/release/test-a10-bootstrap-browser.cjs <sass-absolu> <playwright-absolu> <chrome.exe-absolu> <sources-moodle45> <sources-moodle51> <dossier-preuves-externe>. Le script lit uniquement les SCSS des th?mes ; il n?inclut ni config.php ni bootstrap Moodle.

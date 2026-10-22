@@ -8,7 +8,7 @@
   "nativeVerified": false,
   "humanAccepted": false,
   "integrationOwner": "Codex1",
-  "results": "C:/dev/artifacts/es-close14/after/matrix.json",
+  "results": "<workspace>/artifacts/es-close14/after/matrix.json",
   "record": "docs/k16-reset-parity-2026-10-14.md",
   "scenarioClassification": "native-candidate; isolated Perf course5; business writes forbidden; CI candidate requiring saved QA credentials and existing data",
   "desktopParityWidths": [

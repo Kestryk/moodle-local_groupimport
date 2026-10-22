@@ -45,7 +45,7 @@ The read-only sync-easyedu-guide.ps1 -GuideOnly check aligns every Guide-owned
 item, including new partials and animations. Its wider historical scope still
 reports pre-existing _buttons.scss drift against canonical base 0a460ecd (K16-80
 Close changes are outside this delivery). No Apply run and no unrelated button
-changes. Full log: C:/dev/artifacts/guide-mirror-roundtrip-20261017.log.
+changes. Full log: <workspace>/artifacts/guide-mirror-roundtrip-20261017.log.
 
 The new source-only roundtrip test separately verifies the exact owned contract;
 it does not relax or hide the wider synchronizer diagnostic. Native visual and

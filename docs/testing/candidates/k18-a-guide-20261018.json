@@ -29,7 +29,7 @@
       "buttons.demonstration-action",
       "Motion.clickFeedback"
     ],
-    "proof": "C:\\dev\\artifacts\\k18-a-20261018"
+    "proof": "<workspace>\\artifacts\\k18-a-20261018"
   },
   "artifacts": {
     "native-v9.cjs": {

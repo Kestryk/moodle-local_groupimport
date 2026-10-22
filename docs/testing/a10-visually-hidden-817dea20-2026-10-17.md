@@ -40,4 +40,4 @@ card/Guide values, states, widths, Motion and focus remain unchanged.
 For Penpot: one accessibility utility in the Kit; no visible control/component
 design, recipe geometry, screen composition or responsive breakpoint changes.
 Human acceptance and native4.5installation/reader testing remain separate.
-Evidence: C:/dev/artifacts/a10-hidden-817dea20-20261017/.
+Evidence: <workspace>/artifacts/a10-hidden-817dea20-20261017/.

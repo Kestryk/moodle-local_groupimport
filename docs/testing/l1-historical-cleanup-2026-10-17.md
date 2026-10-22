@@ -11,11 +11,11 @@ Base: 8129aef7. No runtime, services or preview touched.
 
 ## Proof
 
-Node 22.11.0; Sass 1.79.1; conservative page CSS build PASS (log: C:/dev/artifacts/l1-cleanup-build-20261017.log).
+Node 22.11.0; Sass 1.79.1; conservative page CSS build PASS (log: <workspace>/artifacts/l1-cleanup-build-20261017.log).
 
 `test-l1-dead-selector-cascade.cjs`: PASS, exactly three selector branches removed and one priority changed, 3797 retained rules compared in order including declarations and parent at-rules. styles.css, mass-import.css and administration.css are byte-identical after newline normalization. No unrelated priority changes accepted.
 
-`test-l1-dead-selector-browser.cjs`: PASS, actual PHP programme/Mustache rendered in isolated Chromium, FR/EN × 1280/1024/768/390 × page/body portal = 16 cases, 1297 descendant elements per case, unchanged computed layout/paint properties, zero page errors. All removed selector targets are absent. Includes a real action-grip span and its existing parent recipe. External requests aborted; no Moodle HTTP access. Evidence: C:/dev/artifacts/l1-cleanup-browser-20261017.json.
+`test-l1-dead-selector-browser.cjs`: PASS, actual PHP programme/Mustache rendered in isolated Chromium, FR/EN × 1280/1024/768/390 × page/body portal = 16 cases, 1297 descendant elements per case, unchanged computed layout/paint properties, zero page errors. All removed selector targets are absent. Includes a real action-grip span and its existing parent recipe. External requests aborted; no Moodle HTTP access. Evidence: <workspace>/artifacts/l1-cleanup-browser-20261017.json.
 
 T037 PASS 14 checks; T038 PASS 47 checks; mirror roundtrip PASS (6 AMD exports, 3 SCSS, 2 templates), with the dedicated canonical Kit worktree in argument.
 

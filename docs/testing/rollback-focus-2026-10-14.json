@@ -8,7 +8,7 @@
   "nativeVerified": true,
   "humanAccepted": false,
   "integrationOwner": "Codex1",
-  "results": "C:/dev/artifacts/es-next14/after/matrix.json",
+  "results": "<workspace>/artifacts/es-next14/after/matrix.json",
   "record": "docs/rollback-focus-2026-10-14.md",
   "nativeCycles": 24,
   "widths": [

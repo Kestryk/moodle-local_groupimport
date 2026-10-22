@@ -12,7 +12,7 @@ Kit : `work/codex1/easyedu-kit-a10-inline-icon-20261017`, base `480fdf4`, commit
 - PHP lint et MoodleCS du fichier touché : zéro erreur, zéro avertissement. Contrôles officiels non-PHP : zéro erreur, zéro avertissement. PHP conservé en LF, SCSS en CRLF.
 - Moteur de filtres, échappement, T037 (17), T038 (49), aller-retour Guide/Kit : PASS. Aucun raccord Guide modifié.
 
-Preuves : `C:/dev/artifacts/codex1-a10-inline-icon-20261017/`, notamment `measurements.json`, `checks.json`, `moodlecs-final.json` et les CSS des deux générations de Bootstrap. La première sortie MoodleCS liée à la conversion CRLF du PHP est conservée ; le fichier final est en LF et repasse à 0/0.
+Preuves : `<workspace>/artifacts/codex1-a10-inline-icon-20261017/`, notamment `measurements.json`, `checks.json`, `moodlecs-final.json` et les CSS des deux générations de Bootstrap. La première sortie MoodleCS liée à la conversion CRLF du PHP est conservée ; le fichier final est en LF et repasse à 0/0.
 
 `version.php` et son minimum Moodle restent inchangés. Aucune publication localhost et aucune installation/mise à niveau 4.5 effectuée.
 

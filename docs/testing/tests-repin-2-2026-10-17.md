@@ -39,11 +39,11 @@ Ajout de `groupmembersshowall_one` : FR **Voir 0 membre / Voir 1 membre**, EN **
 
 ## Reproduction locale isolée
 
-Node : `C:/dev/tools/node-v22.11.0-win-x64/node.exe` ; PHP : `C:/xampp/php/php.exe`.
-Modules Moodle/Acorn/PostCSS : `C:/dev/moodle51-build-501/node_modules` (ou MOODLE_NODE_MODULES pour le helper).
-Kit : `C:/dev/worktrees/easyedu-ui-kit-guide-db964-20261017`.
-Playwright : `C:/dev/Moodle 51/MoodleWindowsInstaller-latest-501/server/moodle/local/groupimport/tools/playwright/node_modules` ; fournir `/playwright` au test Guide, le répertoire node_modules au test Mass Import ; PHP en troisième argument Mass Import. Chrome installé, mode headless.
+Node : `<workspace>/tools/node-v22.11.0-win-x64/node.exe` ; PHP : `<php-root>/php/php.exe`.
+Modules Moodle/Acorn/PostCSS : `<workspace>/moodle51-build-501/node_modules` (ou MOODLE_NODE_MODULES pour le helper).
+Kit : `<workspace>/worktrees/easyedu-ui-kit-guide-db964-20261017`.
+Playwright : `<workspace>/Moodle 51/MoodleWindowsInstaller-latest-501/server/moodle/local/groupimport/tools/playwright/node_modules` ; fournir `/playwright` au test Guide, le répertoire node_modules au test Mass Import ; PHP en troisième argument Mass Import. Chrome installé, mode headless.
 
-Logs complets, lanceurs, comparaison des bases et mutations : `C:/dev/artifacts/a11y-followup-db964-20261017/`. Les JSON versionnés contiennent les résultats et empreintes ; aucun secret ni log volumineux embarqué. Ces preuves sont isolées : aucune recette native ni acceptation humaine nouvelle.
+Logs complets, lanceurs, comparaison des bases et mutations : `<workspace>/artifacts/a11y-followup-db964-20261017/`. Les JSON versionnés contiennent les résultats et empreintes ; aucun secret ni log volumineux embarqué. Ces preuves sont isolées : aucune recette native ni acceptation humaine nouvelle.
 
 Reprise 6 h 10 : seul CHANGELOG/intake a nécessité une union ; toutes les valeurs de db964 sont conservées, ajout de testsRepin220261017 uniquement. Les deux chaînes se sont appliquées sans conflit. Aucun fichier source de Claude modifié ; les anciennes branches poussées restent conservées.

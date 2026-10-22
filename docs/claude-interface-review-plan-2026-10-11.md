@@ -16,7 +16,7 @@
 
 - **[P]** : peut avancer en parallèle (fichiers différents, pas de dépendance).
 - **[Story]** : US1 Guide, US2 Student Management, US3 Mass Import.
-- **Chemins** : relatifs à la racine EasyStud Source (`C:/dev/worktrees/easystud-foundations-student-management-20260928`), sauf mention Kit.
+- **Chemins** : relatifs à la racine EasyStud Source (`<workspace>/worktrees/easystud-foundations-student-management-20260928`), sauf mention Kit.
 - **Chaîne de livraison** pour chaque tâche visuelle : Kit, puis Foundations, puis composition Penpot produit, puis classes et markup du plugin, puis assets compilés, puis preview Moodle contrôlée. Une tâche n'est terminée qu'avec sa preuve native, sans acceptation humaine revendiquée.
 
 ## Parcours utilisateur (résumé)

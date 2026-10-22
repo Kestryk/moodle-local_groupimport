@@ -4,7 +4,7 @@
   "status": "candidate",
   "ciExecutable": false,
   "runtimeExecuted": true,
-  "evidenceDirectory": "C:\\dev\\artifacts\\k16-80-next-20261018\\f16b",
+  "evidenceDirectory": "<workspace>\\artifacts\\k16-80-next-20261018\\f16b",
   "widths": [
     1600,
     390

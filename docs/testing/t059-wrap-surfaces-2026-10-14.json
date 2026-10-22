@@ -8,10 +8,10 @@
   "nativeVerified": true,
   "humanAccepted": false,
   "integrationOwner": "Codex1",
-  "results": "C:/dev/artifacts/es-close14/after/matrix.json",
+  "results": "<workspace>/artifacts/es-close14/after/matrix.json",
   "record": "docs/t059-wrap-surfaces-2026-10-14.md",
   "scenarioClassification": "native-candidate; isolated Perf course5; business writes forbidden; CI candidate requiring saved QA credentials and existing data",
-  "candidateCss": "C:/dev/artifacts/es-k16-v3-20261014.css",
+  "candidateCss": "<workspace>/artifacts/es-k16-v3-20261014.css",
   "widths": [
     1600,
     1280,
@@ -22,7 +22,7 @@
   "messageBodySettledVerified": false,
   "sourceFix": "scss/components/_modals.scss: modal-title min-width0 / white-space normal / overflow-wrap anywhere",
   "nativePriorLegacyCases": 24,
-  "nativePriorLegacyResults": "C:/dev/artifacts/es-final14/after/matrix.json",
+  "nativePriorLegacyResults": "<workspace>/artifacts/es-final14/after/matrix.json",
   "nativeFinalPending": false,
   "nativeCases": 48,
   "modes": [

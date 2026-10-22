@@ -93,9 +93,9 @@ shape and localized messages remain. `move_modal.js` is unchanged.
   `2311f3cf`; no product or fixture assertions were changed to hide it. The old
   failing run, exact baseline reproduction and all other results are preserved.
 
-Replay evidence lives in `C:/dev/artifacts/refactor-current-2311-20261022/`.
+Replay evidence lives in `<workspace>/artifacts/refactor-current-2311-20261022/`.
 The 26 targeted commands pass, including PHP syntax on 14 touched PHP files.
-Historical delivery evidence stays in `C:/dev/artifacts/refactor-mechanical-20261021/`.
+Historical delivery evidence stays in `<workspace>/artifacts/refactor-mechanical-20261021/`.
 The first replay fixture failure (missing authentication boundary while exercising
 the newly covered JS-config constructor) remains archived. Only the deterministic
 Moodle boundary doubles were extended; no production behavior was changed for it.

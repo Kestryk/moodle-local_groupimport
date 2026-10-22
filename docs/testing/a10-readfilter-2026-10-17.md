@@ -25,4 +25,4 @@ generated asset changes. No build, runtime access or localhost publication.
 
 Run the dedicated test with absolute PHP, external output directory, followed
 by at least two absolute Moodle lib source directories. No hard-coded frontend
-module names are introduced. Evidence: C:/dev/artifacts/a10-readfilter-20261017/.
+module names are introduced. Evidence: <workspace>/artifacts/a10-readfilter-20261017/.

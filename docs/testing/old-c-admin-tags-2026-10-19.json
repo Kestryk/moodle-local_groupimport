@@ -62,7 +62,7 @@
     "leaseReleased": true
   },
   "report": "docs/testing/old-c-admin-tags-2026-10-19.md",
-  "proof": "C:/dev/artifacts/old-c-20261019/validated-page-css-focus/results.json",
+  "proof": "<workspace>/artifacts/old-c-20261019/validated-page-css-focus/results.json",
   "limits": [
     "No native Moodle PASS claimed",
     "Native 4.5 and speech screen-reader checks remain open",

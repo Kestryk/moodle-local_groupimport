@@ -10,7 +10,7 @@ checkout; normalization must not discard local work.
 
 `test-source-line-endings.cjs` checks the policy and actual checkout. Detailed
 before/after JSON and byte proofs live in
-`C:/dev/artifacts/k21-33-36-20261021/`. ESLint comparisons ignore absolute
+`<workspace>/artifacts/k21-33-36-20261021/`. ESLint comparisons ignore absolute
 autofix byte offsets (changed by CRLF), retaining rule, severity, message,
 line, column and end positions. All non-linebreak diagnostics are identical.
 No remaining ESLint issue is presented as fixed by this mechanical lot.
@@ -102,7 +102,7 @@ MoodleCS: 0 errors, 28 warnings, 219 PHP files.
 | tools/release/fixtures/move-job-mock/group/lib.php | 23 | moodle.Files.MoodleInternal.MoodleInternalNotNeeded | Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected. |
 | tools/release/fixtures/move-job-mock/lock_config.php | 19 | moodle.Files.MoodleInternal.MoodleInternalNotNeeded | Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected. |
 | tools/release/fixtures/move-job-mock/membership_transfer.php | 19 | moodle.Files.MoodleInternal.MoodleInternalNotNeeded | Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected. |
-| tools/release/fixtures/move-job-mock/membership_transfer.php | 28 | Generic.Classes.DuplicateClassName.Found | Duplicate class name "local_groupimport\service\membership_transfer" found; first defined in C:\dev\worktrees\easystud-codex1-k21-33-36-20261021\classes\service\membership_transfer.php on line 34 |
+| tools/release/fixtures/move-job-mock/membership_transfer.php | 28 | Generic.Classes.DuplicateClassName.Found | Duplicate class name "local_groupimport\service\membership_transfer" found; first defined in <workspace>\worktrees\easystud-codex1-k21-33-36-20261021\classes\service\membership_transfer.php on line 34 |
 | tools/release/fixtures/move-job-mock/move_job_test_db.php | 17 | moodle.Files.MoodleInternal.MoodleInternalNotNeeded | Unexpected MOODLE_INTERNAL check. No side effects or multiple artifacts detected. |
 | tools/release/test-import-execution-served.php | 27 | moodle.Files.RequireLogin.Missing | Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found. |
 | tools/release/test-server-name-escaping-served.php | 27 | moodle.Files.RequireLogin.Missing | Expected login check (require_login, require_course_login, require_admin, admin_externalpage_setup) following config inclusion. None found. |

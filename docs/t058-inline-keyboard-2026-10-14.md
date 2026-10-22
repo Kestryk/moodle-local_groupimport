@@ -46,7 +46,7 @@ captures at es-panels-focus-diagnostic. This is a product timing defect, not a
 stale opener handle. The successor waits the exact focused endpoint and retains
 the same return-focus predicates.
 
-Native final: PASS C:/dev/artifacts/es-panels-after-v3/after/matrix.json.
+Native final: PASS <workspace>/artifacts/es-panels-after-v3/after/matrix.json.
 Both modes provide12 panel cases each (24 close cycles each) and6 complete
 keyboard access scenarios each:48 closes and12 keyboard transfers in total.
 Normal disclosure samples are329–347ms; reduced samples have no WAAPI animation

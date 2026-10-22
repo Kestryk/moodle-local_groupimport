@@ -9,7 +9,7 @@
   "mainPreviewServed": false,
   "runtimeCopyServed": true,
   "runId": "easystud-authenticated-20261014T152003590Z-37208",
-  "artifactRoot": "C:/dev/artifacts/es-k16-restored",
+  "artifactRoot": "<workspace>/artifacts/es-k16-restored",
   "mobileCases": [
     {
       "language": "fr",
@@ -96,7 +96,7 @@
     "width": 390,
     "resetHeight": 38,
     "cancelHeight": 42.390625,
-    "capture": "C:/dev/artifacts/es-k16-settled/**/fr-390-search.png",
+    "capture": "<workspace>/artifacts/es-k16-settled/**/fr-390-search.png",
     "fixed": true
   },
   "penpot": {

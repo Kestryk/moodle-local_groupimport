@@ -9,4 +9,4 @@ Supersedes the d01f7208-only mirror candidate. EasyStud branch work/codex1/easys
 
 PASS: T03714 checks, T03847 checks, roundtrip6 callable AMD exports +3 SCSS +2 templates, with the canonical Kit path supplied explicitly. No test modified. Runtime source, compiled AMD, CSS and templates remain byte-identical to db964f08. No build or deployment needed for this mirror-only synchronization.
 
-Evidence: C:/dev/artifacts/a11y-followup-20261017/db964-{t037,t038,mirror-roundtrip}.log. JSON includes patch/source hashes. No runtime, native browser, service or human acceptance claim. Focus-ring591904cc excluded. AI design contract unchanged: this is an accepted-source mirror repair, not a new component or policy.
+Evidence: <workspace>/artifacts/a11y-followup-20261017/db964-{t037,t038,mirror-roundtrip}.log. JSON includes patch/source hashes. No runtime, native browser, service or human acceptance claim. Focus-ring591904cc excluded. AI design contract unchanged: this is an accepted-source mirror repair, not a new component or policy.

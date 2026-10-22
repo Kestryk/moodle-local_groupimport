@@ -22,7 +22,7 @@ same-session suppression and fresh-session offer; no persistent writes.
 During rebuild, another window wrote an uncommitted K21 lot in the historical
 Source worktree (Course Manager, manage/template/SCSS/lang and K21 specs).
 Preserve it, do not commit/reset/stash it. Publication worktree is isolated:
-C:/dev/worktrees/easystud-codex1-bascule-publication-20261014,
+<workspace>/worktrees/easystud-codex1-bascule-publication-20261014,
 work/codex1/easystud-bascule-publication-20261014, based on483fa9fd. Only this
 branch's scoped build/docs/spec are included. Existing proof0983e87e is a
 publication prerequisite. Kit unchanged. Original Source is not clean and

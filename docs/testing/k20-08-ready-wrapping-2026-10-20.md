@@ -58,7 +58,7 @@ aucun débordement vertical et aucune erreur de page ou de console.
 Le dossier externe contient une session privée : ne pas le versionner ni diffuser
 ses fichiers d'authentification.
 
-Preuves : `C:/dev/artifacts/k20-08-guide-ready-20261020/` :
+Preuves : `<workspace>/artifacts/k20-08-guide-ready-20261020/` :
 `before-strict.json`, `candidate.json`, captures natives, `css-proof.json`,
 `moodlecs-full.json`, journaux de build et des tests ciblés.
 

@@ -80,4 +80,4 @@ Measured footer glyph centres: max horizontal 0 px, vertical 0.046875 px; height
 
 PHP lint, escaping, filter engine and generated Motion contracts PASS. MoodleCS:0 errors, one pre-existing MOODLE_INTERNAL warning in motion.php; normalized-stdin Moodle ESLint:0 errors/0 warnings. CRLF source files are preserved. Earlier login auto-wait, glyph-offset and checked-radio failures remain separate external predecessor evidence. No assertion threshold was relaxed.
 
-Source proof: `docs/testing/display-preferences-2026-10-17.json`; external screenshots/logs under `C:/dev/artifacts/easystud-anim-20261017`. Native footer measurements do not certify every existing Kit glyph in unrelated controls. Human acceptance and external canonical Kit/Penpot updates remain open.
+Source proof: `docs/testing/display-preferences-2026-10-17.json`; external screenshots/logs under `<workspace>/artifacts/easystud-anim-20261017`. Native footer measurements do not certify every existing Kit glyph in unrelated controls. Human acceptance and external canonical Kit/Penpot updates remain open.

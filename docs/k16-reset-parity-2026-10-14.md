@@ -12,7 +12,7 @@ there is no new duplicated product size. Different translated labels retain intr
 widths. Equality refers to the requested recipe/height/padding/radius, not label width.
 
 SCSS compilation passes. Native candidate injected temporarily from
-C:/dev/artifacts/es-k16-v3-20261014.css, FR1600/1280/390 in both modes; compare exact
+<workspace>/artifacts/es-k16-v3-20261014.css, FR1600/1280/390 in both modes; compare exact
 computed height/padding/radius/font/min-height/border with the real visible Cancel,
 and use keyboard Reset to clear the native search. Initial compact-recipe candidate failed (Reset26px vs native Cancel38px); preserved
 in es-next14. Regular-recipe desktop1600/1280 equality passed in es-final14; mobile probe
@@ -26,7 +26,7 @@ padding8px16px, radius9.28px, font60012px/14.4px, min-height32px, border1px.
 Reset390 also measures38px with the identical computed recipe. Native390 Cancel
 comparison cannot complete: the compact Grouping context menu has no Search groups
 entry; original direct search button is hidden. Screenshot inspected:
-C:/dev/artifacts/es-close14/after/legacy-0/easystud/authenticated/easystud-authenticated-20261014T073334302Z-9132/playwright-output/k16-reset-final-successor--462ec-and-overflow-menu-Cancel-FR/final.png
+<workspace>/artifacts/es-close14/after/legacy-0/easystud/authenticated/easystud-authenticated-20261014T073334302Z-9132/playwright-output/k16-reset-final-successor--462ec-and-overflow-menu-Cancel-FR/final.png
 Spec k16-reset-final-successor.spec.js:35 times out accessing the unavailable command.
 Do not force-open a hidden control or claim full mobile parity. Menu controller
 work remains outside this CSS lot; Codex1/Claude owns follow-up. Existing native

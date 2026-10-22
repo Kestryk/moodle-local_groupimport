@@ -44,7 +44,7 @@ controls and heavily ellipsized identity fields. They appear in the before
 capture and are outside this horizontal-scroll correction.
 
 Evidence directory:
-`C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/K21-32-CODEX2-20261021/`.
+`<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/K21-32-CODEX2-20261021/`.
 Use `bench.json`, `after-matrix-complete.json`, `checks.log`,
 `metadata-contract.log`, `cleanup.json`, `overflow-before-1280.png` and
 `final-fr-1280.png`. Preserve earlier failed harness attempts separately:

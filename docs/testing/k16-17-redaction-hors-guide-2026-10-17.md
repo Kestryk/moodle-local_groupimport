@@ -27,7 +27,7 @@ Les valeurs historiques `importrollbackpreserved`, `emailsprocessed` et `useraut
 - `test-security-escaping.cjs` : PASS, 39 modules ; `git diff --check` : PASS.
 - Aucun AMD, CSS, gabarit, module de carte ou données de visite en base modifiés. Aucun accès runtime, build, publication ou prise de bail.
 
-Preuves : `docs/testing/k16-17-redaction-hors-guide-2026-10-17-proof.json` et `C:/dev/artifacts/redaction-hors-guide-20261017/`.
+Preuves : `docs/testing/k16-17-redaction-hors-guide-2026-10-17-proof.json` et `<workspace>/artifacts/redaction-hors-guide-20261017/`.
 
 ## Livraisons retirées de l’intégration
 

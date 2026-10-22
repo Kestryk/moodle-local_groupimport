@@ -47,7 +47,7 @@
         "info": 2
       }
     ],
-    "proof": "C:/dev/artifacts/k21-02-05-native-20261021",
+    "proof": "<workspace>/artifacts/k21-02-05-native-20261021",
     "cancelUnchanged": true,
     "otherOldBUnchanged": true
   },
@@ -140,7 +140,7 @@
         }
       ]
     },
-    "artifactRoot": "C:/dev/artifacts/k21-02-05-native-20261021"
+    "artifactRoot": "<workspace>/artifacts/k21-02-05-native-20261021"
   },
   "k2104StepLabels20261021": {
     "passed": true,

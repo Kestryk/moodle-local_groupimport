@@ -11,6 +11,6 @@ Node 22.11.0 ; AMD sources identiques à la base. ESLint Moodle, entrées normal
 
 L’intake reçoit uniquement k1617PrepasseSafe20261018 en fin d’objet ; ordre et valeurs des anciennes entrées vérifiés identiques. Les marqueurs de conflit sont absents.
 
-Inventaire complet : C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/AUDIT-K16-17-PREPASSE-2026-10-18.md. Détails bruts : C:/dev/artifacts/k16-17-prepasse-20261018/ (PHP/other avant, touched-final-phpcs.json, fix-verification.json, extra-final.json, eslint.json, fixture-wraps.json, release-smoke.json).
+Inventaire complet : <workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/AUDIT-K16-17-PREPASSE-2026-10-18.md. Détails bruts : <workspace>/artifacts/k16-17-prepasse-20261018/ (PHP/other avant, touched-final-phpcs.json, fix-verification.json, extra-final.json, eslint.json, fixture-wraps.json, release-smoke.json).
 
 Restent hors correctif : CCB 861 erreurs/31 avertissements ; doublon de clé Guide ; séparateur non UTF-8 dans advanced_settings.js ; diagnostics techniques et décisions éditoriales ; contrôles natifs 4.5 par Codex n°2. Aucun zéro global ou natif n’est revendiqué.

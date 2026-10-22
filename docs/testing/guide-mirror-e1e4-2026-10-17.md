@@ -13,7 +13,7 @@ partials and six AMD exports. Mustache namespace replacement is limited to
 `guide_*` partials; the translated checklist/launcher adaptations remain intact.
 The exact old round-trip assertions remain; the new templates are added to them.
 No assertion is removed or relaxed. T037:14, T038:47, round-trip:PASS.
-Evidence: `C:/dev/artifacts/guide-mirror-e1e4-20261017/`.
+Evidence: `<workspace>/artifacts/guide-mirror-e1e4-20261017/`.
 
 The Kit forms mixin receives only the disabled segmented-choice state from E3
 and `position: relative` in `toggle-check` from K16-45. Unrelated canonical focus

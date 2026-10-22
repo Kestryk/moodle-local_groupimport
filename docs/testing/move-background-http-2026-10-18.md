@@ -56,4 +56,4 @@ OPcache est actif. L’hôte DB configuré est déjà `127.0.0.1` : aucun contou
 
 Profilage du bootstrap de cette copie par son opérateur : isoler le coût non SQL du chargement, des sessions et de MUC, sans changer les contrats d’accès ni les données pour accélérer artificiellement la réponse. Rejouer ensuite les temps HTTP réels 800/3 000 et la découverte cron sur installation mise à niveau. En attendant, **ne pas publier** : une acceptation explicite de Claude est nécessaire si le critère < 2 s est conservé en dérogation.
 
-Preuves immuables externes : `C:/dev/artifacts/move-bg-20261018/native-v7.json`, `http-phases.jsonl`, `http-profile-result.json`, `bootstrap-hotspot-result.json`. Les sondes ne valident ni une matrice graphique FR/EN ni l’installation native 4.5.
+Preuves immuables externes : `<workspace>/artifacts/move-bg-20261018/native-v7.json`, `http-phases.jsonl`, `http-profile-result.json`, `bootstrap-hotspot-result.json`. Les sondes ne valident ni une matrice graphique FR/EN ni l’installation native 4.5.

@@ -32,7 +32,8 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 - Shared Platform plan/state/batch/scenario documents remain with their owner;
   this intake is a portable backlink, not a competing global plan.
 - Resumption: disk exhaustion previously prevented this file from being saved;
-  the failed empty file was removed. On resumption C: has over 79 GiB free and
+  the failed empty file was removed. On resumption, the system drive had over
+  79 GiB free and
   Source `78ec929e0894ac038f5e22ca684f40ea8725fa96` / Kit
   `9527b7af3c33c94f77d6b144f5879f8bdadf5583` remain clean before this intake.
 

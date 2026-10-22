@@ -8,14 +8,14 @@ avant lecture ; si le contenu évolue, consigne les SHA réellement audités.
 
 ## Sources sur cette machine
 
-- EasyStud : C:/dev/worktrees/easystud-foundations-student-management-20260928.
+- EasyStud : <workspace>/worktrees/easystud-foundations-student-management-20260928.
   Branche work/port4719pg3/easystud-foundations-student-management-20260928.
   Checkpoint documentaire déjà poussé b1cb8e1 ; produit f6e9143.
-- Kit : C:/dev/worktrees/easyedu-ui-kit-phase0-mass-admin-20260927.
+- Kit : <workspace>/worktrees/easyedu-ui-kit-phase0-mass-admin-20260927.
   Branche work/port4719pg3/eed-ui-2026-0073-kit-phase0-mass-admin.
   Checkpoint 7bff6ed120f799a88694a26fc918f3f000e9dab7.
-- Platform : C:/dev/easyedu-platform, contrats transverses en lecture seule.
-- Preview Moodle : C:/dev/Moodle 51/MoodleWindowsInstaller-latest-501/server/moodle/local/groupimport.
+- Platform : <workspace>/easyedu-platform, contrats transverses en lecture seule.
+- Preview Moodle : <workspace>/Moodle 51/MoodleWindowsInstaller-latest-501/server/moodle/local/groupimport.
   Branche preview/moodle51/easystud-phase0-mass-admin ; checkpoint documentaire
   d31eb8f866f4692f6137b47858c9ec0d341ad456, produit ec4987e.
   Ces chemins/pins sont des points de départ, pas une garantie de l'état futur.

@@ -353,9 +353,9 @@
 
 // Component-owned composition and state refinements (I13).
 #local-groupimport-easystud {
-  // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and
-  // groupings" switch is the same compact Kit selection action as the desktop density switch, on its
-  // own line, left-aligned, with the lane's 0.75rem rhythm instead of a full-width tray button.
+  // The responsive "Show groups and groupings" switch uses the compact Kit
+  // selection action on its own line, left-aligned, with the lane's 0.75rem
+  // rhythm instead of a full-width tray button.
   .local-groupimport-easystud__membership-toggle:not([hidden]) {
     display: flex;
     inline-size: fit-content;

@@ -11953,19 +11953,19 @@
   ],
   "raw": [
     {
-      "file": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\matrix-demos\\easystud\\authenticated\\easystud-authenticated-20261017T015410065Z-47604\\playwright-output\\guide-fixes-demos-matrix-n-71741-lingual-demos-matrix-native\\guide-refonte.json",
+      "file": "<workspace>\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\matrix-demos\\easystud\\authenticated\\easystud-authenticated-20261017T015410065Z-47604\\playwright-output\\guide-fixes-demos-matrix-n-71741-lingual-demos-matrix-native\\guide-refonte.json",
       "sha256": "e722e7536538c80240a5ac59387942c6e51b4daedf61b2d45030af97b0a4c201"
     },
     {
-      "file": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\m1-add\\easystud\\authenticated\\easystud-authenticated-20261017T025720239Z-40448\\playwright-output\\guide-fixes-m1-desktop-add-7b828-1-desktop-Add-phases-native\\guide-refonte.json",
+      "file": "<workspace>\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\m1-add\\easystud\\authenticated\\easystud-authenticated-20261017T025720239Z-40448\\playwright-output\\guide-fixes-m1-desktop-add-7b828-1-desktop-Add-phases-native\\guide-refonte.json",
       "sha256": "cf691821eb7452f4a049b86b9b22fb7a7a25635dbab4a7fc67976209c058f745"
     },
     {
-      "file": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\matrix-paths-settled-fr\\easystud\\authenticated\\easystud-authenticated-20261017T023352095Z-8572\\playwright-output\\guide-fixes-paths-settled--1279b-es-settled-FR-matrix-native\\guide-paths.json",
+      "file": "<workspace>\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\matrix-paths-settled-fr\\easystud\\authenticated\\easystud-authenticated-20261017T023352095Z-8572\\playwright-output\\guide-fixes-paths-settled--1279b-es-settled-FR-matrix-native\\guide-paths.json",
       "sha256": "33260ecff9fc024051b9877f28a5308de48fcb27fca585302fd00704005194c6"
     },
     {
-      "file": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\matrix-paths-settled-en\\easystud\\authenticated\\easystud-authenticated-20261017T024141666Z-8572\\playwright-output\\guide-fixes-paths-settled--ed4b8-es-settled-EN-matrix-native\\guide-paths.json",
+      "file": "<workspace>\\Moodle 51 Perf\\moodle\\local\\guide-fixes-20261017\\matrix-paths-settled-en\\easystud\\authenticated\\easystud-authenticated-20261017T024141666Z-8572\\playwright-output\\guide-fixes-paths-settled--ed4b8-es-settled-EN-matrix-native\\guide-paths.json",
       "sha256": "067ab3df8c14a69c67ed5b25f4250845ea3c9e444f27f2cca3764960d4d1a6e7"
     }
   ],

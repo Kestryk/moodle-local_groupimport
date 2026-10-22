@@ -20,7 +20,7 @@ La pagination est ajoutée uniquement à la feuille Import massif. Les autres so
 
 ## Preuves natives, copie 8052 sous verrou exclusif
 
-Artefacts complets : `C:/dev/artifacts/background-import-20261017/`. Les premières tentatives en échec sont conservées ; seules les preuves nommées ci-dessous fondent les résultats finaux.
+Artefacts complets : `<workspace>/artifacts/background-import-20261017/`. Les premières tentatives en échec sont conservées ; seules les preuves nommées ci-dessous fondent les résultats finaux.
 
 | Contrôle réel | Résultat |
 | --- | --- |
@@ -42,6 +42,6 @@ Les tombstones et journaux natifs créés par les suppressions sont conservés. 
 
 Les fixtures ont repris la séparation des doubles testée dans `05a07eab` (lot codechecker), pour ne pas introduire de nouveaux échecs de style. Les assertions S2, S5, S6 et R8 restent actives ; seules leurs dépendances suivent l’extraction vers `importlib.php`, le nouveau plafond et le verrou du cours. Le test du plafond historique de mille lignes reste couvert lorsqu’un plafond de mille est explicitement demandé. Le test de remplacement appelle la vraie méthode privée finale par réflexion ; il ne recopie pas son algorithme.
 
-La porte isolée TRI19 couvre treize suites : aperçu, exécution, Privacy, autorisations AJAX/Gestion, identifiants, lecteurs, export, opérations groupées, historique, XLSX formatés, échappement et moteur de filtres. Les contrôles complémentaires couvrent la persistance de page, la projection Privacy des lignes en attente, la réunion des cibles de remplacement et le navigateur isolé sur 1 500 lignes. Résultats finaux statiques et builds : `C:/dev/artifacts/background-import-20261017/final-static-proof.json`.
+La porte isolée TRI19 couvre treize suites : aperçu, exécution, Privacy, autorisations AJAX/Gestion, identifiants, lecteurs, export, opérations groupées, historique, XLSX formatés, échappement et moteur de filtres. Les contrôles complémentaires couvrent la persistance de page, la projection Privacy des lignes en attente, la réunion des cibles de remplacement et le navigateur isolé sur 1 500 lignes. Résultats finaux statiques et builds : `<workspace>/artifacts/background-import-20261017/final-static-proof.json`.
 
 Les tests PHPUnit natifs ajoutés ne sont pas annoncés comme exécutés par le lanceur PHPUnit Moodle : leurs deux méthodes sont aussi invoquées par un harnais isolé. Les mesures natives n’exonèrent pas de la revue de la nouvelle table, de l’upgrade 2026101702, des transactions et de la rétention avant intégration.

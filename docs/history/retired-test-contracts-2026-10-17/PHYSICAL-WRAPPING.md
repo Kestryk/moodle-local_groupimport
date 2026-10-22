@@ -14,7 +14,7 @@ transcript is not intended to be executed or copied as executable JavaScript.
 Run `node tools/release/test-retired-transcript-wraps.cjs` from the plugin root to
 verify the exact reconstruction and the maximum 132-byte physical line length.
 The external, byte-for-byte originals are retained in
-`C:/dev/artifacts/codechecker-zero-20261017/reflow-originals/`.
+`<workspace>/artifacts/codechecker-zero-20261017/reflow-originals/`.
 
 This presentation change does not alter the retirement decisions or reactivate
 these historical tests. No codechecker rule, ignore list or assertion was relaxed.

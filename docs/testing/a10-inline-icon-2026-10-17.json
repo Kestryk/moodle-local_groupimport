@@ -38,6 +38,6 @@
   "nativeMoodle": false,
   "published": false,
   "humanAccepted": false,
-  "proofDirectory": "C:/dev/artifacts/codex1-a10-inline-icon-20261017",
+  "proofDirectory": "<workspace>/artifacts/codex1-a10-inline-icon-20261017",
   "kitCommit": "6f3279c"
 }

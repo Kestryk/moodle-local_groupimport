@@ -7,18 +7,18 @@ Escape is modal-scoped, prevents bubbling, closes with existing Motion and resto
 the exact History opener after History becomes visible. Cancel/backdrop use the
 same closure. No import/rollback request, payload, History or other function changes.
 
-Build: Moodle Babel/Terser from C:/dev/moodle51-build-501, named AMD generated.
+Build: Moodle Babel/Terser from <workspace>/moodle51-build-501, named AMD generated.
 Perf deployment: only csv_import source/build/map replaced, prior files retained in
-C:/dev/artifacts/es-rollback-deploy-20261014 with SHA256 manifest; cache purge under
+<workspace>/artifacts/es-rollback-deploy-20261014 with SHA256 manifest; cache purge under
 dedicated Perf/runtime leases. Other runtime assets remain on 49072e22.
 
 Native successor: FR1280/390, normal/reduced motion, legacy/reactive; Cancel,
 Escape, backdrop, both Tab boundaries and return focus. No fixture or business write.
 Initial spec failed before opening History because synchronous visibility selected
-the compact menu during loading; immutable evidence at C:/dev/artifacts/es-rb14.
+the compact menu during loading; immutable evidence at <workspace>/artifacts/es-rb14.
 The ready successor waits for either visible native opener before choosing the path.
 Results: PASS both modes, 24 cycles (12 per mode), no page errors or blocked business writes.
-Evidence: C:/dev/artifacts/es-next14/after/matrix.json. Final AMD SHA256 matches deployed AMD exactly; final source-map line offsets reflect a whitespace-only lint correction.
+Evidence: <workspace>/artifacts/es-next14/after/matrix.json. Final AMD SHA256 matches deployed AMD exactly; final source-map line offsets reflect a whitespace-only lint correction.
 Scoped lint: no new errors; full file retains the pre-existing History max-len at line 707 and warnings.
 
 Moodle 4.5: standard DOM APIs and existing Motion only; runtime compatibility gate

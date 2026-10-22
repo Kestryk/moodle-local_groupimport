@@ -1,6 +1,6 @@
 # K16 - visible mobile Cancel and Reset
 
-The published Claude menu now exposes Search groups on the grouping mobile sheet. Native FR390 found a real size mismatch: Reset38px versus visible Cancel42.390625px. The retained failure is `k16-on-demand-settled-successor.spec.js:46`, on-demand FR390; capture `C:/dev/artifacts/es-k16-settled/**/fr-390-search.png`.
+The published Claude menu now exposes Search groups on the grouping mobile sheet. Native FR390 found a real size mismatch: Reset38px versus visible Cancel42.390625px. The retained failure is `k16-on-demand-settled-successor.spec.js:46`, on-demand FR390; capture `<workspace>/artifacts/es-k16-settled/**/fr-390-search.png`.
 
 The private `_control-typography.scss` adapter now includes container-search Cancel in the SAME existing regular secondary/38px peer block as Reset. Only one selector and its comments change. No template, Course Manager, local/sm, input, filter command, motion or shared Kit file changes. Both controls retain8px16px padding,9.28px radius,1px border,12px caption,14.4px line height and600 weight.
 
@@ -8,6 +8,6 @@ Requested scope PASS in run `easystud-authenticated-20261014T152003590Z-37208`: 
 
 The WHOLE run is FAILED: its additional FR1280 reference reached both matching38px controls, then a recipe assertion expected child groups already visible although the desktop grouping remained collapsed. That is outside the requested mobile filter proof and is not labelled a product failure. No identical rerun. The first predecessor captured a stale response body during login navigation (no UI case reached). Another predecessor incorrectly expected Cancel to re-collapse the grouping; the literal requirement is to restore the unfiltered list, so its successor compares the two open group IDs while retaining all focus/value/close/metric assertions. All predecessor specs and runs remain immutable.
 
-Styles are actually served on :8051 after backup/purge `C:/dev/artifacts/es-k16-peer-deploy/manifest.json`; generated assets include the assembled K21/Mass Import/source single-mode prerequisites. The requested mobile scenes are inspected separately from main preview, human acceptance and Moodle4.5. Codex1 integrates the selector and rebuilds from its current source.
+Styles are actually served on :8051 after backup/purge `<workspace>/artifacts/es-k16-peer-deploy/manifest.json`; generated assets include the assembled K21/Mass Import/source single-mode prerequisites. The requested mobile scenes are inspected separately from main preview, human acceptance and Moodle4.5. Codex1 integrates the selector and rebuilds from its current source.
 
 Claude/Penpot: inline grouping/ungrouped search Cancel and participant search Reset; SAME regular secondary38px recipe; Student Management, mobile grouping sheet/search/filtered/restored states, FR/EN390. Desktop38px geometry is a reference only. Propagate Library, standards and all affected Foundations/EasyStud boards. Existing input42.4px density is unchanged.

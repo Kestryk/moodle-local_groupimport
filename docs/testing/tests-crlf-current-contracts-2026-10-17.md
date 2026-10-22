@@ -14,4 +14,4 @@ All five input readers already normalized CRLF. The failures came from assertion
 
 Replaced obsolete assertions: exact equality to old entire controller/PHP/CSS/language files; old three-dependency AMD factory; historical Penpot snapshot as current acceptance; twelve slides; retired legacy paths. These are release-specific historical proofs, not valid invariants after modularization, retirement and later deliveries. Behavioral assertions now execute the current functions, including negative guards. No assertion was bypassed with a catch or unconditional success.
 
-Evidence: C:/dev/artifacts/tests-crlf-20261017/results.txt and eol-preload.cjs. Standalone VM/PHP checks only; no native Moodle/browser acceptance claimed.
+Evidence: <workspace>/artifacts/tests-crlf-20261017/results.txt and eol-preload.cjs. Standalone VM/PHP checks only; no native Moodle/browser acceptance claimed.

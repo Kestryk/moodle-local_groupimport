@@ -52,8 +52,8 @@
     "globalRules": 0
   },
   "tooltipPredecessor": {
-    "source": "C:\\dev\\worktrees\\easystud-codex1-guide-kit-parity-817dea20-20261017\\tools\\release\\test-tooltip-light-source.cjs",
-    "archive": "C:\\dev\\worktrees\\easystud-codex1-guide-kit-parity-817dea20-20261017\\docs\\history\\tooltip-light-source-pre817-2026-10-17.cjs",
+    "source": "<workspace>\\worktrees\\easystud-codex1-guide-kit-parity-817dea20-20261017\\tools\\release\\test-tooltip-light-source.cjs",
+    "archive": "<workspace>\\worktrees\\easystud-codex1-guide-kit-parity-817dea20-20261017\\docs\\history\\tooltip-light-source-pre817-2026-10-17.cjs",
     "sha256": "5a11ada7ee195c2debde4e7f00db3501602732801957bfa3e7eafbb31e37e7df",
     "reason": "Historical frozen pre-page-CSS/full-file tooltip baseline superseded by accepted recipes; retain exact specimen assertions and current cascade projection."
   },

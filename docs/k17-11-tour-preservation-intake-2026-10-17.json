@@ -11,7 +11,7 @@
   "visual_status": "not applicable: no visual change",
   "human_acceptance": "open",
   "technical_document": "docs/testing/tour-preservation-k17-11-2026-10-17.md",
-  "evidence_directory": "C:/dev/artifacts/easystud-tour-preservation-20261017",
+  "evidence_directory": "<workspace>/artifacts/easystud-tour-preservation-20261017",
   "integration": "Keep savepoint 2026101701 when combining with independent background-import savepoint 2026101702.",
   "static_checks": {
     "php_8_1_10_lint": "PASS (5 files)",
@@ -20,6 +20,6 @@
     "security_escaping": "PASS",
     "filter_engine": "PASS"
   },
-  "native_report": "C:/dev/artifacts/easystud-tour-preservation-20261017/native-8052-run001.json",
+  "native_report": "<workspace>/artifacts/easystud-tour-preservation-20261017/native-8052-run001.json",
   "cleanup": "All fixture database rows rolled back; hashes identical for tours, steps, preferences, attachments and plugin configuration; pool8052 lease released."
 }

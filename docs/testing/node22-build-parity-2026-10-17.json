@@ -1,7 +1,7 @@
 {
   "base": "fcf11a6f",
   "node": "v22.11.0",
-  "nodePath": "C:/dev/tools/node-v22.11.0-win-x64/node.exe",
+  "nodePath": "<workspace>/tools/node-v22.11.0-win-x64/node.exe",
   "results": [
     {
       "build": "build-sm-amd.js",
@@ -56,7 +56,7 @@
   "changed": [],
   "runtimeAccess": false,
   "executables": {
-    "C:/dev/tools/node-v22.11.0-win-x64/node.exe": "7447c4ece014aa41fb2ff866c993c708e5a8213a00913cc2ac5049ea3ffc230d",
-    "C:/dev/toolchains/node-v22.11.0-win-x64/node.exe": "7447c4ece014aa41fb2ff866c993c708e5a8213a00913cc2ac5049ea3ffc230d"
+    "<workspace>/tools/node-v22.11.0-win-x64/node.exe": "7447c4ece014aa41fb2ff866c993c708e5a8213a00913cc2ac5049ea3ffc230d",
+    "<workspace>/toolchains/node-v22.11.0-win-x64/node.exe": "7447c4ece014aa41fb2ff866c993c708e5a8213a00913cc2ac5049ea3ffc230d"
   }
 }

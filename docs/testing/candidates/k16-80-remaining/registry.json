@@ -5,7 +5,7 @@
       "id": "K1680-F22C",
       "status": "candidate",
       "runtimeExecuted": true,
-      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f22c",
+      "executionEvidence": "<workspace>\\artifacts\\k16-80-remaining-20261018\\f22c",
       "rows": 32,
       "languages": [
         "fr",
@@ -33,7 +33,7 @@
       "id": "K1680-F23C",
       "status": "candidate",
       "runtimeExecuted": true,
-      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f23c",
+      "executionEvidence": "<workspace>\\artifacts\\k16-80-remaining-20261018\\f23c",
       "rows": 8,
       "languages": [
         "fr",
@@ -61,7 +61,7 @@
       "id": "K1680-F25D",
       "status": "candidate",
       "runtimeExecuted": true,
-      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f25d",
+      "executionEvidence": "<workspace>\\artifacts\\k16-80-remaining-20261018\\f25d",
       "rows": 64,
       "languages": [
         "fr",
@@ -89,7 +89,7 @@
       "id": "K1680-F25E",
       "status": "candidate",
       "runtimeExecuted": true,
-      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f25e",
+      "executionEvidence": "<workspace>\\artifacts\\k16-80-remaining-20261018\\f25e",
       "rows": 16,
       "languages": [
         "fr",

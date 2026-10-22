@@ -59,10 +59,10 @@ lease first. Invoke the file directly from this worktree; no deployment,
 browser, cache purge, real-tour edit or real user action is required:
 
 ```powershell
-& 'C:/dev/Moodle 51/MoodleWindowsInstaller-latest-501/server/php/php.exe' `
-  'C:/dev/worktrees/easystud-codex1-tour-preservation-20261017/tools/release/test-tour-preservation-native.php' `
-  'C:/dev/Moodle 51 Claude/moodle' `
-  'C:/dev/artifacts/easystud-tour-preservation-20261017/native-8052-run001.json'
+& '<workspace>/Moodle 51/MoodleWindowsInstaller-latest-501/server/php/php.exe' `
+  '<workspace>/worktrees/easystud-codex1-tour-preservation-20261017/tools/release/test-tour-preservation-native.php' `
+  '<workspace>/Moodle 51 Claude/moodle' `
+  '<workspace>/artifacts/easystud-tour-preservation-20261017/native-8052-run001.json'
 ```
 
 All fixture imports, edits and preferences live inside one transaction which
@@ -89,7 +89,7 @@ plugin upgrade, browser proof or human acceptance.
 ## Evidence and integration
 
 External evidence directory:
-`C:/dev/artifacts/easystud-tour-preservation-20261017/`.
+`<workspace>/artifacts/easystud-tour-preservation-20261017/`.
 
 Native result: **PASS, 46 cases**, Moodle 5.1 (`501`), PHP 8.2.4, on the
 leased 8052 pool. `native-8052-run001.json` records exact before/after equality
@@ -97,7 +97,7 @@ for all five state families and successful fixture rollback. The lease was
 released after verification. No existing tour or progress row was written.
 
 PHP 8.1.10 syntax checks cover all five touched PHP files. MoodleCS uses the
-existing `C:/dev/tools/moodle-codechecker` installation without exemptions.
+existing `<workspace>/tools/moodle-codechecker` installation without exemptions.
 `test-security-escaping.cjs` and `test-filter-engine.cjs` use Node 22.11.0.
 `api-source-compatibility.json` records signatures/hashes of the core tour/step
 APIs read from local Moodle 4.5, 5.1 and 5.3 sources. Source agreement alone

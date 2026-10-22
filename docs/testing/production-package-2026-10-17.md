@@ -6,6 +6,6 @@ Allowlist: runtime PHP entrypoints, classes, db (including tour JSON), lang, tem
 
 Excluded: tools, all docs, development tests, fixture/sandbox directories, node_modules/vendor, VCS/agent files and untracked files. Full per-file included/excluded lists are generated outside the product as package-contents.md and package-manifest.json.
 
-Independent Python zipfile check PASS: CRC, unique safe paths, all content hashes, no excluded paths, blank extraction, Moodle install inputs and PHP lint of all extracted PHP files. Repeat build has the same ZIP SHA-256. Evidence: C:/dev/artifacts/package-plugin-20261017/verification.json.
+Independent Python zipfile check PASS: CRC, unique safe paths, all content hashes, no excluded paths, blank extraction, Moodle install inputs and PHP lint of all extracted PHP files. Repeat build has the same ZIP SHA-256. Evidence: <workspace>/artifacts/package-plugin-20261017/verification.json.
 
-This is static install-structure validation only. No Moodle installation, upgrade, DB change or runtime acceptance is claimed. Archive built from this branch's 108f0b2c production base; later deliveries require a fresh package. Node22 portable: C:/dev/tools/node-v22.11.0-win-x64/node.exe.
+This is static install-structure validation only. No Moodle installation, upgrade, DB change or runtime acceptance is claimed. Archive built from this branch's 108f0b2c production base; later deliveries require a fresh package. Node22 portable: <workspace>/tools/node-v22.11.0-win-x64/node.exe.

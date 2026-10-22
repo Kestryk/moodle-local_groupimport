@@ -7,10 +7,10 @@ Tu reprends le développement de EasyStud / GroupImport et de son kit UI partag�
 
 Dépôts et branches de référence :
 - Plugin Moodle 51 :
-  C:\dev\Moodle 51\MoodleWindowsInstaller-latest-501\server\moodle\local\groupimport
+  <workspace>\Moodle 51\MoodleWindowsInstaller-latest-501\server\moodle\local\groupimport
   branche feature/easyedu-ui-moodle51
 - Kit UI partagé :
-  C:\dev\easyedu-ui-kit
+  <workspace>\easyedu-ui-kit
   branche feature/easyedu-visual-parity-2026-07
 - Version du kit intégrée : 0.4.28
 - Commit kit de référence : 28c578c
@@ -28,7 +28,7 @@ Lis d'abord :
 
 Règle absolue :
 Toute évolution visuelle ou comportement réutilisable doit être implémenté et
-documenté dans C:\dev\easyedu-ui-kit avant ou en même temps que son adaptation
+documenté dans <workspace>\easyedu-ui-kit avant ou en même temps que son adaptation
 dans le plugin. Le plugin doit rester autonome : il embarque une copie du kit,
 sans dépendance runtime vers le dépôt externe. Les thèmes Moodle peuvent
 surcharger les variables --easyedu-*, mais ne doivent jamais pouvoir réactiver

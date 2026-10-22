@@ -67,7 +67,7 @@ Le scénario final attend load, puis les initialisations Moodle et les
 animations finies ; les écouteurs d'erreur restent actifs pendant tout le cas.
 Les états actif, focus et tactile restent assertés, sans filtre d'erreur.
 
-Preuves : C:/dev/artifacts/old-b-native-20261018/final-candidate.json,
+Preuves : <workspace>/artifacts/old-b-native-20261018/final-candidate.json,
 baseline-pilot.json, phpcs-full.json, eslint.json, source-parity-final.json.
 Copie du pool réservée par verrou atomique, jamais localhost:80. La copie
 n'est pas une publication ; Claude intégrera après revue.

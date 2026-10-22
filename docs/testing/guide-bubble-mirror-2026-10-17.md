@@ -38,7 +38,7 @@ or cross-consumer visual acceptance is claimed. No package installation tested.
 All21owned consumer/product files checked against9e628d4f are unchanged,
 including runtime AMD source/build/maps, templates and shared SCSS. Only mirrors,
 source synchronization/tests and documentation change; no product rebuild or
-localhost publication. Evidence: C:/dev/artifacts/guide-bubble-mirror-20261017/.
+localhost publication. Evidence: <workspace>/artifacts/guide-bubble-mirror-20261017/.
 
 The central Kit main integration/other-consumer gate remains separate. This
 bounded mirror does not certify inherited Motion API or CCB/EasyExam tests.

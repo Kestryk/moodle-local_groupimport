@@ -30,4 +30,4 @@ checks exact Node22.11.0/Sass1.79.1; it never calls an unknown global Sass binar
 
 No Moodle/runtime access, publication or main merge. Other-consumer acceptance
 is separate. Detailed immutable predecessor failure and current proofs:
-C:/dev/artifacts/guide-parity-817dea20-20261017/.
+<workspace>/artifacts/guide-parity-817dea20-20261017/.

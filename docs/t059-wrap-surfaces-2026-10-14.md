@@ -18,7 +18,7 @@ SCSS compilation passes; injected CSS candidate only. First successor: all six s
 stopped because the harness cleared only the hidden desktop selection command.
 The mobile successor uses the actual Clear-selection proxy before switching entity
 type, asserts the group input is enabled, and retains every geometry assertion.
-Final results pending C:/dev/artifacts/es-final14/after/matrix.json. Human acceptance remains open.
+Final results pending <workspace>/artifacts/es-final14/after/matrix.json. Human acceptance remains open.
 
 Visual inspection:390-message-long.png from es-final14 confirms wrapped title and
 visible Close, unchanged narrow dialog. The body is still loading in that frame;
@@ -27,7 +27,7 @@ The es-final14 supervisor was interrupted before reactive results; the dead owne
 39832 lease was released and original mode/Guide preference restored before es-close14.
 
 ## Final result
-C:/dev/artifacts/es-close14/after/matrix.json: T059 PASS in legacy and reactive,
+<workspace>/artifacts/es-close14/after/matrix.json: T059 PASS in legacy and reactive,
 24cases per mode,48total; six surfaces at1600/1280/768/390FR, no gaps, no page
 errors, no business writes. Every native/synthetic shell stays inside the viewport
 and every synthetic title has0px horizontal overflow. Message body-loaded proof,

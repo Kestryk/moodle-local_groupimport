@@ -116,7 +116,7 @@
     "scope": "alpha-desc in shared menus/comparators; A/Z arrow labels FR/EN; no styles",
     "report": "docs/testing/k16-13-sort-za-2026-10-16.md",
     "static": "security escaping, filter engine, three production comparators, PHP syntax PASS; ESLint no new diagnostics versus HEAD",
-    "evidence": "C:/dev/Moodle 51 Perf/moodle/local/k16-13-evidence/"
+    "evidence": "<workspace>/Moodle 51 Perf/moodle/local/k16-13-evidence/"
   },
   "claudeFiveLoading20261013": {
     "status": "five-commits-served-native-N1-pass-T061-part2-open",
@@ -150,7 +150,7 @@
   },
   "program": "EED-UI-2026-0073",
   "received": "2026-10-11",
-  "externalHandoff": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROMPT-PASSATION-CODEX.md",
+  "externalHandoff": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROMPT-PASSATION-CODEX.md",
   "immutablePlan": "docs/claude-interface-review-plan-2026-10-11.md",
   "taskCount": 61,
   "smRenduSuite20261013": {
@@ -174,7 +174,7 @@
     "humanAccepted": false,
     "runtime": "2a4a6cf22a098aa12444a5a3d9ce9f59d15109a0",
     "nativeRun": "easystud-authenticated-20261013T175644266Z-39652",
-    "rawJson": "C:/Users/kj220291/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json",
+    "rawJson": "<user-home>/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json",
     "native": {
       "passed": true,
       "modeCount": 2,
@@ -279,7 +279,7 @@
     "humanAccepted": false,
     "runtime": "2a4a6cf22a098aa12444a5a3d9ce9f59d15109a0",
     "nativeRun": "easystud-authenticated-20261013T175644266Z-39652",
-    "rawJson": "C:/Users/kj220291/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json",
+    "rawJson": "<user-home>/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json",
     "restoredCurrent": true,
     "courseWrites": 0
   },
@@ -569,7 +569,7 @@
     "humanAccepted": false
   },
   "claudeReviewR320261012": {
-    "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
+    "source": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
     "R3-1": {
       "scope": "No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states",
       "level": 1,
@@ -601,7 +601,7 @@
     "otherMoodle45RuntimeUntouched": true
   },
   "kevinDecisions20261012": {
-    "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
+    "source": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
     "D7": {
       "status": "served-and-native10-plus-contract16-PASS",
       "nativeRun": "easystud-authenticated-20261012T194847620Z-27072",
@@ -737,7 +737,7 @@
       "native mutation APIs and transactions"
     ],
     "measurement": "tools/perf/Invoke-Baseline.ps1 -Mode sql",
-    "rawExternal": "C:/dev/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/",
+    "rawExternal": "<workspace>/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/",
     "nativeEvidence": "Server/actual-source candidate, not browser acceptance",
     "preview2000SqlReads": {
       "before": 14124,
@@ -853,7 +853,7 @@
     "nativeScript": "tools/playwright/student-member-actions-preview.spec.js",
     "reloadsReplaced": 15,
     "AP_A6": "pending-measurement-and-debounce; not bundled without T052 baseline",
-    "nativeResults": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-2026-10-12.md",
+    "nativeResults": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-2026-10-12.md",
     "humanAccepted": false
   },
   "pgS1NativeDrawer20261012": {
@@ -870,8 +870,8 @@
     "humanAccepted": false
   },
   "acceleration20261012": {
-    "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
-    "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
+    "rules": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
+    "coordination": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
     "readyQueue": [
       "publish-D5D6-with-D1D4",
       "D1+D2+D3+D4",
@@ -880,8 +880,8 @@
       "D8-Penpot-then-code"
     ],
     "condensedReturns": [
-      "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md",
-      "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"
+      "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md",
+      "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"
     ],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
@@ -889,7 +889,7 @@
     "historicalScopesPreserved": true
   },
   "claudeDeepAudit20261012": {
-    "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/AUDIT-APPROFONDI-2026-10-12.md",
+    "source": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/AUDIT-APPROFONDI-2026-10-12.md",
     "codexOwned": [
       "AP-A1",
       "AP-A6",
@@ -954,7 +954,7 @@
     "status": "integrated-and-served; isolated25-and-native-expired-session-verified",
     "nativeDuplication": "Dedicated-course test remains pending; no course5 writes",
     "verificationScript": "tools/release/verify-ajax-contract.php",
-    "nativeResults": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-2026-10-12.md",
+    "nativeResults": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-2026-10-12.md",
     "humanAccepted": false
   },
   "effectiveExecutionPriority20261012": "docs/execution-priority-2026-10-12.json",
@@ -1016,7 +1016,7 @@
   },
   "claudeReview1": {
     "received": "2026-10-11",
-    "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-11.md",
+    "externalRecord": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-11.md",
     "order": [
       "C6+C3+C4+C2",
       "C1",
@@ -1035,7 +1035,7 @@
   },
   "claudeReview2": {
     "received": "2026-10-12",
-    "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-12.md",
+    "externalRecord": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-12.md",
     "record": "docs/claude-review2-guide-corrections-2026-10-12.md",
     "order": [
       "R2-1",
@@ -1074,7 +1074,7 @@
   },
   "claudeStudentCorridors20261012": {
     "received": "2026-10-12",
-    "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROPOSITION-SM-COULOIRS-2026-10-12.md",
+    "externalRecord": "<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROPOSITION-SM-COULOIRS-2026-10-12.md",
     "externalSha256": "8012fc8516ca2771f374fdd6f8d76f1b2a41ad116aeed6b22691f14c1c2df2ec",
     "record": "docs/student-identity-corridors-plan-2026-10-12.md",
     "status": "Kevin-approved-planned-not-implemented",

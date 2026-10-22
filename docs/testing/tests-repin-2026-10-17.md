@@ -17,5 +17,5 @@ assertions. Correct fixture root/meta classes and native hidden utility (Moodle'
 Bootstrap CSS is absent in a standalone document). PASS 16 cases at 1600/1280/
 768/390, counts 1/6/15/31; zero page errors. Isolated browser only: no Moodle URL,
 login, service, database, screenshots or runtime. This does not certify deferred
-server details opening. Old failure logs retained outside Git in C:/dev/artifacts.
+server details opening. Old failure logs retained outside Git in <workspace>/artifacts.
 No historical test was removed; no production expectation was weakened.

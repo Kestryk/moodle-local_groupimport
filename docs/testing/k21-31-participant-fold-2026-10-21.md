@@ -63,5 +63,5 @@ the language query and browser locale; no assertion is relaxed.
 - Kit single-source report: 29 existing candidates, 0 read errors.
 
 Reproduction, JSON measurements, before/after captures, immutable first-candidate
-failure and audits are in `C:/dev/artifacts/k21-31-native-20261021/`.
+failure and audits are in `<workspace>/artifacts/k21-31-native-20261021/`.
 Detailed delivery report: `RAPPORT-K21-31-NATIF-20261021.md` in the review folder.

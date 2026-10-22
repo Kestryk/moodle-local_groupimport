@@ -28,7 +28,7 @@ Report Kit : voir [patch](guide-fixes-kit-mirror-20261017.patch) et [explication
 
 ## Preuves
 
-Mesures : [JSON](recette-guide-fixes-17-10-2026.json). Données détaillées et captures (maximum six) : `C:\dev\Moodle 51 Perf\moodle\local\guide-fixes-20261017`.
+Mesures : [JSON](recette-guide-fixes-17-10-2026.json). Données détaillées et captures (maximum six) : `<workspace>\Moodle 51 Perf\moodle\local\guide-fixes-20261017`.
 Fixtures synthétiques isolées, remises à l’état initial entre cellules, puis supprimées par le superviseur. Voir les reçus de restauration et la preuve DB après nettoyage dans le dossier externe.
 Aucune publication sur :80, aucune modification du Kit ni des autres runtimes.
 

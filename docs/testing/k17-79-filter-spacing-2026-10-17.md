@@ -26,4 +26,4 @@ Les huit comparaisons donnent ces mêmes valeurs ; positions du DOM arrondies au
 
 Pour Penpot : colonne Participants, panneau Plus de filtres ouvert, vues complète et Participants et groupes, FR/EN, 1600 et 390 ; espacements par défaut 16/16/8 px. Recette native et acceptation humaine restent à faire après intégration par Claude. Aucune publication localhost.
 
-Preuves : `C:/dev/artifacts/codex1-k17-79-20261017/`.
+Preuves : `<workspace>/artifacts/codex1-k17-79-20261017/`.

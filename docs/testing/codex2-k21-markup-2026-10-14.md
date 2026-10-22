@@ -44,7 +44,7 @@ No page error or blocked write. Wrapper finally cleanup removes the course
 and two synthetic users, clears credentials and releases the runtime lease.
 
 Raw JSON/captures:
-`C:/dev/artifacts/es-k21-markup-mobile-native/easystud/authenticated/easystud-authenticated-20261014T210159178Z-41176/playwright-output/k21-markup-mobile-successo-5c02f-EN1280-390-served-user-keys/`.
+`<workspace>/artifacts/es-k21-markup-mobile-native/easystud/authenticated/easystud-authenticated-20261014T210159178Z-41176/playwright-output/k21-markup-mobile-successo-5c02f-EN1280-390-served-user-keys/`.
 The same pass validates served progress key local_groupimport.easyedu_guide.u2.c96
 and discovery key local_groupimport_easystud_guide_seen_96_2; no second user
 or shared-browser isolation acceptance is inferred from this single-account

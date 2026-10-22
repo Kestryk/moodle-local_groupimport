@@ -27,7 +27,7 @@ Queue: R10-26 -> liftSM except2.7 -> A3B -> welcomeV3 -> MassImport/admin
 component-only loading standard. Read each specification only at its lot.
 
 K21 focused test PASS30 FR/EN counts0/1/2/14/54, ready/null/incomplete model;
-real PHP fixtures from C:/dev/artifacts, output external EasyEdu/temp/t055-k21-results.json.
+real PHP fixtures from <workspace>/artifacts, output external EasyEdu/temp/t055-k21-results.json.
 Retain failed invocations (missing module, then missing explicit fixture/output
 arguments); corrected invocation uses process-local runtime NODE_PATH and both
 arguments, no product change. PHP manage lint and generated AMD syntax PASS.

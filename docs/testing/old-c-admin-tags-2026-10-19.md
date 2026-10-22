@@ -84,7 +84,7 @@ caret Desktop32 et Clear28, Touch44 ; champ 38/32/44, wrapping automatique.
 Valider en natif la largeur du wrapper Moodle et les libellés FR réels ; puis
 Claude pourra intégrer et publier. Aucun test avec un lecteur d'écran vocal.
 
-Preuves lourdes : C:/dev/artifacts/old-c-20261019 (validated-bundle-focus,
+Preuves lourdes : <workspace>/artifacts/old-c-20261019 (validated-bundle-focus,
 validated-page-css-focus, css-parity.json, phpcs-after.json, eslint.json, logs).
 Les premiers échecs de construction et d'oracle sont conservés.
 

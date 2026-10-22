@@ -6,7 +6,7 @@ Le HTTP 500 de la recette `perf-v2-config` provient du prérequis MUC de Moodle,
 
 ## Preuves locales
 
-- Rapport initial : `C:/dev/worktrees/easystud-codex2-perf-v2-20261017/docs/testing/perf-v2-config-17-10-2026.md`, lignes 20–28. Le refus apparaît après la connexion et cite `core/navigation_cache`.
+- Rapport initial : `<workspace>/worktrees/easystud-codex2-perf-v2-20261017/docs/testing/perf-v2-config-17-10-2026.md`, lignes 20–28. Le refus apparaît après la connexion et cite `core/navigation_cache`.
 - Moodle 5.1, `lib/classes/session/manager.php:172–178` : lorsque `enable_read_only_sessions` est actif, la présence de `$_SESSION['SESSION']->cachestore_session` déclenche exactement cette exception, avec les définitions trouvées. Ce contrôle intervient dans le démarrage de session ; il n'analyse pas les mutations du service EasyStud.
 - `lib/db/caches.php:639–643` : `core/navigation_cache` est une définition `MODE_SESSION`, TTL 1800. `cache/stores/session/lib.php:59–66` conserve par défaut les données de ce stockage dans `$SESSION`.
 - EasyStud `db/services.php:28–37` : `get_state` est un service `read`, `ajax`, avec `readonlysession => true`. `classes/external/get_state.php:65–79` valide contexte et capacité puis construit et sérialise l'état.

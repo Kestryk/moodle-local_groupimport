@@ -33,8 +33,8 @@ X4 reste partiel : les22 lignes restantes nécessitent un choix de token sémant
 
 ## Emplacements à réviser
 
-Preuves externes : `C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/I12-CONSOMMATEUR-20261022/` : `cleanup-native-acceptance.json`, `cleanup-final-source-audit.json`, `audit-i13-linear.log`, `eslint-comparison.json`, `x5-kit-examples.json`, `x5-contextual-contract-final.log`, `x5-kit-audit{,-base}.log`, `x5-package-final.log`, `cleanup-guide-control-{fr,en}.json`, `cleanup-raster-sample.json` et le point de reprise. Les JSON d’acceptation listent chaque cas et ses captures/raw.
+Preuves externes : `<workspace>/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/I12-CONSOMMATEUR-20261022/` : `cleanup-native-acceptance.json`, `cleanup-final-source-audit.json`, `audit-i13-linear.log`, `eslint-comparison.json`, `x5-kit-examples.json`, `x5-contextual-contract-final.log`, `x5-kit-audit{,-base}.log`, `x5-package-final.log`, `cleanup-guide-control-{fr,en}.json`, `cleanup-raster-sample.json` et le point de reprise. Les JSON d’acceptation listent chaque cas et ses captures/raw.
 
-Runs natifs : matrice `20261022T053330116Z-67500`, contrôles `054530208Z-54340` / `054710462Z-66904`, aide `055132128Z-49372`, Guide `055531825Z-45728`, sous `C:/dev/scratchpad/i12-22/runs/easystud/authenticated/`. Les deux harnais intermédiaires non livrés sont archivés dans `harnais-predecesseurs/`, sans suppression.
+Runs natifs : matrice `20261022T053330116Z-67500`, contrôles `054530208Z-54340` / `054710462Z-66904`, aide `055132128Z-49372`, Guide `055531825Z-45728`, sous `<workspace>/scratchpad/i12-22/runs/easystud/authenticated/`. Les deux harnais intermédiaires non livrés sont archivés dans `harnais-predecesseurs/`, sans suppression.
 
 Build final : les cinq CSS (globale vide de présentation + quatre pages, Administration comprise) sont exactement celles du candidat natif b6fbef81. Parité des56 SCSS partagés confirmée avec94b4029. Configuration et empreintes du cours5 identiques après restauration des préférences. Aucun cours/compte créé pour cette recette.

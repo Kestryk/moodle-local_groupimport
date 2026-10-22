@@ -15,8 +15,8 @@ Le contrôle existait dans le gabarit commun, mais une classe le masquait hors d
 
 Commandes : `node tools/release/test-filter-engine.cjs`, `node tools/release/test-participant-grouping-filter-views.cjs`, `node tools/release/test-security-escaping.cjs`, `powershell -NoProfile -File tools/release/test-student-filtered-select-all-contract.ps1`.
 
-Builds : `node tools/release/build-sm-amd.js C:/dev/moodle51-build-501`, puis `node tools/release/build-course-manager-amd.js C:/dev/moodle51-build-501/node_modules`, avec `C:/dev/tools/node-v22.11.0-win-x64/node.exe`.
+Builds : `node tools/release/build-sm-amd.js <workspace>/moodle51-build-501`, puis `node tools/release/build-course-manager-amd.js <workspace>/moodle51-build-501/node_modules`, avec `<workspace>/tools/node-v22.11.0-win-x64/node.exe`.
 
-Preuves détaillées : `C:/dev/artifacts/codex1-k17-80-20261017/`.
+Preuves détaillées : `<workspace>/artifacts/codex1-k17-80-20261017/`.
 
 Éléments exposés pour le suivi Penpot : champ Kit de sélection multiple recherchable ; colonne Participants de Student Management ; filtres ouverts en vue complète ; mêmes états vide/sélectionné/réinitialisé que la vue Participants et groupes. Aucun jeton, taille, rayon, couleur ou recette visuelle ajouté.

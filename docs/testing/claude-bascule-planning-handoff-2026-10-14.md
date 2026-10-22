@@ -25,7 +25,7 @@ Proposed current-state entry for AI/memory/easystud/CURRENT_STATE.md:
   course_state/external stay Claude's. Claude alone operates Penpot.
 - Detailed record: local_groupimport
   docs/testing/claude-bascule-integration-2026-10-14.md. Publication worktree
-  C:/dev/worktrees/easystud-codex1-bascule-publication-20261014; historical
+  <workspace>/worktrees/easystud-codex1-bascule-publication-20261014; historical
   Source07104791 advanced in another window and is not an editing target.
 
 Proposed row for docs/development/playwright-scenario-registry.md:

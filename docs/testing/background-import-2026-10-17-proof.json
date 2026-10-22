@@ -1,7 +1,7 @@
 {
   "sourceEdits": false,
   "runtimeAccess": false,
-  "node": "C:/dev/tools/node-v22.11.0-win-x64/node.exe",
+  "node": "<workspace>/tools/node-v22.11.0-win-x64/node.exe",
   "checks": {
     "phpcs": {
       "passed": true,
@@ -11,7 +11,7 @@
         "fixable": 0
       },
       "exit": 1,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-postrebase-phpcs.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-postrebase-phpcs.log"
     },
     "lint": {
       "passed": true,
@@ -21,27 +21,27 @@
       "passed": true,
       "exit": 0,
       "checks": 13,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-postrebase-smoke.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-postrebase-smoke.log"
     },
     "background-isolated": {
       "exit": 0,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-postrebase-background-isolated.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-postrebase-background-isolated.log"
     },
     "replace-union": {
       "exit": 0,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-postrebase-replace-union.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-postrebase-replace-union.log"
     },
     "eslint-csv_import-current": {
       "exit": 1,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-eslint-csv_import-current.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-eslint-csv_import-current.log"
     },
     "eslint-csv_import-baseline": {
       "exit": 1,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-eslint-csv_import-baseline.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-eslint-csv_import-baseline.log"
     },
     "eslint-import_progress-current": {
       "exit": 0,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-eslint-import_progress-current.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-eslint-import_progress-current.log"
     },
     "eslint": {
       "passed": true,
@@ -49,11 +49,11 @@
     },
     "build-csv-import": {
       "exit": 0,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-build-csv-import.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-build-csv-import.log"
     },
     "build-import-progress": {
       "exit": 0,
-      "log": "C:\\dev\\artifacts\\background-import-20261017\\final-build-import-progress.log"
+      "log": "<workspace>\\artifacts\\background-import-20261017\\final-build-import-progress.log"
     },
     "build-contract": {
       "passed": true
@@ -162,7 +162,7 @@
     "allImportDeltasPreserved": true
   },
   "nativeEvidence": {
-    "path": "C:/dev/artifacts/background-import-20261017/",
+    "path": "<workspace>/artifacts/background-import-20261017/",
     "rows3000": {
       "elapsedMs": 227174,
       "peakBytes": 41943040

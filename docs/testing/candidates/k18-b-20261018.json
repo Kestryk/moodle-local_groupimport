@@ -19,7 +19,7 @@
     "newKitVariants": [],
     "published": false,
     "humanAccepted": false,
-    "proof": "C:\\dev\\artifacts\\k18-b-20261018"
+    "proof": "<workspace>\\artifacts\\k18-b-20261018"
   },
   "artifacts": {
     "native-v6.cjs": {

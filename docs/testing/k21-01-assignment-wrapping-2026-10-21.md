@@ -81,7 +81,7 @@ mesures sans exiger leur nullité ; toute autre phase exige exactement 0 px.
 L'authentification reste seulement en mémoire. Ne pas publier de fichier secret
 ou de session ; restaurer la copie et libérer son verrou après exécution.
 
-Preuves : `C:/dev/artifacts/k21-01-native-20261021/` :
+Preuves : `<workspace>/artifacts/k21-01-native-20261021/` :
 `before/measurements.json`, `after/measurements.json`, `css-proof.json`,
 `audits.json`, journaux des portes, `cleanup.json` et captures manifestées.
 La clé d'intake est isolée dans `k21-01-intake-2026-10-21.json` : l'intake

@@ -101,7 +101,7 @@ Source static contract `tools/release/test-guide-t037-reading-composition.cjs`
 passes 14 checks, including exact Kit/consumer SCSS parity. Native N2 proof
 passes on the served localhost preview in French at 1600, 1280 and 390px:
 run `easystud-authenticated-20261013T093322771Z-41268`, raw result
-`C:\Users\kj220291\AppData\Local\EasyEdu\artifacts\easystud\authenticated\easystud-authenticated-20261013T093322771Z-41268\playwright-output\guide-t037-reading-composi-8fc0f-s-and-lesson-lanes-distinct\guide-t037-reading-composition.json`.
+`<user-home>\AppData\Local\EasyEdu\artifacts\easystud\authenticated\easystud-authenticated-20261013T093322771Z-41268\playwright-output\guide-t037-reading-composi-8fc0f-s-and-lesson-lanes-distinct\guide-t037-reading-composition.json`.
 It records no console errors, blocked writes or course changes. The two failed
 predecessors are retained external evidence only: one opened Moodle's root
 instead of the course page, and one assumed a historical slide index; both

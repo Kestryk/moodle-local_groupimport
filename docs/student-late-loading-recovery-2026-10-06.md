@@ -5,7 +5,8 @@ Diagnostics pin core/first.js to14666ms despite cached4.7MB aggregate, whereas
 the earlier ready run uses1285ms and becomes ready in6970ms. All failed sources
 and cleanup are retained. Public GET after the failure returns200/cached in3773ms;
 timing varies, not proof of a new style defect. RAM has10GiB available, while
-C: has2.02GiB free. No services/configuration/data/files are changed or deleted
+The system drive had 2.02 GiB free. No services, configuration, data or files
+were changed or deleted
 to hide this issue. Browser routing also disables client HTTP cache; note this
 existing audit condition, not a production-performance certificate.
 
