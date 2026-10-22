@@ -18,9 +18,10 @@ const plugin = name => require.resolve(name, {paths: [buildRoot]});
 const sourceDir = path.join(pluginRoot, 'amd/src/local/mi');
 const buildDir = path.join(pluginRoot, 'amd/build/local/mi');
 
-// Mass Import must stay light: it may use the shared navigation component and the dependency-free
-// Guide launcher, never the Student Management modules (local/cm, local/sm) themselves.
-const allowed = ['../../easyedu_navigation', '../cm/guide_launcher', './'];
+// Mass Import must stay light: it may use the shared navigation component, the dependency-free
+// Guide launcher, and the dependency-free shared leaf modules (X9), never the Student Management
+// modules (local/cm, local/sm) themselves.
+const allowed = ['../../easyedu_navigation', '../cm/guide_launcher', '../guide_path_completion', '../import_file_ready', './'];
 const names = fs.readdirSync(sourceDir).filter(name => name.endsWith('.js')).sort();
 if (!names.length) {
     throw new Error('No Mass Import module in amd/src/local/mi.');

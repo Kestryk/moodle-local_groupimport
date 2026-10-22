@@ -28,6 +28,8 @@
 
 import {init as initNavigation} from '../../easyedu_navigation';
 import {bindGuideLauncher} from '../cm/guide_launcher';
+import {emitNativePathCompletion} from '../guide_path_completion';
+import {isImportFileReady} from '../import_file_ready';
 
 const PATH = 'mi-review-without-importing';
 const NAVIGATION = '#local-groupimport-import-navigation';
@@ -35,34 +37,6 @@ const NAVIGATION = '#local-groupimport-import-navigation';
 const COMPACT_QUERY = '(max-width: 64rem)';
 const CHECKLIST = '[data-easyedu-guide-checklist]';
 const ROW_TOGGLE = 'input[name^="rowenabled["]';
-
-// Same guard as emitNativePathCompletion (local/cm/guide_hooks): only the next unfinished
-// milestone of the visible checklist of this path is completed, never a later or locked one.
-const emitNativePathCompletion = (root, path, step) => {
-    const checklist = document.querySelector(
-        '[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]'
-    );
-    if (!checklist || checklist.hidden || !root.isConnected) {
-        return;
-    }
-    const next = checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)');
-    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== step) {
-        return;
-    }
-    root.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
-        bubbles: true,
-        detail: {path, step},
-    }));
-};
-
-// The Moodle file picker certifies a file only through its completed filename callback
-// (same contract as isImportFileReady in csv_import): an allocated draft or an upload
-// still in progress is not a file.
-const isImportFileReady = deposit => {
-    const filename = deposit ? deposit.querySelector('.filepicker-filename a') : null;
-    return Boolean(filename && filename.textContent.trim() &&
-        !deposit.querySelector('.dndupload-inprogress'));
-};
 
 const isPathChecklistOpen = checklist => !!checklist && !checklist.hidden &&
     checklist.getAttribute('data-easyedu-guide-path') === PATH;

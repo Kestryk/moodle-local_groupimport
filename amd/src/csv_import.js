@@ -22,6 +22,7 @@
  */
 
 import * as Motion from './motion';
+import {isImportFileReady} from './local/import_file_ready';
 
 const hasFiles = event => {
     const types = event.dataTransfer ? Array.from(event.dataTransfer.types || []) : [];
@@ -291,15 +292,6 @@ const notifyFilePickerChange = picker => {
     if (element) {
         element.dispatchEvent(new Event('change', {bubbles: true}));
     }
-};
-
-// A draft item ID is allocated before any file exists. Only Moodle's completed
-// filename callback certifies this single-file picker; raw local files and a
-// progress bar must not submit the preview form while an upload is in flight.
-const isImportFileReady = deposit => {
-    const filename = deposit.querySelector('.filepicker-filename a');
-    return Boolean(filename && filename.textContent.trim() &&
-        !deposit.querySelector('.dndupload-inprogress'));
 };
 
 const clearImportFileRequirement = deposit => {

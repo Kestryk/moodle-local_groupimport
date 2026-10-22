@@ -20,7 +20,7 @@ const jsNames = dir => fs.readdirSync(path.join(srcRoot, 'local', dir)).filter(n
 // SM-RENDU modules and each other, never course_manager itself, and never in a cycle: the
 // course manager AMD wrapper reads their exports once, at definition time.
 const cmExternal = ['../../motion', '../../easyedu_bubble', '../../easyedu_guide', '../../searchable_choices', '../../member_selection',
-    'core/log', 'core/notification', 'core/pubsub', 'core/drawer_events'];
+    '../guide_path_completion', 'core/log', 'core/notification', 'core/pubsub', 'core/drawer_events'];
 const checkCmModules = () => {
     const names = jsNames('cm').map(name => name.replace(/\.js$/, ''));
     const smNames = jsNames('sm').map(name => name.replace(/\.js$/, ''));
@@ -77,7 +77,8 @@ checkCmModules();
 // SM-RENDU modules import Moodle core modules, each other and the shared course manager helpers
 // only. V2 n°10: every search and filter matches through local/sm/filter_engine, a pure module
 // (no import, no DOM): the filtering modules must import it, and none may re-implement it.
-const smExternal = ['core/mustache', 'core/local/templates/loader', 'core/ajax', 'core/reactive', '../cm/shared'];
+const smExternal = ['core/mustache', 'core/local/templates/loader', 'core/ajax', 'core/reactive', '../cm/shared',
+    '../count_label'];
 const engineUsers = {sm: ['index', 'groups'], cm: ['filters', 'workspace', 'group_cards', 'identifiers', 'shared']};
 const checkSmModules = () => {
     const smNames = jsNames('sm').map(name => name.replace(/\.js$/, ''));

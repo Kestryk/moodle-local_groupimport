@@ -25,6 +25,9 @@ import * as Motion from '../../motion';
 import * as Guide from '../../easyedu_guide';
 import {getSelectedItems} from './selection';
 import {isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
+import {emitNativePathCompletion} from '../guide_path_completion';
+
+export {emitNativePathCompletion};
 
 export const emitGuidedCompletion = (root, step, path = 'main') => {
     root.dispatchEvent(new CustomEvent('easystud:guided-complete', {
@@ -34,26 +37,6 @@ export const emitGuidedCompletion = (root, step, path = 'main') => {
 
     // Historical tutorial notifications remain; retired Kit paths no longer
     // receive broad numeric completions from these unrelated actions.
-};
-
-// Emit only the next unfinished milestone in the distinct Practice path.
-// Presentation/highlights never call business commands or reuse broad legacy
-// completion events (copy/drag/create grouping must not complete this exercise).
-export const emitNativePathCompletion = (root, path, step) => {
-    const checklist = document.querySelector(
-        '[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]'
-    );
-    if (!checklist || checklist.hidden || !root.isConnected) {
-        return;
-    }
-    const next = checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)');
-    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== step) {
-        return;
-    }
-    root.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
-        bubbles: true,
-        detail: {path, step},
-    }));
 };
 
 export const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);

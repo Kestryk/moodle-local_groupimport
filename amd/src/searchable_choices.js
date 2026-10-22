@@ -1,19 +1,10 @@
+import {countLabel} from './local/count_label';
+
 // Progressive enhancement of a native single/multiple select. No product commands,
 // HTML strings, network requests, global listeners or private style overrides.
 const controls = new WeakMap();
 let sequence = 0;
 
-// Count template with an optional singular form first ('one|other'); CLDR rule of the page language.
-const countLabel = (template, count) => {
-    const forms = String(template || '').split('|');
-    let singular = count === 1;
-    try {
-        singular = new Intl.PluralRules(document.documentElement.lang || undefined).select(count) === 'one';
-    } catch (error) {
-        // Unknown language tag: keep the English rule.
-    }
-    return (forms.length > 1 && singular ? forms[0] : forms[forms.length - 1]).replace('__count__', String(count));
-};
 const normalise = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase();
 
 // Selected options keep native identity and disabled/optgroup constraints.

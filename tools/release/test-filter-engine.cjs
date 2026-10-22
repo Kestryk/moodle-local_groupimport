@@ -9,9 +9,11 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '../..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
-// Both modules as one script: drop the import lines and the export keywords.
+// Both modules as one script: drop the import lines, bare re-exports (X9: countLabel is now
+// imported from local/count_label and re-exported as-is; it stays out of this test's api) and
+// the export keywords.
 const source = ['amd/src/local/sm/filter_engine.js', 'amd/src/local/sm/index.js'].map(read).join('\n')
-    .replace(/^import .*;$/gm, '').replace(/^export (const )/gm, '$1');
+    .replace(/^import .*;$/gm, '').replace(/^export \{[^}]*\};$/gm, '').replace(/^export (const )/gm, '$1');
 const context = {};
 vm.runInNewContext(source + '\nthis.api = {normalise, matchesText, splitTokens, createMatcher, filterEntryIds,' +
     ' createIdentifierIndex, matchIdentifierPhrases, matchesOccupancy, buildParticipantIndex, filterParticipantIds};', context);
