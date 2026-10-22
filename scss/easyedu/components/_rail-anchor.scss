@@ -125,11 +125,12 @@ $-rail-control-size: 2.5rem;
 
 // Primary rail with integrated identity. Include on the element that already
 // includes `navigation-component` (the navigation wrapper).
-// `$labels-collapse-below` (K21-53): view-root width under which inactive
-// destinations become icon-only capsules. Size it from the consumer's longest
-// translated rail (destinations + utilities), so no label is ever clipped:
-// Student Management (3 items) keeps 71rem, Mass Import (4 items) needs 88rem.
-@mixin navigation-identity-rail($compact-breakpoint: 64rem, $labels-collapse-below: 71rem) {
+// Narrow rails (K22-05/06): the navigation controller collapses controls to icon
+// capsules only while the rail overflows (`.is-rail-collapsed`: utilities, then
+// inactive destinations, then the Guide); a collapsed control unfolds in place on
+// hover/focus over its neighbours (`--easyedu-rail-item-full`, `.is-rail-expand-start`).
+// No fixed width threshold: labels stay visible whenever they fit, in any language.
+@mixin navigation-identity-rail($compact-breakpoint: 64rem) {
   // Capsule label of the Guide launcher: only the identity rail shows it.
   .easyedu-guide__launcher-short {
     display: none;
@@ -187,8 +188,9 @@ $-rail-control-size: 2.5rem;
       min-inline-size: 0;
     }
 
+    // K22-04: the product name takes the charter green (the Guide gradient's accent).
     .easyedu-navigation--identity .easyedu-navigation__identity-name {
-      color: var(--easyedu-text);
+      color: var(--easyedu-accent);
       font: var(--easyedu-font-weight-strong) 1rem/1.2 var(--easyedu-font-family-ui);
       white-space: nowrap;
     }
@@ -352,14 +354,28 @@ $-rail-control-size: 2.5rem;
         white-space: nowrap;
       }
 
+      // K22-03 signature hover (Kevin 22/10/2026, Penpot waiver for this point):
+      // the blue -> green gradient sweeps across the capsule, the compass seeks
+      // north (one turn with a small settle) and an accent glow lifts it. At rest
+      // the visible half of the double-width gradient is the original one.
+      background-image: linear-gradient(90deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 50%, var(--easyedu-primary) 100%);
+      background-position: 0% 50%;
+      background-size: 200% 100%;
+      transition:
+        background-position var(--easyedu-motion-slow, 480ms) ease,
+        box-shadow var(--easyedu-motion-fast, 160ms) ease;
+
       &:hover,
       &:focus-visible {
-        background: linear-gradient(90deg, var(--easyedu-primary-strong) 0%, var(--easyedu-accent) 100%);
-        box-shadow: 0 0.25rem 0.6rem rgba(15, 108, 191, 0.24);
+        background-image: linear-gradient(90deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 50%, var(--easyedu-primary) 100%);
+        background-position: 100% 50%;
+        background-size: 200% 100%;
+        box-shadow: 0 0.3rem 0.9rem color-mix(in srgb, var(--easyedu-accent) 38%, transparent);
         color: var(--easyedu-identity-icon-color);
         transform: none;
 
         .easyedu-guide__launcher-icon {
+          animation: easyedu-rail-compass-seek 700ms cubic-bezier(0.3, 0.7, 0.4, 1) 1;
           background: transparent;
           box-shadow: none;
           color: inherit;
@@ -368,7 +384,7 @@ $-rail-control-size: 2.5rem;
       }
 
       &:focus-visible {
-        @include focus.ring($base-shadow: 0 0.25rem 0.6rem rgba(15, 108, 191, 0.24));
+        @include focus.ring($base-shadow: 0 0.3rem 0.9rem color-mix(in srgb, var(--easyedu-accent) 38%, transparent));
       }
     }
 
@@ -405,20 +421,82 @@ $-rail-control-size: 2.5rem;
     }
   }
 
-  // Narrow bands (queried on the view root, an inline-size container set by
-  // rail-anchor-page): inactive destinations, then the Guide, become icon-only
-  // capsules. Their accessible names stay their aria-label, and the navigation
-  // controller opts them into the Kit bubble. Never a truncated label.
+  // Collapsed controls (K22-05, set by the navigation controller only while the
+  // rail overflows) and their in-place unfolding (K22-06). The collapsed slot stays
+  // 40 px: on hover/focus the capsule grows to its natural width over its
+  // neighbours (negative margin on the opening side), so nothing else moves. The
+  // label stays in the accessibility tree; it is only clipped while folded.
   @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
-    @container (max-width: #{$labels-collapse-below}) {
-      .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item:not(.active):not([aria-current="page"]) {
-        gap: 0;
-        justify-content: center;
-        padding: 0 0.375rem;
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-fitted > .easyedu-navigation__sections {
+      overflow: visible;
+    }
 
-        > .easyedu-navigation__item-label {
-          display: none;
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed,
+    .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher.is-rail-collapsed {
+      flex: 0 0 auto;
+      gap: 0;
+      inline-size: $-rail-control-size;
+      justify-content: flex-start;
+      margin-inline: 0;
+      min-inline-size: $-rail-control-size;
+      overflow: hidden;
+      position: relative;
+      transition:
+        inline-size var(--easyedu-motion-fast, 160ms) ease,
+        margin var(--easyedu-motion-fast, 160ms) ease,
+        padding var(--easyedu-motion-fast, 160ms) ease,
+        background-color var(--easyedu-motion-fast, 160ms) ease;
+      z-index: 0;
+
+      > .easyedu-navigation__item-label,
+      .easyedu-guide__launcher-short {
+        opacity: 0;
+        transition: opacity var(--easyedu-motion-fast, 160ms) ease;
+      }
+
+      &:hover,
+      &:focus-visible {
+        gap: 0.625rem;
+        inline-size: var(--easyedu-rail-item-full, auto);
+        margin-inline-end: calc(#{$-rail-control-size} - var(--easyedu-rail-item-full, #{$-rail-control-size}));
+        z-index: 3;
+
+        > .easyedu-navigation__item-label,
+        .easyedu-guide__launcher-short {
+          opacity: 1;
         }
+      }
+
+      &.is-rail-expand-start:hover,
+      &.is-rail-expand-start:focus-visible {
+        margin-inline-end: 0;
+        margin-inline-start: calc(#{$-rail-control-size} - var(--easyedu-rail-item-full, #{$-rail-control-size}));
+      }
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed {
+      padding: 0 0.375rem;
+
+      // The unfolding capsule needs an opaque surface above its neighbours.
+      &:hover,
+      &:focus-visible {
+        background: color-mix(in srgb, var(--easyedu-primary-soft) 60%, var(--easyedu-surface) 40%);
+        box-shadow: 0 0.25rem 0.75rem rgba(21, 82, 132, 0.16);
+        padding: 0 1.25rem 0 0.375rem;
+      }
+
+      &:focus-visible {
+        @include focus.ring($base-shadow: 0 0.25rem 0.75rem rgba(21, 82, 132, 0.16));
+      }
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher.is-rail-collapsed {
+      // Glyph centred in the 40 px slot: (40 - 16) / 2.
+      padding: 0 0 0 0.75rem;
+
+      &:hover,
+      &:focus-visible {
+        padding: 0 2rem 0 1.125rem;
       }
     }
 
@@ -430,24 +508,34 @@ $-rail-control-size: 2.5rem;
       .easyedu-navigation--identity .easyedu-navigation__identity-divider {
         margin-inline-end: 0.75rem;
       }
+    }
+  }
 
-      .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher {
-        gap: 0;
-        inline-size: $-rail-control-size;
-        justify-content: center;
-        min-inline-size: $-rail-control-size;
-        padding: 0;
-
-        .easyedu-guide__launcher-short {
-          display: none;
-        }
-      }
+  @at-root (without: rule) {
+    @keyframes easyedu-rail-compass-seek {
+      0% { transform: rotate(0deg); }
+      60% { transform: rotate(380deg); }
+      80% { transform: rotate(350deg); }
+      100% { transform: rotate(360deg); }
     }
   }
 
   @include animations.motion-restricted {
-    .easyedu-navigation--identity .easyedu-guide__launcher {
+    .easyedu-navigation--identity .easyedu-guide__launcher,
+    .easyedu-navigation--identity .easyedu-navigation__item.is-rail-collapsed,
+    .easyedu-navigation--identity .is-rail-collapsed .easyedu-navigation__item-label,
+    .easyedu-navigation--identity .is-rail-collapsed .easyedu-guide__launcher-short {
       transition-duration: 0.01ms;
+    }
+
+    .easyedu-navigation--identity .easyedu-guide__launcher .easyedu-guide__launcher-icon {
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .easyedu-navigation--identity .easyedu-guide__launcher .easyedu-guide__launcher-icon {
+      animation: none;
     }
   }
 

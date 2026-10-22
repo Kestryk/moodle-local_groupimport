@@ -170,33 +170,93 @@ const bindLabelReveal = root => {
     window.addEventListener('resize', onResize, {passive: true});
 };
 
-// K21-51 identity rail: narrow rails show some destinations (and the Guide) as
-// icon-only capsules through a container query. Only those collapsed controls
-// opt into the shared Kit hover/focus bubble, which reads their aria-label.
-const bindIdentityRailTooltips = root => {
+// K22-05 identity rail progressive fit (replaces the K21-51/K21-53 fixed container
+// thresholds). Every label is shown while the rail fits; otherwise controls collapse
+// to icon capsules one by one, only as far as needed: utilities from the end, then
+// inactive destinations from the end, then the Guide. The active view never collapses.
+// K22-06: a collapsed control unfolds in place on hover/keyboard focus (CSS overlay
+// sized by --easyedu-rail-item-full, opening toward the side that has room); it no
+// longer opts into the Kit bubble. Its accessible name is unchanged (aria-label).
+const RAIL_COLLAPSED = 'is-rail-collapsed';
+const RAIL_EXPAND_START = 'is-rail-expand-start';
+const RAIL_FITTED = 'is-rail-fitted';
+
+const bindIdentityRailFit = root => {
     const navigation = root.classList.contains('easyedu-navigation--identity') ?
         root.querySelector('[data-easyedu-navigation-desktop]') : null;
-    if (!navigation || typeof window.ResizeObserver !== 'function') {
+    if (!navigation) {
         return;
     }
-    let frame = 0;
-    const sync = () => {
-        frame = 0;
-        navigation.querySelectorAll('.easyedu-navigation__item, .easyedu-guide__launcher').forEach(control => {
-            const label = control.querySelector('.easyedu-navigation__item-label, .easyedu-guide__launcher-short');
-            const collapsed = !!label && control.hasAttribute('aria-label') &&
-                window.getComputedStyle(label).display === 'none';
-            if (control.hasAttribute('data-easyedu-display-tooltip') !== collapsed) {
-                control.toggleAttribute('data-easyedu-display-tooltip', collapsed);
-            }
-        });
+    const sections = navigation.querySelector('.easyedu-navigation__sections');
+    const isActive = control => control.classList.contains('active') || control.getAttribute('aria-current') === 'page';
+    const isUtility = control => !!control.closest('.easyedu-navigation__entry--utility');
+    const candidates = () => {
+        const items = Array.from(navigation.querySelectorAll('.easyedu-navigation__sections .easyedu-navigation__item'))
+            .filter(item => !isActive(item));
+        const guide = navigation.querySelector('.easyedu-navigation__utilities .easyedu-guide__launcher');
+        return [
+            ...items.filter(isUtility).reverse(),
+            ...items.filter(item => !isUtility(item)).reverse(),
+            ...(guide ? [guide] : []),
+        ];
     };
-    new window.ResizeObserver(() => {
-        if (!frame) {
-            frame = window.requestAnimationFrame(sync);
+    const overflows = () => navigation.scrollWidth > navigation.clientWidth + 1 ||
+        (!!sections && sections.scrollWidth > sections.clientWidth + 1);
+    const fit = () => {
+        const controls = candidates();
+        navigation.classList.remove(RAIL_FITTED);
+        controls.forEach(control => {
+            control.classList.remove(RAIL_COLLAPSED, RAIL_EXPAND_START);
+            control.removeAttribute('data-easyedu-display-tooltip');
+        });
+        if (navigation.getClientRects().length === 0 || window.getComputedStyle(navigation).display === 'none') {
+            return;
         }
-    }).observe(navigation);
-    sync();
+        // Natural (labelled) widths, read before any collapse.
+        controls.forEach(control => {
+            control.style.setProperty('--easyedu-rail-item-full', `${Math.ceil(control.scrollWidth)}px`);
+        });
+        for (const control of controls) {
+            if (!overflows()) {
+                break;
+            }
+            control.classList.add(RAIL_COLLAPSED);
+        }
+        // Opening side: destinations and utilities unfold within the item list, never
+        // over the Guide / Display preferences group; the Guide unfolds within the rail.
+        const bounds = navigation.getBoundingClientRect();
+        const utilities = navigation.querySelector('.easyedu-navigation__utilities');
+        const listEnd = utilities ? utilities.getBoundingClientRect().left - 8 : bounds.right;
+        const listStart = sections ? sections.getBoundingClientRect().left : bounds.left;
+        controls.filter(control => control.classList.contains(RAIL_COLLAPSED)).forEach(control => {
+            const rect = control.getBoundingClientRect();
+            const full = parseFloat(control.style.getPropertyValue('--easyedu-rail-item-full')) || rect.width;
+            const inList = !!sections && sections.contains(control);
+            const roomEnd = (inList ? listEnd : bounds.right) - rect.left;
+            const roomStart = rect.right - (inList ? listStart : bounds.left);
+            control.classList.toggle(RAIL_EXPAND_START, full > roomEnd && roomStart > roomEnd);
+        });
+        // A fitted rail no longer needs its scroll fallback: the hover overlay may extend past the list.
+        navigation.classList.toggle(RAIL_FITTED, !overflows());
+    };
+    let frame = 0;
+    const schedule = () => {
+        if (!frame) {
+            frame = window.requestAnimationFrame(() => {
+                frame = 0;
+                fit();
+            });
+        }
+    };
+    if (typeof window.ResizeObserver === 'function') {
+        new window.ResizeObserver(schedule).observe(navigation);
+    } else {
+        window.addEventListener('resize', schedule, {passive: true});
+    }
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(schedule).catch(() => undefined);
+    }
+    fit();
 };
 
 const bindRoot = root => {
@@ -359,7 +419,7 @@ const bindRoot = root => {
     window.addEventListener('scroll', scheduleTriggerPosition, {passive: true});
     bindDisclosure(root);
     bindLabelReveal(root);
-    bindIdentityRailTooltips(root);
+    bindIdentityRailFit(root);
     syncTriggerPosition();
     setOpen(false, false, false, false);
 

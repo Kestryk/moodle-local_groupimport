@@ -695,9 +695,9 @@
 #local-groupimport-import {
   @include easyedu.rail-anchor-page(64rem);
 
-  // Four rail items (two destinations, two utilities): the full French rail
-  // needs about 86rem, so inactive labels collapse to icon capsules below 88rem.
+  // Four rail items: the navigation controller collapses only what does not fit
+  // (utilities first), K22-05.
   .easyedu-rail-anchor__rail {
-    @include easyedu.navigation-identity-rail(64rem, 88rem);
+    @include easyedu.navigation-identity-rail(64rem);
   }
 }

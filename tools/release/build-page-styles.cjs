@@ -18,7 +18,9 @@ function targets(selector){
  // never gets the class). Without this, the catch-all below ships its ~8 KB token block
  // (I9, 21/10) into Student Management and Mass Import where no element ever wears it.
  const admin=/local-groupimport-admin|page-admin-setting-local_groupimport|easyedu-welcome-reset|easyedu-ui--standalone/.test(selector);
- const mass=/local-groupimport-import|path-local-groupimport-index|local-groupimport-easystud__navigation/.test(selector);
+ // K22-07: the shared Kit hover bubble (easyedu_bubble.js BUBBLE_CLASS) is also used on Mass Import
+ // (Display preferences icon); without it the page showed a bare Bootstrap popover.
+ const mass=/local-groupimport-import|path-local-groupimport-index|local-groupimport-easystud__navigation|local-groupimport-easystud-hover-popover/.test(selector);
  // Mixed consumer selectors retain their shared declarations on every named consumer.
  return sm||admin||mass?{sm,admin,mass}:{sm:true,admin:true,mass:true};
 }
