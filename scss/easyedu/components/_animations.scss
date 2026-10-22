@@ -477,7 +477,10 @@ $motion-policy-roots: (
     top: 1rem;
     transform: translateX(-50%);
     width: 2.25rem;
-    z-index: 1070;
+    // K22-25: the guided checklist shares this fixed layer at its base level
+    // (1070, see _guide.scss and --easyedu-modal-layer); the busy cue must stay
+    // above it, never hidden behind an open checklist while an action runs.
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 2);
   }
 
   &.is-action-busy::before {
@@ -497,7 +500,7 @@ $motion-policy-roots: (
     top: 0.82rem;
     transform: translateX(-50%);
     white-space: nowrap;
-    z-index: 1069;
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
   }
 
   // The pop animates box-shadow and transform (repaint on every frame): static
@@ -530,7 +533,11 @@ $motion-policy-roots: (
     right: 1.25rem;
     transform-origin: center;
     width: 2.15rem;
-    z-index: 1048;
+    // K22-25: this bottom-right cue used to sit well under the guided checklist
+    // layer (1070, see _guide.scss), so it rendered invisibly behind an open
+    // checklist (same bottom-right corner) while e.g. "try-actions" created a
+    // membership action. Keep it above that layer, like the native dialog cues.
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 2);
   }
 
   &.is-action-busy::before {
@@ -548,7 +555,7 @@ $motion-policy-roots: (
     pointer-events: none;
     position: fixed;
     right: 1.45rem;
-    z-index: 1047;
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
   }
 
   // Static spinner and label as soon as the level is not full.
