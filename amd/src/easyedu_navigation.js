@@ -180,6 +180,10 @@ const bindLabelReveal = root => {
 // overflows, neighbours fold temporarily (those after it first, in fit priority), so
 // nothing is ever covered. The target layout is measured with transitions frozen,
 // then animated from what is on screen. Accessible names are unchanged.
+// K22-36: last resort, when folding every neighbour still leaves the rail short, the
+// active view condenses PARTIALLY (`.is-rail-condensed`): it keeps its filled icon
+// and active surface, gives back only the missing width (label ellipsised, end
+// padding reduced), never below RAIL_ACTIVE_MIN. Other controls still fold fully.
 const RAIL_COLLAPSED = 'is-rail-collapsed';
 const RAIL_FITTED = 'is-rail-fitted';
 const RAIL_UNFOLDED = 'is-rail-unfolded';
@@ -188,6 +192,7 @@ const RAIL_REFLOWING = 'is-rail-reflowing';
 const RAIL_MEASURING = 'is-rail-measuring';
 const RAIL_TIGHT = 'is-rail-tight';
 const RAIL_READY = 'is-rail-ready';
+const RAIL_CONDENSED = 'is-rail-condensed';
 const RAIL_SETTLE_MS = 400;
 // K22-22: grace before a left control folds back (crossing the gap to a neighbour).
 const RAIL_RELEASE_MS = 160;
@@ -195,6 +200,8 @@ const RAIL_RELEASE_MS = 160;
 const RAIL_POINTER_INSET = 12;
 // Below this width an unfolded capsule would show no useful part of its label.
 const RAIL_MIN_ROOM = 72;
+// K22-36: narrowest condensed active view: icon circle and a few letters of its label.
+const RAIL_ACTIVE_MIN = 104;
 
 const bindIdentityRailFit = root => {
     const navigation = root.classList.contains('easyedu-navigation--identity') ?
@@ -215,6 +222,8 @@ const bindIdentityRailFit = root => {
             ...(guide ? [guide] : []),
         ];
     };
+    const activeItem = () => Array.from(
+        navigation.querySelectorAll('.easyedu-navigation__sections .easyedu-navigation__item')).find(isActive) || null;
     const overflows = () => navigation.scrollWidth > navigation.clientWidth + 1 ||
         (!!sections && sections.scrollWidth > sections.clientWidth + 1);
     let unfolded = null;
@@ -227,15 +236,33 @@ const bindIdentityRailFit = root => {
     let recheckTimer = 0;
     // K22-22: last pointer position over the rail (null once it leaves the rail).
     let pointer = null;
+    // K22-36: condensed width of the active view (null: natural width). `baseCondensed`
+    // is the resting value set by the fit; an unfold may condense it further.
+    let condensed = null;
+    let baseCondensed = null;
+    const setCondensed = value => {
+        const active = activeItem();
+        if (!active) {
+            return;
+        }
+        active.classList.toggle(RAIL_CONDENSED, value !== null);
+        if (value === null) {
+            active.style.removeProperty('--easyedu-rail-item-condensed');
+        } else {
+            active.style.setProperty('--easyedu-rail-item-condensed', `${value}px`);
+        }
+    };
     const isFolded = control => control.classList.contains(RAIL_COLLAPSED);
     const isRtl = () => window.getComputedStyle(navigation).direction === 'rtl';
     // `tight` narrows the rail spacing and `room` caps the unfolded width (label
     // ellipsised), each only when folding every neighbour still leaves too little room.
     // `shift` (K22-22) keeps the start edge of a control that unfolds after the
     // preceding unfolded control folds back, so it stays under the pointer.
-    const applyUnfold = (target, yields, room = null, tight = false, shift = 0) => {
+    const applyUnfold = (target, yields, room = null, tight = false, shift = 0, squeeze = baseCondensed) => {
         navigation.classList.toggle(RAIL_TIGHT, tight);
         unfoldedTight = tight;
+        condensed = squeeze;
+        setCondensed(squeeze);
         if (unfolded) {
             unfolded.classList.remove(RAIL_UNFOLDED);
             unfolded.style.removeProperty('--easyedu-rail-item-open');
@@ -259,6 +286,21 @@ const bindIdentityRailFit = root => {
     };
     const excess = () => Math.max(navigation.scrollWidth - navigation.clientWidth,
         sections ? sections.scrollWidth - sections.clientWidth : 0);
+    // K22-36: condense the active view by the missing width only (a few passes, as
+    // the label and padding settle), never below RAIL_ACTIVE_MIN. Null if not needed.
+    const condense = () => {
+        const active = activeItem();
+        if (!active || !overflows() || active.getBoundingClientRect().width <= RAIL_ACTIVE_MIN) {
+            return null;
+        }
+        let value = null;
+        for (let pass = 0; pass < 3 && overflows() && value !== RAIL_ACTIVE_MIN; pass++) {
+            const current = active.getBoundingClientRect().width;
+            value = Math.max(Math.floor(current - excess() - 1), RAIL_ACTIVE_MIN);
+            setCondensed(value);
+        }
+        return value;
+    };
     // K22-22: once a reflow has settled, the control under a still pointer may have
     // changed without any pointer event. Re-evaluate it from the last pointer position.
     const scheduleRecheck = () => {
@@ -302,7 +344,8 @@ const bindIdentityRailFit = root => {
         if (target === unfolded) {
             return;
         }
-        const previous = {target: unfolded, yields: yielded, room: unfoldedRoom, tight: unfoldedTight, shift: unfoldedShift};
+        const previous = {target: unfolded, yields: yielded, room: unfoldedRoom, tight: unfoldedTight, shift: unfoldedShift,
+            squeeze: condensed};
         // eslint-disable-next-line no-bitwise
         const precedes = (first, second) => !!(first.compareDocumentPosition(second) & Node.DOCUMENT_POSITION_FOLLOWING);
         const rtl = isRtl();
@@ -311,7 +354,7 @@ const bindIdentityRailFit = root => {
         const endEdge = rect => (rtl ? -rect.left : rect.right);
         const visibleStart = startEdge(target.getBoundingClientRect());
         navigation.classList.add(RAIL_REFLOWING, RAIL_MEASURING);
-        applyUnfold(target, []);
+        applyUnfold(target, [], null, false, 0, null);
         // Fold what follows the unfolding control first, in fit priority (destinations,
         // then the Guide, which stays reachable as an icon): the control then grows away
         // from its start edge and stays under the pointer. Preceding controls give way
@@ -336,13 +379,15 @@ const bindIdentityRailFit = root => {
             // the rail allows (never over a neighbour). With no useful room, stay folded.
             const tight = overflows();
             navigation.classList.toggle(RAIL_TIGHT, tight);
+            // K22-36: then the active view gives back what is still missing, partially.
+            const squeeze = condense();
             let room = null;
             for (let pass = 0; pass < 3 && overflows(); pass++) {
                 const current = target.getBoundingClientRect().width;
                 room = Math.max(Math.floor(current - excess() - 1), 0);
                 target.style.setProperty('--easyedu-rail-item-open', `${room}px`);
             }
-            return {yields, room, tight, shift, rect: target.getBoundingClientRect(),
+            return {yields, room, tight, shift, squeeze, rect: target.getBoundingClientRect(),
                 useful: room === null || room >= RAIL_MIN_ROOM};
         };
         const unplan = planned => {
@@ -350,6 +395,7 @@ const bindIdentityRailFit = root => {
             target.style.removeProperty('--easyedu-rail-item-open');
             target.style.removeProperty('--easyedu-rail-item-shift');
             navigation.classList.remove(RAIL_TIGHT);
+            setCondensed(null);
         };
         let planned = plan(0);
         // K22-22: when the previously unfolded control precedes the target, folding it
@@ -372,11 +418,11 @@ const bindIdentityRailFit = root => {
                 }
             }
         }
-        const next = planned.useful ? [target, planned.yields, planned.room, planned.tight, planned.shift] :
-            [null, [], null, false, 0];
+        const next = planned.useful ? [target, planned.yields, planned.room, planned.tight, planned.shift, planned.squeeze] :
+            [null, [], null, false, 0, baseCondensed];
         // Back to the visible state (planned yields included), then animate to the plan.
         unplan(planned);
-        applyUnfold(previous.target, previous.yields, previous.room, previous.tight, previous.shift);
+        applyUnfold(previous.target, previous.yields, previous.room, previous.tight, previous.shift, previous.squeeze);
         void navigation.offsetWidth;
         navigation.classList.remove(RAIL_MEASURING);
         void navigation.offsetWidth;
@@ -447,6 +493,7 @@ const bindIdentityRailFit = root => {
         recheckTimer = 0;
         window.clearTimeout(settleTimer);
         settleTimer = 0;
+        baseCondensed = null;
         applyUnfold(null, []);
         navigation.classList.remove(RAIL_FITTED, RAIL_REFLOWING);
         controls.forEach(control => {
@@ -457,8 +504,10 @@ const bindIdentityRailFit = root => {
         if (navigation.getClientRects().length === 0 || window.getComputedStyle(navigation).display === 'none') {
             return;
         }
-        // Natural (labelled) widths, read before any collapse.
-        controls.forEach(control => {
+        // Natural (labelled) widths, read before any collapse (the active view too:
+        // its condensing animates from it, K22-36).
+        const active = activeItem();
+        (active ? [...controls, active] : controls).forEach(control => {
             const width = Math.max(control.scrollWidth, control.getBoundingClientRect().width);
             control.style.setProperty('--easyedu-rail-item-full', `${Math.ceil(width)}px`);
         });
@@ -468,6 +517,9 @@ const bindIdentityRailFit = root => {
             }
             control.classList.add(RAIL_COLLAPSED);
         }
+        // K22-36: still short with every control folded: condense the active view.
+        baseCondensed = condense();
+        condensed = baseCondensed;
         // A fitted rail no longer needs its scroll fallback (focus rings stay unclipped).
         navigation.classList.toggle(RAIL_FITTED, !overflows());
         // A refit (resize, late fonts) under a pointer or keyboard focus re-plans the unfold.

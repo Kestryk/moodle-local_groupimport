@@ -179,7 +179,9 @@ $-rail-control-size: 2.5rem;
 // capsules only while the rail overflows (`.is-rail-collapsed`: utilities, then
 // inactive destinations, then the Guide); K22-13: a collapsed control unfolds in the
 // flow on hover/focus and its neighbours fold to make room (`.is-rail-unfolded`,
-// `.is-rail-yielded`, `--easyedu-rail-item-full`), never an overlay.
+// `.is-rail-yielded`, `--easyedu-rail-item-full`), never an overlay. K22-36: as a
+// last resort the active view condenses partially (`.is-rail-condensed`,
+// `--easyedu-rail-item-condensed`): truncated label, same active surface and icon.
 // No fixed width threshold: labels stay visible whenever they fit, in any language.
 @mixin navigation-identity-rail($compact-breakpoint: 64rem) {
   // Capsule label of the Guide launcher: only the identity rail shows it.
@@ -494,12 +496,13 @@ $-rail-control-size: 2.5rem;
 
     // :where() keeps this at 0,3,0 so the collapsed slot, the measuring freeze and
     // the reduced-motion durations below still win.
+    // The active view takes part too (K22-36): its partial condensing animates.
     .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-reflowing :where(
-      .easyedu-navigation__item:not(.active):not([aria-current="page"]):not(.is-rail-collapsed),
+      .easyedu-navigation__item:not(.is-rail-collapsed),
       .easyedu-navigation__guide-source .easyedu-guide__launcher:not(.is-rail-collapsed)
     ) {
       flex: 0 0 auto;
-      inline-size: var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto));
+      inline-size: var(--easyedu-rail-item-condensed, var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto)));
       overflow: hidden;
       transition:
         inline-size var(--easyedu-motion-fast, 160ms) ease,
@@ -580,9 +583,19 @@ $-rail-control-size: 2.5rem;
       }
     }
 
-    // Capped unfold (no room left even with every neighbour folded): ellipsis, the
-    // accessible name stays complete.
-    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .is-rail-unfolded {
+    // K22-36 condensed active view: only the missing width is given back. It keeps
+    // its active surface, filled icon circle and the start of its label (ellipsis);
+    // the end padding narrows to the icon-side rhythm.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-condensed {
+      flex: 0 0 auto;
+      inline-size: var(--easyedu-rail-item-condensed, auto);
+      overflow: hidden;
+      padding-inline-end: 0.75rem;
+    }
+
+    // Capped unfold (no room left even with every neighbour folded) and condensed
+    // active view: ellipsis, the accessible name stays complete.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] :is(.is-rail-unfolded, .is-rail-condensed) {
       > .easyedu-navigation__item-label,
       .easyedu-guide__launcher-short {
         min-inline-size: 0;
