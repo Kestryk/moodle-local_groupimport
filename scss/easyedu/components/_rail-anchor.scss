@@ -152,8 +152,9 @@ $-rail-control-size: 2.5rem;
 // includes `navigation-component` (the navigation wrapper).
 // Narrow rails (K22-05/06): the navigation controller collapses controls to icon
 // capsules only while the rail overflows (`.is-rail-collapsed`: utilities, then
-// inactive destinations, then the Guide); a collapsed control unfolds in place on
-// hover/focus over its neighbours (`--easyedu-rail-item-full`, `.is-rail-expand-start`).
+// inactive destinations, then the Guide); K22-13: a collapsed control unfolds in the
+// flow on hover/focus and its neighbours fold to make room (`.is-rail-unfolded`,
+// `.is-rail-yielded`, `--easyedu-rail-item-full`), never an overlay.
 // No fixed width threshold: labels stay visible whenever they fit, in any language.
 @mixin navigation-identity-rail($compact-breakpoint: 64rem) {
   // Capsule label of the Guide launcher: only the identity rail shows it.
@@ -447,13 +448,35 @@ $-rail-control-size: 2.5rem;
   }
 
   // Collapsed controls (K22-05, set by the navigation controller only while the
-  // rail overflows) and their in-place unfolding (K22-06). The collapsed slot stays
-  // 40 px: on hover/focus the capsule grows to its natural width over its
-  // neighbours (negative margin on the opening side), so nothing else moves. The
-  // label stays in the accessibility tree; it is only clipped while folded.
+  // rail overflows) and their unfolding (K22-13, replaces the K22-06 overlay). The
+  // collapsed slot is 40 px; the controller marks the hovered/focused one
+  // `.is-rail-unfolded` and it grows to its natural width IN THE FLOW, while
+  // neighbours fold temporarily (`.is-rail-yielded`) so nothing is covered. During
+  // that reflow (`.is-rail-reflowing`) every capsule has an explicit width so the
+  // fold/unfold animates; `.is-rail-measuring` freezes transitions while the
+  // controller measures the target layout. The label stays in the accessibility
+  // tree; it is only clipped while folded.
   @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
     .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-fitted > .easyedu-navigation__sections {
       overflow: visible;
+    }
+
+    // :where() keeps this at 0,3,0 so the collapsed slot, the measuring freeze and
+    // the reduced-motion durations below still win.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-reflowing :where(
+      .easyedu-navigation__item:not(.active):not([aria-current="page"]):not(.is-rail-collapsed),
+      .easyedu-navigation__guide-source .easyedu-guide__launcher:not(.is-rail-collapsed)
+    ) {
+      flex: 0 0 auto;
+      inline-size: var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto));
+      overflow: hidden;
+      transition:
+        inline-size var(--easyedu-motion-fast, 160ms) ease,
+        padding var(--easyedu-motion-fast, 160ms) ease,
+        gap var(--easyedu-motion-fast, 160ms) ease,
+        background-color var(--easyedu-motion-fast, 160ms) ease,
+        background-position var(--easyedu-motion-slow, 480ms) ease,
+        box-shadow var(--easyedu-motion-fast, 160ms) ease;
     }
 
     .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed,
@@ -465,13 +488,13 @@ $-rail-control-size: 2.5rem;
       margin-inline: 0;
       min-inline-size: $-rail-control-size;
       overflow: hidden;
-      position: relative;
       transition:
         inline-size var(--easyedu-motion-fast, 160ms) ease,
-        margin var(--easyedu-motion-fast, 160ms) ease,
         padding var(--easyedu-motion-fast, 160ms) ease,
-        background-color var(--easyedu-motion-fast, 160ms) ease;
-      z-index: 0;
+        gap var(--easyedu-motion-fast, 160ms) ease,
+        background-color var(--easyedu-motion-fast, 160ms) ease,
+        background-position var(--easyedu-motion-slow, 480ms) ease,
+        box-shadow var(--easyedu-motion-fast, 160ms) ease;
 
       > .easyedu-navigation__item-label,
       .easyedu-guide__launcher-short {
@@ -479,39 +502,65 @@ $-rail-control-size: 2.5rem;
         transition: opacity var(--easyedu-motion-fast, 160ms) ease;
       }
 
-      &:hover,
-      &:focus-visible {
+      &.is-rail-unfolded {
         gap: 0.625rem;
-        inline-size: var(--easyedu-rail-item-full, auto);
-        margin-inline-end: calc(#{$-rail-control-size} - var(--easyedu-rail-item-full, #{$-rail-control-size}));
-        z-index: 3;
+        inline-size: var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto));
 
         > .easyedu-navigation__item-label,
         .easyedu-guide__launcher-short {
           opacity: 1;
         }
       }
+    }
 
-      &.is-rail-expand-start:hover,
-      &.is-rail-expand-start:focus-visible {
-        margin-inline-end: 0;
-        margin-inline-start: calc(#{$-rail-control-size} - var(--easyedu-rail-item-full, #{$-rail-control-size}));
+    // Spacing gives way after the neighbours (`.is-rail-tight`), animated with them.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-reflowing {
+      .easyedu-navigation__identity,
+      .easyedu-navigation__identity-divider,
+      .easyedu-navigation__items,
+      .easyedu-navigation__utilities {
+        transition:
+          margin var(--easyedu-motion-fast, 160ms) ease,
+          padding var(--easyedu-motion-fast, 160ms) ease,
+          gap var(--easyedu-motion-fast, 160ms) ease;
+      }
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-tight {
+      .easyedu-navigation__identity {
+        margin-inline-end: 0.75rem;
+      }
+
+      .easyedu-navigation__identity-divider {
+        margin-inline-end: 0.5rem;
+      }
+
+      .easyedu-navigation__items {
+        gap: 0.25rem;
+      }
+
+      .easyedu-navigation__utilities {
+        gap: 0.375rem;
+        padding-inline-start: 0.5rem;
+      }
+    }
+
+    // Capped unfold (no room left even with every neighbour folded): ellipsis, the
+    // accessible name stays complete.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .is-rail-unfolded {
+      > .easyedu-navigation__item-label,
+      .easyedu-guide__launcher-short {
+        min-inline-size: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
     .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed {
       padding: 0 0.375rem;
 
-      // The unfolding capsule needs an opaque surface above its neighbours.
-      &:hover,
-      &:focus-visible {
-        background: color-mix(in srgb, var(--easyedu-primary-soft) 60%, var(--easyedu-surface) 40%);
-        box-shadow: 0 0.25rem 0.75rem rgba(21, 82, 132, 0.16);
+      &.is-rail-unfolded {
         padding: 0 1.25rem 0 0.375rem;
-      }
-
-      &:focus-visible {
-        @include focus.ring($base-shadow: 0 0.25rem 0.75rem rgba(21, 82, 132, 0.16));
       }
     }
 
@@ -519,9 +568,21 @@ $-rail-control-size: 2.5rem;
       // Glyph centred in the 40 px slot: (40 - 16) / 2.
       padding: 0 0 0 0.75rem;
 
-      &:hover,
-      &:focus-visible {
+      &.is-rail-unfolded {
         padding: 0 2rem 0 1.125rem;
+      }
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-measuring {
+      .easyedu-navigation__item,
+      .easyedu-guide__launcher,
+      .easyedu-navigation__item-label,
+      .easyedu-guide__launcher-short,
+      .easyedu-navigation__identity,
+      .easyedu-navigation__identity-divider,
+      .easyedu-navigation__items,
+      .easyedu-navigation__utilities {
+        transition: none;
       }
     }
 
@@ -548,6 +609,11 @@ $-rail-control-size: 2.5rem;
   @include animations.motion-restricted {
     .easyedu-navigation--identity .easyedu-guide__launcher,
     .easyedu-navigation--identity .easyedu-navigation__item.is-rail-collapsed,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__item,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__identity,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__identity-divider,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__items,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__utilities,
     .easyedu-navigation--identity .is-rail-collapsed .easyedu-navigation__item-label,
     .easyedu-navigation--identity .is-rail-collapsed .easyedu-guide__launcher-short {
       transition-duration: 0.01ms;

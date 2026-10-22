@@ -174,12 +174,22 @@ const bindLabelReveal = root => {
 // thresholds). Every label is shown while the rail fits; otherwise controls collapse
 // to icon capsules one by one, only as far as needed: utilities from the end, then
 // inactive destinations from the end, then the Guide. The active view never collapses.
-// K22-06: a collapsed control unfolds in place on hover/keyboard focus (CSS overlay
-// sized by --easyedu-rail-item-full, opening toward the side that has room); it no
-// longer opts into the Kit bubble. Its accessible name is unchanged (aria-label).
+// K22-13 (replaces the K22-06 overlay): a collapsed control unfolds IN THE FLOW on
+// hover/keyboard focus. The rail re-runs the fit logic for that state: the unfolded
+// control takes its natural width (--easyedu-rail-item-full) and, while the rail
+// overflows, neighbours fold temporarily (those after it first, in fit priority), so
+// nothing is ever covered. The target layout is measured with transitions frozen,
+// then animated from what is on screen. Accessible names are unchanged.
 const RAIL_COLLAPSED = 'is-rail-collapsed';
-const RAIL_EXPAND_START = 'is-rail-expand-start';
 const RAIL_FITTED = 'is-rail-fitted';
+const RAIL_UNFOLDED = 'is-rail-unfolded';
+const RAIL_YIELDED = 'is-rail-yielded';
+const RAIL_REFLOWING = 'is-rail-reflowing';
+const RAIL_MEASURING = 'is-rail-measuring';
+const RAIL_TIGHT = 'is-rail-tight';
+const RAIL_SETTLE_MS = 400;
+// Below this width an unfolded capsule would show no useful part of its label.
+const RAIL_MIN_ROOM = 72;
 
 const bindIdentityRailFit = root => {
     const navigation = root.classList.contains('easyedu-navigation--identity') ?
@@ -202,19 +212,165 @@ const bindIdentityRailFit = root => {
     };
     const overflows = () => navigation.scrollWidth > navigation.clientWidth + 1 ||
         (!!sections && sections.scrollWidth > sections.clientWidth + 1);
+    let unfolded = null;
+    let unfoldedRoom = null;
+    let unfoldedTight = false;
+    let yielded = [];
+    let settleTimer = 0;
+    let releaseFrame = 0;
+    const isFolded = control => control.classList.contains(RAIL_COLLAPSED);
+    // `tight` narrows the rail spacing and `room` caps the unfolded width (label
+    // ellipsised), each only when folding every neighbour still leaves too little room.
+    const applyUnfold = (target, yields, room = null, tight = false) => {
+        navigation.classList.toggle(RAIL_TIGHT, tight);
+        unfoldedTight = tight;
+        if (unfolded) {
+            unfolded.classList.remove(RAIL_UNFOLDED);
+            unfolded.style.removeProperty('--easyedu-rail-item-open');
+        }
+        yielded.forEach(control => control.classList.remove(RAIL_COLLAPSED, RAIL_YIELDED));
+        unfolded = target;
+        unfoldedRoom = room;
+        yielded = yields;
+        if (target) {
+            target.classList.add(RAIL_UNFOLDED);
+            if (room !== null) {
+                target.style.setProperty('--easyedu-rail-item-open', `${room}px`);
+            }
+        }
+        yields.forEach(control => control.classList.add(RAIL_COLLAPSED, RAIL_YIELDED));
+    };
+    const excess = () => Math.max(navigation.scrollWidth - navigation.clientWidth,
+        sections ? sections.scrollWidth - sections.clientWidth : 0);
+    const settle = () => {
+        window.clearTimeout(settleTimer);
+        settleTimer = 0;
+        if (unfolded || yielded.length) {
+            navigation.classList.add(RAIL_REFLOWING);
+            return;
+        }
+        // Explicit widths are only needed while capsules animate; afterwards the
+        // rail returns to its natural (auto) widths, which are the same values.
+        settleTimer = window.setTimeout(() => {
+            settleTimer = 0;
+            if (!unfolded && !yielded.length) {
+                navigation.classList.remove(RAIL_REFLOWING);
+            }
+        }, RAIL_SETTLE_MS);
+    };
+    // Measure the layout where `target` shows its label, folding neighbours while the
+    // rail overflows, then animate from the current state to it.
+    const unfold = target => {
+        window.cancelAnimationFrame(releaseFrame);
+        releaseFrame = 0;
+        if (target === unfolded) {
+            return;
+        }
+        const previous = {target: unfolded, yields: yielded, room: unfoldedRoom, tight: unfoldedTight};
+        navigation.classList.add(RAIL_REFLOWING, RAIL_MEASURING);
+        applyUnfold(target, []);
+        // Fold what follows the unfolding control first, in fit priority (destinations,
+        // then the Guide, which stays reachable as an icon): the control then grows away
+        // from its start edge and stays under the pointer. Preceding controls give way
+        // last, since folding them slides the control toward its start.
+        // eslint-disable-next-line no-bitwise
+        const follows = control => !!(target.compareDocumentPosition(control) & Node.DOCUMENT_POSITION_FOLLOWING);
+        const open = candidates().filter(control => control !== target && !isFolded(control));
+        const queue = [...open.filter(follows), ...open.filter(control => !follows(control))];
+        const yields = [];
+        for (const control of queue) {
+            if (!overflows()) {
+                break;
+            }
+            control.classList.add(RAIL_COLLAPSED, RAIL_YIELDED);
+            yields.push(control);
+        }
+        // Nothing left to fold: tighten the rail spacing, then open only as far as the
+        // rail allows (never over a neighbour). With no useful room, stay folded.
+        const tight = overflows();
+        navigation.classList.toggle(RAIL_TIGHT, tight);
+        let room = null;
+        for (let pass = 0; pass < 3 && overflows(); pass++) {
+            const current = target.getBoundingClientRect().width;
+            room = Math.max(Math.floor(current - excess() - 1), 0);
+            target.style.setProperty('--easyedu-rail-item-open', `${room}px`);
+        }
+        const next = room !== null && room < RAIL_MIN_ROOM ? [null, [], null, false] : [target, yields, room, tight];
+        applyUnfold(previous.target, previous.yields, previous.room, previous.tight);
+        void navigation.offsetWidth;
+        navigation.classList.remove(RAIL_MEASURING);
+        void navigation.offsetWidth;
+        applyUnfold(...next);
+        settle();
+    };
+    const release = control => {
+        if (control !== unfolded || releaseFrame) {
+            return;
+        }
+        // Deferred one frame so moving straight to another folded control re-plans
+        // from the visible state instead of folding back first.
+        releaseFrame = window.requestAnimationFrame(() => {
+            releaseFrame = 0;
+            if (unfolded === control) {
+                applyUnfold(null, []);
+                settle();
+            }
+        });
+    };
+    const matches = (control, selector) => {
+        try {
+            return control.matches(selector);
+        } catch (error) {
+            return false;
+        }
+    };
+    const bound = new WeakSet();
+    const bindUnfold = control => {
+        if (bound.has(control)) {
+            return;
+        }
+        bound.add(control);
+        control.addEventListener('pointerenter', () => {
+            if (isFolded(control) || control === unfolded) {
+                unfold(control);
+            }
+        });
+        control.addEventListener('focusin', () => {
+            if ((isFolded(control) || control === unfolded) && matches(control, ':focus-visible')) {
+                unfold(control);
+            }
+        });
+        control.addEventListener('pointerleave', () => {
+            if (!matches(control, ':focus-visible')) {
+                release(control);
+            }
+        });
+        control.addEventListener('focusout', () => {
+            if (!matches(control, ':hover')) {
+                release(control);
+            }
+        });
+    };
     const fit = () => {
         const controls = candidates();
-        navigation.classList.remove(RAIL_FITTED);
+        window.cancelAnimationFrame(releaseFrame);
+        releaseFrame = 0;
+        window.clearTimeout(settleTimer);
+        settleTimer = 0;
+        applyUnfold(null, []);
+        navigation.classList.remove(RAIL_FITTED, RAIL_REFLOWING);
         controls.forEach(control => {
-            control.classList.remove(RAIL_COLLAPSED, RAIL_EXPAND_START);
+            control.classList.remove(RAIL_COLLAPSED);
             control.removeAttribute('data-easyedu-display-tooltip');
+            bindUnfold(control);
         });
         if (navigation.getClientRects().length === 0 || window.getComputedStyle(navigation).display === 'none') {
             return;
         }
         // Natural (labelled) widths, read before any collapse.
         controls.forEach(control => {
-            control.style.setProperty('--easyedu-rail-item-full', `${Math.ceil(control.scrollWidth)}px`);
+            const width = Math.max(control.scrollWidth, control.getBoundingClientRect().width);
+            control.style.setProperty('--easyedu-rail-item-full', `${Math.ceil(width)}px`);
         });
         for (const control of controls) {
             if (!overflows()) {
@@ -222,22 +378,14 @@ const bindIdentityRailFit = root => {
             }
             control.classList.add(RAIL_COLLAPSED);
         }
-        // Opening side: destinations and utilities unfold within the item list, never
-        // over the Guide / Display preferences group; the Guide unfolds within the rail.
-        const bounds = navigation.getBoundingClientRect();
-        const utilities = navigation.querySelector('.easyedu-navigation__utilities');
-        const listEnd = utilities ? utilities.getBoundingClientRect().left - 8 : bounds.right;
-        const listStart = sections ? sections.getBoundingClientRect().left : bounds.left;
-        controls.filter(control => control.classList.contains(RAIL_COLLAPSED)).forEach(control => {
-            const rect = control.getBoundingClientRect();
-            const full = parseFloat(control.style.getPropertyValue('--easyedu-rail-item-full')) || rect.width;
-            const inList = !!sections && sections.contains(control);
-            const roomEnd = (inList ? listEnd : bounds.right) - rect.left;
-            const roomStart = rect.right - (inList ? listStart : bounds.left);
-            control.classList.toggle(RAIL_EXPAND_START, full > roomEnd && roomStart > roomEnd);
-        });
-        // A fitted rail no longer needs its scroll fallback: the hover overlay may extend past the list.
+        // A fitted rail no longer needs its scroll fallback (focus rings stay unclipped).
         navigation.classList.toggle(RAIL_FITTED, !overflows());
+        // A refit (resize, late fonts) under a pointer or keyboard focus re-plans the unfold.
+        const engaged = controls.find(control => isFolded(control) &&
+            (matches(control, ':hover') || matches(control, ':focus-visible')));
+        if (engaged) {
+            unfold(engaged);
+        }
     };
     let frame = 0;
     const schedule = () => {
