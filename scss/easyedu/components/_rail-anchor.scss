@@ -22,6 +22,9 @@
 //       tabs (`.easyedu-rail-anchor__tabs`, end) share one line, top-aligned. On a
 //       line too narrow for both, the tabs wrap under the head, end-aligned. The
 //       tabs never get a band of their own.
+//    K22-19 (Penpot 09.5 "K22-H", Piste 3 card): on desktop the band and the frame
+//    form ONE white rounded card, joined by a thin hairline separator. The frame
+//    must therefore directly follow the band in the DOM.
 // 2. The identity lives in the rail. The head never repeats a product eyebrow on
 //    desktop (`.easyedu-rail-anchor__compact-eyebrow` is shown on compact only).
 // 3. Modals, menus, notifications and floating trays (for instance the sticky
@@ -123,6 +126,27 @@ $-rail-control-size: 2.5rem;
   @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
     .easyedu-rail-anchor__compact-eyebrow {
       display: none;
+    }
+
+    // K22-19 (Kevin 22/10/2026, Penpot 09.5 "K22-H", Piste 3 card): the band and the
+    // frame read as ONE white card. The band is its top (card border, 16 px top
+    // corners) and ends on a full-width hairline separator painted inside the side
+    // borders; the frame that follows continues the card without a top edge.
+    .easyedu-rail-anchor__band {
+      background: var(--easyedu-surface);
+      border: 0.0625rem solid var(--easyedu-card-border);
+      border-block-end: 0;
+      border-start-end-radius: 1rem;
+      border-start-start-radius: 1rem;
+      box-shadow: inset 0 -0.0625rem 0 var(--easyedu-card-hairline);
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .easyedu-rail-anchor__band + .easyedu-rail-anchor__frame {
+      border-block-start: 0;
+      border-start-end-radius: 0;
+      border-start-start-radius: 0;
     }
   }
 
