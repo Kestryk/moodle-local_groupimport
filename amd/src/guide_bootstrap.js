@@ -23,7 +23,7 @@
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define(['local_groupimport/easyedu_guide'], function(Guide) {
+define(['local_groupimport/guide_api'], function(Guide) {
     const init = configId => {
         const element = document.getElementById(configId);
         if (!element) {

@@ -5,6 +5,6 @@ const terser=require(path.join(path.resolve(process.argv[2]),'terser')),root=pat
 (async()=>{
  const source=fs.readFileSync(path.join(root,'amd/src/guide_bootstrap.js'),'utf8').replace(/\r\n/g,'\n');
  const result=await terser.minify({'../src/guide_bootstrap.js':source.replace('define([','define("local_groupimport/guide_bootstrap", [')},{compress:true,mangle:false,sourceMap:{filename:'guide_bootstrap.min.js',url:'guide_bootstrap.min.js.map'}});
- vm.runInNewContext(result.code,{define:(name,deps,factory)=>{assert.equal(name,'local_groupimport/guide_bootstrap');assert.equal(JSON.stringify(deps),'["local_groupimport/easyedu_guide"]');assert.equal(typeof factory({}).init,'function');}});
+ vm.runInNewContext(result.code,{define:(name,deps,factory)=>{assert.equal(name,'local_groupimport/guide_bootstrap');assert.equal(JSON.stringify(deps),'["local_groupimport/guide_api"]');assert.equal(typeof factory({}).init,'function');}});
  fs.writeFileSync(path.join(root,'amd/build/guide_bootstrap.min.js'),result.code+'\n');fs.writeFileSync(path.join(root,'amd/build/guide_bootstrap.min.js.map'),result.map+'\n');console.log('Guide bootstrap named AMD/map PASS');
 })().catch(e=>{console.error(e);process.exitCode=1;});

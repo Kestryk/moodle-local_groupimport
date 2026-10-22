@@ -26,7 +26,7 @@ import * as Motion from '../../motion';
 import {listPolicy, listWindow} from '../sm/list_windows';
 import {syncLongListFooter} from './long_lists';
 import {setSelectionBar, animateListArrival, listPageChanged} from './transitions';
-import * as Guide from '../../easyedu_guide';
+import * as Guide from '../../guide_api';
 import Log from 'core/log';
 import {fetchState} from '../sm/store';
 import {refreshModel, applyParticipantFilters, sortParticipantIds, renderParticipantPage} from '../sm/participants';

@@ -22,7 +22,7 @@
  */
 
 import * as Motion from '../../motion';
-import * as Guide from '../../easyedu_guide';
+import * as Guide from '../../guide_api';
 import {getSelectedItems} from './selection';
 import {isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
 import {emitNativePathCompletion} from '../guide_path_completion';

@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import * as Guide from '../../easyedu_guide';
+import * as Guide from '../../guide_api';
 import {selectedClass, normalise, getLabels, showNotification} from './shared';
 import {openConfirmModal} from './modal';
 import {

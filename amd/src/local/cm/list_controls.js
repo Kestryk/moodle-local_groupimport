@@ -22,7 +22,7 @@
  */
 
 import * as Motion from '../../motion';
-import * as Guide from '../../easyedu_guide';
+import * as Guide from '../../guide_api';
 import {closeChoicesWithin} from '../../searchable_choices';
 import {isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
 import {scheduleCompleteListAlignment, animateCompleteListAlignment} from './layout';
