@@ -43,21 +43,28 @@ const tokenClass = 'local-groupimport-easystud-token';
 /**
  * Build the token rows consumed by the participant-card Mustache template.
  *
+ * K22-11: a row with nothing to show is not rendered at all (null skips its Mustache section).
+ * It used to carry an "empty" token that the overflow sanitiser hides, which left the label
+ * alone on an expanded card, next to a blank value.
+ *
  * @param {String} label Group label.
  * @param {String[]} items Token labels.
  * @param {String} cls Token classes.
- * @param {String} empty Empty token label.
  * @param {String} showless Show less label.
- * @returns {Object}
+ * @returns {Object|null}
  */
-const buildMetaTags = (label, items, cls, empty, showless) => {
+const buildMetaTags = (label, items, cls, showless) => {
     const visiblemax = 6;
-    const tokens = items.length ? items.slice(0, visiblemax).map(item => ({
+    items = items.filter(item => String(item || '').trim() !== '');
+    if (!items.length) {
+        return null;
+    }
+    const tokens = items.slice(0, visiblemax).map(item => ({
         label: item,
         'class': cls,
         hidden: false,
         extra: false,
-    })) : [{label: empty, 'class': cls + ' ' + tokenClass + '--empty', hidden: false}];
+    }));
     return {label, tokens, hasmore: items.length > visiblemax, showless,
         allitemsjson: JSON.stringify(items), tokenclass: cls};
 };
@@ -187,6 +194,15 @@ export const buildCardContext = (model, user) => {
         value: (user.identifiers || {})[field.key] || '',
     }));
     const metacollapsed = isMetaCollapsed(model, strings);
+    const showless = strings.showless || '';
+    const rolesmeta = buildMetaTags(strings.roleslabel || '', roles, tokenClass + ' ' + tokenClass + '--role', showless);
+    const groupsmeta = buildMetaTags(strings.groupslabel || '', groups, tokenClass + ' ' + tokenClass + '--group', showless);
+    const groupingsmeta = buildMetaTags(strings.groupingslabel || '', groupings,
+        tokenClass + ' ' + tokenClass + '--grouping', showless);
+    const customfieldsmeta = ((meta.display && meta.display.details) || []).filter(field => display[field.key])
+        .map(field => buildMetaTags(field.label, [display[field.key]], tokenClass + ' ' + tokenClass + '--custom-info',
+            showless))
+        .filter(Boolean);
 
     return {
         id: user.id,
@@ -205,15 +221,11 @@ export const buildCardContext = (model, user) => {
         roletext: normalise(roles.join('|')),
         groupidscsv: (user.groupids || []).join(','),
         groupingidscsv: groupingids.join(','),
-        rolesmeta: buildMetaTags(strings.roleslabel || '', roles, tokenClass + ' ' + tokenClass + '--role',
-            strings.norole || '', strings.showless || ''),
-        groupsmeta: buildMetaTags(strings.groupslabel || '', groups, tokenClass + ' ' + tokenClass + '--group',
-            strings.nogroup || '', strings.showless || ''),
-        groupingsmeta: buildMetaTags(strings.groupingslabel || '', groupings, tokenClass + ' ' + tokenClass + '--grouping',
-            strings.nogrouping || '', strings.showless || ''),
-        customfieldsmeta: ((meta.display && meta.display.details) || []).filter(field => display[field.key])
-            .map(field => buildMetaTags(field.label, [display[field.key]],
-                tokenClass + ' ' + tokenClass + '--custom-info', '', strings.showless || '')),
+        rolesmeta,
+        groupsmeta,
+        groupingsmeta,
+        customfieldsmeta,
+        hasmeta: Boolean(rolesmeta || groupsmeta || groupingsmeta || customfieldsmeta.length),
         viewdetailslabel: strings.viewdetailslabel || '',
         metacollapsed,
         // Light detail payload for the participant modal; heavy fields come from get_details.

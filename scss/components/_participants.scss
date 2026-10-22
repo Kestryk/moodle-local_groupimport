@@ -343,6 +343,12 @@
     display: none;
   }
 
+  // K22-11: a participant with no role, no group, no grouping and no profile field has no
+  // metadata row at all; the block must not reserve its margin when the card is expanded.
+  &-user__meta[data-easystud-user-meta-empty] {
+    display: none;
+  }
+
   &--compact-users &-user__avatar {
     display: none;
   }

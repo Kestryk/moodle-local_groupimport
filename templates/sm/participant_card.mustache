@@ -36,6 +36,7 @@
         "groupingidscsv": "",
         "viewdetailslabel": "View details",
         "rolesmeta": {"label": "Roles", "tokens": [{"label": "Student", "class": "local-groupimport-easystud-token"}]},
+        "hasmeta": true,
         "metacollapsed": true
     }
 }}
@@ -89,6 +90,7 @@
         <div
             class="local-groupimport-easystud-user__meta easyedu-person-card__meta"
             data-easystud-user-meta="1"
+            {{^hasmeta}}data-easystud-user-meta-empty="1"{{/hasmeta}}
             {{#metacollapsed}}hidden{{/metacollapsed}}
         >
             {{#rolesmeta}}
