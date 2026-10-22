@@ -204,21 +204,32 @@ if ($action && data_submitted()) {
 
 // SM-RENDU on-demand mode: the browser renders the cards from local_groupimport_get_state, so the
 // page only loads the lean data it still needs (filters, counts, grouping headers).
-$state = \local_groupimport\service\course_state::page_data($course, $context);
-$state = local_groupimport_prepare_manage_names($state, $context);
-// The authenticated document and the first store share one fresh response snapshot.
-// No persistent cache: every reload rebuilds it, and later refreshes still use AJAX.
+//
+// I8 (AUDIT-REFACTORING-CODE-20261021): page_data() and get_state::execute() used to be called
+// separately here, each rebuilding enrolled users, roles, groups and grouping memberships from
+// scratch (enrolled users/roles/groups/groupings/grouping-memberships read twice). build() is now
+// called once; page_data_from_build() derives the lean page shape from that same result in memory
+// (plus one light query scoped to the known grouping ids, for the description/configdata fields
+// build() deliberately omits from its per-card payload). The authenticated document and the first
+// store still share one fresh response snapshot; no persistent cache, every reload rebuilds it.
+// require_capability('moodle/course:managegroups', $context) already ran unconditionally above
+// (line 34); course_state::build()/page_data() only assert_context() internally, as before.
 $initialstatejson = false;
 try {
-    $initialresponse = \local_groupimport\external\get_state::execute((int)$course->id);
+    $builtstate = \local_groupimport\service\course_state::build($course, $context);
+    $state = \local_groupimport\service\course_state::page_data_from_build($builtstate, $course, $context);
+    $state = local_groupimport_prepare_manage_names($state, $context);
     $initialstatejson = json_encode(
-        json_decode($initialresponse['state'], true, 512, JSON_THROW_ON_ERROR),
+        $builtstate,
         JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT |
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE
     );
-    unset($initialresponse);
+    unset($builtstate);
 } catch (\Throwable $exception) {
-    // Keep the existing AJAX error/retry path authoritative if preparation fails.
+    // Keep the existing AJAX error/retry path authoritative if preparation fails: fall back to the
+    // lean page data alone, exactly as before this change, and omit the initial-state script.
+    $state = \local_groupimport\service\course_state::page_data($course, $context);
+    $state = local_groupimport_prepare_manage_names($state, $context);
     $initialstatejson = false;
 }
 

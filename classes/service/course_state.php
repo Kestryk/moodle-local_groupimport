@@ -298,6 +298,95 @@ class course_state {
     }
 
     /**
+     * Derive manage.php's lean page_data() shape from an already-computed build() result.
+     *
+     * I8 (AUDIT-REFACTORING-CODE-20261021): manage.php used to call page_data() and then
+     * get_state::execute() (which calls build()), reading enrolled users, roles, groups and
+     * grouping memberships twice in the same request. build() already computes everything
+     * page_data() needs except the per-grouping description/configdata, which build()
+     * deliberately omits from its per-card payload (heavy fields stay in get_details()).
+     * This method reuses $builtstate in memory and only issues one light extra query, scoped
+     * to the known grouping ids, to fetch those two fields.
+     *
+     * @param array $builtstate Result of {@see self::build()} for the same course/context.
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Matching course context.
+     * @return array Same shape as {@see self::page_data()}.
+     */
+    public static function page_data_from_build(array $builtstate, \stdClass $course, \context_course $context): array {
+        global $DB;
+
+        self::assert_context($course, $context);
+
+        $rolenames = array_column($builtstate['roles'], 'name', 'id');
+        $users = [];
+        foreach ($builtstate['users'] as $useritem) {
+            $userid = (int)$useritem['id'];
+            $roleids = $useritem['roleids'] ?? [];
+            // Keep role id => name (not a reindexed list): local_groupimport_role_filter_options()
+            // reads the role id back from the array key.
+            $users[$userid] = [
+                'id' => $userid,
+                'roles' => array_combine($roleids, array_map(static function (int $roleid) use ($rolenames): string {
+                    return $rolenames[$roleid] ?? '';
+                }, $roleids)),
+            ];
+        }
+
+        $groups = [];
+        foreach ($builtstate['groups'] as $groupitem) {
+            $groupid = (int)$groupitem['id'];
+            $groups[$groupid] = [
+                'id' => $groupid,
+                'name' => $groupitem['name'],
+                'rawname' => $groupitem['rawname'],
+                'idnumber' => $groupitem['idnumber'],
+                'groupingids' => $groupitem['groupingids'],
+            ];
+        }
+
+        $groupingids = array_map(static function (array $item): int {
+            return (int)$item['id'];
+        }, $builtstate['groupings']);
+
+        $groupingrecords = [];
+        if ($groupingids) {
+            [$insql, $params] = $DB->get_in_or_equal($groupingids, SQL_PARAMS_NAMED, 'pdgrouping');
+            $groupingrecords = $DB->get_records_select(
+                'groupings',
+                "id $insql",
+                $params,
+                '',
+                'id, description, descriptionformat, configdata'
+            );
+        }
+
+        $groupingitems = [];
+        foreach ($builtstate['groupings'] as $item) {
+            $groupingid = (int)$item['id'];
+            $record = $groupingrecords[$groupingid] ?? null;
+            $groupingitems[$groupingid] = [
+                'id' => $groupingid,
+                'name' => $item['name'],
+                'rawname' => $item['rawname'],
+                'idnumber' => $item['idnumber'],
+                'description' => $record ? self::format_description($record, $context, 'grouping', 'description') : '',
+                'rawdescription' => $record ? (string)($record->description ?? '') : '',
+                'configdata' => $record ? (string)($record->configdata ?? '') : '',
+                'groupids' => $item['groupids'],
+                'groupcount' => count($item['groupids']),
+            ];
+        }
+
+        return [
+            'users' => $users,
+            'groups' => $groups,
+            'groupings' => $groupingitems,
+            'ungroupedgroupids' => [],
+        ];
+    }
+
+    /**
      * Load the heavy fields of a few entities, for a modal or a detail panel.
      *
      * Ids outside the course (or users not enrolled in it) are refused as a whole,

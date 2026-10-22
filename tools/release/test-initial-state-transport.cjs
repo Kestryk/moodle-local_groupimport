@@ -55,8 +55,14 @@ let checks = 0;
     }
     const manage = fs.readFileSync(path.join(__dirname, '../../manage.php'), 'utf8');
     const gate = manage.indexOf("require_capability('moodle/course:managegroups', $context);");
-    const build = manage.indexOf('\\local_groupimport\\external\\get_state::execute((int)$course->id)');
-    assert(gate > 0 && build > gate);
+    // I8 (AUDIT-REFACTORING-CODE-20261021): the document used to call get_state::execute()
+    // directly (rebuilding the course model a second time after page_data()). It now calls
+    // course_state::build() once and derives the lean page shape from that same result via
+    // page_data_from_build(), so the initial-state script still comes from the same build()
+    // schema (asserted by the rest of this contract), without the duplicate SQL reads.
+    const build = manage.indexOf('\\local_groupimport\\service\\course_state::build($course, $context)');
+    const derived = manage.indexOf('course_state::page_data_from_build($builtstate, $course, $context)');
+    assert(gate > 0 && build > gate && derived > build);
     assert(manage.includes('JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT |'));
     assert(manage.includes('JSON_INVALID_UTF8_SUBSTITUTE'));
     assert(manage.includes("'type' => 'application/json'"));
