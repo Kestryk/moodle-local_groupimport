@@ -53,7 +53,8 @@ $PAGE->set_heading(format_string($course->fullname));
 // Animation level (user choice, else administrator default): root attributes and body classes.
 $motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
 $PAGE->requires->css('/local/groupimport/styles/mass-import.css');
-// The Guide rules are a separate sheet, requested on this page only (GMI-C1).
+// The Guide rules are a separate, cache-shared sheet requested by every consumer page (GMI-C1;
+// K22, Kevin 22/10, option 2 of RAPPORT-I9-X6-X7-20261022.md: manage.php requests it too now).
 $PAGE->requires->css('/local/groupimport/styles/guide.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation', 'init', [

@@ -58,6 +58,9 @@ $PAGE->set_heading(format_string($course->fullname));
 $motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
 $animationsenabled = $motionlevel !== 'minimal';
 $PAGE->requires->css('/local/groupimport/styles/student-management.css');
+// The Guide rules are a separate, cache-shared sheet requested by every consumer page (K22, Kevin
+// 22/10, option 2 of RAPPORT-I9-X6-X7-20261022.md): same mechanism index.php already uses.
+$PAGE->requires->css('/local/groupimport/styles/guide.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/guide_welcome', 'init', [
     '[data-easyedu-guide-root]', [

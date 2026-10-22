@@ -5,14 +5,22 @@ require('./verify-build-versions.cjs').assertNode();
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {compactDeclarations}=require('./build-styles.cjs');
 const root=path.resolve(__dirname,'../..');
-// Guide rules requested only by Mass Import, as a separate sheet (GMI-C1, Kevin 18/10): selectors that
-// name the Guide itself. Student Management keeps them in its own page CSS, unchanged.
+// Guide-naming selectors (classed under easyedu-guide/local-groupimport-tutorial, including
+// instances scoped under a page's own rail container, e.g. Student Management's own guide-launcher
+// button) are always built into guide.css below. Historically Student Management also duplicated
+// every one of them inline in its own sheet (1,617 identical rule bodies, 488,965 bytes — I9,
+// RAPPORT-I9-X6-X7-20261022.md). K22 (Kevin 22/10, option 2 of that report) removes that
+// duplication: guide.css becomes the sole source for Student Management's Guide content, and
+// manage.php now requests guide.css alongside student-management.css (mirroring index.php, which
+// already requested both for Mass Import since GMI-C1, 18/10). Mass Import's and Administration's
+// own page-scoped Guide-launcher selectors are untouched by this change — they were never the
+// duplication this batch targets, and GMI-C1 already made that call for Mass Import.
 function guideTargets(selector){return /easyedu-guide|local-groupimport-tutorial/.test(selector);}
 // Mass Import Guide specimens (GMI-C2, modifiers --mi*) are served by guide.css only: Student Management never shows them.
 function massImportGuideOnly(selector){return /easyedu-guide-(spec|anatomy)--mi|easyedu-guide--mass-import/.test(selector);}
 function targets(selector){
  if(massImportGuideOnly(selector))return {sm:false,admin:false,mass:false};
- const sm=/local-groupimport-easystud(?!-admin)|easyedu-guide|local-groupimport-tutorial/.test(selector);
+ const isGuide=guideTargets(selector);
  // .easyedu-ui--standalone only ever renders on the standalone reset_guide_welcome.php page
  // (templates/guide_welcome_reset.mustache: the settings-page copy passes inline=true and
  // never gets the class). Without this, the catch-all below ships its ~8 KB token block
@@ -21,8 +29,16 @@ function targets(selector){
  // K22-07: the shared Kit hover bubble (easyedu_bubble.js BUBBLE_CLASS) is also used on Mass Import
  // (Display preferences icon); without it the page showed a bare Bootstrap popover.
  const mass=/local-groupimport-import|path-local-groupimport-index|local-groupimport-easystud__navigation|local-groupimport-easystud-hover-popover/.test(selector);
+ // K22 (22/10): never let a Guide-naming selector land in Student Management, even when it is
+ // scoped under #local-groupimport-easystud (its own rail's guide-launcher button) — guide.css
+ // alone covers it now. Mass Import and Administration keep their own independent match above.
+ const sm=!isGuide&&/local-groupimport-easystud(?!-admin)/.test(selector);
+ if(sm||admin||mass)return {sm,admin,mass};
+ // Pure Guide content that matched no page-specific pattern belongs in guide.css only: never let
+ // it fall through to the "shared across every page" catch-all below.
+ if(isGuide)return {sm:false,admin:false,mass:false};
  // Mixed consumer selectors retain their shared declarations on every named consumer.
- return sm||admin||mass?{sm,admin,mass}:{sm:true,admin:true,mass:true};
+ return {sm:true,admin:true,mass:true};
 }
 // I9 (21/10): minify in production with the hand-rolled, selector/value-preserving pass in
 // minify-css.cjs. A third-party minifier (clean-css 2.2.23, the only one in the recorded
