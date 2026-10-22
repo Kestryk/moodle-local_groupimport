@@ -11,6 +11,14 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
   .local-groupimport-easystud-user__main {
     container: easystud-participant-main / inline-size;
   }
+
+  // K22-38 (Kevin, 22/10): the host rule above keeps the lane surface white on
+  // 5.3, undoing the K22-20 grey tint that marks the column boundary. Draw a
+  // Kit border around the lane instead, scoped to this 5.3 host only; other
+  // branches keep the K22-20 surface-strong tint with no added border.
+  .local-groupimport-easystud__panel {
+    border: 0.0625rem solid var(--easyedu-border);
+  }
 }
 
 @container easystud-participant-main (max-width: 12rem) {
