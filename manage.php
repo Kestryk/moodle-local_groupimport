@@ -463,16 +463,7 @@ function local_groupimport_get_allowed_user_field_definitions(): array {
 
 
 
-/**
- * Normalise a stored colour value before it is injected into inline CSS variables.
- *
- * @param string|null $colour Stored colour.
- * @param string $fallback Fallback colour.
- * @return string Safe hex colour.
- */
-function local_groupimport_normalise_hex_colour(?string $colour, string $fallback): string {
-    return \local_groupimport\local\participant_fields::normalise_hex_colour($colour, $fallback);
-}
+
 
 
 
@@ -499,43 +490,7 @@ function local_groupimport_build_select_options(array $options): array {
     return $result;
 }
 
-/**
- * Build participant meta tag data.
- *
- * @param string $label Label.
- * @param array $items Tag items.
- * @param string $class CSS classes.
- * @param string $empty Empty label.
- * @return array
- */
-function local_groupimport_build_meta_tags_template_data(string $label, array $items, string $class, string $empty): array {
-    $visiblemax = 3;
-    $tokens = [];
 
-    if (empty($items)) {
-        $tokens[] = [
-            'label' => $empty,
-            'class' => $class . ' local-groupimport-easystud-token--empty',
-            'hidden' => false,
-        ];
-    } else {
-        foreach ($items as $index => $item) {
-            $tokens[] = [
-                'label' => $item,
-                'class' => $class,
-                'hidden' => $index >= $visiblemax,
-                'extra' => $index >= $visiblemax,
-            ];
-        }
-    }
-
-    return [
-        'label' => $label,
-        'tokens' => $tokens,
-        'hasmore' => count($items) > $visiblemax,
-        'showless' => get_string('showless', 'local_groupimport'),
-    ];
-}
 
 /**
  * Build the template data of a grouping header (its group cards are rendered in the browser).
