@@ -23,6 +23,7 @@
  */
 
 import * as Motion from '../../motion';
+import {withRenderTransaction, recordRenderedCards} from './after_render';
 import {listPolicy, listWindow} from '../sm/list_windows';
 import {syncLongListFooter} from './long_lists';
 import {setSelectionBar, animateListArrival, listPageChanged} from './transitions';
@@ -307,7 +308,7 @@ export const syncStructurePlaceholders = root => {
     syncPagination(root);
 };
 
-export const syncPagination = root => {
+export const syncPagination = root => withRenderTransaction(root, () => {
     if (!root.classList.contains(structureFocusClass)) {
         root.querySelectorAll('[data-easystud-tree] .local-groupimport-easystud-tree__groupings > [data-easystud-pagination]')
             .forEach(pagination => pagination.remove());
@@ -412,7 +413,7 @@ export const syncPagination = root => {
         });
     });
     scheduleGroupGroupingOverflow(root);
-};
+});
 
 // Apply participant filters.
 export const applyFilters = (root, options = {}) => {
@@ -923,6 +924,7 @@ const renderOnDemandParticipantPage = (root, list, config) => {
     const key = model.revision + '|' + pageIds.join(',');
     if (list.easystudSmRenderedKey !== key) {
         const arrived = listPageChanged(list, pageIds);
+        const removed = Array.from(list.querySelectorAll(':scope > [data-easystud-user]'));
         const rendered = renderParticipantPage(model, list, pageIds);
         model.pageCards = new Map(rendered.map(card =>
             [Number(card.getAttribute('data-user-id')), syncCardSelection(model, card)]));
@@ -934,6 +936,7 @@ const renderOnDemandParticipantPage = (root, list, config) => {
         syncResponsiveDragAvailability(root);
         scheduleParticipantTagOverflow(root);
         syncParticipantDensity(root, {animate: false});
+        recordRenderedCards(root, list, rendered, removed);
     }
     return {total: ordered.length, pages, page};
 };

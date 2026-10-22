@@ -27,6 +27,7 @@
  */
 
 import {getLabels} from './shared';
+import {compactRenderScopes, onAfterRender} from './after_render';
 
 const CARD_TYPES = {
     participant: {
@@ -184,37 +185,9 @@ const nameWithin = (root, scope, labels) => {
  */
 export const bindAccessibleNames = root => {
     const labels = getLabels(root);
-    const pending = new Set();
-    let frame = null;
-
-    const flush = () => {
-        frame = null;
-        const nodes = Array.from(pending);
-        pending.clear();
-        nodes.forEach(node => nameWithin(root, node, labels));
-    };
-    const schedule = node => {
-        pending.add(node);
-        if (frame === null) {
-            frame = window.requestAnimationFrame(flush);
-        }
-    };
-
     nameWithin(root, root, labels);
-    new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.type === 'characterData') {
-                schedule(mutation.target);
-            } else {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === Node.ELEMENT_NODE) {
-                        schedule(node);
-                    }
-                });
-                if (mutation.target.nodeType === Node.ELEMENT_NODE && mutation.removedNodes.length) {
-                    schedule(mutation.target);
-                }
-            }
-        });
-    }).observe(root, {childList: true, subtree: true, characterData: true});
+    onAfterRender(root, detail => {
+        const scopes = detail.subtrees.map(node => node.closest(CARD_SELECTOR) || node);
+        compactRenderScopes(root, scopes).forEach(node => nameWithin(root, node, labels));
+    });
 };
