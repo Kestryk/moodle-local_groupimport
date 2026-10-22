@@ -47,6 +47,10 @@
   --easyedu-navigation-guide-border: color-mix(in srgb, var(--easyedu-accent) 28%, var(--easyedu-card-border) 72%);
   --easyedu-navigation-guide-shadow: 0 0.4rem 1rem rgba(22, 45, 68, 0.12);
   --easyedu-guide-launcher-resting-border: color-mix(in srgb, var(--easyedu-primary) 22%, var(--easyedu-card-border) 78%);
+  // K22-23: icon circle of an inactive rail destination. The rail sits on the white
+  // card (K22-19), so the circle carries a light primary tint (theme aware) that
+  // stays visible on white and on the hover tint; the active circle stays primary.
+  --easyedu-navigation-item-icon-surface: color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface-strong) 90%);
   --easyedu-radius: 0.75rem;
   --easyedu-radius-sm: 0.5rem;
   --easyedu-radius-lg: 1rem;

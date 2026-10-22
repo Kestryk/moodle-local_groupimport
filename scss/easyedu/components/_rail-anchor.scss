@@ -296,7 +296,8 @@ $-rail-control-size: 2.5rem;
 
       > .easyedu-navigation__item-icon {
         align-items: center;
-        background: var(--easyedu-surface-strong);
+        // K22-23: tinted so it stays visible on the white rail card.
+        background: var(--easyedu-navigation-item-icon-surface, var(--easyedu-surface-strong));
         border-radius: 50%;
         color: var(--easyedu-primary-strong);
         display: inline-flex;
