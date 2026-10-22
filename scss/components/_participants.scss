@@ -81,6 +81,16 @@
     @include easyedu.density-transition;
   }
 
+  // M53 (22/10/2026): the Kit compact inset's 3.3rem max-height assumed the metadata block was
+  // always hidden in this density. Now that [hidden] follows the shared admin-default/override
+  // policy (see the &-user__meta[hidden] rule above), a card whose metadata is genuinely shown
+  // must be allowed to grow past that cap, or its content overflows into the next card. Layout
+  // (avatar column, padding) is intentionally left untouched here — that is the dedicated
+  // single-selected "expanded" inset's job, a separate design state.
+  &--compact-users &-user:has(&-user__meta:not([hidden])) {
+    max-height: none;
+  }
+
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected,
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-density-expanded {
     align-items: start;
