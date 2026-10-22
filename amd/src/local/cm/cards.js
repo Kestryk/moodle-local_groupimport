@@ -1213,8 +1213,13 @@ export const getOnDemandList = (root, list) => {
  * card should stay open on its own (M53, 22/10/2026: deselecting a card used to always hide its
  * meta block regardless of the "collapse participants by default" admin setting).
  *
+ * K22-29: selecting expands the block only while exactly ONE participant is selected in total
+ * (the pre-M53 "single-participant-selected" rule, lost when the [hidden] attribute became the
+ * only switch): a multiple selection (Select all, Select results, a second card) keeps every card
+ * collapsed. syncParticipantMetaSelection re-applies this to all cards after each selection change.
+ *
  * @param {HTMLElement|null} card The participant card ([data-easystud-user]).
- * @param {Boolean} expanded Target state.
+ * @param {Boolean} expanded Target state (whether this card is selected).
  */
 export const setParticipantMetaExpanded = (card, expanded) => {
     const meta = card && card.querySelector('[data-easystud-user-meta]');
@@ -1223,5 +1228,23 @@ export const setParticipantMetaExpanded = (card, expanded) => {
     }
     const model = getOnDemandModel();
     const followsPolicy = Boolean(model && !isMetaCollapsed(model, model.strings));
-    meta.hidden = !(expanded || followsPolicy);
+    const single = model ? model.selected.size === 1 :
+        document.querySelectorAll('[data-selectable-type="participant"].' + selectedClass).length === 1;
+    meta.hidden = !((expanded && single) || followsPolicy);
+};
+
+/**
+ * K22-29: re-apply the single-selection expand rule to every participant card (current page and
+ * on-demand detached copies), so going from 1 to 2+ selected collapses the first card again and
+ * going back to 1 expands the remaining one, whatever path changed the selection.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+export const syncParticipantMetaSelection = root => {
+    const model = getOnDemandModel(root);
+    const apply = card => setParticipantMetaExpanded(card, card.classList.contains(selectedClass));
+    root.querySelectorAll('[data-easystud-user]').forEach(apply);
+    if (model) {
+        model.detached.forEach(apply);
+    }
 };

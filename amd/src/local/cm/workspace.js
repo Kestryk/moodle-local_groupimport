@@ -45,7 +45,7 @@ import {syncResponsiveDragAvailability} from './drag_support';
 import {
     getGroupsWithGroupingMembership, scheduleGroupGroupingOverflow, syncParticipantTagOverflow,
     scheduleParticipantTagOverflow, syncGroupingChildrenState, syncUngroupedState, collapseAllGroupings,
-    syncCardSelection, getOnDemandList, findCatalogGroupCard,
+    syncCardSelection, syncParticipantMetaSelection, getOnDemandList, findCatalogGroupCard,
 } from './cards';
 import {
     getSelectedItems, setItemSelected, clearSelectionState, getActiveSelectionType, updateSelectionAvailability,
@@ -718,6 +718,8 @@ export const updateSelectionActions = root => {
 
     root.classList.toggle('local-groupimport-easystud--has-selection', !!hasSelection);
     applyParticipantDensityChange(root, selectedUsers);
+    // K22-29: a card's meta block opens only while it is the single selected participant.
+    syncParticipantMetaSelection(root);
     syncParticipantDensity(root);
     ['participant', 'member', 'group', 'grouping'].forEach(type => {
         root.classList.toggle('local-groupimport-easystud--selecting-' + type, activetype === type);
