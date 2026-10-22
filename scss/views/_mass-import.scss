@@ -67,10 +67,6 @@
     @include easyedu.workspace-lane-content-inset;
   }
 
-  &__header {
-    margin-bottom: 1rem;
-  }
-
   &__eyebrow {
     @include easyedu.type-eyebrow;
 
@@ -688,5 +684,20 @@
 
       color: var(--local-groupimport-easystud-text-muted);
     }
+  }
+}
+
+// K21-53 "Rail-anchor" page structure (EasyEdu standard, Kit partial
+// easyedu/components/_rail-anchor.scss, same consumer as Student Management
+// K21-51): navigation band (identity rail) above one main content frame. Mass
+// Import has a single layout: no view tabs. Id scope so Bootstrap button states
+// and the separately loaded Guide sheet cannot override the Kit rail.
+#local-groupimport-import {
+  @include easyedu.rail-anchor-page(64rem);
+
+  // Four rail items (two destinations, two utilities): the full French rail
+  // needs about 86rem, so inactive labels collapse to icon capsules below 88rem.
+  .easyedu-rail-anchor__rail {
+    @include easyedu.navigation-identity-rail(64rem, 88rem);
   }
 }

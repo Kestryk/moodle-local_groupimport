@@ -597,6 +597,9 @@ function local_groupimport_build_mass_import_navigation_context(stdClass $course
         'emptylabel' => get_string('navigationempty', 'local_groupimport'),
         'drawertitle' => get_string('easystudlabel', 'local_groupimport'),
         'drawersubtitle' => get_string('easystudmanager', 'local_groupimport'),
+        // K21-53 Rail-anchor: the desktop rail carries the product identity and the active view.
+        'identityrail' => true,
+        'identitysubtitle' => get_string('csvimportlink', 'local_groupimport'),
         'spaceslabel' => get_string('mobilenavigationspaces', 'local_groupimport'),
         'hasitems' => true,
         'hasparticipantdropdown' => false,

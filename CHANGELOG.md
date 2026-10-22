@@ -1,3 +1,5 @@
+- 2026-10-22 [K21-53] Appliquer le standard « Rail-anchor » à Mass Import : rail d’identité EasyStud / Import massif (tuile, destinations, capsule Guide, préférences d’affichage) au-dessus d’un cadre principal unique qui enveloppe le titre, la description et toute la vue ; sur-titre produit réservé au compact, tiroir mobile inchangé. Le mixin Kit navigation-identity-rail reçoit un seuil de repli des libellés paramétrable (71rem par défaut, 88rem pour les quatre éléments de Mass Import) afin qu’aucun libellé ne soit tronqué.
+
 - 2026-10-22 Verified readable and minified page styles against the same source, with ordered selectors, value-token preservation and a documented Moodle 4.5 compatibility inventory; no stylesheet-loading architecture change.
 
 - 2026-10-22 [I11] Mutualiser les mises à jour de présentation après rendu dans le périmètre du workspace ; limiter le nommage aux sous-arbres modifiés et les menus aux cartes ajoutées, sans changer les données ni Motion.

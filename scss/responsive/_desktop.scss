@@ -17,7 +17,7 @@
   }
 
   .local-groupimport-import {
-    &__header,
+    // K21-53: the header is the Rail-anchor navigation band (Kit flex layout).
     &__grid {
       grid-template-columns: 1fr;
     }
@@ -50,10 +50,6 @@
 
     &.has-preview.is-upload-collapsed &-card--upload &-card__header {
       @include easyedu.deposit-shell-folded-heading($stacked: true);
-    }
-
-    &__header {
-      display: grid;
     }
 
     &__header-actions {

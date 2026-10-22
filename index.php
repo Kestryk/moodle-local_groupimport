@@ -275,16 +275,16 @@ echo html_writer::tag('script', json_encode([
 // The shared navigation replaces the legacy Mass Import action row only. The
 // The loading implementation keeps the real frame visible while binding its controls.
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
-// The Guide launcher sits first in the navigation (compass only, no welcome bubble; Q4).
+// K21-53 Rail-anchor: the Guide launcher is a labelled capsule grouped with Display
+// preferences at the end of the identity rail (no welcome bubble; Q4).
 $navigationdata['hasguide'] = true;
-$navigationdata['guidehtml'] = $OUTPUT->render_from_template(
-    'local_groupimport/easyedu_guide',
-    \local_groupimport\local\mass_import_guide::template_data([
-        'allowedfields' => array_values($allowedimportfields),
-        'motionlevel' => $motionlevel,
-        'motionpolicy' => $motionlevel === 'minimal' ? 'disabled' : 'enabled',
-    ])
-);
+$guidedata = \local_groupimport\local\mass_import_guide::template_data([
+    'allowedfields' => array_values($allowedimportfields),
+    'motionlevel' => $motionlevel,
+    'motionpolicy' => $motionlevel === 'minimal' ? 'disabled' : 'enabled',
+]);
+$guidedata['launchershortlabel'] = get_string('guidebadgelabel', 'local_groupimport');
+$navigationdata['guidehtml'] = $OUTPUT->render_from_template('local_groupimport/easyedu_guide', $guidedata);
 // Opt this native launcher into the page's pending-control treatment, without
 // changing the shared Guide template, content or readiness callbacks.
 $navigationdata['guidehtml'] = str_replace(
@@ -298,7 +298,8 @@ $navigationmarkup = html_writer::tag(
     'div',
     $OUTPUT->render_from_template('local_groupimport/easyedu_navigation', $navigationdata),
     [
-        'class' => 'local-groupimport-import-navigation local-groupimport-easystud local-groupimport-easystud__navigation',
+        'class' => 'local-groupimport-import-navigation local-groupimport-easystud local-groupimport-easystud__navigation ' .
+            'easyedu-rail-anchor__rail',
         'data-region' => 'local-groupimport-import-navigation',
         'style' => $themestyle,
     ]
@@ -328,20 +329,32 @@ echo html_writer::start_div('local-groupimport-import__content', [
     'data-easystud-real-content' => '1',
 ]);
 
+// K21-53 "Rail-anchor" page structure (EasyEdu standard, Kit partial
+// scss/easyedu/components/_rail-anchor.scss, as Student Management K21-51):
+// floor 1 = navigation band (identity rail; Mass Import has a single layout, so no
+// view tabs), floor 2 = one main content frame wrapping the head and the whole view.
+// DOM order equals reading and Tab order. Dialogs and the drop overlay stay outside.
 echo html_writer::tag(
     'div',
-    html_writer::tag(
-        'div',
-        html_writer::span(get_string('easystudlabel', 'local_groupimport'), 'local-groupimport-import__eyebrow') .
-        html_writer::tag('h2', get_string('groupimport', 'local_groupimport'), [
-            'class' => 'local-groupimport-import__title easyedu-page-title',
-        ]) .
-        html_writer::tag('p', get_string('importfile_help', 'local_groupimport'), [
-            'class' => 'local-groupimport-import__intro easyedu-body',
-        ])
-    ) .
     $navigationmarkup,
-    ['class' => 'local-groupimport-import__header easyedu-page-header']
+    ['class' => 'local-groupimport-import__header easyedu-rail-anchor__band']
+);
+
+echo html_writer::start_div('local-groupimport-import__frame easyedu-rail-anchor__frame');
+echo html_writer::tag(
+    'div',
+    // The product eyebrow is compact-only: on desktop the rail carries the identity.
+    html_writer::span(
+        get_string('easystudlabel', 'local_groupimport'),
+        'local-groupimport-import__eyebrow easyedu-rail-anchor__compact-eyebrow'
+    ) .
+    html_writer::tag('h2', get_string('groupimport', 'local_groupimport'), [
+        'class' => 'local-groupimport-import__title easyedu-page-title',
+    ]) .
+    html_writer::tag('p', get_string('importfile_help', 'local_groupimport'), [
+        'class' => 'local-groupimport-import__intro easyedu-body',
+    ]),
+    ['class' => 'local-groupimport-import__head easyedu-rail-anchor__head']
 );
 
 echo html_writer::start_div('local-groupimport-import__grid');
@@ -515,6 +528,8 @@ echo $OUTPUT->render_from_template(
 echo html_writer::end_div(); // Card.
 
 echo html_writer::end_div(); // Grid.
+
+echo html_writer::end_div(); // Main content frame (K21-53).
 
 // T050/T051 (Penpot S6-D5b/c): history and restore dialogs
 // join the T045 dialog family (tile + EASYSTUD eyebrow + title + Kit close, sticky footer

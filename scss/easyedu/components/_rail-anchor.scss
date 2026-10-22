@@ -125,7 +125,11 @@ $-rail-control-size: 2.5rem;
 
 // Primary rail with integrated identity. Include on the element that already
 // includes `navigation-component` (the navigation wrapper).
-@mixin navigation-identity-rail($compact-breakpoint: 64rem) {
+// `$labels-collapse-below` (K21-53): view-root width under which inactive
+// destinations become icon-only capsules. Size it from the consumer's longest
+// translated rail (destinations + utilities), so no label is ever clipped:
+// Student Management (3 items) keeps 71rem, Mass Import (4 items) needs 88rem.
+@mixin navigation-identity-rail($compact-breakpoint: 64rem, $labels-collapse-below: 71rem) {
   // Capsule label of the Guide launcher: only the identity rail shows it.
   .easyedu-guide__launcher-short {
     display: none;
@@ -406,7 +410,7 @@ $-rail-control-size: 2.5rem;
   // capsules. Their accessible names stay their aria-label, and the navigation
   // controller opts them into the Kit bubble. Never a truncated label.
   @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
-    @container (max-width: 71rem) {
+    @container (max-width: #{$labels-collapse-below}) {
       .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item:not(.active):not([aria-current="page"]) {
         gap: 0;
         justify-content: center;
