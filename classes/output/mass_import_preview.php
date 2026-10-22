@@ -21,11 +21,6 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Builds the Mass Import preview table / results report context for Mustache.
  *
- * Extracted from index.php (I4, 2026-10-21): reproduces exactly the markup
- * previously produced inline with html_writer at index.php:485-876 (the
- * preview table, the "no results yet" placeholder and the success/error
- * report), so moving it here changes neither the output nor the behaviour.
- *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

@@ -100,7 +100,7 @@ export const highlightActiveTryActionsStep = root => {
     }
 };
 
-// C2-15-02 (Kevin, 15/10): drag and drop is disabled in the compact workspace (<= 1024 px), so
+// C2-15-02: drag and drop is disabled in the compact workspace (<= 1024 px), so
 // guided path n°10 ("try-actions") teaches its first step with the card ⋮ menu there: open the
 // menu, choose "Add to group", confirm the destination. The step keeps its id ("try-drag"), so
 // saved progress and the requirements of the next steps are unchanged; desktop keeps the drag.
@@ -115,10 +115,8 @@ const isCompactMoveStepActive = root => {
     return !!active && active.getAttribute('data-easyedu-guide-step-id') === 'try-drag';
 };
 
-// The compact copy and cue of the step. The dedicated strings do not exist yet (they belong to
-// Codex n°1's lang files): until manage.php passes titleCompact/descriptionCompact/feedbackCompact,
-// FALLBACK to existing strings with the same meaning: the menu item label, then the "Add to group"
-// steps of the Practice path. Returns false while the Guide has no configuration yet.
+// Prefer the compact strings supplied by guide_config; keep the menu/practice fallback for
+// incomplete configurations. Returns false while the Guide has no configuration yet.
 export const installTryActionsCompactMove = (root, guideRoot) => {
     const config = guideRoot && guideRoot.easyeduGuideConfig;
     const steps = config && config.paths ? config.paths['try-actions'] : null;

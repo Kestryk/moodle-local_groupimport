@@ -17,11 +17,11 @@
 namespace local_groupimport\local;
 
 /**
- * Guide of the Mass Import page: ten lessons, built directly (GMI-C1, text only).
+ * Guide of the Mass Import page: ten lessons with text-only demonstration recaps.
  *
  * Same shell and same engine as the Student Management Guide, without its historical
- * four-pass curriculum pipeline. Specimens, demonstrations and the guided path come in
- * later lots; this class owns the stable slide identifiers and the page configuration.
+ * four-pass curriculum pipeline. This class owns its specimens, demonstrations, guided
+ * path, stable slide identifiers and page configuration.
  *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac
@@ -393,7 +393,7 @@ final class mass_import_guide {
     }
     /**
      * Interface cues of the lessons (GMI-C4): openers run before "Show in the interface", and the
-     * guided path card of lesson 5 with the warning decided by Kevin (K18-07).
+     * guided path card of lesson 5 with the warning required by K18-07.
      *
      * @param array[] $slides Lessons built by template_data().
      * @return array[]

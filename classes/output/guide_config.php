@@ -21,10 +21,6 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Builds the shared EasyEdu guide's template data and AMD configuration.
  *
- * Extracted from manage.php (I3, 2026-10-21): two function bodies moved verbatim
- * (local_groupimport_build_easyedu_guide_template_data and
- * local_groupimport_build_easyedu_guide_js_config) into one dedicated class.
- *
  * @package    local_groupimport
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

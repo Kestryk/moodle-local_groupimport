@@ -424,8 +424,8 @@ if ($hassiteconfig) {
             'fa-palette'
         ));
 
-        // K21-16 (Kevin 21/10): participant cards collapse their roles/groups/groupings details by
-        // default so a crowded course list stays scannable. K21-37 (Kevin 21/10): removed the
+        // K21-16: participant cards collapse their roles/groups/groupings details by
+        // default so a crowded course list stays scannable. K21-37: removed the
         // per-card fold chevron; selecting a card expands it, deselecting it collapses it again.
         $settings->add(new \local_groupimport\local\admin_setting_switch(
             'local_groupimport/participantcardcollapsed',

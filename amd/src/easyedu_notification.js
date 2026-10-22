@@ -1,4 +1,4 @@
-// EasyEdu V3 notification (K18-16, Kevin 18/10/2026): the Kit V3 banner replaces toasts.
+// EasyEdu V3 notification (K18-16): the Kit V3 banner replaces toasts.
 // Paint and the desktop/touch variants belong to the Kit SCSS (.easyedu-v3-banner);
 // this module only builds the banner with text nodes, stacks it and dismisses it.
 // Motion follows the EasyEdu levels through CSS: when reduced or minimal removes

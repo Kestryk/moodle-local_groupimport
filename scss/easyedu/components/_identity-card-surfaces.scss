@@ -5,7 +5,7 @@
 @use "sass:map";
 @use "cards";
 
-// K16-74 (Kevin 16/10, light facelift keeping the cards' spirit): flat surfaces on Kit tokens,
+// K16-74 (flat card surfaces): flat surfaces on Kit tokens,
 // entity-tinted hairlines, no lift. K16-53 écart2 (validated 20/10): every `rest` and the open
 // (expanded, not active) container emit `box-shadow: none`, desktop and compact alike; the only
 // hover shadow is the Kit `--easyedu-shadow-soft`, painted by `identity-card-hover` on a real

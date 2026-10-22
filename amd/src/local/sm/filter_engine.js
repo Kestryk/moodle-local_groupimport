@@ -41,7 +41,7 @@ export const NO_GROUPING = '__none__';
 
 /**
  * Search text normalisation, the same for the texts and the queries: lowercase, accents folded
- * (Kevin, 15/10/2026: "etudiant" finds "Étudiant", "helene" finds "Hélène"). Spaces are kept.
+ * ("etudiant" finds "Étudiant", "helene" finds "Hélène"). Spaces are kept.
  *
  * @param {*} value Value.
  * @returns {String}

@@ -334,7 +334,7 @@ export const bindUserDragDrop = (root, courseId) => {
         event.dataTransfer.effectAllowed = 'copy';
         event.dataTransfer.setData('text/plain', draggedUsers.map(item => item.getAttribute('data-user-id')).join(','));
         dragPreview = setStackedDragImage(event, draggedUsers, 'participant');
-        // Guided path n°10 (Kevin's choice b, 13/10): starting the drag is enough to learn the
+        // Guided path n°10: starting the drag is enough to learn the
         // gesture; nothing is written unless the card is dropped on a group.
         emitTryActionsCompletion(root, 'try-drag', Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions'));
         const usersToHide = draggedUsers.slice();

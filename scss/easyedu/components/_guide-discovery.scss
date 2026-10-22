@@ -506,7 +506,7 @@
     }
   }
 
-  // K18-16 (Kevin 18/10/2026): the first-visit welcome is the Kit V3 banner
+  // K18-16: the first-visit welcome is the Kit V3 banner
   // (components/_v3-banner.scss), anchored to the launcher at every width.
   .easyedu-guide-welcome {
     &[hidden] { display: none; }

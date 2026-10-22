@@ -850,7 +850,7 @@
     @include easyedu.empty-state-positive;
   }
 
-  // K21-17 (Kevin 21/10): the participant list's "could not be loaded" state reuses the Kit
+  // K21-17: the participant list's "could not be loaded" state reuses the Kit
   // warning notice (same recipe as the entity dialog's error state), not a raw Bootstrap alert.
   &__sm-error {
     margin: 0 0 0.7rem;

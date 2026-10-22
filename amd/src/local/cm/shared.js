@@ -141,7 +141,7 @@ export const showNotification = (root, message, type) => {
         }, 3200);
     };
 
-    // K18-16 (Kevin 18/10/2026): notifications use the Kit V3 banner, not Moodle toasts.
+    // K18-16: notifications use the Kit V3 banner, not Moodle toasts.
     if (typeof require === 'function') {
         try {
             const labels = getLabels(root);

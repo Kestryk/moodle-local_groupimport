@@ -1,4 +1,4 @@
-// A3 card titles (Kevin, 12/10 and 14/10/2026; PENPOT Foundations 09.5, board
+// A3 card titles (PENPOT Foundations 09.5, board
 // "A3 — Variantes du titre de carte", row V3): identity ink and letter-spacing 0
 // (Kit card-title), a V3 accent underline in the entity colour, and card
 // actions neutral at rest, primary on a hovered, focused or selected card.
@@ -52,7 +52,7 @@
     }
   }
 
-  // K16-79 (Kevin 16/10: cards too busy): with a mouse, a card's header actions and a member's "−"
+  // K16-79 (cards too busy): with a mouse, a card's header actions and a member's "−"
   // appear only while their own card / row is hovered, focused or selected (touch keeps them).
   // A Guide target or an open menu always stays visible.
   $quiet: ":not(.is-easyedu-guide-highlight-target):not([aria-expanded=\"true\"])";
@@ -60,7 +60,7 @@
     transition: color var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
   }
 
-  // K16-81 (Kevin 16/10): with the actions hidden at rest, the count and groupings labels floated
+  // K16-81: with the actions hidden at rest, the count and groupings labels floated
   // mid-header. They now close the header row, after the actions: right-aligned on every card at
   // rest, and the actions appear to their left on hover without moving them.
   .local-groupimport-easystud-group__header > .badge,

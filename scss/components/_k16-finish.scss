@@ -1,4 +1,4 @@
-// Kevin K16-04..11: compositions consume canonical Kit recipes after responsive rules.
+// K16-04..11: compositions consume canonical Kit recipes after responsive rules.
 @use "../easyedu" as easyedu;
 
 #local-groupimport-easystud {
@@ -51,7 +51,7 @@
       margin-inline-end: 0;
     }
   }
-  // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and
+  // K16-68: the responsive "Show groups and
   // groupings" switch is the same compact Kit selection action as the desktop density switch, on its
   // own line, left-aligned, with the lane's 0.75rem rhythm instead of a full-width tray button.
   .local-groupimport-easystud__membership-toggle:not([hidden]) {

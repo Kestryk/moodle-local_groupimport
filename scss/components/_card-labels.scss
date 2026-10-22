@@ -1,9 +1,9 @@
-// Card label harmony (Kevin, 16/10/2026, D3 variant A, PENPOT-S6-D3).
+// Card label harmony (D3 variant A, PENPOT-S6-D3).
 // One 22 px label height for every label, pill and counter of the participant,
 // group and grouping card headers, centred on the title line; the K21 header
 // counters share the same height (D4). Paint stays with each semantic recipe.
 // The D3 table also aligns the list toolbar (32 px), member rows (40 px line,
-// 28 px remove button) and header action targets (32 px).
+// 32 px remove target, 44 px for touch) and header action targets (32 px).
 @use "../easyedu" as easyedu;
 
 #local-groupimport-easystud {
@@ -68,6 +68,6 @@
     @include easyedu.related-person-remove-target;
   }
 
-  // K16-31/K16-32 (Kevin, 15/10 evening): the list toolbar keeps the Kit sizes of each control
+  // K16-31/K16-32: the list toolbar keeps the Kit sizes of each control
   // (Select all, result count, sort, page arrows); the forced 32 px height and 32 px circles are gone.
 }

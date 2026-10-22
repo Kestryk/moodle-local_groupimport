@@ -1206,7 +1206,7 @@
 // Inline panel revealed under a card, grouping, filter box or compact action.
 // Useful for search fields, paste/add-by-identifier inputs and similar transient
 // controls that should expand smoothly without becoming a full modal.
-// K16-83 (Kevin 16/10: no dotted frames inside cards): the same quiet veil as the card's empty
+// K16-83 (no dotted frames inside cards): the same quiet veil as the card's empty
 // row and member rows (K16-77), no visible border.
 @mixin inline-reveal-panel($max-height: 24rem) {
   background: rgba(255, 255, 255, 0.5);

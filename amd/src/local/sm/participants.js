@@ -41,7 +41,7 @@ const templateName = 'local_groupimport/sm/participant_card';
 const tokenClass = 'local-groupimport-easystud-token';
 
 /**
- * Same structure as local_groupimport_build_meta_tags_template_data() in manage.php.
+ * Build the token rows consumed by the participant-card Mustache template.
  *
  * @param {String} label Group label.
  * @param {String[]} items Token labels.

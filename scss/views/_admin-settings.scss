@@ -7,8 +7,8 @@
 // K18-15: four sections (operation and views, display and accessibility,
 // identification and import, history and privacy) on the Student Management
 // proportions: Inter 20/30 page title, 16/24 section titles, 14.4/21.6 text,
-// 12.16/18.24 labels, 38 px fields (44 px touch), 32 px page margins and two
-// 752 px columns spaced by 32 px on a 1600 px viewport, stacked at 390 px.
+// 12.16/18.24 labels, 38 px fields (44 px touch), and 32 px page margins.
+// Sections follow one reading column; native setting rows stack at 390 px.
 // K18-18: the real page is painted from the first frame; only the field
 // controls that wait for Moodle's dependency logic sit behind Kit skeletons.
 @use "../easyedu" as easyedu;

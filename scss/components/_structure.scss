@@ -1002,13 +1002,13 @@
     margin-bottom: 0.3rem;
   }
 
-  // K16-70 (Kevin 16/10): the fold control is the same Kit action as "Select all" on its row
+  // K16-70: the fold control is the same Kit action as "Select all" on its row
   // (selection-recovery-action): chevron + "See all N members" / "Show less".
   &-group__members-toggle {
     @include easyedu.card-fold-chevron;
   }
 
-  // K16-76 (Kevin 16/10: "See all N members" adds text to busy cards): the fold control is
+  // K16-76 ("See all N members" adds text to busy cards): the fold control is
   // icon-only everywhere; the label stays as its accessible name (aria-label).
   &-group__members-toggle-label {
     display: none;
