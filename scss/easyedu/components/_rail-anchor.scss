@@ -61,6 +61,9 @@ $-rail-control-size: 2.5rem;
 // Band + single content frame. Include once on the view root.
 @mixin rail-anchor-page($compact-breakpoint: 64rem) {
   --easyedu-rail-anchor-inset: 2rem;
+  // K22-37 (Kevin 22/10/2026): the rail sits closer to the card edges than the
+  // frame content: identity nearer the start edge, Guide + preferences nearer the end.
+  --easyedu-rail-anchor-edge: 1.25rem;
   // The view root is the query container of the identity rail (narrow bands).
   container-type: inline-size;
 
@@ -153,6 +156,7 @@ $-rail-control-size: 2.5rem;
 
   @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) and (max-width: 75rem) {
     --easyedu-rail-anchor-inset: 1.25rem;
+    --easyedu-rail-anchor-edge: 1rem;
   }
 
   @media (max-width: $compact-breakpoint) {
@@ -204,7 +208,7 @@ $-rail-control-size: 2.5rem;
       margin: 0;
       min-block-size: $-rail-block-size;
       overflow: visible;
-      padding: 0.75rem var(--easyedu-rail-anchor-inset, 2rem);
+      padding: 0.75rem var(--easyedu-rail-anchor-edge, 1.25rem);
       position: relative;
     }
 
@@ -668,7 +672,7 @@ $-rail-control-size: 2.5rem;
         gap: 0.5rem;
         inset: 0;
         overflow: hidden;
-        padding: 0.75rem var(--easyedu-rail-anchor-inset, 2rem);
+        padding: 0.75rem var(--easyedu-rail-anchor-edge, 1.25rem);
         pointer-events: none;
         position: absolute;
         z-index: 1;
