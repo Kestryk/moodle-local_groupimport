@@ -536,6 +536,13 @@
 
   &__clear-selection-frame {
     @include easyedu.sticky-selection-panel(var(--local-groupimport-easystud-primary));
+
+    // K22-12: centre on the workspace, not the viewport, so an open course index or block
+    // drawer recentres the capsule with the content (workspace.js measures the root). The
+    // physical `left` keeps translateX(-50%) correct in RTL too; 50% / 100vw are the fallbacks.
+    inset-inline: auto;
+    left: var(--local-groupimport-easystud-selection-centre, 50%);
+    max-width: min(calc(var(--local-groupimport-easystud-selection-width, 100vw) - 2rem), 30rem);
   }
 
   &__clear-selection {

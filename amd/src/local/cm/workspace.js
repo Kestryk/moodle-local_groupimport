@@ -657,6 +657,56 @@ const applyParticipantDensityChange = (root, selectedUsers) => {
     root.easystudExpandedParticipant = nextExpandedParticipant;
 };
 
+/**
+ * K22-12: centre the fixed desktop selection capsule on the EasyStud workspace rather than on
+ * the viewport. Moodle's course index (left) and block drawer (right) shift and narrow the page
+ * content; the capsule is position: fixed, so it cannot follow that box through CSS alone.
+ * The measured centre and width are handed to the stylesheet as custom properties.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+const syncSelectionFrameCentre = root => {
+    const frame = root.querySelector('[data-easystud-clear-selection-frame]');
+    if (!frame || frame.hidden) {
+        return;
+    }
+    const rect = root.getBoundingClientRect();
+    if (rect.width < 1) {
+        return;
+    }
+    frame.style.setProperty('--local-groupimport-easystud-selection-centre', (rect.left + rect.width / 2) + 'px');
+    frame.style.setProperty('--local-groupimport-easystud-selection-width', rect.width + 'px');
+};
+
+/**
+ * K22-12: keep the capsule centred while drawers open/close (their margin transitions resize
+ * the workspace) and while the window is resized. Installed once per root.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+const trackSelectionFrameCentre = root => {
+    if (root.easystudSelectionCentreTracked) {
+        return;
+    }
+    root.easystudSelectionCentreTracked = true;
+    let frameRequest = 0;
+    const schedule = () => {
+        if (frameRequest) {
+            return;
+        }
+        frameRequest = window.requestAnimationFrame(() => {
+            frameRequest = 0;
+            syncSelectionFrameCentre(root);
+        });
+    };
+    if (typeof window.ResizeObserver === 'function') {
+        new window.ResizeObserver(schedule).observe(root);
+    }
+    window.addEventListener('resize', schedule, {passive: true});
+    // A drawer can also move the workspace without resizing it (centred max-width layouts).
+    document.addEventListener('transitionend', schedule, {passive: true});
+};
+
 export const updateSelectionActions = root => {
     const selectedUsers = getSelectedItems(root, 'participant');
     const selectedGroups = getSelectedItems(root, 'group');
@@ -683,6 +733,10 @@ export const updateSelectionActions = root => {
         const frame = button.closest('[data-easystud-clear-selection-frame]');
         if (frame) {
             frame.hidden = !hasSelection;
+            if (hasSelection) {
+                trackSelectionFrameCentre(root);
+                syncSelectionFrameCentre(root);
+            }
             const count = frame.querySelector('[data-easystud-clear-selection-count]');
             if (count) {
                 const template = labels.selectioncounttemplate || '';
