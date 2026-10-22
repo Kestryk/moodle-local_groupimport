@@ -60,7 +60,11 @@ test('Mass Import replaces its legacy action rail with the shared navigation', a
         .toHaveAttribute('href', /template\.php/);
     await expect(desktopNavigation.locator('[data-easyedu-navigation-item-id="mass-import-history"] button'))
         .toBeVisible();
-    await expect(navigation.locator('[data-easyedu-navigation-guide-source]')).toHaveCount(0);
+    const guideSource = desktopNavigation.locator(
+        '.easyedu-navigation__utilities [data-easyedu-navigation-guide-source]'
+    );
+    await expect(guideSource).toHaveCount(1);
+    await expect(guideSource.locator('button.easyedu-guide__launcher[data-easyedu-guide-open]')).toBeVisible();
     await expect(navigation.locator('[data-easyedu-navigation-section="course-participants"]')).toHaveCount(0);
 
     const headerContract = await navigationRegion.evaluate(node =>
