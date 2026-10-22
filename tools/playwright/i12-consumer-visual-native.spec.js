@@ -6,7 +6,7 @@ const crypto = require('node:crypto');
 // Source-only candidate CSS is substituted in the same real Moodle DOM. No
 // course command, product controller or server response is mocked.
 test('I12 shared source native visual comparison', async ({page}, info) => {
-    test.setTimeout(1200000);
+    test.setTimeout(1800000);
     const base = new URL(process.env.EASYEDU_MOODLE_URL);
     if (base.origin !== 'http://localhost:8051') {
         throw Error('Only the assigned port8051 runtime is allowed');
@@ -213,6 +213,8 @@ test('I12 shared source native visual comparison', async ({page}, info) => {
                     }
                     row.target = '.local-groupimport-easystud-settings-modal__help:visible';
                     await expect(page.locator(row.target).first()).toBeVisible();
+                    await expect(page.locator('.local-groupimport-easystud-entity__body:visible'))
+                        .not.toHaveClass(/is-entity-loading|is-entity-skeleton-visible/, {timeout: 60000});
                 } else {
                     await card.locator('input[data-easystud-selector-input]').first().check();
                     await expect(card).toHaveClass(/is-selected/);
