@@ -89,7 +89,10 @@ const createFullscreenController = (element, onChange = () => {}) => {
   };
   const exit = async() => {
     // A Guide must never exit another surface's fullscreen session.
-    if (!ownsFullscreen()) return true;
+    if (!ownsFullscreen()) {
+      await waitForUnpark();
+      return true;
+    }
     try { await document.exitFullscreen(); return true; }
     catch (error) { return false; }
     finally { notify(); await waitForUnpark(); }
@@ -124,7 +127,7 @@ const createFullscreenController = (element, onChange = () => {}) => {
     return exit();
   };
   notify();
-  return {available, ownsFullscreen, toggle, exit, destroy};
+  return {available, ownsFullscreen, isHostParked: () => parked.length > 0, toggle, exit, destroy};
 };
 
 const disclosePanel = Motion.disclosePanel;
@@ -3961,7 +3964,7 @@ const openModal = (root, config) => {
 
 const closeModal = (root, preserveHighlight = false, restoreFocus = true, options = {}) => {
   root.easyeduGuideTooltipHide?.();
-  if (root.easyeduGuideFullscreen?.ownsFullscreen()) {
+  if (root.easyeduGuideFullscreen?.ownsFullscreen() || root.easyeduGuideFullscreen?.isHostParked?.()) {
     return root.easyeduGuideFullscreen.exit().then(exited => {
       if (!exited) return;
       return closeModal(root, preserveHighlight, restoreFocus, options);

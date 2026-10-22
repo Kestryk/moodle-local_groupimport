@@ -3704,7 +3704,7 @@ const openModal = (root, config) => {
 
 const closeModal = (root, preserveHighlight = false, restoreFocus = true, options = {}) => {
   root.easyeduGuideTooltipHide?.();
-  if (root.easyeduGuideFullscreen?.ownsFullscreen()) {
+  if (root.easyeduGuideFullscreen?.ownsFullscreen() || root.easyeduGuideFullscreen?.isHostParked?.()) {
     return root.easyeduGuideFullscreen.exit().then(exited => {
       if (!exited) return;
       return closeModal(root, preserveHighlight, restoreFocus, options);

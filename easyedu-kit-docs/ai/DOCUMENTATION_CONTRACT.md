@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Guide Close waits for host release after an external browser fullscreen exit,
+even when fullscreen ownership has already ended. Keep the independent parked
+state and release promise in the shared controller, embedded mirror and AMD
+adapter. Preserve Escape semantics, host dimensions and Motion durations. See
+docs/testing/guide-host-release-2026-10-22.md for native and asynchronous proof.
+
 G1 personal animation choice reuses the server M1 resolver and current-user
 Moodle preference repository. Keep Save explicit, Cancel/Escape reversible and
 the underlying Guide open. The embedded Kit owns the preference-window/radio
