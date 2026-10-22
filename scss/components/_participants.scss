@@ -324,17 +324,21 @@
     @include easyedu.card-metadata;
   }
 
-  &--compact-users &-user__meta,
+  // M53 (22/10/2026): the native [hidden] attribute (set per card from the shared
+  // admin-default/override policy, local/sm/participants.isMetaCollapsed) must decide this
+  // block's visibility. An explicit, same-specificity override here (rather than relying on
+  // the UA stylesheet's unmarked [hidden] rule winning a cascade tie against the class
+  // selector above) keeps that true in every density, including compact.
+  &-user__meta[hidden] {
+    display: none;
+  }
+
   &--compact-users &-user__avatar {
     display: none;
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__avatar {
     display: inline-flex;
-  }
-
-  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__meta {
-    display: grid;
   }
 
   &-user__meta-group {
