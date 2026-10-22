@@ -454,6 +454,16 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
       width: auto;
     }
 
+    // Adapt only this plugin's native Moodle save command to the shared Kit.
+    > [class*="offset-"] > button[type="submit"].btn.btn-primary {
+      @include foundations.foundation-button;
+      & {
+        box-sizing: border-box;
+        max-inline-size: 100%;
+      }
+      @include easyedu.touch-target-floor(min-block-size);
+    }
+
     button,
     input[type="submit"] {
       &:focus-visible {
