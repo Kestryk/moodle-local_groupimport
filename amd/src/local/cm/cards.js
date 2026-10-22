@@ -891,6 +891,24 @@ export const collapseAllGroupings = root => {
     root.querySelectorAll('[data-easystud-grouping-id].is-expanded').forEach(collapseGroupingSection);
 };
 
+/**
+ * K22-26: the rename editor appears with the Kit Motion recipes instead of popping in. When it opens
+ * a new row under the title (responsive card layouts) it is disclosed like the other inline card
+ * panels; when it takes the title's place in the same row (desktop) it fades and rises in.
+ *
+ * @param {HTMLElement} edit Rename editor, already shown.
+ * @param {HTMLElement|null} header Card header.
+ * @param {Number} closedHeight Header height before the editor was shown.
+ */
+const animateRenameOpen = (edit, header, closedHeight) => {
+    if (header && header.getBoundingClientRect().height - closedHeight > 4) {
+        edit.hidden = true;
+        Motion.disclosePanel(edit, true);
+        return;
+    }
+    Motion.enter(edit);
+};
+
 export const setRenameEditing = (form, editing) => {
     if (!form) {
         return;
@@ -898,10 +916,17 @@ export const setRenameEditing = (form, editing) => {
     const edit = form.querySelector('.local-groupimport-easystud-rename__edit');
     const toggle = form.querySelector('[data-easystud-rename-toggle]');
     const header = form.closest('.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header');
+    const wasHidden = !!edit && edit.hidden;
+    const headerHeight = header && editing && wasHidden ? header.getBoundingClientRect().height : 0;
     if (edit && editing) {
         prepareInlinePanelFocus(edit);
     }
     if (edit) {
+        if (!editing) {
+            // Closing stays immediate: submit/cancel/focus flows rely on the editor being hidden now.
+            Motion.cancel(edit);
+            edit.classList.remove('is-open');
+        }
         edit.hidden = !editing;
     }
     if (toggle) {
@@ -909,6 +934,9 @@ export const setRenameEditing = (form, editing) => {
     }
     if (header) {
         header.classList.toggle('is-rename-editing', editing);
+    }
+    if (edit && editing && wasHidden) {
+        animateRenameOpen(edit, header, headerHeight);
     }
     const root = form.closest('.local-groupimport-easystud');
     if (root) {
