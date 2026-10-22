@@ -516,6 +516,7 @@ $-rail-control-size: 2.5rem;
       overflow: hidden;
       transition:
         inline-size var(--easyedu-motion-fast, 160ms) ease,
+        margin var(--easyedu-motion-fast, 160ms) ease,
         padding var(--easyedu-motion-fast, 160ms) ease,
         gap var(--easyedu-motion-fast, 160ms) ease,
         background-color var(--easyedu-motion-fast, 160ms) ease,
@@ -531,6 +532,9 @@ $-rail-control-size: 2.5rem;
       &.is-rail-unfolded {
         gap: 0.625rem;
         inline-size: var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto));
+        // K22-22: keeps its start edge while the preceding unfolded control folds back
+        // (set by the controller, animated with that fold), so it stays under the pointer.
+        margin-inline-start: var(--easyedu-rail-item-shift, 0px);
 
         > .easyedu-navigation__item-label,
         .easyedu-guide__launcher-short {

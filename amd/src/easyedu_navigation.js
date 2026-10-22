@@ -189,6 +189,10 @@ const RAIL_MEASURING = 'is-rail-measuring';
 const RAIL_TIGHT = 'is-rail-tight';
 const RAIL_READY = 'is-rail-ready';
 const RAIL_SETTLE_MS = 400;
+// K22-22: grace before a left control folds back (crossing the gap to a neighbour).
+const RAIL_RELEASE_MS = 160;
+// K22-22: how far inside an unfolding control the pointer is kept.
+const RAIL_POINTER_INSET = 12;
 // Below this width an unfolded capsule would show no useful part of its label.
 const RAIL_MIN_ROOM = 72;
 
@@ -216,36 +220,67 @@ const bindIdentityRailFit = root => {
     let unfolded = null;
     let unfoldedRoom = null;
     let unfoldedTight = false;
+    let unfoldedShift = 0;
     let yielded = [];
     let settleTimer = 0;
-    let releaseFrame = 0;
+    let releaseTimer = 0;
+    let recheckTimer = 0;
+    // K22-22: last pointer position over the rail (null once it leaves the rail).
+    let pointer = null;
     const isFolded = control => control.classList.contains(RAIL_COLLAPSED);
+    const isRtl = () => window.getComputedStyle(navigation).direction === 'rtl';
     // `tight` narrows the rail spacing and `room` caps the unfolded width (label
     // ellipsised), each only when folding every neighbour still leaves too little room.
-    const applyUnfold = (target, yields, room = null, tight = false) => {
+    // `shift` (K22-22) keeps the start edge of a control that unfolds after the
+    // preceding unfolded control folds back, so it stays under the pointer.
+    const applyUnfold = (target, yields, room = null, tight = false, shift = 0) => {
         navigation.classList.toggle(RAIL_TIGHT, tight);
         unfoldedTight = tight;
         if (unfolded) {
             unfolded.classList.remove(RAIL_UNFOLDED);
             unfolded.style.removeProperty('--easyedu-rail-item-open');
+            unfolded.style.removeProperty('--easyedu-rail-item-shift');
         }
         yielded.forEach(control => control.classList.remove(RAIL_COLLAPSED, RAIL_YIELDED));
         unfolded = target;
         unfoldedRoom = room;
+        unfoldedShift = shift;
         yielded = yields;
         if (target) {
             target.classList.add(RAIL_UNFOLDED);
             if (room !== null) {
                 target.style.setProperty('--easyedu-rail-item-open', `${room}px`);
             }
+            if (shift) {
+                target.style.setProperty('--easyedu-rail-item-shift', `${shift}px`);
+            }
         }
         yields.forEach(control => control.classList.add(RAIL_COLLAPSED, RAIL_YIELDED));
     };
     const excess = () => Math.max(navigation.scrollWidth - navigation.clientWidth,
         sections ? sections.scrollWidth - sections.clientWidth : 0);
+    // K22-22: once a reflow has settled, the control under a still pointer may have
+    // changed without any pointer event. Re-evaluate it from the last pointer position.
+    const scheduleRecheck = () => {
+        window.clearTimeout(recheckTimer);
+        recheckTimer = window.setTimeout(() => {
+            recheckTimer = 0;
+            if (!pointer || navigation.classList.contains(RAIL_MEASURING)) {
+                return;
+            }
+            const element = document.elementFromPoint(pointer.x, pointer.y);
+            const control = element && navigation.contains(element) ?
+                candidates().find(candidate => candidate.contains(element)) : null;
+            if (control && control !== unfolded && isFolded(control)) {
+                // eslint-disable-next-line no-use-before-define
+                unfold(control, pointer);
+            }
+        }, RAIL_SETTLE_MS);
+    };
     const settle = () => {
         window.clearTimeout(settleTimer);
         settleTimer = 0;
+        scheduleRecheck();
         if (unfolded || yielded.length) {
             navigation.classList.add(RAIL_REFLOWING);
             return;
@@ -261,43 +296,87 @@ const bindIdentityRailFit = root => {
     };
     // Measure the layout where `target` shows its label, folding neighbours while the
     // rail overflows, then animate from the current state to it.
-    const unfold = target => {
-        window.cancelAnimationFrame(releaseFrame);
-        releaseFrame = 0;
+    const unfold = (target, point = null) => {
+        window.clearTimeout(releaseTimer);
+        releaseTimer = 0;
         if (target === unfolded) {
             return;
         }
-        const previous = {target: unfolded, yields: yielded, room: unfoldedRoom, tight: unfoldedTight};
+        const previous = {target: unfolded, yields: yielded, room: unfoldedRoom, tight: unfoldedTight, shift: unfoldedShift};
+        // eslint-disable-next-line no-bitwise
+        const precedes = (first, second) => !!(first.compareDocumentPosition(second) & Node.DOCUMENT_POSITION_FOLLOWING);
+        const rtl = isRtl();
+        // Inline positions measured from the start side (mirrored in RTL).
+        const startEdge = rect => (rtl ? -rect.right : rect.left);
+        const endEdge = rect => (rtl ? -rect.left : rect.right);
+        const visibleStart = startEdge(target.getBoundingClientRect());
         navigation.classList.add(RAIL_REFLOWING, RAIL_MEASURING);
         applyUnfold(target, []);
         // Fold what follows the unfolding control first, in fit priority (destinations,
         // then the Guide, which stays reachable as an icon): the control then grows away
         // from its start edge and stays under the pointer. Preceding controls give way
         // last, since folding them slides the control toward its start.
-        // eslint-disable-next-line no-bitwise
-        const follows = control => !!(target.compareDocumentPosition(control) & Node.DOCUMENT_POSITION_FOLLOWING);
+        const follows = control => precedes(target, control);
         const open = candidates().filter(control => control !== target && !isFolded(control));
         const queue = [...open.filter(follows), ...open.filter(control => !follows(control))];
-        const yields = [];
-        for (const control of queue) {
-            if (!overflows()) {
-                break;
+        // Plan one target layout (`shift`: transient start margin, K22-22).
+        const plan = shift => {
+            if (shift) {
+                target.style.setProperty('--easyedu-rail-item-shift', `${shift}px`);
             }
-            control.classList.add(RAIL_COLLAPSED, RAIL_YIELDED);
-            yields.push(control);
+            const yields = [];
+            for (const control of queue) {
+                if (!overflows()) {
+                    break;
+                }
+                control.classList.add(RAIL_COLLAPSED, RAIL_YIELDED);
+                yields.push(control);
+            }
+            // Nothing left to fold: tighten the rail spacing, then open only as far as
+            // the rail allows (never over a neighbour). With no useful room, stay folded.
+            const tight = overflows();
+            navigation.classList.toggle(RAIL_TIGHT, tight);
+            let room = null;
+            for (let pass = 0; pass < 3 && overflows(); pass++) {
+                const current = target.getBoundingClientRect().width;
+                room = Math.max(Math.floor(current - excess() - 1), 0);
+                target.style.setProperty('--easyedu-rail-item-open', `${room}px`);
+            }
+            return {yields, room, tight, shift, rect: target.getBoundingClientRect(),
+                useful: room === null || room >= RAIL_MIN_ROOM};
+        };
+        const unplan = planned => {
+            planned.yields.forEach(control => control.classList.remove(RAIL_COLLAPSED, RAIL_YIELDED));
+            target.style.removeProperty('--easyedu-rail-item-open');
+            target.style.removeProperty('--easyedu-rail-item-shift');
+            navigation.classList.remove(RAIL_TIGHT);
+        };
+        let planned = plan(0);
+        // K22-22: when the previously unfolded control precedes the target, folding it
+        // back slides the target toward its start, possibly out from under the pointer
+        // (gliding to the last folded control). A transient start margin, animated with
+        // that fold, keeps the pointer inside the target; only as much as needed, never
+        // past the target's visible start edge, and only if the label keeps useful room.
+        if (point && previous.target && previous.target !== target && precedes(previous.target, target)) {
+            const position = rtl ? -point.x : point.x;
+            const need = Math.min(Math.ceil(position + RAIL_POINTER_INSET - endEdge(planned.rect)),
+                Math.round(visibleStart - startEdge(planned.rect)));
+            if (need > 0) {
+                unplan(planned);
+                const shifted = plan(need);
+                if (shifted.useful) {
+                    planned = shifted;
+                } else {
+                    unplan(shifted);
+                    planned = plan(0);
+                }
+            }
         }
-        // Nothing left to fold: tighten the rail spacing, then open only as far as the
-        // rail allows (never over a neighbour). With no useful room, stay folded.
-        const tight = overflows();
-        navigation.classList.toggle(RAIL_TIGHT, tight);
-        let room = null;
-        for (let pass = 0; pass < 3 && overflows(); pass++) {
-            const current = target.getBoundingClientRect().width;
-            room = Math.max(Math.floor(current - excess() - 1), 0);
-            target.style.setProperty('--easyedu-rail-item-open', `${room}px`);
-        }
-        const next = room !== null && room < RAIL_MIN_ROOM ? [null, [], null, false] : [target, yields, room, tight];
-        applyUnfold(previous.target, previous.yields, previous.room, previous.tight);
+        const next = planned.useful ? [target, planned.yields, planned.room, planned.tight, planned.shift] :
+            [null, [], null, false, 0];
+        // Back to the visible state (planned yields included), then animate to the plan.
+        unplan(planned);
+        applyUnfold(previous.target, previous.yields, previous.room, previous.tight, previous.shift);
         void navigation.offsetWidth;
         navigation.classList.remove(RAIL_MEASURING);
         void navigation.offsetWidth;
@@ -305,18 +384,19 @@ const bindIdentityRailFit = root => {
         settle();
     };
     const release = control => {
-        if (control !== unfolded || releaseFrame) {
+        if (control !== unfolded || releaseTimer) {
             return;
         }
-        // Deferred one frame so moving straight to another folded control re-plans
-        // from the visible state instead of folding back first.
-        releaseFrame = window.requestAnimationFrame(() => {
-            releaseFrame = 0;
+        // Deferred (K22-22: a short grace instead of one frame) so crossing the gap to
+        // another folded control re-plans from the visible state instead of folding
+        // back first, which would slide that control away from the pointer.
+        releaseTimer = window.setTimeout(() => {
+            releaseTimer = 0;
             if (unfolded === control) {
                 applyUnfold(null, []);
                 settle();
             }
-        });
+        }, RAIL_RELEASE_MS);
     };
     const matches = (control, selector) => {
         try {
@@ -325,15 +405,22 @@ const bindIdentityRailFit = root => {
             return false;
         }
     };
+    navigation.addEventListener('pointermove', event => {
+        pointer = {x: event.clientX, y: event.clientY};
+    }, {passive: true});
+    navigation.addEventListener('pointerleave', () => {
+        pointer = null;
+    });
     const bound = new WeakSet();
     const bindUnfold = control => {
         if (bound.has(control)) {
             return;
         }
         bound.add(control);
-        control.addEventListener('pointerenter', () => {
+        control.addEventListener('pointerenter', event => {
+            pointer = {x: event.clientX, y: event.clientY};
             if (isFolded(control) || control === unfolded) {
-                unfold(control);
+                unfold(control, pointer);
             }
         });
         control.addEventListener('focusin', () => {
@@ -354,8 +441,10 @@ const bindIdentityRailFit = root => {
     };
     const fit = () => {
         const controls = candidates();
-        window.cancelAnimationFrame(releaseFrame);
-        releaseFrame = 0;
+        window.clearTimeout(releaseTimer);
+        releaseTimer = 0;
+        window.clearTimeout(recheckTimer);
+        recheckTimer = 0;
         window.clearTimeout(settleTimer);
         settleTimer = 0;
         applyUnfold(null, []);
