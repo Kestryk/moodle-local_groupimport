@@ -10,8 +10,9 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
     const evidence = process.env.I9_CSS_EVIDENCE;
     expect(path.isAbsolute(evidence || '')).toBe(true);
     const report = {rows: [], errors: [], consoleErrors: [], writes: []};
+    let phase = 'navigation';
     const save = () => fs.writeFileSync(info.outputPath('i9-native.json'), JSON.stringify(report, null, 2));
-    page.on('pageerror', e => { report.errors.push(e.stack || e.message); save(); });
+    page.on('pageerror', e => { report.errors.push({phase, url: page.url(), stack: e.stack || e.message}); save(); });
     page.on('console', e => { if (e.type() === 'error') { report.consoleErrors.push(e.text()); save(); } });
     page.on('request', r => {
         if (r.url().includes('/local/groupimport/ajax.php') && r.method() === 'POST') {
@@ -45,6 +46,7 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
         for (const surface of ['sm', 'mass', 'admin', 'guide']) {
             const row = {key: `${lang}-${width}-${surface}`, lang, width, surface};
             report.rows.push(row); save();
+            phase = 'navigation';
             const url = surface === 'mass' ? '/local/groupimport/index.php?id=5'
                 : surface === 'admin' ? '/admin/settings.php?section=local_groupimport'
                     : '/local/groupimport/manage.php?id=5';
@@ -64,8 +66,13 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
             const files = await page.locator('link[rel="stylesheet"]').evaluateAll(links => links
                 .filter(e => e.href.includes('/local/groupimport/styles/')).map(e => new URL(e.href).pathname.split('/').pop()));
             expect(files.length).toBeGreaterThan(0);
-            const readable = Object.fromEntries(files.map(f => [f, fs.readFileSync(path.join(evidence, 'readable', f), 'utf8')]));
-            const production = Object.fromEntries(files.map(f => [f, fs.readFileSync(path.join(evidence, 'production', f), 'utf8')]));
+            // Inline sheets resolve relative URLs against the document, unlike
+            // the real links. Preserve the original font base in both forms.
+            const inline = css => css.replace(/url\((["']?)\.\.\/fonts\//g,
+                'url($1' + origin + '/local/groupimport/fonts/');
+            const readable = Object.fromEntries(files.map(f => [f, inline(fs.readFileSync(path.join(evidence, 'readable', f), 'utf8'))]));
+            const production = Object.fromEntries(files.map(f => [f, inline(fs.readFileSync(path.join(evidence, 'production', f), 'utf8'))]));
+            phase = 'readable-css';
             await page.evaluate(css => {
                 for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
                     if (!link.href.includes('/local/groupimport/styles/')) continue;
@@ -98,6 +105,7 @@ test('I9 readable and production CSS preserve native paint', async ({page}, info
             const beforeCapture = info.outputPath(row.key + '-before.png');
             const afterCapture = info.outputPath(row.key + '-after.png');
             await page.screenshot({path: beforeCapture, caret: 'hide', clip});
+            phase = 'production-css';
             await page.evaluate(css => {
                 for (const style of document.querySelectorAll('style[data-i9-sheet]')) style.textContent = css[style.dataset.i9Sheet];
             }, production);
