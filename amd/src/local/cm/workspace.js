@@ -30,7 +30,9 @@ import {setSelectionBar, animateListArrival, listPageChanged} from './transition
 import * as Guide from '../../guide_api';
 import Log from 'core/log';
 import {fetchState} from '../sm/store';
-import {refreshModel, applyParticipantFilters, sortParticipantIds, renderParticipantPage} from '../sm/participants';
+import {
+    refreshModel, applyParticipantFilters, sortParticipantIds, renderParticipantPage, isMetaCollapsed,
+} from '../sm/participants';
 import {getTreeSectionGroupIds, renderTreeSection, groupingSearchText, treeGroupSearchText} from '../sm/groups';
 import {matchesText, matchesOccupancy} from '../sm/filter_engine';
 import {
@@ -921,7 +923,11 @@ const renderOnDemandParticipantPage = (root, list, config) => {
     list.setAttribute('data-easystud-page', page);
 
     const pageIds = ordered.slice(page * config.limit, (page + 1) * config.limit);
-    const key = model.revision + '|' + pageIds.join(',');
+    // K22-08: the meta-collapse policy is part of the cards' context (density toggle, compact
+    // density): a page whose ids stay the same across a density change (a course that fits on
+    // one page in both densities) must still be rebuilt, or its cards keep the old [hidden].
+    const key = model.revision + '|' + (isMetaCollapsed(model, model.strings) ? 'c' : 'o') + '|' +
+        pageIds.join(',');
     if (list.easystudSmRenderedKey !== key) {
         const arrived = listPageChanged(list, pageIds);
         const removed = Array.from(list.querySelectorAll(':scope > [data-easystud-user]'));

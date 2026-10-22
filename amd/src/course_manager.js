@@ -27,7 +27,7 @@ import {createStore} from './local/sm/store';
 import {filterParticipantIds} from './local/sm/index';
 import {createParticipantModel} from './local/sm/participants';
 import {attachGroupCatalogs} from './local/sm/groups';
-import {onReady, runSafely, getLabels} from './local/cm/shared';
+import {onReady, runSafely, getLabels, compactClass} from './local/cm/shared';
 import {setOnDemandParticipants} from './local/cm/state';
 import {scheduleCompleteListAlignment} from './local/cm/layout';
 import {syncResponsiveDragAvailability} from './local/cm/drag_support';
@@ -122,6 +122,9 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
         .then(model => attachGroupCatalogs(model, groupStrings))
         .then(model => {
             const {reactive, raw, loadMs} = store;
+            // K22-08: live desktop compact density for local/sm/participants.isMetaCollapsed
+            // (the responsive layout drops this class and hides membership rows on its own).
+            model.isCompactDensity = () => root.classList.contains(compactClass);
             setOnDemandParticipants({root, model, courseId});
             const renderStarted = window.performance.now();
             // The first cards replace the list skeletons with a short fade (CSS), once.

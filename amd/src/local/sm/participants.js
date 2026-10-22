@@ -146,12 +146,23 @@ export const refreshModel = model => {
  * "full information" density mode (model.metaExpandedOverride) overrides the admin default so it
  * still shows complete cards; null follows that default.
  *
+ * K22-08: with no override, the desktop compact density (automatic above 5 participants, or chosen
+ * with the density toggle) collapses the block too, like the avatar, whatever the admin default:
+ * only selecting a card or switching to "full information" shows it. Without this, a site whose
+ * admin had switched the default off showed roles/groups on every compact card (avatar alone
+ * hidden) since compact density stopped hiding the block in CSS (M53, c90d0c3a).
+ *
  * @param {Object} model Participant model.
  * @param {Object} strings Card labels from manage.php.
  * @returns {Boolean}
  */
-export const isMetaCollapsed = (model, strings) => model.metaExpandedOverride === null ?
-    strings.metacollapsedbydefault !== false : !model.metaExpandedOverride;
+export const isMetaCollapsed = (model, strings) => {
+    if (model.metaExpandedOverride !== null) {
+        return !model.metaExpandedOverride;
+    }
+    const compact = typeof model.isCompactDensity === 'function' && model.isCompactDensity();
+    return compact || strings.metacollapsedbydefault !== false;
+};
 
 /**
  * Template context of one card, as manage.php builds it for the legacy page.

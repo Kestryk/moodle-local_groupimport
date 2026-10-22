@@ -95,7 +95,8 @@ export const bindOptionalTools = root => {
                 root.querySelectorAll('.is-density-expanded').forEach(card => card.classList.remove('is-density-expanded'));
                 root.easystudExpandedParticipant = null;
                 // K21-16: "full information" (not compact) always shows complete cards; back to
-                // compact restores the admin default. Set before the re-render below, which
+                // compact collapses unselected cards again (K22-08: compact density collapses on
+                // its own, see local/sm/participants.isMetaCollapsed). Set before the re-render below, which
                 // rebuilds cards from this context (local/sm/participants.buildCardContext).
                 setMetaExpandedOverride(getOnDemandModel(root), compact ? null : true);
                 syncParticipantDensity(root, {animate: false});
