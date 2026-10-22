@@ -1,5 +1,7 @@
 - 2026-10-22 Verified readable and minified page styles against the same source, with ordered selectors, value-token preservation and a documented Moodle 4.5 compatibility inventory; no stylesheet-loading architecture change.
 
+- 2026-10-22 [I11] Mutualiser les mises à jour de présentation après rendu dans le périmètre du workspace ; limiter le nommage aux sous-arbres modifiés et les menus aux cartes ajoutées, sans changer les données ni Motion.
+
 - 2026-10-21 [I14] Split the course manager context menu binding: action handlers grouped by target type (participant, group, grouping, member, common) behind one dispatch table, menu animator, submenus, long press, hover and keyboard in their own functions (identical observable behaviour).
 
 - 2026-10-21 [I14] Split the Guide discovery-scene playback into one player per scene kind behind a dispatch table (shared playback clock unchanged, identical observable behaviour).

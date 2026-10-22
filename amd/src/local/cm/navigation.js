@@ -23,6 +23,7 @@
  */
 
 import * as Motion from '../../motion';
+import {onAfterRender} from './after_render';
 import {animateViewIn, withoutListArrival} from './transitions';
 import {
     structureFocusClass, participantFocusClass, responsiveWorkspaceQuery, isResponsiveWorkspace,
@@ -205,8 +206,8 @@ export const bindBackToTop = root => {
 
     // Ajax updates may replace a floating surface. Watch additions only; observing every
     // class/hidden mutation in the manager would make this callback observe its own button.
-    new MutationObserver(mutations => {
-        mutations.forEach(mutation => mutation.addedNodes.forEach(node => {
+    onAfterRender(root, detail => {
+        detail.addedNodes.forEach(node => {
             if (!node || node.nodeType !== 1) {
                 return;
             }
@@ -216,9 +217,11 @@ export const bindBackToTop = root => {
             if (node.querySelectorAll) {
                 node.querySelectorAll(floatingSelector).forEach(observeFloatingSurface);
             }
-        }));
-        scheduleSync();
-    }).observe(root, {childList: true, subtree: true});
+        });
+        if (detail.geometryFields.length) {
+            scheduleSync();
+        }
+    });
     document.addEventListener('shown.bs.modal', scheduleSync);
     document.addEventListener('hidden.bs.modal', scheduleSync);
     sync();

@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+I11 presentation updates share a workspace-scoped after-render collector. Preserve
+card deltas, ancestor deduplication and the fallback for external text/DOM changes.
+Keep native navigation, floating-surface and Guide observers that cover other
+producers. Count the shared flush and its consumers in A/B CPU measurements, then
+check CDP total/style cost separately; a renamed callback is not an optimization.
+See `docs/testing/i11-after-render-2026-10-22.md`.
+
 Quick-create names share `local/create_names`; compatibility functions in the
 two page scripts only delegate. Participant field definitions, profile visibility
 and colour normalization share `local/participant_fields`. Preserve the existing

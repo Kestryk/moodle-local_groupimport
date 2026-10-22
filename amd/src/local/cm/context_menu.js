@@ -22,6 +22,7 @@
  */
 
 import * as Motion from '../../motion';
+import {onAfterRender} from './after_render';
 import {
     selectedClass, isResponsiveWorkspace, getLabels, showNotification, areSelectionTypesCompatible,
     requestGuideHighlightRefresh,
@@ -659,8 +660,8 @@ const prepareContextSelection = (root, item) => {
     updateSelectionActions(root);
 };
 
-const ensureCardMenuButtons = root => {
-    root.querySelectorAll('[data-easystud-user], [data-easystud-group-id], [data-easystud-grouping-id]').forEach(card => {
+const ensureCardMenuButtons = (root, cards) => {
+    cards.forEach(card => {
         if (card.querySelector(':scope > [data-easystud-card-menu], ' +
             ':scope > .local-groupimport-easystud-group__header > [data-easystud-card-menu], ' +
             ':scope > .local-groupimport-easystud-grouping__header > [data-easystud-card-menu]')) {
@@ -964,18 +965,14 @@ const bindCardMenuButtons = ui => {
             currentTarget: trigger,
         }, item.type, item.target);
     });
-    ensureCardMenuButtons(root);
-    let cardMenuRefreshFrame = null;
-    const cardMenuObserver = new MutationObserver(mutations => {
-        if (!mutations.some(mutation => mutation.addedNodes.length) || cardMenuRefreshFrame !== null) {
-            return;
-        }
-        cardMenuRefreshFrame = window.requestAnimationFrame(() => {
-            cardMenuRefreshFrame = null;
-            ensureCardMenuButtons(root);
-        });
+    ensureCardMenuButtons(root, root.querySelectorAll(
+        '[data-easystud-user], [data-easystud-group-id], [data-easystud-grouping-id]'
+    ));
+    onAfterRender(root, detail => {
+        ensureCardMenuButtons(root, detail.addedCards.filter(card => card.matches(
+            '[data-easystud-user], [data-easystud-group-id], [data-easystud-grouping-id]'
+        )));
     });
-    cardMenuObserver.observe(root, {childList: true, subtree: true});
 };
 
 // A touch long press (responsive workspace) opens the menu under the finger.

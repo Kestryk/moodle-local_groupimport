@@ -22,6 +22,7 @@
  */
 
 import {filterGroupIds, sortGroupIds, renderGroupPage} from '../sm/groups';
+import {withRenderTransaction, recordRenderedCards} from './after_render';
 import {structureFocusClass, participantFocusClass} from './shared';
 import {getOnDemandModel} from './state';
 import {syncResponsiveDragAvailability} from './drag_support';
@@ -161,7 +162,7 @@ const isCatalogShown = (root, key) => {
  * @param {Object} config Pagination config (page size).
  * @returns {{total: Number, pages: Number, page: Number}}
  */
-export const renderOnDemandCatalogPage = (root, list, config) => {
+export const renderOnDemandCatalogPage = (root, list, config) => withRenderTransaction(root, () => {
     const model = getOnDemandModel(root);
     const key = catalogKeyOf(list);
     const catalog = model.catalogs[key];
@@ -177,10 +178,12 @@ export const renderOnDemandCatalogPage = (root, list, config) => {
     if (!isCatalogShown(root, key)) {
         if (list.easystudSmRenderedKey !== null) {
             rememberGroupCardStates(list);
+            const removed = Array.from(list.querySelectorAll(':scope > [data-easystud-group-id]'));
             renderGroupPage(model, list, key, []);
             catalog.pageCards = new Map();
             list.easystudSmRenderedKey = null;
             resetListPage(list);
+            recordRenderedCards(root, list, [], removed);
         }
         return {total: ordered.length, pages, page};
     }
@@ -189,6 +192,7 @@ export const renderOnDemandCatalogPage = (root, list, config) => {
     if (list.easystudSmRenderedKey !== renderkey) {
         const memory = rememberGroupCardStates(list);
         const arrived = listPageChanged(list, pageIds);
+        const removed = Array.from(list.querySelectorAll(':scope > [data-easystud-group-id]'));
         const cards = renderGroupPage(model, list, key, pageIds);
         catalog.pageCards = new Map(cards.map(card =>
             [Number(card.getAttribute('data-easystud-group-id')), syncGroupCardSelection(model, card)]));
@@ -198,9 +202,10 @@ export const renderOnDemandCatalogPage = (root, list, config) => {
         if (arrived) {
             animateListArrival(cards);
         }
+        recordRenderedCards(root, list, cards, removed);
     }
     return {total: ordered.length, pages, page};
-};
+});
 
 /**
  * Give freshly rendered catalog cards what the legacy page adds at start-up.
