@@ -709,8 +709,11 @@ class guide_config {
         $unlock = static function (string $path, string $titlekey): array {
             return [
                 'unlockPath' => $path,
-                'unlockLabel' => get_string('guide_prereq_unlock', 'local_groupimport',
-                    get_string($titlekey, 'local_groupimport')),
+                'unlockLabel' => get_string(
+                    'guide_prereq_unlock',
+                    'local_groupimport',
+                    get_string($titlekey, 'local_groupimport')
+                ),
             ];
         };
         return [
