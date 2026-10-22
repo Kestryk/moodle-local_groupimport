@@ -69,6 +69,24 @@
     @include easyedu.modal-body-inset;
   }
 
+  // K22-31: a confirmation message is a sentence meant to be read (name, count,
+  // consequence), not a dense form row. Give its body the same reading room entity
+  // dialogs already use (modal-body-inset(details): 1.5rem 1.25rem), not the tighter
+  // default — a single Kit rule shared by every openConfirmModal() and drag_drop.js choice dialog.
+  &-modal__dialog.easyedu-confirmation-dialog &-modal__body {
+    @include easyedu.modal-body-inset(details);
+  }
+
+  // K22-31: the shared .easyedu-ui root scope (foundation-scope) tightens
+  // --easyedu-line-height-body to 1.2, which is what made the confirmation sentence
+  // read as cramped. Reuse the existing "reading workspace" rhythm (1.5, already
+  // applied to mass-import's read-heavy body) instead of inventing a new value: this
+  // selector is more specific than the ancestor .easyedu-ui rule, so it overrides the
+  // inherited custom properties for this dialog and everything inside it (title + description).
+  &-modal__dialog.easyedu-confirmation-dialog {
+    @include easyedu.workspace-reading-rhythm;
+  }
+
   // One shared Close anatomy for Participant, Group, Grouping, Move and
   // choice dialogs. Accessible naming and dismissal routing stay native.
   &-modal__close {

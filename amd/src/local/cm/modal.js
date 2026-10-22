@@ -185,6 +185,10 @@ export const bindCardModalKeyboard = (modal, closeModal) => {
     };
 };
 
+// K22-31: the message is markup, not plain text, so a lang string can bold the segment that
+// describes the action's real consequence (Kit rule for every confirmation modal going forward).
+// Callers MUST escape any dynamic piece (a group/grouping name) before splicing it into that
+// markup — only the fixed, developer-authored wording may carry raw tags such as <strong>.
 export const openConfirmModal = (root, message, onconfirm) => {
     const modal = root.querySelector('[data-easystud-confirm-modal]');
     const messageNode = root.querySelector('[data-easystud-confirm-modal-message]');
@@ -202,7 +206,7 @@ export const openConfirmModal = (root, message, onconfirm) => {
     };
     const focusModal = bindCardModalKeyboard(modal, closeModal);
 
-    messageNode.textContent = message || '';
+    messageNode.innerHTML = message || '';
     showEasyStudModal(modal);
     focusModal();
     confirmButton.onclick = () => {

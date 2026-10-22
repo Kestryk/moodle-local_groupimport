@@ -22,7 +22,7 @@
  */
 
 import * as Guide from '../../guide_api';
-import {selectedClass, normalise, getLabels, showNotification, formatCountMessage} from './shared';
+import {selectedClass, normalise, getLabels, showNotification, formatCountMessage, escapeHtml} from './shared';
 import {openConfirmModal} from './modal';
 import {
     lazyKnownUserIdentifiers, renderIdentifierPreview, renderSmartIdentifierPreview, getKnownGroupIdentifiers,
@@ -585,8 +585,10 @@ export const bindCardDeleteActions = (root, courseId) => {
                 }).catch(error => handleActionError(root, error));
             };
             if (count > 0) {
+                // K22-31: the template carries safe <strong> markup; only the card's own name is
+                // dynamic, so it is HTML-escaped before splicing into that markup (XSS guard).
                 openConfirmModal(root, formatCountMessage(labels.confirmdeletegroupcard || '', count)
-                    .replace('__name__', getCardName(card)), runDelete);
+                    .replace('__name__', escapeHtml(getCardName(card))), runDelete);
                 return;
             }
             runDelete();
@@ -610,8 +612,10 @@ export const bindCardDeleteActions = (root, courseId) => {
             }).catch(error => handleActionError(root, error));
         };
         if (count > 0) {
+            // K22-31: see the group-card call above — the name is escaped before it joins the
+            // <strong>-bearing template, the fixed part never touched by user input.
             openConfirmModal(root, formatCountMessage(labels.confirmdeletegroupingcard || '', count)
-                .replace('__name__', getCardName(card)), runDelete);
+                .replace('__name__', escapeHtml(getCardName(card))), runDelete);
             return;
         }
         runDelete();
