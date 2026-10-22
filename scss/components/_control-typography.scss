@@ -5,15 +5,13 @@
 // preserve this final cascade position and the existing host compatibility.
 .local-groupimport-easystud {
   [data-easystud-add-group-emails],
-  [data-easystud-add-grouping-groups],
-  &-rename__edit [type="submit"] {
+  [data-easystud-add-grouping-groups] {
     @include foundations.foundation-button($density: compact);
   }
 
   [data-easystud-cancel-group-email],
   [data-easystud-cancel-grouping-groups],
-  [data-easystud-container-search-cancel],
-  [data-easystud-rename-cancel] {
+  [data-easystud-container-search-cancel] {
     @include foundations.foundation-button($secondary: true, $density: compact);
   }
 
@@ -23,10 +21,8 @@
     @include foundations.foundation-button($secondary: true, $density: compact);
   }
 
-  // Keep natural action metrics after the shared compact button treatment.
-  &-rename__edit .btn {
-    @include easyedu.inline-edit-action;
-  }
+  // K22-27: rename Save/Cancel are Kit field-peer icon buttons
+  // (.easyedu-create-icon-button), sized by the Kit to the field they follow.
 
   [data-easystud-advanced-filters-toggle],
   &-pagination__sort > span,

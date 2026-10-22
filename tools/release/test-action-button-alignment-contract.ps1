@@ -82,7 +82,8 @@ foreach ($needle in @(
     '.local-groupimport-easystud__panel-actions',
     '--easyedu-action-icon-gap: 0.35rem',
     '.local-groupimport-easystud-entity__native',
-    '.local-groupimport-easystud-rename__edit [type=submit]',
+    # K22-27: rename Save/Cancel are Kit field-peer icon buttons, sized with the touch field.
+    '.local-groupimport-easystud-rename__edit .easyedu-create-icon-button',
     '[data-easystud-panel-actions-menu] .btn'
 )) {
     if (-not $styles.Contains($needle)) {

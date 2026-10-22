@@ -289,14 +289,30 @@
       width: 100%;
     }
 
-    &--responsive-workspace &-rename__edit .btn,
     &--responsive-workspace &-rename__edit .form-control {
       @include easyedu.inline-edit-touch-control;
+    }
+
+    // K22-27: the touch field is 44 px from 1024 px down; its Kit icon-button
+    // peers follow it (the Kit itself only switches to touch at 48rem).
+    &--responsive-workspace &-rename__edit .easyedu-create-icon-button {
+      block-size: var(--easyedu-touch-target-min);
+      inline-size: var(--easyedu-touch-target-min);
+      min-block-size: var(--easyedu-touch-target-min);
+      min-inline-size: var(--easyedu-touch-target-min);
     }
 
     &--inline-editing &-mobile-actions,
     &--inline-editing [data-easystud-card-menu] {
       display: none !important;
+    }
+
+    // K22-27: the card menu is hidden while the rename editor is open (above),
+    // so its reserved lane goes back to the one-line editor.
+    &--responsive-workspace &-group > &-group__header.is-rename-editing > &-rename,
+    &--responsive-workspace &-tree__children > &-group > &-group__header.is-rename-editing > &-rename,
+    &--responsive-workspace &-tree__section[data-easystud-grouping-id] > &-grouping__header.is-rename-editing > &-rename {
+      @include easyedu.identity-card-action-lane-reclaim;
     }
 
     &-context-backdrop {

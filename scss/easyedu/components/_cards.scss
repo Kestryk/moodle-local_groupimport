@@ -1099,6 +1099,14 @@
   padding-right: if($flow, 0, calc(var(--easyedu-touch-target-min) + #{$gap}));
 }
 
+// Let one header child extend over the reserved action lane while that action
+// is hidden, without changing the header's own box (its padding is observed to
+// lay out card actions; changing it would rebuild a focused card menu).
+@mixin identity-card-action-lane-reclaim($person: false, $flow: false) {
+  $gap: if($person, 0.75rem, 0.45rem);
+  margin-inline-end: if($flow, 0, calc(-1 * (var(--easyedu-touch-target-min) + #{$gap})));
+}
+
 @mixin preview-fade-list-inset {
   padding: 0;
 }

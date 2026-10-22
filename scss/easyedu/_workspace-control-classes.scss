@@ -221,6 +221,22 @@
       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='312.875 291.875 16.25 16.25'%3E%3Cpath d='M322.25 293.125C322.25 292.43359375 321.69140625 291.875 321 291.875C320.30859375 291.875 319.75 292.43359375 319.75 293.125L319.75 298.75L314.125 298.75C313.43359375 298.75 312.875 299.30859375 312.875 300C312.875 300.69140625 313.43359375 301.25 314.125 301.25L319.75 301.25L319.75 306.875C319.75 307.56640625 320.30859375 308.125 321 308.125C321.69140625 308.125 322.25 307.56640625 322.25 306.875L322.25 301.25L327.875 301.25C328.56640625 301.25 329.125 300.69140625 329.125 300C329.125 299.30859375 328.56640625 298.75 327.875 298.75L322.25 298.75Z'/%3E%3C/svg%3E") center / contain no-repeat;
       &::before { content: none; }
     }
+    // K22-27: confirm / dismiss glyphs of the same field-peer icon button
+    // (inline rename Save / Cancel). Drawn by the component on the plus's
+    // 16 px box and stroke, so they centre by geometry whatever the icon font.
+    > .fa-check,
+    > .fa-times {
+      background: currentColor;
+      block-size: 1rem;
+      inline-size: 1rem;
+      &::before { content: none; }
+    }
+    > .fa-check {
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.75 8.5L6.25 12L13.25 4.25' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    > .fa-times {
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
   }
 
   // Opt-in state changes keep foreground/background paint atomic. Interpolating

@@ -860,6 +860,25 @@ export const updateStructureEmptyState = root => {
     state.hidden = hasgroups || hasgroupings;
 };
 
+/**
+ * K22-27: Save/Cancel of the inline rename editor, as Kit field-peer icon buttons (same markup as
+ * templates/sm/group_card.mustache). The icon is decorative: aria-label keeps the explicit name.
+ *
+ * @param {Object} labels Root labels.
+ * @returns {String} HTML.
+ */
+const renameEditActions = labels => {
+    const save = escapeHtml(labels.save || '');
+    const cancel = escapeHtml(labels.cancel || '');
+    return '<button type="submit" class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button ' +
+            'local-groupimport-easystud-rename__save" aria-label="' + save + '" data-easystud-hover-help="' + save + '">' +
+            '<span class="fa fa-check" aria-hidden="true"></span></button>' +
+        '<button type="button" class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button ' +
+            'easyedu-create-icon-button--secondary local-groupimport-easystud-rename__cancel" ' +
+            'data-easystud-rename-cancel="1" aria-label="' + cancel + '" data-easystud-hover-help="' + cancel + '">' +
+            '<span class="fa fa-times" aria-hidden="true"></span></button>';
+};
+
 export const createGroupElement = (root, groupdata) => {
     const labels = getLabels(root);
     const group = document.createElement('div');
@@ -895,9 +914,7 @@ export const createGroupElement = (root, groupdata) => {
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
                     '<input type="text" name="name" class="form-control form-control-sm" aria-label="' + escapeHtml(labels.rename || '') + '">' +
-                    '<button type="submit" class="btn btn-sm btn-outline-secondary">' +
-                        escapeHtml(labels.save || '') + '</button>' +
-                    '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + escapeHtml(labels.cancel || '') + '</button>' +
+                    renameEditActions(labels) +
                 '</div>' +
             '</form>' +
         '</div>' +
@@ -1002,9 +1019,7 @@ export const createGroupingElement = (root, groupingdata) => {
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
                     '<input type="text" name="name" class="form-control form-control-sm" aria-label="' + escapeHtml(labels.rename || '') + '">' +
-                    '<button type="submit" class="btn btn-sm btn-outline-secondary">' +
-                        escapeHtml(labels.save || '') + '</button>' +
-                    '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + escapeHtml(labels.cancel || '') + '</button>' +
+                    renameEditActions(labels) +
                 '</div>' +
             '</form>' +
                 '<span class="badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--grouping local-groupimport-easystud-count-badge--empty" data-count-template="' + escapeHtml(labels.groupscounttemplate || '__count__') + '"><span class="fa fa-layer-group" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +

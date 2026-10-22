@@ -21,7 +21,8 @@ foreach ($pair in @(@('valid', 'success'), @('invalid', 'error'))) {
     }
 }
 $controls = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/components/_control-typography.scss')
-if ($controls -notmatch '(?s)\[data-easystud-container-search-cancel\],\s*\[data-easystud-rename-cancel\]\s*\{\s*@include foundations.foundation-button\(\$secondary: true, \$density: compact\);\s*\}') {
+# K22-27: rename Cancel left this family for the Kit field-peer icon button.
+if ($controls -notmatch '(?s)\[data-easystud-container-search-cancel\]\s*\{\s*@include foundations.foundation-button\(\$secondary: true, \$density: compact\);\s*\}') {
     throw 'Search Cancel is not in the shared compact secondary family.'
 }
 $css = Get-Content -Raw -LiteralPath (Join-Path $root 'styles.css')

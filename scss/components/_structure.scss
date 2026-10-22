@@ -547,7 +547,10 @@
     .local-groupimport-easystud-container-search__toggle,
     .local-groupimport-easystud-group__duplicate-button,
     .local-groupimport-easystud-group__settings-button,
-    .local-groupimport-easystud-group__delete-button {
+    .local-groupimport-easystud-group__delete-button,
+    > .badge,
+    > [data-easystud-card-menu] {
+      // K22-27: the count badge and the card menu also make room for the editor.
       display: none !important;
     }
   }
@@ -869,7 +872,8 @@
     .local-groupimport-easystud-group__duplicate-button,
     .local-groupimport-easystud-group__settings-button,
     .local-groupimport-easystud-group__delete-button,
-    .local-groupimport-easystud-group__unlink-button {
+    .local-groupimport-easystud-group__unlink-button,
+    > [data-easystud-card-menu] {
       display: none !important;
     }
   }

@@ -672,8 +672,23 @@
                                             value="{{rawname}}"
                                             aria-label="{{renamelabel}}"
                                         >
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary">{{savelabel}}</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">{{cancellabel}}</button>
+                                        <button
+                                            type="submit"
+                                            class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button local-groupimport-easystud-rename__save"
+                                            aria-label="{{savelabel}}"
+                                            data-easystud-hover-help="{{savelabel}}"
+                                        >
+                                            <span class="fa fa-check" aria-hidden="true"></span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button easyedu-create-icon-button--secondary local-groupimport-easystud-rename__cancel"
+                                            data-easystud-rename-cancel="1"
+                                            aria-label="{{cancellabel}}"
+                                            data-easystud-hover-help="{{cancellabel}}"
+                                        >
+                                            <span class="fa fa-times" aria-hidden="true"></span>
+                                        </button>
                                     </div>
                                 </form>
                                 <span class="badge {{countbadgeclass}}" data-count-template="{{counttemplate}}" aria-label="{{countlabel}}" data-easystud-hover-help="{{countlabel}}" role="img"><span class="fa fa-layer-group" aria-hidden="true"></span><span data-easystud-count-value="1">{{groupcount}}</span></span>
