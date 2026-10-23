@@ -57,6 +57,8 @@ is not part of the public package.
 
 **Improved**
 
+- Preserve keyboard focus when participant details finish loading.
+
 - Keep complete search and creation labels visible in narrow columns.
 
 - Keep names and email addresses readable in constrained participant cards.
@@ -150,6 +152,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Le chargement des détails participant conserve le focus clavier dans la fiche.
 
 - Les champs de recherche et de création gardent leurs libellés complets dans les colonnes étroites.
 

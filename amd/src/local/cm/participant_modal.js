@@ -85,6 +85,18 @@ export const bindParticipantModal = root => {
     };
 
     const renderParticipantDetail = (data, state = 'ready') => {
+        // Deferred fields may arrive while the user is already tabbing through
+        // the known relations. Preserve that semantic destination across render,
+        // rather than leaving focus on the detached summary/button (then BODY).
+        const sameParticipant = body.dataset.easystudRenderedUserId === String(data.id);
+        const relationsBefore = sameParticipant ?
+            Array.from(body.querySelectorAll('[data-easystud-settings-list-section]')) : [];
+        const active = document.activeElement;
+        const relation = body.contains(active) ? active.closest('[data-easystud-settings-list-section]') : null;
+        const relationIndex = relationsBefore.indexOf(relation);
+        const controlSelector = 'summary, button, a[href], [tabindex]';
+        const controlIndex = relation ? Array.from(relation.querySelectorAll(controlSelector)).indexOf(active) : -1;
+        const openStates = relationsBefore.map(section => section.open);
         const loading = state === 'loading';
         const safeName = (data.fullname || '').toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') ||
             'participant';
@@ -127,7 +139,12 @@ export const bindParticipantModal = root => {
                     '<dl class="local-groupimport-easystud-entity__fields">' + fields + description + '</dl>', 'information') +
                 entitySection(labels.entityrelations || '', relations, 'relations') +
             '</div>';
-        body.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
+        body.dataset.easystudRenderedUserId = String(data.id);
+        const relationsAfter = Array.from(body.querySelectorAll('[data-easystud-settings-list-section]'));
+        relationsAfter.forEach((details, index) => {
+            if (index < openStates.length) {
+                details.open = openStates[index];
+            }
             bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
                 'data-easystud-settings-list-state');
         });
@@ -136,6 +153,12 @@ export const bindParticipantModal = root => {
             profileLink.setAttribute('href', data.profileurl || '#');
         }
         setEntityFooterBusy(dialog, loading);
+        if (relationIndex >= 0 && controlIndex >= 0 && !modal.hidden) {
+            const destination = relationsAfter[relationIndex]?.querySelectorAll(controlSelector)[controlIndex];
+            if (destination && !destination.disabled) {
+                destination.focus({preventScroll: true});
+            }
+        }
     };
 
     let detailRequest = 0;
