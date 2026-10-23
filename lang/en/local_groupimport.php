@@ -34,7 +34,10 @@ $string['activity_path_desc2'] = 'Tick the group checkboxes, not those of partic
 $string['activity_path_step3'] = 'Search and choose the destination grouping';
 $string['activity_path_desc3'] = 'The Guide opens the action for you: choose the destination grouping in the list.';
 $string['activity_path_step4'] = 'Check the options, then confirm';
-$string['activity_path_desc4'] = 'Check the destination. The “Remove from the original grouping” checkbox does not always appear. Unchecked, the groups also stay in their other groupings; checked, they are removed from them. When ready, click “Move selected item” or “Move selected items”, depending on the number of groups. Groups are processed one by one: if one fails, the moves already made stay.';
+$string['activity_path_desc4'] = 'Check the destination.' . "\n\n" .
+    'If “Remove from the original grouping” is shown, leave it unticked to keep the groups in their other groupings. Tick it to remove them from those groupings.' . "\n\n" .
+    'Then click “Move selected item” or “Move selected items”, depending on the number of groups.' . "\n\n" .
+    'Groups move one by one. If one fails, completed moves are kept.';
 $string['activity_path_step5'] = 'Open the destination and verify its groups';
 $string['activity_path_desc5'] = 'Check the groups in the destination grouping. The Guide opens it if needed. All confirmed groups must be in it. Clear the filters if necessary. Then choose this grouping in the Moodle activity settings.';
 

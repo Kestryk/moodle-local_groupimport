@@ -1,3 +1,5 @@
+Checklist descriptions retain intentional plain-text paragraph breaks through the shared Kit caption recipe. Keep textContent, path events and existing typography; a copy change must preserve the complete instructions and every unrelated translation. See docs/testing/guide-readability-completion-2026-10-23.md.
+
 Fullscreen parking must preserve parent-relative sibling flow, not only border-box dimensions. Leave unstable groups live; retain the Close release barrier and Motion timings. Test external browser exit followed by immediate Close with actual locale labels. See docs/testing/guide-fullscreen-geometry-2026-10-23.md.
 
 # EasyEdu documentation contract
