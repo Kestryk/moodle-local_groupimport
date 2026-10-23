@@ -2,6 +2,8 @@ Fullscreen parking must preserve parent-relative sibling flow, not only border-b
 
 # EasyEdu documentation contract
 
+Filter separation belongs to the common advanced-filter panel, not a Participants-only adapter. List selection, paging and tools consume one intrinsic wrap guard; preserve the narrow pager row and native handlers. Verify all column roles and painted controls, including narrowed desktop content. See docs/testing/k23-filter-pagination-2026-10-23.md.
+
 Column overflow copies preserve the existing Kit action icon-gap token even after the selection-action skin is removed. Verify the real reduced-menu entry and its painted icon-to-label separation; a full toolbar or an absent overflow trigger is not proof.
 
 Both card-search Cancel selectors must retain the same compact Kit recipe even when the general secondary-button class is present. Check computed typography/radius as well as containment; geometry alone cannot detect a regular-density cascade override.

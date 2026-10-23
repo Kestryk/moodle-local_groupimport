@@ -1,3 +1,45 @@
+@use "pagination";
+
+// Intrinsic list-toolbar guard. Equal flexible side lanes preserve a centred
+// pager when space allows; whole groups wrap before their controls collide.
+// The established narrow composition keeps its pager on the second row.
+@mixin pagination-flow-guard(
+  $selection: ".easyedu-pagination__selection",
+  $controls: ".easyedu-pagination__controls",
+  $tools: ".easyedu-pagination__tools",
+  $spacer: ".easyedu-pagination__spacer",
+  $breakpoint: 25rem
+) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  #{$selection}, #{$tools} {
+    flex: 1 1 0;
+    flex-wrap: wrap;
+    max-inline-size: 100%;
+    min-inline-size: min-content;
+  }
+
+  #{$tools} { justify-content: flex-end; }
+  #{$selection} { @include pagination.pagination-tools-compact-inset; }
+  #{$selection}:not(:has(> :not([hidden]))) { display: none; }
+
+  #{$controls} {
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    max-inline-size: 100%;
+  }
+
+  #{$spacer} { display: none; }
+
+  @media (max-width: $breakpoint) {
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    #{$controls} { flex-basis: 100%; order: 1; }
+  }
+}
+
 // Opt-in narrow pagination composition. Preserve the existing controls,
 // typography and behavior; only allocate non-overlapping grid lanes.
 @mixin pagination-narrow-layout(

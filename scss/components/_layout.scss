@@ -710,7 +710,7 @@
   &-advanced-filters {
     // The desktop composition reserves this gap in both disclosure states so
     // opening one column cannot move the opposite column or either list.
-    margin-top: 0.16rem;
+    margin-block-start: var(--easyedu-gap);
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
@@ -734,8 +734,6 @@
   }
 
   [data-easystud-filters] [data-easystud-advanced-filters="participants"] {
-    margin-block-start: var(--easyedu-gap);
-
     .local-groupimport-easystud__filters-grid {
       gap: var(--easyedu-gap);
     }
