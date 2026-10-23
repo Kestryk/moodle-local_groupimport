@@ -161,7 +161,7 @@
     inset-inline-end: 0.625rem;
     inset-block: 0;
   }
-  .easyedu-ui .easyedu-navigation__preferences-drawer { margin: 1rem 0; }
+  .easyedu-ui .easyedu-navigation__preferences-drawer { margin: 0; }
   @media (max-width: 64rem) {
     .easyedu-ui .easyedu-preferences-dialog__footer > button { min-block-size: 2.75rem; }
     :is(.easyedu-ui, .easyedu-guide) .easyedu-guide-utility,

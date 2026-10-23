@@ -96,12 +96,16 @@
   --easyedu-card-shadow-rest: none;
 }
 
-@mixin workspace-lane($rail, $segment: whole) {
-  // K20-06: no boundary line around lanes. The K16-19/21 dark inset hairline
-  // (rail 55% + text 45%) framed the tab band and the whole two-lane panel on Moodle 5.1;
-  // any 5.3 grey-host separation must go through Penpot first, not a hairline here.
+@mixin workspace-lane($rail, $segment: whole, $outlined: false) {
+  // Consumers opt into a continuous boundary without changing their surface.
+  // Split start/end segments share that same outline, with no horizontal seam.
   @include workspace-lane-surface;
   border: 0;
+  @if $outlined {
+    border: 0.0625rem solid var(--easyedu-border);
+    @if $segment == start { border-bottom: 0; }
+    @if $segment == end { border-top: 0; }
+  }
   box-shadow: none;
   min-inline-size: 0;
   @include workspace-lane-content-inset;

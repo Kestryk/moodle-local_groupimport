@@ -11,14 +11,6 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
   .local-groupimport-easystud-user__main {
     container: easystud-participant-main / inline-size;
   }
-
-  // K22-38 (Kevin, 22/10): the host rule above keeps the lane surface white on
-  // 5.3, undoing the K22-20 grey tint that marks the column boundary. Draw a
-  // Kit border around the lane instead, scoped to this 5.3 host only; other
-  // branches keep the K22-20 surface-strong tint with no added border.
-  .local-groupimport-easystud__panel {
-    border: 0.0625rem solid var(--easyedu-border);
-  }
 }
 
 @container easystud-participant-main (max-width: 12rem) {
@@ -41,7 +33,7 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
     gap: var(--easyedu-lane-gap);
   }
   .local-groupimport-easystud__panel {
-    @include easyedu.workspace-lane(var(--easyedu-participant-rail));
+    @include easyedu.workspace-lane(var(--easyedu-participant-rail), $outlined: true);
     padding-inline: 0;
     > .card-body {
       @include easyedu.workspace-lane-content-inset;
@@ -99,16 +91,16 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
     .local-groupimport-easystud__filters {
-      @include easyedu.workspace-lane(var(--easyedu-participant-rail), start);
+      @include easyedu.workspace-lane(var(--easyedu-participant-rail), start, $outlined: true);
       align-self: stretch;
     }
     .local-groupimport-easystud-participant-groups__create {
-      @include easyedu.workspace-lane(var(--easyedu-group-rail), start);
+      @include easyedu.workspace-lane(var(--easyedu-group-rail), start, $outlined: true);
       align-self: stretch;
     }
     .local-groupimport-easystud__participant-list,
     .local-groupimport-easystud-participant-groups__list {
-      @include easyedu.workspace-lane(var(--easyedu-participant-rail), end);
+      @include easyedu.workspace-lane(var(--easyedu-participant-rail), end, $outlined: true);
       padding-bottom: var(--easyedu-lane-inset);
     }
   }
@@ -121,14 +113,14 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
     }
     .local-groupimport-easystud-create-row { margin-bottom: 0; }
     .local-groupimport-easystud-create-card--group {
-      @include easyedu.workspace-lane(var(--easyedu-group-rail), start);
+      @include easyedu.workspace-lane(var(--easyedu-group-rail), start, $outlined: true);
     }
     .local-groupimport-easystud-create-card--grouping {
-      @include easyedu.workspace-lane(var(--easyedu-grouping-rail), start);
+      @include easyedu.workspace-lane(var(--easyedu-grouping-rail), start, $outlined: true);
     }
     .local-groupimport-easystud-structure-groups,
     .local-groupimport-easystud-tree__groupings {
-      @include easyedu.workspace-lane(var(--easyedu-group-rail), end);
+      @include easyedu.workspace-lane(var(--easyedu-group-rail), end, $outlined: true);
       padding-bottom: var(--easyedu-lane-inset);
     }
   }
