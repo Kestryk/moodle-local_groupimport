@@ -1,3 +1,4 @@
+@use "components/entity-fields";
 // Opt-in workspace controls, not a global Bootstrap/Moodle restyle.
 // Native commands, filtering, labels and disclosure Motion remain consumer-owned.
 @use "foundation-classes" as foundations;
@@ -141,6 +142,30 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
         color: var(--easyedu-field-disabled-text);
       }
     }
+  }
+
+  // Persistent captions retain the complete localized label when a native
+  // input is too narrow to display its placeholder. Existing field paint stays.
+  .easyedu-ui .easyedu-field-caption {
+    @include entity-fields.entity-field-caption;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+  .easyedu-ui .easyedu-field-stack {
+    display: grid;
+    flex: 1 1 0;
+    gap: 0.25rem;
+    margin: 0;
+    min-inline-size: 0;
+  }
+  .easyedu-ui .easyedu-search-field.easyedu-search-field--captioned {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.25rem 0.55rem;
+    padding-block-start: 0.25rem;
+    > .easyedu-field-caption { grid-column: 1 / -1; }
+    > .fa, > input { grid-row: 2; }
   }
 
   .easyedu-ui .easyedu-search-field {
