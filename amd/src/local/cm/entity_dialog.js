@@ -115,21 +115,6 @@ export const entitySkeletonField = (variant = 'value', wide = false, tag = 'div'
     '</' + tag + '>';
 
 /**
- * Skeleton of one relation section (title row, then a row of items).
- *
- * @param {String} variant pills or rows.
- * @returns {String}
- */
-export const entitySkeletonRelation = (variant = 'pills') =>
-    '<div class="' + prefix + '__relation ' + prefix + '__relation--skeleton" aria-hidden="true">' +
-        '<span class="' + prefix + '__skeleton ' + prefix + '__skeleton--title"></span>' +
-        (variant === 'rows' ?
-            '<span class="' + prefix + '__skeleton ' + prefix + '__skeleton--row"></span>' +
-            '<span class="' + prefix + '__skeleton ' + prefix + '__skeleton--row"></span>' :
-            '<span class="' + prefix + '__skeleton ' + prefix + '__skeleton--pills"></span>') +
-    '</div>';
-
-/**
  * Items beyond the visible limit are hidden behind one reveal control.
  *
  * @param {Number} index Item index.

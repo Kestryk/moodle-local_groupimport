@@ -33,7 +33,6 @@ export const dropTargetClass = 'is-drop-target';
 export const compactClass = 'local-groupimport-easystud--compact-users';
 export const structureFocusClass = 'local-groupimport-easystud--structure-focus';
 export const participantFocusClass = 'local-groupimport-easystud--participant-focus';
-export const hoverPopoverClass = 'local-groupimport-easystud-hover-popover';
 export const panelActionOverflowClass = 'local-groupimport-easystud__panel-action--overflow-hidden';
 const guideRefreshEvent = 'easyedu:guide-refresh-highlight';
 export const responsiveWorkspaceQuery = '(max-width: 1024px)';

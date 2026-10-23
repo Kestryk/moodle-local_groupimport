@@ -449,12 +449,6 @@ export const applyFilters = (root, options = {}) => {
     }
 };
 
-const getEnabledActionButton = (root, selector) => {
-    return Array.from(root.querySelectorAll(selector)).find(button => {
-        return !button.disabled && !button.hidden && button.offsetParent !== null;
-    }) || Array.from(root.querySelectorAll(selector)).find(button => !button.disabled && !button.hidden) || null;
-};
-
 export const getMobileActionButton = (root, selector) => {
     return Array.from(root.querySelectorAll(selector)).find(button => {
         return !button.disabled && !button.hidden && button.getAttribute('aria-hidden') !== 'true';
