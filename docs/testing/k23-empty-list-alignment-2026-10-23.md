@@ -63,8 +63,14 @@ side lanes were also checked invisible, inert and without a reachable control.
 
 The owned test runtime was restored by full SHA-256 comparison (1375 plugin
 files); the six isolated courses and all active synthetic accounts, groups
-and groupings were removed through Moodle APIs. No production deployment or
-Penpot edit belongs to this layout-only source change.
+and groupings were removed through Moodle APIs. A later readback detected
+11 files changed again and a different agent's branch in the runtime. That
+subsequent state was preserved, not overwritten. Keep the successful initial
+restoration proof and the later interference evidence separately; the final
+settled populated A/B readback is provisional because its runtime source
+could no longer be certified isolated. Alignment measurements and the exact
+CSS delta are retained. No production deployment or Penpot edit belongs to
+this layout-only source change.
 
 `test-empty-pagination-slots.cjs` covers empty/populated/empty state changes,
 disabled selection and inert lanes. ESLint reports no error or warning on the
