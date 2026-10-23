@@ -264,7 +264,18 @@
   }
 
   // Cards replacing the skeletons fade in once, on the first render of the course state.
-  &.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
+  // K23-21: a card already carrying its own JS creation/arrival entrance (.is-newly-created,
+  // played by Motion.enter in animateElementCreated; or .is-easystud-list-arriving, played by
+  // animateListArrival in local/cm/transitions.js) is excluded here. Both this CSS fade and
+  // those JS animations touch opacity; when the JS entrance is cancelled at its own (shorter)
+  // duration, the still-running CSS fade briefly takes over at its own, not-yet-complete value,
+  // producing a visible opacity dip/flicker right as the card settles ("bancale" appearance
+  // reported by Kevin, K23-21, 23/10/2026). Reproduced natively: the course-state first load and
+  // a "create group" action can land in the same render cycle (on-demand catalog hydration),
+  // stacking both animations on the freshly rendered card(s). See
+  // docs/testing/k23-21-new-group-card-entrance.md.
+  &.is-easystud-sm-entering
+    :is([data-easystud-user], [data-easystud-group-id]):not(.is-newly-created):not(.is-easystud-list-arriving) {
     animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
   }
 

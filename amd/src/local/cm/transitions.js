@@ -123,6 +123,16 @@ export const withoutListArrival = callback => {
  *
  * Call it only when the page content really changed, never on a state refresh.
  *
+ * K23-21: while this plays, the card carries `is-easystud-list-arriving` so the one-time
+ * course-state skeleton fade (`.is-easystud-sm-entering`, scss/components/_layout.scss) never
+ * also animates the same element's opacity. Both are freshly observed on the same card whenever
+ * the on-demand catalog hydrates for the first time as part of the same action that adds a group
+ * (e.g. creating the very first group of a session): the shorter JS animation used to get
+ * cancelled mid-flight while the CSS one was still interpolating, snapping opacity back down for
+ * a frame before the CSS animation itself reached 1 — a visible flicker right as the card
+ * settled. This marker is scoped to this helper only (never `.is-newly-created`, which also
+ * drives the green "created" card highlight and must stay reserved for a genuinely new group).
+ *
  * @param {HTMLElement[]} cards New cards.
  */
 export const animateListArrival = cards => {
@@ -130,10 +140,11 @@ export const animateListArrival = cards => {
         return;
     }
     cards.forEach((card, index) => {
+        card.classList.add('is-easystud-list-arriving');
         run(card, {opacity: 0, transform: 'translateY(6px)'}, {
             duration: 160,
             delay: Math.min(index, 5) * 30,
-        });
+        }).then(() => card.classList.remove('is-easystud-list-arriving')).catch(() => undefined);
     });
 };
 
