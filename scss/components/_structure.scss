@@ -580,8 +580,7 @@
   // Grouping count badge: last child of the header, after the actions.
   &-grouping__header > .badge {
     @include easyedu.count-badge-grouping-header-paint;
-    margin-left: auto;
-    order: 99;
+    @include easyedu.card-header-terminal-slot;
   }
 
   &-tree__toggle[aria-expanded="true"] > .fa {
@@ -836,8 +835,8 @@
       min-width: 0;
     }
 
-    .badge {
-      margin-left: auto;
+    > .badge {
+      @include easyedu.card-header-terminal-slot;
     }
   }
 
@@ -882,20 +881,13 @@
     flex: 1 1 auto;
   }
 
-  // A desktop Grouping summary that cannot fit is recovered through More
-  // actions. Keep that trigger at the logical end of the header: the card
-  // title remains first priority and lower-priority actions can collapse.
+  // A hidden grouping summary is recovered through More actions before the count.
   &-group.is-groupings-summary-hidden > &-group__header > &-card-menu {
     // K16-55: the Kit overflow trigger (24 px disc), only placed here.
     @include easyedu.card-overflow-trigger;
 
-    margin: 0;
-    margin-inline-start: auto;
-    order: 2;
+    @include easyedu.card-header-terminal-slot(overflow);
     @include easyedu.card-action-zero-inset;
-    // In flow; relative (no offset) only so the Kit dots keep the trigger as their box (F06).
-    inset: auto;
-    position: relative;
   }
 
   &-group__mail-button,
@@ -912,6 +904,7 @@
 
   &-group__actions-toggle {
     @include easyedu.card-overflow-trigger;
+    @include easyedu.card-header-terminal-slot(overflow);
   }
 
   &-group__actions-menu {

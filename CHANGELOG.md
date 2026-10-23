@@ -1,3 +1,5 @@
+- 2026-10-23 [K23-29] Keep the Group member count after More actions at every width, using the shared Kit terminal slot and the existing badge/target recipes.
+
 - 2026-10-23 [K23-27] Simplify the demonstration completion mark to a plain check inside its existing success disc. Preserve the 32px frame, colours, centring and accessible state.
 
 - 2026-10-23 [K23-26] Clarify the grouping confirmation instructions in French and English with four short paragraphs. Preserve all actions and the warning about completed moves after a failure.

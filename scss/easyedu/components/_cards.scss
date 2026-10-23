@@ -200,6 +200,22 @@
   }
 }
 
+// Keep the count after all direct actions and the overflow trigger in one flow.
+@mixin card-header-terminal-slot($slot: count) {
+  @if $slot == count {
+    margin-left: auto;
+    order: 99;
+  } @else if $slot == overflow {
+    inset: auto;
+    margin-left: 0;
+    order: 98;
+    position: relative;
+    transform: none;
+  } @else {
+    @error "card-header-terminal-slot expects count or overflow.";
+  }
+}
+
 // Stable title line for object cards. The main slot owns truncation while the
 // terminal slot keeps count badges and actions aligned as details expand.
 @mixin card-title-row($gap: 0.55rem) {

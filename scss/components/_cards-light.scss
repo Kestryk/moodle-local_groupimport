@@ -85,14 +85,14 @@
     gap: 0.375rem;
   }
 
-  // Group and grouping headers: the title owns the first line; the labels
-  // (groupings, member or group counter) share the line below it.
+  // Group actions and count share one row, even in the light-card composition.
   .local-groupimport-easystud-group__header {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     row-gap: 0.375rem;
 
     > .local-groupimport-easystud-group__name {
-      flex: 1 0 100%;
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     > .local-groupimport-easystud-group__groupings--inline {
@@ -101,13 +101,12 @@
     }
 
     > .badge {
-      margin-inline-start: 0;
-      order: 9;
+      @include easyedu.card-header-terminal-slot;
     }
 
-    // The menu stays anchored on the title line, not on the two-line header.
+    // The menu shares the count's header flow instead of an absolute title lane.
     > .local-groupimport-easystud-card-menu {
-      top: calc(1.25 * var(--easyedu-card-identity-title-size) / 2);
+      @include easyedu.card-header-terminal-slot(overflow);
     }
   }
 

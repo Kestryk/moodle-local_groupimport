@@ -160,20 +160,14 @@
       top: 0.28rem;
     }
 
-    // Group actions live in a positioned header rather than directly on the
-    // card in some rendered variants. Centre their actual touch target on the
-    // title line instead of compensating with a fixed visual offset.
+    // Group headers keep the menu in flow before their terminal member count.
     &--responsive-workspace &-group__header > &-card-menu {
-      top: 50%;
-      transform: translateY(-50%);
+      @include easyedu.card-header-terminal-slot(overflow);
     }
 
-    // Nested Group cards place their compact actions menu inside the header.
-    // Reserve its existing touch-target lane before distributing the title and
-    // member-count badge. This changes neither card dimensions nor the menu,
-    // rail or disclosure animation.
+    // An in-flow menu does not need an additional absolute-action lane.
     &--responsive-workspace &-tree__children > &-group > &-group__header {
-      @include easyedu.identity-card-action-clearance;
+      @include easyedu.identity-card-action-clearance($flow: true);
 
       > .local-groupimport-easystud-group__name {
         min-width: 0;
@@ -207,7 +201,10 @@
       position: relative;
     }
 
-    &--responsive-workspace &-group > &-group__header,
+    &--responsive-workspace &-group > &-group__header {
+      @include easyedu.identity-card-action-clearance($flow: true);
+    }
+
     &--responsive-workspace &-tree__section[data-easystud-grouping-id] > &-grouping__header {
       @include easyedu.identity-card-action-clearance;
     }
