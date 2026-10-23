@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "paginationFlowGuard20261023": {
+      "files": [
+        {
+          "path": "scss/easyedu/components/_pagination-responsive.scss",
+          "blob": "d96535120308dfc488805913e44eb35ef709b615"
+        }
+      ],
+      "component": "pagination-flow-guard",
+      "defaultRecipesChanged": false
+    },
     "adaptiveCardSearch20261023": {
       "files": [
         {

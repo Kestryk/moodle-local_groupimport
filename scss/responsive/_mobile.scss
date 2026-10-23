@@ -855,7 +855,7 @@
 }
 
 .local-groupimport-easystud .local-groupimport-easystud-pagination {
-  @include easyedu.pagination-narrow-layout(
+  @include easyedu.pagination-flow-guard(
     $selection: ".local-groupimport-easystud-pagination__selection",
     $controls: ".local-groupimport-easystud-pagination__controls",
     $tools: ".local-groupimport-easystud-pagination__tools",
