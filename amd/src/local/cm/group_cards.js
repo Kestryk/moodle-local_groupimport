@@ -486,8 +486,8 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
     });
 
     const responsive = isResponsiveWorkspace();
-    // A card title never shrinks below a readable width (the 7.5rem minimum of
-    // group titles): below it, trailing actions move into the card menu.
+    // Prefer 7.5rem for a readable title by moving actions into the menu first.
+    // If even the terminal controls consume that space, the title may shrink.
     const minTitleWidth = 7.5 * (parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16);
     const titleTooNarrow = title => !!title && title.scrollWidth > title.clientWidth + 1 &&
         title.clientWidth < minTitleWidth - 1;

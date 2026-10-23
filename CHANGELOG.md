@@ -1,3 +1,7 @@
+## K23-36 / G2 / G3 — 2026-10-24
+
+- Keep group counts and action controls inside drawer-narrowed headers, allow open action menus outside list clipping, and reconcile header actions before a view is revealed.
+
 # Changelog
 
 User-facing changes for the `local_groupimport` plugin (EasyStud, formerly

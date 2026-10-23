@@ -322,6 +322,9 @@ export const bindLayoutModeToggle = root => {
             const actionsBefore = snapshotPanelActions(root);
             trackLayoutSwap(root, Motion.swap(layout, () => {
                 applyModeState(mode);
+                if (root.easystudBeforeLayoutReveal) {
+                    root.easystudBeforeLayoutReveal();
+                }
                 // The panel action bars are measured now, in the same frame as the mode change.
                 // Left to the next animation frame, the buttons first showed in full and then
                 // dropped into the overflow menu a frame later (the second, abrupt step).
@@ -499,7 +502,9 @@ export const bindPanelActionOverflow = root => {
     });
 
     document.addEventListener('click', event => {
-        if (root.contains(event.target) && event.target.closest('[data-easystud-panel-actions-toggle], [data-easystud-panel-actions-menu]')) {
+        if (root.contains(event.target) && event.target.closest(
+            '[data-easystud-panel-actions-toggle], [data-easystud-panel-actions-menu]'
+        )) {
             return;
         }
         root.querySelectorAll('[data-easystud-panel-actions-menu]').forEach(menu => {

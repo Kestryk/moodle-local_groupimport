@@ -560,7 +560,7 @@
   }
 
   &-grouping__header > &-tree__toggle {
-    flex: 1 1 auto;
+    @include easyedu.card-header-title-slot;
     width: auto;
   }
 
@@ -689,6 +689,15 @@
       // participant expands. Never shrink a card to fit a panel viewport.
       flex-shrink: 0;
     }
+  }
+
+  &-participant-groups__list.is-easystud-paginated:has(.is-actions-menu-open),
+  &-structure-groups__list.is-easystud-paginated:has(.is-actions-menu-open),
+  &-tree__groupings.is-easystud-paginated:has(.is-actions-menu-open),
+  &-structure-groups:has(.is-actions-menu-open),
+  &-tree:has(.is-actions-menu-open),
+  &__panel:has(.is-actions-menu-open) {
+    @include easyedu.dropdown-card-open-host;
   }
 
   &__participant-list.is-easystud-paginated > &-pagination--bottom,
@@ -825,9 +834,8 @@
     @include easyedu.selectable-card-header;
 
     > .local-groupimport-easystud-group__name {
-      flex: 1 1 auto;
+      @include easyedu.card-header-title-slot;
       @include easyedu.card-title-object-leading;
-      min-width: 7.5rem;
     }
 
     > .local-groupimport-easystud-group__groupings--inline {
