@@ -357,6 +357,14 @@ const finishHideMenu = ui => {
     requestGuideHighlightRefresh(root);
 };
 
+// The card-menu trigger the context menu itself marked as expanded.
+const releaseExpandedTrigger = ui => {
+    if (ui.expandedTrigger) {
+        ui.expandedTrigger.setAttribute('aria-expanded', 'false');
+        ui.expandedTrigger = null;
+    }
+};
+
 const hideMenu = ui => {
     if (ui.menuClosing) {
         return;
@@ -387,9 +395,10 @@ const hideMenu = ui => {
     } else {
         finishHideMenu(ui);
     }
-    root.querySelectorAll('[data-easystud-card-menu][aria-expanded="true"]').forEach(button => {
-        button.setAttribute('aria-expanded', 'false');
-    });
+    // Only the trigger this menu opened from. Group and Grouping overflow
+    // triggers also carry the card-menu hook but own a local menu whose state
+    // this hide (run on every scroll and every Escape) must never touch.
+    releaseExpandedTrigger(ui);
     ui.context = null;
     if (ui.returnFocus && document.contains(ui.returnFocus)) {
         ui.returnFocus.focus({preventScroll: true});
@@ -579,8 +588,10 @@ const showMenu = (ui, event, type, target) => {
     ui.submenuGroups.forEach(group => animator.stopAnimation(getGroupParts(group).submenu));
     ui.context = {type, target};
     ui.returnFocus = event.currentTarget && event.currentTarget.focus ? event.currentTarget : target;
+    releaseExpandedTrigger(ui);
     if (ui.returnFocus && ui.returnFocus.matches && ui.returnFocus.matches('[data-easystud-card-menu]')) {
         ui.returnFocus.setAttribute('aria-expanded', 'true');
+        ui.expandedTrigger = ui.returnFocus;
     }
     setVisibleActions(ui, type, target);
     syncMaskedGroupingMenuAction(menu, type, target);
@@ -1156,6 +1167,7 @@ export const bindContextMenu = (root, courseId) => {
         animator: createMenuAnimator(root, menu),
         context: null,
         returnFocus: null,
+        expandedTrigger: null,
         openGroup: null,
         openedByHover: false,
         hoverTimer: null,

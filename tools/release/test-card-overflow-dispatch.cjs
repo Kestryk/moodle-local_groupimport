@@ -35,7 +35,7 @@ const builder = source.slice(start, end).replace('export const ', 'window.');
             window.isResponsiveWorkspace = () => false;
             window.getLabels = () => ({moreactions: 'More actions'});
             window.normaliseCardMenuButton = () => undefined;
-            window.Motion = {hideMenu: menu => { menu.hidden = true; }};
+            window.Motion = {hideMenu: menu => { menu.hidden = true; }, isMenuClosing: () => false};
             // eslint-disable-next-line no-eval
             (0, eval)(code);
             const host = document.querySelector('#root');
@@ -58,6 +58,30 @@ const builder = source.slice(start, end).replace('export const ', 'window.');
         }));
         assert.deepEqual(result, {commands: 1, panelHidden: false, menuHidden: true});
         console.log('PASS: one native overflow click dispatches exactly one delegated command; panel stays open.');
+
+        // G1 (K23-07/K23-12/K23-34): a header width change rebuilds the menu while it is open.
+        // It must come back open with its trigger and card state, or close completely.
+        const rebuilt = await page.evaluate(() => {
+            const host = document.querySelector('#root');
+            const card = host.querySelector('[data-easystud-group-id]');
+            const menu = host.querySelector('[data-easystud-group-actions-menu]');
+            const toggle = host.querySelector('[data-easystud-group-actions-toggle]');
+            const read = () => ({menuHidden: menu.hidden, aria: toggle.getAttribute('aria-expanded'),
+                raised: card.classList.contains('is-actions-menu-open'), items: menu.children.length});
+            menu.hidden = false;
+            toggle.setAttribute('aria-expanded', 'true');
+            card.classList.add('is-actions-menu-open');
+            window.ensureNestedGroupActionMenus(host);
+            const stillOverflowing = read();
+            // Wide enough for every action: the menu has nothing left and closes completely.
+            host.querySelector('.header').style.width = '600px';
+            card.style.width = '600px';
+            window.ensureNestedGroupActionMenus(host);
+            return {stillOverflowing, fits: read()};
+        });
+        assert.deepEqual(rebuilt.stillOverflowing, {menuHidden: false, aria: 'true', raised: true, items: 2});
+        assert.deepEqual(rebuilt.fits, {menuHidden: true, aria: 'false', raised: false, items: 0});
+        console.log('PASS: an open overflow menu survives its rebuild, or closes with its trigger and card state.');
     } finally {
         await browser.close();
     }

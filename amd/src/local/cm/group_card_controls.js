@@ -195,16 +195,23 @@ export const bindGroupMemberSearch = root => {
 };
 
 export const bindNestedGroupActionMenus = root => {
+    const openMenus = () => Array.from(root.querySelectorAll('[data-easystud-group-actions-menu]:not([hidden])'))
+        .filter(menu => !Motion.isMenuClosing(menu));
+    const getToggle = menu => {
+        const header = menu.closest(
+            '.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header'
+        );
+        return header ? header.querySelector(':scope > [data-easystud-group-actions-toggle]') : null;
+    };
+    // Only the overflow menus that are really open: a hidden menu's trigger may be
+    // expanded by the responsive action sheet, which owns that state.
     const closeMenus = except => {
-        root.querySelectorAll('[data-easystud-group-actions-menu]').forEach(menu => {
+        openMenus().forEach(menu => {
             if (menu === except) {
                 return;
             }
             const group = menu.closest('[data-easystud-group-id], [data-easystud-grouping-id]');
-            const header = menu.closest(
-                '.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header'
-            );
-            const toggle = header ? header.querySelector('[data-easystud-group-actions-toggle]') : null;
+            const toggle = getToggle(menu);
             // The card keeps its raised stacking until the menu has left, so the fade is never clipped.
             Motion.hideMenu(menu, {anchor: toggle, onDone: completed => {
                 if (completed && group && menu.hidden) {
@@ -216,6 +223,35 @@ export const bindNestedGroupActionMenus = root => {
             }
         });
     };
+
+    // Dismissal (G1, K23-07/K23-12/K23-34): a click anywhere outside the open
+    // menu and its own trigger closes it, including outside the plugin (course
+    // drawer, page header). The capture phase runs before handlers that stop
+    // propagation, such as the card-menu and context-menu triggers.
+    document.addEventListener('click', event => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (!target || target.closest('[data-easystud-group-actions-menu], [data-easystud-group-actions-toggle]')) {
+            return;
+        }
+        closeMenus(null);
+    }, true);
+    // Escape closes the open menu and returns focus to its trigger.
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || event.defaultPrevented) {
+            return;
+        }
+        const menus = openMenus();
+        if (!menus.length) {
+            return;
+        }
+        const active = document.activeElement;
+        const returnTo = menus.map(getToggle).find(toggle => toggle && (toggle === active ||
+            toggle.parentElement.querySelector(':scope > [data-easystud-group-actions-menu]').contains(active)));
+        closeMenus(null);
+        if (returnTo) {
+            returnTo.focus({preventScroll: true});
+        }
+    });
 
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-actions-toggle]');
@@ -259,12 +295,8 @@ export const bindNestedGroupActionMenus = root => {
             return;
         }
 
-        if (!event.target.closest('[data-easystud-group-actions-menu]')) {
-            closeMenus(null);
-            return;
-        }
-
-        if (event.target.closest('button')) {
+        // Clicks outside the menu are handled by the document listener above.
+        if (event.target.closest('[data-easystud-group-actions-menu]') && event.target.closest('button')) {
             window.setTimeout(() => closeMenus(null), 0);
         }
     });

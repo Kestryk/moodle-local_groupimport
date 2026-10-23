@@ -478,11 +478,15 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
         normaliseCardMenuButton(toggle, root);
 
         const actions = Array.from(header.querySelectorAll(actionSelector));
+        // A header width change (course drawer, resize) rebuilds the menu while it may be open:
+        // remember it, so it is either reopened as it was or closed completely, never left
+        // hidden behind an expanded trigger and a raised card.
+        const wasOpen = !menu.hidden && !Motion.isMenuClosing(menu);
         actions.forEach(button => button.classList.remove('is-easystud-card-action-overflow'));
         toggle.hidden = true;
         menu.hidden = true;
         menu.innerHTML = '';
-        entries.push({group, header, menu, toggle, actions});
+        entries.push({group, header, menu, toggle, actions, wasOpen});
     });
 
     const responsive = isResponsiveWorkspace();
@@ -567,6 +571,15 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
             menu.appendChild(clone);
         });
         toggle.hidden = menu.children.length === 0;
+        if (entry.wasOpen && !toggle.hidden) {
+            menu.hidden = false;
+        }
+    });
+    // Same final state for the trigger, the menu and the card whatever the path above.
+    entries.filter(entry => entry.wasOpen).forEach(entry => {
+        const open = !entry.menu.hidden;
+        entry.toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        entry.group.classList.toggle('is-actions-menu-open', open);
     });
 };
 

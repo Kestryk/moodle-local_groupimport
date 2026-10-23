@@ -517,6 +517,28 @@ export const bindPanelActionOverflow = root => {
         });
     });
 
+    // G1: Escape closes an open column-header menu and returns focus to its trigger.
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || event.defaultPrevented) {
+            return;
+        }
+        root.querySelectorAll('[data-easystud-panel-actions-menu]:not([hidden])').forEach(menu => {
+            if (Motion.isMenuClosing(menu)) {
+                return;
+            }
+            const menuToggle = menu.parentElement ?
+                menu.parentElement.querySelector('[data-easystud-panel-actions-toggle]') : null;
+            const hadFocus = menu.contains(document.activeElement) || document.activeElement === menuToggle;
+            Motion.hideMenu(menu, {anchor: menuToggle});
+            if (menuToggle) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                if (hadFocus) {
+                    menuToggle.focus({preventScroll: true});
+                }
+            }
+        });
+    });
+
     schedulePanelActionOverflow(root);
 
     // K17-48: the action bars were measured on a layout swap only. Any width change of a bar (window

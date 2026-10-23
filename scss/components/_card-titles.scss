@@ -70,7 +70,9 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    $rest: ":not(:hover):not(:focus-within):not(.is-selected)";
+    // G1: a card whose More actions menu is open is not at rest, so its trigger and the menu
+    // items cloned from quiet actions (Rename) stay visible after the pointer leaves the card.
+    $rest: ":not(:hover):not(:focus-within):not(.is-selected):not(.is-actions-menu-open)";
     .local-groupimport-easystud-user#{$rest} .local-groupimport-easystud-user__detail-button#{$quiet},
     .local-groupimport-easystud-group#{$rest} > .local-groupimport-easystud-group__header > .btn-link#{$quiet},
     .local-groupimport-easystud-group#{$rest} > .local-groupimport-easystud-group__header > .local-groupimport-easystud-card-menu#{$quiet},
