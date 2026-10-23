@@ -348,63 +348,6 @@
     }
   }
 
-  &-discovery {
-    align-items: center;
-    background:
-      radial-gradient(circle at 2rem 1.5rem, rgba(12, 113, 194, 0.12), transparent 8rem),
-      #f7fbff;
-    border: 1px solid #cfe0ef;
-    border-radius: 1rem;
-    box-shadow: 0 0.42rem 1rem rgba(31, 68, 104, 0.08);
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    margin-bottom: 1rem;
-    padding: 0.85rem 0.95rem;
-  }
-
-  &-discovery[hidden] {
-    display: none;
-  }
-
-  &-discovery__icon {
-    align-items: center;
-    background: #fff;
-    border: 1px solid #c7dced;
-    border-radius: 0.9rem;
-    box-shadow: 0 0.25rem 0.65rem rgba(12, 113, 194, 0.12);
-    color: var(--local-groupimport-easystud-primary);
-    display: inline-flex;
-    font-size: 1rem;
-    height: 2.4rem;
-    justify-content: center;
-    width: 2.4rem;
-  }
-
-  &-discovery__text {
-    color: #53677c;
-    display: grid;
-    gap: 0.08rem;
-    min-width: 0;
-
-    strong {
-      color: #203244;
-      font-size: 0.95rem;
-      font-weight: 780;
-    }
-
-    span {
-      font-size: 0.84rem;
-      line-height: 1.35;
-    }
-  }
-
-  &-discovery__actions {
-    align-items: center;
-    display: flex;
-    gap: 0.45rem;
-  }
-
   &__header {
     align-items: flex-start;
     display: block;

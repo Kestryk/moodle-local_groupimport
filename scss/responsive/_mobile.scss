@@ -486,23 +486,6 @@
 
 @media (max-width: 560px) {
   .local-groupimport-easystud {
-    &-discovery {
-      grid-template-columns: 1fr;
-      padding: 0.8rem;
-    }
-
-    &-discovery__icon {
-      justify-self: start;
-    }
-
-    &-discovery__actions {
-      justify-content: stretch;
-
-      .btn-primary {
-        flex: 1 1 auto;
-      }
-    }
-
     &__layout {
       gap: 0.85rem;
     }
