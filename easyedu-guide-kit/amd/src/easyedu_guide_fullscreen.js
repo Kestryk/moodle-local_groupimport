@@ -7,6 +7,15 @@ export const createFullscreenController = (element, onChange = () => {}) => {
   let pending = false;
   let parked = [];
   const ownsFullscreen = () => document.fullscreenElement === element;
+  const releaseBlock = sibling => {
+    sibling.removeAttribute('data-easyedu-guide-parked');
+    sibling.style.removeProperty('--easyedu-guide-parked-width');
+    sibling.style.removeProperty('--easyedu-guide-parked-height');
+  };
+  const relativeBox = (child, parentBox) => {
+    const box = child.getBoundingClientRect();
+    return [box.left - parentBox.left, box.top - parentBox.top, box.width, box.height];
+  };
   // K17-41: the host page behind the Guide (thousands of participant cards) is
   // fully restyled and laid out when the viewport changes at native fullscreen
   // entry/exit, although the top layer already covers it. Skip its rendering
@@ -18,17 +27,24 @@ export const createFullscreenController = (element, onChange = () => {}) => {
     }
     const html = document.documentElement;
     const measured = [];
+    const groups = [];
     let node = element;
     while (node && node !== html && node.parentElement) {
       const parent = node.parentElement;
+      const parentBox = parent.getBoundingClientRect();
+      const group = {parent, blocks: [], anchors: []};
       for (const sibling of parent.children) {
         const skipped = sibling === node || /^(SCRIPT|STYLE|LINK|TEMPLATE)$/.test(sibling.tagName) ||
           sibling.hidden || window.getComputedStyle(sibling).display === 'none';
         if (!skipped) {
           const box = sibling.getBoundingClientRect();
           measured.push([sibling, box.width, box.height]);
+          group.blocks.push(sibling);
+          group.anchors.push([sibling, relativeBox(sibling, parentBox)]);
         }
       }
+      group.anchors.push([node, relativeBox(node, parentBox)]);
+      groups.push(group);
       node = parent;
     }
     measured.forEach(([sibling, width, height]) => {
@@ -37,7 +53,19 @@ export const createFullscreenController = (element, onChange = () => {}) => {
       sibling.setAttribute('data-easyedu-guide-parked', '');
     });
     parked = measured.map(item => item[0]);
-    html.classList.add('easyedu-guide-is-fullscreen');
+    // Containment stops child margins collapsing through their parent. Leave
+    // such sibling groups live rather than pinning a box with different flow.
+    const unstable = groups.filter(group => {
+      const parentBox = group.parent.getBoundingClientRect();
+      return group.anchors.some(([child, before]) =>
+        relativeBox(child, parentBox).some((value, index) => Math.abs(value - before[index]) > 0.01));
+    });
+    const released = new Set(unstable.flatMap(group => group.blocks));
+    released.forEach(releaseBlock);
+    parked = parked.filter(sibling => !released.has(sibling));
+    if (parked.length) {
+      html.classList.add('easyedu-guide-is-fullscreen');
+    }
   };
   let unparkTimer = null;
   let unparkWaiters = [];
@@ -56,11 +84,7 @@ export const createFullscreenController = (element, onChange = () => {}) => {
   };
   const unparkHost = () => {
     if (parked.length) {
-      parked.forEach(sibling => {
-        sibling.removeAttribute('data-easyedu-guide-parked');
-        sibling.style.removeProperty('--easyedu-guide-parked-width');
-        sibling.style.removeProperty('--easyedu-guide-parked-height');
-      });
+      parked.forEach(releaseBlock);
       parked = [];
       document.documentElement.classList.remove('easyedu-guide-is-fullscreen');
     }
@@ -80,7 +104,9 @@ export const createFullscreenController = (element, onChange = () => {}) => {
     if (!ownsFullscreen() && !pending) {
       scheduleUnpark();
     }
-    if (!disposed) onChange({active: ownsFullscreen(), available: available(), pending});
+    if (!disposed) {
+      onChange({active: ownsFullscreen(), available: available(), pending});
+    }
   };
   const exit = async() => {
     // A Guide must never exit another surface's fullscreen session.
@@ -93,16 +119,24 @@ export const createFullscreenController = (element, onChange = () => {}) => {
     finally { notify(); await waitForUnpark(); }
   };
   const toggle = async() => {
-    if (pending || disposed) return false;
-    if (ownsFullscreen()) return exit();
-    if (!available() || !element.isConnected || element.hidden) return false;
+    if (pending || disposed) {
+      return false;
+    }
+    if (ownsFullscreen()) {
+      return exit();
+    }
+    if (!available() || !element.isConnected || element.hidden) {
+      return false;
+    }
     pending = true;
     parkHost();
     notify();
     try {
       await element.requestFullscreen();
       // Teardown or a compact resize may race the browser's asynchronous entry.
-      if (disposed || element.hidden || window.innerWidth < 1024) await exit();
+      if (disposed || element.hidden || window.innerWidth < 1024) {
+        await exit();
+      }
       return !disposed && ownsFullscreen();
     } catch (error) {
       // Refusal leaves the ordinary dialog usable; never emulate browser mode.
@@ -110,7 +144,9 @@ export const createFullscreenController = (element, onChange = () => {}) => {
     } finally { pending = false; notify(); }
   };
   const resized = () => {
-    if (window.innerWidth < 1024) void exit();
+    if (window.innerWidth < 1024) {
+      void exit();
+    }
     notify();
   };
   document.addEventListener('fullscreenchange', notify);

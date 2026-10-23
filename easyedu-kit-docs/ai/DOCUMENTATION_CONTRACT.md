@@ -1,3 +1,5 @@
+Fullscreen parking must preserve parent-relative sibling flow, not only border-box dimensions. Leave unstable groups live; retain the Close release barrier and Motion timings. Test external browser exit followed by immediate Close with actual locale labels. See docs/testing/guide-fullscreen-geometry-2026-10-23.md.
+
 # EasyEdu documentation contract
 
 Both card-search Cancel selectors must retain the same compact Kit recipe even when the general secondary-button class is present. Check computed typography/radius as well as containment; geometry alone cannot detect a regular-density cascade override.
