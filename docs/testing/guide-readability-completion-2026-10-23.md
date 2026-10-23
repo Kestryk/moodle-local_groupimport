@@ -28,3 +28,25 @@ AMD, Motion and path configuration producers are unchanged.
 Detailed evidence is in the external review report
 RAPPORT-K23-26-27-20261023.md and its k23-26-27-20261023 artifact directory.
 Source, native bounded proof and human visual acceptance remain distinct.
+
+## Completion mark (K23-27)
+
+The completion mark used a FontAwesome check-circle inside the existing32px
+soft success disc. Use the existing plain fa-check glyph instead, retaining
+the single background disc, its palette tokens, dimensions and flex centring.
+The canonical template, embedded mirror and Moodle template share this change.
+The aria-hidden and hidden states remain unchanged; no controller is modified.
+
+Native French/English measurement uses the actual completed membership demo.
+Chrome DevTools Protocol gives the pseudo-element box and the outer disc box.
+Both centre deltas are exactly0px on both axes before and after. The double
+circle is reproduced, but a CSS-box centring defect is not reproduced on this
+predecessor. The simplification removes the extra glyph circle without an
+invented positional compensation. Pixel-ink bounds in fractional-position33px
+screenshots retain a0.5px horizontal raster discrepancy, reported separately
+from CSS geometry. No claim of a larger measured offset is made.
+
+Native runs have no console/JavaScript errors and submit no course mutations.
+MoodleCS: zero errors; PHP syntax is valid. ESLint is inapplicable because no
+JavaScript source or generated AMD changes. Only Guide CSS is rebuilt with
+the pinned Node22.11.0 and Sass1.79.1 toolchain. Existing Motion is preserved.
