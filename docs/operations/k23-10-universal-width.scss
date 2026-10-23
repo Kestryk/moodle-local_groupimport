@@ -1,0 +1,23 @@
+/* K23-10-UNIVERSAL-WIDTH */
+/* Temporary Boost configuration: move into the future EasyEdu theme. */
+#page.drawers .main-inner,
+.header-maxwidth,
+.footer-popover {
+    max-width: 1320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Limited-width native pages share Boost's anchored-drawer formulas, including course editing. */
+@media (min-width: 992px) {
+    body.limitedwidth .drawer.drawer-left,
+    body.limitedwidth .drawer-toggles .drawer-left-toggle {
+        left: 0 !important;
+        right: auto !important;
+    }
+    body.limitedwidth .drawer.drawer-right,
+    body.limitedwidth .drawer-toggles .drawer-right-toggle {
+        left: auto !important;
+        right: 0 !important;
+    }
+}

@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Theme-configuration width patches replace their exact owned predecessor blocks
+after a live SCSS hash comparison and backup. Preserve unrelated rules and banner
+preferences. Native Participants verification follows the explicit native URL
+and asserts its final path; a redirected EasyStud page does not prove the Moodle
+table. See docs/operations/README-K23-10-UNIVERSAL-WIDTH.md.
+
 Responsive navigation preferences use the shared list action before the spaces
 heading; keep desktop controls and display handlers unchanged. Workspace column
 boundaries opt into the existing Kit lane mixin, including seam-free start/end

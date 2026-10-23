@@ -1,3 +1,5 @@
+> **Remplacé sur Community et staging le 23/10/2026 par K23-10** : voir C:\dev\tools\core-patches-backup-20261023\README-K23-10-UNIVERSAL-WIDTH.md. Document historique conservé ; les éventuelles copies locales 5.3 mentionnées ici ne sont pas modifiées par ce remplacement.
+
 # K23-16 — Page de cours à la largeur de la bannière CCB
 
 **Patch temporaire : à reporter dans le futur thème EasyEdu.** Ce réglage Boost ne remplace pas un chantier de thème. Lors du démarrage du futur thème EasyEdu, reprendre cette règle comme référence, puis retirer son équivalent dans le SCSS additionnel pour éviter deux propriétaires.
