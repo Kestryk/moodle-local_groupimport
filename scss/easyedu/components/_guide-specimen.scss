@@ -251,12 +251,15 @@
     }
   }
 
-  @media (max-width: 40rem) {
-    // Phone: the card actions live in the card menu, so only the acting control is drawn.
+  @media (max-width: 64rem) {
+    // Responsive specimens draw only the narrated action, including tablet widths.
     .easyedu-guide-spec .local-groupimport-easystud-group__header .btn:not(.is-guide-pointed),
     .easyedu-guide-spec .local-groupimport-easystud-grouping__header .btn:not(.is-guide-pointed) {
       display: none;
     }
+  }
+
+  @media (max-width: 40rem) {
     // Phone: the stage reaches the reading edges like the timed scenes; one column.
     .easyedu-guide-spec:not(.easyedu-guide-spec--ready) {
       border: 0;
