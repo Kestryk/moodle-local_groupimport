@@ -47,6 +47,7 @@ $PAGE->set_url($url);
 $PAGE->set_context($context);
 $PAGE->set_course($course);
 $PAGE->set_pagelayout('incourse');
+$PAGE->blocks->show_only_fake_blocks(true);
 $PAGE->set_pagetype('course-view-participants');
 $PAGE->set_secondary_active_tab('participants');
 if (local_groupimport_is_moodle53()) {
