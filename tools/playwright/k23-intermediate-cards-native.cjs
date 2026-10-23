@@ -115,7 +115,12 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
           field: r,
           icon: ir,
           input: input ? rect(input) : null,
-          cancel: cr,
+      cancel: cr,
+      cancelStyle: cr ? (() => {
+        const s = getComputedStyle(cancel);
+        return {fontSize: s.fontSize, lineHeight: s.lineHeight, fontWeight: s.fontWeight,
+          padding: s.padding, borderRadius: s.borderRadius, color: s.color, background: s.backgroundColor};
+      })() : null,
           iconInside: !ir || ir.x >= r.x - .5 && ir.right <= r.right + .5,
           insideParent: r.x >= rect(parent).x - .5 && r.right <= rect(parent).right + .5,
           inputWidth: input ? input.getBoundingClientRect().width : null,
@@ -353,6 +358,10 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
       }
 
       for (const stage of ['normal', 'search', 'filters']) for (const field of row[stage]?.fields || []) {
+        if (field.cancelStyle) {
+          assert.equal(parseFloat(field.cancelStyle.fontSize), 12, 'Search Cancel consumes compact Kit typography');
+          assert.equal(parseFloat(field.cancelStyle.borderRadius), 8, 'Search Cancel consumes compact Kit radius');
+        }
         assert.ok(field.iconInside && field.insideParent && field.cancelOverlap <= 0.5 && field.inputWidth > 0, JSON.stringify({
           lang: row.lang,
           width: row.width,
