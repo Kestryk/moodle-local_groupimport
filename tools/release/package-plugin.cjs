@@ -18,7 +18,13 @@ const git = (...args) => execFileSync('git', ['-C', root, ...args], {encoding: '
 const tracked = git('ls-files', '-z').split('\0').filter(Boolean).sort();
 const trees = new Set(['amd', 'classes', 'db', 'fonts', 'js', 'lang', 'pix', 'scss', 'styles', 'templates']);
 const topFiles = new Set(['LICENSE', 'README.md', 'CHANGELOG.md', 'styles.css']);
+// Explicit .gitattributes export-ignore paths that fall inside an included tree and would
+// otherwise leak into the archive (package-plugin.cjs does not read .gitattributes itself).
+const exportIgnored = new Set(['scss/easyedu/README.md']);
 function included(name) {
+    if (exportIgnored.has(name)) {
+        return false;
+    }
     if (/(?:^|[-_/])(tests?|fixtures?|sandbox|screenshots?|captures?)(?:[-_.\/]|$)/i.test(name) ||
             name.split('/').some(part => ['node_modules', 'vendor', '.git', 'tests', 'testing', 'fixtures', 'sandbox'].includes(part))) {
         return false;
@@ -29,6 +35,10 @@ const files = tracked.filter(included);
 const excluded = tracked.filter(name => !included(name));
 const dirty = git('status', '--porcelain=v1', '--', ...files);
 assert(!dirty.trim(), 'Production inputs must be committed and clean before packaging.');
+const sanitizedRoot = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'easystud-sanitized-'));
+const listFile = path.join(sanitizedRoot, '..', path.basename(sanitizedRoot) + '-files.txt');
+fs.writeFileSync(listFile, files.join('\n') + '\n');
+execFileSync('node', [path.join(__dirname, 'sanitize-public-package.cjs'), root, sanitizedRoot, '--list-file=' + listFile], {stdio: 'inherit'});
 const required = ['version.php', 'lang/en/local_groupimport.php', 'db/access.php', 'db/install.xml', 'amd/build/course_manager.min.js'];
 for (const name of required) assert(files.includes(name), 'Missing Moodle installation input: ' + name);
 const version = fs.readFileSync(path.join(root, 'version.php'), 'utf8');
@@ -47,7 +57,7 @@ const chunks = [], central = [], entries = [];
 let offset = 0;
 for (const file of files) {
     assert(!file.includes('..') && !file.includes('\\'), 'Unsafe archive path.');
-    const source = path.join(root, file);
+    const source = path.join(sanitizedRoot, file);
     assert(fs.lstatSync(source).isFile(), 'Symlinks and non-regular files are refused: ' + file);
     const data = fs.readFileSync(source), packed = zlib.deflateRawSync(data, {level: 9});
     const name = Buffer.from('groupimport/' + file, 'utf8'), checksum = crc32(data);
