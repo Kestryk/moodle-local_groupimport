@@ -53,6 +53,10 @@ export const bindOptionalTools = root => {
         const updateDensityToggle = () => {
             const mobile = isResponsiveWorkspace();
             const compact = mobile ? state.mobileCompact : root.classList.contains(compactClass);
+            const model = getOnDemandModel(root);
+            // Use the full participant index, not the current filter/page or empty Groups.
+            const hasMemberships = !!model && model.index.some(entry => entry.groupids.length || entry.groupingids.length);
+            densityToggle.disabled = mobile && !hasMemberships;
             densityToggle.setAttribute('aria-pressed', compact ? 'true' : 'false');
             const text = densityToggle.querySelector('span:last-child');
             if (text) {
@@ -69,6 +73,7 @@ export const bindOptionalTools = root => {
             }
             if (mobileMembershipToggle) {
                 mobileMembershipToggle.hidden = !mobile;
+                mobileMembershipToggle.disabled = mobile && !hasMemberships;
                 mobileMembershipToggle.setAttribute('aria-pressed', state.mobileCompact ? 'true' : 'false');
                 mobileMembershipToggle.querySelector('span:last-child').textContent =
                     densityToggle.getAttribute(state.mobileCompact ?

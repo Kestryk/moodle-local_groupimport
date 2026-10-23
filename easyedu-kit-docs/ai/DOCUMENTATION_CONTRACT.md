@@ -1176,3 +1176,10 @@ creation ends with the existing four-phase collapsible recap. Membership Replay
 uses the existing single-mode completion header; comparison choices return on
 replay. Assignment descriptions wrap in the Kit information-card recipe.
 See `docs/testing/guide-k20-14-17-2026-10-20.md`.
+
+
+K23 responsive Person copy and container title alignment are explicit composition
+opt-ins; never apply them to desktop defaults. Membership-control availability
+uses the full participant index, not visible cards, filters or empty containers.
+Retain settled desktop paint checks and report non-reproduced menu behavior
+separately. See docs/testing/k23-responsive-cards-2026-10-23.md.

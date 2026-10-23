@@ -5,6 +5,36 @@
   grid-template-columns: minmax(0, 3fr) minmax(0, 1fr) auto;
 }
 
+// Opt in only on the responsive Person composition; keep desktop tracks intact.
+@mixin person-card-responsive-copy-end {
+  text-align: right;
+
+  .easyedu-person-card__headline-main,
+  .easyedu-person-card__meta,
+  .easyedu-person-card__meta-values {
+    justify-content: flex-end;
+  }
+
+  .easyedu-person-card__meta-group {
+    text-align: right;
+  }
+}
+
+// Match the overlay target's centre to the existing single-line container header.
+@mixin container-card-responsive-selector(
+  $content-inset: 0.625rem,
+  $line-size: 2rem,
+  $target: var(--easyedu-touch-target-min)
+) {
+  top: calc(#{$content-inset} + (#{$line-size} - #{$target}) / 2);
+}
+
+// The generic title's optical block inset must not offset a centred disclosure row.
+@mixin container-card-responsive-title {
+  margin-block: 0;
+  padding-block: 0;
+}
+
 // Reserve only the title/badge track for a larger overlay selection target.
 // Consumers apply this to the identity wrapper at their existing narrow/full
 // breakpoint. Metadata, email, card padding and accepted compact/Motion stay

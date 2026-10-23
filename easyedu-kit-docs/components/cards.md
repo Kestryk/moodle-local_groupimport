@@ -587,3 +587,22 @@ roles/groups/groupings/custom-fields block, deselecting it collapses it again
 mixin and its single call site on `.local-groupimport-easystud-user` were
 removed as dead code (the selector they contained can no longer match). Group
 and grouping fold controls, header geometry and Motion are unaffected.
+
+
+## Responsive Person copy and container title line (K23, 23 October 2026)
+
+`person-card-responsive-copy-end` is an explicit responsive composition opt-in.
+It aligns Person copy to the right and places identity and metadata values at the
+end of their existing tracks. It owns no breakpoint, dimensions, paint or Motion.
+Desktop consumers retain the default recipe unless they opt in.
+
+`container-card-responsive-selector` centres the existing 44px selection target on
+the existing 2rem header line, using the card's 0.625rem content inset. Parameters
+allow a different existing composition; this is not a new checkbox size.
+`container-card-responsive-title` removes the generic title's optical block inset
+only in that centred container disclosure row. Header height, chevron, touch
+selection target, single-line flow and desktop output remain unchanged.
+
+EasyStud uses these opt-ins only under its responsive workspace marker. Native
+consumer evidence and the bounded CSS-order gate are part of the K23 delivery;
+other consumers are not deployed or changed by this additive Kit update.

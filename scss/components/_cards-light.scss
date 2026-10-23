@@ -157,6 +157,7 @@
     }
   }
   &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+    @include easyedu.person-card-responsive-copy-end;
     @include easyedu.person-card-selection-column;
     @include easyedu.person-card-metadata-below-actions;
     > .local-groupimport-easystud-selector {
@@ -164,6 +165,17 @@
     }
     > .local-groupimport-easystud-card-menu {
       top: calc(10px + (var(--easyedu-person-first-line) - 44px) / 2 + var(--easyedu-person-line-centre-adjust));
+    }
+  }
+
+  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__section[data-easystud-grouping-id] {
+    > .local-groupimport-easystud-selector {
+      @include easyedu.container-card-responsive-selector;
+    }
+    > .local-groupimport-easystud-grouping__header > .local-groupimport-easystud-tree__toggle {
+      > .local-groupimport-easystud-grouping__name {
+        @include easyedu.container-card-responsive-title;
+      }
     }
   }
 }
