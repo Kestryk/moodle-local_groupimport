@@ -1228,3 +1228,5 @@ opt-ins; never apply them to desktop defaults. Membership-control availability
 uses the full participant index, not visible cards, filters or empty containers.
 Retain settled desktop paint checks and report non-reproduced menu behavior
 separately. See docs/testing/k23-responsive-cards-2026-10-23.md.
+
+Rail-anchor phone headings reserve the shared compact navigation lane, including the nested head-row. Reuse navigation-content-clearance; preserve launcher placement, targets and native Moodle drawers.

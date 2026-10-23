@@ -57,6 +57,8 @@ is not part of the public package.
 
 **Improved**
 
+- Reserve the mobile navigation lane beside view headings.
+
 - Identifier examples in the Guide keep their cards contained at tablet widths.
 
 - Guide concept captions wrap within their cards when opened from desktop navigation.
@@ -144,6 +146,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Le titre des vues conserve sa place à côté du bouton de navigation mobile.
 
 - Les cartes d’exemple des identifiants du Guide restent contenues sur tablette.
 
