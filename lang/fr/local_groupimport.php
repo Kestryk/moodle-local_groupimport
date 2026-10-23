@@ -32,7 +32,10 @@ $string['activity_path_desc2'] = 'Cochez les cases des groupes, pas celles des p
 $string['activity_path_step3'] = 'Rechercher et choisir le groupement de destination';
 $string['activity_path_desc3'] = 'Le Guide ouvre l’action pour vous : choisissez le groupement de destination dans la liste.';
 $string['activity_path_step4'] = 'Vérifier les options, puis confirmer';
-$string['activity_path_desc4'] = 'Vérifiez la destination. La case « Retirer du groupement d’origine » n’apparaît pas toujours. Décochée, les groupes restent aussi dans leurs autres groupements ; cochée, ils en sont retirés. Quand vous êtes prêt, cliquez sur « Déplacer l’élément sélectionné » ou « Déplacer les éléments sélectionnés », selon le nombre de groupes. Les groupes sont traités un par un : si l’un échoue, les déplacements déjà faits restent.';
+$string['activity_path_desc4'] = 'Vérifiez la destination.' . "\n\n" .
+    'Si la case « Retirer du groupement d’origine » s’affiche, laissez-la décochée pour garder les groupes dans leurs autres groupements. Cochez-la pour les en retirer.' . "\n\n" .
+    'Cliquez ensuite sur « Déplacer l’élément sélectionné » ou « Déplacer les éléments sélectionnés », selon le nombre de groupes.' . "\n\n" .
+    'Les groupes sont déplacés un par un. En cas d’échec, les déplacements déjà effectués sont conservés.';
 $string['activity_path_step5'] = 'Ouvrir la destination et vérifier ses groupes';
 $string['activity_path_desc5'] = 'Vérifiez les groupes du groupement de destination. Le Guide l’ouvre si besoin. Tous les groupes confirmés doivent y figurer. Effacez les filtres si nécessaire. Choisissez ensuite ce groupement dans les paramètres de l’activité Moodle.';
 

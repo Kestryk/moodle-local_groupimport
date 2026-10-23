@@ -1469,7 +1469,7 @@
         width: 1.5rem; height: 1.5rem; min-width: 1.5rem; line-height: 1; margin-block-start: -0.125rem;
         justify-content: center; align-items: center;
       }
-      small { line-height: 1.5; font-weight: var(--easyedu-font-weight-regular); }
+      small { line-height: 1.5; font-weight: var(--easyedu-font-weight-regular); white-space: pre-line; }
       &.is-locked {
         background: repeating-linear-gradient(-45deg, transparent 0 0.5rem,
           color-mix(in srgb, var(--easyedu-text-muted) 5%, transparent) 0.5rem 1rem), var(--easyedu-surface-soft);
