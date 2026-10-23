@@ -57,6 +57,8 @@ is not part of the public package.
 
 **Improved**
 
+- Place the membership demonstration start above its comparison controls.
+
 - Keep the focused Guide tab visible between the navigation arrows.
 
 - Preserve keyboard focus when participant details finish loading.
@@ -154,6 +156,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Le démarrage de la démonstration précède le comparatif des actions.
 
 - Les onglets du Guide restent visibles quand ils reçoivent le focus.
 

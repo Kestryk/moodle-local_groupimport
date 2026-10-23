@@ -175,6 +175,9 @@
                             <header class="easyedu-guide-scene__header{{^membership}} easyedu-guide-scene__header--single{{/membership}}" data-guide-scene-header data-step-label="{{steplabel}}" data-ready-label="{{readylabel}}" data-paused-label="{{pausedlabel}}" data-add-label="{{addmodelabel}}" data-move-label="{{movemodelabel}}">
                                 <div class="easyedu-guide-scene__header-controls">
                                 <div class="easyedu-guide-scene__header-controls-inner">
+                                    {{#manualstart}}
+                                    <button type="button" class="btn btn-primary easyedu-guide-scene__start" data-guide-scene-command="start" data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}" aria-busy="false"><span class="fa fa-play" aria-hidden="true"></span><span data-guide-start-label>{{startlabel}}</span></button>
+                                    {{/manualstart}}
                                     {{#membership}}
                                     <fieldset class="easyedu-guide-scene__modes easyedu-segmented-choice" data-guide-modes>
                                         <legend class="easyedu-segmented-choice__legend">{{comparelabel}}</legend>
@@ -191,9 +194,7 @@
                                         </div>
                                     </fieldset>
                                     {{/membership}}
-                                    {{#manualstart}}
-                                    <button type="button" class="btn btn-primary easyedu-guide-scene__start" data-guide-scene-command="start" data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}" aria-busy="false"><span class="fa fa-play" aria-hidden="true"></span><span data-guide-start-label>{{startlabel}}</span></button>
-                                    {{/manualstart}}
+
                                 </div>
                                 </div>
                             <div class="easyedu-guide-scene__reading">
