@@ -1710,7 +1710,15 @@
         justify-content: flex-start;
         max-inline-size: 11.375rem;
         padding: 0.25rem 0.75rem;
-        > .fa, .easyedu-guide-nav-item__icon { display: none; }
+        // K23-33: the step icon stayed visible on desktop for this same header;
+        // `display: none` here hid it under 40rem while its category label
+        // (`.easyedu-guide-nav-item__meta`, e.g. "Cards") kept showing, leaving
+        // an orphan label. Keep the existing icon, just shrink it to the 44px pill.
+        > .fa, .easyedu-guide-nav-item__icon {
+          flex: 0 0 auto;
+          height: 1.375rem;
+          width: 1.375rem;
+        }
       }
     }
     // K17-69 superseded the wrapping fallback this rule used to need: the
