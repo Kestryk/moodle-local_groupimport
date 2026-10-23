@@ -48,6 +48,7 @@ $PAGE->set_url(new moodle_url('/local/groupimport/index.php', ['id' => $course->
 $PAGE->set_context($context);
 $PAGE->set_course($course);
 $PAGE->set_pagelayout('incourse');
+$PAGE->blocks->show_only_fake_blocks(true);
 $PAGE->set_title(get_string('groupimport', 'local_groupimport'));
 $PAGE->set_heading(format_string($course->fullname));
 // Animation level (user choice, else administrator default): root attributes and body classes.
