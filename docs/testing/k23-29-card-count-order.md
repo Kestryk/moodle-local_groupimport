@@ -21,3 +21,7 @@ compare no-overflow geometry independently.
 
 Evidence: `C:/dev/artifacts/k23-29-20261023`; delivery report in
 `C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/`.
+
+## Native result
+
+Final source base: 03071b74. Fourteen configurations and 140 Group cards pass FR/EN at all five requested widths, with gaps 9.265625px at 1600/1280/1024 and 5.59375px at 768/390. No console/page errors. Menu/selection behavior is checked against baseline at 1600/390. The no-overflow control is explicitly a 900px test host with unchanged server markup; boxes and paint match exactly. See the detailed review report and acceptance.json.
