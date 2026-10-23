@@ -1232,6 +1232,7 @@
 // Search-only disclosure: one shrinking field and one Cancel action, no title.
 // Consumers retain native search/filter ownership and existing Motion lifecycle.
 @mixin card-inline-search-panel {
+  container: easyedu-inline-search / inline-size;
   @include inline-reveal-panel(8rem);
   padding: 0.55rem;
 

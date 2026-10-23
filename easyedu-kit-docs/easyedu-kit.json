@@ -4,6 +4,21 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "adaptiveCardSearch20261023": {
+      "files": [
+        {
+          "path": "scss/easyedu/_workspace-control-classes.scss",
+          "blob": "5b0f147e09c81772f5f7f0a7b10bc271cd19b873"
+        },
+        {
+          "path": "scss/easyedu/components/_forms.scss",
+          "blob": "7cbf0e22fa6c9721141dd81884d8bc963853575c"
+        }
+      ],
+      "foundationsFile": "40e06342-8830-80d6-8008-96572effc11c",
+      "saveMaster": "d7c302b3-48b7-802c-8008-d49fa1b3694f",
+      "searchComposition": "f7ecc2e2-dc33-80e2-8008-d565abfd35d5"
+    },
     "oldCAdminTaggedChoices20261019": {
       "kitCommit": "3d1b5951a1757eb6909b56a777a0ea60866ebf1d",
       "kitBranch": "work/codex1/easyedu-kit-old-c-20261019",

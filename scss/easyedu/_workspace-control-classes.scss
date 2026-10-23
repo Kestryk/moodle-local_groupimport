@@ -5,6 +5,19 @@
 @use "components/animations";
 @use "components/typography";
 
+$field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+
+// The accepted field-peer frame, shared by rename and constrained search Cancel.
+@mixin field-peer-icon-frame {
+      block-size: 2.375rem;
+      inline-size: 2.375rem;
+      min-block-size: 2.375rem;
+      min-inline-size: 2.375rem;
+      border-radius: 0.5rem;
+      flex: 0 0 auto;
+      padding: 0;
+}
+
 // Shared accepted frame/choice compositions; the consumer retains placement.
 @mixin workspace-view-frame {
     background: #f4f8fb;
@@ -187,13 +200,7 @@
   .easyedu-ui .easyedu-create-icon-button {
     @include foundations.foundation-button;
     & {
-      block-size: 2.375rem;
-      inline-size: 2.375rem;
-      min-block-size: 2.375rem;
-      min-inline-size: 2.375rem;
-      border-radius: 0.5rem;
-      flex: 0 0 auto;
-      padding: 0;
+      @include field-peer-icon-frame;
     }
     &:hover, &:focus {
       background: var(--easyedu-create-hover-surface);
@@ -225,17 +232,47 @@
     // (inline rename Save / Cancel). Drawn by the component on the plus's
     // 16 px box and stroke, so they centre by geometry whatever the icon font.
     > .fa-check,
+    > .fa-save,
     > .fa-times {
       background: currentColor;
       block-size: 1rem;
       inline-size: 1rem;
       &::before { content: none; }
     }
+    // Canonical Foundations floppy-disk (solid), with the same centred icon box.
+    > .fa-save {
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448'%3E%3Cpath d='M0 64C0 28.7 28.7 0 64 0H306.7c17 0 33.3 6.7 45.3 18.7L429.3 96c12 12 18.7 28.3 18.7 45.3V384c0 35.3-28.7 64-64 64H64C28.7 448 0 419.3 0 384V64zM96 64c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H288c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32H96zM224 384a64 64 0 1 0 0-128 64 64 0 1 0 0 128z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
     > .fa-check {
       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.75 8.5L6.25 12L13.25 4.25' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
     }
     > .fa-times {
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+      mask: $field-peer-close-mask;
+    }
+  }
+
+  // Keep the existing text Cancel while room remains. A narrow card reuses
+  // the rename X frame; the accessible name and native command never change.
+  .easyedu-ui .easyedu-inline-search-cancel > .fa-times { display: none; }
+  @container easyedu-inline-search (max-width: 20rem) {
+    .easyedu-ui .easyedu-inline-search-cancel.easyedu-button--secondary {
+      @include foundations.foundation-button($secondary: true, $density: compact);
+      @include field-peer-icon-frame;
+      > .easyedu-inline-search-cancel__label { display: none; }
+      > .fa-times {
+        background: currentColor;
+        block-size: 1rem;
+        display: inline-block;
+        inline-size: 1rem;
+        mask: $field-peer-close-mask;
+        &::before { content: none; }
+      }
+      @media (max-width: 48rem) {
+        block-size: var(--easyedu-touch-target-min);
+        inline-size: var(--easyedu-touch-target-min);
+        min-block-size: var(--easyedu-touch-target-min);
+        min-inline-size: var(--easyedu-touch-target-min);
+      }
     }
   }
 

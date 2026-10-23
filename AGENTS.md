@@ -1,5 +1,7 @@
 # EasyEdu agent contract
 
+Overflow-menu copies delegate exactly once to their original command. Stop the copy click from reaching the delegated handler again; preserve the original native event, business scope and Motion. Keep separate evidence for a menu trigger closing by itself and a copied command toggling a panel twice. See docs/testing/k23-intermediate-cards-2026-10-23.md.
+
 I11 presentation updates share a workspace-scoped after-render collector. Preserve
 card deltas, ancestor deduplication and the fallback for external text/DOM changes.
 Keep native navigation, floating-surface and Guide observers that cover other

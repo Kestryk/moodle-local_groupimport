@@ -1,3 +1,5 @@
+- 2026-10-23 Keep card search controls readable in narrow containers, share the compact Cancel X, restore the search-field recipe on new groupings and use a save icon for inline renaming. Overflow actions now dispatch their original command once.
+
 - 2026-10-23 [K23-01/02/04] Aligner le texte des cartes participant à droite en responsive, désactiver le contrôle des appartenances quand aucun participant n’en possède et centrer la sélection, le chevron et le titre des groupements. Rendu bureau conservé ; fermeture immédiate du menu K23-07 non reproduite.
 
 - 2026-10-23 Move Display and animations to the first responsive navigation row in Student Management and Mass Import. Add a shared opt-in column outline on all Moodle hosts while preserving their surfaces; document the separate full-width course-drawer trial patch.
