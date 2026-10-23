@@ -4,6 +4,12 @@ Both card-search Cancel selectors must retain the same compact Kit recipe even w
 
 Constrained card search switches only its visible Cancel label, using the existing rename X frame through a named container. Preserve the accessible command and filtering scope; dynamically rendered fields consume the same opt-in class as server cards. Rename Save uses the existing canonical floppy icon. Do not duplicate controls or alter desktop defaults. See the adaptive-card-search component note.
 
+Theme-configuration width patches replace their exact owned predecessor blocks
+after a live SCSS hash comparison and backup. Preserve unrelated rules and banner
+preferences. Native Participants verification follows the explicit native URL
+and asserts its final path; a redirected EasyStud page does not prove the Moodle
+table. See docs/operations/README-K23-10-UNIVERSAL-WIDTH.md.
+
 Responsive navigation preferences use the shared list action before the spaces
 heading; keep desktop controls and display handlers unchanged. Workspace column
 boundaries opt into the existing Kit lane mixin, including seam-free start/end
