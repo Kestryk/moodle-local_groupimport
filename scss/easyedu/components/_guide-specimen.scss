@@ -73,7 +73,7 @@
       span { min-width: 0; overflow-wrap: anywhere; }
     }
 
-    &__surface { display: grid; gap: 0.5rem; min-width: 0; }
+    &__surface { display: grid; gap: 0.5rem; min-width: 0; container: easyedu-guide-spec-surface / inline-size; }
 
     &__list { display: grid; gap: 0.5rem; min-width: 0; }
 
@@ -240,6 +240,11 @@
     }
   }
 
+  @container easyedu-guide-spec-surface (max-width: 20rem) {
+    .easyedu-guide-spec .local-groupimport-easystud-user {
+      @include cards.person-card-readable-summary;
+    }
+  }
   // Responsive workspace (1024 px): the participant card keeps its selection column,
   // with the same Kit recipes as the product's responsive card.
   @media (max-width: 64rem) {

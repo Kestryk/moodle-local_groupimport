@@ -173,6 +173,31 @@
   }
 }
 
+// A constrained identity keeps both pieces of information instead of starving
+// the email track beside an intrinsic name. The action remains beside the name.
+@mixin person-card-readable-summary($headline: ".easyedu-person-card__headline", $identity: ".easyedu-person-card__headline-main", $name: "strong", $email: ".easyedu-person-card__email") {
+  max-height: none;
+  #{$headline} {
+    grid-template-areas: "identity action" "email email";
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+  }
+  #{$identity} {
+    block-size: auto;
+    flex-wrap: wrap;
+    > #{$name} {
+      overflow: visible;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+  }
+  #{$email} {
+    overflow: visible;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
 // Selectable object/container header with space reserved for the existing
 // overlay checkbox. Child semantics, rename state and mobile menus stay with
 // the consumer. Do not add clipping: menus may extend outside this row.
