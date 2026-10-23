@@ -1241,6 +1241,10 @@
 
   &-pagination {
     @include easyedu.pagination-bar;
+    @include easyedu.pagination-empty-slots(
+      $selection: ".local-groupimport-easystud-pagination__selection",
+      $tools: ".local-groupimport-easystud-pagination__tools"
+    );
 
     --local-groupimport-result-height: 1.62rem;
 
