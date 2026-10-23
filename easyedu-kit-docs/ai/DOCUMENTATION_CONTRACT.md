@@ -1240,3 +1240,5 @@ Participant deferred rendering preserves focus on the same relation/control and 
 Guide tab focus centers the focused item in the existing navigation scroller, independently from the active slide. Preserve reading state and tracked listener lifecycle; native nearest scrolling ignores arrow overlays.
 
 Membership Start precedes Compare in reading, visual and keyboard order. Retain one original command and preserve completion and Motion. The discovery dialog owns prerequisite text wrapping through G4.
+
+Portalled Guide filter illustrations consume the canonical Search field recipe explicitly at compact widths. Never add easyedu-ui to the entire Guide to recover one missing ancestor; keep desktop paint and playback unchanged.

@@ -58,6 +58,21 @@
 }
 
 @mixin guide-discovery-shell {
+  // A compact Guide is portalled outside the product's easyedu-ui ancestor.
+  // Its inert search illustrations still consume the canonical Search field.
+  @media (max-width: 64rem) {
+    .easyedu-guide-spec__surface > .easyedu-search-field {
+      @include forms.search-field;
+      box-sizing: border-box;
+      min-inline-size: 0;
+      > input {
+        background: transparent;
+        box-sizing: border-box;
+        inline-size: 100%;
+      }
+    }
+  }
+
   // Long explanatory copy has a comfortable reading measure without narrowing
   // the illustrated scene, cards, controls or recap. Consumers can override
   // the token for an intentionally narrower Guide host.

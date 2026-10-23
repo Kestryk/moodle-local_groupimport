@@ -57,6 +57,8 @@ is not part of the public package.
 
 **Improved**
 
+- Keep the search icon inside compact Guide filter fields.
+
 - Place the membership demonstration start above its comparison controls.
 
 - Keep the focused Guide tab visible between the navigation arrows.
@@ -156,6 +158,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- La loupe reste dans le champ de recherche du Guide compact.
 
 - Le démarrage de la démonstration précède le comparatif des actions.
 
