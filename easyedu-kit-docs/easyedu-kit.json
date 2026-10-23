@@ -4,6 +4,29 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "cardHeaderNarrowHost20261024": {
+      "component": "narrow-card-header-and-open-menu-host",
+      "canonicalBase": "59c2e4c",
+      "recipes": [
+        "card-header-title-slot",
+        "dropdown-card-open-host"
+      ],
+      "defaultRecipesChanged": false,
+      "fullModuleParity": false,
+      "reason": "Historical card-title-accent-overlay difference preserved; new recipes match exactly",
+      "files": [
+        {
+          "path": "scss/easyedu/components/_cards.scss",
+          "consumerBlob": "2f1eb3c702d1edfdc19427eed191a4980f00dab6",
+          "canonicalBlob": "b59d9304411c603b4cc22fbc5f0b3fcaf008ed20"
+        },
+        {
+          "path": "scss/easyedu/components/_menus.scss",
+          "consumerBlob": "2919199b2b545f607cd3ad71f3a9d678ebbf747d",
+          "canonicalBlob": "2919199b2b545f607cd3ad71f3a9d678ebbf747d"
+        }
+      ]
+    },
     "paginationFlowGuard20261023": {
       "files": [
         {

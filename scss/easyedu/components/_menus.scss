@@ -246,6 +246,11 @@
   }
 }
 
+// Open card menus may escape list clipping; closed hosts retain their own policy.
+@mixin dropdown-card-open-host {
+  overflow: visible;
+}
+
 // Accepted overflow menu composition: the host retains portal position and visibility.
 @mixin dropdown-card-action-grid {
   align-items: stretch;

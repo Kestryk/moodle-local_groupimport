@@ -200,6 +200,12 @@
   }
 }
 
+// Let the title yield after actions move into overflow, without shrinking controls.
+@mixin card-header-title-slot {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 // Keep the count after all direct actions and the overflow trigger in one flow.
 @mixin card-header-terminal-slot($slot: count) {
   @if $slot == count {

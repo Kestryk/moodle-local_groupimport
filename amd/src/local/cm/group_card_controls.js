@@ -270,6 +270,8 @@ export const bindNestedGroupActionMenus = root => {
     });
 
     ensureNestedGroupActionMenus(root);
+    // Resolve the new columns before Motion reveals them, not after its entry fade.
+    root.easystudBeforeLayoutReveal = () => ensureNestedGroupActionMenus(root);
     let refreshFrame = null;
     // Cards whose header changed width; a window resize refreshes the whole page.
     let refreshAll = false;
