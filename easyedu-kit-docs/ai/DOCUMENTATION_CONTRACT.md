@@ -1,5 +1,7 @@
 # EasyEdu documentation contract
 
+Column overflow copies preserve the existing Kit action icon-gap token even after the selection-action skin is removed. Verify the real reduced-menu entry and its painted icon-to-label separation; a full toolbar or an absent overflow trigger is not proof.
+
 Both card-search Cancel selectors must retain the same compact Kit recipe even when the general secondary-button class is present. Check computed typography/radius as well as containment; geometry alone cannot detect a regular-density cascade override.
 
 Constrained card search switches only its visible Cancel label, using the existing rename X frame through a named container. Preserve the accessible command and filtering scope; dynamically rendered fields consume the same opt-in class as server cards. Rename Save uses the existing canonical floppy icon. Do not duplicate controls or alter desktop defaults. See the adaptive-card-search component note.
