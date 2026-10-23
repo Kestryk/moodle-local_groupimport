@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Responsive navigation preferences use the shared list action before the spaces
+heading; keep desktop controls and display handlers unchanged. Workspace column
+boundaries opt into the existing Kit lane mixin, including seam-free start/end
+segments and host-specific surfaces. Do not restore a duplicate 5.3 border or
+apply the full-width course-drawer trial through plugin CSS. See
+docs/testing/k23-nav-drawers-lanes-2026-10-23.md.
+
 Guide Close waits for host release after an external browser fullscreen exit,
 even when fullscreen ownership has already ended. Keep the independent parked
 state and release promise in the shared controller, embedded mirror and AMD

@@ -130,6 +130,13 @@
         </header>
 
         <div class="easyedu-navigation__panel-scroll" data-easyedu-navigation-panel-scroll="1">
+            <div class="easyedu-navigation__preferences-drawer">
+                <button type="button" class="easyedu-navigation__item" data-easyedu-display-open>
+                    <span class="easyedu-navigation__item-icon fa fa-sliders" aria-hidden="true"></span>
+                    <span class="easyedu-navigation__item-label">{{#str}}displaypreferences, local_groupimport{{/str}}</span>
+                </button>
+            </div>
+
             {{#hasitems}}
             <nav class="easyedu-navigation__sections" aria-label="{{navigationlabel}}">
                 {{#drawersections}}
@@ -146,12 +153,6 @@
             {{/hasitems}}
 
             <div class="easyedu-navigation__guide-slot" data-easyedu-navigation-guide-slot="1"></div>
-            <div class="easyedu-navigation__preferences-drawer">
-                <button type="button" class="easyedu-guide-utility" data-easyedu-display-open>
-                    <span class="fa fa-sliders" aria-hidden="true"></span>
-                    <span>{{#str}}displaypreferences, local_groupimport{{/str}}</span>
-                </button>
-            </div>
 
             {{#hasitems}}
             {{#hasparticipantdropdown}}
