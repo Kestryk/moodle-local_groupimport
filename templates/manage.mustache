@@ -159,12 +159,11 @@
                                 <div class="local-groupimport-easystud__panel-actions local-groupimport-easystud-column-heading__actions" data-easystud-column-actions="participants"></div>
                             </div>
                             <div class="local-groupimport-easystud__search-row">
-                                <label class="local-groupimport-easystud__search-field easyedu-search-field" aria-label="{{searchlabel}}">
+                                <label class="local-groupimport-easystud__search-field easyedu-search-field easyedu-search-field--captioned" aria-label="{{searchlabel}}"><span class="easyedu-field-caption">{{searchplaceholder}}</span>
                                     <span class="fa fa-search" aria-hidden="true"></span>
                                     <input
                                         type="search"
                                         class="form-control local-groupimport-easystud__search"
-                                        placeholder="{{searchplaceholder}}"
                                         data-easystud-search="1"
                                     >
                                 </label>
@@ -295,13 +294,12 @@
                                 <form method="post" action="{{quickcreateurl}}" class="local-groupimport-easystud-create">
                                     <input type="hidden" name="sesskey" value="{{sesskey}}">
                                     <input type="hidden" name="action" value="creategroup">
-                                    <input
+                                    <label class="easyedu-field-stack"><span class="easyedu-field-caption">{{newgroupplaceholder}}</span><input
                                         type="text"
                                         name="groupname"
                                         class="form-control"
-                                        placeholder="{{newgroupplaceholder}}"
                                         autocomplete="off"
-                                    >
+                                    ></label>
                                     <button
                                         type="submit"
                                         class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button"
@@ -311,12 +309,11 @@
                                         <span class="fa fa-plus" aria-hidden="true"></span>
                                     </button>
                                 </form>
-                                <label class="local-groupimport-easystud__search-field local-groupimport-easystud__search-field--catalog easyedu-search-field" aria-label="{{searchgroupslabel}}">
+                                <label class="local-groupimport-easystud__search-field local-groupimport-easystud__search-field--catalog easyedu-search-field easyedu-search-field--captioned" aria-label="{{searchgroupslabel}}"><span class="easyedu-field-caption">{{searchgroupsplaceholder}}</span>
                                     <span class="fa fa-search" aria-hidden="true"></span>
                                     <input
                                         type="search"
                                         class="form-control local-groupimport-easystud__search"
-                                        placeholder="{{searchgroupsplaceholder}}"
                                         data-easystud-catalog-search="participants"
                                     >
                                 </label>
@@ -417,13 +414,12 @@
                             <form method="post" action="{{quickcreateurl}}" class="local-groupimport-easystud-create">
                                 <input type="hidden" name="sesskey" value="{{sesskey}}">
                                 <input type="hidden" name="action" value="creategroup">
-                                <input
+                                <label class="easyedu-field-stack"><span class="easyedu-field-caption">{{newgroupplaceholder}}</span><input
                                     type="text"
                                     name="groupname"
                                     class="form-control"
-                                    placeholder="{{newgroupplaceholder}}"
                                     autocomplete="off"
-                                >
+                                ></label>
                                 <button
                                     type="submit"
                                     class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button"
@@ -433,12 +429,11 @@
                                     <span class="fa fa-plus" aria-hidden="true"></span>
                                 </button>
                             </form>
-                            <label class="local-groupimport-easystud__search-field local-groupimport-easystud__search-field--structure easyedu-search-field" aria-label="{{searchgroupslabel}}">
+                            <label class="local-groupimport-easystud__search-field local-groupimport-easystud__search-field--structure easyedu-search-field easyedu-search-field--captioned" aria-label="{{searchgroupslabel}}"><span class="easyedu-field-caption">{{searchgroupsplaceholder}}</span>
                                 <span class="fa fa-search" aria-hidden="true"></span>
                                 <input
                                     type="search"
                                     class="form-control local-groupimport-easystud__search"
-                                    placeholder="{{searchgroupsplaceholder}}"
                                     data-easystud-structure-group-search="1"
                                 >
                             </label>
@@ -500,13 +495,12 @@
                             <form method="post" action="{{quickcreateurl}}" class="local-groupimport-easystud-create local-groupimport-easystud-create--grouping">
                                 <input type="hidden" name="sesskey" value="{{sesskey}}">
                                 <input type="hidden" name="action" value="creategrouping">
-                                <input
+                                <label class="easyedu-field-stack"><span class="easyedu-field-caption">{{newgroupingplaceholder}}</span><input
                                     type="text"
                                     name="groupingname"
                                     class="form-control"
-                                    placeholder="{{newgroupingplaceholder}}"
                                     autocomplete="off"
-                                >
+                                ></label>
                                 <button
                                     type="submit"
                                     class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button easyedu-create-icon-button--secondary"
@@ -516,12 +510,11 @@
                                     <span class="fa fa-plus" aria-hidden="true"></span>
                                 </button>
                             </form>
-                            <label class="local-groupimport-easystud__search-field local-groupimport-easystud__search-field--structure easyedu-search-field" aria-label="{{searchgroupingslabel}}">
+                            <label class="local-groupimport-easystud__search-field local-groupimport-easystud__search-field--structure easyedu-search-field easyedu-search-field--captioned" aria-label="{{searchgroupingslabel}}"><span class="easyedu-field-caption">{{searchgroupingsplaceholder}}</span>
                                 <span class="fa fa-search" aria-hidden="true"></span>
                                 <input
                                     type="search"
                                     class="form-control local-groupimport-easystud__search"
-                                    placeholder="{{searchgroupingsplaceholder}}"
                                     data-easystud-structure-grouping-search="1"
                                 >
                             </label>
@@ -582,12 +575,11 @@
                         </button>
                         <div class="local-groupimport-easystud-container-search" data-easystud-container-search-panel="ungrouped" hidden>
                             <div class="local-groupimport-easystud-container-search__row">
-                                <label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field easyedu-search-field" aria-label="{{searchgroupslabel}}">
+                                <label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field easyedu-search-field easyedu-search-field--captioned" aria-label="{{searchgroupslabel}}"><span class="easyedu-field-caption">{{searchgroupsplaceholder}}</span>
                                     <span class="fa fa-search" aria-hidden="true"></span>
                                     <input
                                         type="search"
                                         class="form-control"
-                                        placeholder="{{searchgroupsplaceholder}}"
                                         data-easystud-container-group-search="ungrouped"
                                     >
                                 </label>
@@ -700,12 +692,11 @@
 
                             <div class="local-groupimport-easystud-container-search" data-easystud-container-search-panel="{{id}}" hidden>
                                 <div class="local-groupimport-easystud-container-search__row">
-                                    <label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field easyedu-search-field" aria-label="{{searchgroupslabel}}">
+                                    <label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field easyedu-search-field easyedu-search-field--captioned" aria-label="{{searchgroupslabel}}"><span class="easyedu-field-caption">{{searchgroupsplaceholder}}</span>
                                         <span class="fa fa-search" aria-hidden="true"></span>
                                         <input
                                             type="search"
                                             class="form-control"
-                                            placeholder="{{searchgroupsplaceholder}}"
                                             data-easystud-container-group-search="{{id}}"
                                         >
                                     </label>

@@ -57,6 +57,8 @@ is not part of the public package.
 
 **Improved**
 
+- Keep complete search and creation labels visible in narrow columns.
+
 - Keep names and email addresses readable in constrained participant cards.
 
 - Reserve the mobile navigation lane beside view headings.
@@ -148,6 +150,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Les champs de recherche et de création gardent leurs libellés complets dans les colonnes étroites.
 
 - Les noms et adresses restent lisibles dans les cartes participant étroites.
 

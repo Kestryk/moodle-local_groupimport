@@ -40,6 +40,10 @@
     gap: 0.45rem;
   }
 
+  &-create:has(> .easyedu-field-stack) {
+    align-items: end;
+  }
+
   &-create .form-control,
   &-rename .form-control {
     @include easyedu.foundation-text-field;
