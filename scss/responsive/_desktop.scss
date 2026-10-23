@@ -71,10 +71,6 @@
       margin-top: 0.7rem;
     }
 
-    &-tour-button.easyedu-admin-primary-nav__guide {
-      display: none !important;
-    }
-
     &-mobile-guide-slot {
       @include easyedu.admin-primary-nav-hide-guide-launcher;
 

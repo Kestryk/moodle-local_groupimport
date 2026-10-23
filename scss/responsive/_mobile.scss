@@ -16,10 +16,6 @@
       margin-left: 0 !important;
     }
 
-    &-tour-button.easyedu-admin-primary-nav__guide {
-      display: none !important;
-    }
-
     &-mobile-guide-slot {
       @include easyedu.admin-primary-nav-hide-guide-launcher;
 
@@ -56,27 +52,6 @@
       opacity: 0;
       overflow: hidden;
       transform: none;
-    }
-
-    &-tutorial__map-flow {
-      align-items: stretch;
-    }
-
-    &-tutorial__map-arrow {
-      align-self: center;
-    }
-
-    &-tutorial__footer {
-      align-items: stretch;
-      flex-direction: column;
-    }
-
-    &-tutorial__footer-actions {
-      justify-content: stretch;
-
-      .btn {
-        flex: 1 1 0;
-      }
     }
 
     &__panel {
@@ -343,17 +318,6 @@
       }
     }
 
-    &-guided-panel {
-      bottom: 0.75rem;
-      left: 0.75rem;
-      max-width: calc(100vw - 1.5rem);
-      right: 0.75rem;
-    }
-
-    &-guided-panel__steps {
-      grid-template-columns: 1fr;
-    }
-
     &-group__name {
       @include easyedu.card-title-responsive-size;
       min-width: 0;
@@ -549,78 +513,6 @@
       max-width: 22rem;
     }
 
-    &-tutorial__nav {
-      display: flex;
-    }
-
-    &-tutorial__map-flow {
-      display: none;
-    }
-
-    &-tutorial-return {
-      bottom: 0.75rem;
-      gap: 0.65rem;
-      grid-template-columns: 1fr;
-      left: 0.75rem;
-      max-width: none;
-      padding: 0.75rem;
-      right: 0.75rem;
-    }
-
-    &-tutorial-return__actions {
-      justify-content: stretch;
-
-      .btn-primary {
-        flex: 1 1 auto;
-      }
-    }
-
-    &-tutorial__step {
-      grid-template-columns: 1fr;
-      min-height: 0;
-    }
-
-    &-tutorial__visual {
-      align-items: stretch;
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    &-tutorial__demo-drag {
-      grid-template-columns: 1fr;
-    }
-
-    &-tutorial__visual--assignment {
-      grid-template-columns: 1fr;
-
-      > * {
-        grid-column: 1 !important;
-        grid-row: auto !important;
-      }
-    }
-
-    &-tutorial__visual--first-structure,
-    &-tutorial__visual--takeaway {
-      grid-template-columns: 1fr;
-    }
-
-    &-tutorial__demo-track {
-      justify-self: center;
-      transform: rotate(90deg);
-    }
-
-    &-tutorial__visual-arrow,
-    &-tutorial__visual--formula > .fa {
-      justify-self: center;
-      transform: rotate(90deg);
-    }
-
-    &-tutorial__mini-card,
-    &-tutorial__sample-card,
-    &-tutorial__fake-button {
-      width: 100%;
-    }
-
     &__panel-title-wrap,
     &-column-heading {
       align-items: flex-start;
@@ -784,17 +676,9 @@
       @include easyedu.modal-surface-compact;
     }
 
-
-
     &-modal__body {
       @include easyedu.dialog-touch-scroll-limit;
       overflow: auto;
-    }
-
-
-
-    &-tutorial__steps {
-      padding-right: 0;
     }
 
     &-modal__footer {
