@@ -26,7 +26,7 @@
  */
 
 import Mustache from 'core/mustache';
-import Loader from 'core/local/templates/loader';
+import {getTemplateSource} from './template_source';
 import {countLabel} from './index';
 import {normalise, filterEntryIds, elementSearchText} from './filter_engine';
 
@@ -45,7 +45,7 @@ export const LEAN_MEMBER_ROWS = 8;
  * @param {Object} strings Group card labels from manage.php.
  * @returns {Promise<Object>} The model.
  */
-export const attachGroupCatalogs = (model, strings) => Loader.getTemplate(templateName).then(source => {
+export const attachGroupCatalogs = (model, strings) => getTemplateSource(templateName).then(source => {
     Mustache.parse(source);
     model.groupSource = source;
     model.groupStrings = strings || {};

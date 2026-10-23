@@ -31,7 +31,7 @@
  */
 
 import Mustache from 'core/mustache';
-import Loader from 'core/local/templates/loader';
+import {getTemplateSource} from './template_source';
 import {buildParticipantIndex, filterParticipantIds} from './index';
 import {normalise} from './filter_engine';
 import {refreshGroupIndex} from './groups';
@@ -91,7 +91,7 @@ const buildAvatar = user => {
  * @param {Object} strings Card labels from manage.php.
  * @returns {Promise<Object>} Model.
  */
-export const createParticipantModel = (raw, strings) => Loader.getTemplate(templateName).then(source => {
+export const createParticipantModel = (raw, strings) => getTemplateSource(templateName).then(source => {
     const model = {
         raw,
         strings: strings || {},
