@@ -480,6 +480,9 @@
     }
 
     .btn {
+      // Overflow copies shed the selection-action skin, not its icon gap.
+      // Reuse the toolbar's Kit token without changing the native button size.
+      column-gap: var(--easyedu-action-icon-gap);
       justify-content: flex-start;
       text-decoration: none !important;
       width: 100%;
