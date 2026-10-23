@@ -1,3 +1,8 @@
+Guide reading dialogs reset navigation-host nowrap at their boundary. Preserve
+the explicit no-wrap control roles; compare complete painted concept captions
+and notice copy across desktop hosting and the compact body portal. See
+docs/testing/audit-13bis-2026-10-24.md.
+
 Card member counts occupy the terminal header slot after direct actions and overflow. Use card-header-terminal-slot for count/overflow and release obsolete absolute-action clearance. Verify actual boxes at all five widths, plus native menu and selection behavior. No local offsets or extra DOM controls.
 
 Demonstration completion uses one existing success disc with the plain check glyph, not check-circle inside another disc. Preserve the 32px flex frame, semantic palette and hidden/accessible state. Measure pseudo-element and disc centres without introducing optical offsets.

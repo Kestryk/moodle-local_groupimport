@@ -93,6 +93,9 @@
 
   .easyedu-guide-modal__dialog {
     @include typography.type-ui-base;
+    // A desktop navigation host may use nowrap for its destinations. The
+    // reading dialog must not inherit that single-line chrome policy.
+    white-space: normal;
     width: 100%;
     min-width: 0;
     height: var(--easyedu-guide-modal-height);

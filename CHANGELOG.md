@@ -53,6 +53,8 @@ is not part of the public package.
 
 **Improved**
 
+- Guide concept captions wrap within their cards when opened from desktop navigation.
+
 - Accessibility: keyboard-only focus handling when removing a member or
   using card menus, tooltips that can be dismissed with Escape, and
   additional accessible names for screen readers.
@@ -136,6 +138,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Les légendes des repères du Guide restent dans leurs cartes depuis la navigation de bureau.
 
 - Accessibilité : navigation au clavier pour le retrait d'un membre et les
   menus de carte, infobulles refermables avec la touche Échap, et noms
