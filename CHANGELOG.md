@@ -57,6 +57,8 @@ is not part of the public package.
 
 **Improved**
 
+- Keep names and email addresses readable in constrained participant cards.
+
 - Reserve the mobile navigation lane beside view headings.
 
 - Identifier examples in the Guide keep their cards contained at tablet widths.
@@ -146,6 +148,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Les noms et adresses restent lisibles dans les cartes participant étroites.
 
 - Le titre des vues conserve sa place à côté du bouton de navigation mobile.
 

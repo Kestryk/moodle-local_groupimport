@@ -164,3 +164,14 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
     .local-groupimport-easystud-participant-groups__create { margin-top: var(--easyedu-lane-stack-gap); }
   }
 }
+
+// A drawer narrows each card without changing the viewport breakpoint.
+#local-groupimport-easystud .local-groupimport-easystud-user {
+  container: easystud-person-card / inline-size;
+  max-height: none;
+}
+@container easystud-person-card (max-width: 20rem) {
+  #local-groupimport-easystud .local-groupimport-easystud-user {
+    @include easyedu.person-card-readable-summary(".local-groupimport-easystud-user__headline", ".local-groupimport-easystud-user__headline-main", ".local-groupimport-easystud-user__name", ".local-groupimport-easystud-user__email");
+  }
+}

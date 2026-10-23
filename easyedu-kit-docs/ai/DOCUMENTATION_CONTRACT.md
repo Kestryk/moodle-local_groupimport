@@ -1230,3 +1230,5 @@ Retain settled desktop paint checks and report non-reproduced menu behavior
 separately. See docs/testing/k23-responsive-cards-2026-10-23.md.
 
 Rail-anchor phone headings reserve the shared compact navigation lane, including the nested head-row. Reuse navigation-content-clearance; preserve launcher placement, targets and native Moodle drawers.
+
+Constrained person summaries must not allocate an intrinsic name next to a zero-width email. Reuse person-card-readable-summary with consumer-owned selectors and an actual content container; keep fonts, action targets and selection untouched.
