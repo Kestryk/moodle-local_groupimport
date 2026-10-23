@@ -53,6 +53,8 @@ is not part of the public package.
 
 **Improved**
 
+- Keep the focused Guide tab visible between the navigation arrows.
+
 - Preserve keyboard focus when participant details finish loading.
 
 - Keep complete search and creation labels visible in narrow columns.
@@ -148,6 +150,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Les onglets du Guide restent visibles quand ils reçoivent le focus.
 
 - Le chargement des détails participant conserve le focus clavier dans la fiche.
 

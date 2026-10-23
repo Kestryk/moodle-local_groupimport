@@ -4282,6 +4282,14 @@ const bindNavWheel = root => {
     return;
   }
   nav.dataset.easyeduGuideWheelBound = '1';
+  // Native nearest-focus scrolling ignores the arrow overlays. Center the
+  // focused tab within this existing scroller without activating its slide.
+  addTrackedListener(root, nav, 'focusin', event => {
+    const item = event.target.closest(SELECTORS.navItem);
+    if (item && nav.contains(item)) {
+      item.scrollIntoView({behavior: getScrollBehavior(root), block: 'nearest', inline: 'center'});
+    }
+  });
   addTrackedListener(root, nav, 'scroll', () => updateNavScrollButtons(root), {passive: true});
   addTrackedListener(root, nav, 'wheel', event => {
     if (event.ctrlKey || nav.scrollWidth <= nav.clientWidth) { return; }
