@@ -1,3 +1,5 @@
+- 2026-10-23 [K23-22] Preserve host layout when leaving native Guide fullscreen and immediately closing. Keep margin-collapsing sibling groups live instead of parking them with altered flow; preserve the release barrier.
+
 - 2026-10-23 [K23-10/19] Remplacer sur Community et staging les essais de largeur successifs par un plafond universel de 1320 px centré. Réancrer aussi les tiroirs des pages natives de réglages pour qu’ils ne recouvrent plus les formulaires ; conserver les titres CCB et les règles de logo. Patch temporaire à reprendre dans le futur thème EasyEdu.
 
 - 2026-10-23 [K23-16] Documenter et appliquer sur Community et staging le patch Boost temporaire qui aligne la largeur du contenu des cours sur leur bannière CCB standard. À reprendre dans le futur thème EasyEdu.
