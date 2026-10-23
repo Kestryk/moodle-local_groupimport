@@ -53,6 +53,8 @@ is not part of the public package.
 
 **Improved**
 
+- Identifier examples in the Guide keep their cards contained at tablet widths.
+
 - Guide concept captions wrap within their cards when opened from desktop navigation.
 
 - Accessibility: keyboard-only focus handling when removing a member or
@@ -138,6 +140,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Les cartes d’exemple des identifiants du Guide restent contenues sur tablette.
 
 - Les légendes des repères du Guide restent dans leurs cartes depuis la navigation de bureau.
 
