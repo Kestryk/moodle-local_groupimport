@@ -1,5 +1,17 @@
 @use "pagination";
 
+// An empty list keeps its toolbar's intrinsic size, including wrapped rows.
+// Hide whole lanes without collapsing them so its first content slot still
+// lines up with a populated peer. The consumer also makes those lanes inert.
+@mixin pagination-empty-slots(
+  $selection: ".easyedu-pagination__selection",
+  $tools: ".easyedu-pagination__tools"
+) {
+  &.is-empty {
+    #{$selection}, #{$tools} { visibility: hidden; }
+  }
+}
+
 // Intrinsic list-toolbar guard. Equal flexible side lanes preserve a centred
 // pager when space allows; whole groups wrap before their controls collide.
 // The established narrow composition keeps its pager on the second row.

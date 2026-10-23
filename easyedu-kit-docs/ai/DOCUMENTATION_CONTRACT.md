@@ -8,6 +8,12 @@ Fullscreen parking must preserve parent-relative sibling flow, not only border-b
 
 # EasyEdu documentation contract
 
+Empty list messages retain the 08.13 Kit paint. Reserve the existing pagination
+side lanes instead of adding message offsets: keep empty lanes invisible and
+inert, disable Select all, and clear the state when results return. Distinguish
+simultaneous desktop column alignment from responsive per-entity content-slot
+measurements; a hidden neighbour has no meaningful screen Y coordinate.
+
 Filter separation belongs to the common advanced-filter panel, not a Participants-only adapter. List selection, paging and tools consume one intrinsic wrap guard; preserve the narrow pager row and native handlers. Verify all column roles and painted controls, including narrowed desktop content. See docs/testing/k23-filter-pagination-2026-10-23.md.
 
 Column overflow copies preserve the existing Kit action icon-gap token even after the selection-action skin is removed. Verify the real reduced-menu entry and its painted icon-to-label separation; a full toolbar or an absent overflow trigger is not proof.

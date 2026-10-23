@@ -257,11 +257,13 @@ export const updateResultSelectionControl = (root, list, config, select) => {
     const filtered = hasActiveListFilters(root, list);
     const show = items.length > 0;
     const label = select.querySelector('[data-easystud-select-results-label]') || select;
-    select.hidden = !show;
+    // Keep the same intrinsic toolbar slot when a list has no results. The Kit
+    // hides the empty toolbar's side lanes; disabled controls cannot be invoked.
+    select.hidden = false;
     const kind = selectionKinds[config.selector];
     const blocked = !!kind && hasOtherSelection(root, kind);
-    select.disabled = blocked;
-    select.setAttribute('aria-disabled', blocked ? 'true' : 'false');
+    select.disabled = blocked || !show;
+    select.setAttribute('aria-disabled', blocked || !show ? 'true' : 'false');
     if (!show) {
         select.removeAttribute('data-easystud-deselect-results');
         label.textContent = filtered ?
@@ -299,7 +301,12 @@ export const updatePaginationMetaControls = (root, list, pagination, total, posi
     const sortDropdown = pagination.querySelector('[data-easystud-list-sort-dropdown]');
     const sortLabel = pagination.querySelector('[data-easystud-list-sort-label]');
     const tools = pagination.querySelector('.local-groupimport-easystud-pagination__tools');
-    const visible = position === 'top' && total > 0;
+    const visible = position === 'top';
+    pagination.classList.toggle('is-empty', total === 0);
+    const selection = pagination.querySelector('.local-groupimport-easystud-pagination__selection');
+    [selection, tools].filter(Boolean).forEach(lane => {
+        lane.inert = total === 0;
+    });
     const isFullView = !root.classList.contains(participantFocusClass) && !root.classList.contains(structureFocusClass);
     const showCount = visible && !isFullView;
     if (tools) {
