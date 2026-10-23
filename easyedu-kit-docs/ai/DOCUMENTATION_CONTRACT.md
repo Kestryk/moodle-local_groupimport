@@ -1236,3 +1236,5 @@ Native inputs cannot wrap a long placeholder. Move its unchanged copy into a per
 Participant deferred rendering preserves focus on the same relation/control and its disclosure state only for the same participant. Never replace the modal trap, refocus an unrelated dialog or carry relation state into another participant.
 
 Guide tab focus centers the focused item in the existing navigation scroller, independently from the active slide. Preserve reading state and tracked listener lifecycle; native nearest scrolling ignores arrow overlays.
+
+Membership Start precedes Compare in reading, visual and keyboard order. Retain one original command and preserve completion and Motion. The discovery dialog owns prerequisite text wrapping through G4.
