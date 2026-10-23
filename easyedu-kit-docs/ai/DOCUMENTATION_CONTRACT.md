@@ -1,3 +1,5 @@
+Card member counts occupy the terminal header slot after direct actions and overflow. Use card-header-terminal-slot for count/overflow and release obsolete absolute-action clearance. Verify actual boxes at all five widths, plus native menu and selection behavior. No local offsets or extra DOM controls.
+
 Demonstration completion uses one existing success disc with the plain check glyph, not check-circle inside another disc. Preserve the 32px flex frame, semantic palette and hidden/accessible state. Measure pseudo-element and disc centres without introducing optical offsets.
 
 Checklist descriptions retain intentional plain-text paragraph breaks through the shared Kit caption recipe. Keep textContent, path events and existing typography; a copy change must preserve the complete instructions and every unrelated translation. See docs/testing/guide-readability-completion-2026-10-23.md.
