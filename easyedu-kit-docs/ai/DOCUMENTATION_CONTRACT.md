@@ -1232,3 +1232,5 @@ Rail-anchor phone headings reserve the shared compact navigation lane, including
 Constrained person summaries must not allocate an intrinsic name next to a zero-width email. Reuse person-card-readable-summary with consumer-owned selectors and an actual content container; keep fonts, action targets and selection untouched.
 
 Native inputs cannot wrap a long placeholder. Move its unchanged copy into a persistent associated caption composed from entity-field-caption, preserving native inputs and handlers. Do not shrink type to fit a translated field hint.
+
+Participant deferred rendering preserves focus on the same relation/control and its disclosure state only for the same participant. Never replace the modal trap, refocus an unrelated dialog or carry relation state into another participant.
