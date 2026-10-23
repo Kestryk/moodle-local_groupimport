@@ -1,5 +1,7 @@
 - 2026-10-23 [K23-16] Documenter et appliquer sur Community et staging le patch Boost temporaire qui aligne la largeur du contenu des cours sur leur bannière CCB standard. À reprendre dans le futur thème EasyEdu.
 
+- 2026-10-23 Match the group-search Cancel button inside groupings to the compact participant-search control, preserving the shared narrow-card X and touch targets.
+
 - 2026-10-23 Keep card search controls readable in narrow containers, share the compact Cancel X, restore the search-field recipe on new groupings and use a save icon for inline renaming. Overflow actions now dispatch their original command once.
 
 - 2026-10-23 [K23-01/02/04] Aligner le texte des cartes participant à droite en responsive, désactiver le contrôle des appartenances quand aucun participant n’en possède et centrer la sélection, le chevron et le titre des groupements. Rendu bureau conservé ; fermeture immédiate du menu K23-07 non reproduite.

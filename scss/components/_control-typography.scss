@@ -15,8 +15,9 @@
     @include foundations.foundation-button($secondary: true, $density: compact);
   }
 
-  // This generated secondary button also carries the general Kit button class;
-  // retain the compact member-search treatment in that later global cascade.
+  // Both card searches carry the general Kit secondary button class. Keep the
+  // compact recipe specific enough to survive that later global cascade.
+  [data-easystud-container-search-cancel].easyedu-button--secondary,
   [data-easystud-group-member-search-cancel].easyedu-button--secondary {
     @include foundations.foundation-button($secondary: true, $density: compact);
   }

@@ -40,3 +40,13 @@ Foundations uses the existing Save and floppy masters, without detaching or dupl
 Run `tools/release/test-card-overflow-dispatch.cjs` with the Playwright module path. For a prepared isolated course, set `EASYSTUD_BASE_URL`, `EASYSTUD_COURSE_ID`, an absolute `EASYSTUD_ARTIFACTS`, `MOODLE_TEST_USER` and `MOODLE_TEST_PASSWORD`, then run `tools/playwright/k23-intermediate-cards-native.cjs`. Optional `PLAYWRIGHT_MODULE`, `CHROME_PATH`, `EASYSTUD_WIDTHS`, `EASYSTUD_LANGUAGES` and `EASYSTUD_DRAWERS` configure the runner. It stays headless and submits no business operations.
 
 Detailed raw evidence, immutable failed predecessors, screenshots, cleanup proofs and absolute changed-file paths are in the external review report. Runtime restoration verifies 1,366 original files on 5.1 and 1,363 on each of 5.3/4.5 by SHA-256; all owned leases are released. Runtime configuration was not changed; synthetic courses/users are removed and runtime files are restored after testing.
+
+## Follow-up: grouping search Cancel (K23-18)
+
+The grouping search uses `data-easystud-container-search-cancel`, including both server-rendered grouping panels and dynamically created groupings. The participant-within-group search uses `data-easystud-group-member-search-cancel`. These are the only two live card-search cancellation hooks in the module. The anatomy Guide also has a separate illustrative `data-guide-loupe-cancel` span; it is not a native card-search button.
+
+The grouping hook already consumed the compact foundation mixin, but its selector lacked the `easyedu-button--secondary` qualifier used by the member-search adapter. A later general Kit rule therefore restored regular density on wider panels. The fix adds that qualifier to the same existing selector list, with no new component or palette. The strict native runner now records computed Cancel font, weight, line height, padding, radius and colours and asserts the shared compact font/radius in addition to existing containment and icon checks.
+
+The existing Foundations constrained-search composition already uses the linked compact Cancel control; this is a consumer cascade correction to that accepted definition. No Penpot or canonical Kit master change is needed.
+
+Targeted successor: 24 native cells (FR/EN ×1600/1100/768/390 ×three views), 16 search/Cancel interactions, zero JS exception/console error. Wide grouping Cancel changes from 14.08px/600, regular radius11.52px and padding8px12px to the reference compact12px/700, line-height14.4px, radius8px and padding4px10.4px. Narrow frames remain38/44px. The immutable predecessor fails the new typography assertion; the candidate passes. Only seven qualified Student Management selectors are added; the other three page styles remain byte-identical.
