@@ -398,8 +398,11 @@ export const ensureGroupMemberSearchControls = (root, group) => {
                 '<input type="search" class="form-control" placeholder="' + escapeHtml(labels.searchparticipants || '') +
                     '" data-easystud-group-member-search="' + escapeHtml(groupid) + '">' +
             '</label>' +
-            '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-group-member-search-cancel="' +
-                escapeHtml(groupid) + '">' + escapeHtml(labels.cancel || '') + '</button>' +
+            '<button type="button" class="easyedu-button easyedu-button--secondary easyedu-inline-search-cancel" ' +
+                'data-easystud-group-member-search-cancel="' +
+                escapeHtml(groupid) + '" aria-label="' + escapeHtml(labels.cancel || '') + '">' +
+                '<span class="fa fa-times" aria-hidden="true"></span>' +
+                '<span class="easyedu-inline-search-cancel__label">' + escapeHtml(labels.cancel || '') + '</span></button>' +
         '</div>';
     group.insertBefore(panel, members);
 };
@@ -554,6 +557,9 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
             }
             clone.addEventListener('click', event => {
                 event.preventDefault();
+                // The original control owns the command. Do not also let the
+                // clone's matching data hook toggle the same panel a second time.
+                event.stopPropagation();
                 Motion.hideMenu(menu, {anchor: toggle});
                 toggle.setAttribute('aria-expanded', 'false');
                 source.click();
@@ -872,7 +878,7 @@ const renameEditActions = labels => {
     const cancel = escapeHtml(labels.cancel || '');
     return '<button type="submit" class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button ' +
             'local-groupimport-easystud-rename__save" aria-label="' + save + '" data-easystud-hover-help="' + save + '">' +
-            '<span class="fa fa-check" aria-hidden="true"></span></button>' +
+            '<span class="fa fa-save" aria-hidden="true"></span></button>' +
         '<button type="button" class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button ' +
             'easyedu-create-icon-button--secondary local-groupimport-easystud-rename__cancel" ' +
             'data-easystud-rename-cancel="1" aria-label="' + cancel + '" data-easystud-hover-help="' + cancel + '">' +
@@ -894,33 +900,56 @@ export const createGroupElement = (root, groupdata) => {
     setAdvancedAttributes(group, groupdata, 'group');
 
     group.innerHTML =
-        '<label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--group" aria-label="' + escapeHtml(labels.selectionmode || '') + '">' +
+        '<label class="local-groupimport-easystud-selector' +
+            ' local-groupimport-easystud-selector--group" aria-label="' + escapeHtml(labels.selectionmode || '') + '">' +
             '<input type="checkbox" data-easystud-selector-input="1">' +
             '<span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>' +
         '</label>' +
         '<div class="local-groupimport-easystud-group__header">' +
             '<span class="local-groupimport-easystud-group__name"></span>' +
-            '<span class="local-groupimport-easystud-group__groupings local-groupimport-easystud-group__groupings--inline" hidden></span>' +
-            '<span class="badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--members local-groupimport-easystud-count-badge--empty"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
-            '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__mail-button" data-easystud-toggle-group-email="' + escapeHtml(groupdata.id) + '" aria-label="' + escapeHtml(labels.addemailstogroup || '') + '" data-easystud-hover-help="' + escapeHtml(labels.addemailstogroup || '') + '">' +
+            '<span class="local-groupimport-easystud-group__groupings' +
+                ' local-groupimport-easystud-group__groupings--inline" hidden></span>' +
+            '<span class="badge local-groupimport-easystud-count-badge' +
+                ' local-groupimport-easystud-count-badge--members' +
+                ' local-groupimport-easystud-count-badge--empty"><span class="fa' +
+                ' fa-users" aria-hidden="true"></span><span' +
+                ' data-easystud-count-value="1"></span></span>' +
+            '<button type="button" class="btn btn-link p-0' +
+                ' local-groupimport-easystud-group__mail-button"' +
+                ' data-easystud-toggle-group-email="' +
+                escapeHtml(groupdata.id) +
+                '" aria-label="' +
+                escapeHtml(labels.addemailstogroup || '') +
+                '" data-easystud-hover-help="' +
+                escapeHtml(labels.addemailstogroup || '') +
+                '">' +
                 '<span class="fa fa-at" aria-hidden="true"></span>' +
             '</button>' +
             '<form method="post" action="" class="local-groupimport-easystud-rename" data-easystud-rename-form="1">' +
                 '<input type="hidden" name="sesskey" value="' + escapeHtml(M.cfg.sesskey) + '">' +
                 '<input type="hidden" name="action" value="renamegroup">' +
                 '<input type="hidden" name="groupid" value="' + escapeHtml(groupdata.id) + '">' +
-                '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-rename__toggle" data-easystud-rename-toggle="1" aria-label="' + escapeHtml(labels.rename || '') + '" data-easystud-hover-help="' + escapeHtml(labels.rename || '') + '">' +
+                '<button type="button" class="btn btn-link p-0' +
+                    ' local-groupimport-easystud-rename__toggle"' +
+                    ' data-easystud-rename-toggle="1" aria-label="' +
+                    escapeHtml(labels.rename || '') +
+                    '" data-easystud-hover-help="' +
+                    escapeHtml(labels.rename || '') +
+                    '">' +
                     '<span class="fa fa-pen" aria-hidden="true"></span>' +
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
-                    '<input type="text" name="name" class="form-control form-control-sm" autocomplete="off" aria-label="' + escapeHtml(labels.rename || '') + '">' +
+                    '<input type="text" name="name" class="form-control form-control-sm"' +
+                        ' autocomplete="off" aria-label="' + escapeHtml(labels.rename || '') + '">' +
                     renameEditActions(labels) +
                 '</div>' +
             '</form>' +
         '</div>' +
         '<ul class="local-groupimport-easystud-group__members" data-easystud-group-members="' +
             escapeHtml(groupdata.id) + '"></ul>' +
-        '<button type="button" class="local-groupimport-easystud-group__members-toggle" data-easystud-group-members-toggle="1" hidden>' +
+        '<button type="button"' +
+            ' class="local-groupimport-easystud-group__members-toggle"' +
+            ' data-easystud-group-members-toggle="1" hidden>' +
             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
             '<span class="local-groupimport-easystud-group__members-toggle-label" ' +
                 'data-easystud-group-members-toggle-label="1"></span>' +
@@ -928,15 +957,21 @@ export const createGroupElement = (root, groupdata) => {
         groupSelectAllRowHtml(groupdata.id, labels) +
         '<div class="local-groupimport-easystud-group-email" data-easystud-group-email-panel="' +
             escapeHtml(groupdata.id) + '" hidden>' +
-            '<textarea class="form-control form-control-sm" rows="3" placeholder="' + escapeHtml(labels.pasteemailsplaceholder || '') + '" data-easystud-group-email-box="' + escapeHtml(groupdata.id) + '"></textarea>' +
+            '<textarea class="form-control form-control-sm" rows="3" placeholder="' +
+                escapeHtml(labels.pasteemailsplaceholder || '') +
+                '" data-easystud-group-email-box="' +
+                escapeHtml(groupdata.id) +
+                '"></textarea>' +
             '<div class="local-groupimport-easystud-inline-actions">' +
                 '<button type="button" class="btn btn-sm btn-primary" data-easystud-add-group-emails="' +
                     escapeHtml(groupdata.id) + '">' +
                     '<span class="fa fa-plus" aria-hidden="true"></span><span>' + escapeHtml(labels.addemails || '') + '</span>' +
                 '</button>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">' + escapeHtml(labels.cancel || '') + '</button>' +
+                '<button type="button" class="btn btn-sm btn-outline-secondary"' +
+                    ' data-easystud-cancel-group-email="1">' + escapeHtml(labels.cancel || '') + '</button>' +
             '</div>' +
-            '<div class="local-groupimport-easystud-group-email__result" data-easystud-group-email-result="' + escapeHtml(groupdata.id) + '" aria-live="polite"></div>' +
+            '<div class="local-groupimport-easystud-group-email__result"' +
+                ' data-easystud-group-email-result="' + escapeHtml(groupdata.id) + '" aria-live="polite"></div>' +
         '</div>';
 
     const name = group.querySelector('.local-groupimport-easystud-group__name');
@@ -995,57 +1030,113 @@ export const createGroupingElement = (root, groupingdata) => {
     setAdvancedAttributes(section, groupingdata, 'grouping');
 
     section.innerHTML =
-        '<label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--section" aria-label="' + escapeHtml(labels.selectionmode || '') + '">' +
+        '<label class="local-groupimport-easystud-selector' +
+            ' local-groupimport-easystud-selector--section" aria-label="' + escapeHtml(labels.selectionmode || '') + '">' +
             '<input type="checkbox" data-easystud-selector-input="1">' +
             '<span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>' +
         '</label>' +
         '<div class="local-groupimport-easystud-grouping__header">' +
-            '<button type="button" class="local-groupimport-easystud-tree__toggle" data-easystud-collapse-toggle="1" aria-expanded="false">' +
+            '<button type="button" class="local-groupimport-easystud-tree__toggle"' +
+                ' data-easystud-collapse-toggle="1" aria-expanded="false">' +
                 '<span class="fa fa-chevron-right" aria-hidden="true"></span>' +
                 '<span class="local-groupimport-easystud-grouping__name"></span>' +
             '</button>' +
-            '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__mail-button" data-easystud-toggle-grouping-groups="' + escapeHtml(groupingdata.id) + '" aria-label="' + escapeHtml(labels.addgroupstogrouping || '') + '" data-easystud-hover-help="' + escapeHtml(labels.addgroupstogrouping || '') + '">' +
+            '<button type="button" class="btn btn-link p-0' +
+                ' local-groupimport-easystud-group__mail-button"' +
+                ' data-easystud-toggle-grouping-groups="' +
+                escapeHtml(groupingdata.id) +
+                '" aria-label="' +
+                escapeHtml(labels.addgroupstogrouping || '') +
+                '" data-easystud-hover-help="' +
+                escapeHtml(labels.addgroupstogrouping || '') +
+                '">' +
                 '<span class="fa fa-layer-group" aria-hidden="true"></span>' +
             '</button>' +
-            '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-container-search__toggle" data-easystud-container-search-toggle="' + escapeHtml(groupingdata.id) + '" aria-label="' + escapeHtml(labels.searchgroupslabel || '') + '" data-easystud-hover-help="' + escapeHtml(labels.searchgroupslabel || '') + '">' +
+            '<button type="button" class="btn btn-link p-0' +
+                ' local-groupimport-easystud-container-search__toggle"' +
+                ' data-easystud-container-search-toggle="' +
+                escapeHtml(groupingdata.id) +
+                '" aria-label="' +
+                escapeHtml(labels.searchgroupslabel || '') +
+                '" data-easystud-hover-help="' +
+                escapeHtml(labels.searchgroupslabel || '') +
+                '">' +
                 '<span class="fa fa-search" aria-hidden="true"></span>' +
             '</button>' +
             '<form method="post" action="" class="local-groupimport-easystud-rename" data-easystud-rename-form="1">' +
                 '<input type="hidden" name="sesskey" value="' + escapeHtml(M.cfg.sesskey) + '">' +
                 '<input type="hidden" name="action" value="renamegrouping">' +
                 '<input type="hidden" name="groupingid" value="' + escapeHtml(groupingdata.id) + '">' +
-                '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-rename__toggle" data-easystud-rename-toggle="1" aria-label="' + escapeHtml(labels.rename || '') + '" data-easystud-hover-help="' + escapeHtml(labels.rename || '') + '">' +
+                '<button type="button" class="btn btn-link p-0' +
+                    ' local-groupimport-easystud-rename__toggle"' +
+                    ' data-easystud-rename-toggle="1" aria-label="' +
+                    escapeHtml(labels.rename || '') +
+                    '" data-easystud-hover-help="' +
+                    escapeHtml(labels.rename || '') +
+                    '">' +
                     '<span class="fa fa-pen" aria-hidden="true"></span>' +
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
-                    '<input type="text" name="name" class="form-control form-control-sm" autocomplete="off" aria-label="' + escapeHtml(labels.rename || '') + '">' +
+                    '<input type="text" name="name" class="form-control form-control-sm"' +
+                        ' autocomplete="off" aria-label="' + escapeHtml(labels.rename || '') + '">' +
                     renameEditActions(labels) +
                 '</div>' +
             '</form>' +
-                '<span class="badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--grouping local-groupimport-easystud-count-badge--empty" data-count-template="' + escapeHtml(labels.groupscounttemplate || '__count__') + '"><span class="fa fa-layer-group" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
+                '<span class="badge local-groupimport-easystud-count-badge' +
+                    ' local-groupimport-easystud-count-badge--grouping' +
+                    ' local-groupimport-easystud-count-badge--empty" data-count-template="' +
+                    escapeHtml(labels.groupscounttemplate || '__count__') +
+                    '"><span class="fa fa-layer-group" aria-hidden="true"></span><span' +
+                    ' data-easystud-count-value="1"></span></span>' +
         '</div>' +
-        '<div class="local-groupimport-easystud-container-search" data-easystud-container-search-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
+        '<div class="local-groupimport-easystud-container-search"' +
+            ' data-easystud-container-search-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
             '<div class="local-groupimport-easystud-container-search__row">' +
-                '<label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field" aria-label="' + escapeHtml(labels.searchgroupslabel || '') + '">' +
+                '<label class="local-groupimport-easystud__search-field ' +
+                    'local-groupimport-easystud-container-search__field easyedu-search-field" aria-label="' +
+                    escapeHtml(labels.searchgroupslabel || '') + '">' +
                     '<span class="fa fa-search" aria-hidden="true"></span>' +
-                    '<input type="search" class="form-control" placeholder="' + escapeHtml(labels.searchgroupsplaceholder || '') + '" data-easystud-container-group-search="' + escapeHtml(groupingdata.id) + '">' +
+                    '<input type="search" class="form-control" placeholder="' +
+                        escapeHtml(labels.searchgroupsplaceholder || '') +
+                        '" data-easystud-container-group-search="' +
+                        escapeHtml(groupingdata.id) +
+                        '">' +
                 '</label>' +
-                '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-container-search-cancel="' + escapeHtml(groupingdata.id) + '">' + escapeHtml(labels.cancel || '') + '</button>' +
+                '<button type="button" class="easyedu-button easyedu-button--secondary easyedu-inline-search-cancel" ' +
+                    'data-easystud-container-search-cancel="' + escapeHtml(groupingdata.id) +
+                    '" aria-label="' + escapeHtml(labels.cancel || '') + '">' +
+                    '<span class="fa fa-times" aria-hidden="true"></span>' +
+                    '<span class="easyedu-inline-search-cancel__label">' + escapeHtml(labels.cancel || '') + '</span></button>' +
             '</div>' +
         '</div>' +
-        '<div class="local-groupimport-easystud-group-email" data-easystud-grouping-groups-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
-            '<textarea class="form-control form-control-sm" rows="3" placeholder="' + escapeHtml(labels.pastegroupsplaceholder || '') + '" data-easystud-grouping-groups-box="' + escapeHtml(groupingdata.id) + '"></textarea>' +
+        '<div class="local-groupimport-easystud-group-email"' +
+            ' data-easystud-grouping-groups-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
+            '<textarea class="form-control form-control-sm" rows="3" placeholder="' +
+                escapeHtml(labels.pastegroupsplaceholder || '') +
+                '" data-easystud-grouping-groups-box="' +
+                escapeHtml(groupingdata.id) +
+                '"></textarea>' +
             '<div class="local-groupimport-easystud-inline-actions">' +
-                '<button type="button" class="btn btn-sm btn-primary" data-easystud-add-grouping-groups="' + escapeHtml(groupingdata.id) + '">' +
+                '<button type="button" class="btn btn-sm btn-primary"' +
+                    ' data-easystud-add-grouping-groups="' + escapeHtml(groupingdata.id) + '">' +
                     '<span class="fa fa-plus" aria-hidden="true"></span><span>' + escapeHtml(labels.addgroups || '') + '</span>' +
                 '</button>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-grouping-groups="1">' + escapeHtml(labels.cancel || '') + '</button>' +
+                '<button type="button" class="btn btn-sm btn-outline-secondary"' +
+                    ' data-easystud-cancel-grouping-groups="1">' + escapeHtml(labels.cancel || '') + '</button>' +
             '</div>' +
-            '<div class="local-groupimport-easystud-group-email__result" data-easystud-grouping-groups-result="' + escapeHtml(groupingdata.id) + '" aria-live="polite"></div>' +
+            '<div class="local-groupimport-easystud-group-email__result"' +
+                ' data-easystud-grouping-groups-result="' + escapeHtml(groupingdata.id) + '" aria-live="polite"></div>' +
         '</div>' +
-        '<div class="local-groupimport-easystud-tree__children local-groupimport-easystud-grouping__groups" data-easystud-container-group-list="' + escapeHtml(groupingdata.id) + '" hidden><div class="local-groupimport-easystud-tree__empty">' +
+        '<div class="local-groupimport-easystud-tree__children' +
+            ' local-groupimport-easystud-grouping__groups"' +
+            ' data-easystud-container-group-list="' +
+            escapeHtml(groupingdata.id) +
+            '" hidden><div class="local-groupimport-easystud-tree__empty">' +
             escapeHtml(labels.nogroupsingrouping || '') + '</div></div>' +
-        '<button type="button" class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-grouping__groups-toggle" data-easystud-grouping-groups-toggle="' + escapeHtml(groupingdata.id) + '" hidden>' +
+        '<button type="button"' +
+            ' class="local-groupimport-easystud-group__members-toggle' +
+            ' local-groupimport-easystud-grouping__groups-toggle"' +
+            ' data-easystud-grouping-groups-toggle="' + escapeHtml(groupingdata.id) + '" hidden>' +
             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
         '</button>';
 
