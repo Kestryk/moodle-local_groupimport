@@ -95,7 +95,7 @@ for export and deletion of this data.
 
 ## Development
 
-- Personal Display and animations (ANIM/G1): `docs/display-preferences-2026-10-17.md`.
+- Personal Display and animations (ANIM): `docs/display-preferences-2026-10-17.md`.
 - Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
 
 - The manifest allows installation from Moodle 4.5 (`version.php`). Native
@@ -122,10 +122,6 @@ production packages through `.gitattributes` where appropriate.
 ## License
 
 GNU General Public License v3 or later.
-
-Card-title accent AMD is generated from the canonical Kit source and checked
-for exact consumer parity. Rebuild it with the dedicated release builder, then
-run the page-bootstrap builder with the same Moodle build dependencies.
 
 ### Release build toolchain provenance
 

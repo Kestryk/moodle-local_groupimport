@@ -1246,7 +1246,7 @@ $string['paginationlastpage'] = 'Last page';
 $string['paginationnavtop'] = 'List pagination, top';
 $string['paginationnavbottom'] = 'List pagination, bottom';
 
-// G1 personal display preferences (K17-05).
+// Personal display preferences (animation level).
 $string['displaypreferences'] = 'Display and animations';
 $string['displaypreferencesdesc'] = 'Choose how much animation the EasyStud interface uses. This setting only affects you.';
 $string['displaymotionlevel'] = 'Animation level';

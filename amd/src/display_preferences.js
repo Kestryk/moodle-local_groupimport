@@ -6,7 +6,7 @@
 // (at your option) any later version.
 
 /**
- * Personal animation choice (G1 / K17-05), using the shared M1 policy.
+ * Personal animation level choice, using the shared Motion level policy.
  *
  * @module     local_groupimport/display_preferences
  * @copyright  2026 Kevin Jarniac

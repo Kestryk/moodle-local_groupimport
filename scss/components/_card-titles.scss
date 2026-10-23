@@ -1,8 +1,6 @@
-// A3 card titles (PENPOT Foundations 09.5, board
-// "A3 — Variantes du titre de carte", row V3): identity ink and letter-spacing 0
-// (Kit card-title), a V3 accent underline in the entity colour, and card
-// actions neutral at rest, primary on a hovered, focused or selected card.
-// Counters stay 22 px pills (16/10, choice 4A).
+// Card titles: identity ink and letter-spacing 0 (Kit card-title) and the Kit
+// title metrics (no underline accent), and card actions neutral at rest,
+// primary on a hovered, focused or selected card. Counters stay 22 px pills.
 @use "../easyedu" as easyedu;
 
 #local-groupimport-easystud {

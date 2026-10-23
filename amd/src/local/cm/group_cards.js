@@ -259,7 +259,7 @@ export const syncGroupMembersCollapsible = group => {
     toggle.hidden = !cancollapse;
     toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     toggle.classList.toggle('is-expanded', expanded);
-    // K16-70: the fold control names what it does ("See all 23 members" / "Show less").
+    // The icon-only fold control is named by what it does ("See all 23 members" / "Show less").
     const toggleLabel = toggle.querySelector('[data-easystud-group-members-toggle-label]');
     if (toggleLabel) {
         const labels = getToggleLabels(group);
