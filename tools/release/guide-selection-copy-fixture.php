@@ -39,9 +39,9 @@ function get_string($key, $component) {
     }
     return $string[$key];
 }
-$manage = file_get_contents(__DIR__ . '/../../manage.php');
-$start = strpos($manage, "            \$slide['visualkeys'] = [");
-$end = strpos($manage, '        } else if', $start);
+$manage = file_get_contents(__DIR__ . '/../../classes/output/guide_config.php');
+$start = strpos($manage, "                \$slide['visualkeys'] = [");
+$end = strpos($manage, '            } else if', $start);
 if ($start === false || $end === false) {
     throw new RuntimeException('Missing keyboard presentation branch');
 }

@@ -67,9 +67,9 @@ for ($index = 0; $index < 20; $index++) {
 }
 $historicalslides = \local_groupimport\local\guide_discovery::prepend($reference);
 $cardlessons = [];
-$manage = file_get_contents(__DIR__ . '/../../manage.php');
-$start = strpos($manage, '            // Illustration-only successor:');
-$end = strpos($manage, '        } else if (!empty($step[\'visualfirststructure\']))', $start);
+$manage = file_get_contents(__DIR__ . '/../../classes/output/guide_config.php');
+$start = strpos($manage, '                // Illustration-only successor:');
+$end = strpos($manage, '            } else if (!empty($step[\'visualfirststructure\']))', $start);
 if ($start === false || $end === false) {
     throw new RuntimeException('Missing production card illustration adapter.');
 }
@@ -81,7 +81,7 @@ foreach (['participant', 'group', 'grouping'] as $type) {
         'commonintroduction' => \local_groupimport\local\guide_discovery::card_explanation($type),
         'visualcarddetail' => ['retainedStaticFixture' => true]];
     $cardtype = $type;
-    // Execute only the exact bounded presentation branch; never bootstrap manage.php.
+    // Execute only the exact bounded presentation branch; never bootstrap the page.
     require(\local_groupimport_fixture_source_file($inspectionadapter));
     $cardlessons[] = $slide;
 }

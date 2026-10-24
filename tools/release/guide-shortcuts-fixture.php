@@ -41,10 +41,10 @@ function get_string($key, $component) {
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 require(__DIR__ . '/../../classes/local/guide_specimen.php');
-$manage = file_get_contents(__DIR__ . '/../../manage.php');
-$marker = "        } else if (!empty(\$step['visualshortcuts'])) {";
+$manage = file_get_contents(__DIR__ . '/../../classes/output/guide_config.php');
+$marker = "            } else if (!empty(\$step['visualshortcuts'])) {";
 $start = strpos($manage, $marker);
-$end = strpos($manage, '        } else if', $start + strlen($marker));
+$end = strpos($manage, '            } else if', $start + strlen($marker));
 if ($start === false || $end === false) {
     throw new RuntimeException('Missing shortcuts presentation branch');
 }

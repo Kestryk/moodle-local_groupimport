@@ -65,7 +65,10 @@ require_once(__DIR__ . '/doubles/guide_current_curriculum_fixture/global/fixture
 class_alias('fixture_guide_current_curriculum_fixture_html_writer', 'html_writer');
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 require(__DIR__ . '/../../classes/local/guide_specimen.php');
-$source = file_get_contents(__DIR__ . '/../../manage.php');
+require(__DIR__ . '/../../classes/local/identity.php');
+require(__DIR__ . '/../../classes/output/guide_config.php');
+require_once(__DIR__ . '/fixtures/source_array.php');
+$source = file_get_contents(__DIR__ . '/../../classes/output/manage_page.php');
 $templatedata = $string;
 preg_match_all(
     "/^\s+'(tutorial[^']+)' => get_string\('([^']+)', 'local_groupimport'\),?$/m",
@@ -76,66 +79,15 @@ preg_match_all(
 foreach ($aliases as $alias) {
     $templatedata[$alias[1]] = get_string($alias[2], 'local_groupimport');
 }
-$start = strpos($source, "        'tutorialsteps' => [");
-$end = strpos($source, "        'selectionmodelabel' =>", $start);
-if ($start === false || $end === false) {
-    throw new RuntimeException('Missing actual tutorial definition boundary');
-}
-$array = substr(
-    $source,
-    $start + strlen("        'tutorialsteps' => "),
-    $end - $start - strlen("        'tutorialsteps' => ")
-);
-// Only the existing literal steps array is evaluated; never bootstrap manage.php.
-$templatedata['tutorialsteps'] = require(\local_groupimport_fixture_source_file('return ' . rtrim($array, ", \r\n\t") . ';'));
-foreach (['local_groupimport_build_easyedu_guide_template_data'] as $name) {
-    $start = strpos($source, 'function ' . $name . '(');
-    if ($start === false) {
-        throw new RuntimeException('Missing actual Guide adapter: ' . $name);
-    }
-    $tokens = token_get_all('<?php ' . substr($source, $start));
-    $body = '';
-    $depth = 0;
-    $opened = false;
-    foreach ($tokens as $token) {
-        if (is_array($token) && $token[0] === T_OPEN_TAG) {
-            continue;
-        }
-        $text = is_array($token) ? $token[1] : $token;
-        $body .= $text;
-        if (
-            $text === '{' || (is_array($token) && in_array(
-                $token[0],
-                [T_CURLY_OPEN, T_DOLLAR_OPEN_CURLY_BRACES],
-                true
-            ))
-        ) {
-            $depth++;
-            $opened = true;
-        } else if ($text === '}') {
-            $depth--;
-            if ($opened && $depth === 0) {
-                break;
-            }
-        }
-    }
-    if (!$opened || $depth !== 0) {
-        throw new RuntimeException('Unbounded Guide function extraction');
-    }
-    require(\local_groupimport_fixture_source_file($body));
-}
-$start = strpos($source, "        'paths' => [");
-$end = strpos($source, "        'labels' => [", $start);
-if ($start === false || $end === false) {
-    throw new RuntimeException('Missing actual Guide path definition boundary');
-}
-$array = substr(
-    $source,
-    $start + strlen("        'paths' => "),
-    $end - $start - strlen("        'paths' => ")
-);
-$paths = require(\local_groupimport_fixture_source_file('return ' . rtrim($array, ", \r\n\t") . ';'));
-$data = local_groupimport_build_easyedu_guide_template_data($templatedata);
+// Evaluate only the two literal definitions; execute the real presentation adapter.
+$templatedata['tutorialsteps'] = require(\local_groupimport_fixture_source_file(
+    'return ' . \local_groupimport_fixture_source_array($source, 'tutorialsteps') . ';'
+));
+$configsource = file_get_contents(__DIR__ . '/../../classes/output/guide_config.php');
+$paths = require(\local_groupimport_fixture_source_file(
+    'return ' . \local_groupimport_fixture_source_array($configsource, 'paths') . ';'
+));
+$data = \local_groupimport\output\guide_config::build_template_data($templatedata);
 $moderncontract = \local_groupimport\local\guide_discovery::modern_reading_contract();
 $active = array_column($data['slides'], 'id') === $moderncontract['slideIds'];
 echo json_encode(

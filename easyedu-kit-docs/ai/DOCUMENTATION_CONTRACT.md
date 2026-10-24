@@ -1288,3 +1288,11 @@ guard. Language-key sorting must preserve every evaluated FR/EN value. Record
 legacy preservation failures separately from current native fixture coverage;
 never replace historical baselines just to make the suite pass. See
 docs/testing/quality-pass-2026-10-25.md.
+
+
+Standalone post-I3 tests resolve current output-class producers and compare strict
+bilingual JSON to unchanged legacy fixtures against reconstituted producer bodies.
+Offline browser fixtures load declared page CSS, actual AMD dependencies and local
+Mustache partials. Keep historical snapshot oracles and security assertions intact;
+classify remaining failures rather than replacing their expected values. See
+`docs/testing/fixtures-post-i3-2026-10-25.md`.

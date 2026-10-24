@@ -41,12 +41,13 @@ function get_string($key, $component) {
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 require(__DIR__ . '/../../classes/local/guide_specimen.php');
-$manage = file_get_contents(__DIR__ . '/../../manage.php');
-$marker = "        } else if (!empty(\$step['visualtakeaway'])) {";
+require(__DIR__ . '/../../classes/local/identity.php');
+$manage = file_get_contents(__DIR__ . '/../../classes/output/guide_config.php');
+$marker = "            } else if (!empty(\$step['visualtakeaway'])) {";
 $start = strpos($manage, $marker);
-$end = strpos($manage, "        }\r\n\r\n        if (!empty(\$step['visualguided']))", $start);
+$end = strpos($manage, "            }\r\n\r\n            if (!empty(\$step['visualguided']))", $start);
 if ($end === false) {
-    $end = strpos($manage, "        }\n\n        if (!empty(\$step['visualguided']))", $start);
+    $end = strpos($manage, "            }\n\n            if (!empty(\$step['visualguided']))", $start);
 }
 if ($start === false || $end === false) {
     throw new RuntimeException('Missing recap presentation branch');
