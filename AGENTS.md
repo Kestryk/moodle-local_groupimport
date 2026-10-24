@@ -4,6 +4,12 @@ Use local\identity::ICON for EasyStud's navigation/Guide glyph. Never replace
 the EasyEdu platform cap or site favicon globally. Navigation hover timing
 must remain destination-scoped and preserve the restricted-motion override.
 
+Grouping entry must not auto-open its search at the long-list threshold. Keep
+manual disclosure Motion and ARIA state; only the ungrouped catalogue retains
+its historical automatic search. Verify named AMD aggregate replacement, not
+an unused per-module route. Rebuild page CSS after shared field-source changes
+and distinguish visible-page geometry from hidden responsive component fixtures.
+
 Overflow-menu copies delegate exactly once to their original command. Stop the copy click from reaching the delegated handler again; preserve the original native event, business scope and Motion. Keep separate evidence for a menu trigger closing by itself and a copied command toggling a panel twice. See docs/testing/k23-intermediate-cards-2026-10-23.md.
 
 I11 presentation updates share a workspace-scoped after-render collector. Preserve

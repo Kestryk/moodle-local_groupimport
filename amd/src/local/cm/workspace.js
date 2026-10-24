@@ -922,7 +922,9 @@ export const ensureTreeSection = (root, section) => {
     const signature = model.revision + ':' + visible.join(',');
     syncLongListFooter(section, 'groups', state, paged);
     const panel = input ? input.closest('[data-easystud-container-search-panel]') : null;
-    if (panel && allids.length >= listPolicy.groups.search && !section.easystudLongSearchReady) {
+    // Only the ungrouped catalogue keeps its automatic long-list search.
+    // Entering a grouping must not open a disclosure the user never requested.
+    if (key === 'ungrouped' && panel && allids.length >= listPolicy.groups.search && !section.easystudLongSearchReady) {
         section.easystudLongSearchReady = true;
         panel.hidden = false;
         panel.classList.add('is-open');

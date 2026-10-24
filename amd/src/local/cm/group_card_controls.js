@@ -77,6 +77,7 @@ export const bindContainerGroupSearch = root => {
         }
 
         const transition = setInlinePanelOpen(panel, shouldOpen);
+        toggle.setAttribute('aria-expanded', String(shouldOpen));
         toggle.classList.toggle('is-active', shouldOpen);
         if (shouldOpen && panel) {
             const input = panel.querySelector('[data-easystud-container-group-search]');
@@ -108,6 +109,7 @@ export const bindContainerGroupSearch = root => {
         applyContainerGroupSearch(root);
         setInlinePanelOpen(panel, false);
         if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
             toggle.classList.remove('is-active');
         }
     });
