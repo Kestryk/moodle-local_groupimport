@@ -115,25 +115,9 @@
       width: 100%;
       &:focus { @include focus.ring; }
     }
-    input[type="checkbox"] {
-      accent-color: var(--easyedu-primary);
-      cursor: pointer;
-      filter: saturate(0.94);
-      height: 1.125rem;
-      transform: scale(0.96);
-      transition:
-        box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease),
-        filter var(--easyedu-motion-normal) var(--easyedu-motion-ease),
-        transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-      width: 1.125rem;
-      vertical-align: middle;
-      &:active { transform: scale(0.92); }
-      &:checked { filter: saturate(1); transform: scale(1); }
-      &:focus-visible { @include focus.ring; }
-    }
-  }
-  @include animations.motion-restricted {
-    .easyedu-ui .easyedu-data-table input[type="checkbox"] { transition: none; }
+    // Row selection uses the one Kit selection checkbox
+    // (.easyedu-selection-checkbox, foundation classes), never a native repaint (K23-73).
+    .easyedu-selection-checkbox { vertical-align: middle; }
   }
   .easyedu-ui .easyedu-data-table tr.is-warning td { background: var(--easyedu-warning-soft); }
   .easyedu-ui .easyedu-status {
@@ -154,7 +138,8 @@
   @media (max-width: 40rem) {
     .easyedu-ui .easyedu-table-toolbar { align-items: stretch; flex-direction: column; }
     .easyedu-ui .easyedu-search { flex: auto; }
-    .easyedu-ui .easyedu-table-toolbar .easyedu-button { width: 100%; }
+    .easyedu-ui .easyedu-table-toolbar .easyedu-button,
+    .easyedu-ui .easyedu-table-toolbar .foundation-selection-action { width: 100%; }
     .easyedu-ui .easyedu-choice .easyedu-segmented-choice__options { grid-template-columns: minmax(0, 1fr); }
   }
   @include reports.report-palette-classes;

@@ -368,6 +368,10 @@
   .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {
     @include buttons.selection-recovery-action($natural-icons: true);
   }
+  // One selection checkbox for cards, lists and data tables (K23-73): the real
+  // input stays in a label, the Kit square owns rest/checked/focus paint.
+  // Markup: label.easyedu-selection-checkbox > input + span.easyedu-selection-checkbox__ui
+  .easyedu-ui .easyedu-selection-checkbox { @include forms.selection-checkbox($variant: card); }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-filter-reset.easyedu-filter-reset--field-peer { @include buttons.filter-reset-field-peer; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }

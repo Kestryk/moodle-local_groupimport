@@ -48,7 +48,7 @@
                         <thead><tr>{{#headers}}<th>{{.}}</th>{{/headers}}</tr></thead>
                         <tbody>
                             {{#rows}}
-                            <tr><td><input type="checkbox" checked tabindex="-1"></td><td>{{line}}</td><td>{{identifier}}</td><td>{{group}}</td><td>{{grouping}}</td><td><span class="easyedu-status">{{status}}</span></td></tr>
+                            <tr><td><span class="easyedu-selection-checkbox"><input type="checkbox" checked tabindex="-1"><span class="easyedu-selection-checkbox__ui" aria-hidden="true"></span></span></td><td>{{line}}</td><td>{{identifier}}</td><td>{{group}}</td><td>{{grouping}}</td><td><span class="easyedu-status">{{status}}</span></td></tr>
                             {{/rows}}
                         </tbody>
                     </table>
@@ -66,7 +66,7 @@
     data-guide-phase-3-label="{{phase3}}" data-guide-phase-4-label="{{phase4}}"
     data-guide-mi-typed="{{typedvalue}}">
     <div class="easyedu-table-toolbar easyedu-guide-mi-scene__toolbar">
-        <span class="easyedu-button easyedu-button--neutral">{{selectpage}}</span>
+        <span class="btn btn-outline-secondary btn-sm foundation-selection-action foundation-selection-action--tray">{{selectpage}}</span>
         <span class="easyedu-search easyedu-guide-mi-scene__search"><span class="fa fa-search" aria-hidden="true"></span><input type="search" class="form-control" placeholder="{{searchplaceholder}}" readonly tabindex="-1"></span>
     </div>
     <div class="easyedu-guide-mi-scene__table-wrap" data-guide-mi-table-wrap>
@@ -75,7 +75,7 @@
             <tbody>
                 {{#rows}}
                 <tr data-guide-mi-row="{{line}}"{{#warning}} class="is-warning"{{/warning}}>
-                    <td><input type="checkbox" checked tabindex="-1" data-guide-mi-include></td>
+                    <td><span class="easyedu-selection-checkbox"><input type="checkbox" checked tabindex="-1" data-guide-mi-include><span class="easyedu-selection-checkbox__ui" aria-hidden="true"></span></span></td>
                     <td>{{line}}</td>
                     <td><input type="text" class="form-control" value="{{identifier}}" readonly tabindex="-1" data-guide-mi-identifier></td>
                     <td><input type="text" class="form-control" value="{{group}}" readonly tabindex="-1"></td>

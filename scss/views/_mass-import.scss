@@ -388,14 +388,10 @@
 
 
 
+  // Run import (Kit core action) + Cancel (Kit selection action, tray density):
+  // both paint themselves; no local .btn geometry here (K23-76).
   &-preview__actions {
     @include easyedu.action-row;
-
-    .btn {
-      align-items: center;
-      display: inline-flex;
-      gap: 0.45rem;
-    }
   }
 
   &-drop {
