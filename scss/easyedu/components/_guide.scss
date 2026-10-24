@@ -1988,7 +1988,9 @@
 
   .easyedu-guide-visual--card-detail {
     display: grid;
-    grid-template-columns: minmax(12rem, 0.8fr) minmax(14rem, 1.2fr);
+    // Flex factors >= 1 (same 0.8 : 1.2 ratio): a factor below 1 leaves part
+    // of the row empty once the other track is frozen at its minimum (K23-74).
+    grid-template-columns: minmax(12rem, 1fr) minmax(14rem, 1.5fr);
   }
 
   .easyedu-guide-detail-list {

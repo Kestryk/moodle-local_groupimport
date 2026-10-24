@@ -121,14 +121,15 @@
 
   &.has-preview &__grid {
     // Applied K18-15 composition: 429.34/1082.66 in the available 1512px.
-    // K23-XX: the results/preview track kept no floor of its own, so once the
-    // upload column hit its 18rem minimum on a narrower viewport, every extra
-    // squeeze landed entirely on the right column (over-compressed on
-    // "expand left column"). Give it a modest floor too so both tracks share
-    // the remaining space instead of only one absorbing it.
+    // K23-74: the ratio is written with flex factors >= 1 (1 : 2.521 is the
+    // same 0.284 : 0.716 split). With factors summing to 1, once the upload
+    // track is frozen at its 18rem floor (any viewport below ~1450px) the
+    // results track is the only flexible one and CSS Grid gives it just
+    // 0.716 x the leftover space (fr size = leftover / max(1, sum of flex)),
+    // leaving an empty band and halving the preview on "expand left column".
     grid-template-columns:
-      minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr)
-      minmax(min(100%, 20rem), 0.716fr);
+      minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 1fr)
+      minmax(min(100%, 20rem), 2.521fr);
   }
 
   &.has-preview.is-upload-collapsed &__grid {

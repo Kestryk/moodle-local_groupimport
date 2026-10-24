@@ -329,7 +329,10 @@
   }
 }
 
-@mixin split-layout($left: minmax(22rem, 0.95fr), $right: minmax(28rem, 1.35fr)) {
+// Flex factors stay >= 1 (same 0.95 : 1.35 ratio): with a factor below 1, a
+// track left alone flexible after its peer hits its minimum would leave part of
+// the row empty (fr size = leftover / max(1, sum of flex factors), K23-74).
+@mixin split-layout($left: minmax(22rem, 1fr), $right: minmax(28rem, 1.421fr)) {
   align-items: stretch;
   display: grid;
   gap: 1.35rem;
