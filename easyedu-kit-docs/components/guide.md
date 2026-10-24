@@ -1,5 +1,15 @@
 # Guide
 
+## Floating launcher opt-in
+
+`guide-shell` includes `easyedu-guide__launcher--floating`: the existing
+Foundations Guide launcher Desktop / Default, 48px circle and 24px compass.
+It consumes the resolved launcher gradient/shadow, navbar-offset custom property,
+safe-area insets and the 220ms slow/ease tokens. `is-visible` controls its opacity
+and scale. Reduced motion fades without scaling; minimal motion is immediate.
+Consumers own viewport detection, disabled/ARIA state, delegation and cleanup.
+They must preserve the normal flow launcher and one original Guide command.
+
 ## Unified scene completion emphasis (0.4.185)
 
 In the unified scene header, the actual `[data-guide-live-copy]` child consumes

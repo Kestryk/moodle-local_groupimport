@@ -45,7 +45,7 @@ import {
 // Keep the shared guide launcher consumer-owned while the navigation component
 // owns only destinations and its compact panel. The binding itself is shared with
 // Mass Import (GMI-C4) through the dependency-free guide_launcher module.
-export const bindResponsiveGuideLauncher = root => bindGuideLauncher(root, responsiveWorkspaceQuery);
+export const bindResponsiveGuideLauncher = root => bindGuideLauncher(root, responsiveWorkspaceQuery, {floating: true});
 
 export const bindCanonicalNavigation = root => {
     const navigationRoot = root.querySelector('[data-easyedu-navigation]');
