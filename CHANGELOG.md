@@ -8,6 +8,8 @@
 
 - 2026-10-24 Keep Group and Grouping names readable in drawer-narrowed columns by wrapping terminal controls after the existing action-menu fallback.
 
+- 2026-10-24 Hide Moodle's native blocks-drawer opener on Student Management and Mass Import while course editing is on, so it can no longer appear above the floating Guide trigger. Give the floating Guide trigger its own z-index above every known native drawer opener, and trim its compass glyph to match the Kit's other small circular-button icons.
+
 ## 2026-10-24 — Course block drawer
 
 - Keep real Moodle course blocks out of Student Management and Mass Import so their workspace retains its width. Blocks remain available on native course pages.
