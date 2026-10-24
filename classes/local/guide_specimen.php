@@ -16,8 +16,6 @@
 
 namespace local_groupimport\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Static, current-product specimens for the Guide slides that used the former mini-cards.
  *

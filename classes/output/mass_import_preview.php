@@ -16,8 +16,6 @@
 
 namespace local_groupimport\output;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Builds the Mass Import preview table / results report context for Mustache.
  *

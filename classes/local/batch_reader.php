@@ -16,8 +16,6 @@
 
 namespace local_groupimport\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Request-owned grouped reads. No mutation, persistent cache or user matching policy.
  *

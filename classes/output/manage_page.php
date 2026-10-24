@@ -16,8 +16,6 @@
 
 namespace local_groupimport\output;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Builds the EasyStud Student Management page template data.
  *

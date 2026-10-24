@@ -16,8 +16,6 @@
 
 namespace local_groupimport\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Bound synchronous imports and commit memberships together with their history.
  *

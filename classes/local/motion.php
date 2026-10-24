@@ -16,8 +16,6 @@
 
 namespace local_groupimport\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Animation level of the EasyEdu interface (EasyEdu rule, contract M1 of 16/10/2026).
  *

@@ -16,8 +16,6 @@
 
 namespace local_groupimport\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Product-owned discovery content; illustrations never issue Moodle commands.
  *
