@@ -353,7 +353,8 @@
   .easyedu-ui .easyedu-inline-icon--leading { @include buttons.inline-icon-leading; }
   .easyedu-ui .foundation-selection-action { @include buttons.selection-action; }
   .easyedu-ui .foundation-selection-action.btn-outline-secondary {
-    @include buttons.selection-action(neutral);
+    // Bootstrap compatibility class; selection commands keep the primary Kit palette.
+    @include buttons.selection-action;
   }
   .easyedu-ui .foundation-selection-action.btn-outline-danger {
     @include buttons.selection-action(danger);

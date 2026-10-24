@@ -1,3 +1,5 @@
+Foundation selection commands keep the primary Kit palette even with the Bootstrap compatibility class btn-outline-secondary. Preserve explicit destructive, solid, disabled and borderless recovery variants; do not change native secondary buttons outside this component. See docs/testing/selection-action-primary-palette-2026-10-24.md.
+
 Shared floating Guide binding accepts either its navigation root or an ancestor containing it. Keep one binding implementation, preserve inactive state, scroll visibility, native click delegation and pagehide cleanup on both workspaces.
 
 Student Management configures the shared workspace lane surface with --easyedu-surface on every Moodle host. Keep the existing outlined Kit lanes and their seam-free split segments. Moodle 5.3 navigation and narrow metadata adaptations remain independent; do not remove their host guard or change the global soft-surface token used by other consumers. See docs/testing/unified-workspace-surface-2026-10-24.md.
