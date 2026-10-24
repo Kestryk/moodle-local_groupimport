@@ -1,5 +1,7 @@
 - Restore the floating Guide launcher on Mass Import when the page passes its navigation root directly. Keep Student Management and the normal Guide controls unchanged.
 
+- 2026-10-24 Add an opt-in Small text/search field matching its icon action (30.4px desktop, 44px through 1024px), preserving the existing field scale.
+
 - 2026-10-24 Restore the file-removal action's secondary blue and use the shared body scale for import summaries, with semibold counts.
 
 - 2026-10-24 Use the same white, lightly outlined Student Management columns on every supported Moodle version.

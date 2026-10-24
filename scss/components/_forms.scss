@@ -50,7 +50,7 @@
 
   &-create .form-control,
   &-rename .form-control {
-    @include easyedu.foundation-text-field;
+    @include easyedu.foundation-text-field-peer-small;
   }
 
   &-rename {
