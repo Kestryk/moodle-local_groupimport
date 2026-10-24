@@ -60,16 +60,25 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
   }
 
   // Controls replacing their skeletons fade in once, as the lists of Student Management do.
-  &.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {
+  // K23-85: the seven colour-palette settings (primary, accent, participant, group,
+  // grouping, badge background/text) wrap their real control in a `.easyedu-ui`
+  // `display: contents` host (scoping, see _forms.scss), which cannot itself paint
+  // an animation. Reaching the actual swatch box keeps every palette selector on
+  // this page under the exact same one-shot fade as every other field, instead of
+  // appearing instantly or getting a bespoke treatment per setting.
+  &.is-easystud-admin-entering #adminsettings .form-item .form-setting > *,
+  &.is-easystud-admin-entering #adminsettings .form-item .form-setting > .easyedu-ui > .easyedu-color-picker {
     animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
   }
 
-  &.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {
+  &.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > *,
+  &.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > .easyedu-ui > .easyedu-color-picker {
     animation: none;
   }
 
   @include easyedu.motion-restricted {
-    &.is-easystud-admin-entering #adminsettings .form-item .form-setting > * {
+    &.is-easystud-admin-entering #adminsettings .form-item .form-setting > *,
+    &.is-easystud-admin-entering #adminsettings .form-item .form-setting > .easyedu-ui > .easyedu-color-picker {
       animation: none;
     }
   }
