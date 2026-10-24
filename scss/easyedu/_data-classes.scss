@@ -114,6 +114,20 @@
       padding: 0.625rem 0.75rem;
       width: 100%;
       &:focus { @include focus.ring; }
+
+      // K23-84 pattern (Guide Mass Import demo scene, 25/10/2026): the demo table
+      // reuses this same input with `readonly`, and a host theme that greys every
+      // readonly/disabled field with !important (DVL 4.5 `_forms.scss`, the same
+      // root cause as K23-84/86) otherwise erases the Kit paint entirely, since
+      // this recipe had no readonly/disabled declaration of its own to outrank it.
+      // `.easyedu-data-table` has no consumer outside Mass Import, so this is
+      // always-on, not a new opt-in parameter.
+      &:read-only,
+      &:disabled {
+        background: var(--easyedu-surface) !important;
+        border-color: var(--easyedu-control-border) !important;
+        color: var(--easyedu-primary-strong) !important;
+      }
     }
     // Row selection uses the one Kit selection checkbox
     // (.easyedu-selection-checkbox, foundation classes), never a native repaint (K23-73).

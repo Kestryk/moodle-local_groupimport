@@ -948,14 +948,22 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 
 
 // Quiet action of a dialog: compose accepted type, state and focus recipes.
-@mixin dialog-text-action {
+//
+// $legacy-priority (K23-84 pattern, Mass Import history/restore dialog, 25/10/2026):
+// this action is a plain `<a>` (no Bootstrap class), so a host theme that forces
+// `a { color: … !important }` site-wide (DVL 4.5 `_links.scss`, same root cause as
+// K23-84/86) otherwise wins over the Kit's quiet action colour. Opt-in only: the
+// Student Management entity-dialog consumer of this same recipe is unaffected.
+@mixin dialog-text-action($legacy-priority: false) {
   @include typography.type-ui-base;
+
+  $p: if($legacy-priority, !important, null);
 
   align-items: center;
   background: transparent;
   border: 0;
   border-radius: 0.375rem;
-  color: var(--easyedu-primary);
+  color: var(--easyedu-primary) $p;
   cursor: pointer;
   display: inline-flex;
   font-size: var(--easyedu-font-size-caption);
@@ -967,16 +975,16 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
   @include buttons.control-state-transition;
 
   &:hover:not(:disabled) {
-    color: var(--easyedu-primary-strong);
+    color: var(--easyedu-primary-strong) $p;
     text-decoration: underline;
   }
 
   &:focus-visible {
-    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    @include focus.ring($border-color: var(--easyedu-control-focus-border), $native-overrides: $legacy-priority);
   }
 
   &:disabled {
-    color: var(--easyedu-text-muted);
+    color: var(--easyedu-text-muted) $p;
     cursor: default;
     opacity: 0.6;
   }

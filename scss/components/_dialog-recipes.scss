@@ -37,8 +37,8 @@ $dialog-divider: easyedu.$dialog-divider;
 }
 
 // Quiet text action of the family (CSV, "+ N other members", Restore).
-@mixin dialog-text-action {
-  @include easyedu.dialog-text-action;
+@mixin dialog-text-action($legacy-priority: false) {
+  @include easyedu.dialog-text-action($legacy-priority);
 }
 
 // Responsive 390 (Penpot S6-D5c): full-height sheet, sticky header and footer.

@@ -563,7 +563,9 @@
   }
 
   &-history__action {
-    @include recipes.dialog-text-action;
+    // K23-84 pattern (25/10/2026): a plain <a>, so a host `a { color: … !important }`
+    // (DVL 4.5) must not win over the Kit's quiet dialog action colour.
+    @include recipes.dialog-text-action($legacy-priority: true);
 
     @include easyedu.dialog-text-action-regular-type;
     font-weight: var(--easyedu-font-weight-semibold);
