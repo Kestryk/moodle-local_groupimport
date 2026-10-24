@@ -121,7 +121,14 @@
 
   &.has-preview &__grid {
     // Applied K18-15 composition: 429.34/1082.66 in the available 1512px.
-    grid-template-columns: minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr) minmax(0, 0.716fr);
+    // K23-XX: the results/preview track kept no floor of its own, so once the
+    // upload column hit its 18rem minimum on a narrower viewport, every extra
+    // squeeze landed entirely on the right column (over-compressed on
+    // "expand left column"). Give it a modest floor too so both tracks share
+    // the remaining space instead of only one absorbing it.
+    grid-template-columns:
+      minmax(min(100%, var(--easyedu-workspace-deposit-min-inline-size)), 0.284fr)
+      minmax(min(100%, 20rem), 0.716fr);
   }
 
   &.has-preview.is-upload-collapsed &__grid {

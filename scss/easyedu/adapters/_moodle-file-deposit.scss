@@ -172,6 +172,11 @@
       padding: 0.25rem;
 
       > a {
+        // K23-XX: the selected filename had no Kit type role of its own and
+        // fell back to the browser's default link weight/size. Match the
+        // same control-label recipe other file-deposit labels use.
+        @include typography.type-control-label;
+
         align-items: center;
         color: var(--easyedu-deposit-title);
         display: inline-flex;
@@ -180,6 +185,7 @@
         min-inline-size: 0;
         overflow-wrap: anywhere;
         padding: 0.375rem 0.5rem;
+        text-decoration: none;
       }
     }
     .easyedu-file-deposit__file-type {

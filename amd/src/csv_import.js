@@ -594,8 +594,10 @@ const updateToggleButton = (button, rows, animate = false) => {
     const nextAction = shouldDeselect ? 'deselect' : 'select';
     const mutate = () => {
         button.textContent = shouldDeselect ? button.dataset.deselectLabel : button.dataset.selectLabel;
-        button.classList.toggle('btn-outline-secondary', shouldDeselect);
-        button.classList.toggle('btn-outline-primary', !shouldDeselect);
+        // K23-XX: this button keeps the Kit's own easyedu-button/--neutral paint for both
+        // states (label text alone carries the select/deselect meaning). Raw Bootstrap
+        // btn-outline-* classes used to be toggled on top of it here, which collided with
+        // the Kit style and left the button unstyled ("Deselect this page" bug report).
         button.dataset.previewNextAction = nextAction;
         button.disabled = rows.length === 0;
     };

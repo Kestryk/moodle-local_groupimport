@@ -209,7 +209,10 @@
   padding: 0.7rem 0.8rem;
 
   strong {
-    font-size: 1.18rem;
+    // K23-XX: 1.18rem sat above every other heading in the plugin (card
+    // titles are 0.98rem). Match the accepted type scale instead of a
+    // one-off display size for this summary count.
+    font-size: var(--easyedu-font-size-section-title, 1rem);
     line-height: 1;
   }
 }
