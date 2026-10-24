@@ -70,22 +70,34 @@ final class provider_test extends provider_testcase {
      * The user context is listed only when a level is chosen, and deleting it removes the choice.
      */
     public function test_delete_motion_preference(): void {
+        global $DB;
         $this->resetAfterTest();
         $user = $this->getDataGenerator()->create_user();
         $other = $this->getDataGenerator()->create_user();
         $usercontext = context_user::instance($user->id);
-        $this->assertNotContains($usercontext->id, provider::get_contexts_for_userid((int)$user->id)->get_contextids());
+        $this->assertNotContains($usercontext->id, array_map(
+            'intval',
+            provider::get_contexts_for_userid((int)$user->id)->get_contextids()
+        ));
 
         set_user_preference(motion::PREFERENCE, 'minimal', $user);
         set_user_preference(motion::PREFERENCE, 'reduced', $other);
-        $this->assertContains($usercontext->id, provider::get_contexts_for_userid((int)$user->id)->get_contextids());
+        // Moodle's SQL-backed context list may return numeric strings; context objects use integer ids.
+        $this->assertContains($usercontext->id, array_map(
+            'intval',
+            provider::get_contexts_for_userid((int)$user->id)->get_contextids()
+        ));
+        $this->assertTrue($DB->record_exists('user_preferences', ['userid' => $user->id, 'name' => motion::PREFERENCE]));
 
         provider::delete_data_for_user(new approved_contextlist($user, 'local_groupimport', [$usercontext->id]));
-        $this->assertNull(get_user_preferences(motion::PREFERENCE, null, $user));
-        $this->assertSame('reduced', get_user_preferences(motion::PREFERENCE, null, $other));
+        $this->assertFalse($DB->record_exists('user_preferences', ['userid' => $user->id, 'name' => motion::PREFERENCE]));
+        // A retained user object still owns its old preference cache; query fresh state by id.
+        $this->assertNull(get_user_preferences(motion::PREFERENCE, null, (int)$user->id));
+        $this->assertSame('reduced', get_user_preferences(motion::PREFERENCE, null, (int)$other->id));
 
         provider::delete_data_for_all_users_in_context(context_user::instance($other->id));
-        $this->assertNull(get_user_preferences(motion::PREFERENCE, null, $other));
+        $this->assertFalse($DB->record_exists('user_preferences', ['userid' => $other->id, 'name' => motion::PREFERENCE]));
+        $this->assertNull(get_user_preferences(motion::PREFERENCE, null, (int)$other->id));
     }
 
     /**
@@ -130,7 +142,10 @@ final class provider_test extends provider_testcase {
         [$course, $owner, $subject, $peer, $failed] = $this->history_fixture();
         $context = \context_course::instance($course->id);
         foreach ([$subject, $peer, $failed] as $user) {
-            $this->assertContains($context->id, provider::get_contexts_for_userid((int)$user->id)->get_contextids());
+            $this->assertContains($context->id, array_map(
+                'intval',
+                provider::get_contexts_for_userid((int)$user->id)->get_contextids()
+            ));
         }
         $list = new \core_privacy\local\request\userlist($context, 'local_groupimport');
         provider::get_users_in_context($list);

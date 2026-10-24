@@ -32,7 +32,7 @@ final class uninstall_test extends \advanced_testcase {
      * Retain shared Motion choices and unrelated preferences, even after a repeated cleanup.
      */
     public function test_owned_preferences_only(): void {
-        global $CFG;
+        global $CFG, $DB;
         $this->resetAfterTest();
         require_once($CFG->dirroot . '/local/groupimport/db/uninstall.php');
         $users = [$this->getDataGenerator()->create_user(), $this->getDataGenerator()->create_user()];
@@ -40,14 +40,32 @@ final class uninstall_test extends \advanced_testcase {
             set_user_preference(guide_welcome::PREFERENCE, 'generation', $user);
             set_user_preference(motion::PREFERENCE, 'reduced', $user);
             set_user_preference('another_component_preference', 'keep', $user);
+            $this->assertTrue($DB->record_exists('user_preferences', [
+                'userid' => $user->id, 'name' => guide_welcome::PREFERENCE,
+            ]));
         }
+
+        // Exercise both the current user's cache and another user's persisted preferences.
+        $this->setUser($users[0]);
+        $this->assertSame('generation', get_user_preferences(guide_welcome::PREFERENCE));
 
         $this->assertTrue(xmldb_local_groupimport_uninstall());
         $this->assertTrue(xmldb_local_groupimport_uninstall());
+        $this->assertNull(get_user_preferences(guide_welcome::PREFERENCE));
         foreach ($users as $user) {
-            $this->assertNull(get_user_preferences(guide_welcome::PREFERENCE, null, $user));
-            $this->assertSame('reduced', get_user_preferences(motion::PREFERENCE, null, $user));
-            $this->assertSame('keep', get_user_preferences('another_component_preference', null, $user));
+            $this->assertFalse($DB->record_exists('user_preferences', [
+                'userid' => $user->id, 'name' => guide_welcome::PREFERENCE,
+            ]));
+            // A supplied object caches its preferences; ids read fresh state after external deletion.
+            $this->assertNull(get_user_preferences(guide_welcome::PREFERENCE, null, (int)$user->id));
+            $this->assertSame('reduced', get_user_preferences(motion::PREFERENCE, null, (int)$user->id));
+            $this->assertSame('keep', get_user_preferences('another_component_preference', null, (int)$user->id));
+            $this->assertSame('reduced', $DB->get_field('user_preferences', 'value', [
+                'userid' => $user->id, 'name' => motion::PREFERENCE,
+            ]));
+            $this->assertSame('keep', $DB->get_field('user_preferences', 'value', [
+                'userid' => $user->id, 'name' => 'another_component_preference',
+            ]));
         }
     }
 }

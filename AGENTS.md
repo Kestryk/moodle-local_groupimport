@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Privacy context-list ids may be SQL numeric strings while context objects use
+integers: normalize ids before strict membership assertions. After erasure by
+id, verify persisted records and fresh preference reads, not a stale fixture's
+user-object cache. Preserve shared Motion on uninstall and peer export exclusions.
+See docs/testing/privacy-preference-lifecycle-2026-10-25.md.
+
 Desktop view reveal owns its card hydration through withoutListArrival,
 including the pre-reveal callback. Keep the view fade and later pagination
 arrival; measure transformed last-card overflow, never hide the scrollbar.

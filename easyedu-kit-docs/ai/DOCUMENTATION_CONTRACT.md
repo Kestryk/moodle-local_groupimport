@@ -34,6 +34,11 @@ Fullscreen parking must preserve parent-relative sibling flow, not only border-b
 
 # EasyEdu documentation contract
 
+Privacy tests keep their discovery/export/erasure assertions across database
+drivers. Normalize SQL context ids for strict identity checks and use fresh
+preference reads plus database assertions after deletion by id. Uninstall must
+retain shared Motion and unrelated settings; see the privacy lifecycle test notes.
+
 View-level Motion and card arrival have separate ownership. Scope hydration
 with withoutListArrival during the desktop view reveal; preserve standalone
 pagination and the canonical selection-action paint, including footer Cancel.
