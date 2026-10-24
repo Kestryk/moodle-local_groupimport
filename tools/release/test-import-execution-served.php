@@ -24,6 +24,8 @@
 
 // Native DB failure proof: only temporary raw fixture rows inside a rolled-back transaction.
 
+define('CLI_SCRIPT', true);
+
 require($argv[1] . '/config.php');
 if ($CFG->wwwroot !== 'http://localhost') {
     throw new RuntimeException('Principal localhost only');

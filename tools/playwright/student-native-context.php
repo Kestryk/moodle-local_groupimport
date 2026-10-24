@@ -24,6 +24,8 @@
 
 // Read-only context for the managed course5 student recipe; no accounts created.
 
+define('CLI_SCRIPT', true);
+
 require($argv[1] . '/config.php');
 $context = context_course::instance(5);
 $students = get_enrolled_users($context, '', 0, 'u.id, u.username, u.email', 'u.id');

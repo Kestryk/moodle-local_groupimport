@@ -28,6 +28,7 @@ require(__DIR__ . '/../../lang/' . (($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en') .
  * @param mixed $key Fixture argument.
  * @param mixed $component Fixture argument.
  * @return mixed Fixture result.
+ * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -16,7 +16,6 @@
 
 namespace core;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Standalone identity boundary.

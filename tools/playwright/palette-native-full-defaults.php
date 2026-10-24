@@ -24,6 +24,8 @@
 
 // Full default palette projection; compute only, never change plugin settings.
 
+define('CLI_SCRIPT', true);
+
 require($argv[1] . '/config.php');
 require_once($argv[1] . '/local/groupimport/lib.php');
 $chosen = ['primary' => '#0f6cbf', 'accent' => '#1b7f5a', 'participant' => '#4873ad',

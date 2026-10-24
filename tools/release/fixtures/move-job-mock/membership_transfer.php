@@ -16,7 +16,8 @@
 
 namespace local_groupimport\service;
 
-defined('MOODLE_INTERNAL') || die();
+// phpcs:disable Generic.Classes.DuplicateClassName.Found -- Isolated worker mock of the native class.
+
 
 /**
  * Controlled native boundary used only by this standalone worker test.

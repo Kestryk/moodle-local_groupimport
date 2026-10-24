@@ -20,6 +20,7 @@ namespace local_groupimport\service;
  * Data minimisation of the Student Management state (audit M1, lot S3).
  *
  * @package    local_groupimport
+ * @covers \local_groupimport\service\course_state
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -24,6 +24,8 @@
 
 // Bounded reversible configuration for the explicitly requested complete-view recipe.
 
+define('CLI_SCRIPT', true);
+
 require($argv[1] . '/config.php');
 $action = $argv[2] ?? 'read';
 if ($action === 'enable') {

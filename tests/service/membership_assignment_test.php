@@ -20,6 +20,7 @@ namespace local_groupimport\service;
  * Tests for additive EasyStud copy and paste membership mutations.
  *
  * @package    local_groupimport
+ * @covers \local_groupimport\service\membership_assignment
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

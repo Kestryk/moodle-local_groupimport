@@ -20,6 +20,8 @@ namespace local_groupimport\external;
  * The external functions refuse the front page course (audit F9, lot S3).
  *
  * @package    local_groupimport
+ * @covers \local_groupimport\external\get_state
+ * @covers \local_groupimport\external\get_details
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

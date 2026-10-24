@@ -24,6 +24,14 @@ require_once(__DIR__ . '/../lib.php');
  * Tests for legacy-safe EasyStud feature configuration.
  *
  * @package    local_groupimport
+ * @covers ::local_groupimport_colour_contrast_against_white
+ * @covers ::local_groupimport_colour_for_soft_contrast
+ * @covers ::local_groupimport_colour_for_white_contrast
+ * @covers ::local_groupimport_get_theme_colours
+ * @covers ::local_groupimport_get_theme_style
+ * @covers ::local_groupimport_get_workspace_layout_preferences
+ * @covers ::local_groupimport_is_simplified_view_enabled
+ * @covers ::local_groupimport_normalise_participant_label_value
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

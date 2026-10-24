@@ -24,6 +24,8 @@
 
 // Read-only native Moodle renderer check; no records or configuration are written.
 
+define('CLI_SCRIPT', true);
+
 require($argv[1] . '/config.php');
 require_once($CFG->dirroot . '/local/groupimport/lib.php');
 $course = get_course(5);

@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Database double; the progress row and native effects roll back together.
+ *
+ * @package local_groupimport
  */
 final class move_job_test_db {
     /** @var object Durable progress. */

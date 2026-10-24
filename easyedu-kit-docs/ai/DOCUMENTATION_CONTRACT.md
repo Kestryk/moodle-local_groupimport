@@ -1264,3 +1264,10 @@ Wrapped-name successors measure selection and menu against the full actual name 
 File-deposit removal explicitly restores the secondary text token after the regular button recipe; preserve destructive interaction states and filename type. Report summaries use the shared body role, semibold counts and their existing semantic colour parameters. See docs/testing/mass-import-summary-deposit-2026-10-24.md.
 
 Small field peers use the canonical opt-in paired S variant, never a global S-scale resize. Compare final input/action border boxes and the 1024px touch boundary; retain captions outside narrow search input frames and use native mobile menu access. See docs/testing/peer-small-fields-2026-10-24.md.
+
+PHP quality checks require a valid Moodle component context. Keep executable
+include guards and real package identities; declaration-only includes need no
+guard. Language-key sorting must preserve every evaluated FR/EN value. Record
+legacy preservation failures separately from current native fixture coverage;
+never replace historical baselines just to make the suite pass. See
+docs/testing/quality-pass-2026-10-25.md.

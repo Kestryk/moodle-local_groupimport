@@ -20,6 +20,7 @@ namespace local_groupimport\service;
  * Selected-member transfers. Run only against an isolated Moodle PHPUnit DB.
  *
  * @package    local_groupimport
+ * @covers \local_groupimport\service\membership_transfer
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

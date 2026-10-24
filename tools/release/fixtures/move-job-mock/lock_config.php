@@ -16,10 +16,11 @@
 
 namespace core\lock;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Standalone lock boundary.
+ *
+ * @package local_groupimport
  */
 final class lock_config {
     /**

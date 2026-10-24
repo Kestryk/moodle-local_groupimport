@@ -18,12 +18,12 @@ namespace local_groupimport;
 
 use local_groupimport\local\guide_welcome;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Server welcome generation tests; only isolated PHPUnit data may be written.
  *
  * @package    local_groupimport
+ * @covers \local_groupimport\local\guide_welcome
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

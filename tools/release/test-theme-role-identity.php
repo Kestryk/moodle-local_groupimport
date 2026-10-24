@@ -27,6 +27,7 @@ $roleconfig = [];
  * @param string $component Fixture argument.
  * @param string $key Fixture argument.
  * @return mixed Fixture result.
+ * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

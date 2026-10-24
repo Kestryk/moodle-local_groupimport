@@ -22,6 +22,8 @@ use local_groupimport\local\import_preview;
 /**
  * Session page isolation and pending-row erasure contracts.
  * @package local_groupimport
+ * @covers \local_groupimport\local\import_preview
+ * @covers \local_groupimport\local\history_privacy
  * @copyright 2026 Kevin Jarniac
  * @license https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
