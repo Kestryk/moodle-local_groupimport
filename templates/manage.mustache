@@ -295,12 +295,14 @@
                                 <form method="post" action="{{quickcreateurl}}" class="local-groupimport-easystud-create">
                                     <input type="hidden" name="sesskey" value="{{sesskey}}">
                                     <input type="hidden" name="action" value="creategroup">
-                                    <label class="easyedu-field-stack"><span class="easyedu-field-caption">{{newgroupplaceholder}}</span><input
+                                    <input
                                         type="text"
                                         name="groupname"
                                         class="form-control"
                                         autocomplete="off"
-                                    ></label>
+                                        placeholder="{{newgroupplaceholder}}"
+                                        aria-label="{{newgroupplaceholder}}"
+                                    >
                                     <button
                                         type="submit"
                                         class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button"
@@ -416,12 +418,14 @@
                             <form method="post" action="{{quickcreateurl}}" class="local-groupimport-easystud-create">
                                 <input type="hidden" name="sesskey" value="{{sesskey}}">
                                 <input type="hidden" name="action" value="creategroup">
-                                <label class="easyedu-field-stack"><span class="easyedu-field-caption">{{newgroupplaceholder}}</span><input
+                                <input
                                     type="text"
                                     name="groupname"
                                     class="form-control"
                                     autocomplete="off"
-                                ></label>
+                                    placeholder="{{newgroupplaceholder}}"
+                                    aria-label="{{newgroupplaceholder}}"
+                                >
                                 <button
                                     type="submit"
                                     class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button"
@@ -498,12 +502,14 @@
                             <form method="post" action="{{quickcreateurl}}" class="local-groupimport-easystud-create local-groupimport-easystud-create--grouping">
                                 <input type="hidden" name="sesskey" value="{{sesskey}}">
                                 <input type="hidden" name="action" value="creategrouping">
-                                <label class="easyedu-field-stack"><span class="easyedu-field-caption">{{newgroupingplaceholder}}</span><input
+                                <input
                                     type="text"
                                     name="groupingname"
                                     class="form-control"
                                     autocomplete="off"
-                                ></label>
+                                    placeholder="{{newgroupingplaceholder}}"
+                                    aria-label="{{newgroupingplaceholder}}"
+                                >
                                 <button
                                     type="submit"
                                     class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button easyedu-create-icon-button--secondary"
