@@ -186,3 +186,12 @@
     @include easyedu.person-card-wrapped-name-row(".local-groupimport-easystud-user__name", ".local-groupimport-easystud-selector", ".local-groupimport-easystud-card-menu", ".local-groupimport-easystud-user__primary-badge");
   }
 }
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-group__header.is-title-constrained {
+    @include easyedu.card-header-readable-fallback($plain-title: true);
+  }
+  .local-groupimport-easystud-grouping__header.is-title-constrained {
+    @include easyedu.card-header-readable-fallback;
+  }
+}

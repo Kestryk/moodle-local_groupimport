@@ -482,6 +482,7 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
         // remember it, so it is either reopened as it was or closed completely, never left
         // hidden behind an expanded trigger and a raised card.
         const wasOpen = !menu.hidden && !Motion.isMenuClosing(menu);
+        header.classList.remove('is-title-constrained');
         actions.forEach(button => button.classList.remove('is-easystud-card-action-overflow'));
         toggle.hidden = true;
         menu.hidden = true;
@@ -491,7 +492,7 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
 
     const responsive = isResponsiveWorkspace();
     // Prefer 7.5rem for a readable title by moving actions into the menu first.
-    // If even the terminal controls consume that space, the title may shrink.
+    // If terminal controls still consume that space, reserve a separate title row.
     const minTitleWidth = 7.5 * (parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16);
     const titleTooNarrow = title => !!title && title.scrollWidth > title.clientWidth + 1 &&
         title.clientWidth < minTitleWidth - 1;
@@ -545,6 +546,9 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
 
     pending.forEach(entry => {
         const {menu, toggle, overflowed} = entry;
+        // Once actions have yielded, terminal controls must yield a row too:
+        // keeping them inline must never reduce the identity to a single glyph.
+        entry.header.classList.toggle('is-title-constrained', titleTooNarrow(entry.title));
         overflowed.forEach(source => {
             source.classList.add('is-easystud-card-action-overflow');
             const clone = source.cloneNode(true);

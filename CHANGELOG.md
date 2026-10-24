@@ -1,3 +1,5 @@
+- 2026-10-24 Keep Group and Grouping names readable in drawer-narrowed columns by wrapping terminal controls after the existing action-menu fallback.
+
 ## 2026-10-24 — Course block drawer
 
 - Keep real Moodle course blocks out of Student Management and Mass Import so their workspace retains its width. Blocks remain available on native course pages.

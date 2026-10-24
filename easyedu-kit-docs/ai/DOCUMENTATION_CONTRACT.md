@@ -1,3 +1,5 @@
+Narrow Group/Grouping headers exhaust the native overflow menu before opting into the shared readable-identity row. Retain the action-sized first row, selector anchor and native menu closure; measure against card bounds, not only the header content box.
+
 Drawer-narrowed card headers let titles yield to the existing terminal count/overflow slots. Open menus escape paginated and intermediate workspace clipping via dropdown-card-open-host only while open. Resolve card action overflow inside the view mutation before entry paint; keep Motion and post-render geometry sources. See docs/testing/k23-36-drawer-card-headers.md.
 
 Guide reading dialogs reset navigation-host nowrap at their boundary. Preserve
