@@ -1,3 +1,5 @@
+- 2026-10-24 Preserve page width when opening the Guide on a page with a document scrollbar, and restore the original padding on close.
+
 - 2026-10-24 Keep narrow grouping names readable by letting the existing More control yield its reserved title space, as on group cards.
 
 - 2026-10-24 Keep Guide navigation pills stationary while pressed so a click selects the intended slide; focused navigation remains revealable without activating a slide.

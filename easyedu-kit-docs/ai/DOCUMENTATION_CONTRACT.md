@@ -1,3 +1,5 @@
+Guide document scroll lock compensates only a disappearing scrollbar, once per shared lock. Preserve existing inline padding and priority until the final root releases it; stable gutters already reserve their space. Native proof must require a nonzero real document scrollbar, not only Moodle's inner scroller or headless-hidden scrollbars. Keep fullscreen parking and release timing unchanged. See docs/testing/guide-scrollbar-lock-2026-10-24.md.
+
 Constrained responsive Grouping headers reuse the Group in-flow overflow slot and release the absolute touch-action lane. Keep the shared title budget, selector/disclosure space, original menu commands and terminal Group count order. Test actual caption capacity as well as the preferred 7.5rem: mandatory selector/chevron geometry can cap the narrowest desktop identity below that preference. See docs/testing/card-title-priority-2026-10-24.md.
 
 Narrow Group/Grouping headers exhaust the native overflow menu before opting into the shared readable-identity row. Retain the action-sized first row, selector anchor and native menu closure; measure against card bounds, not only the header content box.

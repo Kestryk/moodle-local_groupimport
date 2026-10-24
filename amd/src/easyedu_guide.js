@@ -429,15 +429,40 @@ const isVisibleElement = element => {
   return element.getClientRects().length > 0 && rect.width > 0 && rect.height > 0;
 };
 
+let pageScrollPadding = null;
+
 const lockPageScroll = root => {
+  const html = document.documentElement;
+  if (openGuideRoots.size === 0) {
+    const scrollbarWidth = Math.max(0, window.innerWidth - html.clientWidth);
+    const style = window.getComputedStyle(html);
+    // A stable gutter keeps its reservation even while overflow is hidden.
+    if (scrollbarWidth > 0 && !style.scrollbarGutter?.includes('stable')) {
+      pageScrollPadding = {
+        value: html.style.getPropertyValue('padding-right'),
+        priority: html.style.getPropertyPriority('padding-right')
+      };
+      const padding = parseFloat(style.paddingRight) || 0;
+      html.style.setProperty('padding-right', `${padding + scrollbarWidth}px`, pageScrollPadding.priority);
+    }
+  }
   openGuideRoots.add(root);
-  document.documentElement.classList.add(PAGE_SCROLL_LOCK_CLASS);
+  html.classList.add(PAGE_SCROLL_LOCK_CLASS);
 };
 
 const unlockPageScroll = root => {
   openGuideRoots.delete(root);
   if (openGuideRoots.size === 0) {
-    document.documentElement.classList.remove(PAGE_SCROLL_LOCK_CLASS);
+    const html = document.documentElement;
+    html.classList.remove(PAGE_SCROLL_LOCK_CLASS);
+    if (pageScrollPadding) {
+      if (pageScrollPadding.value) {
+        html.style.setProperty('padding-right', pageScrollPadding.value, pageScrollPadding.priority);
+      } else {
+        html.style.removeProperty('padding-right');
+      }
+      pageScrollPadding = null;
+    }
   }
 };
 
