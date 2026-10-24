@@ -109,7 +109,7 @@
 // Component-owned composition and state refinements (I13).
 #local-groupimport-easystud {
   .local-groupimport-easystud-pagination__select {
-    @include easyedu.pagination-select-button;
+    @include easyedu.pagination-select-button($legacy-priority: true);
     white-space: nowrap;
   }
 }

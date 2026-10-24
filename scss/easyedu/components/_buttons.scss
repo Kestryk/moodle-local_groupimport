@@ -14,6 +14,7 @@
 
 @use "focus";
 @use "sass:list";
+@use "sass:selector";
 @use "../scale";
 @use "../tones";
 
@@ -42,8 +43,11 @@
 @mixin button-interaction-states(
   $hover-bg: var(--easyedu-primary-soft),
   $hover-border: var(--easyedu-control-focus-border),
-  $hover-color: var(--easyedu-primary-strong)
+  $hover-color: var(--easyedu-primary-strong),
+  $legacy-priority: false
 ) {
+  // $legacy-priority (K23-84): keep the disabled paint above a consumer's host adapter.
+  $p: legacy-priority($legacy-priority);
   &:hover,
   &:focus-visible,
   &[aria-expanded="true"],
@@ -63,11 +67,12 @@
   &:disabled,
   &[aria-disabled="true"],
   &.disabled {
-    background: var(--easyedu-surface-soft);
-    border-color: var(--easyedu-card-border);
-    color: var(--easyedu-text-muted);
+    background: var(--easyedu-surface-soft) $p;
+    border-color: var(--easyedu-card-border) $p;
+    box-shadow: none $p;
+    color: var(--easyedu-text-muted) $p;
     cursor: not-allowed;
-    opacity: 0.62;
+    opacity: 0.62 $p;
     pointer-events: none;
     transform: none;
   }
@@ -116,11 +121,11 @@
   }
 }
 
-@mixin action-button($size: regular) {
+@mixin action-button($size: regular, $legacy-priority: false) {
   @include action-content;
   @include button-size($size);
   @include control-state-transition;
-  @include button-interaction-states;
+  @include button-interaction-states($legacy-priority: $legacy-priority);
 }
 
 // Tray labels may wrap while their icon and horizontal padding stay intact.
@@ -130,14 +135,63 @@
   white-space: normal;
 }
 
-// Compact selection actions in list toolbars and their responsive action tray.
+// Host adapter priority (K23-84). Some host themes repaint Bootstrap's `.btn-*`
+// compatibility classes with !important in every state (DVL 4.5 `theme_easyedu`:
+// `.btn-outline-secondary { color/background/border-color … !important }`,
+// `.btn { box-shadow: none !important }`). No selector weight outranks that, so a
+// Kit recipe worn by such an element opts in with `$legacy-priority: true` (same
+// pattern as entity-card-* and action-text-treatment): the SAME Kit values, at
+// !important, for every paint property of every state, so the recipe's own state
+// order is preserved. Never a different palette for the host.
+@function legacy-priority($legacy-priority) {
+  @return if($legacy-priority, !important, null);
+}
+
+// One rule for several state suffixes of the current selector (null entries are
+// skipped). Lets a recipe add the host-forced pressed state to its hover paint
+// only under the host adapter: `on-states((':hover', if($p, ':active', null)))`.
+@mixin on-states($states) {
+  $selectors: ();
+  @each $state in $states {
+    @if $state != null {
+      $selectors: list.join($selectors, selector.append(&, $state), comma);
+    }
+  }
+  @at-root #{$selectors} {
+    @content;
+  }
+}
+
+/// Compact selection actions in list toolbars and their responsive action tray.
 // Palette is explicit so native Bootstrap focus/hover cannot replace the
 // semantic role. Keep overflow/routing/selection ownership in the consumer.
-@mixin selection-action($tone: primary, $solid: false, $tray: false, $icon-line-height: 1) {
+@mixin selection-action($tone: primary, $solid: false, $tray: false, $icon-line-height: 1, $legacy-priority: false) {
+  @include action-content(0.35rem, $icon-line-height);
+  @include button-size(small);
+  @include control-state-transition;
+  & {
+    border-radius: var(--easyedu-control-radius);
+    font-family: var(--easyedu-font-family-ui);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @if $tray {
+    & { @include selection-action-tray-density; }
+  }
+  @include selection-action-paint($tone, $solid, $legacy-priority);
+}
+
+// The selection-action paint alone (semantic palette, every state), for a copy
+// of a selection action that keeps another geometry, e.g. the column overflow
+// menu (K23-84). selection-action itself consumes it: one paint definition.
+@mixin selection-action-paint($tone: primary, $solid: false, $legacy-priority: false) {
   $tone: tones.tone-name($tone);
   @if not list.index((primary, neutral, danger), $tone) {
     @error "selection-action expects primary, neutral or danger.";
   }
+  $p: legacy-priority($legacy-priority);
   // Neutral changes only the resting ink: its hover stays on the primary
   // tint (accepted EasyStud behaviour), so soft/strong/ring remain primary.
   $palette: if($tone == danger, danger, primary);
@@ -145,51 +199,39 @@
   $soft: tones.tone($palette, soft);
   $strong: tones.tone($palette, strong);
   $ring: tones.tone($palette, ring);
-  @include action-content(0.35rem, $icon-line-height);
-  @include button-size(small);
-  @include control-state-transition;
   & {
-    background: var(--easyedu-surface);
-    border: 1px solid $ink;
-    border-radius: var(--easyedu-control-radius);
-    box-shadow: none;
-    color: $ink;
-    font-family: var(--easyedu-font-family-ui);
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
+    background: var(--easyedu-surface) $p;
+    border: 1px solid $ink $p;
+    box-shadow: none $p;
+    color: $ink $p;
   }
   @if $solid {
-    & { background: $ink; color: var(--easyedu-surface); }
-  }
-  @if $tray {
-    & { @include selection-action-tray-density; }
+    & { background: $ink $p; color: var(--easyedu-surface) $p; }
   }
   &:focus {
-    background: var(--easyedu-surface);
-    color: $ink;
-    @if $solid { background: $ink; color: var(--easyedu-surface); }
+    background: var(--easyedu-surface) $p;
+    color: $ink $p;
+    @if $solid { background: $ink $p; color: var(--easyedu-surface) $p; }
   }
   &:hover,
   &:active,
   &[aria-pressed="true"] {
-    background: $soft;
-    color: $strong;
-    @if $solid { background: $strong; color: var(--easyedu-surface); }
+    background: $soft $p;
+    color: $strong $p;
+    @if $solid { background: $strong $p; color: var(--easyedu-surface) $p; }
   }
   &:focus-visible {
-    @include focus.ring($color: $ring, $border-color: var(--easyedu-control-focus-border));
+    @include focus.ring($color: $ring, $border-color: var(--easyedu-control-focus-border), $native-overrides: $legacy-priority);
   }
   &:disabled,
   &[aria-disabled="true"],
   &.disabled {
-    background: var(--easyedu-surface-soft);
-    border-color: var(--easyedu-card-border);
-    box-shadow: none;
-    color: var(--easyedu-text-muted);
+    background: var(--easyedu-surface-soft) $p;
+    border-color: var(--easyedu-card-border) $p;
+    box-shadow: none $p;
+    color: var(--easyedu-text-muted) $p;
     cursor: not-allowed;
-    opacity: 0.62;
+    opacity: 0.62 $p;
     pointer-events: none;
   }
 }
@@ -197,20 +239,21 @@
 // Quiet recovery action inside an already framed selection capsule. Keep the
 // normal selection-action density, type, icon gap, state Motion and keyboard
 // ring; the outer capsule owns the persistent border, not this inner control.
-@mixin selection-recovery-action($natural-icons: false, $natural-labels: false) {
-  @include selection-action(neutral, $icon-line-height: if($natural-icons, normal, 1));
-  & { background: transparent; border-color: transparent; }
-  &:focus { background: transparent; }
+@mixin selection-recovery-action($natural-icons: false, $natural-labels: false, $legacy-priority: false) {
+  $p: legacy-priority($legacy-priority);
+  @include selection-action(neutral, $icon-line-height: if($natural-icons, normal, 1), $legacy-priority: $legacy-priority);
+  & { background: transparent $p; border-color: transparent $p; }
+  &:focus { background: transparent $p; }
   &:hover,
   &:active,
   &[aria-pressed="true"] {
-    background: var(--easyedu-surface-soft);
-    border-color: transparent;
-    color: var(--easyedu-text);
+    background: var(--easyedu-surface-soft) $p;
+    border-color: transparent $p;
+    color: var(--easyedu-text) $p;
   }
   &:disabled,
   &[aria-disabled="true"],
-  &.disabled { background: transparent; border-color: transparent; }
+  &.disabled { background: transparent $p; border-color: transparent $p; }
   @if $natural-labels {
     & { line-height: normal; }
   }
@@ -218,14 +261,15 @@
 
 // Core action / Secondary / M definition for Cancel. Reset has its own compact recipe (K21-02).
 // Compact inline actions remain a separate explicit density.
-@mixin secondary-action {
+@mixin secondary-action($legacy-priority: false) {
+  $p: legacy-priority($legacy-priority);
   align-items: center;
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-control-border);
+  background: var(--easyedu-surface) $p;
+  border: 1px solid var(--easyedu-control-border) $p;
   border-radius: var(--easyedu-control-radius);
-  box-shadow: none;
+  box-shadow: none $p;
   box-sizing: border-box;
-  color: var(--easyedu-text);
+  color: var(--easyedu-text) $p;
   display: inline-flex;
   font: 600 0.88rem/normal var(--easyedu-font-family-ui);
   justify-content: center;
@@ -238,7 +282,7 @@
 
   // Opt-in secondary ink, without changing Cancel or the action geometry (K21-03).
   &.easyedu-button--secondary-accent:not(:disabled):not([aria-disabled="true"]) {
-    color: var(--easyedu-secondary-text);
+    color: var(--easyedu-secondary-text) $p;
   }
 }
 
@@ -269,13 +313,15 @@
 // centres the same whatever icon font or character the template carries (fa-times, &times;,
 // theme icon): that inner content is only kept for compatibility and hidden.
 // $glyph: false keeps the same frame for a sibling window control with its own icon (fullscreen).
-@mixin close-button($size: small, $glyph: true) {
+// $legacy-priority (K23-84): for closes that keep `.btn-outline-secondary`.
+@mixin close-button($size: small, $glyph: true, $legacy-priority: false) {
+  $p: legacy-priority($legacy-priority);
   @include icon-button($size);
 
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-card-border);
+  background: var(--easyedu-surface) $p;
+  border: 1px solid var(--easyedu-card-border) $p;
   box-sizing: border-box;
-  color: var(--easyedu-text-muted);
+  color: var(--easyedu-text-muted) $p;
   height: scale.button-height($size);
   min-height: scale.button-height($size);
   min-width: scale.button-height($size);
@@ -310,11 +356,10 @@
     }
   }
 
-  &:hover,
-  &:focus-visible {
-    background: var(--easyedu-danger-soft);
-    border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);
-    color: var(--easyedu-danger);
+  @include on-states((':hover', ':focus-visible', if($legacy-priority, ':active', null))) {
+    background: var(--easyedu-danger-soft) $p;
+    border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%) $p;
+    color: var(--easyedu-danger) $p;
   }
 
   // Alternate command glyphs use the same paint as the geometric cross.
@@ -657,17 +702,18 @@
 @mixin guide-adjacent-action($variant: default, $size: regular, $override-legacy: false) {
   // Canonical tone name (../_tones.scss); destructive stays accepted.
   @if $variant == danger { $variant: destructive; }
-  // Opt-in only for a Guide host with historical forced solid-action paint.
+  // Opt-in only for a Guide host with historical forced solid-action paint
+  // (paint and, since K23-84, the depth shadow a host `.btn { box-shadow: none !important }` erases).
   // It reuses this exact family/state palette instead of a consumer repaint.
   $priority: null;
   @if $override-legacy { $priority: !important; }
-  @include action-button($size);
+  @include action-button($size, $override-legacy);
 
   & {
     background: var(--easyedu-surface) $priority;
     border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 88%, #fff 12%) $priority;
     border-radius: calc(var(--easyedu-control-radius) + 0.08rem);
-    box-shadow: 0 0.14rem 0.34rem rgba(31, 68, 104, 0.055);
+    box-shadow: 0 0.14rem 0.34rem rgba(31, 68, 104, 0.055) $priority;
     color: color-mix(in srgb, var(--easyedu-text-muted) 78%, var(--easyedu-text) 22%) $priority;
     flex: 0 0 auto;
     font-size: 0.84rem;
@@ -694,13 +740,12 @@
     .fa { font-size: 0.875rem; width: 0.875rem; }
   }
 
-  &:hover,
-  &:focus-visible {
+  @include on-states((':hover', ':focus-visible', if($override-legacy, ':active', null))) {
     background: var(--easyedu-primary-soft) $priority;
     border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%) $priority;
     box-shadow:
       0 0.16rem 0.38rem rgba(31, 68, 104, 0.075),
-      0 0 0 0.14rem color-mix(in srgb, var(--easyedu-primary) 12%, transparent);
+      0 0 0 0.14rem color-mix(in srgb, var(--easyedu-primary) 12%, transparent) $priority;
     color: var(--easyedu-primary-strong) $priority;
     outline: 0;
     text-decoration: none;
@@ -844,8 +889,9 @@
 
 
 // Guide Start/Replay: same solid action, frame and natural text-line metrics.
+// Guide demonstrations always wear `.btn.btn-primary` (host-forced paint, K23-84).
 @mixin demonstration-action {
-  @include selection-action($solid: true);
+  @include selection-action($solid: true, $legacy-priority: true);
   > :not(.fa) { line-height: normal; }
   @media (max-width: 40rem), (pointer: coarse) {
     min-block-size: var(--easyedu-touch-target-min);

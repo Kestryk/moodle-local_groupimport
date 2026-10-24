@@ -18,7 +18,7 @@ $-field-block-padding: (
   xl: 1.0875rem,
 );
 
-@mixin foundation-text-field($size: regular) {
+@mixin foundation-text-field($size: regular, $legacy-priority: false) {
   $step: scale.scale-step($size);
 
   // The family token may resolve to `inherit`, which is invalid inside `font`.
@@ -33,7 +33,7 @@ $-field-block-padding: (
   // Border plus padding gives the measured 0.875rem painted text inset.
   padding: map.get($-field-block-padding, $step) 0.8125rem;
 
-  @include field-paint.paint;
+  @include field-paint.paint($legacy-priority);
 }
 
 // A paired Small control, not a sixth step or a change to the published S/32px.

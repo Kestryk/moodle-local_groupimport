@@ -24,16 +24,18 @@
   }
 }
 
-@mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
+@mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false, $legacy-priority: false) {
   @if $secondary and $danger {
     @error "A Foundation action cannot be both secondary and destructive.";
   }
+  // K23-84 host adapter priority (see buttons.legacy-priority): same paints.
+  $p: buttons.legacy-priority($legacy-priority);
   align-items: center;
-  background: var(--easyedu-primary);
-  border: 0.0625rem solid transparent;
+  background: var(--easyedu-primary) $p;
+  border: 0.0625rem solid transparent $p;
   border-radius: 0.72rem;
-  box-shadow: none;
-  color: var(--easyedu-surface);
+  box-shadow: none $p;
+  color: var(--easyedu-surface) $p;
   display: inline-flex;
   gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
@@ -57,15 +59,15 @@
     width: 1em;
   }
   @if $secondary {
-    background: var(--easyedu-surface);
-    border-color: var(--easyedu-deposit-border);
-    color: var(--easyedu-secondary-text);
+    background: var(--easyedu-surface) $p;
+    border-color: var(--easyedu-deposit-border) $p;
+    color: var(--easyedu-secondary-text) $p;
     // $matched-size remains API-compatible; regular secondary actions now all
     // consume the one Secondary / M recipe below (OLD-B R13).
   }
   @if $danger {
     // Same measured Core Action geometry; only its semantic palette changes.
-    background: var(--easyedu-danger);
+    background: var(--easyedu-danger) $p;
   }
   @if $density == compact {
     border-radius: 0.5rem;
@@ -73,7 +75,7 @@
     font-weight: var(--easyedu-font-weight-strong);
     min-block-size: 1.625rem;
     padding: 0.25rem 0.65rem;
-    @if $secondary { color: var(--easyedu-primary); }
+    @if $secondary { color: var(--easyedu-primary) $p; }
   } @else if $density != regular {
     @error "foundation-button expects regular or compact density.";
   }
@@ -82,38 +84,40 @@
   // primary label dark or give a secondary Cancel another semantic colour.
   &:focus {
     @if $secondary {
-      background: var(--easyedu-surface);
-      @if $density == compact { color: var(--easyedu-primary); }
-      @else { color: var(--easyedu-secondary-text); }
+      background: var(--easyedu-surface) $p;
+      @if $density == compact { color: var(--easyedu-primary) $p; }
+      @else { color: var(--easyedu-secondary-text) $p; }
     } @else if $danger {
-      background: var(--easyedu-danger);
-      color: var(--easyedu-surface);
+      background: var(--easyedu-danger) $p;
+      color: var(--easyedu-surface) $p;
     } @else {
-      background: var(--easyedu-primary);
-      color: var(--easyedu-surface);
+      background: var(--easyedu-primary) $p;
+      color: var(--easyedu-surface) $p;
     }
   }
-  &:hover {
+  // The host adapter also owns the pressed state, which such hosts repaint too
+  // (`.btn-primary:active { background: #fff !important }` on DVL 4.5).
+  @include buttons.on-states((':hover', if($legacy-priority, ':active', null))) {
     text-decoration: none;
     @if $secondary {
-      background: var(--easyedu-primary-soft);
-      @if $density == compact { color: var(--easyedu-primary); }
-      @else { color: var(--easyedu-secondary-text); }
+      background: var(--easyedu-primary-soft) $p;
+      @if $density == compact { color: var(--easyedu-primary) $p; }
+      @else { color: var(--easyedu-secondary-text) $p; }
     } @else if $danger {
-      background: var(--easyedu-danger);
-      color: var(--easyedu-surface);
+      background: var(--easyedu-danger) $p;
+      color: var(--easyedu-surface) $p;
     } @else {
-      background: var(--easyedu-primary-strong);
-      color: var(--easyedu-surface);
+      background: var(--easyedu-primary-strong) $p;
+      color: var(--easyedu-surface) $p;
     }
   }
   &:focus-visible {
-    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    @include focus.ring($border-color: var(--easyedu-control-focus-border), $native-overrides: $legacy-priority);
   }
-  &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }
+  &:disabled { background: var(--easyedu-surface-soft) $p; color: var(--easyedu-text-muted) $p; }
 
   @if $secondary and $density == regular {
-    @include buttons.secondary-action;
+    @include buttons.secondary-action($legacy-priority);
   }
 }
 
@@ -351,23 +355,26 @@
   .easyedu-ui .easyedu-button--danger { @include foundation-button($danger: true); }
   .easyedu-ui .easyedu-action-with-icon { @include buttons.action-content; }
   .easyedu-ui .easyedu-inline-icon--leading { @include buttons.inline-icon-leading; }
-  .easyedu-ui .foundation-selection-action { @include buttons.selection-action; }
+  // Selection actions keep Bootstrap `.btn-*` compatibility classes, which some
+  // host themes repaint with !important (K23-84): the Kit recipe opts into the
+  // host adapter priority so its own paint stays authoritative.
+  .easyedu-ui .foundation-selection-action { @include buttons.selection-action($legacy-priority: true); }
   .easyedu-ui .foundation-selection-action.btn-outline-secondary {
     // Bootstrap compatibility class; selection commands keep the primary Kit palette.
-    @include buttons.selection-action;
+    @include buttons.selection-action($legacy-priority: true);
   }
   .easyedu-ui .foundation-selection-action.btn-outline-danger {
-    @include buttons.selection-action(danger);
+    @include buttons.selection-action(danger, $legacy-priority: true);
   }
   .easyedu-ui .foundation-selection-action.btn-primary {
-    @include buttons.selection-action($solid: true);
+    @include buttons.selection-action($solid: true, $legacy-priority: true);
   }
   .easyedu-ui .foundation-selection-action.foundation-selection-action--tray {
     // Match the semantic-role selector specificity; touch density must win.
     @include buttons.selection-action-tray-density;
   }
   .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {
-    @include buttons.selection-recovery-action($natural-icons: true);
+    @include buttons.selection-recovery-action($natural-icons: true, $legacy-priority: true);
   }
   // One selection checkbox for cards, lists and data tables (K23-73): the real
   // input stays in a label, the Kit square owns rest/checked/focus paint.

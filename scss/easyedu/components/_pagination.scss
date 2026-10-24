@@ -1,5 +1,6 @@
 // EasyEdu pagination and list tools.
 
+@use "buttons";
 @use "focus";
 
 // Compact square page navigation. Keep this separate from the surrounding
@@ -29,9 +30,11 @@
 
 // Accepted round frame composes after pagination-arrow-button. The host keeps
 // its selector/cascade; frame, states, touch and forced colours belong here.
-@mixin pagination-round-arrow {
-  background: transparent;
-  border-color: transparent;
+// $legacy-priority (K23-84): page arrows keep `.btn-outline-secondary`.
+@mixin pagination-round-arrow($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
+  background: transparent $p;
+  border-color: transparent $p;
   border-radius: 50%;
   height: 1.62rem;
   // Natural text metrics centre native arrow glyphs in the fixed circle.
@@ -42,9 +45,9 @@
   min-width: 1.62rem;
   width: 1.62rem;
 
-  &:not(:disabled):hover {
-    background: var(--easyedu-primary-soft);
-    border-color: var(--easyedu-control-border);
+  @include buttons.on-states((':not(:disabled):hover', if($legacy-priority, ':not(:disabled):active', null))) {
+    background: var(--easyedu-primary-soft) $p;
+    border-color: var(--easyedu-control-border) $p;
   }
 
   &:focus-visible {
@@ -52,8 +55,8 @@
   }
 
   &:disabled {
-    background: transparent;
-    border-color: transparent;
+    background: transparent $p;
+    border-color: transparent $p;
   }
 
   @media (pointer: coarse) {
@@ -103,7 +106,9 @@
   width: 100%;
 }
 
-@mixin pagination-controls {
+// $legacy-priority (K23-84): page buttons keep `.btn-outline-secondary`.
+@mixin pagination-controls($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
   align-items: center;
   display: inline-flex;
   gap: 0.28rem;
@@ -112,9 +117,11 @@
   button,
   a {
     align-items: center;
-    border-color: color-mix(in srgb, var(--easyedu-primary) 32%, var(--easyedu-card-border) 68%);
+    background: transparent $p;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 32%, var(--easyedu-card-border) 68%) $p;
     border-radius: 0.58rem;
-    color: var(--easyedu-primary-strong);
+    box-shadow: none $p;
+    color: var(--easyedu-primary-strong) $p;
     display: inline-flex;
     font-size: 0.78rem;
     justify-content: center;
@@ -133,11 +140,10 @@
       @include pagination-arrow-button;
     }
 
-    &:hover,
-    &:focus-visible {
-      background: var(--easyedu-primary-soft);
-      border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-card-border) 42%);
-      color: var(--easyedu-primary-strong);
+    @include buttons.on-states((':hover', ':focus-visible', if($legacy-priority, ':active', null))) {
+      background: var(--easyedu-primary-soft) $p;
+      border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-card-border) 42%) $p;
+      color: var(--easyedu-primary-strong) $p;
     }
 
     &:focus-visible {
@@ -196,19 +202,23 @@
 }
 
 // Preserve the existing workspace quiet palette as an explicit opt-in.
-@mixin pagination-deselect-palette($quiet: false) {
+@mixin pagination-deselect-palette($quiet: false, $legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
   @if $quiet {
-    background: #f7fafc;
-    border-color: #b9c6d4;
-    color: #40566c;
+    background: #f7fafc $p;
+    border-color: #b9c6d4 $p;
+    color: #40566c $p;
   } @else {
-    background: var(--easyedu-surface-soft);
-    border-color: var(--easyedu-border-strong);
-    color: color-mix(in srgb, var(--easyedu-text) 80%, var(--easyedu-text-muted) 20%);
+    background: var(--easyedu-surface-soft) $p;
+    border-color: var(--easyedu-border-strong) $p;
+    color: color-mix(in srgb, var(--easyedu-text) 80%, var(--easyedu-text-muted) 20%) $p;
   }
 }
 
-@mixin pagination-select-button {
+// $legacy-priority (K23-84): the select command keeps Bootstrap
+// `.btn-outline-secondary`, repainted with !important by some host themes.
+@mixin pagination-select-button($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
   align-items: center;
   align-self: center;
   border-radius: 0.65rem;
@@ -223,16 +233,16 @@
   width: auto;
 
   &:not(:disabled) {
-    background: var(--easyedu-surface);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 36%, var(--easyedu-card-border) 64%);
-    color: var(--easyedu-primary-strong);
+    background: var(--easyedu-surface) $p;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 36%, var(--easyedu-card-border) 64%) $p;
+    box-shadow: none $p;
+    color: var(--easyedu-primary-strong) $p;
   }
 
-  &:not(:disabled):hover,
-  &:not(:disabled):focus-visible {
-    background: var(--easyedu-primary-soft);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-card-border) 42%);
-    color: var(--easyedu-primary-strong);
+  @include buttons.on-states((':not(:disabled):hover', ':not(:disabled):focus-visible', if($legacy-priority, ':not(:disabled):active', null))) {
+    background: var(--easyedu-primary-soft) $p;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-card-border) 42%) $p;
+    color: var(--easyedu-primary-strong) $p;
   }
 
   &:not(:disabled):focus-visible {
@@ -252,7 +262,7 @@
 
   &[data-easyedu-deselect-results="1"],
   &[data-easystud-deselect-results="1"] {
-    @include pagination-deselect-palette;
+    @include pagination-deselect-palette($legacy-priority: $legacy-priority);
   }
 }
 
@@ -355,64 +365,6 @@
 }
 
 
-@mixin pagination-deselect-palette($quiet: false) {
-  @if $quiet {
-    background: #f7fafc;
-    border-color: #b9c6d4;
-    color: #40566c;
-  } @else {
-    background: var(--easyedu-surface-soft);
-    border-color: var(--easyedu-border-strong);
-    color: color-mix(in srgb, var(--easyedu-text) 80%, var(--easyedu-text-muted) 20%);
-  }
-}
-
-
-@mixin pagination-round-arrow {
-  background: transparent;
-  border-color: transparent;
-  border-radius: 50%;
-  height: 1.62rem;
-  // Natural text metrics centre native arrow glyphs in the fixed circle.
-  line-height: normal;
-  inline-size: 1.62rem;
-  min-height: 1.62rem;
-  min-inline-size: 1.62rem;
-  min-width: 1.62rem;
-  width: 1.62rem;
-
-  &:not(:disabled):hover {
-    background: var(--easyedu-primary-soft);
-    border-color: var(--easyedu-control-border);
-  }
-
-  &:focus-visible {
-    @include focus.ring;
-  }
-
-  &:disabled {
-    background: transparent;
-    border-color: transparent;
-  }
-
-  @media (pointer: coarse) {
-    height: 2.75rem;
-    inline-size: 2.75rem;
-    min-height: 2.75rem;
-    min-inline-size: 2.75rem;
-    min-width: 2.75rem;
-    width: 2.75rem;
-  }
-
-  @media (forced-colors: active) {
-    &:focus-visible,
-    &:not(:disabled):hover {
-      border-color: ButtonText;
-    }
-  }
-}
-
-
 @mixin pagination-compact-button {
       align-items: center;
       border-radius: 0.48rem;
@@ -426,11 +378,12 @@
 }
 
 
-@mixin pagination-disabled-paint {
-      background: #f8fafc;
-      border-color: #e4ebf2;
-      color: #adb9c5;
-      opacity: 1;
+@mixin pagination-disabled-paint($legacy-priority: false) {
+      $p: if($legacy-priority, !important, null);
+      background: #f8fafc $p;
+      border-color: #e4ebf2 $p;
+      color: #adb9c5 $p;
+      opacity: 1 $p;
 }
 
 

@@ -96,20 +96,27 @@
     }
   }
 
+  // K23-84: Kit bubbles are portalled `.popover` elements, outside the hardened
+  // page roots. Host themes style `.popover` (font) and may force its body paint
+  // (DVL 4.5: `.popover .popover-body { background: white !important; color: … !important }`,
+  // grey text on a white plate inside the Kit gradient). The bubble declares the
+  // Kit UI family and owns its inner paint at the same priority.
+  font-family: var(--easyedu-font-family-ui);
+
   &.popover,
   & {
     .popover-header {
-      background: transparent;
+      background: transparent !important;
       border: 0;
-      color: var(--easyedu-tooltip-text);
+      color: var(--easyedu-tooltip-text) !important;
       font-size: 0.76rem;
       font-weight: 700;
       padding: 0.46rem 0.62rem 0;
     }
 
     .popover-body {
-      background: transparent;
-      color: var(--easyedu-tooltip-text);
+      background: transparent !important;
+      color: var(--easyedu-tooltip-text) !important;
       font-size: 0.76rem;
       font-weight: 540;
       letter-spacing: 0.005em;

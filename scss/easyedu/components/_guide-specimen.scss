@@ -15,6 +15,7 @@
 @use "textareas";
 @use "cards";
 @use "feedback";
+@use "../foundation-classes" as foundations;
 
 // The stage surface shared by the timed scenes and the specimens.
 @mixin stage-panel {
@@ -129,7 +130,7 @@
 
     // "Select results" / count pair of the list's pagination bar.
     &__bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.375rem; min-width: 0; }
-    &__select { @include pagination.pagination-select-button; white-space: nowrap; }
+    &__select { @include pagination.pagination-select-button($legacy-priority: true); white-space: nowrap; }
     &__count { @include pagination.pagination-count; }
 
     &__filter {
@@ -163,6 +164,15 @@
     &__panel { display: grid; gap: 0.5rem; min-width: 0; }
     &__panel .easyedu-guide-scene__inspection-chips > span { gap: 0.25rem; }
     &__panel textarea { @include textareas.foundation-textarea($size: small); inline-size: 100%; resize: none; }
+    // K23-84: the illustrated Add/Cancel pair wears the product panel's own Kit
+    // recipe (components/_control-typography.scss: compact core action and compact
+    // secondary), host adapter priority included. Inert spans keep no command hook.
+    &__panel .local-groupimport-easystud-inline-actions {
+      > .btn-primary { @include foundations.foundation-button($density: compact, $legacy-priority: true); }
+      > .btn-outline-secondary {
+        @include foundations.foundation-button($secondary: true, $density: compact, $legacy-priority: true);
+      }
+    }
 
     &__flow {
       align-items: center;
@@ -229,7 +239,7 @@
     &__tile .easyedu-information__description { overflow-wrap: anywhere; word-break: break-word; }
 
     &__review {
-      @include buttons.selection-recovery-action;
+      @include buttons.selection-recovery-action($legacy-priority: true);
       @include buttons.button-size(small);
       gap: 0.375rem;
       justify-self: start;

@@ -379,6 +379,16 @@
     &[hidden] {
       display: none;
     }
+
+    // K23-84: the markup (amd/src/local/cm/entity_dialog.js) only carries the Bootstrap
+    // classes, so the promised selection-bar recipe is applied here, host priority included.
+    .btn-outline-primary {
+      @include easyedu.selection-action($legacy-priority: true);
+    }
+
+    .btn-outline-danger {
+      @include easyedu.selection-action(danger, $legacy-priority: true);
+    }
   }
 
   &-entity__bulk-count {

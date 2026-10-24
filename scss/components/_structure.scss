@@ -1286,13 +1286,13 @@
     }
 
     .local-groupimport-easystud-pagination__select {
-      @include easyedu.pagination-select-button;
+      @include easyedu.pagination-select-button($legacy-priority: true);
 
       @include easyedu.pagination-select-frame(var(--local-groupimport-result-height));
     }
 
     .local-groupimport-easystud-pagination__controls {
-      @include easyedu.pagination-controls;
+      @include easyedu.pagination-controls($legacy-priority: true);
 
       // Keep the consumer grid placement after the Kit's forced-colors rule
       // without relying on Sass's deprecated mixed-declaration ordering.
@@ -1326,7 +1326,7 @@
     }
 
     .local-groupimport-easystud-pagination__select[data-easystud-deselect-results="1"] {
-      @include easyedu.pagination-deselect-palette($quiet: true);
+      @include easyedu.pagination-deselect-palette($quiet: true, $legacy-priority: true);
     }
 
     &.is-placeholder {
@@ -1334,7 +1334,7 @@
     }
 
     .btn:disabled {
-      @include easyedu.pagination-disabled-paint;
+      @include easyedu.pagination-disabled-paint($legacy-priority: true);
     }
 
     [data-easystud-page-label] {
@@ -1360,7 +1360,7 @@
       @include easyedu.pagination-arrow-button;
 
       .local-groupimport-easystud &.btn {
-        @include easyedu.pagination-round-arrow;
+        @include easyedu.pagination-round-arrow($legacy-priority: true);
       }
     }
 

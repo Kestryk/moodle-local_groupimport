@@ -1,5 +1,11 @@
 - Centre the floating Guide icon before hover, place notifications at the top left beneath the navbar, and keep grouping searches closed until requested. Rebuild the shared Small search-field assets already present in source.
 
+- 2026-10-24 Keep EasyStud's own buttons, view switcher, selection actions, Guide demonstrations, bubbles and administration actions in their EasyStud style on themes that force Bootstrap button, link, bubble or read-only field colours. Show a single keyboard focus ring on every control, including search fields. The administration section actions now use the blue secondary style.
+
+- Give EasyStud its own student-management icon in navigation and the Guide, preserving the platform brand. Slow navigation hover feedback without changing other controls or reduced-animation preferences.
+
+- Keep selection commands in the shared blue palette on import previews and participant toolbars, including buttons with Bootstrap secondary classes.
+
 - Restore the floating Guide launcher on Mass Import when the page passes its navigation root directly. Keep Student Management and the normal Guide controls unchanged.
 
 - 2026-10-24 Add an opt-in Small text/search field matching its icon action (30.4px desktop, 44px through 1024px), preserving the existing field scale.

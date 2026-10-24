@@ -216,6 +216,18 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
       margin-block-start: var(--easyedu-gap);
     }
 
+    // K23-86: the section commands are Kit Secondary / M actions with the primary
+    // ink (`easyedu-button--secondary-accent`, K21-03), as the search Cancel.
+    // The reset command is a link (no-JavaScript fallback): host themes colour
+    // `#page a:not(.btn)` and, at hover/focus, `#page #region-main a:not(.btn)…`
+    // with !important (DVL 4.5, weight id 2 / class 4). The Kit recipe opts into the
+    // host adapter priority and this bounded selector — the page's real body id plus
+    // #region-main, one doubled class — out-weighs that host rule once, by
+    // construction, without escalating further.
+    @at-root html body#page-admin-setting-local_groupimport #region-main .easyedu-ui.easyedu-ui :is(a, button).easyedu-button--secondary.easyedu-button--secondary {
+      @include foundations.foundation-button($secondary: true, $legacy-priority: true);
+    }
+
     .easyedu-caption {
       @include easyedu.type-caption;
 
@@ -465,7 +477,9 @@ body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-sett
 
     // Adapt only this plugin's native Moodle save command to the shared Kit.
     > [class*="offset-"] > button[type="submit"].btn.btn-primary {
-      @include foundations.foundation-button;
+      // K23-86: hosts that repaint `button[type=submit].btn-primary` with !important
+      // (DVL 4.5) must not replace the Kit core action paint.
+      @include foundations.foundation-button($legacy-priority: true);
       & {
         box-sizing: border-box;
         max-inline-size: 100%;

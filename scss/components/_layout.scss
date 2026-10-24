@@ -447,6 +447,14 @@
       &:focus-visible {
         text-decoration: none !important;
       }
+
+      // K23-84: the copies keep their menu geometry but take the toolbar originals'
+      // Kit paint (selection-action-paint) instead of the Bootstrap native one,
+      // which host themes repaint with !important (DVL 4.5: black/purple outlines).
+      &.btn-outline-primary { @include easyedu.selection-action-paint($legacy-priority: true); }
+      &.btn-outline-secondary { @include easyedu.selection-action-paint(neutral, $legacy-priority: true); }
+      &.btn-outline-danger { @include easyedu.selection-action-paint(danger, $legacy-priority: true); }
+      &.btn-primary { @include easyedu.selection-action-paint($solid: true, $legacy-priority: true); }
     }
   }
 
@@ -861,6 +869,7 @@
   }
 
   .local-groupimport-easystud__layout-mode-group {
-    @include easyedu.view-tabs;
+    // The tabs keep Bootstrap `.btn-outline-*` classes (host-forced paint, K23-84).
+    @include easyedu.view-tabs($legacy-priority: true);
   }
 }

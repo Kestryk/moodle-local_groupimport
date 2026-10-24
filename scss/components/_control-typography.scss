@@ -4,22 +4,24 @@
 // Selector adapter only. Shared treatment lives in the canonical Kit;
 // preserve this final cascade position and the existing host compatibility.
 .local-groupimport-easystud {
+  // Add/Cancel keep Bootstrap `.btn-primary`/`.btn-outline-secondary`, which
+  // some host themes repaint with !important (K23-84): host adapter priority.
   [data-easystud-add-group-emails],
   [data-easystud-add-grouping-groups] {
-    @include foundations.foundation-button($density: compact);
+    @include foundations.foundation-button($density: compact, $legacy-priority: true);
   }
 
   [data-easystud-cancel-group-email],
   [data-easystud-cancel-grouping-groups],
   [data-easystud-container-search-cancel] {
-    @include foundations.foundation-button($secondary: true, $density: compact);
+    @include foundations.foundation-button($secondary: true, $density: compact, $legacy-priority: true);
   }
 
   // Both card searches carry the general Kit secondary button class. Keep the
   // compact recipe specific enough to survive that later global cascade.
   [data-easystud-container-search-cancel].easyedu-button--secondary,
   [data-easystud-group-member-search-cancel].easyedu-button--secondary {
-    @include foundations.foundation-button($secondary: true, $density: compact);
+    @include foundations.foundation-button($secondary: true, $density: compact, $legacy-priority: true);
   }
 
   // K22-27: rename Save/Cancel are Kit field-peer icon buttons

@@ -878,6 +878,9 @@
     }
   }
 
+  // Previous/Next wear `.btn-outline-secondary`/`.btn-primary`, which host themes
+  // may repaint with !important in every state (DVL 4.5, K23-84): both footer
+  // actions own their paint at the same priority, the pressed state included.
   [data-easyedu-guide-next].btn {
     background: var(--easyedu-primary);
     background-color: var(--easyedu-primary) !important;
@@ -885,7 +888,8 @@
     color: #fff !important;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       background: var(--easyedu-primary-strong);
       background-color: var(--easyedu-primary-strong) !important;
       border-color: var(--easyedu-primary-strong) !important;
@@ -893,24 +897,27 @@
     }
 
     &:focus-visible {
-      @include focus.ring($border-color: var(--easyedu-primary-strong));
+      @include focus.ring($border-color: var(--easyedu-primary-strong), $native-overrides: true);
     }
   }
 
   [data-easyedu-guide-previous].btn {
     background: #fff;
-    border-color: color-mix(in srgb, var(--easyedu-primary) 42%, #fff 58%);
-    color: var(--easyedu-primary);
+    background-color: #fff !important;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 42%, #fff 58%) !important;
+    color: var(--easyedu-primary) !important;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       background: color-mix(in srgb, var(--easyedu-primary) 10%, #fff 90%);
-      border-color: var(--easyedu-primary);
-      color: var(--easyedu-primary-strong);
+      background-color: color-mix(in srgb, var(--easyedu-primary) 10%, #fff 90%) !important;
+      border-color: var(--easyedu-primary) !important;
+      color: var(--easyedu-primary-strong) !important;
     }
 
     &:focus-visible {
-      @include focus.ring($border-color: var(--easyedu-primary));
+      @include focus.ring($border-color: var(--easyedu-primary), $native-overrides: true);
     }
   }
 

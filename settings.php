@@ -350,7 +350,10 @@ if ($hassiteconfig) {
                     html_writer::link(
                         new moodle_url('/local/groupimport/reset_guide_welcome.php'),
                         get_string('guidewelcomereset', 'local_groupimport'),
-                        ['class' => 'easyedu-button--secondary', 'data-local-groupimport-welcome-reset-open' => '1']
+                        [
+                            'class' => 'easyedu-button--secondary easyedu-button--secondary-accent',
+                            'data-local-groupimport-welcome-reset-open' => '1',
+                        ]
                     ) .
                         $resetdialog .
                         $paragraph(
@@ -401,7 +404,7 @@ if ($hassiteconfig) {
                 html_writer::div(
                     html_writer::tag('button', get_string('restoredefaultcolours', 'local_groupimport'), [
                         'type' => 'button',
-                        'class' => 'easyedu-button--secondary',
+                        'class' => 'easyedu-button--secondary easyedu-button--secondary-accent',
                         'data-easystud-restore-colours' => '1',
                         'hidden' => 'hidden',
                         'aria-describedby' => 'easystud-restore-colours-help',

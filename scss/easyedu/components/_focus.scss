@@ -2,6 +2,16 @@
 //
 // Keep the ring outside the hit target and let each component retain its own
 // border radius. Semantic variants change colour only, never thickness.
+//
+// K23-84 (host-theme shield, 24/10/2026): the ring is the ONE focus indicator of
+// a Kit control, so its own declarations (box-shadow ring + transparent outline)
+// are authoritative. A host theme measured on DVL 4.5 (`theme_easyedu`) ships
+// `:focus-visible { outline: 4px solid … !important }` site-wide and
+// `.btn { box-shadow: none !important }`: the first painted a second ring around
+// every Kit ring (search fields, nav items, icon buttons…), the second erased the
+// Kit ring on every `.btn`. Only an !important declaration can outrank another
+// one, whatever the selector weight, so the ring's outline/box-shadow carry it.
+// Values are unchanged: themes without such rules render exactly as before.
 
 @mixin ring(
   $color: var(--easyedu-focus-ring),
@@ -16,20 +26,19 @@
   @if $base-shadow != null {
     box-shadow:
       0 0 0 var(--easyedu-focus-ring-width) $color,
-      $base-shadow;
+      $base-shadow !important;
   } @else {
-    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) $color;
+    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) $color !important;
   }
 
   // Forced-colors mode suppresses box shadows and promotes this transparent
   // outline to a system colour without adding a nested Sass rule.
-  outline: var(--easyedu-focus-outline-width) solid transparent;
-  outline-offset: var(--easyedu-focus-outline-offset);
+  outline: var(--easyedu-focus-outline-width) solid transparent !important;
+  outline-offset: var(--easyedu-focus-outline-offset) !important;
 
-  // Explicit Moodle host adapter; preserve the accepted normal-priority fallback.
-  @if $native-overrides {
+  // Explicit Moodle host adapter for the border paint (the ring itself is above).
+  @if $native-overrides and $border-color != null {
     border-color: $border-color !important;
-    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) $color !important;
   }
 }
 
@@ -81,6 +90,15 @@
   outline-offset: calc(var(--easyedu-focus-outline-width) * -1);
 }
 
+
+// A control whose keyboard ring is painted by its container (search shells,
+// capsules, framed inputs): the control itself shows no ring. Authoritative for
+// the same reason as `ring` (K23-84): a host `:focus-visible { outline … !important }`
+// must not draw a second ring inside the container's one.
+@mixin delegated-ring {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
 
 // Mouse-focus adapter only; keyboard focus still uses the shared ring.
 @mixin pointer-focus-outline {

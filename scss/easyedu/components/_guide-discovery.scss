@@ -176,8 +176,9 @@
       justify-content: center;
     }
   }
+  // Both closes keep `.btn-outline-secondary` (host-forced paint, K23-84).
   .easyedu-guide-interface-return__dismiss,
-  .easyedu-guided-panel__close { @include buttons.close-button; }
+  .easyedu-guided-panel__close { @include buttons.close-button($legacy-priority: true); }
   .easyedu-guided-panel__minimize { @include buttons.icon-button($size: small); }
   .easyedu-guided-panel__header strong { @include typography.type-control-label; color: var(--easyedu-text); }
   .easyedu-guided-panel__header > div:first-child > span { @include typography.type-caption; text-transform: none; letter-spacing: 0; }
@@ -365,7 +366,7 @@
       .easyedu-guide-nav-item { max-width: 100%; pointer-events: auto; }
     }
     &__action {
-      @include buttons.selection-action(primary);
+      @include buttons.selection-action(primary, $legacy-priority: true);
       pointer-events: none;
       > span:last-child { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
     }
@@ -492,7 +493,7 @@
       }
     }
     .easyedu-guide-slide__start {
-      @include buttons.selection-action($solid: true);
+      @include buttons.selection-action($solid: true, $legacy-priority: true);
       grid-column: 3;
       width: auto;
       justify-self: end;
@@ -514,7 +515,7 @@
     &__reset {
       // Unlike an action inside a bordered selection capsule, this standalone
       // path recovery needs its own visible canonical neutral border.
-      @include buttons.selection-action(neutral);
+      @include buttons.selection-action(neutral, $legacy-priority: true);
       & { @include buttons.button-size(small); }
     }
     [data-easyedu-guide-path-status] {
@@ -595,8 +596,8 @@
     background: var(--easyedu-surface);
     z-index: 1070;
     > span { @include typography.type-caption; flex: 1 1 10rem; }
-    .btn { @include buttons.selection-action; @include buttons.button-size(small); }
-    .btn-primary { @include buttons.selection-action($solid: true); }
+    .btn { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); }
+    .btn-primary { @include buttons.selection-action($solid: true, $legacy-priority: true); }
     &[hidden] { display: none; }
   }
 
@@ -808,8 +809,8 @@
     // Repeat only the child class: a second & would duplicate the dialog's
     // outer selector and leave this flex lane inactive in the compiled host.
     &__inspection-header .easyedu-guide-scene__card-copy { flex: 1 1 10rem; }
-    &__inspection-trigger { @include buttons.selection-action; @include buttons.button-size(small); }
-    &__inspection-submit { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
+    &__inspection-trigger { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); }
+    &__inspection-submit { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); }
     &__inspection-desktop-trigger { @include card-actions.card-direct-action; }
     &__inspection-mobile-trigger { @include responsive.mobile-card-menu-trigger; }
     &__inspection-panel { display: grid; gap: 0.75rem; min-width: 0; }
@@ -870,7 +871,8 @@
     }
     &__member { @include typography.type-caption; color: var(--easyedu-accent); }
     &__field { display: grid; gap: 0.5rem; }
-    &__field input { @include text-fields.foundation-text-field($size: small); width: 100%; }
+    // Readonly illustration fields: hosts may grey readonly inputs with !important (K23-84).
+    &__field input { @include text-fields.foundation-text-field($size: small, $legacy-priority: true); width: 100%; }
     &__creation-controls { display: grid; gap: 0.5rem; }
     &__field { @include typography.type-control-label; font-size: 0.78rem; width: 100%; }
     &__syntax {
@@ -879,8 +881,8 @@
       b { color: var(--easyedu-primary); font-weight: var(--easyedu-font-weight-bold); }
     }
     &__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-block: 0.75rem; }
-    &__actions .btn { @include buttons.selection-action; @include buttons.button-size(small); }
-    &__actions .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
+    &__actions .btn { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); }
+    &__actions .btn-primary { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); }
     &__utilities { display: flex; gap: 0.5rem; margin-inline-start: auto; }
     // Translated utility labels may exceed one phone row. Keep their canonical
     // density/gap, wrapping the candidate illustration rather than clipping it.
@@ -891,7 +893,7 @@
       max-inline-size: 100%;
     }
     &__utilities .btn {
-      @include buttons.guide-adjacent-action($size: small);
+      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
       white-space: nowrap;
     }
     &__entry { display: flex; flex-wrap: wrap; margin-block: 0 1rem; }
@@ -1084,8 +1086,8 @@
     }
     &__actions .btn[data-guide-scene-command="add"],
     &__actions .btn[data-guide-scene-command="move"] {
-      @include buttons.selection-action;
-      &[aria-pressed="true"] { @include buttons.selection-action($solid: true); }
+      @include buttons.selection-action($legacy-priority: true);
+      &[aria-pressed="true"] { @include buttons.selection-action($solid: true, $legacy-priority: true); }
     }
     &__result-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 0.625rem; margin-block: 1rem; @include typography.type-caption; }
     &__intro {
@@ -1139,7 +1141,7 @@
       flex: 0 0 auto;
     }
     &__playback-button {
-      @include buttons.selection-action;
+      @include buttons.selection-action($legacy-priority: true);
       @include buttons.icon-button($size: small);
       > .fa { margin: 0; line-height: 1; }
     }
@@ -1188,8 +1190,8 @@
       overflow-wrap: anywhere;
     }
     &__dialog footer { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.625rem 0.75rem; border-top: 1px solid var(--easyedu-border); }
-    &__dialog footer > * { @include buttons.selection-action; @include buttons.button-size(small); flex: 0 1 6rem; text-align: center; }
-    &__dialog footer strong { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
+    &__dialog footer > * { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); flex: 0 1 6rem; text-align: center; }
+    &__dialog footer strong { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); }
     &__destination { @include text-fields.foundation-text-field($size: small); display: flex; align-items: center; gap: 0.5rem; margin-block: 0.5rem; }
     &__destination > span:last-child { margin-inline-start: auto; }
     // The pointer is ONE neutral element (K15-30, C-G6): its glyph is the mouse arrow, or, when the
@@ -1267,6 +1269,14 @@
       border: 0;
       border-radius: 0;
       background: transparent;
+    }
+    // K23-84: the illustrated search input is readonly; hosts may grey readonly
+    // inputs with !important. Keep the Kit search input paint (the frame owns it).
+    &__filters-stage [data-guide-filters-input] {
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      color: var(--easyedu-field-text) !important;
     }
     &__cursor[data-guide-pointer="touch"] {
       .easyedu-guide-scene__cursor-mouse { display: none; }
@@ -1410,7 +1420,7 @@
     width: auto;
 
     .btn {
-      @include buttons.selection-action;
+      @include buttons.selection-action($legacy-priority: true);
       @include buttons.button-size(small);
       @include typography.type-control-label;
       flex: 0 0 auto;
@@ -1421,7 +1431,7 @@
       padding-inline: 1rem;
       width: auto;
     }
-    .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); min-height: 2.375rem; }
+    .btn-primary { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); min-height: 2.375rem; }
     // This file follows the shared Guide shell: retain Touch44 after both
     // discovery button recipes, rather than restoring their desktop38 minimum.
     @media (max-width: 48rem), (pointer: coarse) {
@@ -1469,7 +1479,7 @@
     // K20-01: the same Kit frame/paint and touch variant as the Close action.
     // Keep the expand/minus glyph rather than drawing a second close cross.
     .easyedu-guided-panel__restore,
-    .easyedu-guided-panel__minimize { @include buttons.close-button($glyph: false); }
+    .easyedu-guided-panel__minimize { @include buttons.close-button($glyph: false, $legacy-priority: true); }
     .easyedu-guided-panel__steps {
       grid-auto-rows: max-content;
       align-content: start;

@@ -8,6 +8,7 @@
 @use "typography";
 @use "feedback";
 @use "guide-specimen";
+@use "../foundation-classes" as foundations;
 
 @mixin guide-mass-import {
   // The Mass Import Guide is rendered inside the navigation, whose items never wrap: the reading area wraps.
@@ -233,7 +234,9 @@
     .easyedu-guide-mi-scene__column .easyedu-panel__title { align-self: center; margin: 0; }
     .easyedu-guide-mi-scene__toggle { margin-inline-start: auto; }
     .easyedu-guide-mi-scene__upload-body { display: grid; gap: 0.75rem; min-inline-size: 0; }
-    .easyedu-guide-mi-scene__submit { justify-self: start; }
+    // K23-84: the illustrated Preview wears the real Mass Import core action recipe
+    // (inert span with `.btn.btn-primary`, host-forced paint): same Kit definition.
+    .easyedu-guide-mi-scene__submit { @include foundations.foundation-button($legacy-priority: true); justify-self: start; }
     .easyedu-guide-mi-scene__empty {
       @include typography.type-caption;
       align-items: center;
