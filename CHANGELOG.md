@@ -3,6 +3,8 @@
 
 - 2026-10-24 Keep narrow grouping names readable by letting the existing More control yield its reserved title space, as on group cards.
 
+- 2026-10-24 Keep captioned Student Management searches compact inside wide columns, retaining their labels, single-row input and touch targets. Restore Groups and Groupings searches in their active mobile views.
+
 - 2026-10-24 Keep the Student Management Guide accessible through a compact floating compass after its navigation scrolls out of view. Restore the normal launcher on return, respecting reduced animation preferences.
 
 - 2026-10-24 Keep Guide navigation pills stationary while pressed so a click selects the intended slide; focused navigation remains revealable without activating a slide.
