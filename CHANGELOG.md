@@ -1,3 +1,5 @@
+- 2026-10-24 Keep Guide navigation pills stationary while pressed so a click selects the intended slide; focused navigation remains revealable without activating a slide.
+
 - 2026-10-24 Keep Group and Grouping names readable in drawer-narrowed columns by wrapping terminal controls after the existing action-menu fallback.
 
 ## 2026-10-24 — Course block drawer

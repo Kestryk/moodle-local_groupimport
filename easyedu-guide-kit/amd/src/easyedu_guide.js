@@ -4282,11 +4282,22 @@ const bindNavWheel = root => {
     return;
   }
   nav.dataset.easyeduGuideWheelBound = '1';
+  let pointerFocusItem = null;
+  addTrackedListener(root, nav, 'pointerdown', event => {
+    pointerFocusItem = event.target.closest(SELECTORS.navItem);
+  }, true);
+  const releasePointerFocus = () => {
+    pointerFocusItem = null;
+  };
+  addTrackedListener(root, document, 'pointerup', releasePointerFocus, true);
+  addTrackedListener(root, document, 'pointercancel', releasePointerFocus, true);
   // Native nearest-focus scrolling ignores the arrow overlays. Center the
-  // focused tab within this existing scroller without activating its slide.
+  // focused tab without moving a pressed pointer target before its click.
   addTrackedListener(root, nav, 'focusin', event => {
     const item = event.target.closest(SELECTORS.navItem);
-    if (item && nav.contains(item)) {
+    const pointerFocus = item === pointerFocusItem;
+    pointerFocusItem = null;
+    if (item && nav.contains(item) && !pointerFocus) {
       item.scrollIntoView({behavior: getScrollBehavior(root), block: 'nearest', inline: 'center'});
     }
   });
