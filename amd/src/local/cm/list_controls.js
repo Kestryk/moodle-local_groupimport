@@ -68,6 +68,34 @@ const getConfigFromPagination = (root, pagination) => {
     return getPaginationConfigs(root).find(config => config.list === list) || null;
 };
 
+/**
+ * Change the content of a paginated list (page or sort) with a single motion.
+ *
+ * K23-77: on-demand cards (participants, groups) play their own arrival (fade and
+ * rise from 0, transitions.animateListArrival). Fading the whole list out first
+ * left the previous titles visible at 55 % while the next page was computed, then
+ * dropped to an empty list, then faded the new titles in: names loaded "in two
+ * steps". The change now applies at once; only a list whose cards bring no
+ * arrival (Groupings tree) keeps the list-level fade-in.
+ *
+ * @param {HTMLElement} list Paginated list.
+ * @param {Function} mutate Page or sort change.
+ * @returns {Promise<Boolean>} Resolves true once settled.
+ */
+const changeListContent = (list, mutate) => {
+    Motion.cancel(list);
+    mutate();
+    if (list.querySelector(':scope > .is-easystud-list-arriving')) {
+        return Promise.resolve(true);
+    }
+    return Motion.swap(list, () => undefined, {
+        exit: false,
+        enterDuration: Motion.timing.normal,
+        distance: '0px',
+        swapOpacity: 0.55,
+    });
+};
+
 export const bindPagination = root => {
     const setSortDropdownStackOpen = (dropdown, open) => {
         if (!dropdown) {
@@ -149,17 +177,10 @@ export const bindPagination = root => {
             return;
         }
         closeSortDropdowns();
-        Motion.swap(list, () => {
+        changeListContent(list, () => {
             list.setAttribute('data-easystud-sort', option.getAttribute('data-easystud-list-sort-option') || 'alpha');
             list.setAttribute('data-easystud-page', '0');
             syncPagination(root);
-        }, {
-            exitDuration: Motion.timing.fast,
-            enterDuration: Motion.timing.normal,
-            exitDistance: '0px',
-            distance: '0px',
-            resize: false,
-            swapOpacity: 0.55,
         }).then(() => requestGuideHighlightRefresh(root));
     });
 
@@ -230,17 +251,10 @@ export const bindPagination = root => {
         const maxpage = Math.max(Math.ceil(total / config.limit) - 1, 0);
         nextpage = Math.max(0, Math.min(nextpage, maxpage));
         const fromBottom = pagination.getAttribute('data-easystud-pagination') === 'bottom';
-        Motion.swap(list, () => {
+        changeListContent(list, () => {
             list.setAttribute('data-easystud-page', nextpage);
             syncPagination(root);
             scheduleResponsiveUiRefresh(root, {pagination: false});
-        }, {
-            exitDuration: Motion.timing.fast,
-            enterDuration: Motion.timing.normal,
-            exitDistance: '0px',
-            distance: '0px',
-            resize: false,
-            swapOpacity: 0.55,
         }).then(completed => {
             if (!completed) {
                 return;
