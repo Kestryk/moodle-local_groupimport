@@ -1,9 +1,9 @@
 // Approved lift SM (14 October), CSS only. List alignment remains controller-owned.
 @use "../easyedu" as easyedu;
 
-// The server opt-in is restricted to Moodle branch 503. Other hosts keep the Kit default.
+// Moodle 5.3 keeps its navigation and narrow metadata adaptations.
+// Lane paint is shared by every supported Moodle host below.
 body.local-groupimport-host-moodle53 #local-groupimport-easystud {
-  --easyedu-lane-surface: var(--easyedu-surface);
   --easyedu-navigation-desktop-surface: var(--easyedu-surface);
 
   // Moodle drawers can leave a full participant card with a very narrow main.
@@ -21,12 +21,8 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
 
 #local-groupimport-easystud {
   @include easyedu.workspace-lane-tokens;
-  // K22-20 (to be validated by Kevin): the column lanes only draw the visual
-  // frame of the two columns on a white host page. The Kit's next surface
-  // step (surface-strong, #edf3f8) replaces the near-white surface-soft so
-  // the frame reads clearly and white cards stand out. The Moodle 5.3 rule
-  // above is more specific and keeps white lanes on its grey host page.
-  --easyedu-lane-surface: var(--easyedu-surface-strong);
+  // One Kit surface and the existing outlined lane recipe on every host.
+  --easyedu-lane-surface: var(--easyedu-surface);
   container: easystud-workspace / inline-size;
 
   .local-groupimport-easystud__layout {
