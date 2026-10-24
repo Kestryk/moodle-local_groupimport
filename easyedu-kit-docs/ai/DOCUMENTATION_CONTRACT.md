@@ -34,6 +34,10 @@ Fullscreen parking must preserve parent-relative sibling flow, not only border-b
 
 # EasyEdu documentation contract
 
+View-level Motion and card arrival have separate ownership. Scope hydration
+with withoutListArrival during the desktop view reveal; preserve standalone
+pagination and the canonical selection-action paint, including footer Cancel.
+
 Empty list messages retain the 08.13 Kit paint. Reserve the existing pagination
 side lanes instead of adding message offsets: keep empty lanes invisible and
 inert, disable Select all, and clear the state when results return. Distinguish

@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Desktop view reveal owns its card hydration through withoutListArrival,
+including the pre-reveal callback. Keep the view fade and later pagination
+arrival; measure transformed last-card overflow, never hide the scrollbar.
+Mass Import footer Cancel shares the canonical selection-action palette.
+See docs/testing/k23-cancel-and-view-scroll-2026-10-25.md.
+
 Use local\identity::ICON for EasyStud's navigation/Guide glyph. Never replace
 the EasyEdu platform cap or site favicon globally. Navigation hover timing
 must remain destination-scoped and preserve the restricted-motion override.

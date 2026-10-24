@@ -320,7 +320,10 @@ export const bindLayoutModeToggle = root => {
     const applyMode = (mode, animate = true) => {
         if (animate && layout) {
             const actionsBefore = snapshotPanelActions(root);
-            trackLayoutSwap(root, Motion.swap(layout, () => {
+            // The view already owns its reveal. A second card arrival translates
+            // the last row beyond its auto-sized scroller and briefly adds 6px
+            // of scrollable overflow, even when the settled list fits exactly.
+            trackLayoutSwap(root, Motion.swap(layout, () => withoutListArrival(() => {
                 applyModeState(mode);
                 if (root.easystudBeforeLayoutReveal) {
                     root.easystudBeforeLayoutReveal();
@@ -330,7 +333,7 @@ export const bindLayoutModeToggle = root => {
                 // dropped into the overflow menu a frame later (the second, abrupt step).
                 syncPanelActionOverflow(root);
                 revealChangedPanelActions(root, actionsBefore);
-            }, {
+            }), {
                 exit: false,
                 enterDuration: Motion.timing.normal,
                 resize: false,
