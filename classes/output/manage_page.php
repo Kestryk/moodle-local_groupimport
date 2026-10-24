@@ -552,7 +552,7 @@ class manage_page {
                     'highlightopen' => 'tutorial:first-grouping',
                 ],
                 [
-                    'icon' => 'fa-graduation-cap',
+                    'icon' => \local_groupimport\local\identity::ICON,
                     'category' => get_string('tutorialcategorypractice', 'local_groupimport'),
                     'title' => get_string('tutorialassignmentpracticetitle', 'local_groupimport'),
                     'content' => get_string('tutorialassignmentpracticecontent', 'local_groupimport'),

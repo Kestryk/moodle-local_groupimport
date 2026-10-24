@@ -852,6 +852,12 @@
     }
   }
 
+  // Opt-in navigation timing: do not slow unrelated buttons or global Motion.
+  [data-easyedu-navigation-desktop] .easyedu-navigation__item,
+  .easyedu-navigation__panel .easyedu-navigation__item {
+    transition-duration: var(--easyedu-navigation-hover-duration, var(--easyedu-motion-slow, 220ms));
+  }
+
   @include animations.motion-restricted {
     .easyedu-navigation__panel,
     .easyedu-navigation__item,
