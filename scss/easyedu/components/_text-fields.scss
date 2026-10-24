@@ -35,3 +35,60 @@ $-field-block-padding: (
 
   @include field-paint.paint;
 }
+
+// A paired Small control, not a sixth step or a change to the published S/32px.
+// Shared with its icon-button peer, including the workspace's 1024px boundary.
+@mixin field-peer-small-size {
+  block-size: var(--easyedu-button-height-s);
+  min-block-size: var(--easyedu-button-height-s);
+
+  @media (max-width: 1024px) {
+    block-size: var(--easyedu-touch-target-min);
+    min-block-size: var(--easyedu-touch-target-min);
+  }
+}
+
+// Native text/search inputs only. Paint, focus and invalid/disabled states stay
+// in the existing S field; the inline padding and type scale are unchanged.
+@mixin foundation-text-field-peer-small {
+  @include foundation-text-field(small);
+  & {
+    padding-block: 0.4375rem;
+    @include field-peer-small-size;
+  }
+}
+
+// Composite search: the caption stays outside the measured input frame. The
+// icon shares its grid cell, so a caption cannot enlarge the Small field peer.
+@mixin search-field-peer-small {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: minmax(0, 1fr);
+  min-block-size: 0;
+  padding: 0;
+
+  > input {
+    @include foundation-text-field-peer-small;
+    & {
+      grid-area: 1 / 1;
+      inline-size: 100%;
+      padding-inline-start: 2.25rem;
+    }
+  }
+  > .fa {
+    align-self: center;
+    grid-area: 1 / 1;
+    justify-self: start;
+    margin-inline-start: 0.8125rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+  > .easyedu-field-caption { grid-area: 1 / 1; }
+  &:has(> .easyedu-field-caption) {
+    > input, > .fa { grid-row: 2; }
+  }
+  &:focus-within { box-shadow: none; outline: 0; }
+}
