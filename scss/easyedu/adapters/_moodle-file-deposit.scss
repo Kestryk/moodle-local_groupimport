@@ -200,6 +200,9 @@
     }
     .easyedu-file-deposit__remove {
       @include foundations.foundation-button(true);
+      // Regular secondary controls reset their colour; opt this action back
+      // into the shared blue before the existing destructive interaction states.
+      color: var(--easyedu-secondary-text);
       block-size: 2rem;
       inline-size: 2rem;
       min-block-size: 2rem;
