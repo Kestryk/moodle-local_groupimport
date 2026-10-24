@@ -24,9 +24,79 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
+    const navigation = root.querySelector('[data-easyedu-navigation]');
+    if (!navigation || root.easystudFloatingGuideLauncher) {
+        return;
+    }
+    const host = document.createElement('div');
+    host.className = 'local-groupimport-easystud-easyedu-guide easyedu-guide';
+    host.setAttribute('data-easyedu-guide-floating-host', '1');
+    // The floating control shares the portalled Guide's resolved theme.
+    const styles = window.getComputedStyle(guideNode);
+    Array.from(styles).forEach(name => {
+        if (name.startsWith('--easyedu-') || name.startsWith('--local-groupimport-easystud-')) {
+            host.style.setProperty(name, styles.getPropertyValue(name));
+        }
+    });
+    const launcher = guideLauncher.cloneNode(true);
+    launcher.removeAttribute('id');
+    launcher.removeAttribute('data-easyedu-guide-open');
+    launcher.setAttribute('data-easyedu-guide-floating-launcher', '1');
+    launcher.classList.add('easyedu-guide__launcher--floating');
+    launcher.hidden = false;
+    launcher.disabled = true;
+    launcher.tabIndex = -1;
+    launcher.setAttribute('aria-hidden', 'true');
+    host.appendChild(launcher);
+    document.body.appendChild(host);
+    root.easystudFloatingGuideLauncher = host;
+    launcher.addEventListener('click', () => guideLauncher.click());
+
+    let frame = 0;
+    const headers = Array.from(document.querySelectorAll('.navbar.fixed-top, .navbar.sticky-top'));
+    const sync = () => {
+        frame = 0;
+        const top = headers.reduce((edge, header) => {
+            const rect = header.getBoundingClientRect();
+            return rect.top <= 0 && rect.height > 0 ? Math.max(edge, rect.bottom) : edge;
+        }, 0);
+        const rect = navigation.getBoundingClientRect();
+        // Compact navigation has a zero-height anchor beside its drawer trigger.
+        const visible = navigation.isConnected && rect.width > 0 && rect.bottom <= top;
+        launcher.style.setProperty('--easyedu-guide-floating-top', `${top}px`);
+        launcher.classList.toggle('is-visible', visible);
+        launcher.disabled = !visible;
+        launcher.tabIndex = visible ? 0 : -1;
+        launcher.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    };
+    const schedule = () => {
+        if (!frame) {
+            frame = window.requestAnimationFrame(sync);
+        }
+    };
+    // Moodle scrolls its page container as well as the document in some layouts.
+    document.addEventListener('scroll', schedule, {capture: true, passive: true});
+    window.addEventListener('resize', schedule, {passive: true});
+    const observer = new ResizeObserver(schedule);
+    [navigation, ...headers].forEach(element => observer.observe(element));
+    window.addEventListener('pagehide', event => {
+        if (event.persisted) {
+            return;
+        }
+        document.removeEventListener('scroll', schedule, true);
+        window.removeEventListener('resize', schedule);
+        observer.disconnect();
+        window.cancelAnimationFrame(frame);
+        host.remove();
+        root.easystudFloatingGuideLauncher = null;
+    }, {once: true});
+    sync();
+};
+
 // Keep the shared guide launcher consumer-owned while the navigation component
 // owns only destinations and its compact panel.
-export const bindGuideLauncher = (root, query) => {
+export const bindGuideLauncher = (root, query, {floating = false} = {}) => {
     const guideSlot = root.querySelector('[data-easyedu-navigation-guide-slot]');
     const guideSource = root.querySelector('[data-easyedu-navigation-guide-source]');
     const guideNode = guideSource ?
@@ -92,4 +162,7 @@ export const bindGuideLauncher = (root, query) => {
         syncGuideLauncher(event.matches);
     });
     syncGuideLauncher(responsiveMedia.matches);
+    if (floating) {
+        bindFloatingGuideLauncher(root, guideNode, guideLauncher);
+    }
 };
