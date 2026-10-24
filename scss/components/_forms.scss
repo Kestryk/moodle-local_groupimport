@@ -29,7 +29,13 @@
 
   // Native visibility is consumer behavior, independent of the opt-in Search
   // recipe's display:flex. Do not reveal structure-only filters in Complete.
-  &:not(&--structure-focus) &__search-field--structure {
+  // K23-47/K23-60: this hide rule and the canonical .easyedu-search-field--captioned
+  // display:grid rule (workspace-control-classes.scss) carry the same 3-class
+  // specificity; whichever compiles later wins the cascade regardless of intent.
+  // The extra .easyedu-search-field qualifier breaks that tie so "hidden" always
+  // really is display:none, instead of a near-zero-width grid ghost that briefly
+  // paints its icon on its own line before the view-mode class settles.
+  &:not(&--structure-focus) &__search-field--structure.easyedu-search-field {
     display: none;
   }
 
