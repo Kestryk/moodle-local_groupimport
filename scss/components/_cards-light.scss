@@ -178,3 +178,11 @@
     }
   }
 }
+
+// Responsive wrapped names own the shared selection/action row; metadata and
+// late hydration cannot change its centre. Desktop cards retain their recipe.
+@media (max-width: 40rem) {
+  #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+    @include easyedu.person-card-wrapped-name-row(".local-groupimport-easystud-user__name", ".local-groupimport-easystud-selector", ".local-groupimport-easystud-card-menu", ".local-groupimport-easystud-user__primary-badge");
+  }
+}

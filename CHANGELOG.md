@@ -53,6 +53,8 @@ is not part of the public package.
 
 **Improved**
 
+- Keep participant selection and action menus centred on wrapped names in narrow cards.
+
 - Keep the search icon inside compact Guide filter fields.
 
 - Place the membership demonstration start above its comparison controls.
@@ -154,6 +156,8 @@ moving data or changing URLs.
   page vide ou partiellement construite.
 
 **Amélioré**
+
+- Maintien du centrage de la sélection et des actions sur les noms multilignes des cartes étroites.
 
 - La loupe reste dans le champ de recherche du Guide compact.
 
