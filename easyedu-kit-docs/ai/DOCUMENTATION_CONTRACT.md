@@ -1,3 +1,5 @@
+Shared floating Guide binding accepts either its navigation root or an ancestor containing it. Keep one binding implementation, preserve inactive state, scroll visibility, native click delegation and pagehide cleanup on both workspaces.
+
 Student Management configures the shared workspace lane surface with --easyedu-surface on every Moodle host. Keep the existing outlined Kit lanes and their seam-free split segments. Moodle 5.3 navigation and narrow metadata adaptations remain independent; do not remove their host guard or change the global soft-surface token used by other consumers. See docs/testing/unified-workspace-surface-2026-10-24.md.
 
 Guide document scroll lock compensates only a disappearing scrollbar, once per shared lock. Preserve existing inline padding and priority until the final root releases it; stable gutters already reserve their space. Native proof must require a nonzero real document scrollbar, not only Moodle's inner scroller or headless-hidden scrollbars. Keep fullscreen parking and release timing unchanged. See docs/testing/guide-scrollbar-lock-2026-10-24.md.

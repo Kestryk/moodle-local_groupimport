@@ -25,7 +25,8 @@
  */
 
 const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
-    const navigation = root.querySelector('[data-easyedu-navigation]');
+    const navigation = root.matches('[data-easyedu-navigation]') ?
+        root : root.querySelector('[data-easyedu-navigation]');
     if (!navigation || root.easystudFloatingGuideLauncher) {
         return;
     }
