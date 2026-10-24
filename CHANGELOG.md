@@ -1,3 +1,5 @@
+- 2026-10-24 Use the same white, lightly outlined Student Management columns on every supported Moodle version.
+
 - 2026-10-24 Keep narrow grouping names readable by letting the existing More control yield its reserved title space, as on group cards.
 
 - 2026-10-24 Keep the Student Management Guide accessible through a compact floating compass after its navigation scrolls out of view. Restore the normal launcher on return, respecting reduced animation preferences.
