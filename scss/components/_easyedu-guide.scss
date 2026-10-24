@@ -36,7 +36,14 @@
     }
   }
 
-  .easyedu-guide__launcher .easyedu-guide__launcher-label {
+  // K23-67 fix: this visually-hidden (sr-only) treatment is for the launcher's non-floating,
+  // icon-only compact form (label kept for screen readers only). The floating/sticky variant
+  // (--floating) reuses the same .easyedu-guide__launcher-label class but needs its label to
+  // actually become visible on hover — an explicit `width: 1px` here always wins over that
+  // variant's `max-inline-size` hover expansion (a fixed width caps the rendered size below any
+  // max-width), so the label stayed stuck at 1px no matter what. Excluding --floating here, not
+  // widening the selector in _guide.scss, since the sr-only intent is still correct everywhere else.
+  .easyedu-guide__launcher:not(.easyedu-guide__launcher--floating) .easyedu-guide__launcher-label {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
