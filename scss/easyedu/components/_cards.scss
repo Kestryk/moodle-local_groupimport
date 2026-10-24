@@ -1200,3 +1200,46 @@
 
 // Selected responsive person cards retain their accepted expanded extent.
 @mixin person-card-selected-unbounded { max-height: none; }
+
+// Wrapped participant names share a real grid row with selection and actions.
+// Absolute grid items use that row as their containing block, not a fixed first
+// line or the whole card (which also contains email and deferred metadata).
+@mixin person-card-wrapped-name-row($name, $selector, $menu, $badge) {
+  align-items: center;
+  gap: 4px 8px;
+  grid-template-columns: var(--easyedu-touch-target-min) minmax(0, 1fr) var(--easyedu-card-action-target) var(--easyedu-touch-target-min);
+  grid-template-rows: auto auto auto auto;
+  padding-inline: 0.9rem;
+
+  .easyedu-person-card__main,
+  .easyedu-person-card__headline,
+  .easyedu-person-card__headline-main { display: contents; }
+
+  #{$name} { grid-area: 1 / 2; }
+  .easyedu-person-card__detail-button {
+    grid-area: 1 / 3;
+    align-self: center;
+    margin-block: -5px;
+    top: 0;
+  }
+  > #{$selector},
+  > #{$menu} {
+    position: absolute;
+    inset: auto;
+    inset-inline-start: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  > #{$selector} { grid-area: 1 / 1 / 2 / 2; }
+  > #{$menu} { grid-area: 1 / 4 / 2 / 5; }
+  .easyedu-person-card__email { grid-area: 2 / 2; }
+  #{$badge} {
+    grid-area: 3 / 2;
+    justify-self: end;
+  }
+  .easyedu-person-card__meta {
+    grid-area: 4 / 2;
+    inline-size: auto;
+    max-inline-size: 100%;
+  }
+}
