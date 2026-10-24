@@ -17,6 +17,22 @@
 // intent, it only stops a host theme's own higher-specificity rule from
 // forcing a *different* family than the one EasyStud/the Kit resolved.
 //
+// K23-73 (2026-10-24): the token mixins MUST stay on the single-class selector
+// below, never inside the duplicated-class rule. The root `<div>` also carries
+// `.easyedu-ui`, whose own token block (same 0,1,0 weight, later in the
+// cascade) is meant to win on that element — notably
+// `--easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif` over the
+// compat default `inherit`. Doubling the class made `inherit` win instead, and
+// `inherit` is invalid inside a `font:` shorthand, so every Kit title using
+// `font: <weight> <size>/<lh> var(--easyedu-font-family-ui)` (app identity,
+// nav tabs, card titles, view switcher) silently fell back to the root's
+// inherited 15px/400 in the host system font.
+.local-groupimport-easystud {
+  @include easyedu.token-defaults;
+  @include easyedu.groupimport-compat-tokens;
+  // The animation level policy is page-wide: utilities/_animations.scss.
+}
+
 .local-groupimport-easystud.local-groupimport-easystud {
   box-sizing: border-box;
   color: var(--local-groupimport-easystud-text);
@@ -40,10 +56,6 @@
   *::after {
     box-sizing: inherit;
   }
-
-  @include easyedu.token-defaults;
-  @include easyedu.groupimport-compat-tokens;
-  // The animation level policy is page-wide: utilities/_animations.scss.
 }
 
 // Confirmed on a real DVL 4.5 pass (2026-10-24): that theme ships
