@@ -136,6 +136,7 @@
     box-shadow: var(--local-groupimport-easystud-guide-launcher-shadow);
     box-sizing: border-box;
     color: var(--easyedu-identity-icon-color);
+    gap: 0;
     block-size: 3rem;
     inline-size: 3rem;
     min-block-size: 3rem;
@@ -218,6 +219,7 @@
 
     &:hover,
     &:focus-visible {
+      gap: 0.45rem;
       .easyedu-guide__launcher-label {
         max-inline-size: 6rem;
         opacity: 1;

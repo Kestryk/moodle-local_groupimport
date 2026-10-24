@@ -1,3 +1,5 @@
+- Centre the floating Guide icon before hover, place notifications at the top left beneath the navbar, and keep grouping searches closed until requested. Rebuild the shared Small search-field assets already present in source.
+
 - Restore the floating Guide launcher on Mass Import when the page passes its navigation root directly. Keep Student Management and the normal Guide controls unchanged.
 
 - 2026-10-24 Add an opt-in Small text/search field matching its icon action (30.4px desktop, 44px through 1024px), preserving the existing field scale.
