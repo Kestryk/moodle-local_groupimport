@@ -355,7 +355,7 @@ class guide_config {
                         ['icon' => 'fa-user', 'label' => $templatedata['tutorialvisualtakeawayone']],
                         ['icon' => 'fa-users', 'label' => $templatedata['tutorialvisualtakeawaytwo']],
                         ['icon' => 'fa-layer-group', 'label' => $templatedata['tutorialvisualtakeawaythree']],
-                        ['icon' => 'fa-graduation-cap', 'label' => $templatedata['tutorialvisualtakeawayfour']],
+                        ['icon' => \local_groupimport\local\identity::ICON, 'label' => $templatedata['tutorialvisualtakeawayfour']],
                     ],
                 ];
             }

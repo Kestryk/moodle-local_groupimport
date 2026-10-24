@@ -226,7 +226,7 @@ final class guide_specimen {
         if ($tiles === null) {
             $tiles = [];
             $icons = ['create' => 'fa-plus', 'organise' => 'fa-right-left', 'filter' => 'fa-filter',
-                'assignment' => 'fa-graduation-cap'];
+                'assignment' => identity::ICON];
             foreach (self::REVIEW_INDEXES as $key => $index) {
                 $tiles[] = ['icon' => $icons[$key], 'index' => $index,
                     'title' => self::string('ready_' . $key . '_title'),

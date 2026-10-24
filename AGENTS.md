@@ -1,5 +1,9 @@
 # EasyEdu agent contract
 
+Use local\identity::ICON for EasyStud's navigation/Guide glyph. Never replace
+the EasyEdu platform cap or site favicon globally. Navigation hover timing
+must remain destination-scoped and preserve the restricted-motion override.
+
 Overflow-menu copies delegate exactly once to their original command. Stop the copy click from reaching the delegated handler again; preserve the original native event, business scope and Motion. Keep separate evidence for a menu trigger closing by itself and a copied command toggling a panel twice. See docs/testing/k23-intermediate-cards-2026-10-23.md.
 
 I11 presentation updates share a workspace-scoped after-render collector. Preserve

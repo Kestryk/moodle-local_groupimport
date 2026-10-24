@@ -461,6 +461,7 @@ function local_groupimport_build_navigation_context(
         'drawersubtitle' => get_string('easystudmanager', 'local_groupimport'),
         // K21-51: the desktop rail carries the product identity and the active view.
         'identityrail' => true,
+        'identityicon' => \local_groupimport\local\identity::ICON,
         'identitysubtitle' => get_string('participants'),
         'spaceslabel' => get_string('mobilenavigationspaces', 'local_groupimport'),
         'hasitems' => !empty($sections),

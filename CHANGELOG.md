@@ -1,3 +1,5 @@
+- Give EasyStud its own student-management icon in navigation and the Guide, preserving the platform brand. Slow navigation hover feedback without changing other controls or reduced-animation preferences.
+
 - Keep selection commands in the shared blue palette on import previews and participant toolbars, including buttons with Bootstrap secondary classes.
 
 - Restore the floating Guide launcher on Mass Import when the page passes its navigation root directly. Keep Student Management and the normal Guide controls unchanged.
