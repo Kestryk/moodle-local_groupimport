@@ -2,6 +2,8 @@ Student Management configures the shared workspace lane surface with --easyedu-s
 
 Constrained responsive Grouping headers reuse the Group in-flow overflow slot and release the absolute touch-action lane. Keep the shared title budget, selector/disclosure space, original menu commands and terminal Group count order. Test actual caption capacity as well as the preferred 7.5rem: mandatory selector/chevron geometry can cap the narrowest desktop identity below that preference. See docs/testing/card-title-priority-2026-10-24.md.
 
+Captioned search density uses the Kit intrinsic-width mixin, capped by its container without a fixed width or smaller text. Preserve caption-above and icon/input row, desktop Structure visibility and compact entity-region visibility. Full details shares the same participant search. See docs/testing/search-field-density-2026-10-24.md.
+
 Floating Guide access is an explicit Student Management adapter opt-in. Measure the navigation anchor against the native navbar, including compact zero-height anchors and Moodle's inner scroller. Delegate to the original Guide without moving its flow launcher or changing fullscreen/Motion. Keep the inactive copy disabled and preserve Close focus/scroll. See docs/testing/guide-floating-launcher-2026-10-24.md.
 
 Narrow Group/Grouping headers exhaust the native overflow menu before opting into the shared readable-identity row. Retain the action-sized first row, selector anchor and native menu closure; measure against card bounds, not only the header content box.

@@ -1,5 +1,15 @@
 # Forms And Filters
 
+## Intrinsic captioned search width
+
+`search-field-intrinsic` opts a captioned search into its native input's intrinsic
+width. It uses `inline-size: fit-content`, a 100% container maximum and start
+alignment. Compose it at the consumer's captioned-search boundary; do not change
+the base search component's full-width behavior for other consumers. Persistent
+caption, same-row icon/input, typography and 44px touch row remain unchanged.
+The desktop hidden-field guard and compact active-region visibility are separate
+consumer behaviors. See `docs/testing/search-field-density-2026-10-24.md`.
+
 ## Moodle deposit action-group centering — T005
 
 The shared file-deposit adapter gives only the outer `.easyedu-form-actions`
