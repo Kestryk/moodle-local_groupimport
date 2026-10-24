@@ -9,11 +9,15 @@
 $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
 
 // The accepted field-peer frame, shared by rename and constrained search Cancel.
+// K23-58: scaled down from the regular 2.375rem (38px) to the Kit's documented
+// "small" button step (1.9rem / 30.4px, see docs/components/buttons.md), since
+// this control sits beside a compact card-title field, not a toolbar. Stays
+// comfortably above the ~28-32px minimum tap target for a non-primary action.
 @mixin field-peer-icon-frame {
-      block-size: 2.375rem;
-      inline-size: 2.375rem;
-      min-block-size: 2.375rem;
-      min-inline-size: 2.375rem;
+      block-size: 1.9rem;
+      inline-size: 1.9rem;
+      min-block-size: 1.9rem;
+      min-inline-size: 1.9rem;
       border-radius: 0.5rem;
       flex: 0 0 auto;
       padding: 0;
@@ -247,21 +251,32 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     > .fa-plus {
       // Exact painted path of Foundations Control/plus, without SVG base-background
       // or font-baseline offset. Retain the native accessible button label.
+      // K23-58: 0.75rem glyph, scaled with the shrunk field-peer frame. The
+      // generic .fa base rule (components/_buttons.scss action-content) sets
+      // min-inline-size: 1em, i.e. ~0.88rem/14.1px from this button's own
+      // font-size — wider than our 0.75rem glyph, which would clamp/distort
+      // it off-square. Pin both min-* here to keep the glyph box square.
       background: currentColor;
-      block-size: 1rem;
-      inline-size: 1rem;
+      block-size: 0.75rem;
+      inline-size: 0.75rem;
+      min-block-size: 0.75rem;
+      min-inline-size: 0.75rem;
       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='312.875 291.875 16.25 16.25'%3E%3Cpath d='M322.25 293.125C322.25 292.43359375 321.69140625 291.875 321 291.875C320.30859375 291.875 319.75 292.43359375 319.75 293.125L319.75 298.75L314.125 298.75C313.43359375 298.75 312.875 299.30859375 312.875 300C312.875 300.69140625 313.43359375 301.25 314.125 301.25L319.75 301.25L319.75 306.875C319.75 307.56640625 320.30859375 308.125 321 308.125C321.69140625 308.125 322.25 307.56640625 322.25 306.875L322.25 301.25L327.875 301.25C328.56640625 301.25 329.125 300.69140625 329.125 300C329.125 299.30859375 328.56640625 298.75 327.875 298.75L322.25 298.75Z'/%3E%3C/svg%3E") center / contain no-repeat;
       &::before { content: none; }
     }
-    // K22-27: confirm / dismiss glyphs of the same field-peer icon button
-    // (inline rename Save / Cancel). Drawn by the component on the plus's
-    // 16 px box and stroke, so they centre by geometry whatever the icon font.
+    // K22-27/K23-58: confirm / dismiss glyphs of the same field-peer icon
+    // button (inline rename Save / Cancel). Drawn by the component on a
+    // 12 px box and stroke, scaled with the K23-58 frame (0.75rem keeps the
+    // same ~40% glyph-to-frame ratio as before), so they centre by geometry
+    // whatever the icon font. min-* pinned for the same reason as fa-plus above.
     > .fa-check,
     > .fa-save,
     > .fa-times {
       background: currentColor;
-      block-size: 1rem;
-      inline-size: 1rem;
+      block-size: 0.75rem;
+      inline-size: 0.75rem;
+      min-block-size: 0.75rem;
+      min-inline-size: 0.75rem;
       &::before { content: none; }
     }
     // Canonical Foundations floppy-disk (solid), with the same centred icon box.
@@ -286,9 +301,11 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       > .easyedu-inline-search-cancel__label { display: none; }
       > .fa-times {
         background: currentColor;
-        block-size: 1rem;
+        block-size: 0.75rem;
         display: inline-block;
-        inline-size: 1rem;
+        inline-size: 0.75rem;
+        min-block-size: 0.75rem;
+        min-inline-size: 0.75rem;
         mask: $field-peer-close-mask;
         &::before { content: none; }
       }
