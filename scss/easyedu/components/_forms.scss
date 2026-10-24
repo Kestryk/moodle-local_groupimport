@@ -72,6 +72,14 @@
   padding: 0.35rem;
 }
 
+// Keep captioned searches at their native input's intrinsic width inside wide lanes.
+@mixin search-field-intrinsic {
+  align-self: start;
+  inline-size: fit-content;
+  justify-self: start;
+  max-inline-size: 100%;
+}
+
 @mixin search-field {
   align-items: center;
   background: var(--easyedu-surface);
