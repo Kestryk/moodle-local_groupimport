@@ -1254,3 +1254,5 @@ Membership Start precedes Compare in reading, visual and keyboard order. Retain 
 Portalled Guide filter illustrations consume the canonical Search field recipe explicitly at compact widths. Never add easyedu-ui to the entire Guide to recover one missing ancestor; keep desktop paint and playback unchanged.
 
 Wrapped-name successors measure selection and menu against the full actual name Range on every sampled card. Preserve one-line versus multiline contrast, both densities, metadata containment and right-edge alignment. Use the shared intrinsic name row, never a card-index offset or hydration workaround.
+
+File-deposit removal explicitly restores the secondary text token after the regular button recipe; preserve destructive interaction states and filename type. Report summaries use the shared body role, semibold counts and their existing semantic colour parameters. See docs/testing/mass-import-summary-deposit-2026-10-24.md.

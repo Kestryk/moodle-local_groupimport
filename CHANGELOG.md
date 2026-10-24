@@ -1,3 +1,5 @@
+- 2026-10-24 Restore the file-removal action's secondary blue and use the shared body scale for import summaries, with semibold counts.
+
 - 2026-10-24 Use the same white, lightly outlined Student Management columns on every supported Moodle version.
 - 2026-10-24 Preserve page width when opening the Guide on a page with a document scrollbar, and restore the original padding on close.
 

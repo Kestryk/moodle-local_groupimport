@@ -199,6 +199,8 @@
 }
 
 @mixin report-summary-item($background: var(--easyedu-surface-soft), $border: var(--easyedu-card-border), $text: var(--easyedu-text)) {
+  @include typography.type-body;
+
   align-items: center;
   background: $background;
   border: 1px solid $border;
@@ -209,11 +211,11 @@
   padding: 0.7rem 0.8rem;
 
   strong {
-    // K23-XX: 1.18rem sat above every other heading in the plugin (card
-    // titles are 0.98rem). Match the accepted type scale instead of a
-    // one-off display size for this summary count.
-    font-size: var(--easyedu-font-size-section-title, 1rem);
-    line-height: 1;
+    // Counts share the report's body scale, with emphasis rather than a
+    // larger heading role. Keep the semantic status colour supplied above.
+    font-size: inherit;
+    font-weight: var(--easyedu-font-weight-semibold);
+    line-height: inherit;
   }
 }
 
