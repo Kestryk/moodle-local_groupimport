@@ -231,6 +231,24 @@
   min-width: 0;
 }
 
+// Opt in only after direct actions have exhausted the normal overflow menu.
+// The identity keeps the first row; terminal controls wrap without clipping.
+@mixin card-header-readable-fallback($plain-title: false) {
+  flex-wrap: wrap;
+  > :first-child {
+    flex-basis: 100%;
+    margin-block: 0;
+    max-width: 100%;
+    min-height: var(--easyedu-card-action-target);
+    min-width: 0;
+    @if $plain-title {
+      display: block;
+      line-height: var(--easyedu-card-action-target);
+      padding-block: 0;
+    }
+  }
+}
+
 // Keep the count after all direct actions and the overflow trigger in one flow.
 @mixin card-header-terminal-slot($slot: count) {
   @if $slot == count {
