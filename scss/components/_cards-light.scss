@@ -194,4 +194,15 @@
   .local-groupimport-easystud-grouping__header.is-title-constrained {
     @include easyedu.card-header-readable-fallback;
   }
+
+  // Once the identity owns its row, its action must yield that row as well.
+  // Reuse the Group's in-flow overflow slot rather than reserving a second,
+  // absolute touch-action lane inside the Grouping title.
+  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-grouping__header.is-title-constrained {
+    @include easyedu.identity-card-action-clearance($flow: true);
+
+    > .local-groupimport-easystud-card-menu {
+      @include easyedu.card-header-terminal-slot(overflow);
+    }
+  }
 }
