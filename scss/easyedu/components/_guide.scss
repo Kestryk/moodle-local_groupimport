@@ -129,7 +129,10 @@
   .easyedu-guide__launcher.easyedu-guide__launcher--floating {
     background: var(--local-groupimport-easystud-guide-launcher-gradient);
     border: 0;
-    border-radius: 50%;
+    // K23-67: half of the 48px resting frame, so the circle at rest is unchanged while the box
+    // can still grow into a pill once hover expands it (a 50% radius would instead race toward
+    // an ellipse as inline-size grows).
+    border-radius: 1.5rem;
     box-shadow: var(--local-groupimport-easystud-guide-launcher-shadow);
     box-sizing: border-box;
     color: var(--easyedu-identity-icon-color);
@@ -140,12 +143,18 @@
     inset-block-start: calc(var(--easyedu-guide-floating-top, 0px) + max(0.75rem, env(safe-area-inset-top)));
     inset-inline-end: max(1rem, env(safe-area-inset-right));
     opacity: 0;
-    padding: 0;
+    overflow: hidden;
+    padding-inline: 0.85rem;
     pointer-events: none;
     position: fixed;
     transform: scale(0.85);
+    // K23-67: hover-to-expand adds inline-size/padding to the same --easyedu-motion-slow (220ms)
+    // family already used for this button's own show/hide transition below, so expanding on
+    // hover and appearing on scroll read as one consistent pace rather than two.
     transition:
+      inline-size var(--easyedu-motion-slow) var(--easyedu-motion-ease),
       opacity var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      padding-inline var(--easyedu-motion-slow) var(--easyedu-motion-ease),
       transform var(--easyedu-motion-slow) var(--easyedu-motion-ease),
       visibility 0s linear var(--easyedu-motion-slow);
     visibility: hidden;
@@ -159,9 +168,26 @@
     // opener, now or if a future Moodle/theme change repositions one.
     z-index: var(--easyedu-guide-floating-layer, 1210);
 
-    .easyedu-guide__launcher-label,
     .easyedu-guide__launcher-short {
       display: none;
+    }
+
+    // K23-67: hover/focus reveal, text collapsed to zero width at rest. Reuses the Kit's own
+    // expand-to-label pattern (the desktop nav rail's Guide launcher label reveal,
+    // _navigation.scss "is-label-revealed"/:hover rules) rather than a bespoke tooltip/popover.
+    .easyedu-guide__launcher-label {
+      color: inherit;
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      max-inline-size: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-inline-size var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+      white-space: nowrap;
     }
 
     .easyedu-guide__launcher-icon,
@@ -171,16 +197,31 @@
       border-radius: 0;
       box-shadow: none;
       color: inherit;
-      // K23-61: fa-compass is a solid/filled Font Awesome glyph; at the previous 1.5rem (50% of
-      // the 48px circle) its heavy fill read as oversized next to the Kit's other small
-      // circular-button icons (e.g. the modal hero icon keeps its glyph near 42% of its frame).
-      // Shrink the glyph only — the 48px circle itself stays, it is the documented floating
-      // thumb-reachable target size (Foundations Library / Guide launcher / Desktop / Default).
-      font-size: 1.25rem;
-      block-size: 1.25rem;
-      inline-size: 1.25rem;
-      min-inline-size: 1.25rem;
+      flex: 0 0 auto;
+      // K23-67: Kevin reported the K23-61 size (1.25rem, 42% of the 48px frame, matching the
+      // Kit's generic hero-icon ratio) still read oversized. Match instead the exact glyph size
+      // of the Guide's own icon-only control (.easyedu-direct-icon, the Display preferences
+      // trigger in this same modal's footer, templates/easyedu_guide.mustache) at its
+      // touch-target size: 1rem (scss/easyedu/_preferences-classes.scss, the
+      // "max-width: 48rem, pointer: coarse" branch of card-direct-action). The 48px circle
+      // itself stays unchanged — still the documented floating/thumb-reachable size
+      // (Foundations Library / Guide launcher / Desktop / Default). Color stays this button's
+      // identity-icon color (inherit), not .easyedu-direct-icon's var(--easyedu-primary): that
+      // reference sits on a transparent background, this icon sits on a filled brand gradient
+      // and needs the contrast treatment it already had.
+      font-size: 1rem;
+      block-size: 1rem;
+      inline-size: 1rem;
+      min-inline-size: 1rem;
       transform: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      .easyedu-guide__launcher-label {
+        max-inline-size: 6rem;
+        opacity: 1;
+      }
     }
 
     &.is-visible {
@@ -189,6 +230,13 @@
       transform: scale(1);
       transition-delay: 0s;
       visibility: visible;
+
+      &:hover,
+      &:focus-visible {
+        // K23-67: expand only once fully shown, so the icon never changes width while it is
+        // still fading/scaling in or out.
+        inline-size: auto;
+      }
     }
 
     &:focus-visible {
