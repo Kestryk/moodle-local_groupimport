@@ -5,6 +5,7 @@
 @use "components/focus";
 @use "components/animations";
 @use "components/typography";
+@use "components/text-fields";
 
 $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
 
@@ -14,13 +15,17 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 // this control sits beside a compact card-title field, not a toolbar. Stays
 // comfortably above the ~28-32px minimum tap target for a non-primary action.
 @mixin field-peer-icon-frame {
-      block-size: 1.9rem;
       inline-size: 1.9rem;
-      min-block-size: 1.9rem;
       min-inline-size: 1.9rem;
       border-radius: 0.5rem;
       flex: 0 0 auto;
       padding: 0;
+      @include text-fields.field-peer-small-size;
+
+      @media (max-width: 1024px) {
+        inline-size: var(--easyedu-touch-target-min);
+        min-inline-size: var(--easyedu-touch-target-min);
+      }
 }
 
 // Shared accepted frame/choice compositions; the consumer retains placement.
@@ -295,8 +300,12 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   // the rename X frame; the accessible name and native command never change.
   .easyedu-ui .easyedu-inline-search-cancel > .fa-times { display: none; }
   @container easyedu-inline-search (max-width: 20rem) {
+    .easyedu-ui .easyedu-search-field:has(+ .easyedu-inline-search-cancel) {
+      @include text-fields.search-field-peer-small;
+    }
     .easyedu-ui .easyedu-inline-search-cancel.easyedu-button--secondary {
       @include foundations.foundation-button($secondary: true, $density: compact);
+      align-self: end;
       @include field-peer-icon-frame;
       > .easyedu-inline-search-cancel__label { display: none; }
       > .fa-times {
