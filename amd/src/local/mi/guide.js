@@ -107,8 +107,12 @@ export const init = rootId => {
 
     // Compact screens: the launcher moves into the navigation drawer and the Guide surfaces
     // to body, exactly as on Student Management.
+    // K23-68: every Guide launcher in the plugin gets the floating/sticky behaviour once its own
+    // navigation scrolls out of view, not only Student Management's. The binding itself
+    // (bindGuideLauncher/bindFloatingGuideLauncher, ./guide_launcher) was already view-agnostic
+    // (GMI-C4); only the opt-in flag was missing here.
     if (navigation) {
-        bindGuideLauncher(navigation, COMPACT_QUERY);
+        bindGuideLauncher(navigation, COMPACT_QUERY, {floating: true});
     }
 
     document.addEventListener('easyedu:guide-open-target', event => {
