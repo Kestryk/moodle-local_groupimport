@@ -258,13 +258,17 @@
     // touch-target minimum.
     transform: translateY(-50%);
     transform-origin: left center;
+    // K23-66: Kevin reported the hover expand/collapse of this handle as "too fast" at the Kit's
+    // --easyedu-motion-fast (100ms). Move it to --easyedu-motion-slow (220ms), the same pacing
+    // already used by the floating Guide launcher's own show/hide transition (K23-43,
+    // scss/easyedu/components/_guide.scss), instead of inventing a new duration.
     transition:
-      background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      gap var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      inline-size var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+      background-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      border-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      box-shadow var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      gap var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      inline-size var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-slow) var(--easyedu-motion-ease);
     white-space: nowrap;
     z-index: var(--easyedu-navigation-layer-trigger);
 
@@ -318,9 +322,10 @@
     max-inline-size: 0;
     opacity: 0;
     overflow: hidden;
+    // K23-66: keep the label reveal in step with its parent handle's slower pacing above.
     transition:
-      max-inline-size var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+      max-inline-size var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      opacity var(--easyedu-motion-slow) var(--easyedu-motion-ease);
   }
 
   .easyedu-navigation__trigger:hover .easyedu-navigation__trigger-label,
