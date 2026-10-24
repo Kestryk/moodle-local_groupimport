@@ -52,7 +52,8 @@
   .easyedu-ui[data-easyedu-motion-policy="disabled"] .easyedu-color-panel[open],
   body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] { animation: none; }
   .easyedu-ui .easyedu-color-picker__trigger {
-    @include focus.ring;
+    // K23-84: no resting ring (the former rest-state ring include was always
+    // cancelled below; it is now authoritative, so only :focus-visible keeps it).
     background: var(--easyedu-color-current);
     border: 1px solid var(--easyedu-border-strong);
     border-radius: 0.55rem;

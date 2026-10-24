@@ -69,7 +69,6 @@
   &.disabled {
     background: var(--easyedu-surface-soft) $p;
     border-color: var(--easyedu-card-border) $p;
-    box-shadow: none $p;
     color: var(--easyedu-text-muted) $p;
     cursor: not-allowed;
     opacity: 0.62 $p;
