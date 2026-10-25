@@ -7,17 +7,13 @@ const {spawnSync} = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
 const php = process.argv[2];
 assert.ok(php && path.isAbsolute(php), 'Pass an absolute PHP CLI path');
-const ajax = fs.readFileSync(path.join(root, 'ajax.php'), 'utf8').replace(/\r\n/g, '\n');
+const inventory = require('./lib/php-function-inventory.cjs');
 const actions = ['renamegroup', 'duplicategroup', 'duplicategrouping', 'deletegroupings'];
 const branches = {};
 for (const action of actions) {
-    const marker = `} else if ($action === '${action}') {`;
-    const start = ajax.indexOf(marker) + marker.length;
-    assert.ok(start >= marker.length, `${action} exists`);
-    let end = ajax.indexOf('\n    } else if', start);
-    if (end < 0) end = ajax.indexOf('\n    }\n} catch', start);
-    assert.ok(end > start, `${action} bounded branch`);
-    branches[action] = ajax.slice(start, end);
+    const method = inventory(php, path.join(root, 'classes/local/ajax', action + '.php')).handle;
+    assert.ok(method && method.body, `${action} current action handler exists`);
+    branches[action] = method.body;
 }
 const manage = fs.readFileSync(path.join(root, 'manage.php'), 'utf8').replace(/\r\n/g, '\n');
 for (const action of ['renamegroup', 'renamegrouping']) {

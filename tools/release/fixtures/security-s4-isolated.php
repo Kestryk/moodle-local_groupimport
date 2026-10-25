@@ -163,7 +163,7 @@ function load_functions(string $file, array $names): void {
 }
 $file = ($argv[1] ?? 'ajax') === 'manage' ? 'manage.php' : 'ajax.php';
 require_once($root . '/classes/local/create_names.php');
-load_functions($root . '/' . $file, ['local_groupimport_extract_create_names', 'local_groupimport_number_to_letters']);
+// Both former page wrappers delegate to this same current parser.
 $DB = new memory_db();
 $CFG = (object)['groupenrolmentkeypolicy' => false];
 policy::require_request('POST', 5);
@@ -198,11 +198,11 @@ check(mb_strlen($name) === 254, 'Bounded copy');
 $DB->rows['groups'][] = (object)['id' => 8, 'courseid' => 5, 'name' => $name];
 $copy = policy::copy_name('groups', 5, $long);
 check(mb_strlen($copy) === 254 && str_ends_with($copy, ' (2)'), 'Collision suffix within boundary');
-check(count(local_groupimport_extract_create_names('A #*200; B #*200; C #*100')) === 500, 'Global creation boundary');
-rejects(fn()=>local_groupimport_extract_create_names('A #*200; B #*200; C #*101'), 'Global cap');
-rejects(fn()=>local_groupimport_extract_create_names(implode(';', array_fill(0, 501, 'a'))), 'Segment cap');
-rejects(fn()=>local_groupimport_extract_create_names(str_repeat('a', 255)), 'Parser name limit');
-check(local_groupimport_extract_create_names('G @*2') === ['G A', 'G B'], 'Letter expansion');
+check(count(\local_groupimport\local\create_names::extract('A #*200; B #*200; C #*100')) === 500, 'Global creation boundary');
+rejects(fn()=>\local_groupimport\local\create_names::extract('A #*200; B #*200; C #*101'), 'Global cap');
+rejects(fn()=>\local_groupimport\local\create_names::extract(implode(';', array_fill(0, 501, 'a'))), 'Segment cap');
+rejects(fn()=>\local_groupimport\local\create_names::extract(str_repeat('a', 255)), 'Parser name limit');
+check(\local_groupimport\local\create_names::extract('G @*2') === ['G A', 'G B'], 'Letter expansion');
 $groups = [1 => (object)['id' => 1, 'courseid' => 5], 2 => (object)['id' => 2, 'courseid' => 6]];
 $members = ['1:10' => true, '1:11' => true];
 $components = ['1:11' => 'enrol_meta'];
@@ -244,6 +244,9 @@ check(
     ),
     'Method/site check before dispatch'
 );
+foreach (glob($root . '/classes/local/ajax/*.php') as $handler) {
+    $source .= file_get_contents($handler);
+}
 check(substr_count($source, 'ajax_security::remove_members(') === 2, 'Both removal actions guarded');
 check(!str_contains($source, '$searchparts[] = $member->email'), 'No email search leak');
 echo json_encode(['suite' =>

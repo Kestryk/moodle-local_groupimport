@@ -210,13 +210,9 @@ if (substr_count($assignment, $bootstrap) !== 1) {
 require(\local_groupimport_fixture_source_file(substr(str_replace($bootstrap, '', $assignment), 5)));
 use local_groupimport\local\bulk_action;
 use local_groupimport\local\ajax_security;
-$source = file_get_contents($root . '/ajax.php');
-$bodies = [];
+require($root . '/classes/local/ajax/ajax_action.php');
 foreach (['addusers', 'addemails', 'removemembers', 'deletegroups'] as $name) {
-    $marker = "} else if (\$action === '$name') {";
-    $start = strpos($source, $marker) + strlen($marker);
-    $end = strpos($source, "} else if (\$action === '", $start);
-    $bodies[$name] = substr($source, $start, $end - $start);
+    require($root . '/classes/local/ajax/' . $name . '.php');
 }
 $checks = 0;
 /**
@@ -271,11 +267,8 @@ function action($name, $input) {
     $course = (object)['id' => 5];
     $response = ['success' => false];
     $GLOBALS['input'] = $input;
-    require(\local_groupimport_fixture_source_file(
-        'use local_groupimport\\local\\bulk_action; use local_groupimport\\local\\ajax_security; ' .
-        $GLOBALS['bodies'][$name]
-    ));
-    return $response;
+    $handler = '\\local_groupimport\\local\\ajax\\' . $name;
+    return $handler::handle($course, $context, $response);
 }
 /**
  * Perform isolated fixture operation rejection.
