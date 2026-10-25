@@ -460,6 +460,7 @@ class guide_config {
             'welcomeOffer' => \local_groupimport\local\guide_welcome::should_offer(),
             // K18-16: on compact layouts the compass lives in the closed navigation drawer.
             'welcomeCompactTarget' => '[data-easyedu-navigation-open]',
+            'welcomeAvoidTargets' => '[data-easystud-layout-mode], [data-easystud-mobile-view]',
             'highlightAutoHideDelay' => 5200,
             'highlightStyle' => 'pulse-blue',
             'targets' => [

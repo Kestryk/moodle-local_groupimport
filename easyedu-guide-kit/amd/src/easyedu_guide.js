@@ -15,6 +15,7 @@ const DEFAULTS = {
   welcomeTarget: '',
   // Optional visible stand-in when the launcher sits in a closed drawer (compact layouts).
   welcomeCompactTarget: '',
+  welcomeAvoidTargets: '',
   fullscreen: false,
   highlightAutoHideDelay: 9000,
   highlightStyle: 'default',
@@ -3581,8 +3582,15 @@ const placeWelcome = root => {
   const left = Math.max(gutter, Math.min(rect.left - 4, viewWidth - gutter - width));
   let top = rect.bottom + gap;
   let placement = 'below';
-  if (top + height > viewHeight - gutter && rect.top - gap - height >= gutter) {
-    top = rect.top - gap - height;
+  const above = rect.top - gap - height;
+  const avoid = root.easyeduGuideConfig?.welcomeAvoidTargets;
+  const protectedRects = avoid ? Array.from(document.querySelectorAll(avoid))
+    .filter(isVisibleElement).map(element => element.getBoundingClientRect()) : [];
+  const overlaps = candidateTop => protectedRects.some(area =>
+    left < area.right && left + width > area.left && candidateTop < area.bottom && candidateTop + height > area.top);
+  // A first-visit invitation must leave the consumer's workspace controls usable.
+  if (above >= gutter && (top + height > viewHeight - gutter || (overlaps(top) && !overlaps(above)))) {
+    top = above;
     placement = 'above';
   }
   const clamped = Math.max(gutter, Math.min(top, viewHeight - gutter - height));

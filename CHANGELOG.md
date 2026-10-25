@@ -254,3 +254,5 @@ d'URL.
   ultérieurs non liés.
 - Un exemple de fichier Excel mis en forme, avec des instructions et des
   lignes représentatives.
+
+- Keep the first-visit Guide invitation clear of workspace view controls; synchronize Behat density checks with the existing animation completion.
