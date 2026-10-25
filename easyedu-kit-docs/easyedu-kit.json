@@ -4,6 +4,24 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "placeholderTypography20261025": {
+      "canonicalCommit": "05dc6228cfcf9d5db82fe7fd402929d918c7dffd",
+      "canonicalVersion": "0.4.225",
+      "recipes": [
+        "components/text-fields.field-text",
+        "components/field-paint.placeholder"
+      ],
+      "files": [
+        "scss/easyedu/_data-classes.scss",
+        "scss/easyedu/_workspace-control-classes.scss",
+        "scss/easyedu/components/_field-paint.scss",
+        "scss/easyedu/components/_forms.scss",
+        "scss/easyedu/components/_searchable-choices.scss",
+        "scss/easyedu/components/_text-fields.scss"
+      ],
+      "fullModuleParity": false,
+      "reason": "Preserve existing consumer legacy-priority host-theme adapters; shared text recipe and call sites are reconciled."
+    },
     "cardHeaderNarrowHost20261024": {
       "component": "narrow-card-header-and-open-menu-host",
       "canonicalBase": "59c2e4c",

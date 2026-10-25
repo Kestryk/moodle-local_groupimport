@@ -18,15 +18,21 @@ $-field-block-padding: (
   xl: 1.0875rem,
 );
 
+// Shared native field typography; search wrappers keep ownership of geometry.
+@mixin field-text($size: small) {
+  font-family: var(--easyedu-font-family-ui);
+  font-size: scale.scale-font($size);
+  font-weight: 400;
+  line-height: 1.2;
+  @include field-paint.placeholder;
+}
+
 @mixin foundation-text-field($size: regular, $legacy-priority: false) {
   $step: scale.scale-step($size);
 
   // The family token may resolve to `inherit`, which is invalid inside `font`.
   // Longhands preserve the measured density while inheriting the Moodle family.
-  font-family: var(--easyedu-font-family-ui);
-  font-size: scale.scale-font($step);
-  font-weight: 400;
-  line-height: 1.2;
+  @include field-text($step);
   height: auto;
   min-height: scale.scale-size($step);
   min-width: 0;
@@ -50,13 +56,14 @@ $-field-block-padding: (
   }
 }
 
-// Small search frame: retain the existing inline geometry, type and paint.
+// Small search frame: share the native Small text field typography.
 // The frame (including its border), not its borderless input, owns final height.
 @mixin search-field-peer-small-frame {
   box-sizing: border-box;
   padding-block: 0;
   @include field-peer-small-size($fixed-frame: true);
   > input {
+    @include field-text;
     box-sizing: border-box;
     block-size: 100%;
     min-block-size: 0;

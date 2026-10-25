@@ -6,6 +6,15 @@
 // $legacy-priority (K23-84): an illustration field (readonly, never focused) may
 // meet a host theme that greys every readonly/disabled field with !important
 // (DVL 4.5 `_forms.scss`). The opt-in keeps the same Kit paint at that priority.
+@mixin placeholder($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
+  &::placeholder {
+    font: inherit;
+    color: var(--easyedu-text-muted) $p;
+    opacity: 1;
+  }
+}
+
 @mixin paint($legacy-priority: false) {
   $p: if($legacy-priority, !important, null);
   background: var(--easyedu-surface) $p;
@@ -20,10 +29,7 @@
     border-color var(--easyedu-motion-fast) ease,
     box-shadow var(--easyedu-motion-fast) ease;
 
-  &::placeholder {
-    color: var(--easyedu-text-muted) $p;
-    opacity: 1;
-  }
+  @include placeholder($legacy-priority);
 
   // Resting hover must never obscure keyboard focus or an explicit error.
   &:hover:not(:disabled):not([aria-disabled="true"]):not(:focus):not(:focus-visible):not([aria-invalid="true"]) {

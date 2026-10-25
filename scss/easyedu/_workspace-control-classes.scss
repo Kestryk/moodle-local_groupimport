@@ -211,14 +211,13 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       box-shadow: none;
       color: var(--easyedu-field-text);
       flex: 1 1 auto;
-      font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+      @include text-fields.field-text;
       block-size: 100%;
       inline-size: 100%;
       min-block-size: 0;
       min-inline-size: 0;
       padding: 0;
 
-      &::placeholder { color: var(--easyedu-text-muted); opacity: 1; }
       // The field frame owns the ring (K23-84: authoritative against host outlines).
       &:focus { background: transparent; @include focus.delegated-ring; }
     }

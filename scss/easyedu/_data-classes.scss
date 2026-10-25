@@ -3,6 +3,7 @@
 @use "components/focus";
 @use "components/animations";
 @use "components/forms";
+@use "components/text-fields";
 @use "components/notices";
 @use "components/tables";
 @use "components/typography" as type;
@@ -57,7 +58,7 @@
     margin: 0;
     input {
       background: transparent;
-      font: 400 0.8125rem/1.2 var(--easyedu-font-family-ui);
+      @include text-fields.field-text;
       min-height: 2.3rem;
       width: 100%;
     }
