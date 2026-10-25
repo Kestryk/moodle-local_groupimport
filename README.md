@@ -99,7 +99,11 @@ Internal release scripts are indexed by purpose, prerequisites and last document
 [the test suite catalogue](docs/testing/TEST-SUITE-CATALOGUE.md).
 
 - Personal Display and animations (ANIM): `docs/display-preferences-2026-10-17.md`.
-- Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
+- Build release AMD with `node tools/release/build-amd-official.cjs MOODLE_BUILD_ROOT`;
+  verify with the same command plus `--check`. This runs Moodle's official Grunt
+  pipeline, including zero-warning ESLint, in isolated staging. Historical
+  module-specific builders must be followed by this canonical build before a
+  release commit. See [the AMD build contract](docs/testing/official-amd-build-2026-10-25.md).
 
 - The manifest allows installation from Moodle 4.5 (`version.php`). Native
   Moodle 4.5 installation, upgrade and functional certification remain pending

@@ -58,6 +58,11 @@ Fullscreen parking must preserve parent-relative sibling flow, not only border-b
 
 # EasyEdu documentation contract
 
+Release AMD uses Moodle's official Grunt pipeline and lockfile, not handwritten
+wrapper equivalence. Run build-amd-official.cjs and its --check mode after any
+module-specific builder; preserve product sources, lint gates and historical
+behaviour assertions. See docs/testing/official-amd-build-2026-10-25.md.
+
 Privacy tests keep their discovery/export/erasure assertions across database
 drivers. Normalize SQL context ids for strict identity checks and use fresh
 preference reads plus database assertions after deletion by id. Uninstall must
