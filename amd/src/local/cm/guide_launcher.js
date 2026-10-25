@@ -24,6 +24,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import Log from 'core/log';
+
 const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
     const navigation = root.matches('[data-easyedu-navigation]') ?
         root : root.querySelector('[data-easyedu-navigation]');
@@ -66,7 +68,7 @@ const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
         launcher.style.setProperty('--easyedu-guide-floating-label-width', `${width}px`);
     };
     measureLabel();
-    document.fonts.ready.then(measureLabel).catch(error => window.console.error(error));
+    document.fonts.ready.then(measureLabel).catch(error => Log.error(error));
     let frame = 0;
     const headers = Array.from(document.querySelectorAll('.navbar.fixed-top, .navbar.sticky-top'));
     const sync = () => {
