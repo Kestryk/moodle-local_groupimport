@@ -53,34 +53,34 @@ Feature: Open and navigate the EasyStud management workspace
   Scenario: Participants navigation opens EasyStud and switches all workspaces
     Given I am on the "ES101" "Course" page logged in as "teacher1"
     When I navigate to "Participants" in current page administration
-    Then the "#local-groupimport-easystud" "css_element" should be visible
+    Then "#local-groupimport-easystud" "css_element" should be visible
     And I should see "Student One" in the "#local-groupimport-easystud" "css_element"
-    And the "[data-easystud-layout-mode='both']" "css_element" should exist
-    And the "[data-easystud-layout-mode='participants']" "css_element" should exist
-    And the "[data-easystud-layout-mode='structure']" "css_element" should exist
+    And "[data-easystud-layout-mode='both']" "css_element" should exist
+    And "[data-easystud-layout-mode='participants']" "css_element" should exist
+    And "[data-easystud-layout-mode='structure']" "css_element" should exist
     When I click on "[data-easystud-layout-mode='participants']" "css_element"
-    Then the ".local-groupimport-easystud--participant-focus" "css_element" should exist
+    Then ".local-groupimport-easystud--participant-focus" "css_element" should exist
     When I click on "[data-easystud-layout-mode='structure']" "css_element"
-    Then the ".local-groupimport-easystud--structure-focus" "css_element" should exist
+    Then ".local-groupimport-easystud--structure-focus" "css_element" should exist
     When I click on "[data-easystud-layout-mode='both']" "css_element"
-    Then the ".local-groupimport-easystud--participant-focus" "css_element" should not exist
-    And the ".local-groupimport-easystud--structure-focus" "css_element" should not exist
+    Then ".local-groupimport-easystud--participant-focus" "css_element" should not exist
+    And ".local-groupimport-easystud--structure-focus" "css_element" should not exist
 
   Scenario: Participant density and selection can be changed without mutating course data
     Given I am on the "ES101" "Course" page logged in as "teacher1"
     When I navigate to "Participants" in current page administration
-    Then the ".local-groupimport-easystud--compact-users" "css_element" should exist
+    Then ".local-groupimport-easystud--compact-users" "css_element" should exist
     When I click on "[data-easystud-density-toggle]" "css_element"
-    Then the ".local-groupimport-easystud--compact-users" "css_element" should not exist
+    Then ".local-groupimport-easystud--compact-users" "css_element" should not exist
     When I click on "[data-easystud-user][data-user-id] > .local-groupimport-easystud-selector" "css_element"
-    Then the "[data-easystud-user].is-selected" "css_element" should exist
-    And the "[data-easystud-clear-all-selection]" "css_element" should be visible
+    Then "[data-easystud-user].is-selected" "css_element" should exist
+    And "[data-easystud-clear-all-selection]" "css_element" should be visible
     When I click on "[data-easystud-clear-all-selection]" "css_element"
-    Then the "[data-easystud-user].is-selected" "css_element" should not exist
+    Then "[data-easystud-user].is-selected" "css_element" should not exist
 
   Scenario: Teacher opens Mass Import and sees its upload panels
     Given I am on the "ES101" "Course" page logged in as "teacher1"
-    When I follow "Mass Import"
-    Then the "#local-groupimport-import" "css_element" should be visible
-    And the ".local-groupimport-import-card--upload" "css_element" should be visible
-    And the ".local-groupimport-import-fields" "css_element" should be visible
+    When I navigate to "Mass Import" in current page administration
+    Then "#local-groupimport-import" "css_element" should be visible
+    And ".local-groupimport-import-card--upload" "css_element" should be visible
+    And ".local-groupimport-import-fields" "css_element" should be visible

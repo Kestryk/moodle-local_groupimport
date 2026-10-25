@@ -32,5 +32,5 @@ Feature: EasyStud management accessibility
   Scenario: The EasyStud-owned management region passes the Moodle axe check
     Given I am on the "ESA11" "Course" page logged in as "teacher1"
     When I navigate to "Participants" in current page administration
-    Then the "#local-groupimport-easystud" "css_element" should be visible
+    Then "#local-groupimport-easystud" "css_element" should be visible
     And the "#local-groupimport-easystud" "css_element" should meet accessibility standards with "best-practice" extra tests
