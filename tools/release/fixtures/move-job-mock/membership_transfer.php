@@ -31,6 +31,10 @@ final class membership_transfer {
     public static ?int $failat = 501;
     /**
      * Apply an isolated batch or fail after a provisional mutation.
+     *
+     * @param int $courseid Fixture course id.
+     * @param int $destinationid Destination group id.
+     * @param array $pairs Member and origin group pairs.
      */
     public static function move_members(int $courseid, int $destinationid, array $pairs): array {
         global $DB;

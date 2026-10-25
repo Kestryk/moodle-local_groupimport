@@ -22,7 +22,10 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/** Isolated AJAX surface verification: actual dispatch, no Moodle bootstrap or database.  * @copyright 2026 Kevin Jarniac
+/**
+ * Isolated AJAX surface verification: actual dispatch, no Moodle bootstrap or database.
+ *
+ * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('CLI_SCRIPT', true);

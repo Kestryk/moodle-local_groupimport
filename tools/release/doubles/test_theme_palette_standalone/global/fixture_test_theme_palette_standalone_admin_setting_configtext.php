@@ -28,7 +28,8 @@
 class fixture_test_theme_palette_standalone_admin_setting_configtext {
     /**
      * Perform isolated fixture operation __construct.
-     * @param mixed $arguments Fixture argument.
+     *
+     * @param mixed ...$arguments Fixture argument.
      * @return mixed Fixture result.
      */
     public function __construct(...$arguments) {

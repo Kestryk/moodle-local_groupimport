@@ -145,7 +145,8 @@ function isguestuser($id) {
 }
 /**
  * Perform isolated fixture operation is_enrolled.
- * @param mixed $args Fixture argument.
+ *
+ * @param mixed ...$args Fixture argument.
  * @return mixed Fixture result.
  */
 function is_enrolled(...$args) {
@@ -153,8 +154,9 @@ function is_enrolled(...$args) {
 }
 /**
  * Perform isolated fixture operation get_string.
+ *
  * @param mixed $key Fixture argument.
- * @param mixed $args Fixture argument.
+ * @param mixed ...$args Fixture argument.
  * @return mixed Fixture result.
  */
 function get_string($key, ...$args) {

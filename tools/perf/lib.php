@@ -25,6 +25,9 @@
 
 /**
  * Write an external JSON record atomically, without authentication state.
+ *
+ * @param string $path External fixture record path.
+ * @param array $data Fixture data to persist.
  */
 function easystud_perf_write(string $path, array $data): void {
     if (!is_dir(dirname($path)) || !is_writable(dirname($path))) {
@@ -61,6 +64,8 @@ function easystud_perf_require_local(): array {
 
 /**
  * Read a manifest; a matching course name alone is never ownership evidence.
+ *
+ * @param string $path External fixture record path.
  */
 function easystud_perf_manifest(string $path): array {
     $data = json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
@@ -75,6 +80,8 @@ function easystud_perf_manifest(string $path): array {
 
 /**
  * Validate every existing owned object before measurement or deletion.
+ *
+ * @param array $manifest Owned fixture manifest.
  */
 function easystud_perf_validate(array $manifest): void {
     global $DB;
@@ -129,6 +136,8 @@ function easystud_perf_validate(array $manifest): void {
 
 /**
  * Hash existing relationship rows; no passwords, names or private messages are read.
+ *
+ * @param array $manifest Owned fixture manifest.
  */
 function easystud_perf_relationships(array $manifest): array {
     global $DB;

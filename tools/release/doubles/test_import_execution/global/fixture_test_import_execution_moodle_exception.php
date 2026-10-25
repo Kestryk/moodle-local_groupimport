@@ -28,8 +28,9 @@
 class fixture_test_import_execution_moodle_exception extends Exception {
     /**
      * Perform isolated fixture operation __construct.
+     *
      * @param mixed $code Fixture argument.
-     * @param mixed $args Fixture argument.
+     * @param mixed ...$args Fixture argument.
      * @return mixed Fixture result.
      */
     public function __construct($code, ...$args) {

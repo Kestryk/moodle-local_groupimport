@@ -54,12 +54,18 @@ namespace {
     require_once(__DIR__ . '/fixtures/move-job-mock/moodle_url.php');
     /**
      * Keep translations outside this transaction contract.
+     *
+     * @param string $key Requested field or string key.
+     * @param string $component Language component.
+     * @param mixed $data Fixture data to persist.
      */
     function get_string(string $key, string $component, $data = null): string {
         return $key;
     }
     /**
      * Buffer one native notification before its commit hook runs.
+     *
+     * @param object $message Message data or assertion description.
      */
     function message_send(object $message): int {
         $GLOBALS['movemessages'] = ($GLOBALS['movemessages'] ?? 0) + 1;
@@ -67,12 +73,17 @@ namespace {
     }
     /**
      * Return the job's course.
+     *
+     * @param int $id Requested fixture record id.
      */
     function get_course(int $id): object {
         return (object)['id' => $id];
     }
     /**
      * Enforce the permission boundary in the test process.
+     *
+     * @param string $capability Capability name accepted by the double.
+     * @param object $context Fixture capability context.
      */
     function require_capability(string $capability, object $context): void {
         global $denied;
@@ -82,6 +93,9 @@ namespace {
     }
     /**
      * Strict assertion independent of PHP assertion configuration.
+     *
+     * @param bool $condition Condition required by the assertion.
+     * @param string $message Message data or assertion description.
      */
     function move_job_test_assert(bool $condition, string $message): void {
         if (!$condition) {

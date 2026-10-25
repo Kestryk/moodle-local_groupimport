@@ -30,6 +30,10 @@ final class core_user {
     }
     /**
      * Return the job's enabled actor.
+     *
+     * @param int $id Requested fixture record id.
+     * @param string $fields Requested user fields.
+     * @param int $strictness Missing-record policy accepted by the double.
      */
     public static function get_user(int $id, string $fields = '*', int $strictness = 0): object {
         return (object)['id' => $id, 'deleted' => 0, 'suspended' => 0];

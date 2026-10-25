@@ -52,8 +52,9 @@ if (!$file || !is_dir(dirname($file))) {
 }
 /**
  * Execute isolated fixture operation guide_fixture_save.
- * @param mixed $file Fixture input.
- * @param mixed $data Fixture input.
+ *
+ * @param string $file Fixture input.
+ * @param array $data Fixture input.
  * @return mixed Fixture result.
  */
 function guide_fixture_save(string $file, array $data): void {
@@ -63,7 +64,8 @@ function guide_fixture_save(string $file, array $data): void {
 }
 /**
  * Execute isolated fixture operation guide_fixture_cleanup.
- * @param mixed $data Fixture input.
+ *
+ * @param array $data Fixture input.
  * @return mixed Fixture result.
  */
 function guide_fixture_cleanup(array $data): array {

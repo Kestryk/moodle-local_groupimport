@@ -28,8 +28,9 @@
 class fixture_r9_formatted_xlsx_isolated_moodle_exception extends RuntimeException {
     /**
      * Perform isolated fixture operation __construct.
+     *
      * @param mixed $key Fixture argument.
-     * @param mixed $rest Fixture argument.
+     * @param mixed ...$rest Fixture argument.
      * @return mixed Fixture result.
      */
     public function __construct($key, ...$rest) {

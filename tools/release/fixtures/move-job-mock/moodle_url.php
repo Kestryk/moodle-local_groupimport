@@ -23,11 +23,16 @@
 class moodle_url {
     /**
      * Accept the job's existing course destination.
+     *
+     * @param string $path External fixture record path.
+     * @param array $params Query parameters.
      */
     public function __construct(string $path, array $params) {
     }
     /**
      * Return a fixed synthetic course link without a runtime.
+     *
+     * @param bool $escaped Whether URL output should be escaped.
      */
     public function out(bool $escaped): string {
         return '/local/groupimport/manage.php?id=7';

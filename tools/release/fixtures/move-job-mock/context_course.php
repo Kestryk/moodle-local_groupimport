@@ -24,6 +24,8 @@
 final class context_course {
     /**
      * Return a bounded context double.
+     *
+     * @param int $id Requested fixture record id.
      */
     public static function instance(int $id): object {
         return (object)['id' => $id];

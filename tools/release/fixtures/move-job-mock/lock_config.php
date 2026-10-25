@@ -25,11 +25,16 @@ namespace core\lock;
 final class lock_config {
     /**
      * Return a standalone lock factory.
+     *
+     * @param string $type Lock factory type.
      */
     public static function get_lock_factory(string $type): object {
         return new class {
             /**
              * Acquire an owned test lock.
+             *
+             * @param string $key Requested field or string key.
+             * @param int $timeout Requested lock timeout.
              */
             public function get_lock(string $key, int $timeout): object {
                 return new class {

@@ -142,8 +142,9 @@ class fixture_r6_bulk_actions_isolated_memory_db {
     }
     /**
      * Perform isolated fixture operation get_in_or_equal.
+     *
      * @param mixed $ids Fixture argument.
-     * @param mixed $rest Fixture argument.
+     * @param mixed ...$rest Fixture argument.
      * @return mixed Fixture result.
      */
     public function get_in_or_equal($ids, ...$rest) {
@@ -151,10 +152,11 @@ class fixture_r6_bulk_actions_isolated_memory_db {
     }
     /**
      * Perform isolated fixture operation get_records_select.
+     *
      * @param mixed $table Fixture argument.
      * @param mixed $sql Fixture argument.
      * @param mixed $params Fixture argument.
-     * @param mixed $rest Fixture argument.
+     * @param mixed ...$rest Fixture argument.
      * @return mixed Fixture result.
      */
     public function get_records_select($table, $sql, $params, ...$rest) {

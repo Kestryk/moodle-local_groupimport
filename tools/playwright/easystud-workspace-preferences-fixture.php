@@ -50,6 +50,9 @@ if (!is_dir(dirname($manifestpath)) || !is_writable(dirname($manifestpath))) {
 
 /**
  * Write the exact configuration ownership record outside Git.
+ *
+ * @param string $path External fixture record path.
+ * @param array $manifest Owned fixture manifest.
  */
 function workspace_preferences_manifest(string $path, array $manifest): void {
     $json = json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . "\n";
@@ -60,6 +63,8 @@ function workspace_preferences_manifest(string $path, array $manifest): void {
 
 /**
  * Read a raw plugin configuration value without losing missing-value state.
+ *
+ * @param string $name Preference name.
  */
 function workspace_preferences_read(string $name): array {
     global $DB;
@@ -69,6 +74,8 @@ function workspace_preferences_read(string $name): array {
 
 /**
  * Restore both owned configuration records after verifying fixture ownership.
+ *
+ * @param array $manifest Owned fixture manifest.
  */
 function workspace_preferences_cleanup(array $manifest): array {
     if (

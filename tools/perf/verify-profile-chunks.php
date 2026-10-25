@@ -22,7 +22,10 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/** AP-E7: execute both actual functions against deterministic Moodle DML doubles.  * @copyright 2026 Kevin Jarniac
+/**
+ * AP-E7: execute both actual functions against deterministic Moodle DML doubles.
+ *
+ * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define('CLI_SCRIPT', true);

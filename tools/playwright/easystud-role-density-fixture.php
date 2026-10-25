@@ -57,6 +57,9 @@ if (!is_dir(dirname($manifestpath)) || !is_writable(dirname($manifestpath))) {
 
 /**
  * Durable ownership record; no credentials or real-user data.
+ *
+ * @param string $path External fixture record path.
+ * @param array $manifest Owned fixture manifest.
  */
 function density_manifest(string $path, array $manifest): void {
     if (file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n", LOCK_EX) === false) {
@@ -66,6 +69,10 @@ function density_manifest(string $path, array $manifest): void {
 
 /**
  * Hash the pre-existing definitions and course relationships, not passwords.
+ *
+ * @param int $courseid Fixture course id.
+ * @param int $contextid Fixture course context id.
+ * @param array $owned Ids owned by this fixture.
  */
 function density_baseline(int $courseid, int $contextid, array $owned = []): array {
     global $DB;
@@ -104,6 +111,8 @@ function density_baseline(int $courseid, int $contextid, array $owned = []): arr
 
 /**
  * Verify retained manual-test data without removing anything.
+ *
+ * @param array $manifest Owned fixture manifest.
  */
 function density_verify_retained(array $manifest): array {
     global $DB;
@@ -166,6 +175,8 @@ if ($options['action'] === 'verify-retained') {
 
 /**
  * Fail closed before deleting anything if the exact fixture ownership drifted.
+ *
+ * @param array $manifest Owned fixture manifest.
  */
 function density_cleanup(array $manifest): array {
     global $DB;

@@ -27,6 +27,9 @@ namespace core;
 final class cron {
     /**
      * Keep the selected identity in this isolated process only.
+     *
+     * @param object $user Fixture user.
+     * @param object $course Fixture course.
      */
     public static function setup_user(object $user, object $course): void {
     }

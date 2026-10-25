@@ -56,7 +56,8 @@ if (!MOODLE_INTERNAL) {
 
 /**
  * Execute isolated fixture operation local_groupimport_test_load_language_pack.
- * @param mixed $path Fixture input.
+ *
+ * @param string $path Fixture input.
  * @return mixed Fixture result.
  */
 function local_groupimport_test_load_language_pack(string $path): array {

@@ -24,6 +24,8 @@
 
 /**
  * Measure source spans; browser DOM is independently measured by Playwright.
+ *
+ * @param string $html Rendered HTML to decompose.
  */
 function easystud_perf_decompose(string $html): array {
     $regions = [];

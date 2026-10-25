@@ -28,6 +28,9 @@ final class move_job_test_db {
     public bool $throwcommit = false;
     /**
      * Read an isolated job snapshot.
+     *
+     * @param string $table Table name accepted by the database double.
+     * @param array $conditions Lookup conditions accepted by the database double.
      */
     public function get_record(string $table, array $conditions): object {
         return clone $this->job;
@@ -45,6 +48,8 @@ final class move_job_test_db {
             private bool $disposed = false;
             /**
              * Capture the atomic state.
+             *
+             * @param object $db Owned database double.
              */
             public function __construct(object $db) {
                 $this->db = $db;
@@ -62,6 +67,8 @@ final class move_job_test_db {
             }
             /**
              * Revert both the provisional effect and the cursor.
+             *
+             * @param \Throwable $exception Failure to rethrow after rollback.
              */
             public function rollback(\Throwable $exception): void {
                 if ($this->disposed) {
@@ -74,24 +81,39 @@ final class move_job_test_db {
     }
     /**
      * Persist the progress row.
+     *
+     * @param string $table Table name accepted by the database double.
+     * @param object $job Job state to store.
      */
     public function update_record(string $table, object $job): void {
         $this->job = clone $job;
     }
     /**
      * Persist a scalar state.
+     *
+     * @param string $table Table name accepted by the database double.
+     * @param string $key Requested field or string key.
+     * @param mixed $value Value to store.
+     * @param array $conditions Lookup conditions accepted by the database double.
      */
     public function set_field(string $table, string $key, $value, array $conditions): void {
         $this->job->{$key} = $value;
     }
     /**
      * Return a scalar state.
+     *
+     * @param string $table Table name accepted by the database double.
+     * @param string $key Requested field or string key.
+     * @param array $conditions Lookup conditions accepted by the database double.
      */
     public function get_field(string $table, string $key, array $conditions) {
         return $this->job->{$key};
     }
     /**
      * Count a retry without storing an exception's personal data.
+     *
+     * @param string $sql Query accepted by the database double.
+     * @param array $params Query parameters.
      */
     public function execute(string $sql, array $params): void {
         $this->job->failcount++;

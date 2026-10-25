@@ -53,6 +53,10 @@ require_once($options['after-root'] . '/classes/local/batch_reader.php');
 
 /**
  * Load actual pure helpers under distinct names; business logic is unchanged.
+ *
+ * @param string $root Source checkout root.
+ * @param string $entry Entry module to load.
+ * @param string $prefix Module namespace prefix.
  */
 function perf_edge_load(string $root, string $entry, string $prefix): void {
     $source = file_get_contents($root . '/' . $entry);
