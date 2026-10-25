@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '../..');
-const manage = fs.readFileSync(path.join(root, 'manage.php'), 'utf8');
+const manage = fs.readFileSync(path.join(root, 'classes/output/manage_page.php'), 'utf8');
 assert.match(manage, /'messagesendunavailable'\s*=>\s*get_string\('messagesendunavailable', 'local_groupimport'\)/);
 assert.doesNotMatch(manage, /get_string\('cannotsendmessages', 'core_message'\)/);
 for (const [language, expected] of [

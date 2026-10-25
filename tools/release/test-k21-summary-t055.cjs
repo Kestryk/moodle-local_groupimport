@@ -7,8 +7,8 @@ const root=path.resolve(__dirname,'../..');
  const start=source.indexOf('export const updateStructureSummary ='),end=source.indexOf('export const updateStructureEmptyState =');
  assert.ok(start>=0&&end>start,'T055 exported summary function required');
  const summary=source.slice(start,end).replace('export ','');
- const index=fs.readFileSync(path.join(root,'amd/src/local/sm/index.js'),'utf8');
- const count=index.slice(index.indexOf('export const countLabel ='),index.indexOf('export const normalise =')).replace('export ','');
+ const index=fs.readFileSync(path.join(root,'amd/src/local/count_label.js'),'utf8');
+ const count=index.slice(index.indexOf('export const countLabel ='),index.indexOf('\n};',index.indexOf('export const countLabel ='))+3).replace('export ','');
  const browser=await chromium.launch();const records=[];
  try{
   for(const language of ['fr','en']){

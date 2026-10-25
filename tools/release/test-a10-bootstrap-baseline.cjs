@@ -22,7 +22,7 @@ const selects = template.match(/<select\b[\s\S]*?>/g) || [];
 const styled = selects.filter(tag => /\bform-select\b/.test(tag));
 assert.equal(styled.length, 6);
 styled.forEach(tag => assert.match(tag, /\bcustom-select\b/, 'Bootstrap 4 native select fallback'));
-const manage = read('manage.php');
+const manage = read('classes/output/manage_page.php');
 assert.equal((manage.match(/fa fa-plus easyedu-inline-icon--leading/g) || []).length, 2);
 assert.doesNotMatch(manage, /\b(?:me|ms)-[0-5]\b/, 'No Bootstrap 5-only icon spacing');
 const css = read('styles/student-management.css');

@@ -15,7 +15,7 @@ const take = (file, start, end) => {const s = read(file); return s.slice(s.index
             await page.addScriptTag({content: `(() => {
                 const getLabels = () => ({showless:'Reduce',longlistall:'View all (__total__)'});
                 const listPolicy = {tags:{initial:6,ceiling:30}};
-                ${take('amd/src/local/cm/long_lists.js', 'export const syncTagWindow', '/**\n * Bind controls once')}
+                ${take('amd/src/local/cm/long_lists.js', 'export const normaliseTagValue', '/**\n * Bind controls once')}
                 ${take('amd/src/local/cm/cards.js', 'const ensureTagToggle', 'export const scheduleParticipantTagOverflow')}
                 window.renderShared = syncParticipantTagOverflow;
             })();`});

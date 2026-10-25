@@ -71,7 +71,7 @@ const context = {
     filterChoiceControllers: new Map(),
 };
 const engine = ['amd/src/local/sm/filter_engine.js', 'amd/src/local/sm/index.js'].map(read).join('\n')
-    .replace(/^import .*;$/gm, '').replace(/^export (const )/gm, '$1');
+    .replace(/^import .*;$/gm, '').replace(/^export \{[^}]+\};?$/gm, '').replace(/^export (const )/gm, '$1');
 vm.runInNewContext(engine + '\n' + block(filterControls, 'getSelectedFilterValues') + '\n' +
     block(filterControls, 'refreshFilterChoice') + '\n' + block(filterControls, 'resetFilters') + '\n' +
     block(read('amd/src/local/sm/participants.js'), 'applyParticipantFilters') + '\n' +

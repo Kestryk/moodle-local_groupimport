@@ -5,7 +5,7 @@ const {chromium}=require(path.join(path.resolve(process.argv[2]),'playwright'));
 const moodle=path.resolve(process.argv[3]),output=path.resolve(process.argv[4]),root=path.resolve(__dirname,'../..');
 if(!output.toLowerCase().startsWith('c:\\dev\\artifacts\\'))throw Error('External result required');
 const read=p=>fs.readFileSync(p,'utf8').replace(/\r\n/g,'\n');
-const esm=s=>s.replace(/^import .*;$/gm,'').replace(/^export const /gm,'const ');
+const esm=s=>s.replace(/^import .*;$/gm,'').replace(/^export \{[^}]+\};?$/gm,'').replace(/^export const /gm,'const ');
 const report={rows:[],errors:[]};
 (async()=>{
  const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
@@ -15,6 +15,7 @@ const report={rows:[],errors:[]};
   await page.addScriptTag({content:read(path.join(moodle,'lib/amd/src/mustache.js')).replace('export default mustache;','window.actualMustache=mustache;')});
   await page.addScriptTag({content:`(()=>{const Mustache=window.actualMustache;
    ${esm(read(path.join(root,'amd/src/local/sm/filter_engine.js')))}
+   ${esm(read(path.join(root,'amd/src/local/count_label.js')))}
    ${esm(read(path.join(root,'amd/src/local/sm/index.js')))}
    ${esm(read(path.join(root,'amd/src/local/sm/groups.js')))}
    window.actualGroups={buildGroupCardContext,renderGroupPage,getDetachedGroupCard,renderMissingMemberRows,getSelectedMemberRow};

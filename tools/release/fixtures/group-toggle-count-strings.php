@@ -72,7 +72,22 @@ function get_string($key, $component, $a = null) {
 }
 require(__DIR__ . '/../../../lang/' . $lang . '/local_groupimport.php');
 require(__DIR__ . '/../../../lib.php');
-echo json_encode(['template' => local_groupimport_count_template('groupmembersshowall'),
-    'native' => array_map(static function ($n) {
-        return local_groupimport_count_string('groupmembersshowall', $n);
-    }, [0, 1, 2, 23])], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+if (($argv[2] ?? '') === 'summary') {
+    $records = [];
+    foreach (['groupscount', 'groupingscount'] as $identifier) {
+        foreach ([0, 1, 2, 14, 54] as $count) {
+            $records[] = [
+                'identifier' => $identifier,
+                'count' => $count,
+                'template' => local_groupimport_count_template($identifier),
+                'label' => local_groupimport_count_string($identifier, $count),
+            ];
+        }
+    }
+    echo json_encode(['records' => $records], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+} else {
+    echo json_encode(['template' => local_groupimport_count_template('groupmembersshowall'),
+        'native' => array_map(static function ($n) {
+            return local_groupimport_count_string('groupmembersshowall', $n);
+        }, [0, 1, 2, 23])], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+}
