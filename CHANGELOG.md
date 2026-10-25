@@ -1,3 +1,5 @@
+- 2026-10-25 Honour the administrator's participant-card collapse default independently of automatic compact density; preserve explicit display choices during pagination.
+
 - 2026-10-25 Add complete European Portuguese and German translations, including the Guide, Mass Import, administration and privacy strings.
 
 - 2026-10-25 Generate release AMD modules and sourcemaps with Moodle's official Grunt pipeline; add an isolated, zero-warning build and byte-parity check without changing product sources.

@@ -1,3 +1,5 @@
+Participant metadata disclosure follows participantcardcollapsed until a manual desktop density choice overrides it for the current model. Automatic compact layout must not override the admin default. Preserve mobile membership-only policy and Motion timing. See docs/testing/participant-collapse-default-2026-10-25.md.
+
 All actual search frames and adjacent Cancel actions share the Kit Small field-peer height (30.4px, 44px through 1024px). Keep inline geometry, native placeholders, type and icon containment unchanged; substitute page plus Guide CSS for native A/B checks. See docs/testing/search-field-small-2026-10-25.md.
 
 Parent-dependent Mustache fragments retain their native list/menu roles and exact HTML-only lint exemptions; validate their real parent examples. Guide status/dialog roles use compatible neutral elements. Preserve no-JavaScript real-content recovery via the Moodle body bootstrap class. See docs/testing/mustache-html-validation-2026-10-25.md.

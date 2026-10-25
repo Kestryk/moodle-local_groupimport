@@ -105,9 +105,7 @@ export const createParticipantModel = (raw, strings) => getTemplateSource(templa
         selected: new Set(),
         detached: new Map(),
         pageCards: new Map(),
-        // K21-16: null follows the admin default (collapsed); the "full information" density
-        // toggle (local/cm/optional_tools.bindOptionalTools) forces every card's meta open or
-        // back to that default, since cards are rebuilt from this context on each density change.
+        // Null follows the admin default until an explicit display choice overrides it.
         metaExpandedOverride: null,
     };
     Mustache.parse(source);
@@ -149,26 +147,18 @@ export const refreshModel = model => {
 };
 
 /**
- * K21-16: whether a card's roles/groups/groupings/custom-fields block starts collapsed. The
- * "full information" density mode (model.metaExpandedOverride) overrides the admin default so it
- * still shows complete cards; null follows that default.
- *
- * K22-08: with no override, the desktop compact density (automatic above 5 participants, or chosen
- * with the density toggle) collapses the block too, like the avatar, whatever the admin default:
- * only selecting a card or switching to "full information" shows it. Without this, a site whose
- * admin had switched the default off showed roles/groups on every compact card (avatar alone
- * hidden) since compact density stopped hiding the block in CSS (M53, c90d0c3a).
+ * Determine initial metadata visibility, unless the user has chosen a density explicitly.
+ * Automatic compact density changes layout, not the administrator's initial disclosure policy.
  *
  * @param {Object} model Participant model.
- * @param {Object} strings Card labels from manage.php.
+ * @param {Object} strings Card labels and default policy from manage.php.
  * @returns {Boolean}
  */
 export const isMetaCollapsed = (model, strings) => {
     if (model.metaExpandedOverride !== null) {
         return !model.metaExpandedOverride;
     }
-    const compact = typeof model.isCompactDensity === 'function' && model.isCompactDensity();
-    return compact || strings.metacollapsedbydefault !== false;
+    return strings.metacollapsedbydefault !== false;
 };
 
 /**

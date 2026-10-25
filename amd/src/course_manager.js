@@ -123,8 +123,7 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
         .then(model => attachGroupCatalogs(model, groupStrings))
         .then(model => {
             const {reactive, raw, loadMs} = store;
-            // K22-08: live desktop compact density for local/sm/participants.isMetaCollapsed
-            // (the responsive layout drops this class and hides membership rows on its own).
+            // Expose desktop layout density independently of the initial metadata disclosure policy.
             model.isCompactDensity = () => root.classList.contains(compactClass);
             setOnDemandParticipants({root, model, courseId});
             publishGuidePathFacts(root, model);

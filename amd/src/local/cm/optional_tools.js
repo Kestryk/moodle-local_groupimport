@@ -99,11 +99,8 @@ export const bindOptionalTools = root => {
                 root.classList.remove('local-groupimport-easystud--single-participant-selected');
                 root.querySelectorAll('.is-density-expanded').forEach(card => card.classList.remove('is-density-expanded'));
                 root.easystudExpandedParticipant = null;
-                // K21-16: "full information" (not compact) always shows complete cards; back to
-                // compact collapses unselected cards again (K22-08: compact density collapses on
-                // its own, see local/sm/participants.isMetaCollapsed). Set before the re-render below, which
-                // rebuilds cards from this context (local/sm/participants.buildCardContext).
-                setMetaExpandedOverride(getOnDemandModel(root), compact ? null : true);
+                // Desktop density is explicit; mobile retains its separate membership-only policy.
+                setMetaExpandedOverride(getOnDemandModel(root), mobile && compact ? null : !compact);
                 syncParticipantDensity(root, {animate: false});
                 // Density changes the page size (20 compact / 15 full): render that page
                 // and resolve its tag rows before Motion.swap measures the final height.
