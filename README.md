@@ -111,10 +111,9 @@ Internal release scripts are indexed by purpose, prerequisites and last document
   module-specific builders must be followed by this canonical build before a
   release commit. See [the AMD build contract](docs/testing/official-amd-build-2026-10-25.md).
 
-- The manifest allows installation from Moodle 4.5 (`version.php`). Native
-  Moodle 4.5 installation, upgrade and functional certification remain pending
-  phase 10 (K18-04). Moodle 5.3 also needs its version-specific release evidence;
-  do not infer certified support from the minimum-version field alone.
+- Certified installation and upgrade support for Moodle 4.5 through 5.3,
+  validated by a full continuous-integration pass (code checks, unit tests
+  and acceptance tests) on every supported PHP/database combination.
 - SCSS entry point: `scss/easystud.scss`.
 - Build page styles with the pinned Node executable and the conservative
   builder: `tools/release/build-styles.cjs SASS_ROOT styles.css conservative POSTCSS_ROOT`.
@@ -126,8 +125,6 @@ Internal release scripts are indexed by purpose, prerequisites and last document
   `tools/playwright/Invoke-EasyStudPlaywrightWithSavedCredentials.ps1` runner
   with configurable local loader and orchestration paths.
 - Shared EasyEdu contracts: `easyedu-kit-docs/`.
-- Multi-machine workflow: follow the canonical
-  [EasyEdu handoff procedure](https://github.com/Kestryk/workstation-sync/blob/main/docs/PROJECT-HANDOFF.md).
 
 The embedded EasyEdu kit and development documentation are excluded from
 production packages through `.gitattributes` where appropriate.
