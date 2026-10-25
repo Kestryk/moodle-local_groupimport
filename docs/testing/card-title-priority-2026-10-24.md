@@ -1,4 +1,4 @@
-﻿# Card title priority and existing overflow
+# Card title priority and existing overflow
 
 The same `ensureNestedGroupActionMenus` controller already owns Group and Grouping
 headers. It moves secondary commands into the existing More menu before applying
@@ -74,3 +74,31 @@ MoodleCS: zero errors, 32 baseline warnings. No PHP/AMD/Kit definition changed.
 Mass Import, Guide, Administration and global CSS are byte-identical to the base.
 Moodle 4.5/5.3 were not rerun for this CSS-only layout repair. Production was not
 modified; release validation remains with the integrator.
+
+## Grouping coverage rechecked on 2026-10-25
+
+The requested Grouping extension already exists in `960ba61a83f59fc6c9f4d86884e586ceec023cd0`
+(compiled by `4ebb0331f924b6e4fa8d478927e77b3379887a0e`). Its subject and
+patch explicitly target Grouping headers. The shared controller, action selector,
+7.5rem preferred title budget and canonical fallback recipes cover both families.
+No additional product or Kit definition is necessary.
+
+Rechecked at integrated source `5bf932baae6aa953755433aa1f0aa7ec77c2c5db`:
+432 short/long-title presentations with one to six actions, FR/EN, all five
+specified widths and desktop drawer states pass. The two mobile drawer-overlay
+observations remain separate from interactive card tests. Twelve native menu
+open/Escape/outside checks pass; Group terminal count order remains correct
+(minimum More-to-count gap 5.59375px).
+
+Minimum long Grouping title widths (drawer closed/open), in pixels:
+1600: 214.69/120.19; 1280: 126.69/120.19; 1150: 153.69/162.78;
+1050: 143.69/112.78; 390 closed: 143.16. The 1050 open case reaches the
+physical identity capacity documented above; all six secondary actions yield.
+No title/control collision or card overflow is observed.
+
+Natural pagination to page 2/4, without a manual controller call, also passes:
+40 Grouping cards across FR/EN and 1050/390, retaining More and the same
+112.78/143.16px minimum title widths. Both runs have zero pageerrors.
+The serving runtime stylesheet and compiled controller match the tested source
+byte-for-byte. This follow-up changes documentation only; there is no new
+before/after product delta, build, deployment or persistent course-data change.
