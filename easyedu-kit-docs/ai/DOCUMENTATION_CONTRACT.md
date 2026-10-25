@@ -1,5 +1,11 @@
 Card detail commands share the existing entity-specific language keys across context menus, direct ARIA/help and modal headings. Preserve action IDs and handlers; Guide captions must use the same current names. See docs/testing/card-detail-labels-2026-10-25.md.
 
+Fixture modernization follows actual I3/I4/I6 producers and dependencies, never
+new expected values or replacement historical references. Require unique syntax
+boundaries for extracted declarations. Keep the default historical parity FAIL
+separate from an explicit current-baseline parity run; never count that additional
+run as a repair of a historical assertion. See docs/testing/fixtures-suite-2026-10-25.md.
+
 Foundation selection commands keep the primary Kit palette even with the Bootstrap compatibility class btn-outline-secondary. Preserve explicit destructive, solid, disabled and borderless recovery variants; do not change native secondary buttons outside this component. See docs/testing/selection-action-primary-palette-2026-10-24.md.
 
 Shared floating Guide binding accepts either its navigation root or an ancestor containing it. Keep one binding implementation, preserve inactive state, scroll visibility, native click delegation and pagehide cleanup on both workspaces.

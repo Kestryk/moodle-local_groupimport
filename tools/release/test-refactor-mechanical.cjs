@@ -32,8 +32,20 @@ for (const variant of ['before', 'after']) {
     const marker = "} else if ($action === 'movestatus') {";
     const start = ajax.indexOf(marker) + marker.length;
     const end = ajax.indexOf('\n    } else if', start);
-    assert.ok(start >= marker.length && end > start, 'Actual movestatus branch');
-    const status = ajax.slice(start, end);
+    const routed = ajax.includes("\\local_groupimport\\local\\ajax\\movestatus::class");
+    assert.ok(routed || (start >= marker.length && end > start), 'Actual movestatus branch');
+    let status;
+    if (routed) {
+        const actionFile = 'classes/local/ajax/movestatus.php';
+        const actionPath = path.join(output, variant + '-movestatus.php');
+        fs.writeFileSync(actionPath, source(actionFile));
+        const method = inventory(php, actionPath).handle;
+        assert.ok(method && method.body, 'Actual routed movestatus body');
+        status = '$response = (static function($course, $context, $response) {' + method.body +
+            '})($course, $context, $response);';
+    } else {
+        status = ajax.slice(start, end);
+    }
     const classes = [...new Set([...source('settings.php').matchAll(/new (admin_setting\w+)\(/g)].map(m => m[1]))];
     const declarations = classes.map(name => `if (!class_exists('${name}')) { class ${name} extends admin_setting_configtext {} }`).join('\n');
     const functions = Object.values(manage).map(fn => fn.function).join('\n');
