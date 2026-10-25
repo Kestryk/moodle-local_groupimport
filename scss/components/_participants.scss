@@ -71,7 +71,8 @@
     }
   }
 
-  &--compact-users &-user {
+  &--compact-users &-user,
+  &-user:has(&-user__meta[hidden]) {
     align-items: center;
     gap: 0.55rem;
     grid-template-columns: minmax(0, 1fr);
@@ -217,7 +218,8 @@
     min-width: 0;
   }
 
-  &--compact-users &-user__rail {
+  &--compact-users &-user__rail,
+  &-user:has(&-user__meta[hidden]) &-user__rail {
     align-items: center;
     display: none;
     @include easyedu.person-card-rail-inset($compact: true);
@@ -279,7 +281,8 @@
     white-space: nowrap;
   }
 
-  &--compact-users &-user__headline {
+  &--compact-users &-user__headline,
+  &-user:has(&-user__meta[hidden]) &-user__headline {
     @include easyedu.person-card-headline(compact);
   }
 

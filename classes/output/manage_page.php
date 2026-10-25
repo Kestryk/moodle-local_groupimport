@@ -44,7 +44,7 @@ class manage_page {
         global $CFG, $USER;
 
         $alloweduserfields = local_groupimport_get_allowed_user_field_definitions();
-        $compactparticipantsdefault = count($users) > 5;
+        $compactparticipantsdefault = get_config('local_groupimport', 'participantcardcollapsed') !== '0';
         $layoutpreferences = local_groupimport_get_workspace_layout_preferences();
         $layoutmodedefinitions = [
             'participants' => [

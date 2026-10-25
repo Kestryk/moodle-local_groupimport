@@ -1,3 +1,5 @@
+- 2026-10-25 Keep participant Compact/Full mode consistent with the admin collapse default, preserve explicit choices on mobile, and render genuinely collapsed cards on one identity line.
+
 # Changelog
 
 User-facing changes for the `local_groupimport` plugin (EasyStud, formerly Group import CSV). The

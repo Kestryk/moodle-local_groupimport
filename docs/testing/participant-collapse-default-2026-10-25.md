@@ -2,13 +2,13 @@
 
 The PHP renderer already passes `participantcardcollapsed` as the boolean
 `metacollapsedbydefault`. The participant model must use it until an explicit
-user display choice sets `metaExpandedOverride`. Automatic compact layout above
-five participants is a layout policy, not a replacement for the admin default.
+user display choice sets `metaExpandedOverride`. Initial visual density and metadata disclosure both follow the admin default;
+participant count must not silently select a conflicting Compact mode.
 
-An explicit desktop compact choice stores `false` (collapsed); full information
+An explicit compact choice on either viewport stores `false` (collapsed); full information
 stores `true`. Subsequent card renders and pagination reuse that choice. A new
-page model returns to the configured default. Mobile retains its separate
-membership-only compact policy. No participant cache, permissions, saved user
+page model returns to the configured default. Collapsed cards keep one identity row on desktop and mobile; expanded responsive
+cards retain their wrapped-name recipe. No participant cache, permissions, saved user
 preferences or animation timing changes.
 
 Run `node tools/release/test-participant-collapse-default.cjs` after changing

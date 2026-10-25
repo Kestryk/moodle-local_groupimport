@@ -42,7 +42,7 @@ export const bindOptionalTools = root => {
     if (densityToggle) {
         const state = {
             desktopCompact: root.classList.contains(compactClass),
-            mobileCompact: true,
+            mobileCompact: root.classList.contains(compactClass),
             responsive: isResponsiveWorkspace(),
             expandedParticipant: null,
         };
@@ -90,17 +90,16 @@ export const bindOptionalTools = root => {
             const compact = mobile ? !state.mobileCompact : !root.classList.contains(compactClass);
             const participantList = root.querySelector('[data-easystud-participant-list]');
             const applyDensity = () => {
-                if (mobile) {
-                    state.mobileCompact = compact;
-                } else {
-                    state.desktopCompact = compact;
+                state.mobileCompact = compact;
+                state.desktopCompact = compact;
+                if (!mobile) {
                     root.classList.toggle(compactClass, compact);
                 }
                 root.classList.remove('local-groupimport-easystud--single-participant-selected');
                 root.querySelectorAll('.is-density-expanded').forEach(card => card.classList.remove('is-density-expanded'));
                 root.easystudExpandedParticipant = null;
-                // Desktop density is explicit; mobile retains its separate membership-only policy.
-                setMetaExpandedOverride(getOnDemandModel(root), mobile && compact ? null : !compact);
+                // A manual density choice owns the whole card disclosure on either viewport.
+                setMetaExpandedOverride(getOnDemandModel(root), !compact);
                 syncParticipantDensity(root, {animate: false});
                 // Density changes the page size (20 compact / 15 full): render that page
                 // and resolve its tag rows before Motion.swap measures the final height.

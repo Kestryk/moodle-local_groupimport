@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "compactPersonRow20261025": {
+      "canonicalCommit": "0059b60a6957f60249e5d29ae5a376196903603b",
+      "canonicalVersion": "0.4.227",
+      "recipe": "person-card-headline(compact)",
+      "property": "grid-template-rows: var(--easyedu-person-first-line, auto)",
+      "fullModuleParity": false,
+      "reason": "Relay the compact row reset only; preserve unrelated vendor card module differences"
+    },
     "floatingGuideCaption20261025": {
       "canonicalCommit": "ea336ac998eebbfaa810e4315bd65286005f478c",
       "canonicalVersion": "0.4.226",
