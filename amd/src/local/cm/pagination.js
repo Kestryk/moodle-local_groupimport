@@ -94,8 +94,16 @@ export const getPagination = (list, inside, position) => {
     // pagination remain at the end of that block without viewport positioning.
     list.classList.add('is-easystud-paginated');
     const selector = '[data-easystud-pagination="' + position + '"]';
-    let pagination = inside ? list.querySelector(':scope > ' + selector) :
-        (position === 'top' ? list.previousElementSibling : list.nextElementSibling);
+    const resolvePaginationNeighbour = () => {
+        if (inside) {
+            return list.querySelector(':scope > ' + selector);
+        }
+        if (position === 'top') {
+            return list.previousElementSibling;
+        }
+        return list.nextElementSibling;
+    };
+    let pagination = resolvePaginationNeighbour();
     if (!pagination || !pagination.matches('[data-easystud-pagination]')) {
         pagination = document.createElement('nav');
         pagination.className = 'local-groupimport-easystud-pagination local-groupimport-easystud-pagination--' + position;
@@ -279,9 +287,19 @@ export const updateResultSelectionControl = (root, list, config, select) => {
     const allselected = ondemand ? items.every(ondemand.isSelected) :
         items.every(item => item.classList.contains(selectedClass));
     select.setAttribute('data-easystud-deselect-results', allselected ? '1' : '0');
-    label.textContent = allselected ?
-        (filtered ? (labels.deselectresults || '') : (labels.deselectall || '')) :
-        (filtered ? (labels.selectresults || '') : (labels.selectall || ''));
+    const resolvePageSelectionLabel = () => {
+        if (allselected) {
+            if (filtered) {
+                return labels.deselectresults || '';
+            }
+            return labels.deselectall || '';
+        }
+        if (filtered) {
+            return labels.selectresults || '';
+        }
+        return labels.selectall || '';
+    };
+    label.textContent = resolvePageSelectionLabel();
 };
 
 // A selection only changes the select/deselect wording. Rebuilding every paginated list here delays card motion.

@@ -267,7 +267,9 @@ export const bindGroupDragDrop = (root, courseId) => {
             clearSelectionState(root);
             updateSelectionActions(root);
             showNotification(root, message, 'success');
-        }).catch(error => handleActionError(root, error));
+
+    return;
+}).catch(error => handleActionError(root, error));
 
         if (!root.classList.contains(participantFocusClass) && targetGroupingId !== '0' && hasGroupingOrigin) {
             openGroupDropModeModal(root, () => runChangingMove(false), () => runChangingMove(true));
@@ -420,7 +422,9 @@ export const bindUserDragDrop = (root, courseId) => {
             emitGuidedCompletion(root, 1);
             emitTryActionsCompletion(root, 'try-drag', tryActionsToken);
             highlightActiveTryActionsStep(root);
-        }).catch(() => {
+
+return;
+}).catch(() => {
             showNotification(root, labels.ajaxerror || '', 'error');
         });
     });

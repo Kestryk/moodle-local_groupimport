@@ -87,7 +87,9 @@ export const animateElementCreated = element => {
         if (completed) {
             window.setTimeout(() => element.classList.remove('is-newly-created'), Motion.timing.normal);
         }
-    });
+
+return;
+});
 };
 
 export const animateElementRemoval = (element, onremove) => {
@@ -109,7 +111,9 @@ export const animateElementRemoval = (element, onremove) => {
         if (completed) {
             finish();
         }
-    });
+
+return;
+});
 };
 
 export const getGroupElementsById = (root, groupid) => Array.from(

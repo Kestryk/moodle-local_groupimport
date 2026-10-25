@@ -415,7 +415,16 @@ const getContextItems = (root, type, target) => {
         'paste-field': 'textarea',
     };
     const selector = selectors[type] || '';
-    return selector ? getSelectedItemsForContext(root, selector, target) : (target ? [target] : []);
+    const resolveContextSelection = () => {
+        if (selector) {
+            return getSelectedItemsForContext(root, selector, target);
+        }
+        if (target) {
+            return [target];
+        }
+        return [];
+    };
+    return resolveContextSelection();
 };
 
 const canOpenAdvancedSettingsFromContext = (items, target) => {
@@ -708,7 +717,9 @@ const openPastePanel = (panel, boxSelector) => {
             if (completed) {
                 box.focus({preventScroll: true});
             }
-        });
+
+return;
+});
     }
 };
 
@@ -757,7 +768,9 @@ const pasteIntoField = box => {
         box.setSelectionRange(position, position);
         box.dispatchEvent(new Event('input', {bubbles: true}));
         box.focus();
-    });
+
+return;
+});
 };
 
 const addCopiedUsersToGroup = (root, courseId, group) => {
@@ -772,7 +785,9 @@ const addCopiedUsersToGroup = (root, courseId, group) => {
         updateSelectionActions(root);
         showNotification(root, response.message || '', 'success');
         emitGuidedCompletion(root, 1, 'grouping');
-    });
+
+return;
+});
 };
 
 const addCopiedGroupsToGrouping = (root, courseId, grouping) => {
@@ -794,7 +809,9 @@ const addCopiedGroupsToGrouping = (root, courseId, grouping) => {
         updateSelectionActions(root);
         showNotification(root, response.message || '', 'success');
         emitGuidedCompletion(root, 1, 'grouping');
-    });
+
+return;
+});
 };
 
 const participantActions = {
@@ -889,7 +906,9 @@ const memberActions = {
             clearSelectionState(root);
             updateSelectionActions(root);
             showNotification(root, response.message || '', 'success');
-        }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
     },
 };
 
@@ -899,7 +918,7 @@ const commonActions = {
         updateSelectionActions(root);
     },
     'paste-field': ({target}) => {
-        pasteIntoField(target).catch(() => {});
+        pasteIntoField(target).catch(() => { /* Existing cleanup intentionally ignores rejection. */ });
     },
 };
 
@@ -1012,7 +1031,7 @@ const bindLongPressMenu = (root, open) => {
         longPressTimer = window.setTimeout(() => {
             suppressNextDocumentClick = true;
             open({
-                preventDefault: () => {},
+                preventDefault: () => { /* Optional hook. */ },
                 clientX: longPressPoint.x,
                 clientY: longPressPoint.y,
             }, item);

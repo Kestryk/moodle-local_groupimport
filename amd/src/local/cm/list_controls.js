@@ -271,7 +271,9 @@ export const bindPagination = root => {
             const scrollTarget = topPagination && topPagination.matches('[data-easystud-pagination]') ?
                 topPagination : list;
             Motion.scroll(scrollTarget, {block: 'start', inline: 'nearest'});
-        });
+
+return;
+});
     });
 
     document.addEventListener('click', event => {
@@ -398,7 +400,9 @@ export const bindTree = root => {
                 if (completed && !expanded && input) {
                     input.focus({preventScroll: true});
                 }
-            });
+
+return;
+});
             if (expanded && input) {
                 input.value = '';
                 applyContainerGroupSearch(root);

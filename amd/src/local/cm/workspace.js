@@ -574,8 +574,17 @@ const renderMobileActionBar = (root, counts, activetype) => {
         const isdanger = source.classList.contains('btn-outline-danger') || source.classList.contains('btn-danger');
         const isprimary = source.classList.contains('btn-primary') || source.classList.contains('btn-outline-primary');
         button.type = 'button';
+        const resolveMobileActionTone = () => {
+            if (isdanger) {
+                return 'btn-outline-danger';
+            }
+            if (isprimary) {
+                return 'btn-primary';
+            }
+            return 'btn-outline-secondary';
+        };
         button.className = 'btn btn-sm foundation-selection-action foundation-selection-action--tray ' +
-            (isdanger ? 'btn-outline-danger' : (isprimary ? 'btn-primary' : 'btn-outline-secondary'));
+            (resolveMobileActionTone());
         button.setAttribute('data-easystud-mobile-action-trigger', action.selector);
         const icon = getButtonIcon(source);
         if (icon) {

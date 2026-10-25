@@ -86,7 +86,9 @@ export const bindContainerGroupSearch = root => {
                     if (completed) {
                         input.focus({preventScroll: true});
                     }
-                });
+
+return;
+});
             }
         }
     });
@@ -157,7 +159,9 @@ export const bindGroupMemberSearch = root => {
                     if (completed) {
                         input.focus({preventScroll: true});
                     }
-                });
+
+return;
+});
             }
         }
     });
@@ -440,7 +444,9 @@ export const setGroupMembersExpanded = (root, group, expand) => {
             list.classList.remove('is-easyedu-disclosing');
             list.removeAttribute('data-easystud-members-motion-token');
         }
-    });
+
+return;
+});
     return true;
 };
 

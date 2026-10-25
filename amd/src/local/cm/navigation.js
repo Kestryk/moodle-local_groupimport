@@ -343,7 +343,9 @@ export const bindLayoutModeToggle = root => {
                 // measure again once they have settled (T020: 9.75 px residue at 1600/1920).
                 scheduleCompleteListAlignment(root);
                 requestGuideHighlightRefresh(root);
-            });
+
+    return;
+});
             return;
         }
         applyModeState(mode);

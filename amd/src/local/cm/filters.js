@@ -276,8 +276,17 @@ export const bindSearchableFilters = root => {
         '[data-easystud-grouping-filter], [data-easystud-catalog-grouping-filter]').forEach(select => {
         const role = select.matches('[data-easystud-role-filter]');
         const groups = select.matches('[data-easystud-group-filter]');
+        const resolveFilterChoiceLabel = () => {
+            if (role) {
+                return labels.roles;
+            }
+            if (groups) {
+                return labels.groups;
+            }
+            return labels.groupings;
+        };
         const choice = enhanceMultipleSelect(select, {
-            label: role ? labels.roles : groups ? labels.groups : labels.groupings,
+            label: resolveFilterChoiceLabel(),
             search: labels.searchfilteroptions,
             empty: labels.nofilteroptions,
             none: labels.filterany,

@@ -314,7 +314,6 @@ const bindIdentityRailFit = root => {
             const control = element && navigation.contains(element) ?
                 candidates().find(candidate => candidate.contains(element)) : null;
             if (control && control !== unfolded && isFolded(control)) {
-                // eslint-disable-next-line no-use-before-define
                 unfold(control, pointer);
             }
         }, RAIL_SETTLE_MS);

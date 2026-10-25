@@ -337,9 +337,22 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
         if (tagged) {
             renderTaggedValues(options);
         } else {
-            summary.textContent = multiple ? (options.length === 0 ? labels.none || '' : options.length === 1 ?
-                options[0].textContent : countLabel(labels.count || '__count__', options.length)) :
-                (options[0] ? options[0].textContent : '');
+            const resolveChoiceSummary = () => {
+                if (multiple) {
+                    if (options.length === 0) {
+                        return labels.none || '';
+                    }
+                    if (options.length === 1) {
+                        return options[0].textContent;
+                    }
+                    return countLabel(labels.count || '__count__', options.length);
+                }
+                if (options[0]) {
+                    return options[0].textContent;
+                }
+                return '';
+            };
+            summary.textContent = resolveChoiceSummary();
             trigger.setAttribute('aria-label', `${labels.label}: ${summary.textContent}`);
         }
         trigger.disabled = select.disabled || !select.options.length;

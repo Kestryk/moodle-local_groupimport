@@ -130,7 +130,9 @@ export const bindAdvancedSettings = root => {
                 modal.easystudCompleteEditorClose();
             }
             showNotification(root, response.message || '', 'success');
-        }).catch(error => {
+
+return;
+}).catch(error => {
             showNotification(root, error.message || '', 'error');
         }).finally(() => {
             if (submit) {

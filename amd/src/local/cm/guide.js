@@ -381,9 +381,16 @@ export const bindSharedGuideTargets = root => {
             const type = request.target === 'tutorial:close-group-editor' ? 'group' : 'grouping';
             const modal = root.querySelector('[data-easystud-advanced-settings-modal]');
             request.handled = true;
-            request.ready = !modal || modal.hidden ? Promise.resolve(true) :
-                modal.getAttribute('data-easystud-editor-context') === type ?
-                    modal.easystudCloseEditor?.() || Promise.resolve(false) : Promise.resolve(false);
+            const resolveEditorCloseReadiness = () => {
+                if (!modal || modal.hidden) {
+                    return Promise.resolve(true);
+                }
+                if (modal.getAttribute('data-easystud-editor-context') === type) {
+                    return modal.easystudCloseEditor?.() || Promise.resolve(false);
+                }
+                return Promise.resolve(false);
+            };
+            request.ready = resolveEditorCloseReadiness();
             // Finish the originating click before revealing a compact card menu.
             // Reduced-motion exit can resolve inside that click's propagation;
             // its native outside-click listener would otherwise close the new menu.

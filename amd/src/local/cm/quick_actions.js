@@ -115,7 +115,9 @@ export const bindQuickCreate = (root, courseId) => {
                         emitActivityGroupingEntry(root, String(grouping.id), activityCreationToken);
                     });
                 }
-            }).catch(error => {
+
+return;
+}).catch(error => {
                 if (error && error.easystudServerAnswer) {
                     // The server answered (refusal): a new attempt is a new request.
                     form.easystudCreateRequest = null;
@@ -212,7 +214,9 @@ export const bindRenameForms = (root, courseId) => {
             setRenameEditing(form, false);
 
             showNotification(root, response.message || '', 'success');
-        }).catch(error => {
+
+return;
+}).catch(error => {
             showNotification(root, error.message || '', 'error');
         });
     });
@@ -242,7 +246,9 @@ export const bindGroupMemberActions = (root, courseId) => {
                         if (completed) {
                             box.focus({preventScroll: true});
                         }
-                    });
+
+return;
+});
                 }
             }
             return;
@@ -280,7 +286,9 @@ export const bindGroupMemberActions = (root, courseId) => {
                 clearSelectionState(root);
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -295,7 +303,9 @@ export const bindGroupMemberActions = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1, 'grouping');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
         }
     });
 
@@ -348,7 +358,9 @@ export const bindGroupingGroupActions = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1);
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -369,7 +381,9 @@ export const bindGroupingGroupActions = (root, courseId) => {
                         if (completed) {
                             box.focus({preventScroll: true});
                         }
-                    });
+
+return;
+});
                 }
             }
             return;
@@ -419,7 +433,9 @@ export const bindGroupingGroupActions = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1, 'grouping');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
         }
     });
 
@@ -458,7 +474,9 @@ export const bindBulkActions = (root, courseId) => {
                     clearSelectionState(root);
                     updateSelectionActions(root);
                     showNotification(root, response.message || '', 'success');
-                }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             };
 
             if (hasmembers) {
@@ -492,7 +510,9 @@ export const bindBulkActions = (root, courseId) => {
                     clearSelectionState(root);
                     updateSelectionActions(root);
                     showNotification(root, response.message || '', 'success');
-                }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             };
 
             if (hasgroups) {
@@ -514,7 +534,9 @@ export const bindBulkActions = (root, courseId) => {
                 clearSelectionState(root);
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
         });
     });
 
@@ -586,7 +608,9 @@ export const bindCardDeleteActions = (root, courseId) => {
                     done.forEach(id => deleteGroupElement(root, id));
                 }).then(response => {
                     showNotification(root, response.message || '', 'success');
-                }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             };
             if (count > 0) {
                 // K22-31: the template carries safe <strong> markup; only the card's own name is
@@ -613,7 +637,9 @@ export const bindCardDeleteActions = (root, courseId) => {
                 releaseConfirmedSelection(root, 'grouping', [groupingid], item => item.getAttribute('data-selectable-id'));
                 deleteGroupingElement(root, groupingid);
                 showNotification(root, response.message || '', 'success');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
         };
         if (count > 0) {
             // K22-31: see the group-card call above — the name is escaped before it joins the
@@ -640,7 +666,9 @@ export const bindDuplicateActions = (root, courseId) => {
                     insertGroupData(root, response.group);
                 }
                 showNotification(root, response.message || '', 'success');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -656,7 +684,9 @@ export const bindDuplicateActions = (root, courseId) => {
                     insertGroupingData(root, response.grouping);
                 }
                 showNotification(root, response.message || '', 'success');
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
         }
     });
 };

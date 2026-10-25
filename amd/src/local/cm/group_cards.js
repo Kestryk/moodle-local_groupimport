@@ -1297,7 +1297,7 @@ export const ensureDeleteButtons = root => {
 
 export const animateTreeChildren = (children, expand, options = {}) => {
     if (!children) {
-        return;
+        return undefined;
     }
     const root = children.closest('#local-groupimport-easystud');
     requestGuideHighlightRefresh(root);
@@ -1340,6 +1340,8 @@ export const animateTreeChildren = (children, expand, options = {}) => {
     } else {
         Motion.collapse(children, {duration: Motion.timing.slow, onComplete: complete});
     }
+
+    return undefined;
 };
 
 export const ensureGroupEmailPanel = (group, groupid, labels) => {

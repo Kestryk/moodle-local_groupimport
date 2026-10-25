@@ -5,7 +5,7 @@
 define(['local_groupimport/motion', 'local_groupimport/easyedu_bubble'], function(Motion, EasyeduBubble) {
 // Opt-in native fullscreen lifecycle. The caller owns translated controls,
 // shared paint and modal focus. Never request fullscreen without a user action.
-const createFullscreenController = (element, onChange = () => {}) => {
+const createFullscreenController = (element, onChange = () => { /* Optional hook. */ }) => {
   const document = element.ownerDocument;
   const window = document.defaultView;
   let disposed = false;
@@ -100,7 +100,9 @@ const createFullscreenController = (element, onChange = () => {}) => {
   // ~350ms — a visible flash once the modal was gone but the real layout not yet released.
   // Callers that must cover the host until it is safe to see again (closeModal) await this.
   const waitForUnpark = () => new Promise(resolve => {
-    if (!parked.length) { resolve(); return; }
+    if (!parked.length) {
+ resolve(); return;
+}
     unparkWaiters.push(resolve);
   });
   const available = () => !disposed && window.innerWidth >= 1024 &&
@@ -119,9 +121,13 @@ const createFullscreenController = (element, onChange = () => {}) => {
       await waitForUnpark();
       return true;
     }
-    try { await document.exitFullscreen(); return true; }
-    catch (error) { return false; }
-    finally { notify(); await waitForUnpark(); }
+    try {
+ await document.exitFullscreen(); return true;
+} catch (error) {
+ return false;
+} finally {
+ notify(); await waitForUnpark();
+}
   };
   const toggle = async() => {
     if (pending || disposed) {
@@ -146,7 +152,9 @@ const createFullscreenController = (element, onChange = () => {}) => {
     } catch (error) {
       // Refusal leaves the ordinary dialog usable; never emulate browser mode.
       return false;
-    } finally { pending = false; notify(); }
+    } finally {
+ pending = false; notify();
+}
   };
   const resized = () => {
     if (window.innerWidth < 1024) {
@@ -169,7 +177,6 @@ const createFullscreenController = (element, onChange = () => {}) => {
 const disclosePanel = Motion.disclosePanel;
 const cancelRecapPanel = Motion.cancel;
 // Generic EasyEdu guide foundation for Moodle plugins.
-
 
 
 //
@@ -356,7 +363,7 @@ const easeGuideScroll = progress => {
     1 - Math.pow(-2 * safeProgress + 2, 3) / 2;
 };
 
-const animateScrollTo = (root, scroller, top, duration = 520, onComplete = () => {}) => {
+const animateScrollTo = (root, scroller, top, duration = 520, onComplete = () => { /* Optional hook. */ }) => {
   const reducedMotion = getScrollBehavior(root) === 'auto';
   const isWindow = scroller === window;
   const getCurrent = () => isWindow ? window.scrollY : scroller.scrollTop;
@@ -552,18 +559,24 @@ const migrateGuideReadingState = (state, config) => {
 };
 
 const pruneUnknownPaths = (state, paths) => {
-  if (!state || typeof state !== 'object' || Array.isArray(state)) { return {}; }
+  if (!state || typeof state !== 'object' || Array.isArray(state)) {
+ return {};
+}
   let result = state;
   const own = name => Object.prototype.hasOwnProperty.call(paths, name);
   for (const field of ['completed', 'pathContexts']) {
     const entries = state[field];
-    if (!entries || typeof entries !== 'object' || Array.isArray(entries)) { continue; }
+    if (!entries || typeof entries !== 'object' || Array.isArray(entries)) {
+ continue;
+}
     const retained = Object.entries(entries).filter(([name]) => own(name));
     if (retained.length !== Object.keys(entries).length) {
       result = {...result, [field]: Object.fromEntries(retained)};
     }
   }
-  if (state.path && !own(state.path)) { result = {...result, path: null, activeIndex: 0}; }
+  if (state.path && !own(state.path)) {
+ result = {...result, path: null, activeIndex: 0};
+}
   return result;
 };
 
@@ -580,7 +593,9 @@ const loadGuideState = config => {
     if (state !== original) {
       // Retire unknown path IDs only; reading state and known progress remain.
       // A blocked/quota-limited store must not discard the cleaned in-memory state.
-      try { storage.setItem(getStateKey(config), JSON.stringify(state)); } catch (error) { /* Storage unavailable. */ }
+      try {
+ storage.setItem(getStateKey(config), JSON.stringify(state));
+} catch (error) { /* Storage unavailable. */ }
     }
     if (Array.isArray(config.slideIds) && config.slideIds.length) {
       return migrateGuideReadingState(state, config);
@@ -635,23 +650,33 @@ const saveGuideReadingPosition = (config, index) => {
 // persistence and path-local lifecycle. No context write completes a milestone.
 const normalisePathContext = (config, pathName, data) => {
   const own = (object, key) => object && Object.prototype.hasOwnProperty.call(object, key);
-  if (!own(config.paths, pathName) || !own(config.pathContextFields, pathName)) { return null; }
+  if (!own(config.paths, pathName) || !own(config.pathContextFields, pathName)) {
+ return null;
+}
   const schema = config.pathContextFields[pathName];
   if (!schema || typeof schema !== 'object' || Array.isArray(schema) ||
-      !data || typeof data !== 'object' || Array.isArray(data)) { return null; }
+      !data || typeof data !== 'object' || Array.isArray(data)) {
+ return null;
+}
   const fields = Object.keys(schema);
-  if (!fields.length || fields.length !== Object.keys(data).length) { return null; }
+  if (!fields.length || fields.length !== Object.keys(data).length) {
+ return null;
+}
   const result = {};
   const isId = value => typeof value === 'string' && /^[1-9]\d*$/.test(value);
   for (const field of fields) {
-    if (['__proto__', 'constructor', 'prototype'].includes(field) || !own(data, field)) { return null; }
+    if (['__proto__', 'constructor', 'prototype'].includes(field) || !own(data, field)) {
+ return null;
+}
     const value = data[field];
     if (schema[field] === 'id' && isId(value)) {
       result[field] = value;
     } else if (schema[field] === 'ids' && Array.isArray(value) && value.length &&
         value.every(isId) && new Set(value).size === value.length) {
       result[field] = [...value];
-    } else { return null; }
+    } else {
+ return null;
+}
   }
   return result;
 };
@@ -664,7 +689,9 @@ const normalisePathContext = (config, pathName, data) => {
  */
 const getPathContext = (root, pathName) => {
   const config = root?.easyeduGuideConfig;
-  if (!config) { return null; }
+  if (!config) {
+ return null;
+}
   const state = loadGuideState(config);
   return normalisePathContext(config, pathName, state.pathContexts?.[pathName]);
 };
@@ -677,10 +704,14 @@ const getPathContext = (root, pathName) => {
  */
 const getPathContextToken = (root, pathName) => {
   const config = root?.easyeduGuideConfig;
-  if (!config || !Object.prototype.hasOwnProperty.call(config.pathContextFields || {}, pathName)) { return null; }
+  if (!config || !Object.prototype.hasOwnProperty.call(config.pathContextFields || {}, pathName)) {
+ return null;
+}
   const checklist = root.querySelector(SELECTORS.checklist);
   if (!checklist || checklist.hidden || checklist.getAttribute('data-easyedu-guide-path') !== pathName ||
-      loadGuideState(config).path !== pathName) { return null; }
+      loadGuideState(config).path !== pathName) {
+ return null;
+}
   return {root, config, pathName, epoch: root.easyeduGuidePathEpoch || 0};
 };
 
@@ -695,18 +726,26 @@ const getPathContextToken = (root, pathName) => {
 const setPathContext = (root, pathName, data, token) => {
   const current = getPathContextToken(root, pathName);
   if (!current || !token || token.root !== root || token.config !== current.config ||
-      token.pathName !== pathName || token.epoch !== current.epoch) { return false; }
+      token.pathName !== pathName || token.epoch !== current.epoch) {
+ return false;
+}
   const context = normalisePathContext(current.config, pathName, data);
-  if (!context || !getStorage()) { return false; }
+  if (!context || !getStorage()) {
+ return false;
+}
   try {
     const state = loadGuideState(current.config);
     saveGuideState(current.config, {...state, pathContexts: {...(state.pathContexts || {}), [pathName]: context}});
     return JSON.stringify(getPathContext(root, pathName)) === JSON.stringify(context);
-  } catch (error) { return false; }
+  } catch (error) {
+ return false;
+}
 };
 
 const withoutPathContext = (state, pathName) => {
-  if (!state.pathContexts || !Object.prototype.hasOwnProperty.call(state.pathContexts, pathName)) { return state; }
+  if (!state.pathContexts || !Object.prototype.hasOwnProperty.call(state.pathContexts, pathName)) {
+ return state;
+}
   const pathContexts = {...state.pathContexts};
   delete pathContexts[pathName];
   return {...state, pathContexts};
@@ -743,7 +782,9 @@ const syncPathInvitation = (root, config) => {
     const state = loadGuideState(config);
     button.hidden = state.path !== path || isPathComplete(config, path);
     const footer = button.closest('[data-easyedu-guide-path-progress]');
-    if (footer) { footer.hidden = button.hidden; }
+    if (footer) {
+ footer.hidden = button.hidden;
+}
     // K17-67: while this path is in progress, its start button resumes it where it stood.
     root.querySelectorAll('[data-easyedu-guide-start-path]').forEach(start => {
       if (start.getAttribute('data-easyedu-guide-start-path') !== path || !start.dataset.resumeLabel) {
@@ -771,12 +812,16 @@ const findPathCard = (root, pathName) => Array.from(root.querySelectorAll(PATH_C
   .find(card => card.querySelector(`:scope > [data-easyedu-guide-start-path="${pathName}"]`)) || null;
 
 const syncPathPrerequisites = (root, config) => {
-  if (!config) { return; }
+  if (!config) {
+ return;
+}
   const definitions = config.prerequisites || {};
   root.querySelectorAll(PATH_CARD).forEach(card => {
     const start = card.querySelector(':scope > [data-easyedu-guide-start-path]');
     const notice = card.querySelector('[data-easyedu-guide-path-prerequisite]');
-    if (!start || !notice) { return; }
+    if (!start || !notice) {
+ return;
+}
     const missing = unmetPathPrerequisites(root, config, start.getAttribute('data-easyedu-guide-start-path'));
     const definition = missing.length ? definitions[missing[0]] || {} : null;
     const locked = Boolean(definition && definition.message);
@@ -811,7 +856,9 @@ const syncPathPrerequisites = (root, config) => {
 const gotoPathCard = (root, config, pathName) => {
   const card = findPathCard(root, pathName);
   const slide = card ? card.closest(SELECTORS.slide) : null;
-  if (!slide) { return; }
+  if (!slide) {
+ return;
+}
   syncSlideLocks(root, config);
   setActiveSlide(root, Number(slide.getAttribute('data-easyedu-guide-slide') || 0), config,
     {persistReading: true});
@@ -820,12 +867,16 @@ const gotoPathCard = (root, config, pathName) => {
     const target = start && !start.disabled ? start :
       card.querySelector('[data-easyedu-guide-path-prerequisite-link]:not([hidden])');
     card.scrollIntoView({block: 'nearest'});
-    if (target) { target.focus({preventScroll: true}); }
+    if (target) {
+ target.focus({preventScroll: true});
+}
   };
   // The target slide is revealed after the outgoing fade: focus once it is shown.
   const focusWhenShown = (frame = 0) => {
     if (slide.hidden || root.getAttribute('data-easyedu-guide-slide-transition') === 'out') {
-      if (frame < 90) { window.requestAnimationFrame(() => focusWhenShown(frame + 1)); }
+      if (frame < 90) {
+ window.requestAnimationFrame(() => focusWhenShown(frame + 1));
+}
       return;
     }
     focusCard();
@@ -840,7 +891,9 @@ const gotoPathCard = (root, config, pathName) => {
  * @param {Object|null} facts Course facts used by the configured path prerequisites.
  */
 const setPathFacts = (root, facts) => {
-  if (!root) { return; }
+  if (!root) {
+ return;
+}
   root.easyeduGuidePathFacts = Object.assign({}, facts || {});
   syncPathPrerequisites(root, root.easyeduGuideConfig);
 };
@@ -850,7 +903,9 @@ const dismissResume = (root, animate = false) => {
   root.easyeduGuideResumeTimer = null;
   root.easyeduGuideResumeAnimation?.cancel();
   const notice = root.querySelector('[data-easyedu-guide-resume]');
-  if (!notice || notice.hidden) { return; }
+  if (!notice || notice.hidden) {
+ return;
+}
   const level = getMotionLevel(root);
   if (!animate || level === 'minimal') {
     notice.hidden = true;
@@ -860,7 +915,11 @@ const dismissResume = (root, animate = false) => {
     [{opacity: 1, transform: 'translateY(0)'}, {opacity: 0, transform: 'translateY(.35rem)'}],
   {duration: level === 'reduced' ? REDUCED_FADE_MS : 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
   root.easyeduGuideResumeAnimation = motion;
-  motion.finished.then(() => { notice.hidden = true; motion.cancel(); }).catch(() => {});
+  motion.finished.then(() => {
+ notice.hidden = true; motion.cancel();
+
+  return;
+}).catch(() => { /* Ignore cleanup rejection. */ });
 };
 
 // Count only time outside pointer/keyboard interaction. One listener set per
@@ -870,11 +929,21 @@ const scheduleNoticeExpiry = (root, notice, timerKey, delay, expire) => {
   const clocks = root.easyeduGuideNoticeClocks || (root.easyeduGuideNoticeClocks = new Map());
   const update = event => {
     const clock = clocks.get(timerKey);
-    if (!clock || !clock.active || notice.hidden) { return; }
-    if (event?.type === 'pointerenter') { clock.hovered = true; }
-    if (event?.type === 'pointerleave') { clock.hovered = false; }
-    if (event?.type === 'focusin') { clock.focused = true; }
-    if (event?.type === 'focusout') { clock.focused = notice.contains(event.relatedTarget); }
+    if (!clock || !clock.active || notice.hidden) {
+ return;
+}
+    if (event?.type === 'pointerenter') {
+ clock.hovered = true;
+}
+    if (event?.type === 'pointerleave') {
+ clock.hovered = false;
+}
+    if (event?.type === 'focusin') {
+ clock.focused = true;
+}
+    if (event?.type === 'focusout') {
+ clock.focused = notice.contains(event.relatedTarget);
+}
     const now = performance.now();
     if (clock.hovered || clock.focused) {
       if (clock.started !== null) {
@@ -885,12 +954,16 @@ const scheduleNoticeExpiry = (root, notice, timerKey, delay, expire) => {
       }
       return;
     }
-    if (clock.started !== null) { return; }
+    if (clock.started !== null) {
+ return;
+}
     clock.started = now;
     root[timerKey] = setTrackedTimeout(root, () => {
       root[timerKey] = null;
       clock.active = false;
-      if (!notice.hidden) { clock.expire(); }
+      if (!notice.hidden) {
+ clock.expire();
+}
     }, clock.remaining);
   };
   if (!clocks.has(timerKey)) {
@@ -920,7 +993,9 @@ const placeResume = root => {
 
 const offerResume = (root, config, pathName) => {
   const notice = root.querySelector('[data-easyedu-guide-resume]');
-  if (!notice || isPathComplete(config, pathName)) { return; }
+  if (!notice || isPathComplete(config, pathName)) {
+ return;
+}
   notice.dataset.easyeduGuideResumePathName = pathName;
   notice.hidden = false;
   placeResume(root);
@@ -1160,11 +1235,16 @@ const updateHighlight = (root, target) => {
   // Re-evaluate on each paint, including target reparenting; keep page cues low.
   const inDialog = !!getExternalTargetDialog(root, target);
   root.toggleAttribute('data-easyedu-guide-target-in-dialog', inDialog);
-  if (!inDialog) { root.removeAttribute('data-easyedu-guide-dialog-dock'); }
+  if (!inDialog) {
+ root.removeAttribute('data-easyedu-guide-dialog-dock');
+}
   highlight.classList.toggle(HIGHLIGHT_DIALOG_CLASS, inDialog);
   const modalLayer = inDialog ? window.getComputedStyle(root).getPropertyValue('--easyedu-modal-layer').trim() : '';
-  if (modalLayer) { highlight.style.setProperty('--easyedu-modal-layer', modalLayer); }
-  else { highlight.style.removeProperty('--easyedu-modal-layer'); }
+  if (modalLayer) {
+ highlight.style.setProperty('--easyedu-modal-layer', modalLayer);
+} else {
+ highlight.style.removeProperty('--easyedu-modal-layer');
+}
   const targetLayer = inDialog ? 0 : getTargetLayerIndex(target);
   if (targetLayer) {
     highlight.style.zIndex = String(targetLayer + 1);
@@ -1328,7 +1408,9 @@ const inflateRect = (rect, margin) => ({
 
 const foldChecklistAwayFromTarget = (root, checklist, target) => {
   // K18-12: restoring is an explicit request to read this step, not a new automatic fold.
-  if (root.easyeduGuideChecklistExpandedTarget === target) { return; }
+  if (root.easyeduGuideChecklistExpandedTarget === target) {
+ return;
+}
   root.easyeduGuideAvoidTarget = target;
   if (checklist.classList.contains('is-minimized')) {
     return;
@@ -1477,7 +1559,9 @@ const captureChecklistFocus = (root, opener) => {
 
 const focusChecklist = root => {
   const title = root.querySelector(SELECTORS.checklistTitle);
-  if (!isVisibleElement(title)) { return; }
+  if (!isVisibleElement(title)) {
+ return;
+}
   title.setAttribute('tabindex', '-1');
   title.focus({preventScroll: true});
 };
@@ -1487,7 +1571,9 @@ const restoreChecklistFocus = (root, formerTarget) => {
   // inside that dialog instead of returning to a launcher behind the backdrop.
   const dialog = getExternalTargetDialog(root, formerTarget);
   const destination = dialog ? formerTarget : root.easyeduGuideChecklistReturnFocus;
-  if (isVisibleElement(destination)) { focusTarget(destination); }
+  if (isVisibleElement(destination)) {
+ focusTarget(destination);
+}
   root.easyeduGuideChecklistReturnFocus = null;
   root.easyeduGuideChecklistExpandedTarget = null;
 };
@@ -1511,7 +1597,9 @@ const hideChecklist = (root, config, clearProgress = false, restoreFocus = false
   if (clearProgress) {
     clearChecklistProgress(config);
   }
-  if (restoreFocus) { restoreChecklistFocus(root, formerTarget); }
+  if (restoreFocus) {
+ restoreChecklistFocus(root, formerTarget);
+}
 };
 
 // Unlike Return to Guide, Stop invalidates pending native-dialog work.
@@ -1584,12 +1672,14 @@ const isScrollableContainer = element => {
     element.scrollHeight > element.clientHeight + 2;
 };
 
-const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0, onComplete = () => {}) => {
+const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0, onComplete = () => { /* Optional hook. */ }) => {
   let scrolled = false;
   let pending = 0;
   const settled = () => {
     pending--;
-    if (pending === 0) { onComplete(); }
+    if (pending === 0) {
+ onComplete();
+}
   };
   let parent = target.parentElement;
 
@@ -1706,7 +1796,7 @@ const resolveStepHighlightTarget = (config, step) => {
   return resolveTarget(config, responsiveTarget || step.highlightTarget || step.showTarget || step.target);
 };
 
-const highlightChecklistStep = (root, config, step, callback = () => {}) => {
+const highlightChecklistStep = (root, config, step, callback = () => { /* Optional hook. */ }) => {
   if (!step) {
     callback();
     return;
@@ -1714,7 +1804,9 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
 
   const epoch = root.easyeduGuidePathEpoch || 0;
   const begin = () => {
-    if (epoch !== (root.easyeduGuidePathEpoch || 0)) { return; }
+    if (epoch !== (root.easyeduGuidePathEpoch || 0)) {
+ return;
+}
     runStepOpenAction(root, config, step, () => {
       const target = resolveStepHighlightTarget(config, step);
       scrollToTarget(root, target, {
@@ -1734,7 +1826,9 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
         if (completed !== false && root.easyeduGuideConfig === config && !root.querySelector(SELECTORS.checklist)?.hidden) {
           begin();
         }
-      }).catch(() => {});
+
+return;
+}).catch(() => { /* Ignore cleanup rejection. */ });
       return;
     }
   }
@@ -1934,9 +2028,13 @@ let recapPanelSequence = 0;
 const prepareRecapDisclosure = recap => {
   const body = recap?.querySelector('[data-guide-recap-body]');
   const toggle = recap?.querySelector('[data-guide-recap-toggle]');
-  if (!body || !toggle) { return; }
+  if (!body || !toggle) {
+ return;
+}
   cancelRecapPanel(body);
-  if (!body.id) { body.id = `easyedu-guide-recap-panel-${++recapPanelSequence}`; }
+  if (!body.id) {
+ body.id = `easyedu-guide-recap-panel-${++recapPanelSequence}`;
+}
   toggle.setAttribute('aria-controls', body.id);
   toggle.setAttribute('aria-expanded', 'true');
   body.hidden = false;
@@ -1946,7 +2044,9 @@ const prepareRecapDisclosure = recap => {
 const toggleRecapDisclosure = recap => {
   const body = recap?.querySelector('[data-guide-recap-body]');
   const toggle = recap?.querySelector('[data-guide-recap-toggle]');
-  if (!body || !toggle) { return; }
+  if (!body || !toggle) {
+ return;
+}
   const open = toggle.getAttribute('aria-expanded') !== 'true';
   const transition = disclosePanel(body, open, {collapseMargins: true});
   // The real shared effect is the duration authority, including reversals and
@@ -2146,7 +2246,9 @@ const renderDiscoveryNames = (root, scene, command) => {
   stopDiscoveryScene(root);
   const input = scene.querySelector('[data-guide-pattern]');
   const output = scene.querySelector('[data-guide-names]');
-  if (!input || !output) { return; }
+  if (!input || !output) {
+ return;
+}
   if (command === 'letters') {
     input.value = input.value.replace(/[#@]/, value => value === '#' ? '@' : '#');
   }
@@ -2160,7 +2262,9 @@ const renderDiscoveryNames = (root, scene, command) => {
   let stopped = false;
   output.setAttribute('aria-busy', 'true');
   const animate = async(element, frames, duration, delay = 0) => {
-    if (stopped || level === 'minimal') { return; }
+    if (stopped || level === 'minimal') {
+ return;
+}
     // Reduced level: opacity fades of 120 ms at most, no height, no translate, no stagger.
     const shown = level === 'reduced' ? toFadeFrames(frames) : frames;
     if (!shown) {
@@ -2170,7 +2274,9 @@ const renderDiscoveryNames = (root, scene, command) => {
       duration: level === 'reduced' ? Math.min(REDUCED_FADE_MS, duration) : duration,
       delay: level === 'reduced' ? 0 : delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
     animations.add(animation);
-    try { await animation.finished; } catch (error) { /* Departure/replay cancels the presentation only. */ }
+    try {
+ await animation.finished;
+} catch (error) { /* Departure/replay cancels the presentation only. */ }
     animation.cancel();
     animations.delete(animation);
   };
@@ -2183,10 +2289,14 @@ const renderDiscoveryNames = (root, scene, command) => {
     if (output.childElementCount || output.textContent) {
       await animate(output, [{opacity: 1}, {opacity: 0}], 110);
     }
-    if (stopped) { return; }
+    if (stopped) {
+ return;
+}
     if (warning && !warning.hidden) {
       await animate(warning, [{opacity: 1}, {opacity: 0}], 110);
-      if (stopped) { return; }
+      if (stopped) {
+ return;
+}
       warning.hidden = true;
     }
     input.removeAttribute('aria-invalid');
@@ -2204,7 +2314,11 @@ const renderDiscoveryNames = (root, scene, command) => {
         for (const name of names) {
           const card = template?.content.firstElementChild?.cloneNode(true) || document.createElement('span');
           const label = card.querySelector('[data-guide-name]');
-          if (label) { label.textContent = name; } else { card.textContent = name; }
+          if (label) {
+ label.textContent = name;
+} else {
+ card.textContent = name;
+}
           output.appendChild(card);
         }
       }
@@ -2215,9 +2329,13 @@ const renderDiscoveryNames = (root, scene, command) => {
       ...Array.from(output.children, (card, index) => animate(card,
         [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}], 260, index * 55))
     ]);
-    if (!stopped) { output.setAttribute('aria-busy', 'false'); }
+    if (!stopped) {
+ output.setAttribute('aria-busy', 'false');
+}
   };
-  run().catch(() => { stopDiscoveryScene(root); });
+  run().catch(() => {
+ stopDiscoveryScene(root);
+});
 };
 
 // I14: one player per discovery scene kind, dispatched from DISCOVERY_SCENE_PLAYERS. Each player receives
@@ -2241,11 +2359,17 @@ const createSpecimenTools = ctx => {
   const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
   const pointAt = async element => {
     assertActive();
-    if (!cursor || !element) { return; }
+    if (!cursor || !element) {
+ return;
+}
     await gate();
-    const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
-    const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
-    if (compact) { await touchPointer.place(cursor, x, y); return; }
+    const target = element.getBoundingClientRect(),
+frame = stage.getBoundingClientRect();
+    const x = target.left - frame.left + target.width / 2,
+y = target.top - frame.top + target.height / 2;
+    if (compact) {
+ await touchPointer.place(cursor, x, y); return;
+}
     if (still) {
       await placeCursor(cursor, `translate(${x}px, ${y}px)`);
       return;
@@ -2253,8 +2377,12 @@ const createSpecimenTools = ctx => {
     await movePointer(cursor, x, y, 520);
   };
   const hidePointer = async() => {
-    if (!cursor || cursor.hidden) { return; }
-    if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
+    if (!cursor || cursor.hidden) {
+ return;
+}
+    if (!still) {
+ await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false);
+}
     cursor.hidden = true;
     // The retained travel animations of a hidden pointer are released with it.
     animations.forEach(animation => {
@@ -2266,7 +2394,9 @@ const createSpecimenTools = ctx => {
   };
   const press = element => element ? clickFeedback(element, cursor) : Promise.resolve();
   const type = async(input, text, step = 45) => {
-    if (!input) { return; }
+    if (!input) {
+ return;
+}
     input.value = '';
     for (const character of text) {
       assertActive();
@@ -2276,7 +2406,9 @@ const createSpecimenTools = ctx => {
     input.value = text;
   };
   const show = async element => {
-    if (!element) { return; }
+    if (!element) {
+ return;
+}
     element.hidden = false;
     await reveal(element);
     await animate(element, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}],
@@ -2453,8 +2585,10 @@ const playMassImportDropSteps = async(ctx, tools) => {
     const [sx, sy] = centre(results);
     const [ex, ey] = centre(deposit);
     ghost.hidden = false;
-    const gx = ghost.offsetWidth / 2, gy = ghost.offsetHeight / 2;
-    const from = `translate(${sx - gx}px, ${sy - gy}px)`, to = `translate(${ex - gx}px, ${ey - gy}px)`;
+    const gx = ghost.offsetWidth / 2,
+gy = ghost.offsetHeight / 2;
+    const from = `translate(${sx - gx}px, ${sy - gy}px)`,
+to = `translate(${ex - gx}px, ${ey - gy}px)`;
     ghost.style.transform = from;
     await animate(ghost, [{opacity: 0}, {opacity: 1}], 160, false);
     await pointAt(ghost);
@@ -2513,7 +2647,8 @@ const playMassImportPreviewSteps = async(ctx, tools) => {
     if (!wrap || !cell) {
       return;
     }
-    const frame = wrap.getBoundingClientRect(), box = cell.getBoundingClientRect();
+    const frame = wrap.getBoundingClientRect(),
+box = cell.getBoundingClientRect();
     if (box.left < frame.left || box.right > frame.right) {
       wrap.scrollLeft += box.left - frame.left - Math.max(0, (frame.width - box.width) / 2);
     }
@@ -2623,17 +2758,28 @@ const playSpecimenScene = async(ctx, steps) => {
   const tools = createSpecimenTools(ctx);
   await steps(ctx, tools);
   await tools.hidePointer();
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   markFinished();
   await settleHeader();
   if (signal.aborted) {
     return;
   }
-  const specimenRecap = kind === 'filters' ?
-    scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') :
-    ['simplecreate', 'midrop', 'mipreview'].includes(kind) ? scene.querySelector('[data-guide-recap]') : null;
+  const resolveSpecimenRecap = () => {
+    if (kind === 'filters') {
+      return scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]');
+    }
+    if (['simplecreate', 'midrop', 'mipreview'].includes(kind)) {
+      return scene.querySelector('[data-guide-recap]');
+    }
+    return null;
+  };
+  const specimenRecap = resolveSpecimenRecap();
   if (specimenRecap) {
     specimenRecap.querySelectorAll('[data-guide-phase]').forEach(item => {
       item.textContent = item.textContent.replace(/^\d+\s*[·.]\s*/, '');
@@ -2645,7 +2791,9 @@ const playSpecimenScene = async(ctx, steps) => {
     await animate(specimenRecap, [{opacity: 0}, {opacity: 1}], 280);
     specimenRecap.style.removeProperty('opacity');
   }
-  if (!signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+  if (!signal.aborted) {
+ scene.dataset.guideSceneFinished = 'true';
+}
 };
 
 // Inspection: illustration only, never focus, click or resolve a native identifier. Reuse the shared
@@ -2654,12 +2802,18 @@ const createInspectionPointer = (ctx, stage, cursor) => {
   const {compact, still, animations, assertActive, gate, animate, placeCursor, movePointer, touchPointer} = ctx;
   const pointAt = async(element) => {
     assertActive();
-    if (!cursor) { return; }
+    if (!cursor) {
+ return;
+}
     await gate();
     assertActive();
-    const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
-    const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
-    if (compact) { await touchPointer.place(cursor, x, y); return; }
+    const target = element.getBoundingClientRect(),
+frame = stage.getBoundingClientRect();
+    const x = target.left - frame.left + target.width / 2,
+y = target.top - frame.top + target.height / 2;
+    if (compact) {
+ await touchPointer.place(cursor, x, y); return;
+}
     if (still) {
       await placeCursor(cursor, `translate(${x}px, ${y}px)`);
       return;
@@ -2672,11 +2826,15 @@ const createInspectionPointer = (ctx, stage, cursor) => {
       cursor.hidden = true;
       return;
     }
-    if (!cursor || cursor.hidden) { return; }
+    if (!cursor || cursor.hidden) {
+ return;
+}
     await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
     cursor.hidden = true;
     animations.forEach(animation => {
-      if (animation.effect?.target === cursor) { animation.cancel(); animations.delete(animation); }
+      if (animation.effect?.target === cursor) {
+ animation.cancel(); animations.delete(animation);
+}
     });
   };
   return {pointAt, hidePointer};
@@ -2696,7 +2854,9 @@ const playInspectionScene = async ctx => {
   const cursor = stage.querySelector('[data-guide-inspection-cursor]');
   const value = input.getAttribute('data-guide-example-value') || '';
   trigger.hidden = compact;
-  if (compactTrigger) { compactTrigger.hidden = !compact; }
+  if (compactTrigger) {
+ compactTrigger.hidden = !compact;
+}
   const {pointAt, hidePointer} = createInspectionPointer(ctx, stage, cursor);
   // Animate the auto-sized card while keeping the natural field's layout.
   // Same WAAPI set/clock as reading: Pause, Next and departure own both.
@@ -2717,9 +2877,13 @@ const playInspectionScene = async ctx => {
   await reveal(card);
   // Touch: the finger rests above the card's menu button during the first phase, taps it, then rests on
   // the menu entry it names (no mouse trajectory).
-  if (compact && compactTrigger) { await pointAt(compactTrigger); }
+  if (compact && compactTrigger) {
+ await pointAt(compactTrigger);
+}
   await phase('orient');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   if (compact) {
     await clickFeedback(compactTrigger, cursor);
     menu.hidden = false;
@@ -2730,32 +2894,48 @@ const playInspectionScene = async ctx => {
     await pointAt(trigger);
   }
   await phase('open');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await clickFeedback(compact ? menu.querySelector('strong') : trigger, cursor);
   await hidePointer();
   menu.hidden = true;
   await disclose(true);
   await reveal(panel);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   input.value = value;
   await pointAt(input);
   await phase('enter');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await clickFeedback(input, cursor);
   await hidePointer();
   // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
   chips.style.opacity = '0';
   chips.hidden = false;
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await reveal(chips);
   await animate(chips, [{opacity: 0}, {opacity: 1}], 260);
   chips.style.removeProperty('opacity');
   await phase('review');
-  if (signal.aborted) { return; }
-  if (cancel) { await reveal(cancel); }
-  if (cancel) { await pointAt(cancel); }
+  if (signal.aborted) {
+ return;
+}
+  if (cancel) {
+ await reveal(cancel);
+}
+  if (cancel) {
+ await pointAt(cancel);
+}
   await phase('return');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await clickFeedback(cancel, cursor);
   await hidePointer();
   // K17-28: the card returns to its resting size behind the common short fade.
@@ -2764,13 +2944,19 @@ const playInspectionScene = async ctx => {
     input.value = '';
     chips.hidden = true;
   });
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   result.textContent = result.dataset.inspection || scene.easyeduGuideResultOriginal;
   await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   markFinished();
   await settleHeader();
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   if (recap) {
     recap.style.opacity = '0';
     recap.hidden = false;
@@ -2783,7 +2969,9 @@ const playInspectionScene = async ctx => {
     await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
     recap.style.removeProperty('opacity');
   }
-  if (!signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+  if (!signal.aborted) {
+ scene.dataset.guideSceneFinished = 'true';
+}
 };
 
 // The membership pointer keeps its original travel/drag clock. It is decorative and must not paint
@@ -2794,7 +2982,9 @@ const createMembershipPointer = (ctx, cursor) => {
   let cursorVisibilityFrame = null;
   const cursorVisibility = cursor.style.visibility;
   const updateCursorVisibility = () => {
-    if (signal.aborted || isFinished()) { return; }
+    if (signal.aborted || isFinished()) {
+ return;
+}
     const body = readingBody?.getBoundingClientRect();
     const header = sceneHeader?.getBoundingClientRect();
     const point = cursor.getBoundingClientRect();
@@ -2802,7 +2992,9 @@ const createMembershipPointer = (ctx, cursor) => {
     cursor.style.visibility = body && (point.top < top || point.bottom > body.bottom) ? 'hidden' : cursorVisibility;
     // Only a gliding pointer or scroll needs a per-frame check; below the 'full' level it is
     // evaluated when the pointer is placed and when the reading surface scrolls.
-    if (!still) { cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility); }
+    if (!still) {
+ cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility);
+}
   };
   updateCursorVisibility();
   if (still) {
@@ -2833,7 +3025,8 @@ const createMembershipPointer = (ctx, cursor) => {
     },
     travel: async(element, duration = 750, cardAnchor = false) => {
       assertActive();
-      const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
+      const a = element.getBoundingClientRect(),
+b = stage.getBoundingClientRect();
       const point = {
         x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
         y: a.top - b.top + (cardAnchor ? Math.min(28, a.height / 2) : a.height / 2)
@@ -2866,7 +3059,8 @@ const playMembershipMenuFlow = async(ctx, pointer, {person, cursor, menu, confir
   const {stage, compact, still, signal, animate, clickFeedback, reveal, revealPrepared, phase} = ctx;
   // Desktop follows the illustrated click. Compact/reduced scenes anchor
   // to the same card without implying a mouse-only mobile interaction.
-  const stageBounds = stage.getBoundingClientRect(), cardBounds = person.getBoundingClientRect();
+  const stageBounds = stage.getBoundingClientRect(),
+cardBounds = person.getBoundingClientRect();
   const point = pointer.point || {x: cardBounds.left - stageBounds.left + 24,
     y: cardBounds.bottom - stageBounds.top};
   await phase('menu', () => revealPrepared(menu, () => {
@@ -2876,14 +3070,20 @@ const playMembershipMenuFlow = async(ctx, pointer, {person, cursor, menu, confir
     stage.style.setProperty('--easyedu-guide-menu-y',
       `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
   }));
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await pointer.travel(menu.querySelector('strong'));
   await clickFeedback(menu.querySelector('strong'), cursor);
   await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   menu.hidden = true;
   await phase('confirm', () => revealPrepared(confirm));
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   if (compact) {
     // Touch: choose the destination field of the confirmation before pressing the button.
     await pointer.travel(confirm.querySelector('.easyedu-guide-scene__destination'));
@@ -2896,9 +3096,13 @@ const playMembershipMenuFlow = async(ctx, pointer, {person, cursor, menu, confir
   await clickFeedback(submit, cursor);
   await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
     {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await animate(confirm, [{opacity: 1}, {opacity: 0}], 220);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   confirm.hidden = true;
   // Move the natural selected cards only after the illustrated confirmation.
   // Compact/reduced modes keep the same outcome without a mouse-only gesture.
@@ -2906,7 +3110,9 @@ const playMembershipMenuFlow = async(ctx, pointer, {person, cursor, menu, confir
   // Reveal the cards before measuring displacement; reuse the same paused,
   // cancellable scene clock rather than scrolling the Moodle page behind it.
   await reveal(stage);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   if (!compact && !still) {
     const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
     const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
@@ -2923,7 +3129,9 @@ const playMembershipMenuFlow = async(ctx, pointer, {person, cursor, menu, confir
 const playMembershipDragFlow = async(ctx, pointer, person) => {
   const {scene, stage, still, signal, wait, animate, phase, setDropFrame, cancelDropFrame} = ctx;
   await phase('menu');
-  if (signal.aborted || still) { return; }
+  if (signal.aborted || still) {
+ return;
+}
   const ghost = person.cloneNode(true);
   ghost.removeAttribute('data-guide-person');
   ghost.setAttribute('data-guide-ghost', '');
@@ -2937,19 +3145,24 @@ const playMembershipDragFlow = async(ctx, pointer, person) => {
   badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
   ghost.appendChild(badge);
   stage.appendChild(ghost);
-  const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
+  const a = person.getBoundingClientRect(),
+b = stage.getBoundingClientRect();
   ghost.style.left = `${a.left - b.left}px`;
   ghost.style.top = `${a.top - b.top}px`;
   await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
   const destinationNode = stage.querySelector('[data-guide-destination]');
   const destination = destinationNode.getBoundingClientRect();
-  const dx = destination.left - a.left, dy = destination.top - a.top + 32;
+  const dx = destination.left - a.left,
+dy = destination.top - a.top + 32;
   const startPoint = {...pointer.point};
   // One displacement, duration and easing for ghost and pointer. Track
   // actual animated paint to reveal the destination only while hovering.
   const trackDrop = () => {
-    if (signal.aborted || !ghost.isConnected) { return; }
-    const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
+    if (signal.aborted || !ghost.isConnected) {
+ return;
+}
+    const card = ghost.getBoundingClientRect(),
+drop = destinationNode.getBoundingClientRect();
     destinationNode.classList.toggle('is-guide-drop-target',
       card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
     setDropFrame(requestAnimationFrame(trackDrop));
@@ -2958,7 +3171,9 @@ const playMembershipDragFlow = async(ctx, pointer, person) => {
   await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
     {transform: `translate(${dx}px,${dy}px)`}], 1200),
     pointer.travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   cancelDropFrame();
   // K17-43: the participant card stays where it was dropped and only fades out; it no longer
   // travels back to the left.
@@ -2974,7 +3189,9 @@ const finishMembershipScene = async(ctx, pointer, {cursor, member}) => {
   const {scene, stage, mode, compact, result, recap, origin, target, signal, animate, reveal, restFlash, writeLive,
     markFinished, settleHeader} = ctx;
   await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   cursor.hidden = true;
   pointer.release();
   // The destination group no longer jumps.
@@ -3001,12 +3218,16 @@ const finishMembershipScene = async(ctx, pointer, {cursor, member}) => {
     origin.classList.add('is-removed');
     origin.querySelector('b').textContent = origin.dataset.removed;
   }
-  if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
+  if (target) {
+ target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added;
+}
   result.textContent = result.getAttribute(`data-${mode}`) || '';
   await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
   markFinished();
   await settleHeader();
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   if (recap) {
     // Keep it transparent during insertion/reveal: previously one fully
     // painted frame preceded the fade-in and caused the completion flash.
@@ -3025,7 +3246,9 @@ const finishMembershipScene = async(ctx, pointer, {cursor, member}) => {
     await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
     recap.style.removeProperty('opacity');
   }
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   scene.dataset.guideSceneFinished = 'true';
 };
 
@@ -3045,15 +3268,21 @@ const playMembershipScene = async ctx => {
   await pointer.travel(person, 750, true);
   await clickFeedback(person, cursor);
   stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
-  stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
+  stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => {
+ node.checked = true;
+});
   await phase('select');
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   if (mode !== 'add' || compact) {
     await playMembershipMenuFlow(ctx, pointer, {person, cursor, menu, confirm});
   } else {
     await playMembershipDragFlow(ctx, pointer, person);
   }
-  if (signal.aborted) { return; }
+  if (signal.aborted) {
+ return;
+}
   await finishMembershipScene(ctx, pointer, {cursor, member});
 };
 
@@ -3081,40 +3310,66 @@ const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, appli
       comparison.hidden = state === 'finished';
     }
     const controls = sceneHeader.querySelector('.easyedu-guide-scene__playback');
-    if (controls) { controls.hidden = !['playing', 'paused'].includes(state); }
+    if (controls) {
+ controls.hidden = !['playing', 'paused'].includes(state);
+}
     // Collapse the useless disabled mode/Start row through canonical CSS
     // Motion; inert prevents invisible controls retaining keyboard focus.
     sceneHeader.querySelector('.easyedu-guide-scene__header-controls')?.toggleAttribute('inert',
       ['playing', 'paused'].includes(state));
     if (phaseCaption) {
       const labels = sceneHeader.dataset;
-      const modeLabel = kind === 'membership' ? (mode === 'add' ? labels.addLabel : labels.moveLabel) : '';
+      const resolveSceneModeLabel = () => {
+        if (kind === 'membership') {
+          if (mode === 'add') {
+            return labels.addLabel;
+          }
+          return labels.moveLabel;
+        }
+        return '';
+      };
+      const modeLabel = resolveSceneModeLabel();
       const current = applicablePhases.findIndex(item => item.dataset.guidePhase === scene.dataset.guidePhase) + 1;
       phaseCaption.hidden = !labels.stepLabel || state === 'finished';
       phaseCaption.textContent = state === 'idle' ? labels.readyLabel :
         (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' +
           Math.max(1, current) + '/' + applicablePhases.length;
-      if (modeLabel) { phaseCaption.textContent += ' · ' + modeLabel; }
+      if (modeLabel) {
+ phaseCaption.textContent += ' · ' + modeLabel;
+}
     }
     updateClearance();
-    if (state === 'finished') { getHeaderObserver()?.disconnect(); }
+    if (state === 'finished') {
+ getHeaderObserver()?.disconnect();
+}
   }
   if (startControl) {
     const busy = ['playing', 'paused'].includes(state);
     startControl.disabled = busy;
     startControl.setAttribute('aria-busy', String(busy));
-    startControl.querySelector('[data-guide-start-label]').textContent = busy ?
-      startControl.dataset.runningLabel : state === 'finished' ?
-        startControl.dataset.replayLabel : startControl.dataset.startLabel;
+    const resolveSceneStartLabel = () => {
+      if (busy) {
+        return startControl.dataset.runningLabel;
+      }
+      if (state === 'finished') {
+        return startControl.dataset.replayLabel;
+      }
+      return startControl.dataset.startLabel;
+    };
+    startControl.querySelector('[data-guide-start-label]').textContent = resolveSceneStartLabel();
     scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
       '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
       '[data-guide-scene-command="clear"]').forEach(button => {
       button.disabled = busy;
     });
   }
-  if (!live) { return; }
+  if (!live) {
+ return;
+}
   live.dataset.guidePlaybackState = state;
-  if (activity) { activity.hidden = !['playing', 'paused'].includes(state); }
+  if (activity) {
+ activity.hidden = !['playing', 'paused'].includes(state);
+}
   if (pauseControl) {
     pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
     pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
@@ -3122,7 +3377,9 @@ const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, appli
       state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
     pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
   }
-  if (nextControl) { nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state); }
+  if (nextControl) {
+ nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state);
+}
 };
 
 // Return the scene to its resting illustration: live copy, recap, memberships (moved into the header as the
@@ -3131,18 +3388,26 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
   startControl, readingBody, compact, requestedMode, start}) => {
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
-    if (liveAnnouncement) { liveAnnouncement.textContent = scene.easyeduGuideResultOriginal; }
+    if (liveAnnouncement) {
+ liveAnnouncement.textContent = scene.easyeduGuideResultOriginal;
+}
     liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
     liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.removeAttribute('data-guide-live-state');
     const completionIcon = live.querySelector('[data-guide-live-complete]');
-    if (completionIcon) { completionIcon.hidden = true; }
+    if (completionIcon) {
+ completionIcon.hidden = true;
+}
   }
   delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
-  if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
+  if (recap) {
+ prepareRecapDisclosure(recap); recap.hidden = true;
+}
   // GMI-C3: at the minimal level the Mass Import recap is the lesson itself, shown at rest.
-  if (recap && ['midrop', 'mipreview'].includes(kind)) { recap.hidden = getMotionLevel(root) !== 'minimal'; }
+  if (recap && ['midrop', 'mipreview'].includes(kind)) {
+ recap.hidden = getMotionLevel(root) !== 'minimal';
+}
   // K17-44: the four renderings of the filter slide are the recap shown once its demonstration ends.
   const filtersRecap = kind === 'filters' ?
     scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
@@ -3151,12 +3416,18 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
   }
   const origin = scene.querySelector('[data-guide-membership-origin]');
   const target = scene.querySelector('[data-guide-membership-target]');
-  if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }
-  if (target) { target.classList.add('is-absent'); target.querySelector('b').textContent = target.dataset.absent; }
+  if (origin) {
+ origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept;
+}
+  if (target) {
+ target.classList.add('is-absent'); target.querySelector('b').textContent = target.dataset.absent;
+}
   scene.querySelectorAll('[data-guide-phase]').forEach(item => {
     item.removeAttribute('aria-current');
     item.hidden = false;
-    if (!item.dataset.original) { item.dataset.original = item.textContent; }
+    if (!item.dataset.original) {
+ item.dataset.original = item.textContent;
+}
     item.textContent = item.dataset.original;
   });
   // At rest, the membership strip is explicitly an expected outcome. Starting
@@ -3171,13 +3442,20 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
     }
   }
   const membershipTitle = memberships?.querySelector('[data-guide-membership-title]');
-  if (membershipTitle && !membershipTitle.dataset.original) { membershipTitle.dataset.original = membershipTitle.textContent; }
+  if (membershipTitle && !membershipTitle.dataset.original) {
+ membershipTitle.dataset.original = membershipTitle.textContent;
+}
   const preview = !!sceneHeader && !!startControl && (requestedMode === 'reset' || !start) && kind === 'membership';
   if (memberships && sceneHeader) {
-    if (preview) { sceneHeader.appendChild(memberships); }
-    else { memberships.easyeduGuideHome.after(memberships); }
+    if (preview) {
+ sceneHeader.appendChild(memberships);
+} else {
+ memberships.easyeduGuideHome.after(memberships);
+}
   }
-  if (memberships) { memberships.toggleAttribute('data-guide-membership-preview', preview); }
+  if (memberships) {
+ memberships.toggleAttribute('data-guide-membership-preview', preview);
+}
   if (membershipTitle) {
     membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original;
   }
@@ -3186,7 +3464,9 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
       origin.classList.toggle('is-removed', mode === 'move');
       origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
     }
-    if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
+    if (target) {
+ target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added;
+}
     if (liveCopy) {
       liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
       liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
@@ -3196,7 +3476,8 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
     // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
     // never scroll the Moodle page or leave the expected outcome below the fold.
     if (readingBody) {
-      const bodyBounds = readingBody.getBoundingClientRect(), headerBounds = sceneHeader.getBoundingClientRect();
+      const bodyBounds = readingBody.getBoundingClientRect(),
+headerBounds = sceneHeader.getBoundingClientRect();
       if (headerBounds.bottom > bodyBounds.bottom - 8) {
         animateScrollTo(root, readingBody, readingBody.scrollTop + headerBounds.bottom - bodyBounds.bottom + 8);
       }
@@ -3206,7 +3487,9 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
   if (kind === 'inspection') {
     stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
     const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
-    if (compactTrigger) { compactTrigger.hidden = !compact; }
+    if (compactTrigger) {
+ compactTrigger.hidden = !compact;
+}
   }
   return {recap, origin, target};
 };
@@ -3259,40 +3542,56 @@ const createScenePointerKit = ({root, compact, still, reduced, fadeLevel, gate, 
     place: async(cursorEl, x, y) => {
       cursorEl.dataset.guidePointer = 'touch';
       const destination = `translate(${x}px, ${y}px)`;
-      if (still) { await placeCursor(cursorEl, destination); return; }
+      if (still) {
+ await placeCursor(cursorEl, destination); return;
+}
       await gate();
       assertActive();
-      if (!cursorEl.hidden) { await animate(cursorEl, [{opacity: 1}, {opacity: 0}], 80, false); }
+      if (!cursorEl.hidden) {
+ await animate(cursorEl, [{opacity: 1}, {opacity: 0}], 80, false);
+}
       cursorEl.style.transform = destination;
       cursorEl.hidden = false;
       await animate(cursorEl, [{opacity: 0, transform: `${destination} scale(.8)`},
         {opacity: 1, transform: `${destination} scale(1)`}], 160, false);
     },
     tap: async cursorEl => {
-      if (!cursorEl || cursorEl.hidden) { return; }
+      if (!cursorEl || cursorEl.hidden) {
+ return;
+}
       await gate();
       assertActive();
-      if (reduced) { return; }
+      if (reduced) {
+ return;
+}
       touchRipple(cursorEl);
       await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'},
         {transform: 'scale(1)'}], 90, false);
     },
     longPress: async cursorEl => {
-      if (!cursorEl || cursorEl.hidden) { return; }
+      if (!cursorEl || cursorEl.hidden) {
+ return;
+}
       await gate();
       assertActive();
-      if (reduced) { return; }
+      if (reduced) {
+ return;
+}
       await animate(touchDisc(cursorEl), [{transform: 'scale(1)', '--easyedu-guide-press': 0},
         {transform: 'scale(.86)', '--easyedu-guide-press': 1}], 450, false);
       touchRipple(cursorEl);
     },
     // Press, then follow the card ghost (the caller animates it on the same clock), then release with a ripple.
     drag: async(cursorEl, dx, dy, duration, companions = []) => {
-      if (!cursorEl || cursorEl.hidden) { return; }
+      if (!cursorEl || cursorEl.hidden) {
+ return;
+}
       const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
       await gate();
       assertActive();
-      if (reduced) { return; }
+      if (reduced) {
+ return;
+}
       await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'}], 90);
       await Promise.all([animate(cursorEl, [{transform: from.toString()},
         {transform: `translate(${from.m41 + dx}px, ${from.m42 + dy}px)`}], duration), ...companions]);
@@ -3310,9 +3609,13 @@ const createScenePointerKit = ({root, compact, still, reduced, fadeLevel, gate, 
 
 const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   stopDiscoveryScene(root);
-  if (!scene) { return; }
+  if (!scene) {
+ return;
+}
   const kind = scene.getAttribute('data-easyedu-guide-scene');
-  if (kind === 'concepts') { return; }
+  if (kind === 'concepts') {
+ return;
+}
   // K17-36: with a demonstration entry, the plain preview is the resting state of the creation stage.
   const hasStart = !!scene.querySelector('[data-guide-scene-command="start"]');
   if (kind === 'creation') {
@@ -3330,7 +3633,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     return;
   }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
-    scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
+    scene.querySelector(`[data-guide-inspection-${role}]`))) {
+ return;
+}
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
   const mode = requestedMode === 'reset' ? defaultMode : requestedMode || scene.easyeduGuideSceneMode || defaultMode;
   const stage = scene.querySelector('[data-guide-stage]');
@@ -3345,7 +3650,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   stage.innerHTML = scene.easyeduGuideStageOriginal;
   delete scene.dataset.guideSceneFinished;
-  if (result) { result.textContent = scene.easyeduGuideResultOriginal; }
+  if (result) {
+ result.textContent = scene.easyeduGuideResultOriginal;
+}
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
   scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
@@ -3378,16 +3685,24 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const originalScrollPadding = readingBody?.style.getPropertyValue('scroll-padding-top') || '';
   const originalScrollPaddingPriority = readingBody?.style.getPropertyPriority('scroll-padding-top') || '';
   const restoreClearance = () => {
-    if (!readingBody) { return; }
+    if (!readingBody) {
+ return;
+}
     if (originalScrollPadding) {
       readingBody.style.setProperty('scroll-padding-top', originalScrollPadding, originalScrollPaddingPriority);
-    } else { readingBody.style.removeProperty('scroll-padding-top'); }
+    } else {
+ readingBody.style.removeProperty('scroll-padding-top');
+}
   };
   const updateClearance = () => {
-    if (!sceneHeader || !readingBody) { return; }
+    if (!sceneHeader || !readingBody) {
+ return;
+}
     if (['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState)) {
       readingBody.style.setProperty('scroll-padding-top', `${sceneHeader.getBoundingClientRect().height + 8}px`);
-    } else { restoreClearance(); }
+    } else {
+ restoreClearance();
+}
   };
   let headerObserver = null;
   const syncPlayback = createPlaybackSync({scene, kind, mode, sceneHeader, phaseCaption, applicablePhases,
@@ -3395,7 +3710,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   syncPlayback('idle');
   const {recap, origin, target} = restoreSceneAtRest({root, scene, kind, mode, stage, result, live, liveCopy,
     liveAnnouncement, sceneHeader, startControl, readingBody, compact, requestedMode, start});
-  if (requestedMode === 'reset' || !start) { return; }
+  if (requestedMode === 'reset' || !start) {
+ return;
+}
 
   const controller = new AbortController();
   const animations = new Set();
@@ -3418,9 +3735,13 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   // Reading, illustration and scroll share one lifecycle. Pause retains the
   // unread duration; phase advance drains just this phase's presentation work.
   const assertActive = () => {
-    if (controller.signal.aborted) { throw controller.signal.reason; }
+    if (controller.signal.aborted) {
+ throw controller.signal.reason;
+}
   };
-  const releaseGates = () => { gates.forEach(resolve => resolve()); gates.clear(); };
+  const releaseGates = () => {
+ gates.forEach(resolve => resolve()); gates.clear();
+};
   const gate = async() => {
     if (paused && !skipping && !controller.signal.aborted) {
       await new Promise(resolve => gates.add(resolve));
@@ -3428,7 +3749,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     assertActive();
   };
   const finishWait = () => {
-    if (timer !== null) { window.clearTimeout(timer); }
+    if (timer !== null) {
+ window.clearTimeout(timer);
+}
     timer = null; waitRemaining = 0;
     const resolve = resolveWait; resolveWait = null;
     resolve?.();
@@ -3440,37 +3763,57 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const wait = async duration => {
     await gate();
     assertActive();
-    if (skipping) { return; }
+    if (skipping) {
+ return;
+}
     await new Promise(resolve => {
-      resolveWait = resolve; waitRemaining = duration; scheduleWait();
+      resolveWait = resolve;
+      waitRemaining = duration;
+      scheduleWait();
     });
     assertActive();
   };
   root.easyeduGuideScenePlayback = {
     scene,
     toggle: () => {
-      if (controller.signal.aborted || finished || advancing) { return; }
+      if (controller.signal.aborted || finished || advancing) {
+ return;
+}
       paused = !paused;
       if (paused) {
         if (timer !== null) {
           window.clearTimeout(timer); timer = null;
           waitRemaining = Math.max(0, waitDeadline - performance.now());
         }
-        animations.forEach(animation => { if (animation.playState === 'running') { animation.pause(); } });
+        animations.forEach(animation => {
+ if (animation.playState === 'running') {
+ animation.pause();
+}
+});
       } else {
-        if (resolveWait) { scheduleWait(); }
-        animations.forEach(animation => { if (animation.playState === 'paused') { animation.play(); } });
+        if (resolveWait) {
+ scheduleWait();
+}
+        animations.forEach(animation => {
+ if (animation.playState === 'paused') {
+ animation.play();
+}
+});
         releaseGates();
       }
       syncPlayback(paused ? 'paused' : 'playing');
     },
     next: () => {
-      if (controller.signal.aborted || finished || advancing || !scene.dataset.guidePhase) { return; }
+      if (controller.signal.aborted || finished || advancing || !scene.dataset.guidePhase) {
+ return;
+}
       advancing = true; skipping = true;
       syncPlayback(paused ? 'paused' : 'playing', true);
       finishWait(); releaseGates();
       animations.forEach(animation => {
-        if (['running', 'paused'].includes(animation.playState)) { animation.finish(); }
+        if (['running', 'paused'].includes(animation.playState)) {
+ animation.finish();
+}
       });
     }
   };
@@ -3482,11 +3825,13 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   let phaseTarget = null;
   const settleHeader = async() => {
     assertActive();
-    if (!sceneHeader || reduced) { return; }
+    if (!sceneHeader || reduced) {
+ return;
+}
     const transitions = sceneHeader.getAnimations({subtree: true}).filter(animation =>
       animation.effect?.getComputedTiming().iterations !== Infinity);
     transitions.forEach(animation => animations.add(animation));
-    await Promise.all(transitions.map(animation => animation.finished.catch(() => {})));
+    await Promise.all(transitions.map(animation => animation.finished.catch(() => { /* Ignore cleanup rejection. */ })));
     transitions.forEach(animation => animations.delete(animation));
     assertActive();
   };
@@ -3503,9 +3848,15 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
       easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
     animations.add(animation);
-    if (skipping) { animation.finish(); }
-    try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
-    if (!retain) { animation.cancel(); animations.delete(animation); }
+    if (skipping) {
+ animation.finish();
+}
+    try {
+ await animation.finished;
+} catch (error) { /* Cancelled by departure. */ }
+    if (!retain) {
+ animation.cancel(); animations.delete(animation);
+}
     assertActive();
     return animation;
   };
@@ -3558,12 +3909,20 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   // starts only after the new sentence is visible; no business state is changed.
   const writeLive = async(text, state = 'active', immediate = false) => {
     assertActive();
-    if (!live) { return; }
-    if (!immediate) { await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false); }
-    if (controller.signal.aborted) { return; }
+    if (!live) {
+ return;
+}
+    if (!immediate) {
+ await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false);
+}
+    if (controller.signal.aborted) {
+ return;
+}
     // The phase caption already supplies the visible number. Keep complete
     // narration for assistive technology and the historical template fallback.
-    if (liveAnnouncement) { liveAnnouncement.textContent = text; }
+    if (liveAnnouncement) {
+ liveAnnouncement.textContent = text;
+}
     liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
       text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
     // K17-33: the end card shows a title and a hint on two lines (the string is "Title · Hint").
@@ -3581,7 +3940,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
     live.dataset.guideLiveState = state;
     const completionIcon = live.querySelector('[data-guide-live-complete]');
-    if (completionIcon) { completionIcon.hidden = state !== 'finished'; }
+    if (completionIcon) {
+ completionIcon.hidden = state !== 'finished';
+}
     if (!immediate) {
       await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
         {opacity: 1, transform: 'translateY(0)'}], 260, false);
@@ -3593,19 +3954,26 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await gate();
     assertActive();
     const body = scene.closest('.easyedu-guide-modal__body');
-    if (!body || element.hidden) { return; }
+    if (!body || element.hidden) {
+ return;
+}
     phaseTarget = element;
     updateClearance();
-    const bounds = body.getBoundingClientRect(), item = element.getBoundingClientRect();
+    const bounds = body.getBoundingClientRect(),
+item = element.getBoundingClientRect();
     const sticky = !sceneHeader || ['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState);
     const readingTop = bounds.top + (sticky ? ((sceneHeader || live)?.getBoundingClientRect().height || 0) : 0) + 8;
     const readingBottom = bounds.bottom - 12;
-    if (item.top >= readingTop && item.bottom <= readingBottom) { return; }
+    if (item.top >= readingTop && item.bottom <= readingBottom) {
+ return;
+}
     const offset = item.height > readingBottom - readingTop || item.top < readingTop ?
       item.top - readingTop : item.bottom - readingBottom;
     const from = body.scrollTop;
     const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
-    if (still || skipping || !body.animate) { body.scrollTop = to; return; }
+    if (still || skipping || !body.animate) {
+ body.scrollTop = to; return;
+}
     // A clock animation supplies a cancellable, eased progress value;
     // scrolling stays a DOM property rather than an independent smooth-scroll.
     const clock = body.animate([{opacity: 1}, {opacity: 1}],
@@ -3613,10 +3981,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     animations.add(clock);
     await new Promise(resolve => {
       const tick = () => {
-        if (controller.signal.aborted || clock.playState === 'idle') { resolve(); return; }
+        if (controller.signal.aborted || clock.playState === 'idle') {
+ resolve(); return;
+}
         const progress = clock.effect.getComputedTiming().progress;
-        if (progress !== null) { body.scrollTop = from + (to - from) * progress; }
-        if (clock.playState === 'finished') { body.scrollTop = to; resolve(); return; }
+        if (progress !== null) {
+ body.scrollTop = from + (to - from) * progress;
+}
+        if (clock.playState === 'finished') {
+ body.scrollTop = to;
+ resolve();
+ return;
+}
         requestAnimationFrame(tick);
       };
       tick();
@@ -3626,7 +4002,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   };
   // Reserve the real target's layout before scrolling, without painting it at
   // its old offscreen position. Keep the existing fade and cancellable clock.
-  const revealPrepared = async(element, prepare = () => {}) => {
+  const revealPrepared = async(element, prepare = () => { /* Optional hook. */ }) => {
     assertActive();
     const visibility = element.style.visibility;
     const opacity = element.style.opacity;
@@ -3636,7 +4012,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     try {
       prepare();
       await reveal(element);
-      if (controller.signal.aborted) { return; }
+      if (controller.signal.aborted) {
+ return;
+}
       element.style.visibility = visibility;
       await animate(element, [{opacity: 0}, {opacity: 1}], 280);
     } finally {
@@ -3656,19 +4034,27 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
       item.textContent = text;
       await writeLive(text, 'active', paused && jumped);
-      if (controller.signal.aborted) { return; }
+      if (controller.signal.aborted) {
+ return;
+}
       scene.dataset.guidePhase = name;
     }
     advancing = false;
     syncPlayback(paused ? 'paused' : 'playing');
-    if (prepareTarget) { await prepareTarget(); }
+    if (prepareTarget) {
+ await prepareTarget();
+}
     // New narration can wrap and change the sticky height. Re-reveal the real
     // phase target after that copy update, not just before the phase begins.
     const validateTarget = ['membership', 'actions'].includes(kind) && name === 'validate' ?
       scene.querySelector('[data-guide-confirm]') : null;
-    if (validateTarget || phaseTarget) { await reveal(validateTarget || phaseTarget); }
+    if (validateTarget || phaseTarget) {
+ await reveal(validateTarget || phaseTarget);
+}
     await gate();
-    if (controller.signal.aborted) { return; }
+    if (controller.signal.aborted) {
+ return;
+}
     // Reduced motion removes movement, never the time needed to read a phase.
     const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
     const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
@@ -3696,7 +4082,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const text = (compact && stage.getAttribute(`data-guide-phase-${number}-compact-label`)) ||
       stage.getAttribute(`data-guide-phase-${number}-label`) || '';
     await writeLive(text, 'active');
-    if (controller.signal.aborted) { return; }
+    if (controller.signal.aborted) {
+ return;
+}
     scene.dataset.guidePhase = String(number);
     advancing = false;
     syncPlayback(paused ? 'paused' : 'playing');
@@ -3716,7 +4104,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     finishWait(); releaseGates();
     root.easyeduGuideScenePlayback = null;
     syncPlayback('idle');
-    if (dropFrame !== null) { cancelAnimationFrame(dropFrame); }
+    if (dropFrame !== null) {
+ cancelAnimationFrame(dropFrame);
+}
     animations.forEach(animation => animation.cancel());
     stage.querySelector('[data-guide-destination]')?.classList.remove('is-guide-drop-target');
     stage.querySelector('[data-guide-ghost]')?.remove();
@@ -3734,7 +4124,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       advancing = false;
       syncPlayback('finished');
     },
-    setDropFrame: frame => { dropFrame = frame; },
+    setDropFrame: frame => {
+ dropFrame = frame;
+},
     cancelDropFrame: () => {
       cancelAnimationFrame(dropFrame);
       dropFrame = null;
@@ -3742,7 +4134,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   };
   // A stopped run may reject after its replacement starts. It must never
   // stop that newer run or write back into its restored illustration.
-  DISCOVERY_SCENE_PLAYERS[kind](ctx).catch(() => { if (!controller.signal.aborted) { stopDiscoveryScene(root); } });
+  DISCOVERY_SCENE_PLAYERS[kind](ctx).catch(() => {
+ if (!controller.signal.aborted) {
+ stopDiscoveryScene(root);
+}
+});
 };
 
 const stopSlideTransition = root => {
@@ -3774,13 +4170,17 @@ const setActiveSlide = (root, index, config, options = {}) => {
     const animation = element.animate([{opacity: from}, {opacity: to}],
       {duration: Math.min(duration, fadeCap), easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
     animations.add(animation);
-    try { await animation.finished; } catch (error) { /* A newer navigation request wins. */ }
+    try {
+ await animation.finished;
+} catch (error) { /* A newer navigation request wins. */ }
     return animation;
   };
   const run = async() => {
     root.setAttribute('data-easyedu-guide-slide-transition', 'out');
     const exit = await fade(outgoing, 1, 0, 110);
-    if (stopped) { return; }
+    if (stopped) {
+ return;
+}
     applyActiveSlide(root, index, config, options);
     exit.cancel();
     root.setAttribute('data-easyedu-guide-slide-transition', 'in');
@@ -3868,7 +4268,9 @@ const hideWelcome = root => {
   root.easyeduGuideWelcomeWaitStop?.();
   root.easyeduGuideWelcomePlaceStop?.();
   const invitation = root.querySelector('[data-easyedu-guide-welcome]');
-  if (!invitation || invitation.hidden) { return; }
+  if (!invitation || invitation.hidden) {
+ return;
+}
   invitation.hidden = true;
   if (root.easyeduGuideCurrentTarget === root.easyeduGuideWelcomeTarget) {
     clearHighlight(root);
@@ -4077,7 +4479,7 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
   if (root.easyeduGuideFullscreen?.ownsFullscreen() || root.easyeduGuideFullscreen?.isHostParked?.()) {
     return root.easyeduGuideFullscreen.exit().then(exited => {
       if (!exited) {
-        return;
+        return undefined;
       }
       return closeModal(root, preserveHighlight, restoreFocus, options);
     });
@@ -4111,20 +4513,28 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
     finish();
     return Promise.resolve();
   }
-  if (root.easyeduGuideExitPromise) { return root.easyeduGuideExitPromise; }
+  if (root.easyeduGuideExitPromise) {
+ return root.easyeduGuideExitPromise;
+}
   const animation = modal.animate([{opacity: 1}, {opacity: 0}], {
     duration: getMotionLevel(root) === 'reduced' ? REDUCED_FADE_MS : 200, easing: 'ease', fill: 'both'});
   let stopped = false;
-  const stopExit = () => { stopped = true; animation.cancel(); };
+  const stopExit = () => {
+ stopped = true; animation.cancel();
+};
   root.easyeduGuideExitStop = stopExit;
-  root.easyeduGuideExitPromise = animation.finished.catch(() => {}).then(() => {
-    if (!stopped) { finish(); }
+  root.easyeduGuideExitPromise = animation.finished.catch(() => { /* Ignore cleanup rejection. */ }).then(() => {
+    if (!stopped) {
+ finish();
+}
     animation.cancel();
     if (root.easyeduGuideExitStop === stopExit) {
       root.easyeduGuideExitPromise = null;
       root.easyeduGuideExitStop = null;
     }
-  });
+
+return;
+});
   return root.easyeduGuideExitPromise;
 };
 
@@ -4145,15 +4555,28 @@ const scrollActiveChecklistItemIntoView = root => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const list = root.querySelector(SELECTORS.checklistItems);
   const active = list && list.querySelector('[data-easyedu-guide-step-index].is-active');
-  if (!checklist || checklist.hidden || !active || checklist.classList.contains('is-minimized')) { return; }
+  if (!checklist || checklist.hidden || !active || checklist.classList.contains('is-minimized')) {
+ return;
+}
   window.requestAnimationFrame(() => {
     if (checklist.hidden || checklist.classList.contains('is-minimized') ||
-        !list.contains(active) || !active.classList.contains('is-active') || !list.clientHeight) { return; }
+        !list.contains(active) || !active.classList.contains('is-active') || !list.clientHeight) {
+ return;
+}
     const bounds = list.getBoundingClientRect();
     const item = active.getBoundingClientRect();
     const top = bounds.top + list.clientTop;
     const bottom = top + list.clientHeight;
-    const delta = item.top < top ? item.top - top : item.bottom > bottom ? item.bottom - bottom : 0;
+    const resolveChecklistScrollDelta = () => {
+      if (item.top < top) {
+        return item.top - top;
+      }
+      if (item.bottom > bottom) {
+        return item.bottom - bottom;
+      }
+      return 0;
+    };
+    const delta = resolveChecklistScrollDelta();
     if (delta) {
       list.scrollTo({top: Math.max(0, list.scrollTop + delta), behavior: getScrollBehavior(root)});
     }
@@ -4288,11 +4711,15 @@ const renderChecklist = (root, config, pathName) => {
     item.removeAttribute('aria-current');
     if (locked) {
       item.setAttribute('data-easyedu-guide-lock-message', getLockedStepRequirement(config, steps, step));
-    } else { item.removeAttribute('data-easyedu-guide-lock-message'); }
+    } else {
+ item.removeAttribute('data-easyedu-guide-lock-message');
+}
     const feedback = getStepText(step, 'feedback');
     if (feedback) {
       item.setAttribute('data-easyedu-guide-feedback', feedback);
-    } else { item.removeAttribute('data-easyedu-guide-feedback'); }
+    } else {
+ item.removeAttribute('data-easyedu-guide-feedback');
+}
     const marker = document.createElement('span');
     marker.className = 'easyedu-guide-checklist__marker easyedu-guided-panel__index';
     marker.textContent = String(index + 1);
@@ -4315,11 +4742,22 @@ const renderChecklist = (root, config, pathName) => {
     const stateLabel = document.createElement('span');
     stateLabel.className = 'sr-only';
     stateLabel.setAttribute('data-easyedu-guide-step-state', '');
-    stateLabel.textContent = stepComplete ? config.labels.stepCompleted : locked ? config.labels.stepLocked : '';
+    const resolveChecklistStepLabel = () => {
+      if (stepComplete) {
+        return config.labels.stepCompleted;
+      }
+      if (locked) {
+        return config.labels.stepLocked;
+      }
+      return '';
+    };
+    stateLabel.textContent = resolveChecklistStepLabel();
     item.replaceChildren(marker, label, stateLabel);
     // Moving even an existing focused button can blur it. Only insert when
     // the semantic order actually changed; progress alone keeps the node.
-    if (list.children[index] !== item) { list.insertBefore(item, list.children[index] || null); }
+    if (list.children[index] !== item) {
+ list.insertBefore(item, list.children[index] || null);
+}
   });
   previousItems.filter(item => !retained.has(item)).forEach(item => item.remove());
 
@@ -4562,7 +5000,9 @@ const completeStep = (root, config, pathName, stepIdOrIndex) => {
   const selector = `[data-easyedu-guide-step-id="${stepIdOrIndex}"], [data-easyedu-guide-step-index="${stepIdOrIndex}"]`;
   const item = checklist.querySelector(selector);
   const steps = config.paths[pathName] || [];
-  if (!item || item.disabled || item.classList.contains('is-locked') || item.classList.contains('is-complete')) { return; }
+  if (!item || item.disabled || item.classList.contains('is-locked') || item.classList.contains('is-complete')) {
+ return;
+}
   // A real later milestone supersedes the pending highlight/open from its
   // predecessor. Otherwise a fast Move click can be undone by the old close.
   clearStepOpenTimers(root);
@@ -4664,7 +5104,9 @@ const bindNavWheel = root => {
   });
   addTrackedListener(root, nav, 'scroll', () => updateNavScrollButtons(root), {passive: true});
   addTrackedListener(root, nav, 'wheel', event => {
-    if (event.ctrlKey || nav.scrollWidth <= nav.clientWidth) { return; }
+    if (event.ctrlKey || nav.scrollWidth <= nav.clientWidth) {
+ return;
+}
     if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
       return;
     }
@@ -4682,7 +5124,9 @@ const bindNavWheel = root => {
     clearTrackedTimeout(root, root.easyeduGuideNavResizeTimer);
     root.easyeduGuideNavResizeTimer = setTrackedTimeout(root, () => {
       root.easyeduGuideNavResizeTimer = null;
-      if (isModalOpen(root)) { scrollActiveNavItemIntoView(root, 'nearest'); }
+      if (isModalOpen(root)) {
+ scrollActiveNavItemIntoView(root, 'nearest');
+}
     }, 120);
   };
   addTrackedListener(root, window, 'resize', refreshActiveNav);
@@ -4831,7 +5275,9 @@ const bindGuide = (root, config) => {
 
   const fullscreenButton = root.querySelector('[data-easyedu-guide-fullscreen]');
   const fullscreenModal = root.querySelector(SELECTORS.modal);
-  root.querySelectorAll('[data-easyedu-guide-fullscreen-help]').forEach(help => { help.hidden = true; });
+  root.querySelectorAll('[data-easyedu-guide-fullscreen-help]').forEach(help => {
+ help.hidden = true;
+});
   if (config.fullscreen && fullscreenButton && fullscreenModal) {
     root.easyeduGuideFullscreen = createFullscreenController(fullscreenModal, state => {
       fullscreenButton.hidden = !state.available;
@@ -4882,7 +5328,9 @@ const bindGuide = (root, config) => {
 
   addTrackedListener(root, root, 'keydown', event => {
     if (event.key !== 'Enter' || event.isComposing ||
-        !event.target.matches('[data-guide-pattern]')) { return; }
+        !event.target.matches('[data-guide-pattern]')) {
+ return;
+}
     event.preventDefault();
     renderDiscoveryNames(root, event.target.closest('[data-easyedu-guide-scene]'), 'preview');
   });
@@ -4898,10 +5346,16 @@ const bindGuide = (root, config) => {
     const playback = event.target.closest('[data-guide-playback]');
     if (playback && root.contains(playback)) {
       event.preventDefault();
-      if (playback.disabled || event.detail > 1) { return; }
+      if (playback.disabled || event.detail > 1) {
+ return;
+}
       const active = root.easyeduGuideScenePlayback;
       if (active && playback.closest('[data-easyedu-guide-slide]')?.contains(active.scene)) {
-        if (playback.dataset.guidePlayback === 'pause') { active.toggle(); } else { active.next(); }
+        if (playback.dataset.guidePlayback === 'pause') {
+ active.toggle();
+} else {
+ active.next();
+}
       }
       return;
     }
@@ -4923,10 +5377,16 @@ const bindGuide = (root, config) => {
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
       // A radio keeps its native selection and keyboard behaviour: never cancel its click.
-      if (sceneCommand.type !== 'radio') { event.preventDefault(); }
-      if (sceneCommand.disabled) { return; }
+      if (sceneCommand.type !== 'radio') {
+ event.preventDefault();
+}
+      if (sceneCommand.disabled) {
+ return;
+}
       const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
-      if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) { return; }
+      if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) {
+ return;
+}
       const command = sceneCommand.getAttribute('data-guide-scene-command');
       if (['preview', 'letters', 'clear'].includes(command)) {
         renderDiscoveryNames(root, scene, command);
@@ -5005,7 +5465,9 @@ const bindGuide = (root, config) => {
         }
         const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
           '[data-easyedu-guide-checklist-minimize]');
-        if (isVisibleElement(nextControl)) { nextControl.focus({preventScroll: true}); }
+        if (isVisibleElement(nextControl)) {
+ nextControl.focus({preventScroll: true});
+}
       }
       return;
     }
@@ -5039,7 +5501,9 @@ const bindGuide = (root, config) => {
     if (targetButton && root.contains(targetButton)) {
       event.preventDefault();
       closeModal(root, true, false).then(() => {
-        if (!root.querySelector(SELECTORS.modal).hidden) { return; }
+        if (!root.querySelector(SELECTORS.modal).hidden) {
+ return;
+}
         notifyInterfaceTransition(root, 'show-target');
         runShowTargetOpenAction(root, activeConfig, targetButton, () => {
           const target = resolveTarget(activeConfig, resolveShowTargetKey(targetButton));
@@ -5053,7 +5517,9 @@ const bindGuide = (root, config) => {
           focusTarget(target);
           showInterfaceReturn(root);
         });
-      });
+
+return;
+});
       return;
     }
 
@@ -5067,7 +5533,9 @@ const bindGuide = (root, config) => {
     const startPath = event.target.closest(SELECTORS.startPath);
     if (startPath && root.contains(startPath)) {
       event.preventDefault();
-      if (startPath.disabled) { return; }
+      if (startPath.disabled) {
+ return;
+}
       captureChecklistFocus(root, startPath);
       dismissResume(root);
       const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
@@ -5076,12 +5544,16 @@ const bindGuide = (root, config) => {
       if (Object.prototype.hasOwnProperty.call(activeConfig.pathContextFields || {}, requestedPath)) {
         root.easyeduGuidePathEpoch = (root.easyeduGuidePathEpoch || 0) + 1;
       }
-      if (isPathComplete(activeConfig, requestedPath)) { resetPathProgress(activeConfig, requestedPath); }
+      if (isPathComplete(activeConfig, requestedPath)) {
+ resetPathProgress(activeConfig, requestedPath);
+}
       syncSlideLocks(root, activeConfig);
       renderChecklist(root, activeConfig, requestedPath);
       syncPathInvitation(root, activeConfig);
       closeModal(root, false, false).then(() => {
-        if (!root.querySelector(SELECTORS.modal).hidden) { return; }
+        if (!root.querySelector(SELECTORS.modal).hidden) {
+ return;
+}
         focusChecklist(root);
         notifyInterfaceTransition(root, 'guided-path');
         const checklist = root.querySelector(SELECTORS.checklist);
@@ -5094,7 +5566,9 @@ const bindGuide = (root, config) => {
           Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) :
           0;
         highlightChecklistStep(root, activeConfig, steps[stepIndex] || null);
-      });
+
+return;
+});
       return;
     }
 
@@ -5128,7 +5602,8 @@ const bindGuide = (root, config) => {
     });
   });
   const resume = root.querySelector('[data-easyedu-guide-resume-path]');
-  if (resume) { addTrackedListener(root, resume, 'click', () => {
+  if (resume) {
+ addTrackedListener(root, resume, 'click', () => {
     const activeConfig = root.easyeduGuideConfig || config;
     const path = root.querySelector('[data-easyedu-guide-resume]').dataset.easyeduGuideResumePathName;
     captureChecklistFocus(root, resume);
@@ -5140,12 +5615,15 @@ const bindGuide = (root, config) => {
       const activeIndex = Number(activeItem?.getAttribute('data-easyedu-guide-step-index') || 0);
       highlightChecklistStep(root, activeConfig, activeConfig.paths[path]?.[activeIndex]);
     }
-  }); }
+  });
+}
   const cancelPath = root.querySelector('[data-easyedu-guide-cancel-path]');
-  if (cancelPath) { addTrackedListener(root, cancelPath, 'click', () => {
+  if (cancelPath) {
+ addTrackedListener(root, cancelPath, 'click', () => {
     const activeConfig = root.easyeduGuideConfig || config;
     stopPath(root, activeConfig, loadGuideState(activeConfig).path);
-  }); }
+  });
+}
 
   addTrackedListener(root, root, 'keydown', event => {
     const activeConfig = root.easyeduGuideConfig || config;

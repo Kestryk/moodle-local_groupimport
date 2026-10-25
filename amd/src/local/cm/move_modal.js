@@ -74,7 +74,8 @@ export const bindMoveModal = (root, courseId) => {
         body: new URLSearchParams({courseid: courseId, action: 'movestatus', jobid: jobid || 0, sesskey: M.cfg.sesskey}),
     }).then(response => response.json()).then(response => {
         if (!response.success) {
-            throw new Error(response.error || labels.ajaxerror || '');
+            const failureMessage = response.error || labels.ajaxerror || '';
+throw new Error(failureMessage);
         }
         return response;
     });
@@ -262,19 +263,41 @@ export const bindMoveModal = (root, courseId) => {
         // One dialog serves three different native commands. Guide targets
         // must identify the opened context, not infer it from shared geometry.
         modal.setAttribute('data-easystud-move-context', type);
-        const selectedCount = type === 'member' ? memberSnapshot.length : type === 'participant' ?
-            getSelectedItems(root, 'participant').length :
-            getSelectedItems(root, 'group').length;
-        help.textContent = body.getAttribute(type === 'member' ? 'data-move-members-help' :
-            type === 'participant' ? 'data-move-participants-help' : 'data-move-groups-help') || '';
+        const resolveMoveSelectionCount = () => {
+            if (type === 'member') {
+                return memberSnapshot.length;
+            }
+            if (type === 'participant') {
+                return getSelectedItems(root, 'participant').length;
+            }
+            return getSelectedItems(root, 'group').length;
+        };
+        const selectedCount = resolveMoveSelectionCount();
+        const resolveMoveHelpKey = () => {
+            if (type === 'member') {
+                return 'data-move-members-help';
+            }
+            if (type === 'participant') {
+                return 'data-move-participants-help';
+            }
+            return 'data-move-groups-help';
+        };
+        help.textContent = body.getAttribute(resolveMoveHelpKey()) || '';
         label.textContent = body.getAttribute(type === 'participant' || type === 'member' ?
             'data-move-participants-label' : 'data-move-groups-label') || '';
         if (title) {
  title.textContent = type === 'participant' ? (labels.addparticipanttitle || moveTitle) : moveTitle;
 }
-        confirmButton.textContent = type === 'participant' ? (labels.addparticipantconfirm || '') : selectedCount === 1 ?
-            (labels.moveconfirmone || '') :
-            (labels.moveconfirmmany || '');
+        const resolveMoveConfirmLabel = () => {
+            if (type === 'participant') {
+                return labels.addparticipantconfirm || '';
+            }
+            if (selectedCount === 1) {
+                return labels.moveconfirmone || '';
+            }
+            return labels.moveconfirmmany || '';
+        };
+        confirmButton.textContent = resolveMoveConfirmLabel();
         if (removeOriginWrap) {
             const selectedGroups = type === 'group' ? getSelectedItems(root, 'group') : [];
             removeOriginWrap.hidden = type !== 'member' &&
@@ -462,7 +485,9 @@ export const bindMoveModal = (root, courseId) => {
                 emitGuidedCompletion(root, 1);
                 emitPracticeCompletion(root, 'confirm-move');
                 emitTryActionsMoveCompletion(root, moveToken);
-            }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -501,6 +526,8 @@ export const bindMoveModal = (root, courseId) => {
             showNotification(root, formatMoveSummary(labels.groupsmovesummary || '', added, existing), 'success');
             commitActivityGroupingConfirmation(root, activityEvidence, responses);
             emitGuidedCompletion(root, 1, 'grouping');
-        }).catch(error => handleActionError(root, error));
+
+return;
+}).catch(error => handleActionError(root, error));
     });
 };

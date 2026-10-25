@@ -317,7 +317,8 @@ export const postFormAction = formData => {
         body: formData,
     }).then(response => response.json()).then(result => {
         if (!result.success) {
-            throw new Error(result.error || labels.ajaxerror || '');
+            const failureMessage = result.error || labels.ajaxerror || '';
+throw new Error(failureMessage);
         }
         scheduleOnDemandStateRefresh(root);
         return result;
@@ -524,9 +525,16 @@ export const appendUsersToGroupCopies = (root, groupid, users, labels, removed =
         list.querySelectorAll('.text-muted, .local-groupimport-easystud-tree__empty').forEach(empty => empty.remove());
         users.forEach(user => {
             const userid = user.getAttribute ? user.getAttribute('data-user-id') : String(user.id);
-            const fullname = user.querySelector ? (
-                user.querySelector('strong') ? user.querySelector('strong').textContent : ''
-            ) : user.fullname;
+            const resolveMemberFullname = () => {
+                if (user.querySelector) {
+                    if (user.querySelector('strong')) {
+                        return user.querySelector('strong').textContent;
+                    }
+                    return '';
+                }
+                return user.fullname;
+            };
+            const fullname = resolveMemberFullname();
             if (!userid || list.querySelector('[data-easystud-member-id="' + userid + '"]')) {
                 return;
             }

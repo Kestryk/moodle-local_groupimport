@@ -104,10 +104,10 @@ export const showEasyStudModal = modal => {
     modal.hidden = false;
 };
 
-export const hideEasyStudModal = (modal, callback = null) => {
+export const hideEasyStudModal = (modal, afterClose = null) => {
     if (!modal || modal.hidden) {
-        if (callback) {
-            callback();
+        if (afterClose) {
+            afterClose();
         }
         return Promise.resolve(true);
     }
@@ -121,8 +121,8 @@ export const hideEasyStudModal = (modal, callback = null) => {
         }
         modal.hidden = true;
         modal.classList.remove('is-closing');
-        if (callback) {
-            callback();
+        if (afterClose) {
+            afterClose();
         }
         // Existing callbacks may deliberately focus a visible mobile proxy or
         // another dialog. Keep that native destination, never restore early.

@@ -119,11 +119,19 @@ export const bindParticipantModal = root => {
                 entityReadonlyField(labels.country || '', data.country) +
                 entityReadonlyField(labels.language || '', data.lang));
         // Description is HTML formatted by Moodle (format_text) on the server.
-        const description = loading ? entitySkeletonField('value', true) : (data.description ?
-            '<div class="local-groupimport-easystud-entity__field local-groupimport-easystud-entity__field--wide">' +
+        const resolveParticipantDescription = () => {
+            if (loading) {
+                return entitySkeletonField('value', true);
+            }
+            if (data.description) {
+                return '<div class="local-groupimport-easystud-entity__field local-groupimport-easystud-entity__field--wide">' +
                 '<dt>' + escapeHtml(labels.advancedsettingsdescription || '') + '</dt>' +
                 '<dd class="local-groupimport-easystud-entity__description">' + data.description + '</dd>' +
-            '</div>' : '');
+            '</div>';
+            }
+            return '';
+        };
+        const description = resolveParticipantDescription();
         const relations = renderRelation(labels.roles || '', data.roles, [], 'role', labels.rolescounttemplate || '', null) +
             renderRelation(labels.groups || '', data.groups, data.groupids, 'group', labels.groupscounttemplate || '',
                 groupsCsv) +

@@ -140,7 +140,7 @@ const decorateNativeMessageModal = modal => {
 
 const watchNativeMessageModal = () => {
     if (typeof MutationObserver !== 'function' || !document.body) {
-        return () => {};
+        return () => { /* Optional hook. */ };
     }
 
     let observer = null;
@@ -250,7 +250,9 @@ export const openParticipantMessageModal = (root, userids) => {
                 .then(modal => {
                     stopWatchingSoon();
                     resolve(decorateNativeMessageModal(modal));
-                })
+
+    return;
+})
                 .catch(error => {
                     stopWatchingSoon();
                     reject(error);

@@ -201,7 +201,8 @@ const uploadToMoodleFilePicker = async(root, file) => {
                     result.file = result.newfile.filename;
                     result.url = result.newfile.url;
                 }
-                result.client_id = picker.clientId;
+                const clientIdField = 'client_id';
+                result[clientIdField] = picker.clientId;
 
                 if (M.form_filepicker && typeof M.form_filepicker.callback === 'function') {
                     M.form_filepicker.callback(result);
@@ -751,7 +752,9 @@ const initHistoryModal = root => {
                 modal.hidden = true;
                 restoreFocus();
             }
-        });
+
+return;
+});
     };
 
     openButtons.forEach(button => {
@@ -835,7 +838,9 @@ const initRollbackModal = root => {
             if (opener && opener.isConnected && opener.getClientRects().length > 0) {
                 opener.focus();
             }
-        });
+
+return;
+});
     };
 
     openButtons.forEach(button => button.addEventListener('click', () => {
@@ -1028,7 +1033,9 @@ export const init = (rootId) => {
                         forwardDroppedFileToMoodle(root, file);
                     }
                 }
-            })
+
+return;
+})
             .finally(() => {
                 routingdrop = false;
                 hideOverlay();
