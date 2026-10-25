@@ -1,3 +1,5 @@
+- 2026-10-25 Validate Guide live regions and the compact navigation dialog with compatible HTML elements; preserve no-JavaScript recovery in page styles and validate menu/list fragments through their real parents.
+
 - Centre the floating Guide icon before hover, place notifications at the top left beneath the navbar, and keep grouping searches closed until requested. Rebuild the shared Small search-field assets already present in source.
 
 - 2026-10-24 Keep EasyStud's own buttons, view switcher, selection actions, Guide demonstrations, bubbles and administration actions in their EasyStud style on themes that force Bootstrap button, link, bubble or read-only field colours. Show a single keyboard focus ring on every control, including search fields. The administration section actions now use the blue secondary style.

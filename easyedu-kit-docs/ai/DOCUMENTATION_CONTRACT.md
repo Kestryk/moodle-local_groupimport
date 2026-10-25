@@ -1,3 +1,5 @@
+Parent-dependent Mustache fragments retain their native list/menu roles and exact HTML-only lint exemptions; validate their real parent examples. Guide status/dialog roles use compatible neutral elements. Preserve no-JavaScript real-content recovery via the Moodle body bootstrap class. See docs/testing/mustache-html-validation-2026-10-25.md.
+
 Mixed historical contracts must retain their live keyboard, Motion and map/privacy
 assertions when retiring whole-monolith reconstruction proofs. Follow actual split
 module maps; do not invert the public Guide sourcesContent guard. A missing old

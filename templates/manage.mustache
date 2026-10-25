@@ -104,7 +104,34 @@
         "groupings": [],
         "participantactions": [],
         "groupactions": [],
-        "contextactions": [],
+        "contextactions": [
+            {
+                "isitem": true,
+                "item": {
+                    "action": "copy-group-name",
+                    "contexts": "group",
+                    "icon": "fa-copy",
+                    "label": "Group name"
+                }
+            },
+            {
+                "isgroup": true,
+                "group": {
+                    "key": "copy",
+                    "contexts": "group",
+                    "icon": "fa-copy",
+                    "label": "Copy",
+                    "actions": [
+                        {
+                            "action": "copy-group-name",
+                            "contexts": "group",
+                            "icon": "fa-copy",
+                            "label": "Group name"
+                        }
+                    ]
+                }
+            }
+        ],
         "layoutmodetoggles": []
     }
 }}
@@ -132,11 +159,6 @@
     data-easyedu-motion-policy="{{motionpolicy}}"
     data-easystud-loading-reveal-duration="320"
 >
-    <noscript>
-        <style>
-            #local-groupimport-easystud [data-easystud-real-content] { position: relative !important; visibility: visible !important; }
-        </style>
-    </noscript>
     <div class="local-groupimport-easystud__content" data-easystud-real-content="1">
     <div class="local-groupimport-easystud__notifications" data-easystud-notifications="1" aria-live="polite"></div>
     <div class="local-groupimport-easystud-action-status" data-easystud-action-busy-status="1" role="status" aria-live="polite" hidden>
