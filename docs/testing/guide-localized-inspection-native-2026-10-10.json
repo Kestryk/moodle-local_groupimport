@@ -1,0 +1,55 @@
+{
+  "runId": "easystud-authenticated-20261010T070420168Z-28748",
+  "runtimeHead": "cec41f814d3f48d1020b47117dc2a6d7f75d3678",
+  "scenario": "guide-localized-inspection-dom-ready-native.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "actualFrenchCopyVerified": true,
+  "cases": 12,
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "motion": [
+    "no-preference",
+    "reduce"
+  ],
+  "pauseResumeNormal": true,
+  "replayResetClose": true,
+  "pathCompletionPreserved": true,
+  "utilities": {
+    "heightPx": 30.390625,
+    "fontPx": 12.48,
+    "weight": 600
+  },
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "businessWrites": false,
+  "cleanupComplete": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "predecessors": [
+    {
+      "runId": "easystud-authenticated-20261010T065842179Z-46168",
+      "passed": true,
+      "limit": "Requested fr but no explicit actual-copy assertion"
+    },
+    {
+      "runId": "easystud-authenticated-20261010T070308120Z-22208",
+      "passed": false,
+      "cause": "Login URL reached DOMContentLoaded but default load wait timed out before widget audit",
+      "preserved": true
+    }
+  ],
+  "humanVisualValidated": false,
+  "remaining": [
+    "Whole-scene painted typography/glyph/cursor",
+    "Remaining curriculum and path targets",
+    "Human acceptance"
+  ]
+}

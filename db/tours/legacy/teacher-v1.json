@@ -1,0 +1,58 @@
+{
+  "name": "tour_groupimport_teacher_name,local_groupimport",
+  "description": "tour_groupimport_teacher_desc,local_groupimport",
+  "pathmatch": "/local/groupimport/index.php%",
+  "enabled": 1,
+  "sortorder": 0,
+  "configdata": "{\"placement\":\"bottom\",\"orphan\":\"0\"}",
+  "steps": [
+    {
+      "title": "tour_groupimport_step1_title,local_groupimport",
+      "content": "tour_groupimport_step1_content,local_groupimport",
+      "targettype": 0,
+      "targetvalue": "#local_groupimport-page",
+      "sortorder": 1,
+      "configdata": "{\"placement\":\"bottom\"}"
+    },
+    {
+      "title": "tour_groupimport_step2_title,local_groupimport",
+      "content": "tour_groupimport_step2_content,local_groupimport",
+      "targettype": 0,
+      "targetvalue": "#local_groupimport-templatebtn",
+      "sortorder": 2,
+      "configdata": "{\"placement\":\"bottom\"}"
+    },
+    {
+      "title": "tour_groupimport_step3_title,local_groupimport",
+      "content": "tour_groupimport_step3_content,local_groupimport",
+      "targettype": 0,
+      "targetvalue": "#id_importfile",
+      "sortorder": 3,
+      "configdata": "{\"placement\":\"bottom\"}"
+    },
+    {
+      "title": "tour_groupimport_step4_title,local_groupimport",
+      "content": "tour_groupimport_step4_content,local_groupimport",
+      "targettype": 0,
+      "targetvalue": "#id_userfield",
+      "sortorder": 4,
+      "configdata": "{\"placement\":\"bottom\"}"
+    },
+    {
+      "title": "tour_groupimport_step5_title,local_groupimport",
+      "content": "tour_groupimport_step5_content,local_groupimport",
+      "targettype": 0,
+      "targetvalue": "#id_submitbutton",
+      "sortorder": 5,
+      "configdata": "{\"placement\":\"top\"}"
+    },
+    {
+      "title": "tour_groupimport_step6_title,local_groupimport",
+      "content": "tour_groupimport_step6_content,local_groupimport",
+      "targettype": 0,
+      "targetvalue": "#local_groupimport-results",
+      "sortorder": 6,
+      "configdata": "{\"placement\":\"top\"}"
+    }
+  ]
+}

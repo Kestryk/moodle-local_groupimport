@@ -1,0 +1,46 @@
+{
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM-16 native Student loading appearance, shared paint and unchanged exit/entry lifecycle",
+  "kitRevision": "0b491e404e84ad611d83404fde6f1f33fff265c3",
+  "consumerRevision": "1810f61726d45bc326e8aab66ecd40610c80d803",
+  "runtimeRevision": "fffad46ecf26698dc027682ab2e686c7500b331f",
+  "queue": "20261003T133116Z-8bafb94e8b",
+  "cacheRefreshed": true,
+  "runId": "easystud-authenticated-20261003T133140640Z-34072",
+  "specBlob": "7b05053d8a51cf9b55af209081412795859ef366",
+  "status": "passed",
+  "widths": [1600, 768, 390],
+  "appearanceSeconds": 0.32,
+  "shimmerSeconds": 3.2,
+  "cueColor": "#E8EFF5",
+  "softToken": "#F3F6FA",
+  "railColor": "#AACBE5",
+  "railWidthPx": 2,
+  "checks": [
+    "Actual canonical primary cue paint and distinct secondary token",
+    "Static frame and two-pixel pastel rails",
+    "Loading root contained in each viewport; decorative descendants contain no focusable controls",
+    "Original native exiting and entering phases observed at all three widths",
+    "Ready, aria-busy, skeleton visibility and real-content inert states after bounded AMD release"
+  ],
+  "businessPosts": 0,
+  "fixtures": false,
+  "pageErrors": [],
+  "captures": [
+    "playwright-output/student-soft-loading-previ-e5245-ps-native-loading-lifecycle/student-soft-loading-1600.png",
+    "playwright-output/student-soft-loading-previ-e5245-ps-native-loading-lifecycle/student-soft-loading-768.png",
+    "playwright-output/student-soft-loading-previ-e5245-ps-native-loading-lifecycle/student-soft-loading-390.png"
+  ],
+  "agentInspected": true,
+  "captureLimits": "Element captures show the quiet palette and native structure, not full page parity. The long reserved loading area and native mobile floating navigation remain. Desktop edges require a separate full composition/descendant geometry audit.",
+  "humanVisualValidated": false,
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true},
+  "notProven": [
+    "Human acceptance",
+    "Every loading route and every descendant geometry",
+    "Native Mass Import and Administration loading lifecycle",
+    "Whole Student and Administration Penpot loading compositions",
+    "Native reduced-motion and forced-colours lifecycle",
+    "Extra-role fixture and native transfer database integration"
+  ]
+}

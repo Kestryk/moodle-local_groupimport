@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "201edafc0efa228c9784c44787b05ef83048f2de",
+  "help": {
+    "classList": "btn btn-link p-0 icon-no-margin local-course-banner-builder-help-dot",
+    "diameter": "1.15rem",
+    "fontSize": "0.72rem"
+  },
+  "toggle": {
+    "rowClass": "local-course-banner-builder-slideshow-toggle-button-row",
+    "buttonClass": "local-course-banner-builder-slideshow-enable-button",
+    "inputType": "hidden",
+    "pressedAttribute": "aria-pressed",
+    "iconOn": "fa-toggle-on",
+    "iconOff": "fa-toggle-off",
+    "minimumHeight": "1.9rem",
+    "fontSize": "0.84rem"
+  }
+}

@@ -1,0 +1,51 @@
+@use "../easyedu" as easyedu;
+@use "../easyedu/components/text-fields";
+@use "../easyedu/foundation-classes" as foundations;
+
+// Selector adapter only. Shared treatment lives in the canonical Kit;
+// preserve this final cascade position and the existing host compatibility.
+.local-groupimport-easystud {
+  // Add/Cancel keep Bootstrap `.btn-primary`/`.btn-outline-secondary`, which
+  // some host themes repaint with !important (K23-84): host adapter priority.
+  [data-easystud-add-group-emails],
+  [data-easystud-add-grouping-groups] {
+    @include foundations.foundation-button($density: compact, $legacy-priority: true);
+  }
+
+  [data-easystud-cancel-group-email],
+  [data-easystud-cancel-grouping-groups],
+  [data-easystud-container-search-cancel] {
+    @include foundations.foundation-button($secondary: true, $density: compact, $legacy-priority: true);
+  }
+
+  // Both card searches carry the general Kit secondary button class. Keep the
+  // compact recipe specific enough to survive that later global cascade.
+  [data-easystud-container-search-cancel].easyedu-button--secondary,
+  [data-easystud-group-member-search-cancel].easyedu-button--secondary {
+    @include foundations.foundation-button($secondary: true, $density: compact, $legacy-priority: true);
+    @include text-fields.field-peer-small-action;
+  }
+
+  // K22-27: rename Save/Cancel are Kit field-peer icon buttons
+  // (.easyedu-create-icon-button), sized by the Kit to the field they follow.
+
+  [data-easystud-advanced-filters-toggle],
+  &-pagination__sort > span,
+  [data-easystud-list-sort-dropdown] > &-dropdown__button {
+    @include easyedu.control-regular-type;
+  }
+
+  &-pagination__count {
+    @include easyedu.control-count-type;
+  }
+
+  [data-easystud-card-menu],
+  [data-easystud-panel-actions-toggle],
+  [data-easystud-panel-actions-menu] .btn,
+  [data-easystud-context-action],
+  [data-easystud-context-submenu-toggle],
+  &-group__actions-toggle,
+  &-group__actions-menu .btn {
+    @include easyedu.action-text-treatment($legacy-priority: true);
+  }
+}

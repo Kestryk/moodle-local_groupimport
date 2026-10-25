@@ -1,0 +1,70 @@
+{
+  "records": [
+    {
+      "width": 768,
+      "selected": 1,
+      "stickyMoveAvailable": true,
+      "cancelFocusRestored": true
+    },
+    {
+      "width": 768,
+      "selected": 2,
+      "stickyMoveAvailable": true,
+      "cancelFocusRestored": true
+    },
+    {
+      "width": 768,
+      "desktopPreferenceRestored": true,
+      "desktopParticipantsMoveRestored": true
+    },
+    {
+      "width": 390,
+      "selected": 1,
+      "stickyMoveAvailable": true,
+      "cancelFocusRestored": true
+    },
+    {
+      "width": 390,
+      "selected": 2,
+      "stickyMoveAvailable": true,
+      "cancelFocusRestored": true
+    },
+    {
+      "width": 390,
+      "desktopPreferenceRestored": true,
+      "desktopParticipantsMoveRestored": true
+    },
+    {
+      "width": 320,
+      "selected": 1,
+      "stickyMoveAvailable": true,
+      "cancelFocusRestored": true
+    },
+    {
+      "width": 320,
+      "selected": 2,
+      "stickyMoveAvailable": true,
+      "cancelFocusRestored": true
+    },
+    {
+      "width": 320,
+      "desktopPreferenceRestored": true,
+      "desktopParticipantsMoveRestored": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "runId": "easystud-authenticated-20261006T060208701Z-45516",
+  "servedSource": "f0dcfdb33f0be94de6f3e4eb1a8e98530e74ce40",
+  "runtimeHead": "20fcbc76230d2b20a1c65d23ca6398ecd4fa288c",
+  "amdBlob": "8b399ed5a98d606dd259440d4566dcbed1055b9d",
+  "cssBlob": "986779f1346b7c11bf35ffd78ff0a7c316c60222",
+  "result": "PASS 6 one/two selection native sticky Move open/Cancel cases and3 desktop-return cases",
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false
+  },
+  "humanVisualValidated": false
+}

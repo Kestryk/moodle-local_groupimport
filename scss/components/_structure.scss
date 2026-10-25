@@ -1,0 +1,1563 @@
+// Group/grouping structure, catalogues, cards and pagination.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-tree {
+    display: grid;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  &:not(.local-groupimport-easystud--participant-focus):not(.local-groupimport-easystud--structure-focus) &-tree {
+    // The open Grouping frame is deliberately painted one identity-rail width
+    // to the inline start of its card. Extend the scrolling surface by that
+    // paint-only allowance so its outline is never cropped in Complete View.
+    // The equal negative margin keeps every card's rendered width and x-axis
+    // position unchanged.
+    margin-inline-start: calc((var(--easyedu-identity-border-width) + 0.2rem) * -1);
+    overflow-x: visible;
+    padding-bottom: 0.8rem;
+    padding-inline-start: calc(var(--easyedu-identity-border-width) + 0.2rem);
+    padding-top: 2.7rem;
+  }
+
+  &:not(.local-groupimport-easystud--participant-focus):not(.local-groupimport-easystud--structure-focus) &-tree__section--ungrouped {
+    margin-top: 0.16rem;
+  }
+
+  &--structure-focus &__layout {
+    gap: 0;
+    grid-template-columns: 0 minmax(0, 1fr);
+  }
+
+  &--structure-focus &__panel--participants {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateX(-1rem) scale(0.98);
+  }
+
+  &--structure-focus &__panel--structure {
+    transform: translateX(0);
+  }
+
+  &--structure-focus &-tree {
+    // The two Structure columns share the remaining panel height. This lets
+    // a short Group or Grouping list reserve the free space for its existing
+    // in-flow bottom pagination, rather than leaving the navigation directly
+    // below its last card.
+    align-items: stretch;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    min-width: 0;
+  }
+
+  &--structure-focus &-tree__section--ungrouped {
+    display: none;
+  }
+
+  &--structure-focus &-tree__groupings {
+    align-content: start;
+    align-self: stretch;
+    display: grid;
+    gap: 0.65rem;
+    grid-auto-rows: max-content;
+    min-width: 0;
+    overflow-x: visible;
+    padding-top: 0;
+  }
+
+  &--structure-focus &-tree__groupings > .local-groupimport-easystud-tree__section {
+    width: 100%;
+  }
+
+  &--participant-focus &__layout {
+    gap: 0;
+    grid-template-columns: minmax(0, 1fr) 0;
+  }
+
+  &--participant-focus &__panel--structure {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateX(1rem) scale(0.98);
+  }
+
+  &--participant-focus &__panel--participants {
+    transform: translateX(0);
+  }
+
+  &-participant-groups {
+    display: none;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  &-group-catalog-filters {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  &-group-catalog-filters {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    row-gap: 0.72rem;
+  }
+
+  &-group-catalog-filters > &__filter-group {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-content: start;
+    min-width: 0;
+  }
+
+  &-group-catalog-filters--structure {
+    display: none;
+  }
+
+  &-structure-groups {
+    display: none;
+    min-height: 0;
+  }
+
+  &--structure-focus &-structure-groups {
+    display: grid;
+    gap: 0.65rem;
+    grid-template-rows: minmax(0, 1fr);
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  &--structure-focus &-structure-groups__list {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+    padding-top: 0;
+  }
+
+  &--structure-focus &-create-row {
+    align-items: stretch;
+    background: transparent;
+    border: 0;
+    gap: 1.05rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 0;
+  }
+
+  &--structure-focus &-create-card {
+    align-self: stretch;
+    @include easyedu.identity-create-card-frame($surface: var(--local-groupimport-easystud-surface-soft), $radius: var(--local-groupimport-easystud-radius));
+  }
+
+  &--structure-focus &-create-card__topline {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  &--structure-focus &-create-card--grouping::after {
+    content: none;
+  }
+
+  &--structure-focus &-column-heading--structure,
+  &--participant-focus &-column-heading--participants {
+    display: flex;
+  }
+
+  &--structure-focus &-group-catalog-filters--structure {
+    display: grid;
+  }
+
+  &:not(.local-groupimport-easystud--structure-focus) &-create-card--group &-advanced-filters,
+  &:not(.local-groupimport-easystud--structure-focus) &-create-card--group &-advanced-filters__more,
+  &:not(.local-groupimport-easystud--structure-focus) &-create-card--group &-advanced-filters__toggle {
+    display: none;
+  }
+
+  &--structure-focus &__search-field--structure {
+    display: flex;
+  }
+
+  &__participant-list.is-sort-menu-open,
+  &-participant-groups__list.is-sort-menu-open,
+  &-structure-groups__list.is-sort-menu-open,
+  &-tree__groupings.is-sort-menu-open {
+    overflow: visible;
+    position: relative;
+    z-index: 40;
+  }
+
+  &-structure-groups__list {
+    display: grid;
+    gap: 0.8rem;
+    grid-auto-rows: max-content;
+    max-width: 100%;
+    min-height: 0;
+    min-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0.2rem 0.2rem 0 0.72rem;
+
+    // A Sort menu belongs to the pagination immediately above these cards.
+    // Its open state is lifted with the other paginated lists above.
+  }
+
+  &-structure-groups__list > * {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  &--participant-focus &__participant-content {
+    align-items: start;
+    display: grid;
+    gap: 0.8rem 1.45rem;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  &--participant-focus &__filter-group--participant-only {
+    display: flex;
+  }
+
+  &--participant-focus &__participant-main {
+    display: contents;
+  }
+
+  &--participant-focus &-participant-groups {
+    display: contents;
+  }
+
+  &--participant-focus &-participant-groups__list,
+  &--participant-focus &__participant-list {
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  &--participant-focus &-participant-groups__create,
+  &--participant-focus &__filters {
+    align-self: start;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    min-height: 0;
+  }
+
+  &--participant-focus &__filters {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &--participant-focus &-participant-groups__create {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  &--participant-focus &__participant-list {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  &--participant-focus &-participant-groups__list {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  &--participant-focus.local-groupimport-easystud--compact-users &-user {
+    @include easyedu.identity-person-card-dense-inset;
+  }
+
+  &--participant-focus.local-groupimport-easystud--compact-users &-user > .local-groupimport-easystud-selector {
+    top: 50%;
+    @media (min-width: 1025px) {
+      @include easyedu.card-selection-header-anchor;
+    }
+  }
+
+  &--participant-focus.local-groupimport-easystud--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected > .local-groupimport-easystud-selector {
+    top: 0.9rem;
+    transform: none;
+    @media (min-width: 1025px) {
+      @include easyedu.card-selection-header-anchor;
+    }
+  }
+
+  &--participant-focus.local-groupimport-easystud--compact-users &-user__rail {
+    align-items: center;
+  }
+
+  &--participant-focus &__participant-list > [data-easystud-user],
+  &--participant-focus &__participant-list > [data-easystud-empty-state] {
+    grid-column: 1;
+  }
+
+  &-participant-groups__create {
+    background: var(--local-groupimport-easystud-surface-soft);
+    border: 1px solid #e3ece5;
+    border-radius: var(--local-groupimport-easystud-radius);
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.8rem;
+  }
+
+  &-participant-groups__create &-create-card__topline {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  &-participant-groups__list {
+    align-items: start;
+    display: grid;
+    flex: 1 1 auto;
+    gap: 0.8rem;
+    grid-auto-rows: max-content;
+    max-height: none;
+    min-height: 0;
+    min-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.2rem 0.05rem 0 0;
+  }
+
+  &-group--catalog {
+    @include easyedu.object-card-catalog-inset;
+  }
+
+  &-group__groupings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0 0 0.6rem 1.85rem;
+  }
+
+  &-group__groupings--inline {
+    @include easyedu.related-tags-inline(min(34%, 13rem));
+
+    // Do not visually shorten a Grouping name in the header. The existing
+    // overflow controller measures the complete token and recovers it through
+    // More actions when the available card width is insufficient.
+    > .local-groupimport-easystud-token--grouping {
+      max-width: none;
+      overflow: visible;
+      text-overflow: clip;
+    }
+
+    &[hidden] {
+      display: none !important;
+    }
+  }
+
+  &-tree__children &-group__groupings--inline {
+    @include easyedu.related-tags-inline(min(30%, 10rem));
+
+    > .local-groupimport-easystud-token--grouping {
+      max-width: none;
+      overflow: visible;
+      text-overflow: clip;
+    }
+  }
+
+  &-group__groupings-summary,
+  &-group__groupings-overflow {
+    @include easyedu.related-tags-summary(#f3eefb, #ddd1f0, #5c3b8a);
+  }
+
+  button.local-groupimport-easystud-group__groupings-summary {
+    @include easyedu.membership-summary-inset;
+  }
+
+  &-group__groupings-summary-icon {
+    @include easyedu.related-tags-summary-icon;
+  }
+
+  &-group.is-groupings-expanded &-group__groupings-summary-icon {
+    @include easyedu.related-tags-expanded-icon;
+  }
+
+  &-group__groupings-details {
+    @include easyedu.related-tags-details(1.85rem);
+  }
+
+  &-group__groupings-details-list {
+    @include easyedu.related-tags-details-list;
+
+    .local-groupimport-easystud-token {
+      max-width: 100%;
+    }
+  }
+
+  &-tree__section {
+    @include easyedu.object-card(var(--local-groupimport-easystud-group-rail));
+
+    align-self: start;
+    background: linear-gradient(180deg, var(--easyedu-surface) 0%, #fbfdfb 100%);
+    border: 1px solid #d6dfd4;
+    border-left: var(--local-groupimport-easystud-identity-border-width) solid #a9cbb8;
+    border-radius: 0.95rem;
+    box-shadow: var(--local-groupimport-easystud-shadow-soft);
+    padding: 0.58rem 0.75rem 0.68rem;
+    position: relative;
+    max-width: 100%;
+    min-width: 0;
+    transition:
+      border-color var(--easyedu-motion-fast) ease,
+      box-shadow var(--easyedu-motion-fast) ease;
+
+    &[data-easystud-grouping-id] {
+      @include easyedu.identity-rail(var(--local-groupimport-easystud-icon-grouping));
+      @include easyedu.open-identity-rail-base(#f7fafc, #b7c5d1);
+
+      @include easyedu.identity-card-paint(container);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping-rail));
+    }
+
+    &[data-easystud-grouping-id]:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping-rail));
+      @include easyedu.card-focus-context(0 0.5rem 1rem rgba(106, 127, 152, 0.15));
+    }
+
+    &[data-easystud-grouping-id].is-expanded {
+      @include easyedu.open-identity-rail-state(#f7fafc, #b7c5d1, #8ca0b1);
+
+      @include easyedu.identity-card-paint(container, expanded);
+    }
+
+    &[data-easystud-grouping-id].is-expanded:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
+      @include easyedu.open-identity-rail-state(#f7fafc, #b7c5d1, #8ca0b1);
+
+      @include easyedu.identity-card-paint(container, expanded-focused);
+      @include easyedu.card-focus-context(
+        0 0.42rem 0.9rem -0.28rem rgba(106, 127, 152, 0.18)
+      );
+    }
+
+    &.is-drop-target,
+    &.is-selected {
+      border-color: #9eb5c7;
+      box-shadow: 0 0.56rem 1.05rem rgba(106, 127, 152, 0.15);
+
+      &[data-easystud-grouping-id] {
+        @include easyedu.identity-card-surface-ink(var(--local-groupimport-easystud-grouping-soft));
+        @include easyedu.identity-card-paint(container, selected);
+        @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping));
+      }
+
+      &[data-easystud-grouping-id]::before {
+        @include easyedu.identity-card-rail-glyph-surface;
+      }
+    }
+
+    &[data-easystud-grouping-id].is-expanded.is-selected {
+      @include easyedu.open-identity-rail-state(#edf2f7, #9eb0c2, #8a9dad);
+
+      @include easyedu.identity-card-paint(container, expanded-selected);
+    }
+
+    &[data-easystud-grouping-id].is-expanded.is-selected:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
+      @include easyedu.open-identity-rail-state(#edf2f7, #9eb0c2, #8a9dad);
+
+      @include easyedu.identity-card-paint(container, expanded-selected-focused);
+      @include easyedu.card-focus-context(
+        0 0.5rem 1rem -0.24rem rgba(106, 127, 152, 0.22)
+      );
+    }
+
+    &[data-easystud-grouping-id].is-expanded:not(:focus-within)::before,
+    &[data-easystud-grouping-id].is-expanded:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)::before {
+      @include easyedu.identity-card-paint(container, expanded-rail-rest);
+    }
+  }
+
+  &-tree__section > .local-groupimport-easystud-selector {
+    @include easyedu.card-selection-slot(overlay);
+
+    left: 0.78rem;
+    top: 0.58rem;
+    z-index: 2;
+  }
+
+  &-tree__section[data-easystud-grouping-id] > .local-groupimport-easystud-selector {
+    top: 0.58rem;
+  }
+
+  &-tree__section--ungrouped {
+    // Ungrouped Groups are a first-class Complete-view section. A restrained
+    // slate identity keeps that distinction calm beside Groups and Groupings;
+    // the single-user rail icon makes the "not grouped" meaning explicit.
+    --local-groupimport-easystud-ungrouped: #79506f;
+    --local-groupimport-easystud-ungrouped-rail: #c7a9bf;
+
+    // This is the grouping/container identity, not an undefined icon alias.
+    @include easyedu.identity-rail(var(--easyedu-icon-grouping));
+
+    @include easyedu.identity-card-paint(unassigned);
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-ungrouped-rail));
+
+    &:focus-within {
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-ungrouped-rail));
+      @include easyedu.card-focus-context(
+        0 0.45rem 0.95rem rgba(111, 67, 100, 0.15),
+        $preserve-identity-rail: true,
+        $identity-rail-color: var(--local-groupimport-easystud-ungrouped-rail)
+      );
+    }
+
+    &.is-expanded {
+      @include easyedu.identity-card-paint(unassigned, expanded);
+    }
+
+    &.is-expanded:focus-within {
+      // Open cards keep the same inner focus rail as their closed state.
+      @include easyedu.card-focus-context(0 0.42rem 0.9rem -0.28rem rgba(111, 67, 100, 0.18));
+    }
+  }
+
+  &-tree__section--ungrouped > &-tree__toggle {
+    @include easyedu.card-disclosure-ink(var(--local-groupimport-easystud-ungrouped));
+    @include easyedu.card-disclosure-inset(flush-end);
+
+    > .fa {
+      @include easyedu.card-disclosure-ink(var(--local-groupimport-easystud-ungrouped));
+    }
+
+    > span:last-child {
+      @include easyedu.card-title(container, var(--easyedu-card-identity-title-color));
+    }
+  }
+
+  &-tree__section[data-easystud-grouping-drop].is-drop-target {
+    @include easyedu.insert-drop-target(
+      var(--local-groupimport-easystud-grouping),
+      #f8fbfd,
+      #eef6fb
+    );
+  }
+
+  &-grouping__header {
+    @include easyedu.selectable-card-header(container);
+  }
+
+  &-grouping__header.is-rename-editing {
+    .local-groupimport-easystud-tree__toggle,
+    .local-groupimport-easystud-group__mail-button,
+    .local-groupimport-easystud-container-search__toggle,
+    .local-groupimport-easystud-group__duplicate-button,
+    .local-groupimport-easystud-group__settings-button,
+    .local-groupimport-easystud-group__delete-button,
+    > .badge,
+    > [data-easystud-card-menu] {
+      // K22-27: the count badge and the card menu also make room for the editor.
+      display: none !important;
+    }
+  }
+
+  &-grouping__header.is-rename-editing > .local-groupimport-easystud-rename {
+    flex: 1 1 auto;
+  }
+
+  &-grouping__header > &-tree__toggle {
+    @include easyedu.card-header-title-slot;
+    width: auto;
+  }
+
+  &-tree__toggle {
+    @include easyedu.card-disclosure-title;
+
+    width: 100%;
+
+    > .fa {
+      @include easyedu.card-disclosure-icon(var(--local-groupimport-easystud-grouping));
+
+      @include easyedu.card-disclosure-ink(var(--local-groupimport-easystud-grouping));
+    }
+
+  }
+
+  // Grouping count badge: last child of the header, after the actions.
+  &-grouping__header > .badge {
+    @include easyedu.count-badge-grouping-header-paint;
+    @include easyedu.card-header-terminal-slot;
+  }
+
+  &-tree__toggle[aria-expanded="true"] > .fa {
+    // The controller swaps the glyph to fa-chevron-down when open. Do not
+    // rotate that already-directional glyph a second time.
+    transform: none;
+  }
+
+  &-grouping__name,
+  &-group__name {
+    display: inline-block;
+    @include easyedu.card-title-block-inset;
+  }
+
+  &-group__name {
+    @include easyedu.card-title(regular, var(--easyedu-card-identity-title-color));
+  }
+
+  &-tree__section--ungrouped &-group__name {
+    // The ungrouped shell clipped the final pixels of glyph descenders even
+    // though the shared card-title role already provided a sound line box.
+    @include easyedu.card-title-block-inset($unassigned: true);
+  }
+
+  &-grouping__name {
+    @include easyedu.card-title(container, var(--easyedu-card-identity-title-color));
+  }
+
+  &-tree__children {
+    align-items: start;
+    border-left: 2px solid #dfe8e2;
+    display: grid;
+    gap: 0.65rem;
+    margin-left: 0.45rem;
+    margin-top: 0.7rem;
+    padding: 0.2rem 0 0 0.85rem;
+  }
+
+  &-tree__children.is-tree-animating &-grouping__groups,
+  &-tree__children.is-tree-animating &-group__members {
+    transition: none;
+  }
+
+  &-container-search__toggle {
+    @include easyedu.card-direct-action;
+  }
+
+  &-tree__section--ungrouped > &-container-search__toggle {
+    display: none !important;
+  }
+
+  &-container-search {
+    @include easyedu.card-inline-search-panel;
+  }
+
+  &-container-search__row {
+    @include easyedu.card-inline-search-row;
+  }
+
+  &-container-search__field {
+    @include easyedu.card-inline-search-field;
+  }
+
+  &-tree__groupings {
+    align-content: start;
+    display: grid;
+    gap: 0.65rem;
+    grid-auto-rows: max-content;
+    min-width: 0;
+    overflow-x: visible;
+    padding: 0.2rem 0 0 0;
+  }
+
+  &:not(.local-groupimport-easystud--structure-focus) &-tree__groupings {
+    overflow: visible;
+    padding: 0.2rem 0 1rem;
+  }
+
+  &:not(.local-groupimport-easystud--structure-focus) &-tree__groupings > &-tree__section {
+    width: 100%;
+  }
+
+  &--participant-focus &__participant-list,
+  &--participant-focus &-participant-groups__list,
+  &--structure-focus &-structure-groups__list,
+  &--structure-focus &-tree__groupings {
+    gap: 0.72rem;
+    height: 100%;
+    padding-top: 0.35rem;
+  }
+
+  // Each paginated list already fills its own content block. Switch only that
+  // internal flow to a column so the existing bottom navigation consumes the
+  // remaining block space on short lists. This deliberately avoids viewport
+  // positioning and retains the same DOM order for keyboard users.
+  &__participant-list.is-easystud-paginated,
+  &-participant-groups__list.is-easystud-paginated,
+  &-structure-groups__list.is-easystud-paginated,
+  &-tree__groupings.is-easystud-paginated {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      // A card/pagination keeps its intrinsic size, including while a
+      // participant expands. Never shrink a card to fit a panel viewport.
+      flex-shrink: 0;
+    }
+  }
+
+  &-participant-groups__list.is-easystud-paginated:has(.is-actions-menu-open),
+  &-structure-groups__list.is-easystud-paginated:has(.is-actions-menu-open),
+  &-tree__groupings.is-easystud-paginated:has(.is-actions-menu-open),
+  &-structure-groups:has(.is-actions-menu-open),
+  &-tree:has(.is-actions-menu-open),
+  &__panel:has(.is-actions-menu-open) {
+    @include easyedu.dropdown-card-open-host;
+  }
+
+  &__participant-list.is-easystud-paginated > &-pagination--bottom,
+  &-participant-groups__list.is-easystud-paginated > &-pagination--bottom,
+  &-structure-groups__list.is-easystud-paginated > &-pagination--bottom,
+  &-tree__groupings.is-easystud-paginated > &-pagination--bottom {
+    margin-top: auto;
+  }
+
+  &__participant-list > &-pagination--top,
+  &-participant-groups__list > &-pagination--top,
+  &-structure-groups__list > &-pagination--top,
+  &-tree__groupings > &-pagination--top {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  &--participant-focus &__participant-list > &-pagination--top,
+  &--participant-focus &-participant-groups__list > &-pagination--top {
+    margin-bottom: 0.22rem;
+    margin-top: 0.22rem;
+  }
+
+  &-group {
+    @include easyedu.object-card(var(--local-groupimport-easystud-group-rail));
+    @include easyedu.identity-rail(var(--local-groupimport-easystud-icon-group));
+
+    align-self: start;
+    @include easyedu.identity-card-paint(object);
+    @include easyedu.object-card-rail-edge(
+      var(--local-groupimport-easystud-identity-border-width),
+      var(--local-groupimport-easystud-group-rail)
+    );
+    cursor: grab;
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+    @include easyedu.object-card-inset;
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease,
+      box-shadow var(--easyedu-motion-fast) ease;
+
+    // K16-53 écart2: common identity-card hover, before focus/selection/drop.
+    @include easyedu.identity-card-hover(object) {
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
+    }
+
+    &:focus-within {
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
+      @include easyedu.card-focus-context(
+        var(--easyedu-shadow-soft),
+        $preserve-identity-rail: true,
+        $identity-rail-color: var(--local-groupimport-easystud-group-rail)
+      );
+    }
+
+    &.is-dragging {
+      @include easyedu.drag-source-placeholder;
+    }
+
+    &.is-drop-target,
+    &.is-selected {
+      --local-groupimport-group-surface: var(--local-groupimport-easystud-group-soft);
+      @include easyedu.identity-card-surface-ink(var(--local-groupimport-easystud-group-soft));
+      @include easyedu.identity-card-paint(object, selected);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group));
+
+      &::before {
+        @include easyedu.identity-card-rail-glyph-surface;
+      }
+    }
+
+    &.is-actions-menu-open {
+      overflow: visible;
+      z-index: 35;
+    }
+
+    // Pagination lives inside the expanded member region. Raise the owning
+    // card while Sort is open so its dropdown is not painted underneath the
+    // following Group card or the neighbouring Participants column.
+    &.is-sort-menu-open {
+      overflow: visible;
+      z-index: 36;
+    }
+  }
+
+  // An expanded member list may extend beside the Groupings column in Complete
+  // View. Lift only that card's paint stack so the identity rail remains
+  // visible above neighbouring overflow without changing its box geometry.
+  &-group:has(> &-group__members.is-expanded):not(.is-actions-menu-open):not(.is-sort-menu-open) {
+    z-index: 12;
+  }
+
+  &-group[data-easystud-user-drop].is-drop-target {
+    @include easyedu.insert-drop-target(
+      var(--local-groupimport-easystud-group),
+      #f7fcf9,
+      #edf8f2
+    );
+  }
+
+  &-group,
+  &-user {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  &-group.is-newly-created,
+  &-tree__section[data-easystud-grouping-id].is-newly-created {
+    @include easyedu.identity-card-mutation-paint(created);
+    position: relative;
+    transition:
+      background-color var(--easyedu-motion-normal) ease,
+      border-color var(--easyedu-motion-normal) ease;
+    z-index: 2;
+  }
+
+  &-group.is-being-removed,
+  &-tree__section[data-easystud-grouping-id].is-being-removed {
+    @include easyedu.identity-card-mutation-paint(removing);
+    pointer-events: none;
+  }
+
+  &-group > .local-groupimport-easystud-selector {
+    @include easyedu.card-selection-slot(overlay);
+
+    left: 0.72rem;
+    top: 0.58rem;
+    z-index: 2;
+  }
+
+  &-group__header {
+    @include easyedu.selectable-card-header;
+
+    > .local-groupimport-easystud-group__name {
+      @include easyedu.card-header-title-slot;
+      @include easyedu.card-title-object-leading;
+    }
+
+    > .local-groupimport-easystud-group__groupings--inline {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    > .badge {
+      @include easyedu.card-header-terminal-slot;
+    }
+  }
+
+  &-count-badge {
+    @include easyedu.count-badge(var(--easyedu-count-bg), #d5e0ea, var(--easyedu-count-text));
+
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease,
+      color var(--easyedu-motion-fast) ease;
+  }
+
+  &-count-badge--empty {
+    @include easyedu.count-badge(var(--easyedu-count-bg), var(--easyedu-count-border), var(--easyedu-count-text));
+  }
+
+  &-count-badge--filled.local-groupimport-easystud-count-badge--members {
+    @include easyedu.count-badge(#e7f2ff, #bfd8f4, #245d92);
+  }
+
+  &-count-badge--filled.local-groupimport-easystud-count-badge--grouping {
+      @include easyedu.count-badge(#eaf6ef, #c5e2d0, #2e6f4b);
+  }
+
+  &-group__header.is-rename-editing {
+    .local-groupimport-easystud-group__name,
+    .local-groupimport-easystud-group__groupings--inline,
+    + .local-groupimport-easystud-group__groupings-details,
+    .badge,
+    .local-groupimport-easystud-group__mail-button,
+    .local-groupimport-easystud-group__member-search-button,
+    .local-groupimport-easystud-group__duplicate-button,
+    .local-groupimport-easystud-group__settings-button,
+    .local-groupimport-easystud-group__delete-button,
+    .local-groupimport-easystud-group__unlink-button,
+    > [data-easystud-card-menu] {
+      display: none !important;
+    }
+  }
+
+  &-group__header.is-rename-editing > .local-groupimport-easystud-rename {
+    flex: 1 1 auto;
+  }
+
+  // A hidden grouping summary is recovered through More actions before the count.
+  &-group.is-groupings-summary-hidden > &-group__header > &-card-menu {
+    // K16-55: the Kit overflow trigger (24 px disc), only placed here.
+    @include easyedu.card-overflow-trigger;
+
+    @include easyedu.card-header-terminal-slot(overflow);
+    @include easyedu.card-action-zero-inset;
+  }
+
+  &-group__mail-button,
+  &-group__duplicate-button,
+  &-group__member-search-button,
+  &-group__settings-button,
+  &-group__delete-button {
+    @include easyedu.card-direct-action;
+  }
+
+  &-group__unlink-button {
+    @include easyedu.card-direct-action;
+  }
+
+  &-group__actions-toggle {
+    @include easyedu.card-overflow-trigger;
+    @include easyedu.card-header-terminal-slot(overflow);
+  }
+
+  &-group__actions-menu {
+    @include easyedu.dropdown-menu;
+
+    @include easyedu.dropdown-card-action-grid;
+    position: absolute;
+    right: 0.45rem;
+    top: 2.35rem;
+    z-index: 80;
+
+    &[hidden] {
+      display: none;
+    }
+
+    .btn {
+      @include easyedu.dropdown-card-action(var(--local-groupimport-easystud-primary-strong));
+    }
+
+    &-label {
+      @include easyedu.dropdown-card-action-label;
+    }
+  }
+
+  .is-easystud-card-action-overflow {
+    display: none !important;
+  }
+
+  &-group__members {
+    --local-groupimport-members-collapsed-height: 4.12rem;
+    --local-groupimport-members-expanded-height: 36rem;
+    @include easyedu.preview-fade-list(
+      var(--local-groupimport-members-collapsed-height),
+      var(--local-groupimport-members-expanded-height),
+      // K16-65/K16-74: the fade follows the card's real surface (rest or selected), so the member
+      // list never shows as an opaque block on the green selected card.
+      var(--local-groupimport-group-surface, var(--easyedu-surface-soft)),
+      2.45rem
+    );
+
+    margin: 0.55rem 0 0;
+    @include easyedu.preview-fade-list-inset;
+  }
+
+  // R10-05: discreet member "Select all", laid over the right end of the members toggle row
+  // (same three-member threshold), so it adds no height to the card.
+  &-group__select-all-row:not([hidden]) {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.35rem;
+  }
+
+  // K16-57/K16-66: also when the long-list footer sits between them, but only while it is hidden
+  // (folded card); once the footer shows (unfolded), Select all keeps its own row below it.
+  &-group__members-toggle:not([hidden]) + &-group__select-all-row:not([hidden]),
+  &-group__members-toggle:not([hidden]) + [data-easystud-long-list-footer][hidden] + &-group__select-all-row:not([hidden]) {
+    align-items: center;
+    // The row carries the Kit action height (button-size small).
+    @include easyedu.selection-recovery-row-extent;
+    margin-top: -1.9rem;
+    pointer-events: none;
+    position: relative;
+
+    > * {
+      pointer-events: auto;
+    }
+  }
+
+  &-group__select-all.btn {
+    @include easyedu.selection-recovery-action($natural-labels: true);
+  }
+
+  &-grouping__groups {
+    --local-groupimport-grouping-groups-collapsed-height: 16rem;
+    --local-groupimport-grouping-groups-expanded-height: 48rem;
+    @include easyedu.card-relation-list-unbounded;
+    overflow: visible;
+    position: relative;
+    transition: margin var(--easyedu-motion-fast) ease;
+  }
+
+  &-grouping__groups.has-extra-groups:not(.is-expanded) {
+    @include easyedu.card-relation-list-unbounded;
+  }
+
+  &-grouping__groups-toggle {
+    display: none !important;
+  }
+
+  &-group__members > .local-groupimport-easystud-member:not(:last-child) {
+    margin-bottom: 0.3rem;
+  }
+
+  // The fold control is the Kit card fold chevron.
+  &-group__members-toggle {
+    @include easyedu.card-fold-chevron;
+  }
+
+  // The fold control is icon-only everywhere; its "See all N members" /
+  // "Show less" label stays as its accessible name (aria-label).
+  &-group__members-toggle-label {
+    display: none;
+  }
+
+  // Desktop footer: the chevron starts on the title column, like the member names (K16-25 grid,
+  // selectable-card-header 2.55rem, minus the action's 0.5rem inline padding).
+  &:not(.local-groupimport-easystud--responsive-workspace) &-group > &-group__members-toggle {
+    margin-inline-start: calc(2.55rem - 0.5rem);
+  }
+
+  &-advanced-filters__toggle.local-groupimport-easystud-group__members-toggle {
+    @include easyedu.filter-disclosure-trigger(compact);
+
+    margin: 0;
+
+    .fa {
+      @include easyedu.filter-disclosure-neutral-icon;
+    }
+
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  &-member--extra {
+    max-height: 2.35rem;
+    overflow: hidden;
+    transition: opacity var(--easyedu-motion-fast) ease;
+  }
+
+  &-tree__empty {
+    @include easyedu.empty-state(tree);
+  }
+
+  &-toggle-check {
+    @include easyedu.toggle-check-line;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__email {
+    display: block;
+    margin-left: 0;
+  }
+
+  &-move-origin-check {
+    margin-top: 0.8rem;
+  }
+
+  &-group-email {
+    @include easyedu.inline-reveal-panel(24rem);
+
+    padding: 0.7rem;
+
+    &.is-open {
+      margin-top: 0.65rem;
+    }
+  }
+
+  &.is-dragging-participants &__participant-list [data-easystud-user]:not(.is-dragging),
+  &.is-dragging-participants &-tree__section[data-easystud-grouping-id].is-user-drop-disabled,
+  &.is-dragging-groups &-participant-groups__list [data-easystud-group-id]:not(.is-dragging),
+  &.is-dragging-groups &-structure-groups__list [data-easystud-group-id]:not(.is-dragging),
+  &.is-dragging-groups &-tree__groupings [data-easystud-group-id]:not(.is-dragging) {
+    @include easyedu.drag-disabled-zone(0.42, 0.18, 0.72, false);
+
+    transition: opacity var(--easyedu-motion-fast) ease, filter var(--easyedu-motion-fast) ease;
+  }
+
+  &.is-dragging-participants &-group[data-easystud-user-drop],
+  &.is-dragging-groups [data-easystud-grouping-drop] {
+    opacity: 1;
+  }
+
+  // Native identifier boxes consume the multiline family, not a local skin.
+  // Keep rows, parsing, actions and disclosure Motion in their existing owners.
+  [data-easystud-group-email-box],
+  [data-easystud-grouping-groups-box] {
+    @include easyedu.foundation-textarea;
+  }
+
+  &.is-dragging-participants &-tree__section.is-user-drop-disabled.is-drop-denied {
+    @include easyedu.denied-drop-target;
+  }
+
+  &-inline-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.55rem;
+  }
+
+  &-group-email__result {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    gap: 0.35rem;
+    margin-top: 0.45rem;
+  }
+
+  &__paste-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.8rem;
+  }
+
+  &-token {
+    @include easyedu.entity-card-token;
+  }
+
+  &-token--valid {
+    @include easyedu.entity-card-token-semantic(valid);
+  }
+
+  &-token--invalid {
+    @include easyedu.entity-card-token-semantic(invalid,
+      $danger-surface: var(--local-groupimport-easystud-danger-soft));
+  }
+
+  &-token--role {
+    @include easyedu.entity-card-token-semantic(role);
+  }
+
+  &-token--group {
+    @include easyedu.entity-card-token-semantic(group,
+      $accent-surface: var(--local-groupimport-easystud-accent-soft));
+  }
+
+  &-token--grouping {
+    @include easyedu.entity-card-token-semantic(grouping);
+  }
+
+  &-token--custom-info {
+    @include easyedu.entity-card-token-semantic(custom-info);
+  }
+
+  &-token--empty {
+    @include easyedu.entity-card-token-semantic(empty);
+  }
+
+  // Identifier lookup feedback is the published Forms/Feedback family, not
+  // card metadata. Scope the recipe to result hosts so role/group/grouping
+  // badges and the original lookup/announcement behavior remain unchanged.
+  [data-easystud-group-email-result],
+  [data-easystud-grouping-groups-result] {
+    .local-groupimport-easystud-token--valid {
+      @include easyedu.detected-token(success);
+    }
+
+    .local-groupimport-easystud-token--invalid {
+      @include easyedu.detected-token(error);
+    }
+  }
+
+  // Clipboard recognition shares the published lookup-result family without
+  // repainting role, group, grouping or other card metadata tokens.
+  [data-easystud-paste-results] {
+    .local-groupimport-easystud-token--valid {
+      @include easyedu.detected-token(success);
+    }
+
+    .local-groupimport-easystud-token--invalid {
+      @include easyedu.detected-token(error);
+    }
+  }
+
+  &-tags-toggle {
+    @include easyedu.entity-card-overflow-control($legacy-priority: true);
+
+    &.local-groupimport-easystud-token {
+      @include easyedu.entity-card-overflow-token($legacy-priority: true);
+    }
+
+    &.local-groupimport-easystud-token--role {
+      @include easyedu.entity-card-token-semantic(role, $legacy-priority: true);
+    }
+
+    &.local-groupimport-easystud-token--group {
+      @include easyedu.entity-card-token-semantic(group,
+        $accent-surface: var(--local-groupimport-easystud-accent-soft),
+        $legacy-priority: true);
+    }
+
+    &.local-groupimport-easystud-token--grouping {
+      @include easyedu.entity-card-token-semantic(grouping, $legacy-priority: true);
+    }
+
+    &.local-groupimport-easystud-token--custom-info {
+      @include easyedu.entity-card-token-semantic(custom-info, $legacy-priority: true);
+    }
+
+    @include easyedu.entity-card-overflow-feedback;
+  }
+
+  // Moodle's p-0 utility followed plugin CSS in the aggregated stylesheet.
+  // Preserve that contract when this sheet is requested after the theme:
+  // overflow measurements must see the same intrinsic disclosure width.
+  &-tags-toggle.p-0 {
+    @include easyedu.metadata-overflow-flush;
+  }
+
+  &-tags-toggle:not(.local-groupimport-easystud-token) {
+    @include easyedu.entity-card-overflow-link(
+      $text: var(--local-groupimport-easystud-primary),
+      $active-text: var(--local-groupimport-easystud-primary-strong),
+      $legacy-priority: true);
+  }
+
+  [data-selectable-type].is-selected > &-selector &-selector__ui {
+    background: var(--local-groupimport-easystud-selector-color);
+    border-color: var(--local-groupimport-easystud-selector-color);
+  }
+
+  [data-selectable-type].is-selected > &-selector {
+    cursor: pointer;
+
+    input {
+      cursor: pointer;
+    }
+
+    .local-groupimport-easystud-selector__ui {
+      opacity: 1;
+    }
+  }
+
+  &-pagination {
+    @include easyedu.pagination-bar;
+    @include easyedu.pagination-empty-slots(
+      $selection: ".local-groupimport-easystud-pagination__selection",
+      $tools: ".local-groupimport-easystud-pagination__tools"
+    );
+
+    --local-groupimport-result-height: 1.62rem;
+
+    gap: 0.34rem;
+    margin-top: 0.35rem;
+    @include easyedu.pagination-bar-extent;
+    z-index: 8;
+
+    &.is-sort-menu-open {
+      position: relative;
+      z-index: 41;
+
+      // The Sort menu is positioned inside the generic dropdown stacking
+      // context. At intermediate widths an expanded Group card creates its
+      // own paint context, so lift only the opened Sort dropdown above it.
+      // This preserves card-action ownership and all other dropdown levels.
+      [data-easystud-list-sort-dropdown].is-open {
+        z-index: 42;
+      }
+    }
+
+    &--top {
+      margin-bottom: 0.36rem;
+      margin-top: 0.12rem;
+      @include easyedu.pagination-bar-extent($top: true);
+      z-index: 12;
+    }
+
+    &--bottom {
+      margin-top: 0.42rem;
+    }
+
+    .btn {
+      @include easyedu.pagination-compact-button;
+    }
+
+    .local-groupimport-easystud-pagination__selection {
+      @include easyedu.pagination-selection;
+    }
+
+    .local-groupimport-easystud-pagination__select {
+      @include easyedu.pagination-select-button($legacy-priority: true);
+
+      @include easyedu.pagination-select-frame(var(--local-groupimport-result-height));
+    }
+
+    .local-groupimport-easystud-pagination__controls {
+      @include easyedu.pagination-controls($legacy-priority: true);
+
+      // Keep the consumer grid placement after the Kit's forced-colors rule
+      // without relying on Sass's deprecated mixed-declaration ordering.
+      & {
+        gap: 0.34rem;
+        grid-column: 2;
+        justify-self: center;
+      }
+    }
+
+    .local-groupimport-easystud-pagination__spacer {
+      @include easyedu.pagination-spacer;
+    }
+
+    .local-groupimport-easystud-pagination__tools {
+      @include easyedu.pagination-tools;
+
+      align-self: center;
+      margin: 0;
+      @include easyedu.pagination-tools-compact-inset;
+    }
+
+    .local-groupimport-easystud-pagination__count {
+      @include easyedu.pagination-count;
+
+      @include easyedu.pagination-count-frame(var(--local-groupimport-result-height));
+    }
+
+    .local-groupimport-easystud-pagination__sort {
+      @include easyedu.pagination-sort;
+    }
+
+    .local-groupimport-easystud-pagination__select[data-easystud-deselect-results="1"] {
+      @include easyedu.pagination-deselect-palette($quiet: true, $legacy-priority: true);
+    }
+
+    &.is-placeholder {
+      @include easyedu.pagination-placeholder;
+    }
+
+    .btn:disabled {
+      @include easyedu.pagination-disabled-paint($legacy-priority: true);
+    }
+
+    [data-easystud-page-label] {
+      @include easyedu.pagination-number-label;
+    }
+
+    [data-easystud-select-results-label],
+    [data-easystud-list-sort-label] {
+      @include easyedu.pagination-command-label;
+    }
+
+    [data-easystud-list-sort-label] {
+      @include easyedu.pagination-label-ink;
+    }
+
+    // EED-KIT-2026-0001: its public primitive supersedes the compact local
+    // dimensions above only for page arrows. The page labels use the same
+    // shared centring contract while retaining the plugin-owned page state.
+    [data-easystud-page-first],
+    [data-easystud-page-prev],
+    [data-easystud-page-next],
+    [data-easystud-page-last] {
+      @include easyedu.pagination-arrow-button;
+
+      .local-groupimport-easystud &.btn {
+        @include easyedu.pagination-round-arrow($legacy-priority: true);
+      }
+    }
+
+    [data-easystud-page-label] {
+      @include easyedu.pagination-content-centre;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    &-pagination {
+      @include easyedu.pagination-mobile;
+
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+
+      .local-groupimport-easystud-pagination__tools {
+        grid-column: 3;
+        justify-self: end;
+      }
+
+      .local-groupimport-easystud-pagination__count {
+        display: none;
+      }
+
+      .local-groupimport-easystud-pagination__spacer {
+        display: none;
+      }
+    }
+
+    &-settings-modal__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  &-dropdown {
+    display: inline-flex;
+    position: relative;
+    z-index: 14;
+  }
+
+  &-dropdown__button {
+    @include easyedu.list-sort-trigger;
+  }
+
+  &-dropdown__menu {
+    @include easyedu.dropdown-menu;
+
+    min-width: 9.5rem;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.34rem);
+    z-index: 1060;
+
+    &[hidden] {
+      display: none;
+    }
+
+    button {
+      @include easyedu.list-sort-option;
+    }
+  }
+
+}
+
+@media (min-width: 1025px) {
+  .local-groupimport-easystud {
+    // Stretch both header segments to keep the painted lanes continuous.
+    // In a mixed disclosure state the spare space belongs below each control,
+    // so the closed neighbour's control stays under its own filters.
+    &--participant-focus &__participant-content {
+      align-items: stretch;
+    }
+
+    &--participant-focus &-participant-groups__create,
+    &--participant-focus &__filters {
+      align-self: stretch;
+    }
+
+    &--participant-focus &-participant-groups__create {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--participant-focus &__filters > &-advanced-filters__control,
+    &--participant-focus &-participant-groups__create > &-advanced-filters__control {
+      margin-block-start: auto;
+    }
+
+    &--structure-focus &-create-card {
+      display: flex;
+      flex-direction: column;
+      @include easyedu.identity-create-card-frame($intrinsic: true);
+    }
+
+    &--structure-focus &-create-card--group > &-advanced-filters__control {
+      margin-block-start: auto;
+    }
+
+    // Groupings has no desktop disclosure, but its existing compact control
+    // reserves the same action row so the no-filter card keeps the collapsed
+    // height of its filtered neighbour without a hard-coded block size.
+    &--structure-focus &-advanced-filters__control--groupings-mobile {
+      display: flex !important;
+      margin-block-start: auto;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    // In Complete View an expanded Grouping rail is painted outside the
+    // card's normal border. Lift only that card's paint stack so neighbouring
+    // cards cannot cover the rail; this does not change its box geometry.
+    &-tree__section[data-easystud-grouping-id].is-expanded {
+      z-index: 12;
+    }
+
+    &--participant-focus.local-groupimport-easystud--participants-filters-expanded:not(.local-groupimport-easystud--participant-groups-filters-expanded) &__filters,
+    &--participant-focus.local-groupimport-easystud--participants-filters-expanded:not(.local-groupimport-easystud--participant-groups-filters-expanded) &-participant-groups__create,
+    &--participant-focus:not(.local-groupimport-easystud--participants-filters-expanded).local-groupimport-easystud--participant-groups-filters-expanded &__filters,
+    &--participant-focus:not(.local-groupimport-easystud--participants-filters-expanded).local-groupimport-easystud--participant-groups-filters-expanded &-participant-groups__create,
+    &--structure-focus.local-groupimport-easystud--structure-groups-filters-expanded:not(.local-groupimport-easystud--structure-groupings-filters-expanded) &-create-card,
+    &--structure-focus:not(.local-groupimport-easystud--structure-groups-filters-expanded).local-groupimport-easystud--structure-groupings-filters-expanded &-create-card {
+      align-self: stretch;
+    }
+
+    &--participant-focus.local-groupimport-easystud--participants-filters-expanded:not(.local-groupimport-easystud--participant-groups-filters-expanded),
+    &--participant-focus:not(.local-groupimport-easystud--participants-filters-expanded).local-groupimport-easystud--participant-groups-filters-expanded,
+    &--structure-focus.local-groupimport-easystud--structure-groups-filters-expanded:not(.local-groupimport-easystud--structure-groupings-filters-expanded),
+    &--structure-focus:not(.local-groupimport-easystud--structure-groups-filters-expanded).local-groupimport-easystud--structure-groupings-filters-expanded {
+      .local-groupimport-easystud__filters > .local-groupimport-easystud-advanced-filters__control,
+      .local-groupimport-easystud-participant-groups__create > .local-groupimport-easystud-advanced-filters__control,
+      .local-groupimport-easystud-create-card--group > .local-groupimport-easystud-advanced-filters__control,
+      .local-groupimport-easystud-advanced-filters__control--groupings-mobile {
+        margin-block-start: 0;
+      }
+    }
+  }
+}
+
+// K16-53 écart2: the grouping uses the common identity-card hover (real pointer
+// only, Kit soft shadow, no lift). Emitted after the expanded state so an open
+// grouping at rest still answers the pointer; selection and drop keep their own
+// paint, and the keyboard focus context keeps priority through its specificity.
+.local-groupimport-easystud-tree__section[data-easystud-grouping-id] {
+  cursor: default;
+  @include easyedu.identity-card-hover(container, ":not(.is-selected):not(.is-drop-target)");
+}
+
+@include easyedu.motion-restricted {
+  .local-groupimport-easystud-tree__section[data-easystud-grouping-id]:hover {
+    transform: none;
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .easyedu-entity-card-empty--group {
+    @include easyedu.entity-card-empty-line(var(--easyedu-group), $lane: true);
+    margin-block-start: 0.7rem;
+  }
+  // K16-25: member rows share the group header grid. The row is pulled back by its own inset
+  // (0.45rem padding; no side border here) so its checkbox sits in the header checkbox column, the name
+  // starts on the title column (selectable-card-header 2.55rem = 2rem target + gap), and the
+  // "−" is centred on the header's 2rem action column. The selected background keeps its inset.
+  // Desktop only: the light responsive cards keep their own row layout.
+  &:not(.local-groupimport-easystud--responsive-workspace) .local-groupimport-easystud-group
+    > .local-groupimport-easystud-group__members > .local-groupimport-easystud-member.easyedu-related-person-row {
+    gap: calc(2.55rem - 2rem);
+    margin-inline: -0.45rem;
+    > .easyedu-related-person-row__selector { margin-right: 0; }
+    // K16-81: the header row now ends with its labels; the "−" shares that right edge.
+    > .easyedu-related-person-row__remove {
+      // The Kit remove target shares the header's right edge, whatever its size.
+      margin-inline-end: 0;
+    }
+  }
+  .easyedu-entity-card-empty--grouping {
+    @include easyedu.entity-card-empty-line(var(--easyedu-grouping));
+  }
+  .is-drop-target .easyedu-entity-card-empty {
+    @include easyedu.entity-card-empty-drop-target;
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+.local-groupimport-easystud {
+  &-group.is-selected {
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-group-rail));
+    @include easyedu.card-focus-context(
+      var(--easyedu-shadow-soft),
+      $preserve-identity-rail: true,
+      $identity-rail-color: var(--local-groupimport-easystud-group-rail)
+    );
+  }
+
+  &-tree__section[data-easystud-grouping-id].is-selected:focus-within:not(
+    :has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)
+  ) {
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-grouping-rail));
+    @include easyedu.card-focus-context(0 0.5rem 1rem rgba(106, 127, 152, 0.15));
+  }
+}

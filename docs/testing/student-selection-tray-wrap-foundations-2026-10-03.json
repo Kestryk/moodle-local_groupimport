@@ -1,0 +1,1812 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "hosts": [
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "id": "37222e98-689a-801a-8008-bbf64a1d8a95"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "id": "37222e98-689a-801a-8008-bbf658f4f74b"
+    }
+  ],
+  "trays": [
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "id": "37222e98-689a-801a-8008-bbf64b872546",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbf64b872548",
+          "label": "37222e98-689a-801a-8008-bbf64b872549",
+          "icon": "37222e98-689a-801a-8008-bbf64b87254a",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf64b87b48e",
+          "label": "37222e98-689a-801a-8008-bbf64c8016d4",
+          "icon": "37222e98-689a-801a-8008-bbf64c8016d5",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf64b87b496",
+          "label": "37222e98-689a-801a-8008-bbf64d225e12",
+          "icon": "37222e98-689a-801a-8008-bbf64d22a08d",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf64b883b96",
+          "label": "37222e98-689a-801a-8008-bbf64b883b97",
+          "icon": "37222e98-689a-801a-8008-bbf64b883b98",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "width": 351.96
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "id": "37222e98-689a-801a-8008-bbf6510a955b",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbf6510afcd0",
+          "label": "37222e98-689a-801a-8008-bbf6510afcd1",
+          "icon": "37222e98-689a-801a-8008-bbf6510afcd2",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf6510b06d9",
+          "label": "37222e98-689a-801a-8008-bbf6529a764d",
+          "icon": "37222e98-689a-801a-8008-bbf6529a764e",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf6510ba7cd",
+          "label": "37222e98-689a-801a-8008-bbf6539a24bd",
+          "icon": "37222e98-689a-801a-8008-bbf6539a7092",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf6510bc00b",
+          "label": "37222e98-689a-801a-8008-bbf6510c0551",
+          "icon": "37222e98-689a-801a-8008-bbf6510c0552",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "width": 729.96
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "id": "37222e98-689a-801a-8008-bbf65a0e7473",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbf65a0e7475",
+          "label": "37222e98-689a-801a-8008-bbf65a0e7476",
+          "icon": "37222e98-689a-801a-8008-bbf65a0e7477",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf65a0e88f2",
+          "label": "37222e98-689a-801a-8008-bbf65ad10197",
+          "icon": "37222e98-689a-801a-8008-bbf65ad17a81",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf65a0ec9f3",
+          "label": "37222e98-689a-801a-8008-bbf65b605b38",
+          "icon": "37222e98-689a-801a-8008-bbf65b605b39",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf65a0f3e49",
+          "label": "37222e98-689a-801a-8008-bbf65a0f3e4a",
+          "icon": "37222e98-689a-801a-8008-bbf65a0f3e4b",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "width": 351.96
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "id": "37222e98-689a-801a-8008-bbf65d8b35cd",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbf65d8b35cf",
+          "label": "37222e98-689a-801a-8008-bbf65d8b35d0",
+          "icon": "37222e98-689a-801a-8008-bbf65d8b35d1",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf65d8b4d49",
+          "label": "37222e98-689a-801a-8008-bbf65e9c2ca1",
+          "icon": "37222e98-689a-801a-8008-bbf65e9c2ca2",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf65d8b4d51",
+          "label": "37222e98-689a-801a-8008-bbf65f9549bd",
+          "icon": "37222e98-689a-801a-8008-bbf65f9549be",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbf65d8bc746",
+          "label": "37222e98-689a-801a-8008-bbf65d8bc747",
+          "icon": "37222e98-689a-801a-8008-bbf65d8bc748",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "width": 729.96
+    }
+  ],
+  "controls": [
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf64b872546",
+      "button": "37222e98-689a-801a-8008-bbf64b872548",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": false,
+      "iconLeft": 28.036249999999995,
+      "labelRight": 28.036249999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": 0.004000476837063616,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf64b872546",
+      "button": "37222e98-689a-801a-8008-bbf64b87b48e",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": true,
+      "iconLeft": 9,
+      "labelRight": 30.584993133544913,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": 0.005249988079413015,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf64b872546",
+      "button": "37222e98-689a-801a-8008-bbf64b87b496",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999999454,
+      "wrapped": false,
+      "iconLeft": 25.361249999999984,
+      "labelRight": 25.361251525878913,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610202207346447e-7,
+      "iconCentreDelta": -4.547473508864641e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf64b872546",
+      "button": "37222e98-689a-801a-8008-bbf64b883b96",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 26.986250000000098,
+      "labelRight": 26.98625152587897,
+      "frameGap": 5.60000000000008,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 0,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf6510a955b",
+      "button": "37222e98-689a-801a-8008-bbf6510afcd0",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 122.53625,
+      "labelRight": 122.53624999999988,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf6510a955b",
+      "button": "37222e98-689a-801a-8008-bbf6510b06d9",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 94.54249849999985,
+      "labelRight": 94.54249844824199,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf6510a955b",
+      "button": "37222e98-689a-801a-8008-bbf6510ba7cd",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999999454,
+      "wrapped": false,
+      "iconLeft": 119.86125000000004,
+      "labelRight": 119.86125152587874,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610202207346447e-7,
+      "iconCentreDelta": -4.547473508864641e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "page": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "tray": "37222e98-689a-801a-8008-bbf6510a955b",
+      "button": "37222e98-689a-801a-8008-bbf6510bc00b",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 121.48624999999993,
+      "labelRight": 121.48625152587874,
+      "frameGap": 5.600000000000136,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65a0e7473",
+      "button": "37222e98-689a-801a-8008-bbf65a0e7475",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": false,
+      "iconLeft": 28.036249999999995,
+      "labelRight": 28.036249999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": 0.004000476837063616,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65a0e7473",
+      "button": "37222e98-689a-801a-8008-bbf65a0e88f2",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": true,
+      "iconLeft": 9,
+      "labelRight": 30.584993133544913,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": 0.005249988079413015,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65a0e7473",
+      "button": "37222e98-689a-801a-8008-bbf65a0ec9f3",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999999454,
+      "wrapped": false,
+      "iconLeft": 25.361249999999984,
+      "labelRight": 25.361251525878913,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610202207346447e-7,
+      "iconCentreDelta": -4.547473508864641e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65a0e7473",
+      "button": "37222e98-689a-801a-8008-bbf65a0f3e49",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 26.986250000000098,
+      "labelRight": 26.98625152587897,
+      "frameGap": 5.60000000000008,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 0,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65d8b35cd",
+      "button": "37222e98-689a-801a-8008-bbf65d8b35cf",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 122.53625,
+      "labelRight": 122.53624999999988,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65d8b35cd",
+      "button": "37222e98-689a-801a-8008-bbf65d8b4d49",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 94.54249849999985,
+      "labelRight": 94.54249844824199,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65d8b35cd",
+      "button": "37222e98-689a-801a-8008-bbf65d8b4d51",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999999454,
+      "wrapped": false,
+      "iconLeft": 119.86125000000004,
+      "labelRight": 119.86125152587874,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610202207346447e-7,
+      "iconCentreDelta": -4.547473508864641e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "page": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "tray": "37222e98-689a-801a-8008-bbf65d8b35cd",
+      "button": "37222e98-689a-801a-8008-bbf65d8bc746",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 121.48624999999993,
+      "labelRight": 121.48625152587874,
+      "frameGap": 5.600000000000136,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    }
+  ],
+  "pairs": [
+    {
+      "width": 351.96,
+      "library": "37222e98-689a-801a-8008-bbf64b872546",
+      "standard": "37222e98-689a-801a-8008-bbf65a0e7473",
+      "equal": true,
+      "fingerprint": [
+        {
+          "type": "board",
+          "x": 0,
+          "y": 0,
+          "w": 351.96,
+          "h": 130.112,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 0.98,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "37222e98-689a-801a-8008-bbd427f72e42"
+        },
+        {
+          "type": "text",
+          "x": 10.28,
+          "y": 10.28,
+          "w": 331.4,
+          "h": 18.24,
+          "hidden": false,
+          "text": "2 selected",
+          "font": "12.16",
+          "weight": "700",
+          "align": "center",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#1f2a37",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "37222e98-689a-801a-8008-bbd427f72e42"
+        },
+        {
+          "type": "board",
+          "x": 10.28,
+          "y": 36.52,
+          "w": 162.34,
+          "h": 38.992,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#0f6cbf",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+        },
+        {
+          "type": "board",
+          "x": 38.316,
+          "y": 49.776,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "group",
+          "x": 40.006,
+          "y": 50.816,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "rectangle",
+          "x": 40.006,
+          "y": 50.816,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "group",
+          "x": 40.006,
+          "y": 52.114,
+          "w": 9.099,
+          "h": 7.803,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "path",
+          "x": 40.006,
+          "y": 52.114,
+          "w": 9.099,
+          "h": 7.803,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "path",
+          "x": 40.006,
+          "y": 52.114,
+          "w": 9.099,
+          "h": 7.803,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "text",
+          "x": 56.396,
+          "y": 37.208,
+          "w": 89.19,
+          "h": 38.992,
+          "hidden": false,
+          "text": "Move group(s)",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+        },
+        {
+          "type": "board",
+          "x": 179.34,
+          "y": 36.52,
+          "w": 162.34,
+          "h": 38.992,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        },
+        {
+          "type": "board",
+          "x": 188.34,
+          "y": 49.776,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "group",
+          "x": 189.38,
+          "y": 51.856,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "rectangle",
+          "x": 189.38,
+          "y": 51.856,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "group",
+          "x": 189.38,
+          "y": 51.856,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "path",
+          "x": 189.38,
+          "y": 51.856,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "path",
+          "x": 189.38,
+          "y": 51.856,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "text",
+          "x": 206.42,
+          "y": 41.728,
+          "w": 126.26,
+          "h": 29.952,
+          "hidden": false,
+          "text": "Remove from groupings",
+          "font": "12.48",
+          "weight": "600",
+          "align": "center",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        },
+        {
+          "type": "board",
+          "x": 10.28,
+          "y": 82.232,
+          "w": 162.34,
+          "h": 37.6,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd345719953"
+        },
+        {
+          "type": "board",
+          "x": 35.641,
+          "y": 94.792,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "group",
+          "x": 37.331,
+          "y": 95.832,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "rectangle",
+          "x": 37.331,
+          "y": 95.832,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "group",
+          "x": 37.331,
+          "y": 95.832,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "path",
+          "x": 37.331,
+          "y": 95.832,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#a12b2b",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "path",
+          "x": 37.331,
+          "y": 95.832,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#a12b2b",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "text",
+          "x": 53.721,
+          "y": 82.92,
+          "w": 94.54,
+          "h": 37.6,
+          "hidden": false,
+          "text": "Delete group(s)",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#a12b2b",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd345719953"
+        },
+        {
+          "type": "board",
+          "x": 179.34,
+          "y": 82.232,
+          "w": 162.34,
+          "h": 37.6,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        },
+        {
+          "type": "board",
+          "x": 206.326,
+          "y": 94.792,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "group",
+          "x": 207.366,
+          "y": 95.832,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "rectangle",
+          "x": 207.366,
+          "y": 95.832,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "group",
+          "x": 207.366,
+          "y": 95.832,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "path",
+          "x": 207.366,
+          "y": 95.832,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "path",
+          "x": 207.366,
+          "y": 95.832,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "text",
+          "x": 224.406,
+          "y": 82.92,
+          "w": 91.29,
+          "h": 37.6,
+          "hidden": false,
+          "text": "Clear selection",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        }
+      ]
+    },
+    {
+      "width": 729.96,
+      "library": "37222e98-689a-801a-8008-bbf6510a955b",
+      "standard": "37222e98-689a-801a-8008-bbf65d8b35cd",
+      "equal": true,
+      "fingerprint": [
+        {
+          "type": "board",
+          "x": 0,
+          "y": 0,
+          "w": 729.96,
+          "h": 128.72,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 0.98,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "37222e98-689a-801a-8008-bbd427f72e42"
+        },
+        {
+          "type": "text",
+          "x": 10.28,
+          "y": 10.28,
+          "w": 709.4,
+          "h": 18.24,
+          "hidden": false,
+          "text": "2 selected",
+          "font": "12.16",
+          "weight": "700",
+          "align": "center",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#1f2a37",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "37222e98-689a-801a-8008-bbd427f72e42"
+        },
+        {
+          "type": "board",
+          "x": 10.28,
+          "y": 36.52,
+          "w": 351.34,
+          "h": 37.6,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#0f6cbf",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+        },
+        {
+          "type": "board",
+          "x": 132.816,
+          "y": 49.08,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "group",
+          "x": 134.506,
+          "y": 50.12,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "rectangle",
+          "x": 134.506,
+          "y": 50.12,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "group",
+          "x": 134.506,
+          "y": 51.418,
+          "w": 9.099,
+          "h": 7.803,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "path",
+          "x": 134.506,
+          "y": 51.418,
+          "w": 9.099,
+          "h": 7.803,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "path",
+          "x": 134.506,
+          "y": 51.418,
+          "w": 9.099,
+          "h": 7.803,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9890dc97af62"
+        },
+        {
+          "type": "text",
+          "x": 150.896,
+          "y": 37.208,
+          "w": 89.19,
+          "h": 37.6,
+          "hidden": false,
+          "text": "Move group(s)",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+        },
+        {
+          "type": "board",
+          "x": 368.34,
+          "y": 36.52,
+          "w": 351.34,
+          "h": 37.6,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        },
+        {
+          "type": "board",
+          "x": 462.882,
+          "y": 49.08,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "group",
+          "x": 463.922,
+          "y": 51.16,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "rectangle",
+          "x": 463.922,
+          "y": 51.16,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "group",
+          "x": 463.922,
+          "y": 51.16,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "path",
+          "x": 463.922,
+          "y": 51.16,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "path",
+          "x": 463.922,
+          "y": 51.16,
+          "w": 10.4,
+          "h": 8.32,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989113bd8dfc"
+        },
+        {
+          "type": "text",
+          "x": 480.962,
+          "y": 37.208,
+          "w": 145.18,
+          "h": 37.6,
+          "hidden": false,
+          "text": "Remove from groupings",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        },
+        {
+          "type": "board",
+          "x": 10.28,
+          "y": 80.84,
+          "w": 351.34,
+          "h": 37.6,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd345719953"
+        },
+        {
+          "type": "board",
+          "x": 130.141,
+          "y": 93.4,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "group",
+          "x": 131.831,
+          "y": 94.44,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "rectangle",
+          "x": 131.831,
+          "y": 94.44,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "group",
+          "x": 131.831,
+          "y": 94.44,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "path",
+          "x": 131.831,
+          "y": 94.44,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#a12b2b",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "path",
+          "x": 131.831,
+          "y": 94.44,
+          "w": 9.1,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#a12b2b",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-989154158a58"
+        },
+        {
+          "type": "text",
+          "x": 148.221,
+          "y": 81.528,
+          "w": 94.54,
+          "h": 37.6,
+          "hidden": false,
+          "text": "Delete group(s)",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#a12b2b",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd345719953"
+        },
+        {
+          "type": "board",
+          "x": 368.34,
+          "y": 80.84,
+          "w": 351.34,
+          "h": 37.6,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        },
+        {
+          "type": "board",
+          "x": 489.826,
+          "y": 93.4,
+          "w": 12.48,
+          "h": 12.48,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "group",
+          "x": 490.866,
+          "y": 94.44,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "rectangle",
+          "x": 490.866,
+          "y": 94.44,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": true,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "group",
+          "x": 490.866,
+          "y": 94.44,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "path",
+          "x": 490.866,
+          "y": 94.44,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "path",
+          "x": 490.866,
+          "y": 94.44,
+          "w": 10.4,
+          "h": 10.4,
+          "hidden": false,
+          "text": null,
+          "font": null,
+          "weight": null,
+          "align": null,
+          "verticalAlign": null,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+        },
+        {
+          "type": "text",
+          "x": 507.906,
+          "y": 81.528,
+          "w": 91.29,
+          "h": 37.6,
+          "hidden": false,
+          "text": "Clear selection",
+          "font": "12.48",
+          "weight": "600",
+          "align": "left",
+          "verticalAlign": "center",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+        }
+      ]
+    }
+  ],
+  "humanAccepted": false
+}

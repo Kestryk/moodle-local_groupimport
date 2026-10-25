@@ -29,15 +29,12 @@ require_once($CFG->libdir . '/formslib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class import_form extends \moodleform {
-
     /**
      * Defines the form elements.
      *
      * @return void
      */
     public function definition(): void {
-        global $DB;
-
         $mform = $this->_form;
 
         // Retrieve the course id passed via customdata.
@@ -47,70 +44,74 @@ class import_form extends \moodleform {
         $mform->addElement('hidden', 'id', $courseid);
         $mform->setType('id', PARAM_INT);
 
-        // CSV file.
+        // Kit surface around the real Moodle picker: draft IDs, progress,
+        // replacement, keyboard access and validation remain Moodle-owned.
+        $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit easyedu-file-deposit--moodle ' .
+            'easyedu-file-deposit--small-icon easyedu-file-deposit--aligned', [
+            'data-easyedu-drop-label' => get_string('csvdropready', 'local_groupimport'),
+            'data-easyedu-remove-label' => get_string('removeimportfile', 'local_groupimport'),
+            'data-easyedu-file-mode' => 'single',
+        ]));
+        $mform->addElement('html', \html_writer::div(
+            \html_writer::span(
+                \html_writer::span('', 'fa fa-cloud-upload', ['aria-hidden' => 'true']),
+                'easyedu-file-deposit__icon easyedu-icon-tile',
+                ['aria-hidden' => 'true']
+            ) . \html_writer::tag(
+                'h3',
+                get_string('filedeposittitle', 'local_groupimport'),
+                ['class' => 'easyedu-file-deposit__title']
+            ),
+            'easyedu-file-deposit__heading'
+        ));
+        $mform->addElement('html', \html_writer::tag(
+            'p',
+            get_string('filedepositsupport', 'local_groupimport'),
+            ['class' => 'easyedu-file-deposit__support']
+        ));
+        $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit__control'));
+
+        // Import file.
         $mform->addElement(
             'filepicker',
             'importfile',
             get_string('importfile', 'local_groupimport'),
             null,
-            ['accepted_types' => ['.csv']]
+            ['accepted_types' => ['.csv', '.xls', '.xlsx'], 'maxfiles' => 1,
+                'maxbytes' => \local_groupimport\local\import_reader::max_bytes((int)($this->_customdata['maxbytes'] ?? 0))]
         );
         $mform->addRule('importfile', null, 'required', null, 'client');
+        $mform->addElement('html', \html_writer::end_div());
+        $mform->addElement('html', \html_writer::div(
+            \html_writer::tag('strong', get_string('filedepositformats', 'local_groupimport')) .
+            \html_writer::span(get_string('filedepositformatsdetail', 'local_groupimport')) .
+            \html_writer::span(get_string('importlimits', 'local_groupimport', (object)[
+                'rows' => \local_groupimport\local\import_job::max_rows(),
+                'mb' => 5,
+            ])),
+            'easyedu-file-deposit__requirements'
+        ));
+        $mform->addElement('html', \html_writer::end_div());
 
-        // User identification field selection.
-        $config = get_config('local_groupimport');
+        $submitlabel = $this->_customdata['submitlabel'] ?? get_string('previewimport', 'local_groupimport');
 
-        // All possible fields.
-        $alloptions = [
-            'username' => get_string('username'),
-            'email' => get_string('email'),
-            'idnumber' => get_string('idnumber'),
-        ];
+        // Reuse the canonical warning notice; the adapter blocks an empty or
+        // still-uploading picker before navigation, without bypassing Moodle validation.
+        $mform->addElement('html', \html_writer::div(
+            \html_writer::span('', 'fa fa-exclamation-triangle', ['aria-hidden' => 'true']) .
+            \html_writer::tag('p', get_string('importfilerequired', 'local_groupimport')),
+            'easyedu-notice easyedu-notice--warning',
+            ['role' => 'alert', 'hidden' => 'hidden', 'data-local-groupimport-file-required' => '1']
+        ));
 
-        $customfields = $DB->get_records('user_info_field', null, 'name ASC');
-        foreach ($customfields as $field) {
-            $key = 'profile_field_' . $field->shortname;
-            $alloptions[$key] = format_string($field->name);
-        }
-
-        // Fields allowed in admin settings.
-        if (!empty($config->alloweduserfields)) {
-            $allowed = array_map('trim', explode(',', $config->alloweduserfields));
-            $allowed = array_filter($allowed, static function(string $value): bool {
-                return $value !== '';
-            });
-        } else {
-            // Fallback: username only.
-            $allowed = ['username'];
-        }
-
-        // Keep only allowed fields that still exist.
-        $options = array_intersect_key($alloptions, array_flip($allowed));
-
-        // Ensure there is always at least one option.
-        if (empty($options)) {
-            $options = ['username' => get_string('username')];
-            $allowed = ['username'];
-        }
-
-        // Default field.
-        $defaultuserfield = 'username';
-        if (!empty($config->defaultuserfield) && isset($options[$config->defaultuserfield])) {
-            $defaultuserfield = $config->defaultuserfield;
-        } else if (!empty($allowed) && isset($options[reset($allowed)])) {
-            $defaultuserfield = reset($allowed);
-        }
-
-        $mform->addElement(
-            'select',
-            'userfield',
-            get_string('userfield', 'local_groupimport'),
-            $options
-        );
-        $mform->setDefault('userfield', $defaultuserfield);
-        $mform->addHelpButton('userfield', 'userfield', 'local_groupimport');
-
-        // Submit button.
-        $this->add_action_buttons(false, get_string('submitimport', 'local_groupimport'));
+        // Submit button. The import is only executed after the preview confirmation.
+        $mform->addElement('html', \html_writer::start_div('easyedu-form-actions'));
+        $this->add_action_buttons(false, $submitlabel);
+        $mform->addElement('html', \html_writer::end_div());
+        $mform->addElement('html', \html_writer::tag(
+            'p',
+            get_string('previewnochanges', 'local_groupimport'),
+            ['class' => 'easyedu-caption easyedu-form-note']
+        ));
     }
 }

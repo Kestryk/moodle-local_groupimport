@@ -1,0 +1,336 @@
+// Opt-in native-select enhancement. Content/selection remain consumer-owned.
+@use "text-fields";
+@use "forms";
+@use "focus";
+@use "animations";
+@use "buttons";
+@use "feedback";
+
+// Selection chip / S, Foundations 08.4.1 (K17-10): a public reusable value.
+@mixin selection-chip {
+  @include feedback.token-pill(var(--easyedu-selection-chip-surface, #f4f8fc), transparent,
+    var(--easyedu-primary-strong));
+  block-size: 1.5rem;
+  border: 0;
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  line-height: normal;
+  gap: 0;
+  max-inline-size: 100%;
+  min-block-size: 1.5rem;
+  min-inline-size: 0;
+  padding: 0 0.5rem;
+}
+
+@mixin selection-chip-remove {
+  // Use the shared Kit Close geometry, never another font-dependent cross.
+  @include buttons.close-button(small);
+  background: transparent;
+  block-size: 1.5rem;
+  border: 0;
+  color: inherit;
+  flex: 0 0 1.5rem;
+  height: 1.5rem;
+  inline-size: 1.5rem;
+  min-block-size: 1.5rem;
+  min-height: 1.5rem;
+  min-inline-size: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0;
+  width: 1.5rem;
+  &:hover,
+  &:focus-visible {
+    background: var(--easyedu-primary-soft);
+    border-color: transparent;
+    color: var(--easyedu-primary-strong);
+  }
+}
+
+// Opt-in to the existing multiple-choice controller. Single/count modes keep
+// their previous DOM, geometry and lifecycle; the native select owns values.
+@mixin tagged-choice-classes {
+  .easyedu-ui .easyedu-selection-chip { @include selection-chip; }
+  .easyedu-ui .easyedu-selection-chip__label {
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .easyedu-ui .easyedu-selection-chip__remove { @include selection-chip-remove; }
+  .easyedu-ui .easyedu-searchable-choice--tagged {
+    --easyedu-choice-frame-height: 2.375rem;
+    --easyedu-choice-trigger-size: 2rem;
+    --easyedu-choice-clear-size: 1.75rem;
+
+    .easyedu-searchable-choice__field {
+      @include text-fields.foundation-text-field;
+      align-items: center;
+      display: flex;
+      inline-size: 100%;
+      min-block-size: var(--easyedu-choice-frame-height);
+      padding-block: calc((var(--easyedu-choice-frame-height) - 1.5rem - 0.125rem) / 2);
+      padding-inline: 0.5rem calc(var(--easyedu-choice-trigger-size) + var(--easyedu-choice-clear-size) + 0.5rem);
+      position: relative;
+      &:focus-within { @include focus.ring($border-color: var(--easyedu-control-focus-border)); }
+    }
+    .easyedu-searchable-choice__summary {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      overflow: visible;
+      white-space: normal;
+    }
+    .easyedu-searchable-choice__trigger {
+      @include buttons.icon-button(small);
+      background: transparent;
+      block-size: var(--easyedu-choice-trigger-size);
+      border: 0;
+      box-shadow: none;
+      height: var(--easyedu-choice-trigger-size);
+      inline-size: var(--easyedu-choice-trigger-size);
+      inset-block-start: 50%;
+      inset-inline-end: 0;
+      min-block-size: var(--easyedu-choice-trigger-size);
+      min-height: var(--easyedu-choice-trigger-size);
+      min-inline-size: var(--easyedu-choice-trigger-size);
+      min-width: var(--easyedu-choice-trigger-size);
+      padding: 0;
+      position: absolute;
+      transform: translateY(-50%);
+      width: var(--easyedu-choice-trigger-size);
+      .fa { line-height: normal; }
+      &:active { transform: translateY(-50%); }
+      &:focus-visible { box-shadow: none; }
+    }
+    .easyedu-searchable-choice__clear {
+      @include buttons.close-button(small);
+      background: transparent;
+      block-size: var(--easyedu-choice-clear-size);
+      border: 0;
+      height: var(--easyedu-choice-clear-size);
+      inline-size: var(--easyedu-choice-clear-size);
+      inset-block-start: 50%;
+      inset-inline-end: var(--easyedu-choice-trigger-size);
+      position: absolute;
+      min-block-size: var(--easyedu-choice-clear-size);
+      min-height: var(--easyedu-choice-clear-size);
+      min-inline-size: var(--easyedu-choice-clear-size);
+      min-width: var(--easyedu-choice-clear-size);
+      transform: translateY(-50%);
+      width: var(--easyedu-choice-clear-size);
+      &:active { transform: translateY(-50%); }
+      &:hover,
+      &:focus-visible { background: var(--easyedu-primary-soft); color: var(--easyedu-primary-strong); }
+      &[hidden] { display: none; }
+    }
+    &[class~="easyedu-searchable-choice--compact"] { --easyedu-choice-frame-height: 2rem; }
+  }
+  @media (max-width: 48rem), (pointer: coarse) {
+    .easyedu-ui .easyedu-searchable-choice--tagged {
+      --easyedu-choice-frame-height: 2.75rem;
+      --easyedu-choice-trigger-size: 2.75rem;
+      --easyedu-choice-clear-size: 2.75rem;
+      &[class~="easyedu-searchable-choice--compact"] { --easyedu-choice-frame-height: 2.75rem; }
+    }
+  }
+}
+
+@mixin searchable-choice-classes {
+  .easyedu-ui .easyedu-searchable-choice {
+    --easyedu-choice-disclosure-duration: var(--easyedu-motion-slow);
+
+    min-inline-size: 0;
+    position: relative;
+    // A stable first-row baseline also works inside Moodle's inline-block
+    // defaultsnext wrapper. A block host takes its last child's baseline;
+    // removing the closing panel then makes the adjacent default/help jump.
+    display: grid;
+    font-family: var(--easyedu-font-family-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--easyedu-field-text);
+
+    [hidden] { display: none; }
+  }
+  // Shared framed disclosure and its chevron read the same duration.
+  .easyedu-ui .easyedu-searchable-choice--framed {
+    --easyedu-choice-disclosure-duration: 360ms;
+  }
+  .easyedu-ui .easyedu-searchable-choice__trigger {
+    @include text-fields.foundation-text-field;
+    & {
+      align-items: center;
+      display: flex;
+      gap: 0.75rem;
+      inline-size: 100%;
+      justify-content: space-between;
+      text-align: start;
+      text-decoration: none;
+    }
+    .fa { color: var(--easyedu-primary); flex: 0 0 1rem; margin: 0; text-align: center; }
+    &[aria-expanded="true"] > .fa:last-child { transform: rotate(180deg); }
+    > .fa:last-child {
+      transition: transform var(--easyedu-choice-disclosure-duration) var(--easyedu-motion-ease);
+    }
+  }
+  .easyedu-ui .easyedu-searchable-choice__summary {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .easyedu-ui .easyedu-searchable-choice--multiple .easyedu-searchable-choice__trigger {
+    // Reserve the clear-action lane between summary and chevron. Enlarging
+    // the trigger's end padding incorrectly shifts the chevron to the left.
+    column-gap: 3.5rem;
+  }
+  .easyedu-ui .easyedu-searchable-choice__clear {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: var(--easyedu-text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    block-size: 1.75rem;
+    inline-size: 1.75rem;
+    inset-block-start: 0.3125rem;
+    inset-inline-end: 2.375rem;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    &:hover:not(:disabled) {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary-strong);
+    }
+    &:focus-visible { @include focus.ring; }
+    &:disabled { color: var(--easyedu-field-disabled-text); cursor: not-allowed; }
+    .fa { color: currentColor; line-height: 1; margin: 0; }
+  }
+  // In-flow disclosure: cannot escape a modal's scrolling body or narrow panel.
+  .easyedu-ui .easyedu-searchable-choice__panel {
+    // Options may be longer than the selected summary. They must not change
+    // an intrinsic-width native wrapper (and wrap its adjacent default copy)
+    // merely because the panel switches between present and hidden.
+    contain: inline-size;
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-control-border);
+    border-radius: var(--easyedu-control-radius);
+    margin-block-start: 0.5rem;
+    box-sizing: border-box;
+    opacity: 0;
+    overflow: clip;
+    padding: 0.5rem;
+    transform: translateY(-0.25rem);
+
+    &.is-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .easyedu-ui .easyedu-searchable-choice__search {
+    @include forms.search-field;
+    input {
+      background: transparent;
+      color: var(--easyedu-field-text);
+      inline-size: 100%;
+      min-block-size: 0;
+    }
+    .fa { inline-size: 0.9rem; line-height: 1; }
+  }
+  .easyedu-ui .easyedu-searchable-choice__list {
+    display: grid;
+    gap: 0.125rem;
+    margin-block-start: 0.375rem;
+    max-block-size: 12rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .easyedu-ui .easyedu-searchable-choice__option {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+    color: var(--easyedu-field-text);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: 0.75rem;
+    inline-size: 100%;
+    justify-content: space-between;
+    min-block-size: 2.375rem;
+    padding: 0.5rem 0.625rem;
+    text-align: start;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    &:hover:not(:disabled), &:focus-visible, &[aria-pressed="true"] {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary-strong);
+    }
+    &:focus-visible { @include focus.ring; }
+    &:disabled { color: var(--easyedu-field-disabled-text); cursor: not-allowed; }
+    .fa { color: var(--easyedu-primary); flex: 0 0 1rem; line-height: 1; }
+  }
+  .easyedu-ui .easyedu-searchable-choice__empty {
+    color: var(--easyedu-text-muted);
+    line-height: var(--easyedu-line-height-body);
+    margin: 0;
+    padding: 0.75rem 0.625rem;
+  }
+  // Explicit density, shared by single and multiple selection. Never scale
+  // the whole control: glyphs, focus paint and clear-action lanes stay intact.
+  .easyedu-ui .easyedu-searchable-choice--compact {
+    font-size: 0.75rem;
+    .easyedu-searchable-choice__trigger {
+      @include text-fields.foundation-text-field(small);
+    }
+    .easyedu-searchable-choice__option {
+      min-block-size: 2rem;
+      padding-block: 0.375rem;
+    }
+    .easyedu-searchable-choice__clear { inset-block-start: 0.125rem; }
+  }
+  @media (max-width: 48rem), (pointer: coarse) {
+    .easyedu-ui .easyedu-searchable-choice__trigger,
+    .easyedu-ui .easyedu-searchable-choice__option { min-block-size: 2.75rem; }
+    .easyedu-ui .easyedu-searchable-choice__list { max-block-size: 11rem; }
+    .easyedu-ui .easyedu-searchable-choice__clear {
+      block-size: 2.25rem;
+      inline-size: 2.25rem;
+      inset-block-start: 0.25rem;
+      inset-inline-end: 2.5rem;
+    }
+    .easyedu-ui .easyedu-searchable-choice--compact {
+      .easyedu-searchable-choice__trigger,
+      .easyedu-searchable-choice__option { min-block-size: 2.75rem; }
+      .easyedu-searchable-choice__clear { inset-block-start: 0.25rem; }
+    }
+  }
+  @include tagged-choice-classes;
+  @include animations.motion-restricted {
+    .easyedu-ui .easyedu-searchable-choice {
+      --easyedu-choice-disclosure-duration: 0.01ms;
+    }
+  }
+}
+
+// R10-26: opt-in readable setting width, independent of the selected label.
+@mixin setting-choice-width {
+  box-sizing: border-box;
+  min-inline-size: min(100%, 12rem);
+  inline-size: min(100%, 28rem);
+  max-inline-size: min(100%, 28rem);
+
+  @media (max-width: 48rem) {
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
+}

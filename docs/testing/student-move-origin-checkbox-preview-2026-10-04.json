@@ -1,0 +1,16 @@
+{
+  "runId": "easystud-authenticated-20261003T231631578Z-48756",
+  "groupInGrouping": [
+    {"width": 1600, "height": 37.59375, "track": [27.5156, 15.1875], "canonicalToggle": true},
+    {"width": 768, "height": 44, "track": [27.5156, 15.1875], "canonicalToggle": true},
+    {"width": 390, "height": 44, "track": [27.5156, 15.1875], "canonicalToggle": true}
+  ],
+  "branchesOpenedAndCancelled": ["participants", "groups", "groups-in-grouping"],
+  "blockedRequests": [],
+  "fixtureRequested": false,
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "penpotLinked": false,
+  "humanAccepted": false
+}

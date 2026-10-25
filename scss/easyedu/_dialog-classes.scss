@@ -1,0 +1,154 @@
+// Public class roles for action dialogs. Preserve the native select/options
+// and consumer data hooks; this module changes presentation, not commands.
+@use "components/typography";
+@use "components/text-fields";
+@use "components/modals";
+@use "components/buttons";
+@use "components/searchable-choices" as choices;
+@use "foundation-classes" as foundations;
+@use "dialog-palette-classes" as palette;
+
+@mixin dialog-classes {
+  @include choices.searchable-choice-classes;
+  @include modals.moodle-guide-drawer-yield;
+  .easyedu-ui .easyedu-modal-yield-control {
+    @include modals.modal-yield-control;
+  }
+  .easyedu-ui .easyedu-modal-layer {
+    z-index: var(--easyedu-modal-layer);
+  }
+  // Lookup tools are neutral, not destructive confirmations. This public
+  // composition owns their chrome; the consumer keeps rows, parser and focus.
+  .easyedu-ui .easyedu-lookup-dialog {
+    @include modals.modal-surface;
+    & {
+      inline-size: min(100%, 34rem);
+      max-inline-size: 34rem;
+    }
+  }
+  .easyedu-ui .easyedu-lookup-dialog__header {
+    background: var(--easyedu-surface);
+    border-block-end: 1px solid var(--easyedu-modal-border);
+  }
+  .easyedu-ui .easyedu-lookup-dialog__body {
+    background: var(--easyedu-surface);
+  }
+  .easyedu-ui .easyedu-lookup-dialog__description {
+    @include typography.type-ui-base;
+    & {
+      color: var(--easyedu-text-muted);
+      font-size: 0.8125rem;
+      line-height: var(--easyedu-line-height-body);
+    }
+  }
+  // Entity details/settings retain their native body and responsive dimensions.
+  // Only their shared chrome is owned here, not fields, exports or disclosure.
+  .easyedu-ui .easyedu-entity-dialog {
+    @include modals.modal-surface;
+  }
+  .easyedu-ui .easyedu-entity-dialog__header,
+  .easyedu-ui .easyedu-confirmation-dialog__header,
+  .easyedu-ui .easyedu-dialog-header {
+    @include modals.dialog-header;
+  }
+  .easyedu-ui .easyedu-dialog-close {
+    @include buttons.close-button;
+    & {
+      flex: 0 0 auto;
+      font-size: 1rem;
+      margin: 0;
+    }
+    > .fa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      margin: 0;
+    }
+  }
+  .easyedu-ui .easyedu-entity-dialog__heading {
+    @include modals.dialog-heading;
+  }
+  .easyedu-ui .easyedu-entity-dialog__icon {
+    @include modals.dialog-heading-icon;
+  }
+  .easyedu-ui .easyedu-entity-dialog__eyebrow {
+    @include typography.type-ui-base;
+    & {
+      color: var(--easyedu-primary);
+      display: block;
+      font-size: 0.625rem;
+      font-weight: var(--easyedu-font-weight-strong);
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin-block-end: 0.125rem;
+      text-transform: uppercase;
+    }
+  }
+  .easyedu-ui .easyedu-entity-dialog__body,
+  .easyedu-ui .easyedu-confirmation-dialog__body {
+    background: var(--easyedu-surface);
+  }
+  .easyedu-ui .easyedu-entity-dialog__actions {
+    @include foundations.foundation-dialog-actions;
+    & {
+      border-block-start: 0.0625rem solid var(--easyedu-modal-border);
+      margin-block-start: 0.75rem;
+      min-inline-size: 0;
+      padding-block-start: 0.75rem;
+    }
+  }
+  .easyedu-ui .easyedu-dialog-actions {
+    @include foundations.foundation-dialog-actions;
+  }
+  // Opt-in complete body lane, not a change to legacy entity field layouts.
+  .easyedu-ui .easyedu-dialog-body {
+    padding: 1.25rem;
+    min-inline-size: 0;
+    margin: 0;
+  }
+  // A Copy/Move choice is neutral. Destructive paint is an explicit modifier,
+  // never inferred from the reusable confirmation dimensions or a data hook.
+  .easyedu-ui .easyedu-confirmation-dialog {
+    @include modals.confirmation-modal;
+  }
+  .easyedu-ui .easyedu-confirmation-dialog--danger {
+    @include modals.destructive-confirmation-modal;
+  }
+  // Native top-layer opt-in, preserving the existing confirmation surface.
+  .easyedu-ui dialog.easyedu-confirmation-dialog--modal {
+    position: fixed;
+    inset: 0;
+    inline-size: min(34rem, calc(100vw - 2rem));
+    block-size: fit-content;
+    max-block-size: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    &::backdrop { background: color-mix(in srgb, var(--easyedu-text) 35%, transparent); }
+  }
+  .easyedu-ui .easyedu-dialog-description {
+    @include typography.type-ui-base;
+    & {
+      color: var(--easyedu-text-muted);
+      font-size: 0.8125rem;
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+  .easyedu-ui .easyedu-confirmation-dialog__actions {
+    @include foundations.foundation-dialog-actions;
+    & { margin-block-start: 1rem; }
+  }
+  .easyedu-ui .easyedu-modal-title {
+    @include typography.type-modal-title;
+    color: var(--easyedu-card-identity-title-color);
+    margin: 0;
+  }
+  .easyedu-ui .easyedu-select {
+    @include text-fields.foundation-text-field;
+    & { padding-inline-end: 2.25rem; }
+  }
+  @include palette.dialog-palette-classes;
+}

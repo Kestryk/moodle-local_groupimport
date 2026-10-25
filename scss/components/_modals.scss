@@ -1,0 +1,118 @@
+// Shared modal shell styles.
+@use "../easyedu" as easyedu;
+@use "../easyedu/adapters/moodle-message-dialog" as messages;
+
+.local-groupimport-easystud {
+  // Clipboard's multiline field already uses Textarea M in product Penpot.
+  // Native rows, width, recognition and modal behavior remain unchanged.
+  [data-easystud-paste-box] {
+    @include easyedu.foundation-textarea;
+  }
+
+  &-modal {
+    @include easyedu.modal-overlay;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &-modal__dialog {
+    @include easyedu.modal-surface(
+      $border: var(--local-groupimport-easystud-border),
+      $shadow: 0 1rem 3rem rgba(15, 23, 42, 0.24),
+      $width: 42rem
+    );
+  }
+
+  &-modal:not([hidden]):not(.is-closing) {
+    animation: local-groupimport-easystud-modal-backdrop-in 0.22s ease both;
+  }
+
+  &-modal:not([hidden]):not(.is-closing) &-modal__dialog {
+    animation: easyedu-modal-in var(--easyedu-motion-slow) var(--easyedu-motion-ease) both;
+  }
+
+  &-modal.is-opening {
+    animation: local-groupimport-easystud-modal-backdrop-in 0.22s ease both;
+  }
+
+  &-modal.is-closing {
+    // Same duration as the dialog exit (Motion.timing.fast): the backdrop never outlives the dialog.
+    animation: local-groupimport-easystud-modal-backdrop-out var(--easyedu-motion-fast) ease both;
+    pointer-events: none;
+  }
+
+
+
+
+
+  // Participant details: entity dialog geometry lives in _entity-dialog.scss.
+  &-modal__dialog--user {
+    @include easyedu.context-modal-surface(
+      ".local-groupimport-easystud-modal__header",
+      ".local-groupimport-easystud-modal__body",
+      ".local-groupimport-easystud-modal__footer"
+    );
+    @include easyedu.context-modal-variant(primary);
+  }
+
+
+
+
+
+  &-modal__header {
+    @include easyedu.modal-header-frame(var(--local-groupimport-easystud-border));
+  }
+
+  &-modal__body {
+    @include easyedu.modal-body-inset;
+  }
+
+  // K22-31: a confirmation message is a sentence meant to be read (name, count,
+  // consequence), not a dense form row. Give its body the same reading room entity
+  // dialogs already use (modal-body-inset(details): 1.5rem 1.25rem), not the tighter
+  // default — a single Kit rule shared by every openConfirmModal() and drag_drop.js choice dialog.
+  &-modal__dialog.easyedu-confirmation-dialog &-modal__body {
+    @include easyedu.modal-body-inset(details);
+  }
+
+  // K22-31: the shared .easyedu-ui root scope (foundation-scope) tightens
+  // --easyedu-line-height-body to 1.2, which is what made the confirmation sentence
+  // read as cramped. Reuse the existing "reading workspace" rhythm (1.5, already
+  // applied to mass-import's read-heavy body) instead of inventing a new value: this
+  // selector is more specific than the ancestor .easyedu-ui rule, so it overrides the
+  // inherited custom properties for this dialog and everything inside it (title + description).
+  &-modal__dialog.easyedu-confirmation-dialog {
+    @include easyedu.workspace-reading-rhythm;
+  }
+
+  // One shared Close anatomy for Participant, Group, Grouping, Move and
+  // choice dialogs. Accessible naming and dismissal routing stay native.
+  &-modal__close {
+    @include easyedu.close-button;
+  }
+
+  &-move-modal__empty {
+    margin: 0.7rem 0 0;
+  }
+
+}
+
+.local-groupimport-easystud-message-modal {
+  // Native portal skin is copied verbatim from the canonical Kit. Only the
+  // existing consumer Motion state/selector is retained here.
+  @include messages.moodle-message-dialog;
+
+  // Let the native flex title shrink beside Close and wrap without widening the dialog.
+  .modal-header .modal-title {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  &.is-closing .local-groupimport-easystud-message-modal__dialog {
+    animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
+  }
+
+}

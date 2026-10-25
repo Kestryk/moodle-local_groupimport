@@ -1,0 +1,2999 @@
+{
+  "schemaVersion": 1,
+  "measurementUnits": {
+    "normative": "rem",
+    "penpot": "canvas reading equivalence only; 1rem = 16px",
+    "native": "CSS pixels or computed-style strings as labelled",
+    "tolerance": "0.5 canvas unit for painted centres"
+  },
+  "date": "2026-10-02",
+  "batch": "EED-UI-2026-0073",
+  "scope": "Regular Foundation actions and native Move desktop/narrow compositions. Not whole Student-management migration.",
+  "status": {
+    "sourceMapped": true,
+    "penpotLinked": true,
+    "technicalReadbackPassed": true,
+    "humanVisualValidated": false,
+    "allNativePaintMatched": false
+  },
+  "codePins": {
+    "kitDocumentation": "e8e2aab5f4fe07ffd4bc42c49a10841f429fba19",
+    "kit": "f0a25fd11b2e7871222f85672ddf07eaeda86e87",
+    "consumer": "0deb3825efd44e4c354d527f28456a0ae41011c3",
+    "runtime": "a364b0142ef4335eda5de110630499fa86477b28",
+    "productCodeChangedThisContinuation": false
+  },
+  "files": {
+    "foundation": "40e06342-8830-80d6-8008-96572effc11c",
+    "product": "220f6449-533e-815b-8008-ad9958d032a1"
+  },
+  "nativeRuns": {
+    "move": {
+      "id": "easystud-authenticated-20261002T183714504Z-31732",
+      "result": "passed",
+      "viewports": [
+        1600,
+        390
+      ],
+      "branches": [
+        "participants",
+        "groups",
+        "groups-in-grouping"
+      ],
+      "dataWrites": false,
+      "fixtureRequested": false,
+      "emptyBranches": "source-static-Penpot only"
+    },
+    "clipboard": {
+      "id": "easystud-authenticated-20261002T185415434Z-42396",
+      "controlResult": "passed",
+      "viewports": [
+        1600,
+        768,
+        390
+      ],
+      "dataWrites": false,
+      "fixtureRequested": false,
+      "wholeDialogVisualResult": "not passed: floating navigation covers part of help at 390px",
+      "failedPredecessor": "easystud-authenticated-20261002T185205374Z-44280",
+      "harnessCorrection": "Wait for terminal native CSS border transitions; do not disable motion"
+    }
+  },
+  "regularActions": {
+    "libraryPage": "761eab91-8390-80e8-8008-98c15b0c9c59",
+    "standardPage": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+    "libraryHost": "db59201c-3dd6-8004-8008-babdf53d14a4",
+    "standardHost": "d0b01e4e-5e95-8062-8008-babee4da98eb",
+    "primaryVariants": "d0b01e4e-5e95-8062-8008-babebff7dc59",
+    "secondaryVariants": "d0b01e4e-5e95-8062-8008-babec9e1bc68",
+    "normativeUnits": "rem; labelled canvas equivalence uses 1rem=16px",
+    "states": [
+      {
+        "id": "724138fb-4a17-80dc-8008-babe3ff74604",
+        "component": "724138fb-4a17-80dc-8008-babe407399f3",
+        "state": "Pressed",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Primary",
+        "width": 78,
+        "height": 37.600000000000364,
+        "font": "14.08",
+        "weight": "600",
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "fill": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-989551b493e0",
+            "fillImage": null
+          }
+        ],
+        "strokes": [],
+        "label": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "724138fb-4a17-80dc-8008-babe2ecd4730",
+        "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+        "state": "Disabled",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Primary",
+        "width": 78,
+        "height": 37.600000000000364,
+        "font": "14.08",
+        "weight": "600",
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "fill": [
+          {
+            "fillColor": "#f7f9fc",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954e118441",
+            "fillImage": null
+          }
+        ],
+        "strokes": [],
+        "label": [
+          {
+            "fillColor": "#5c6c7d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "db59201c-3dd6-8004-8008-babe298ff572",
+        "component": "db59201c-3dd6-8004-8008-babe29d03f03",
+        "state": "Focus-visible",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Primary",
+        "width": 78,
+        "height": 37.600000000000364,
+        "font": "14.08",
+        "weight": "600",
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "fill": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-989551b493e0",
+            "fillImage": null
+          }
+        ],
+        "strokes": [
+          {
+            "strokeColor": "#8abce3",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+            "strokeOpacity": 1,
+            "strokeStyle": "solid",
+            "strokeWidth": 1,
+            "strokeAlignment": "inner",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          },
+          {
+            "strokeColor": "#0f6cbf",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+            "strokeOpacity": 0.22,
+            "strokeStyle": "solid",
+            "strokeWidth": 2.88,
+            "strokeAlignment": "outer",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          }
+        ],
+        "label": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "db59201c-3dd6-8004-8008-babe253501de",
+        "component": "db59201c-3dd6-8004-8008-babe258f6216",
+        "state": "Hover",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Primary",
+        "width": 78,
+        "height": 37.600000000000364,
+        "font": "14.08",
+        "weight": "600",
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "fill": [
+          {
+            "fillColor": "#0b4f8a",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-989560223592",
+            "fillImage": null
+          }
+        ],
+        "strokes": [],
+        "label": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "db59201c-3dd6-8004-8008-babe0cefd902",
+        "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+        "state": "Default",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Primary",
+        "width": 78,
+        "height": 37.600000000000364,
+        "font": "14.08",
+        "weight": "600",
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "fill": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-989551b493e0",
+            "fillImage": null
+          }
+        ],
+        "strokes": [],
+        "label": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babe75008022",
+        "component": "d0b01e4e-5e95-8062-8008-babe755daad3",
+        "state": "Pressed",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Secondary",
+        "width": 72,
+        "height": 32.399999999999636,
+        "font": "12",
+        "weight": "600",
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "fill": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ],
+        "strokes": [
+          {
+            "strokeColor": "#c8d6e3",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "f4c089f5-3a98-803e-8008-bacf403f3e19",
+            "strokeOpacity": 1,
+            "strokeStyle": "solid",
+            "strokeWidth": 1,
+            "strokeAlignment": "inner",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          }
+        ],
+        "label": [
+          {
+            "fillColor": "#0b5ea8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "724138fb-4a17-80dc-8008-babe62861723",
+        "component": "724138fb-4a17-80dc-8008-babe62caaaa5",
+        "state": "Disabled",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Secondary",
+        "width": 72,
+        "height": 32.399999999999636,
+        "font": "12",
+        "weight": "600",
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "fill": [
+          {
+            "fillColor": "#f7f9fc",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954e118441",
+            "fillImage": null
+          }
+        ],
+        "strokes": [
+          {
+            "strokeColor": "#c8d6e3",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "f4c089f5-3a98-803e-8008-bacf403f3e19",
+            "strokeOpacity": 1,
+            "strokeStyle": "solid",
+            "strokeWidth": 1,
+            "strokeAlignment": "inner",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          }
+        ],
+        "label": [
+          {
+            "fillColor": "#5c6c7d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "724138fb-4a17-80dc-8008-babe5ceff307",
+        "component": "724138fb-4a17-80dc-8008-babe5d44a609",
+        "state": "Focus-visible",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Secondary",
+        "width": 72,
+        "height": 32.399999999999636,
+        "font": "12",
+        "weight": "600",
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "fill": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ],
+        "strokes": [
+          {
+            "strokeColor": "#8abce3",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+            "strokeOpacity": 1,
+            "strokeStyle": "solid",
+            "strokeWidth": 1,
+            "strokeAlignment": "inner",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          },
+          {
+            "strokeColor": "#0f6cbf",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+            "strokeOpacity": 0.22,
+            "strokeStyle": "solid",
+            "strokeWidth": 2.88,
+            "strokeAlignment": "outer",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          }
+        ],
+        "label": [
+          {
+            "fillColor": "#0b5ea8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "724138fb-4a17-80dc-8008-babe57759774",
+        "component": "724138fb-4a17-80dc-8008-babe57e13c6b",
+        "state": "Hover",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Secondary",
+        "width": 72,
+        "height": 32.399999999999636,
+        "font": "12",
+        "weight": "600",
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "fill": [
+          {
+            "fillColor": "#eaf3fb",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98955e713626",
+            "fillImage": null
+          }
+        ],
+        "strokes": [
+          {
+            "strokeColor": "#c8d6e3",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "f4c089f5-3a98-803e-8008-bacf403f3e19",
+            "strokeOpacity": 1,
+            "strokeStyle": "solid",
+            "strokeWidth": 1,
+            "strokeAlignment": "inner",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          }
+        ],
+        "label": [
+          {
+            "fillColor": "#0b5ea8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "724138fb-4a17-80dc-8008-babe45864dec",
+        "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+        "state": "Default",
+        "name": "EasyEdu / Buttons / Foundation action / Regular / Secondary",
+        "width": 72.00000000000006,
+        "height": 32.399999999999636,
+        "font": "12",
+        "weight": "600",
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "fill": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+            "fillImage": null
+          }
+        ],
+        "strokes": [
+          {
+            "strokeColor": "#c8d6e3",
+            "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "strokeColorRefId": "f4c089f5-3a98-803e-8008-bacf403f3e19",
+            "strokeOpacity": 1,
+            "strokeStyle": "solid",
+            "strokeWidth": 1,
+            "strokeAlignment": "inner",
+            "strokeCapStart": null,
+            "strokeCapEnd": null,
+            "strokeColorGradient": null,
+            "strokeImage": null
+          }
+        ],
+        "label": [
+          {
+            "fillColor": "#0b5ea8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+            "fillImage": null
+          }
+        ]
+      }
+    ],
+    "standard": [
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee82bba6e",
+        "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+        "match": true,
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee8604612",
+        "component": "db59201c-3dd6-8004-8008-babe258f6216",
+        "match": true,
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee884b050",
+        "component": "db59201c-3dd6-8004-8008-babe29d03f03",
+        "match": true,
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee8b5bf02",
+        "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+        "match": true,
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee937c75c",
+        "component": "724138fb-4a17-80dc-8008-babe407399f3",
+        "match": true,
+        "dx": 0.03750038146972656,
+        "dy": -0.0499994270503521,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee9614af9",
+        "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+        "match": true,
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee9851f36",
+        "component": "724138fb-4a17-80dc-8008-babe57e13c6b",
+        "match": true,
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babee9acbc47",
+        "component": "724138fb-4a17-80dc-8008-babe5d44a609",
+        "match": true,
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babeea74c034",
+        "component": "724138fb-4a17-80dc-8008-babe62caaaa5",
+        "match": true,
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "paletteLinked": true
+      },
+      {
+        "id": "d0b01e4e-5e95-8062-8008-babeeac08bbf",
+        "component": "d0b01e4e-5e95-8062-8008-babe755daad3",
+        "match": true,
+        "dx": -0.21249961853027344,
+        "dy": -0.40000009536743164,
+        "paletteLinked": true
+      }
+    ]
+  },
+  "neutralShells": {
+    "libraryPage": "81455adb-6787-8068-8008-9ce6186bf6ef",
+    "standardPage": "2b150968-5877-802e-8008-97c286173199",
+    "libraryHost": "d0b01e4e-5e95-8062-8008-babf415aaa1a",
+    "standardHost": "d0b01e4e-5e95-8062-8008-babf8b47d260",
+    "desktopComponent": "d0b01e4e-5e95-8062-8008-babf5ad09eeb",
+    "narrowComponent": "d0b01e4e-5e95-8062-8008-babf63999247",
+    "comparison": [
+      {
+        "main": "d0b01e4e-5e95-8062-8008-babf575d1e2f",
+        "copy": "d0b01e4e-5e95-8062-8008-babf8c3d00b6",
+        "fingerprintMatch": true,
+        "sourceTexts": [
+          {
+            "text": "Destination action",
+            "font": "16",
+            "weight": "700",
+            "tb": {
+              "x": 129,
+              "y": 3273.4000000059605,
+              "width": 141.9250030517578,
+              "height": 19.200000762939453
+            },
+            "lane": {
+              "x": 129,
+              "y": 3273,
+              "w": 592.0000000000001,
+              "h": 20
+            }
+          },
+          {
+            "text": "Choose a destination for the selected items.",
+            "font": "15",
+            "weight": "400",
+            "tb": {
+              "x": 129,
+              "y": 3332.000000023836,
+              "width": 311.375,
+              "height": 18.399999618530273
+            },
+            "lane": {
+              "x": 129,
+              "y": 3330.399999999994,
+              "w": 638,
+              "h": 22.5
+            }
+          },
+          {
+            "text": "Destination",
+            "font": "15",
+            "weight": "400",
+            "tb": {
+              "x": 129,
+              "y": 3370.350000047678,
+              "width": 79.7125015258789,
+              "height": 18.399999618530273
+            },
+            "lane": {
+              "x": 129,
+              "y": 3368.899999999994,
+              "w": 638,
+              "h": 22.5
+            }
+          },
+          {
+            "text": "Destination",
+            "font": "14",
+            "weight": "400",
+            "tb": {
+              "x": 143,
+              "y": 3410.0000003814625,
+              "width": 74.4000015258789,
+              "height": 16.799999237060547
+            },
+            "lane": {
+              "x": 143,
+              "y": 3399.399999999993,
+              "w": 588,
+              "h": 38
+            }
+          },
+          {
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "tb": {
+              "x": 339.1375000014901,
+              "y": 3464.2,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            },
+            "lane": {
+              "x": 339.0999999999999,
+              "y": 3464.7,
+              "w": 40.400000000000034,
+              "h": 15
+            }
+          },
+          {
+            "text": "Confirm selection",
+            "font": "14.08",
+            "weight": "600",
+            "tb": {
+              "x": 429.9625000000001,
+              "y": 3463.7500000007453,
+              "width": 120.875,
+              "height": 16.80000114440918
+            },
+            "lane": {
+              "x": 423.90000000000003,
+              "y": 3463.7000000000003,
+              "w": 132.99999999999983,
+              "h": 17
+            }
+          }
+        ]
+      },
+      {
+        "main": "d0b01e4e-5e95-8062-8008-babf615327bd",
+        "copy": "d0b01e4e-5e95-8062-8008-babf8cb7215c",
+        "fingerprintMatch": true,
+        "sourceTexts": [
+          {
+            "text": "Destination action",
+            "font": "16",
+            "weight": "700",
+            "tb": {
+              "x": 1057,
+              "y": 3273.4000000059605,
+              "width": 141.9250030517578,
+              "height": 19.200000762939453
+            },
+            "lane": {
+              "x": 1057,
+              "y": 3273,
+              "w": 274.21875,
+              "h": 20
+            }
+          },
+          {
+            "text": "Choose a destination for the selected items.",
+            "font": "15",
+            "weight": "400",
+            "tb": {
+              "x": 1057,
+              "y": 3343.250000381464,
+              "width": 311.375,
+              "height": 18.399999618530273
+            },
+            "lane": {
+              "x": 1057,
+              "y": 3330.399999999994,
+              "w": 320.21875,
+              "h": 45
+            }
+          },
+          {
+            "text": "Destination",
+            "font": "15",
+            "weight": "400",
+            "tb": {
+              "x": 1057,
+              "y": 3392.850000047678,
+              "width": 79.7125015258789,
+              "height": 18.399999618530273
+            },
+            "lane": {
+              "x": 1057,
+              "y": 3391.399999999994,
+              "w": 320.21875,
+              "h": 22.5
+            }
+          },
+          {
+            "text": "Destination",
+            "font": "14",
+            "weight": "400",
+            "tb": {
+              "x": 1071,
+              "y": 3432.5000003814625,
+              "width": 74.4000015258789,
+              "height": 16.799999237060547
+            },
+            "lane": {
+              "x": 1071,
+              "y": 3421.899999999993,
+              "w": 270.21875,
+              "h": 38
+            }
+          },
+          {
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "tb": {
+              "x": 1108.2468750014903,
+              "y": 3486.7,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            },
+            "lane": {
+              "x": 1108.2093750000004,
+              "y": 3487.2,
+              "w": 40.399999999999864,
+              "h": 15
+            }
+          },
+          {
+            "text": "Confirm selection",
+            "font": "14.08",
+            "weight": "600",
+            "tb": {
+              "x": 1199.0718750000003,
+              "y": 3486.2500000007453,
+              "width": 120.875,
+              "height": 16.80000114440918
+            },
+            "lane": {
+              "x": 1193.0093750000003,
+              "y": 3486.2000000000003,
+              "w": 133,
+              "h": 17
+            }
+          }
+        ]
+      }
+    ],
+    "filledFieldPalette": {
+      "role": "easyedu-field-text",
+      "value": "#1e3448",
+      "id": "774bdc38-f33d-8030-8008-bac1c457f680"
+    }
+  },
+  "product": {
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "readback": [
+      {
+        "host": "cef95197-06bc-809e-8008-aeffabe6811a",
+        "name": "Move participants",
+        "hostBounds": {
+          "x": 112,
+          "y": 210,
+          "width": 820,
+          "height": 359
+        },
+        "shell": "774bdc38-f33d-8030-8008-bac0450d8eb8",
+        "shellBounds": {
+          "x": 186,
+          "y": 226,
+          "width": 672,
+          "height": 258
+        },
+        "heads": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0450d8eb8",
+            "name": "Linked native Move / participants",
+            "component": "d0b01e4e-5e95-8062-8008-babf5ad09eeb",
+            "bounds": {
+              "x": 186,
+              "y": 226,
+              "width": 672,
+              "height": 258
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04520f680",
+            "name": "INSTANCE — Core action / Modal close",
+            "component": "761eab91-8390-80e8-8008-98c317ebe621",
+            "bounds": {
+              "x": 809,
+              "y": 243,
+              "width": 30.40000000000009,
+              "height": 30.40000000000009
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac045213e6f",
+            "name": "Icon — linked xmark",
+            "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+            "bounds": {
+              "x": 817.9599999999991,
+              "y": 251.96000000000004,
+              "width": 12.480000000000473,
+              "height": 12.480000000000473
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac045290969",
+            "name": "Native select — Text field M",
+            "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+            "bounds": {
+              "x": 203,
+              "y": 375.4000000000001,
+              "width": 638,
+              "height": 38
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0452a16b6",
+            "name": "Linked Cancel — regular",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "bounds": {
+              "x": 396.09999999999997,
+              "y": 432,
+              "width": 74.39999999999998,
+              "height": 32.399999999999636
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0452a8aac",
+            "name": "Linked Confirm — regular",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "bounds": {
+              "x": 480.8999999999999,
+              "y": 429.4000000000001,
+              "width": 167.00000000000017,
+              "height": 37.600000000000364
+            }
+          }
+        ],
+        "texts": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0450fccd6",
+            "name": "header title",
+            "text": "Move selection",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#264861",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 203,
+              "y": 249,
+              "width": 592.0000000000001,
+              "height": 20
+            },
+            "textBounds": {
+              "x": 203,
+              "y": 249.40000000596046,
+              "width": 141.9250030517578,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac045289257",
+            "name": "Destination help",
+            "text": "Choose the group that should receive the selected participants.",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 203,
+              "y": 306.3999999999942,
+              "width": 638,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 203,
+              "y": 308.00000002383604,
+              "width": 311.375,
+              "height": 18.399999618530273
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04528fa9d",
+            "name": "Destination label",
+            "text": "Destination group",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1f2a37",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-9895486ec664",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 203,
+              "y": 344.8999999999942,
+              "width": 638,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 203,
+              "y": 346.3500000476779,
+              "width": 79.7125015258789,
+              "height": 18.399999618530273
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04529a928",
+            "name": "Text",
+            "text": "Group A",
+            "font": "14",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1e3448",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "774bdc38-f33d-8030-8008-bac1c457f680",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 217,
+              "y": 375.3999999999928,
+              "width": 588,
+              "height": 38
+            },
+            "textBounds": {
+              "x": 217,
+              "y": 386.00000038146254,
+              "width": 54.337501525878906,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0452a4301",
+            "name": "Label — override in instance",
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#0b5ea8",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 413.0999999999999,
+              "y": 440.6999999999998,
+              "width": 40.400000000000034,
+              "height": 15
+            },
+            "textBounds": {
+              "x": 413.1375000014901,
+              "y": 440.1999999999998,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0452adb72",
+            "name": "Label — override in instance",
+            "text": "Move selected item",
+            "font": "14.08",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#ffffff",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 497.8999999999999,
+              "y": 439.7000000000003,
+              "width": 133.00000000000006,
+              "height": 17
+            },
+            "textBounds": {
+              "x": 498.16250001788137,
+              "y": 439.75000000074533,
+              "width": 132.47500610351562,
+              "height": 16.80000114440918
+            }
+          }
+        ]
+      },
+      {
+        "host": "cef95197-06bc-809e-8008-aeffac420076",
+        "name": "Move groups",
+        "hostBounds": {
+          "x": 992,
+          "y": 210,
+          "width": 820,
+          "height": 359
+        },
+        "shell": "774bdc38-f33d-8030-8008-bac04aa4f66f",
+        "shellBounds": {
+          "x": 1066,
+          "y": 226,
+          "width": 672,
+          "height": 295
+        },
+        "heads": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa4f66f",
+            "name": "Linked native Move / groups",
+            "component": "d0b01e4e-5e95-8062-8008-babf5ad09eeb",
+            "bounds": {
+              "x": 1066,
+              "y": 226,
+              "width": 672,
+              "height": 295
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa782f3",
+            "name": "INSTANCE — Core action / Modal close",
+            "component": "761eab91-8390-80e8-8008-98c317ebe621",
+            "bounds": {
+              "x": 1689,
+              "y": 243,
+              "width": 30.40000000000009,
+              "height": 30.40000000000009
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa782f4",
+            "name": "Icon — linked xmark",
+            "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+            "bounds": {
+              "x": 1697.9599999999991,
+              "y": 251.96000000000004,
+              "width": 12.480000000000473,
+              "height": 12.480000000000473
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa9b423",
+            "name": "Native select — Text field M",
+            "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+            "bounds": {
+              "x": 1083,
+              "y": 375.4000000000001,
+              "width": 638,
+              "height": 38
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa9e771",
+            "name": "Linked Cancel — regular",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "bounds": {
+              "x": 1276.1000000000001,
+              "y": 469,
+              "width": 74.39999999999986,
+              "height": 32.399999999999636
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aaa3fda",
+            "name": "Linked Confirm — regular",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "bounds": {
+              "x": 1360.8999999999999,
+              "y": 466.4000000000001,
+              "width": 167,
+              "height": 37.600000000000364
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04eede200",
+            "name": "Optional origin — linked Checkbox S",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84",
+            "bounds": {
+              "x": 1083,
+              "y": 426.4000000000001,
+              "width": 16,
+              "height": 16
+            }
+          }
+        ],
+        "texts": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa5009e",
+            "name": "header title",
+            "text": "Move selection",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#264861",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1083,
+              "y": 249,
+              "width": 592,
+              "height": 20
+            },
+            "textBounds": {
+              "x": 1083,
+              "y": 249.40000000596046,
+              "width": 118.8125,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa97ea3",
+            "name": "Destination help",
+            "text": "Choose the grouping that should receive the selected groups.",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1083,
+              "y": 306.3999999999942,
+              "width": 638,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 1083,
+              "y": 308.00000002383604,
+              "width": 437.3500061035156,
+              "height": 18.399999618530273
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa9b422",
+            "name": "Destination label",
+            "text": "Destination grouping",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1f2a37",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-9895486ec664",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1083,
+              "y": 344.8999999999942,
+              "width": 638,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 1083,
+              "y": 346.3500000476779,
+              "width": 147.27500915527344,
+              "height": 18.399999618530273
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa9e770",
+            "name": "Text",
+            "text": "Year 2026",
+            "font": "14",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1e3448",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "774bdc38-f33d-8030-8008-bac1c457f680",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1097,
+              "y": 375.3999999999928,
+              "width": 588,
+              "height": 38
+            },
+            "textBounds": {
+              "x": 1097,
+              "y": 386.00000038146254,
+              "width": 68.38750457763672,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa9e772",
+            "name": "Label — override in instance",
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#0b5ea8",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1293.1000000000004,
+              "y": 477.6999999999998,
+              "width": 40.399999999999864,
+              "height": 15
+            },
+            "textBounds": {
+              "x": 1293.1375000014903,
+              "y": 477.1999999999998,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aaa3fdb",
+            "name": "Label — override in instance",
+            "text": "Move selected item",
+            "font": "14.08",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#ffffff",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1377.8999999999999,
+              "y": 476.7000000000003,
+              "width": 133,
+              "height": 17
+            },
+            "textBounds": {
+              "x": 1378.1625000178813,
+              "y": 476.75000000074533,
+              "width": 132.47500610351562,
+              "height": 16.80000114440918
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac06d75b665",
+            "name": "Optional origin label",
+            "text": "Remove from the original grouping",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 1106.1999999999534,
+              "y": 425.14999999999964,
+              "width": 614.7999999999302,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 1106.1999999999534,
+              "y": 426.7500000238415,
+              "width": 244.90000915527344,
+              "height": 18.399999618530273
+            }
+          }
+        ]
+      },
+      {
+        "host": "774bdc38-f33d-8030-8008-bac06f07fd9d",
+        "name": "Student management — Mobile / 390 / Move participants",
+        "hostBounds": {
+          "x": 2540,
+          "y": 80,
+          "width": 500,
+          "height": 390
+        },
+        "shell": "774bdc38-f33d-8030-8008-bac070f23eb9",
+        "shellBounds": {
+          "x": 2612.890625,
+          "y": 144,
+          "width": 354.21875,
+          "height": 280.5
+        },
+        "heads": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac070f23eb9",
+            "name": "Linked native Move / participants",
+            "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+            "bounds": {
+              "x": 2612.890625,
+              "y": 144,
+              "width": 354.21875,
+              "height": 280.5
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0710ec8dd",
+            "name": "INSTANCE — Core action / Modal close",
+            "component": "761eab91-8390-80e8-8008-98c317ebe621",
+            "bounds": {
+              "x": 2918.109375,
+              "y": 161,
+              "width": 30.40000000000009,
+              "height": 30.40000000000009
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0710fa903",
+            "name": "Icon — linked xmark",
+            "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+            "bounds": {
+              "x": 2927.069374999999,
+              "y": 169.96000000000004,
+              "width": 12.480000000000473,
+              "height": 12.480000000000473
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0711f5157",
+            "name": "Native select — Text field M",
+            "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+            "bounds": {
+              "x": 2629.890625,
+              "y": 315.9000000000001,
+              "width": 320.21875,
+              "height": 38
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac07120cf5c",
+            "name": "Linked Cancel — regular",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "bounds": {
+              "x": 2664.1,
+              "y": 372.5,
+              "width": 74.40000000000009,
+              "height": 32.399999999999636
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac071222c17",
+            "name": "Linked Confirm — regular",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "bounds": {
+              "x": 2748.9,
+              "y": 369.9000000000001,
+              "width": 167,
+              "height": 37.600000000000364
+            }
+          }
+        ],
+        "texts": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac06fbada10",
+            "name": "Composition heading",
+            "text": "Move participants",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2572,
+              "y": 100,
+              "width": 430,
+              "height": 24
+            },
+            "textBounds": {
+              "x": 2572,
+              "y": 102.40000009536743,
+              "width": 141.5625,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac070f3cd1f",
+            "name": "header title",
+            "text": "Move selection",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#264861",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 167,
+              "width": 274.21875,
+              "height": 20
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 167.40000000596046,
+              "width": 118.8125,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0711efd3e",
+            "name": "Destination help",
+            "text": "Choose the group that should receive the selected participants.",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 224.39999999999418,
+              "width": 320.21875,
+              "height": 45
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 226.00000002383604,
+              "width": 297.25,
+              "height": 40.89999997615814
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0711f35e0",
+            "name": "Destination label",
+            "text": "Destination group",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1f2a37",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-9895486ec664",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 285.3999999999942,
+              "width": 320.21875,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 286.8500000476779,
+              "width": 125.57500457763672,
+              "height": 18.399999618530273
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac071207c90",
+            "name": "Text",
+            "text": "Group A",
+            "font": "14",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1e3448",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "774bdc38-f33d-8030-8008-bac1c457f680",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2643.890625,
+              "y": 315.8999999999928,
+              "width": 270.21875,
+              "height": 38
+            },
+            "textBounds": {
+              "x": 2643.890625,
+              "y": 326.50000038146254,
+              "width": 54.337501525878906,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac071211d44",
+            "name": "Label — override in instance",
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#0b5ea8",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2681.1000000000004,
+              "y": 381.1999999999998,
+              "width": 40.40000000000009,
+              "height": 15
+            },
+            "textBounds": {
+              "x": 2681.13750000149,
+              "y": 380.6999999999998,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac07122bc6f",
+            "name": "Label — override in instance",
+            "text": "Move selected item",
+            "font": "14.08",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#ffffff",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2765.9,
+              "y": 380.2000000000003,
+              "width": 133,
+              "height": 17
+            },
+            "textBounds": {
+              "x": 2766.1625000178815,
+              "y": 380.25000000074533,
+              "width": 132.47500610351562,
+              "height": 16.80000114440918
+            }
+          }
+        ]
+      },
+      {
+        "host": "774bdc38-f33d-8030-8008-bac074cada16",
+        "name": "Student management — Mobile / 390 / Move groups",
+        "hostBounds": {
+          "x": 2540,
+          "y": 530,
+          "width": 500,
+          "height": 422
+        },
+        "shell": "774bdc38-f33d-8030-8008-bac076c9960d",
+        "shellBounds": {
+          "x": 2612.890625,
+          "y": 594,
+          "width": 354.21875,
+          "height": 317.5
+        },
+        "heads": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076c9960d",
+            "name": "Linked native Move / groups",
+            "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+            "bounds": {
+              "x": 2612.890625,
+              "y": 594,
+              "width": 354.21875,
+              "height": 317.5
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076cc4b76",
+            "name": "INSTANCE — Core action / Modal close",
+            "component": "761eab91-8390-80e8-8008-98c317ebe621",
+            "bounds": {
+              "x": 2918.109375,
+              "y": 611,
+              "width": 30.40000000000009,
+              "height": 30.40000000000009
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076cc4b77",
+            "name": "Icon — linked xmark",
+            "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+            "bounds": {
+              "x": 2927.069374999999,
+              "y": 619.96,
+              "width": 12.480000000000473,
+              "height": 12.480000000000473
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076cdd7c7",
+            "name": "Native select — Text field M",
+            "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+            "bounds": {
+              "x": 2629.890625,
+              "y": 765.9000000000001,
+              "width": 320.21875,
+              "height": 38
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce2177",
+            "name": "Linked Cancel — regular",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "bounds": {
+              "x": 2664.1,
+              "y": 859.5,
+              "width": 74.40000000000009,
+              "height": 32.399999999999636
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce4a40",
+            "name": "Linked Confirm — regular",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "bounds": {
+              "x": 2748.9,
+              "y": 856.9000000000001,
+              "width": 167,
+              "height": 37.600000000000364
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac078ee549e",
+            "name": "Optional origin — linked Checkbox S",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84",
+            "bounds": {
+              "x": 2629.890625,
+              "y": 816.9000000000001,
+              "width": 16,
+              "height": 16
+            }
+          }
+        ],
+        "texts": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076057557",
+            "name": "Composition heading",
+            "text": "Move groups",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2572,
+              "y": 550,
+              "width": 430,
+              "height": 24
+            },
+            "textBounds": {
+              "x": 2572,
+              "y": 552.4000000953674,
+              "width": 102.11250305175781,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076c9c462",
+            "name": "header title",
+            "text": "Move selection",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#264861",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 617,
+              "width": 274.21875,
+              "height": 20
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 617.4000000059605,
+              "width": 118.8125,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076cdd7c5",
+            "name": "Destination help",
+            "text": "Choose the grouping that should receive the selected groups.",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 674.3999999999942,
+              "width": 320.21875,
+              "height": 45
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 676.000000023836,
+              "width": 318.95001220703125,
+              "height": 40.89999997615814
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076cdd7c6",
+            "name": "Destination label",
+            "text": "Destination grouping",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1f2a37",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-9895486ec664",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 735.3999999999942,
+              "width": 320.21875,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 736.8500000476779,
+              "width": 147.27500915527344,
+              "height": 18.399999618530273
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce2176",
+            "name": "Text",
+            "text": "Year 2026",
+            "font": "14",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#1e3448",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "774bdc38-f33d-8030-8008-bac1c457f680",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2643.890625,
+              "y": 765.8999999999928,
+              "width": 270.21875,
+              "height": 38
+            },
+            "textBounds": {
+              "x": 2643.890625,
+              "y": 776.5000003814625,
+              "width": 68.38750457763672,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce2178",
+            "name": "Label — override in instance",
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#0b5ea8",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2681.1000000000004,
+              "y": 868.1999999999998,
+              "width": 40.40000000000009,
+              "height": 15
+            },
+            "textBounds": {
+              "x": 2681.13750000149,
+              "y": 867.6999999999998,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce4a41",
+            "name": "Label — override in instance",
+            "text": "Move selected item",
+            "font": "14.08",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#ffffff",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-98954b5a69db",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2765.9,
+              "y": 867.2000000000003,
+              "width": 133,
+              "height": 17
+            },
+            "textBounds": {
+              "x": 2766.1625000178815,
+              "y": 867.2500000007453,
+              "width": 132.47500610351562,
+              "height": 16.80000114440918
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac079293f7c",
+            "name": "Optional origin label",
+            "text": "Remove from the original grouping",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2653.0906249999534,
+              "y": 815.6500000000015,
+              "width": 297.01875000004657,
+              "height": 22.5
+            },
+            "textBounds": {
+              "x": 2653.0906249999534,
+              "y": 817.2500000238433,
+              "width": 244.90000915527344,
+              "height": 18.399999618530273
+            }
+          }
+        ]
+      },
+      {
+        "host": "774bdc38-f33d-8030-8008-bac0d3c7a92f",
+        "name": "Student management — Mobile / 390 / No groups available",
+        "hostBounds": {
+          "x": 2540,
+          "y": 1012,
+          "width": 500,
+          "height": 395
+        },
+        "shell": "774bdc38-f33d-8030-8008-bac0d4f43016",
+        "shellBounds": {
+          "x": 2612.890625,
+          "y": 1076,
+          "width": 354.21875,
+          "height": 280.5
+        },
+        "heads": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4f43016",
+            "name": "EasyEdu / Modals / Native destination action / Narrow",
+            "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+            "bounds": {
+              "x": 2612.890625,
+              "y": 1076,
+              "width": 354.21875,
+              "height": 280.5
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4f7e958",
+            "name": "INSTANCE — Core action / Modal close",
+            "component": "761eab91-8390-80e8-8008-98c317ebe621",
+            "bounds": {
+              "x": 2918.109375,
+              "y": 1093,
+              "width": 30.40000000000009,
+              "height": 30.40000000000009
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4f83eda",
+            "name": "Icon — linked xmark",
+            "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+            "bounds": {
+              "x": 2927.069374999999,
+              "y": 1101.96,
+              "width": 12.480000000000473,
+              "height": 12.480000000000473
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4fa2aba",
+            "name": "Linked Cancel — regular",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "bounds": {
+              "x": 2664.4,
+              "y": 1304.5,
+              "width": 74.40000000000009,
+              "height": 32.399999999999636
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0c3cd6f81",
+            "name": "Linked no destinations — source empty state",
+            "component": "b278fa65-0838-80ba-8008-9de4b052237c",
+            "bounds": {
+              "x": 2629.890625,
+              "y": 1213,
+              "width": 320.21875,
+              "height": 64
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac11c8389bf",
+            "name": "Linked unavailable Move — Disabled regular action",
+            "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+            "bounds": {
+              "x": 2748.9,
+              "y": 1301.9,
+              "width": 167,
+              "height": 37.600000000000364
+            }
+          }
+        ],
+        "texts": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d41c353a",
+            "name": "Composition heading",
+            "text": "No groups available",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2572,
+              "y": 1032,
+              "width": 430,
+              "height": 24
+            },
+            "textBounds": {
+              "x": 2572,
+              "y": 1034.4000000953674,
+              "width": 154.3000030517578,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4f4301b",
+            "name": "header title",
+            "text": "Move selection",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#264861",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 1099,
+              "width": 274.21875,
+              "height": 20
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 1099.4000000059605,
+              "width": 118.8125,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4f9dd05",
+            "name": "Destination help",
+            "text": "Choose the group that should receive the selected participants.",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 1156.3999999999942,
+              "width": 320.21875,
+              "height": 45
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 1158.000000023836,
+              "width": 297.25,
+              "height": 40.89999997615814
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4fa2abb",
+            "name": "Label — override in instance",
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#0b5ea8",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2681.4000000000005,
+              "y": 1313.1999999999998,
+              "width": 40.399999999999636,
+              "height": 15
+            },
+            "textBounds": {
+              "x": 2681.43750000149,
+              "y": 1312.6999999999998,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0c3cd6f83",
+            "name": "Content placeholder",
+            "text": "No groups are available yet. Create a group before moving participants.",
+            "font": "13.6",
+            "weight": "400",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2644.290625,
+              "y": 1225,
+              "width": 291.4187499999998,
+              "height": 40
+            },
+            "textBounds": {
+              "x": 2648.653125190735,
+              "y": 1228.6875,
+              "width": 282.6750183105469,
+              "height": 32.3125
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac11c8389c0",
+            "name": "Label — override in instance",
+            "text": "Move selected item",
+            "font": "14.08",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2765.899999999999,
+              "y": 1312.2000000000003,
+              "width": 133.00000000000182,
+              "height": 17
+            },
+            "textBounds": {
+              "x": 2766.162500017881,
+              "y": 1312.2500000007453,
+              "width": 132.47500610351562,
+              "height": 16.80000114440918
+            }
+          }
+        ]
+      },
+      {
+        "host": "774bdc38-f33d-8030-8008-bac0d9627d12",
+        "name": "Student management — Mobile / 390 / No groupings available",
+        "hostBounds": {
+          "x": 2540,
+          "y": 1467,
+          "width": 500,
+          "height": 395
+        },
+        "shell": "774bdc38-f33d-8030-8008-bac0db5d4046",
+        "shellBounds": {
+          "x": 2612.890625,
+          "y": 1531,
+          "width": 354.21875,
+          "height": 280.5
+        },
+        "heads": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db5d4046",
+            "name": "EasyEdu / Modals / Native destination action / Narrow",
+            "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+            "bounds": {
+              "x": 2612.890625,
+              "y": 1531,
+              "width": 354.21875,
+              "height": 280.5
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db623ab3",
+            "name": "INSTANCE — Core action / Modal close",
+            "component": "761eab91-8390-80e8-8008-98c317ebe621",
+            "bounds": {
+              "x": 2918.109375,
+              "y": 1548,
+              "width": 30.40000000000009,
+              "height": 30.40000000000009
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db623ab4",
+            "name": "Icon — linked xmark",
+            "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+            "bounds": {
+              "x": 2927.069374999999,
+              "y": 1556.96,
+              "width": 12.480000000000473,
+              "height": 12.480000000000473
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db65f99a",
+            "name": "Linked Cancel — regular",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "bounds": {
+              "x": 2664.4,
+              "y": 1759.5,
+              "width": 74.40000000000009,
+              "height": 32.399999999999636
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac10450ef46",
+            "name": "Linked no destinations — source empty state",
+            "component": "b278fa65-0838-80ba-8008-9de4b052237c",
+            "bounds": {
+              "x": 2629.890625,
+              "y": 1668,
+              "width": 320.21875,
+              "height": 64
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac11d43a73c",
+            "name": "Linked unavailable Move — Disabled regular action",
+            "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+            "bounds": {
+              "x": 2748.9,
+              "y": 1756.9,
+              "width": 167,
+              "height": 37.600000000000364
+            }
+          }
+        ],
+        "texts": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0da103e5d",
+            "name": "Composition heading",
+            "text": "No groupings available",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2572,
+              "y": 1487,
+              "width": 430,
+              "height": 24
+            },
+            "textBounds": {
+              "x": 2572,
+              "y": 1489.4000000953674,
+              "width": 178.6999969482422,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db5d924e",
+            "name": "header title",
+            "text": "Move selection",
+            "font": "16",
+            "weight": "700",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#264861",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 1554,
+              "width": 274.21875,
+              "height": 20
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 1554.4000000059605,
+              "width": 118.8125,
+              "height": 19.200000762939453
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db656647",
+            "name": "Destination help",
+            "text": "Choose the grouping that should receive the selected groups.",
+            "font": "15",
+            "weight": "400",
+            "align": "left",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2629.890625,
+              "y": 1611.3999999999942,
+              "width": 320.21875,
+              "height": 45
+            },
+            "textBounds": {
+              "x": 2629.890625,
+              "y": 1613.000000023836,
+              "width": 318.95001220703125,
+              "height": 40.89999997615814
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db65f99b",
+            "name": "Label — override in instance",
+            "text": "Cancel",
+            "font": "12",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#0b5ea8",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "db59201c-3dd6-8004-8008-babdd3f9807b",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2681.4000000000005,
+              "y": 1768.1999999999998,
+              "width": 40.399999999999636,
+              "height": 15
+            },
+            "textBounds": {
+              "x": 2681.43750000149,
+              "y": 1767.6999999999998,
+              "width": 40.312503814697266,
+              "height": 15.199999809265137
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac10450ef48",
+            "name": "Content placeholder",
+            "text": "No groupings are available yet. Create a grouping before moving groups.",
+            "font": "13.6",
+            "weight": "400",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": null,
+                "fillColorRefId": null,
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2644.290625,
+              "y": 1680,
+              "width": 291.4187499999998,
+              "height": 40
+            },
+            "textBounds": {
+              "x": 2659.6156248092652,
+              "y": 1683.6875,
+              "width": 260.7624816894531,
+              "height": 32.3125
+            }
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac11d43df36",
+            "name": "Label — override in instance",
+            "text": "Move selected item",
+            "font": "14.08",
+            "weight": "600",
+            "align": "center",
+            "verticalAlign": "center",
+            "fills": [
+              {
+                "fillColor": "#5c6c7d",
+                "fillOpacity": 1,
+                "fillColorGradient": null,
+                "fillColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "fillColorRefId": "32eadb6d-165e-803e-8008-989549e3c5bd",
+                "fillImage": null
+              }
+            ],
+            "lane": {
+              "x": 2765.899999999999,
+              "y": 1767.2000000000003,
+              "width": 133.00000000000182,
+              "height": 17
+            },
+            "textBounds": {
+              "x": 2766.162500017881,
+              "y": 1767.2500000007453,
+              "width": 132.47500610351562,
+              "height": 16.80000114440918
+            }
+          }
+        ]
+      }
+    ],
+    "gates": {
+      "visibleTopBoardOverlaps": [],
+      "productLocalComponents": 0,
+      "checks": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeffabe6811a",
+          "providers": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0450d8eb8",
+              "component": "d0b01e4e-5e95-8062-8008-babf5ad09eeb",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04520f680",
+              "component": "761eab91-8390-80e8-8008-98c317ebe621",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac045213e6f",
+              "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac045290969",
+              "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0452a16b6",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0452a8aac",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "foundation": true
+            }
+          ],
+          "buttons": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0452a16b6",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "text": "Cancel",
+              "dx": -0.006248091161239699,
+              "dy": -0.40000009536743164
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0452a8aac",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "text": "Move selected item",
+              "dx": 0.000003069639205932617,
+              "dy": -0.0499994270503521
+            }
+          ]
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffac420076",
+          "providers": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aa4f66f",
+              "component": "d0b01e4e-5e95-8062-8008-babf5ad09eeb",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aa782f3",
+              "component": "761eab91-8390-80e8-8008-98c317ebe621",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aa782f4",
+              "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aa9b423",
+              "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aa9e771",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aaa3fda",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04eede200",
+              "component": "e5bf882d-be5b-8059-8008-982e7eb40b84",
+              "foundation": true
+            }
+          ],
+          "buttons": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aa9e771",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "text": "Cancel",
+              "dx": -0.006248091161296543,
+              "dy": -0.40000009536743164
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac04aaa3fda",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "text": "Move selected item",
+              "dx": 0.000003069639205932617,
+              "dy": -0.0499994270503521
+            }
+          ]
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac06f07fd9d",
+          "providers": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac070f23eb9",
+              "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0710ec8dd",
+              "component": "761eab91-8390-80e8-8008-98c317ebe621",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0710fa903",
+              "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0711f5157",
+              "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac07120cf5c",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac071222c17",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "foundation": true
+            }
+          ],
+          "buttons": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac07120cf5c",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "text": "Cancel",
+              "dx": -0.0062480911615239165,
+              "dy": -0.40000009536743164
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac071222c17",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "text": "Move selected item",
+              "dx": 0.000003069639205932617,
+              "dy": -0.0499994270503521
+            }
+          ]
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac074cada16",
+          "providers": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076c9960d",
+              "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076cc4b76",
+              "component": "761eab91-8390-80e8-8008-98c317ebe621",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076cc4b77",
+              "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076cdd7c7",
+              "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076ce2177",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076ce4a40",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac078ee549e",
+              "component": "e5bf882d-be5b-8059-8008-982e7eb40b84",
+              "foundation": true
+            }
+          ],
+          "buttons": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076ce2177",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "text": "Cancel",
+              "dx": -0.0062480911615239165,
+              "dy": -0.40000009536743164
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac076ce4a40",
+              "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+              "text": "Move selected item",
+              "dx": 0.000003069639205932617,
+              "dy": -0.0499994270503521
+            }
+          ]
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac0d3c7a92f",
+          "providers": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0d4f43016",
+              "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0d4f7e958",
+              "component": "761eab91-8390-80e8-8008-98c317ebe621",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0d4f83eda",
+              "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0d4fa2aba",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0c3cd6f81",
+              "component": "b278fa65-0838-80ba-8008-9de4b052237c",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac11c8389bf",
+              "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+              "foundation": true
+            }
+          ],
+          "buttons": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0d4fa2aba",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "text": "Cancel",
+              "dx": -0.0062480911615239165,
+              "dy": -0.40000009536743164
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac11c8389bf",
+              "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+              "text": "Move selected item",
+              "dx": 0.0000030696387511852663,
+              "dy": -0.0499994270503521
+            }
+          ]
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac0d9627d12",
+          "providers": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0db5d4046",
+              "component": "d0b01e4e-5e95-8062-8008-babf63999247",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0db623ab3",
+              "component": "761eab91-8390-80e8-8008-98c317ebe621",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0db623ab4",
+              "component": "32eadb6d-165e-803e-8008-988f81ba407e",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0db65f99a",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac10450ef46",
+              "component": "b278fa65-0838-80ba-8008-9de4b052237c",
+              "foundation": true
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac11d43a73c",
+              "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+              "foundation": true
+            }
+          ],
+          "buttons": [
+            {
+              "id": "774bdc38-f33d-8030-8008-bac0db65f99a",
+              "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+              "text": "Cancel",
+              "dx": -0.0062480911615239165,
+              "dy": -0.40000009536743164
+            },
+            {
+              "id": "774bdc38-f33d-8030-8008-bac11d43a73c",
+              "component": "724138fb-4a17-80dc-8008-babe2f29f923",
+              "text": "Move selected item",
+              "dx": 0.0000030696387511852663,
+              "dy": -0.0499994270503521
+            }
+          ]
+        }
+      ],
+      "textLaneOverflows": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeffabe6811a",
+          "overflow": []
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffac420076",
+          "overflow": []
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac06f07fd9d",
+          "overflow": []
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac074cada16",
+          "overflow": []
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac0d3c7a92f",
+          "overflow": []
+        },
+        {
+          "id": "774bdc38-f33d-8030-8008-bac0d9627d12",
+          "overflow": []
+        }
+      ]
+    },
+    "recoverableWholeBackups": [
+      "d0b01e4e-5e95-8062-8008-babfe3fb3838",
+      "d0b01e4e-5e95-8062-8008-babfe44fa407"
+    ],
+    "backupLocation": "hidden/blocked on product page 04, not moved to Archive"
+  },
+  "limitations": [
+    "Native close chrome differs from canonical Foundation S control.",
+    "Legacy consumer shell border/shadow differ from canonical Kit modal chrome.",
+    "Native origin checkbox paint differs from Foundation S specimen.",
+    "Open OS/native select decoration and option keyboard matrix not certified.",
+    "Empty destinations were not induced by course-data mutation.",
+    "Multiple-selected plural, command submit/results, RTL, forced-colors and async branches are not certified.",
+    "Clipboard 390 floating-trigger/help overlap needs exact computed stacking diagnostic and shared fix.",
+    "Shared Platform plan/state/crosswalk/scenario registry remain owned by another window."
+  ],
+  "media": {
+    "root": "easystud/penpot/student-compact-20261002",
+    "files": [
+      "foundation-native-action-library-final.png",
+      "foundation-native-action-standard-final.png",
+      "foundation-regular-actions-library-final.png",
+      "foundation-regular-actions-standard-final.png",
+      "product-native-move-narrow-final.png",
+      "product-native-move-desktop-final.png",
+      "product-native-move-empty-final.png"
+    ]
+  },
+  "aiLessons": [
+    "Do not trust characters/textBounds when cached paint still shows an earlier label. Recompute the measured text lane, preserve growType/dimensions, read back, and inspect capture.",
+    "Expand variantComponents before counting external family coverage; first-member library listings can omit Disabled.",
+    "Do not reset a nested product copy to change Disabled: reset/swap can restore generic parent business content. Use the exact linked state in an ordinary host and hide only the superseded whole action.",
+    "Keep Normal Motion and wait for terminal CSS paint before measurement.",
+    "Connected-library palette listing may be empty; source-owned values/IDs must be explicitly verified rather than invented."
+  ]
+}

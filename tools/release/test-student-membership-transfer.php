@@ -1,0 +1,123 @@
+<?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+// Isolated service control-flow proof, NOT Moodle DB/API/event integration proof.
+
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+if (PHP_SAPI !== 'cli') {
+    http_response_code(404);
+    exit;
+}
+define('EASYEDU_TEST_MEMBER_TRANSFER', true);
+$CFG = (object)['dirroot' => __DIR__ . '/fixtures/membership-transfer-mock'];
+require_once(__DIR__ . '/../../classes/local/batch_reader.php');
+require_once(__DIR__ . '/../../classes/service/membership_transfer.php');
+
+use local_groupimport\service\membership_transfer;
+/**
+ * Perform isolated fixture operation transfer_check.
+ * @param bool $condition Fixture argument.
+ * @param string $message Fixture argument.
+ * @return void Fixture result.
+ */
+function transfer_check(bool $condition, string $message): void {
+    if (!$condition) {
+        throw new RuntimeException($message);
+    }
+}
+/**
+ * Perform isolated fixture operation transfer_reject.
+ * @param array $pairs Fixture argument.
+ * @param int $destination Fixture argument.
+ * @param string $error Fixture argument.
+ * @return void Fixture result.
+ */
+function transfer_reject(array $pairs, int $destination = 2, string $error = 'invaliddata'): void {
+    global $DB;
+    $before = $DB->members;
+    try {
+        membership_transfer::move_members(20, $destination, $pairs);
+        throw new RuntimeException('Expected rejection.');
+    } catch (moodle_exception $exception) {
+        transfer_check($exception->errorcode === $error, 'Wrong exception.');
+    }
+    transfer_check($DB->members === $before, 'A rejected batch changed memberships.');
+    transfer_check(!$DB->committed, 'Rejected batch committed.');
+}
+
+$DB = new transfer_mock_database();
+$pair = ['groupid' => 1, 'userid' => 10];
+$result = membership_transfer::move_members(20, 2, [$pair, $pair]);
+transfer_check($result === ['added' => 1, 'removed' => 1, 'unchanged' => 0], 'Deduplicate responsive pairs.');
+transfer_check($DB->members[2] === [10] && $DB->members[1] === [11], 'Move only the selected origin.');
+transfer_check($DB->members[3] === [10] && $DB->members[4] === [10], 'Preserve unrelated memberships.');
+transfer_check($DB->calls === [['add', 2, 10], ['remove', 1, 10]] && $DB->committed, 'Native call order / commit.');
+transfer_check($DB->closed === 2, 'Both native relationship recordsets close.');
+transfer_check($DB->boundedreads === 1, 'PERF-SRV: enrolment read bounded to the selected users.');
+
+$DB = new transfer_mock_database();
+$DB->members[2] = [10];
+$result = membership_transfer::move_members(20, 2, [$pair, ['groupid' => 2, 'userid' => 10]]);
+transfer_check($result === ['added' => 0, 'removed' => 1, 'unchanged' => 1], 'Existing destination / same-origin no-op.');
+transfer_check($DB->calls === [['remove', 1, 10]] && $DB->members[2] === [10], 'Do not duplicate destination or remove self.');
+
+$DB = new transfer_mock_database();
+$result = membership_transfer::move_members(20, 2, [$pair, ['groupid' => 4, 'userid' => 10]]);
+transfer_check($result === ['added' => 1, 'removed' => 2, 'unchanged' => 0], 'Two selected origins, one destination.');
+transfer_check($DB->members[3] === [10], 'Third unselected origin preserved.');
+
+foreach (
+    [[], [['groupid' => '1garbage', 'userid' => 10]], [['groupid' => 1, 'userid' => 999]],
+        [$pair, ['groupid' => 5, 'userid' => 10]]] as $pairs
+) {
+    $DB = new transfer_mock_database();
+    $error = $pairs && end($pairs)['groupid'] === 5 ? 'invalidgroupid' : 'invaliddata';
+    transfer_reject($pairs, 2, $error);
+    transfer_check(!$DB->calls, 'Validate the complete request before mutations.');
+}
+$DB = new transfer_mock_database();
+transfer_reject([$pair], 5, 'invalidgroupid');
+$DB = new transfer_mock_database();
+$DB->privileged = false;
+transfer_reject([$pair], 2, 'nopermissions');
+$DB = new transfer_mock_database();
+$DB->protected = ['1:10'];
+transfer_reject([$pair]);
+transfer_check(!$DB->calls, 'Respect component-managed removal restrictions.');
+$DB = new transfer_mock_database();
+$DB->enrolled = [];
+transfer_reject([$pair]);
+
+// Fail the second member after the first has been moved; roll back the whole batch.
+foreach (['failadd', 'failremove'] as $failure) {
+    $DB = new transfer_mock_database();
+    $DB->$failure = 11;
+    transfer_reject([$pair, ['groupid' => 1, 'userid' => 11]]);
+    transfer_check($DB->rolledback && count($DB->calls) >= 3, 'Late native failure rolls back earlier operations.');
+}
+echo json_encode(['status' => 'PASS', 'scope' => 'isolated PHP service / simulated native APIs and transaction',
+    'moodleDatabaseAccess' => false, 'businessWrite' => false, 'nativeIntegrationVerified' => false]) . PHP_EOL;

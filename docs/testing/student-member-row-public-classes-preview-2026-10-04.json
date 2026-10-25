@@ -1,0 +1,13 @@
+{
+  "runId": "easystud-authenticated-20261004T002421409Z-648",
+  "scope": "Existing Group member rows; hover and focus only; no Remove or membership write",
+  "records": [
+    {"width": 1600, "row": "544.15625x42", "selector": "32x32", "remove": "23.1875x23.1875", "allPublicClasses": true},
+    {"width": 768, "row": "510.1875x37.59375", "selector": "44x44", "remove": "23.1875x23.1875", "allPublicClasses": true},
+    {"width": 390, "row": "266.1875x37.59375", "selector": "44x44", "remove": "23.1875x23.1875", "allPublicClasses": true}
+  ],
+  "nameRole": {"size": "13px", "weight": 600, "color": "#49657a", "family": "EasyEdu Inter"},
+  "removeActivated": false,
+  "businessRequests": [],
+  "humanAcceptance": "open"
+}

@@ -1,0 +1,144 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "G9-E Quiet utility transfer preparation",
+  "date": "2026-10-08",
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [],
+  "mobileDestinationShift": [],
+  "temporaryTransfer": {
+    "hostId": "007cab03-0a24-8025-8008-c20b163e8fda",
+    "sourceId": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+    "stage": "temporary-provider-created",
+    "copyId": "007cab03-0a24-8025-8008-c20b16a428f6",
+    "componentId": "007cab03-0a24-8025-8008-c20b176b5589",
+    "mainId": "007cab03-0a24-8025-8008-c20b16a428f6",
+    "fingerprintDifferences": [],
+    "width": 180,
+    "height": 30.400000000001455,
+    "host": {
+      "x": 1400,
+      "y": 18500,
+      "width": 500,
+      "height": 160
+    },
+    "main": {
+      "x": 1432,
+      "y": 18564,
+      "width": 180,
+      "height": 30.400000000001455
+    },
+    "descendants": [
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428f6",
+        "type": "board",
+        "name": "Temporary transfer / G9 / Guide utility / Quiet Show — accepted source",
+        "x": 1432,
+        "y": 18564,
+        "width": 180,
+        "height": 30.400000000001455,
+        "hidden": false,
+        "componentId": "007cab03-0a24-8025-8008-c20b176b5589"
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428f7",
+        "type": "board",
+        "name": "EasyEdu / Buttons / Core action / Secondary / M",
+        "x": 1432,
+        "y": 18564,
+        "width": 180,
+        "height": 30.400000000001455,
+        "hidden": false,
+        "componentId": "db59201c-3dd6-8004-8008-baad48fd2237"
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428fa",
+        "type": "text",
+        "name": "Label — override in instance",
+        "x": 1455,
+        "y": 18569.2,
+        "width": 134,
+        "height": 20,
+        "hidden": true
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428f8",
+        "type": "board",
+        "name": "EasyEdu / Icons / Feedback and identity / eye (solid)",
+        "x": 1444,
+        "y": 18572.2,
+        "width": 14,
+        "height": 14,
+        "hidden": false,
+        "componentId": "32eadb6d-165e-803e-8008-9891fe031706"
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428fb",
+        "type": "group",
+        "name": "Glyph — eye / solid",
+        "x": 1445.1666666666667,
+        "y": 18574.015625,
+        "width": 11.666666666666515,
+        "height": 10.368750000001455,
+        "hidden": false
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428fc",
+        "type": "rectangle",
+        "name": "base-background",
+        "x": 1445.1666666666667,
+        "y": 18574.015625,
+        "width": 11.666666666666515,
+        "height": 10.368750000001455,
+        "hidden": true
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428fd",
+        "type": "group",
+        "name": "svg-g",
+        "x": 1445.167174021403,
+        "y": 18574.66369769917,
+        "width": 11.666159311930187,
+        "height": 9.072732962969894,
+        "hidden": false
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428ff",
+        "type": "path",
+        "name": "svg-path",
+        "x": 1445.167174021403,
+        "y": 18574.66369769917,
+        "width": 11.666159311930187,
+        "height": 9.072732962969894,
+        "hidden": false
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428fe",
+        "type": "path",
+        "name": "svg-path",
+        "x": 1445.167174021403,
+        "y": 18574.66369769917,
+        "width": 11.666159311930187,
+        "height": 9.072732962969894,
+        "hidden": false
+      },
+      {
+        "id": "007cab03-0a24-8025-8008-c20b16a428f9",
+        "type": "text",
+        "name": "Guide utility / Absolute label",
+        "x": 1466,
+        "y": 18569.20000000001,
+        "width": 134,
+        "height": 20,
+        "hidden": false
+      }
+    ]
+  },
+  "sourceFingerprint": "[{\"type\":\"board\",\"name\":\"Guide / Quiet utility action / Voir dans l’interface\",\"x\":0,\"y\":0,\"width\":180,\"height\":30.400000000001455,\"hidden\":false,\"fills\":[],\"strokes\":[],\"shadows\":[]},{\"type\":\"board\",\"name\":\"EasyEdu / Buttons / Core action / Secondary / M\",\"x\":0,\"y\":0,\"width\":180,\"height\":30.400000000001455,\"hidden\":false,\"fills\":[{\"fillColor\":\"#ffffff\",\"fillOpacity\":1,\"fillColorGradient\":null,\"fillColorRefFile\":null,\"fillColorRefId\":null,\"fillImage\":null}],\"strokes\":[{\"strokeColor\":\"#ccd8e4\",\"strokeColorRefFile\":null,\"strokeColorRefId\":null,\"strokeOpacity\":1,\"strokeStyle\":\"solid\",\"strokeWidth\":1,\"strokeAlignment\":\"inner\",\"strokeCapStart\":null,\"strokeCapEnd\":null,\"strokeColorGradient\":null,\"strokeImage\":null}],\"shadows\":[]},{\"type\":\"text\",\"name\":\"Label — override in instance\",\"x\":23,\"y\":5.200000000000728,\"width\":134,\"height\":20,\"hidden\":true,\"chars\":\"Voir dans l’interface\",\"font\":\"Inter\",\"size\":\"12.48\",\"weight\":\"600\",\"fills\":[{\"fillColor\":\"#53677f\",\"fillOpacity\":1,\"fillColorGradient\":null,\"fillColorRefFile\":null,\"fillColorRefId\":null,\"fillImage\":null}],\"strokes\":[],\"shadows\":[]},{\"type\":\"board\",\"name\":\"EasyEdu / Icons / Feedback and identity / eye (solid)\",\"x\":12,\"y\":8.200000000000728,\"width\":14,\"height\":14,\"hidden\":false,\"fills\":[],\"strokes\":[],\"shadows\":[]},{\"type\":\"group\",\"name\":\"Glyph — eye / solid\",\"x\":13.166666666666742,\"y\":10.015625,\"width\":11.666666666666515,\"height\":10.368750000001455,\"hidden\":false,\"fills\":[],\"strokes\":[],\"shadows\":[]},{\"type\":\"rectangle\",\"name\":\"base-background\",\"x\":13.166666666666742,\"y\":10.015625,\"width\":11.666666666666515,\"height\":10.368750000001455,\"hidden\":true,\"fills\":[],\"strokes\":[],\"shadows\":[]},{\"type\":\"group\",\"name\":\"svg-g\",\"x\":13.16717402140307,\"y\":10.663697699168551,\"width\":11.666159311930187,\"height\":9.072732962969894,\"hidden\":false,\"fills\":[],\"strokes\":[],\"shadows\":[]},{\"type\":\"path\",\"name\":\"svg-path\",\"x\":13.16717402140307,\"y\":10.663697699168551,\"width\":11.666159311930187,\"height\":9.072732962969894,\"hidden\":false,\"fills\":[{\"fillColor\":\"#1b7f5a\",\"fillOpacity\":1,\"fillColorGradient\":null,\"fillColorRefFile\":null,\"fillColorRefId\":null,\"fillImage\":null}],\"strokes\":[],\"shadows\":[]},{\"type\":\"path\",\"name\":\"svg-path\",\"x\":13.16717402140307,\"y\":10.663697699168551,\"width\":11.666159311930187,\"height\":9.072732962969894,\"hidden\":false,\"fills\":[{\"fillColor\":\"#1b7f5a\",\"fillOpacity\":1,\"fillColorGradient\":null,\"fillColorRefFile\":null,\"fillColorRefId\":null,\"fillImage\":null}],\"strokes\":[],\"shadows\":[]},{\"type\":\"text\",\"name\":\"Guide utility / Absolute label\",\"x\":34,\"y\":5.2000000000116415,\"width\":134,\"height\":20,\"hidden\":false,\"chars\":\"Voir dans l’interface\",\"font\":\"Inter\",\"size\":\"12.48\",\"weight\":\"600\",\"fills\":[{\"fillColor\":\"#53677f\",\"fillOpacity\":1,\"fillColorGradient\":null,\"fillColorRefFile\":null,\"fillColorRefId\":null,\"fillImage\":null}],\"strokes\":[],\"shadows\":[]}]",
+  "exportInspected": true,
+  "savedFileVerified": true,
+  "savedFileProof": {"temporaryTransferDescendants": 10, "editorWrites": 0, "moodleWrites": 0, "helperDisconnected": true},
+  "foundationPublished": false,
+  "humanVisualValidated": false,
+  "cleanupRule": "Remove only exact temporary provider/main after Foundation fingerprint parity and saved publication; retain original Guide source and temporary IDs until then."
+}

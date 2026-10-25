@@ -1,0 +1,132 @@
+// Shared EasyEdu administration typography.
+//
+// These roles style plugin chrome only. User-configurable content, such as
+// banner titles, must keep its own runtime typography variables.
+
+@mixin type-ui-base {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+}
+
+// Compact destinations inherit the workspace body size. A theme or consumer
+// can resolve it without changing all shared Navigation instances.
+@mixin type-navigation-compact-destination {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-medium);
+}
+
+// Only the compact launcher label role; lifecycle and Motion stay Guide-owned.
+@mixin type-navigation-compact-guide-label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+@mixin type-page-title {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-page-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+}
+
+// Reading rhythm for a form/report workspace, measured on the applied K18-15
+// compositions. Existing condensed workspaces keep their current defaults.
+@mixin workspace-reading-rhythm {
+  --easyedu-line-height-title: 1.5;
+  --easyedu-line-height-body: 1.5;
+}
+
+@mixin type-workspace-reading-title {
+  @include type-page-title;
+  font-weight: var(--easyedu-font-weight-semibold);
+}
+
+@mixin type-modal-title {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-modal-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+}
+
+@mixin type-panel-title {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-panel-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+}
+
+@mixin type-section-title {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-section-title);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: var(--easyedu-line-height-title);
+}
+
+@mixin type-card-title {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-card-title);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: var(--easyedu-line-height-title);
+}
+
+@mixin type-control-label {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-control);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
+}
+
+@mixin type-body {
+  @include type-ui-base;
+
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+}
+
+@mixin type-caption {
+  @include type-ui-base;
+
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+}
+
+@mixin type-eyebrow {
+  @include type-ui-base;
+
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-eyebrow);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+// Font-metric label line inside an already centred control. Icon metrics and
+// the accepted outer frame remain independent (no offsets or font-size change).
+@mixin control-label-natural-metrics($icons: false, $native: false) {
+  @if $native {
+    // Native input labels live in the browser shadow tree, not a child span.
+    line-height: normal;
+  }
+  > span:not(.fa) {
+    line-height: normal;
+  }
+  @if $icons {
+    > .fa {
+      line-height: normal;
+    }
+  }
+}

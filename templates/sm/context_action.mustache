@@ -1,0 +1,46 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_groupimport/sm/context_action
+
+    One action of the card context menu, at the top level or inside a submenu
+    ("Copy", "Add participants", "Add groups"). Both levels share this markup so
+    the menu controller runs every action through the same branch.
+    HTML validation runs in manage, whose example supplies both menu parents.
+
+    Example context (json):
+    {
+        "action": "copy-group-name",
+        "contexts": "group",
+        "icon": "fa-copy",
+        "label": "Group name",
+        "multilabel": "Group names",
+        "fieldkey": ""
+    }
+}}
+<button
+    type="button"
+    data-easystud-context-action="{{action}}"
+    data-easystud-contexts="{{contexts}}"
+    data-easystud-context-label="{{label}}"
+    {{#multilabel}}data-easystud-context-multi-label="{{multilabel}}"{{/multilabel}}
+    {{#fieldkey}}data-easystud-context-field="{{fieldkey}}"{{/fieldkey}}
+    role="menuitem"
+>
+    <span class="fa {{icon}}" aria-hidden="true"></span>
+    <span data-easystud-context-text="1">{{label}}</span>
+</button>

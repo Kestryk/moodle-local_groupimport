@@ -1,0 +1,361 @@
+{
+  "lot": "SM54",
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "library": "3ade82ad-bce8-8059-8008-9c07259b5c06",
+  "originalMains": [
+    {
+      "id": "2a31d374-d2a1-80fd-8008-ac60c553284a",
+      "name": "EasyEdu / Controls / More filters / Wide / Collapsed",
+      "x": 112,
+      "y": 3060,
+      "w": 543.9999999999999,
+      "h": 34,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c5605cdd",
+          "name": "Text",
+          "x": 334.974,
+          "y": 3061.375,
+          "w": 82,
+          "h": 32.625,
+          "decoration": "none"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c57a8ca9",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 408.198,
+          "y": 3065,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "2a31d374-d2a1-80fd-8008-ac60c5b08444",
+      "name": "EasyEdu / Controls / More filters / Wide / Hover",
+      "x": 688,
+      "y": 3060,
+      "w": 544,
+      "h": 34,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c5c4f810",
+          "name": "Text",
+          "x": 910.9739999999999,
+          "y": 3061.375,
+          "w": 82,
+          "h": 32.625,
+          "decoration": "underline"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c5e44abb",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 984.198,
+          "y": 3065,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "2a31d374-d2a1-80fd-8008-ac60c60eff88",
+      "name": "EasyEdu / Controls / More filters / Wide / Expanded",
+      "x": 1264,
+      "y": 3060,
+      "w": 544,
+      "h": 34,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c61bd782",
+          "name": "Text",
+          "x": 1486.974,
+          "y": 3061.375,
+          "w": 82,
+          "h": 32.625,
+          "decoration": "none"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c6367354",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 1560.1979999999999,
+          "y": 3065,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "2a31d374-d2a1-80fd-8008-ac60c667905a",
+      "name": "EasyEdu / Controls / More filters / Wide / Focus-visible",
+      "x": 1840,
+      "y": 3060,
+      "w": 544,
+      "h": 34,
+      "fills": [],
+      "strokes": [
+        {
+          "strokeColor": "#8abce3",
+          "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+          "strokeOpacity": 1,
+          "strokeStyle": "solid",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        },
+        {
+          "strokeColor": "#0f6cbf",
+          "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+          "strokeOpacity": 0.22,
+          "strokeStyle": "solid",
+          "strokeWidth": 2.88,
+          "strokeAlignment": "outer",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c67536c9",
+          "name": "Text",
+          "x": 2062.974,
+          "y": 3061.375,
+          "w": 82,
+          "h": 32.625,
+          "decoration": "none"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c6931e11",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 2136.198,
+          "y": 3065.000000000001,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "2a31d374-d2a1-80fd-8008-ac60c6c34551",
+      "name": "EasyEdu / Controls / More filters / Wide / Disabled",
+      "x": 2416,
+      "y": 3060,
+      "w": 544,
+      "h": 34,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c6d19693",
+          "name": "Text",
+          "x": 2638.974,
+          "y": 3061.375,
+          "w": 82,
+          "h": 32.625,
+          "decoration": "none"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac60c6edf216",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 2712.198,
+          "y": 3065.000000000001,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bbb6305b26c9",
+      "name": "EasyEdu / Controls / More filters / Touch / Collapsed",
+      "x": 112,
+      "y": 3590,
+      "w": 544,
+      "h": 44,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb6305b9fc3",
+          "name": "Text",
+          "x": 334.974,
+          "y": 3591.375,
+          "w": 82,
+          "h": 42.625,
+          "decoration": "none"
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb6305b9fc4",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 408.198,
+          "y": 3600,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bbb6490306e7",
+      "name": "EasyEdu / Controls / More filters / Touch / Hover",
+      "x": 688,
+      "y": 3590,
+      "w": 544,
+      "h": 44,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb64903af10",
+          "name": "Text",
+          "x": 910.9739999999999,
+          "y": 3591.375,
+          "w": 82,
+          "h": 42.625,
+          "decoration": "underline"
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb64903cdcd",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 984.198,
+          "y": 3600,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bbb649278160",
+      "name": "EasyEdu / Controls / More filters / Touch / Expanded",
+      "x": 1264,
+      "y": 3590,
+      "w": 544,
+      "h": 44,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb64928d359",
+          "name": "Text",
+          "x": 1486.974,
+          "y": 3591.375,
+          "w": 82,
+          "h": 42.625,
+          "decoration": "none"
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb64928d35a",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 1560.1979999999999,
+          "y": 3600,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bbb6496bcc5e",
+      "name": "EasyEdu / Controls / More filters / Touch / Focus-visible",
+      "x": 1840,
+      "y": 3590,
+      "w": 544,
+      "h": 44,
+      "fills": [],
+      "strokes": [
+        {
+          "strokeColor": "#8abce3",
+          "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+          "strokeOpacity": 1,
+          "strokeStyle": "solid",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        },
+        {
+          "strokeColor": "#0f6cbf",
+          "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+          "strokeOpacity": 0.22,
+          "strokeStyle": "solid",
+          "strokeWidth": 2.88,
+          "strokeAlignment": "outer",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "children": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb6496c7549",
+          "name": "Text",
+          "x": 2062.974,
+          "y": 3591.375,
+          "w": 82,
+          "h": 42.625,
+          "decoration": "none"
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb6496c754a",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 2136.198,
+          "y": 3600,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bbb649855e93",
+      "name": "EasyEdu / Controls / More filters / Touch / Disabled",
+      "x": 2416,
+      "y": 3590,
+      "w": 544,
+      "h": 44,
+      "fills": [],
+      "strokes": [],
+      "children": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb64985ee4d",
+          "name": "Text",
+          "x": 2638.974,
+          "y": 3591.375,
+          "w": 82,
+          "h": 42.625,
+          "decoration": "none"
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bbb64985ee4e",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 2712.198,
+          "y": 3600,
+          "w": 24,
+          "h": 24,
+          "decoration": null
+        }
+      ]
+    }
+  ]
+}

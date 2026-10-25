@@ -1,0 +1,94 @@
+// Shared notice surfaces and densities. Consumers keep placement only.
+@use "typography" as type;
+
+@mixin notice {
+  align-items: start;
+  background: var(--easyedu-primary-soft);
+  border: 0.0625rem solid var(--easyedu-semantic-border-primary);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  padding: 1rem;
+  > .fa {
+    align-items: center;
+    border: 0.0625rem solid var(--easyedu-control-border);
+    border-radius: 0.75rem;
+    color: var(--easyedu-primary);
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    justify-content: center;
+    margin: 0;
+  }
+  strong { @include type.type-card-title; display: block; margin-block-end: 0.75rem; }
+  // Notice copy is secondary block-level guidance. Page and panel copy above
+  // the block keep the larger body role.
+  p { @include type.type-caption; color: var(--easyedu-text-muted); line-height: 1.2; margin: 0; }
+}
+
+@mixin notice-warning {
+  align-items: center;
+  background: var(--easyedu-notice-warning-surface);
+  border-color: var(--easyedu-notice-warning-border);
+  color: var(--easyedu-notice-warning-ink);
+  column-gap: 0.875rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  margin-block-start: 0.5rem;
+  min-block-size: 4.5rem;
+  padding: 0.625rem 1.125rem;
+  > .fa {
+    border: 0;
+    color: var(--easyedu-notice-warning-ink);
+    font-size: 1.125rem;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  strong { color: var(--easyedu-notice-warning-ink); font-size: 0.875rem; line-height: 1.5rem; margin: 0; }
+  p { color: var(--easyedu-notice-warning-ink); font-size: 0.75rem; line-height: 1.5rem; text-align: start; }
+  &[hidden] { display: none; }
+}
+
+@mixin notice-compact {
+  align-items: center;
+  gap: 0.625rem;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  padding: 0.75rem 1rem;
+
+  > .fa {
+    border: 0;
+    font-size: 1rem;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  > p {
+    @include type.type-caption;
+
+    color: var(--easyedu-text);
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+@mixin notice-inline-warning {
+  background: #fffaf0;
+  border: 1px solid #f1d9a8;
+  border-radius: 0.85rem;
+  color: #725018;
+  padding: 0.75rem 0.85rem;
+
+  align-items: center;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: auto minmax(0, 1fr);
+
+  .fa {
+    color: #a46b12;
+  }
+
+  p {
+    @include type.type-caption;
+  }
+}
+

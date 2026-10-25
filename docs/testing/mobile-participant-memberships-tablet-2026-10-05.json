@@ -1,0 +1,243 @@
+{
+  "records": [
+    {
+      "id": "8a982f17-c9c0-80e9-8008-bead55cb2efa",
+      "name": "Composition / Tablet Participant / Alice / Sole selected memberships visible",
+      "width": 680,
+      "height": 282,
+      "overflow": [],
+      "texts": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f12",
+          "name": "Title",
+          "text": "Alice Martin",
+          "x": 124,
+          "y": 22,
+          "w": 368,
+          "h": 24,
+          "font": "Inter",
+          "size": "14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f13",
+          "name": "Metadata",
+          "text": "alice.martin@example.edu",
+          "x": 124,
+          "y": 52,
+          "w": 470,
+          "h": 24,
+          "font": "Inter",
+          "size": "13"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2efe",
+          "name": "Initials",
+          "text": "AM",
+          "x": 73,
+          "y": 34,
+          "w": 28,
+          "h": 22.5,
+          "font": "Inter",
+          "size": "15"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2eff",
+          "name": "Product / Tablet participant / Expanded / Roles label",
+          "text": "ROLES",
+          "x": 126,
+          "y": 82,
+          "w": 100,
+          "h": 18,
+          "font": "Inter",
+          "size": "10.72"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f01",
+          "name": "Product / Tablet participant / Expanded / Teacher / label",
+          "text": "Teacher",
+          "x": 126,
+          "y": 103,
+          "w": 64,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f02",
+          "name": "Product / Tablet participant / Expanded / Groups label",
+          "text": "GROUPS",
+          "x": 126,
+          "y": 130,
+          "w": 100,
+          "h": 18,
+          "font": "Inter",
+          "size": "10.72"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f04",
+          "name": "Product / Tablet participant / Expanded / Group A / label",
+          "text": "Group A",
+          "x": 126,
+          "y": 151,
+          "w": 62,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f06",
+          "name": "Product / Tablet participant / Expanded / Group 2 / label",
+          "text": "Group 2",
+          "x": 194,
+          "y": 151,
+          "w": 62,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f08",
+          "name": "Product / Tablet participant / Expanded / More groups / label",
+          "text": "+1",
+          "x": 262,
+          "y": 151,
+          "w": 33.99999999999994,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f09",
+          "name": "Product / Tablet participant / Expanded / Groupings label",
+          "text": "GROUPINGS",
+          "x": 126,
+          "y": 178,
+          "w": 100,
+          "h": 18,
+          "font": "Inter",
+          "size": "10.72"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f0b",
+          "name": "Product / Tablet participant / Expanded / Year 2026 / label",
+          "text": "Year 2026",
+          "x": 126,
+          "y": 199,
+          "w": 76,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f0c",
+          "name": "Product / Tablet participant / Expanded / Custom label",
+          "text": "PROGRAMME",
+          "x": 126,
+          "y": 226,
+          "w": 100,
+          "h": 18,
+          "font": "Inter",
+          "size": "10.72"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2f0e",
+          "name": "Product / Tablet participant / Expanded / Programme / label",
+          "text": "Programme — Design",
+          "x": 126,
+          "y": 247,
+          "w": 138,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-bead56a2f227",
+      "name": "Composition / Tablet Participant / Samira / Memberships hidden",
+      "width": 680,
+      "height": 186,
+      "overflow": [],
+      "texts": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead7389f3f0",
+          "name": "Title",
+          "text": "Samira Benali",
+          "x": 124,
+          "y": 22,
+          "w": 368,
+          "h": 24,
+          "font": "Inter",
+          "size": "14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead738a27f1",
+          "name": "Metadata",
+          "text": "samira.benali@example.edu",
+          "x": 124,
+          "y": 52,
+          "w": 470,
+          "h": 24,
+          "font": "Inter",
+          "size": "13"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a31ac6",
+          "name": "Initials",
+          "text": "SB",
+          "x": 73,
+          "y": 34,
+          "w": 28,
+          "h": 22.5,
+          "font": "Inter",
+          "size": "15"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a31ac7",
+          "name": "Product / Tablet participant / Expanded / Roles label",
+          "text": "ROLES",
+          "x": 126,
+          "y": 82,
+          "w": 100,
+          "h": 18,
+          "font": "Inter",
+          "size": "10.72"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a31ac9",
+          "name": "Product / Tablet participant / Expanded / Teacher / label",
+          "text": "Teacher",
+          "x": 126,
+          "y": 103,
+          "w": 64,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a31ad4",
+          "name": "Product / Tablet participant / Expanded / Custom label",
+          "text": "PROGRAMME",
+          "x": 126,
+          "y": 130,
+          "w": 100,
+          "h": 18,
+          "font": "Inter",
+          "size": "10.72"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a31ad6",
+          "name": "Product / Tablet participant / Expanded / Programme / label",
+          "text": "Programme — Design",
+          "x": 126,
+          "y": 151,
+          "w": 138,
+          "h": 20,
+          "font": "Inter",
+          "size": "10"
+        }
+      ]
+    }
+  ],
+  "board": "92c1c225-95fb-802e-8008-aeaca893efac"
+}

@@ -1,0 +1,47 @@
+// T045 dialog family recipes shared by the Student Management entity dialogs and
+// the Mass Import history/restore dialogs (Penpot S6-D5a/b/c, PROPOSITION-MODALES section 2).
+// Mixins only: each page compiles its own selectors (per-page CSS split).
+// Existing footer API delegates to the accepted canonical Kit recipe.
+@use "../easyedu" as easyedu;
+
+// One divider for footer and section separations (Penpot filet #ecf2f7).
+$dialog-divider: easyedu.$dialog-divider;
+
+// Dialog grid: header and footer stay visible, only the body scrolls.
+@mixin dialog-shell($width) {
+  @include easyedu.dialog-shell($width);
+}
+
+@mixin dialog-scroll-body {
+  @include easyedu.dialog-scroll-body;
+}
+
+// Guide-style sticky footer: tertiary action on the left, Kit buttons (38px) on the right.
+@mixin dialog-footer {
+  @include easyedu.dialog-footer;
+}
+
+// Footer text action with the external-link arrow ("Modifier dans Moodle").
+@mixin dialog-footer-link {
+  @include easyedu.dialog-footer-link;
+}
+
+// Header icon tile tinted by its object (T045: tile and eyebrow follow the variant).
+@mixin dialog-tile($color, $soft) {
+  @include easyedu.dialog-tile($color, $soft);
+}
+
+// One height for every label of the family: 22px pills.
+@mixin dialog-pill($role: empty) {
+  @include easyedu.dialog-pill($role);
+}
+
+// Quiet text action of the family (CSV, "+ N other members", Restore).
+@mixin dialog-text-action($legacy-priority: false) {
+  @include easyedu.dialog-text-action($legacy-priority);
+}
+
+// Responsive 390 (Penpot S6-D5c): full-height sheet, sticky header and footer.
+@mixin dialog-sheet {
+  @include easyedu.dialog-sheet;
+}

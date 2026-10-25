@@ -25,8 +25,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
-$plugin->version = 2026010503;   // YYYYMMDDXX. User tour update.
-$plugin->requires = 2022112800;  // Moodle 4.1 minimum.
+$plugin->version = 2026102500;   // 2.0.0: stable release.
+$plugin->requires = 2024100700;  // Moodle 4.5 installation baseline.
+$plugin->supported = [405, 503]; // Supported release range: Moodle 4.5 to 5.3.
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '0.1';
+$plugin->release = '2.0.0';
 $plugin->license = 'GPLv3';

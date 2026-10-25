@@ -1,0 +1,33 @@
+{
+  "protocol": {
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "board": "83ffce63-041b-803e-8008-bed8bc0e24a5",
+    "notes": [
+      "83ffce63-041b-803e-8008-bed8bc474c28",
+      "83ffce63-041b-803e-8008-bed8bc9a8448",
+      "83ffce63-041b-803e-8008-bed8bce8a5a1",
+      "83ffce63-041b-803e-8008-bed8bd2fb88a",
+      "83ffce63-041b-803e-8008-bed8bd7ad9fd",
+      "83ffce63-041b-803e-8008-bed8bdf39661",
+      "83ffce63-041b-803e-8008-bed8be3caa35",
+      "83ffce63-041b-803e-8008-bed8be87157c",
+      "83ffce63-041b-803e-8008-bed8bec6a29c"
+    ],
+    "skeleton": {
+      "id": "83ffce63-041b-803e-8008-bed8bdcd4ae2",
+      "component": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "w": 240,
+      "h": 16
+    }
+  },
+  "w": 1240,
+  "h": 320,
+  "overflow": [],
+  "skeletonComponent": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+  "validation": [],
+  "scope": "Consumer readiness behavior only; canonical Skeleton specimen unchanged",
+  "persistence": "Explicit saveVersion, validation=[], server GET200 contains exact board, UI Enregistré/no autosave error",
+  "cleanExport": false,
+  "native": false,
+  "human": false
+}

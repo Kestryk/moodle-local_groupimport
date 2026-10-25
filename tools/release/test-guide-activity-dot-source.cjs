@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..'),base='504269b';
+const norm=s=>s.replace(/\r\n/g,'\n');
+const read=f=>norm(fs.readFileSync(path.join(root,f),'utf8'));
+const old=f=>norm(execFileSync('git',['show',base+':'+f],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}));
+for(const f of ['amd/src/easyedu_guide.js','amd/build/easyedu_guide.min.js','amd/build/easyedu_guide.min.js.map','templates/easyedu_guide.mustache','classes/local/guide_discovery.php'])assert.ok(read(f)===old(f),'Unchanged controller/content '+f);
+const omitScss=s=>{const a=s.indexOf('    &__activity {'),b=s.indexOf('    &__live[data-guide-playback-state="paused"]',a);assert.ok(a>=0&&b>a);return s.slice(0,a)+s.slice(b);};
+assert.ok(omitScss(read('scss/easyedu/components/_guide-discovery.scss'))===omitScss(old('scss/easyedu/components/_guide-discovery.scss')),'All other recipes and keyframes unchanged');
+const omitCss=s=>s.replace(/[^{}]*\.easyedu-guide-scene__activity(?: > span)?[^{}]*\{[^{}]*\}\s*/g,'\n').replace(/\n{2,}/g,'\n');
+assert.ok(omitCss(read('styles.css'))===omitCss(old('styles.css')),'Full unrelated CSS preserved');
+console.log('PASS dots-only layout; timing/keyframes, controller, content, all other CSS unchanged.');

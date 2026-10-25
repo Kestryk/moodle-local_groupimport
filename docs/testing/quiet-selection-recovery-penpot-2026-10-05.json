@@ -1,0 +1,69 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "libraryPage": "761eab91-8390-80e8-8008-98c15b0c9c59",
+  "standardPage": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+  "sourceBoard": "8a982f17-c9c0-80e9-8008-bebd10e6a4c8",
+  "standardBoard": "8a982f17-c9c0-80e9-8008-bebd42b1ba42",
+  "pairs": [
+    {
+      "state": "Default",
+      "component": "8a982f17-c9c0-80e9-8008-bebd115453f6",
+      "source": "8a982f17-c9c0-80e9-8008-bebd1125c165",
+      "instance": "8a982f17-c9c0-80e9-8008-bebd42daf0d0",
+      "equal": true,
+      "width": 127.07999999999998,
+      "height": 30.399999999999636,
+      "overflow": []
+    },
+    {
+      "state": "Hover",
+      "component": "8a982f17-c9c0-80e9-8008-bebd11a6d428",
+      "source": "8a982f17-c9c0-80e9-8008-bebd1178ea0b",
+      "instance": "8a982f17-c9c0-80e9-8008-bebd42fa2590",
+      "equal": true,
+      "width": 127.08000000000004,
+      "height": 30.399999999999636,
+      "overflow": []
+    },
+    {
+      "state": "Pressed",
+      "component": "8a982f17-c9c0-80e9-8008-bebd11f8302a",
+      "source": "8a982f17-c9c0-80e9-8008-bebd11ca9a7b",
+      "instance": "8a982f17-c9c0-80e9-8008-bebd431dac22",
+      "equal": true,
+      "width": 127.07999999999993,
+      "height": 30.399999999999636,
+      "overflow": []
+    },
+    {
+      "state": "Focus-visible",
+      "component": "8a982f17-c9c0-80e9-8008-bebd1243fe6d",
+      "source": "8a982f17-c9c0-80e9-8008-bebd121bf25a",
+      "instance": "8a982f17-c9c0-80e9-8008-bebd4340edd3",
+      "equal": true,
+      "width": 127.07999999999993,
+      "height": 30.399999999999636,
+      "overflow": []
+    },
+    {
+      "state": "Disabled",
+      "component": "8a982f17-c9c0-80e9-8008-bebd128f9a66",
+      "source": "8a982f17-c9c0-80e9-8008-bebd1264904f",
+      "instance": "8a982f17-c9c0-80e9-8008-bebd43605c75",
+      "equal": true,
+      "width": 127.07999999999993,
+      "height": 30.399999999999636,
+      "overflow": []
+    }
+  ],
+  "capsuleMain": "cf371b29-2e8e-8011-8008-bd5d829702ab",
+  "capsuleComponent": "cf371b29-2e8e-8011-8008-bd5d83152cb3",
+  "quietDefault": "8a982f17-c9c0-80e9-8008-bebd115453f6",
+  "capsuleButton": "cf371b29-2e8e-8011-8008-bd5d82caa9e2",
+  "productFile": "220f6449-533e-815b-8008-ad9958d032a1",
+  "productCapsule": "cf371b29-2e8e-8011-8008-bd5e281d5df1",
+  "productButton": "cf371b29-2e8e-8011-8008-bd5e281db1ba",
+  "archivedProductCapsule": "8a982f17-c9c0-80e9-8008-bebe5a8c1397",
+  "checkpointSha256": "688CC070AA0E6081DF2CFFFEFECE580C938E2435ACB4BE28E7017CC523CB7B11",
+  "status": "Five paired states/source+Standard/capsule/Product readback PASS; editor checkpoint inspected; clean export/native/human OPEN"
+}

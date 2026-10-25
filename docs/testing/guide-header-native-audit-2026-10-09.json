@@ -1,0 +1,23 @@
+{
+  "sourceImplementationCommit": "4df676b04407bc4d9f4acf467d1d0ec0404f4915",
+  "runtimeHead": "bf3948c5c864ce2938619464b305202fd6f88615",
+  "runId": "easystud-authenticated-20261009T152345192Z-4952",
+  "spec": "tools/playwright/guide-g11-native-close-header-audit.spec.js",
+  "result": "passed",
+  "widths": [1280, 768, 390],
+  "titles": {"font": "EasyEdu Inter", "size": "16px", "weight": "700", "color": "rgb(38, 72, 97)", "sameActualRole": true},
+  "entityEyebrow": {"size": "10px", "role": "Separate product label, not modal title"},
+  "closeDifference": {"guide": "FontAwesome 6 Free 12.48px/900", "entity": "Inter multiplication glyph 12.48px/400", "corrected": false},
+  "fullscreenCorrection": "Requires canonical glyph/provider decision; no approximate font-weight override applied",
+  "errors": [],
+  "blocked": [],
+  "courseTransactions": 0,
+  "fixtures": 0,
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "retention": "Scoped dry-run protects current run; no deletion",
+  "failedPredecessorsRetained": ["easystud-authenticated-20261009T151732661Z-38368", "easystud-authenticated-20261009T152050827Z-39972"],
+  "humanVisualValidated": false,
+  "scenarioClass": "local-supervised; source audit measures visible read-only modals, not a business test"
+}

@@ -1,0 +1,64 @@
+<?php
+define('CLI_SCRIPT', true);
+require('<TEST_MOODLE_ROOT>/config.php');
+require_once($CFG->dirroot . '/course/lib.php');
+require_once($CFG->dirroot . '/group/lib.php');
+require_once($CFG->dirroot . '/user/lib.php');
+require_once($CFG->libdir . '/enrollib.php');
+$marker = 'codex1-k1680-remaining-f25e';
+$record = __DIR__ . '/fixture-ids.json';
+if (($argv[1] ?? '') === 'create') {
+    if (file_exists($record)) {
+        $previous = json_decode(file_get_contents($record));
+        $restored = json_decode(file_get_contents(__DIR__ . '/fixture-restored.json'));
+        if (!$restored->removed || $previous->courseid !== $restored->courseid ||
+                $DB->record_exists('course', ['id' => $previous->courseid])) {
+            throw new Exception('Existing fixture has not been restored; reconcile before creating.');
+        }
+        copy($record, __DIR__ . '/fixture-ids-' . $previous->courseid . '.json');
+    }
+    $category = $DB->get_record_sql('SELECT id FROM {course_categories} ORDER BY id', null, IGNORE_MULTIPLE);
+    $course = create_course((object)['category' => $category->id, 'shortname' => $marker,
+        'fullname' => 'Kit menu recipe isolated', 'idnumber' => $marker, 'visible' => 0]);
+    $ids = ['courseid' => $course->id, 'marker' => $marker, 'users' => []];
+    file_put_contents($record, json_encode($ids));
+    $groups = [];
+    foreach (['Alpha', 'Beta'] as $suffix) {
+        $groups[] = groups_create_group((object)['courseid' => $course->id, 'name' => 'Kit ' . $suffix]);
+    }
+    $manual = enrol_get_plugin('manual');
+    $instance = $DB->get_record('enrol', ['courseid' => $course->id, 'enrol' => 'manual']);
+    if (!$instance) {
+        $instanceid = $manual->add_instance($course);
+        $instance = $DB->get_record('enrol', ['id' => $instanceid], '*', MUST_EXIST);
+    }
+    $roleid = $DB->get_field('role', 'id', ['archetype' => 'student'], MUST_EXIST);
+    foreach (['One', 'Two'] as $index => $suffix) {
+        $username = 'k1680_' . $course->id . '_' . $index;
+        $userid = user_create_user((object)['username' => $username, 'firstname' => 'Kit', 'lastname' => $suffix,
+            'email' => $username . '@example.invalid', 'auth' => 'manual', 'confirmed' => 1,
+            'idnumber' => $marker, 'password' => 'Rand!9' . random_string(24)]);
+        $ids['users'][] = $userid;
+        file_put_contents($record, json_encode($ids));
+        $manual->enrol_user($instance, $userid, $roleid);
+        groups_add_member($groups[0], $userid);
+    }
+    echo json_encode(['created' => true, 'courseid' => $course->id]);
+} else if (($argv[1] ?? '') === 'cleanup') {
+    $fixture = json_decode(file_get_contents($record));
+    $course = $DB->get_record('course', ['id' => $fixture->courseid, 'idnumber' => $marker], '*', MUST_EXIST);
+    ob_start();
+    delete_course($course, false);
+    foreach ($fixture->users ?? [] as $userid) {
+        $user = $DB->get_record('user', ['id' => $userid, 'idnumber' => $marker], '*', MUST_EXIST);
+        delete_user($user);
+    }
+    ob_end_clean();
+    $removed = !$DB->record_exists('course', ['id' => $fixture->courseid]);
+    $usersremoved = !$DB->record_exists('user', ['idnumber' => $marker, 'deleted' => 0]);
+    file_put_contents(__DIR__ . '/fixture-restored.json', json_encode(['removed' => $removed, 'usersRemoved' =>
+        $usersremoved, 'courseid' => $fixture->courseid]));
+    echo json_encode(['removed' => $removed, 'usersRemoved' => $usersremoved]);
+} else {
+    throw new Exception('Expected create or cleanup.');
+}

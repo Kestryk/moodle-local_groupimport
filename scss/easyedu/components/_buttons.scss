@@ -1,0 +1,903 @@
+// EasyEdu buttons and compact action controls.
+//
+// These mixins complement Moodle/Bootstrap button classes without replacing
+// them. Include them on plugin-specific selectors such as create buttons,
+// toolbar actions or square icon buttons.
+//
+// Theme override tokens:
+// --easyedu-control-radius, --easyedu-control-height,
+// --easyedu-button-{height,font,padding}-{s,m,l}, --easyedu-size-* (xs, xl).
+//
+// Sizes follow the shared scale (../_scale.scss): xs, s, m, l, xl, with the
+// historical names small = s, regular = m, large = l. Tones follow
+// ../_tones.scss (destructive is an alias of danger).
+
+@use "focus";
+@use "sass:list";
+@use "sass:selector";
+@use "../scale";
+@use "../tones";
+
+// Shared visual transition for controls whose semantic state changes in place
+// (pressed, selected, expanded or enabled). Consumers should not redefine a
+// local timing for these controls.
+@mixin control-state-transition($duration: var(--easyedu-motion-normal)) {
+  transition:
+    background-color $duration var(--easyedu-motion-ease),
+    border-color $duration var(--easyedu-motion-ease),
+    box-shadow $duration var(--easyedu-motion-ease),
+    color $duration var(--easyedu-motion-ease),
+    opacity $duration var(--easyedu-motion-ease),
+    transform $duration var(--easyedu-motion-ease);
+}
+
+// Five-step button density. s/m/l keep the production button derivatives
+// (30.4 / 37.6 / 45.6 px); xs/xl read the shared scale directly.
+@mixin button-size($size: regular) {
+  font-size: scale.button-font($size);
+  min-height: scale.button-height($size);
+  min-width: scale.button-height($size);
+  padding: scale.button-padding($size);
+}
+
+@mixin button-interaction-states(
+  $hover-bg: var(--easyedu-primary-soft),
+  $hover-border: var(--easyedu-control-focus-border),
+  $hover-color: var(--easyedu-primary-strong),
+  $legacy-priority: false
+) {
+  // $legacy-priority (K23-84): keep the disabled paint above a consumer's host adapter.
+  $p: legacy-priority($legacy-priority);
+  &:hover,
+  &:focus-visible,
+  &[aria-expanded="true"],
+  &[aria-pressed="true"],
+  &.active,
+  &.is-active {
+    background: $hover-bg;
+    border-color: $hover-border;
+    color: $hover-color;
+    outline: 0;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: $hover-border);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled {
+    background: var(--easyedu-surface-soft) $p;
+    border-color: var(--easyedu-card-border) $p;
+    color: var(--easyedu-text-muted) $p;
+    cursor: not-allowed;
+    opacity: 0.62 $p;
+    pointer-events: none;
+    transform: none;
+  }
+}
+
+@mixin icon-button($size: regular) {
+  align-items: center;
+  border-radius: var(--easyedu-control-radius);
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  @include button-size($size);
+  @include control-state-transition(var(--easyedu-motion-fast));
+
+  &:focus-visible {
+    @include focus.ring;
+  }
+}
+
+// Native inline controls keep the Bootstrap spacing-one contract in both theme generations.
+@mixin inline-icon-leading {
+  margin-inline-end: 0.25rem;
+}
+
+// Shared geometry for every action that combines one icon and a translated
+// label. The parent owns spacing; glyph whitespace and product selectors do
+// not. This can be consumed independently from the semantic button skin.
+@mixin action-content($gap: var(--easyedu-action-icon-gap, 0.65rem), $icon-line-height: 1) {
+  align-items: center;
+  column-gap: $gap;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+
+  .fa,
+  [class*=" fa-"] {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    line-height: $icon-line-height;
+    margin-inline: 0;
+    min-inline-size: 1em;
+    width: 1em;
+  }
+}
+
+@mixin action-button($size: regular, $legacy-priority: false) {
+  @include action-content;
+  @include button-size($size);
+  @include control-state-transition;
+  @include button-interaction-states($legacy-priority: $legacy-priority);
+}
+
+// Tray labels may wrap while their icon and horizontal padding stay intact.
+// The minimum is shared; flex-row stretch keeps adjacent action heights equal.
+@mixin selection-action-tray-density {
+  min-height: 2.35rem;
+  white-space: normal;
+}
+
+// Host adapter priority (K23-84). Some host themes repaint Bootstrap's `.btn-*`
+// compatibility classes with !important in every state (DVL 4.5 `theme_easyedu`:
+// `.btn-outline-secondary { color/background/border-color … !important }`,
+// `.btn { box-shadow: none !important }`). No selector weight outranks that, so a
+// Kit recipe worn by such an element opts in with `$legacy-priority: true` (same
+// pattern as entity-card-* and action-text-treatment): the SAME Kit values, at
+// !important, for every paint property of every state, so the recipe's own state
+// order is preserved. Never a different palette for the host.
+@function legacy-priority($legacy-priority) {
+  @return if($legacy-priority, !important, null);
+}
+
+// One rule for several state suffixes of the current selector (null entries are
+// skipped). Lets a recipe add the host-forced pressed state to its hover paint
+// only under the host adapter: `on-states((':hover', if($p, ':active', null)))`.
+@mixin on-states($states) {
+  $selectors: ();
+  @each $state in $states {
+    @if $state != null {
+      $selectors: list.join($selectors, selector.append(&, $state), comma);
+    }
+  }
+  @at-root #{$selectors} {
+    @content;
+  }
+}
+
+/// Compact selection actions in list toolbars and their responsive action tray.
+// Palette is explicit so native Bootstrap focus/hover cannot replace the
+// semantic role. Keep overflow/routing/selection ownership in the consumer.
+@mixin selection-action($tone: primary, $solid: false, $tray: false, $icon-line-height: 1, $legacy-priority: false) {
+  @include action-content(0.35rem, $icon-line-height);
+  @include button-size(small);
+  @include control-state-transition;
+  & {
+    border-radius: var(--easyedu-control-radius);
+    font-family: var(--easyedu-font-family-ui);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @if $tray {
+    & { @include selection-action-tray-density; }
+  }
+  @include selection-action-paint($tone, $solid, $legacy-priority);
+}
+
+// The selection-action paint alone (semantic palette, every state), for a copy
+// of a selection action that keeps another geometry, e.g. the column overflow
+// menu (K23-84). selection-action itself consumes it: one paint definition.
+@mixin selection-action-paint($tone: primary, $solid: false, $legacy-priority: false) {
+  $tone: tones.tone-name($tone);
+  @if not list.index((primary, neutral, danger), $tone) {
+    @error "selection-action expects primary, neutral or danger.";
+  }
+  $p: legacy-priority($legacy-priority);
+  // Neutral changes only the resting ink: its hover stays on the primary
+  // tint (accepted EasyStud behaviour), so soft/strong/ring remain primary.
+  $palette: if($tone == danger, danger, primary);
+  $ink: tones.tone($tone, ink);
+  $soft: tones.tone($palette, soft);
+  $strong: tones.tone($palette, strong);
+  $ring: tones.tone($palette, ring);
+  & {
+    background: var(--easyedu-surface) $p;
+    border: 1px solid $ink $p;
+    box-shadow: none $p;
+    color: $ink $p;
+  }
+  @if $solid {
+    & { background: $ink $p; color: var(--easyedu-surface) $p; }
+  }
+  &:focus {
+    background: var(--easyedu-surface) $p;
+    color: $ink $p;
+    @if $solid { background: $ink $p; color: var(--easyedu-surface) $p; }
+  }
+  &:hover,
+  &:active,
+  &[aria-pressed="true"] {
+    background: $soft $p;
+    color: $strong $p;
+    @if $solid { background: $strong $p; color: var(--easyedu-surface) $p; }
+  }
+  &:focus-visible {
+    @include focus.ring($color: $ring, $border-color: var(--easyedu-control-focus-border), $native-overrides: $legacy-priority);
+  }
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled {
+    background: var(--easyedu-surface-soft) $p;
+    border-color: var(--easyedu-card-border) $p;
+    box-shadow: none $p;
+    color: var(--easyedu-text-muted) $p;
+    cursor: not-allowed;
+    opacity: 0.62 $p;
+    pointer-events: none;
+  }
+}
+
+// Quiet recovery action inside an already framed selection capsule. Keep the
+// normal selection-action density, type, icon gap, state Motion and keyboard
+// ring; the outer capsule owns the persistent border, not this inner control.
+@mixin selection-recovery-action($natural-icons: false, $natural-labels: false, $legacy-priority: false) {
+  $p: legacy-priority($legacy-priority);
+  @include selection-action(neutral, $icon-line-height: if($natural-icons, normal, 1), $legacy-priority: $legacy-priority);
+  & { background: transparent $p; border-color: transparent $p; }
+  &:focus { background: transparent $p; }
+  &:hover,
+  &:active,
+  &[aria-pressed="true"] {
+    background: var(--easyedu-surface-soft) $p;
+    border-color: transparent $p;
+    color: var(--easyedu-text) $p;
+  }
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled { background: transparent $p; border-color: transparent $p; }
+  @if $natural-labels {
+    & { line-height: normal; }
+  }
+}
+
+// Core action / Secondary / M definition for Cancel. Reset has its own compact recipe (K21-02).
+// Compact inline actions remain a separate explicit density.
+@mixin secondary-action($legacy-priority: false) {
+  $p: legacy-priority($legacy-priority);
+  align-items: center;
+  background: var(--easyedu-surface) $p;
+  border: 1px solid var(--easyedu-control-border) $p;
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none $p;
+  box-sizing: border-box;
+  color: var(--easyedu-text) $p;
+  display: inline-flex;
+  font: 600 0.88rem/normal var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  @include control-state-transition;
+
+  // Opt-in secondary ink, without changing Cancel or the action geometry (K21-03).
+  &.easyedu-button--secondary-accent:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--easyedu-secondary-text) $p;
+  }
+}
+
+// Quiet filter reset follows the same Kit recipe as the group-card "Select all"
+// action. Keep one interaction and geometry contract for both recovery actions.
+@mixin filter-reset {
+  @include selection-recovery-action($natural-labels: true);
+  align-self: center;
+  width: auto;
+  @include scale.touch-target-floor;
+}
+
+// Explicit field-peer density. Compose after filter-reset; retain its caption,
+// paint, intrinsic width, padding and state Motion. Regular fields use scale M
+// (38px), not the generic button's 37.6px derivative. Legacy Reset consumers
+// remain unchanged.
+@mixin filter-reset-field-peer {
+  & {
+    box-sizing: border-box;
+    min-height: scale.scale-size(m);
+  }
+
+  @include scale.touch-target-floor;
+}
+
+// K16-80: ONE Kit Close. The cross is drawn by the
+// component itself (two 1.5 px strokes, centred by geometry), so every close button looks and
+// centres the same whatever icon font or character the template carries (fa-times, &times;,
+// theme icon): that inner content is only kept for compatibility and hidden.
+// $glyph: false keeps the same frame for a sibling window control with its own icon (fullscreen).
+// $legacy-priority (K23-84): for closes that keep `.btn-outline-secondary`.
+@mixin close-button($size: small, $glyph: true, $legacy-priority: false) {
+  $p: legacy-priority($legacy-priority);
+  @include icon-button($size);
+
+  background: var(--easyedu-surface) $p;
+  border: 1px solid var(--easyedu-card-border) $p;
+  box-sizing: border-box;
+  color: var(--easyedu-text-muted) $p;
+  height: scale.button-height($size);
+  min-height: scale.button-height($size);
+  min-width: scale.button-height($size);
+  padding: 0;
+  width: scale.button-height($size);
+
+  @if $glyph {
+    position: relative;
+
+    > * {
+      display: none !important;
+    }
+
+    &::before,
+    &::after {
+      background: currentColor;
+      block-size: 1.5px;
+      border-radius: 1px;
+      content: "";
+      inline-size: 0.75rem;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      position: absolute;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  @include on-states((':hover', ':focus-visible', if($legacy-priority, ':active', null))) {
+    background: var(--easyedu-danger-soft) $p;
+    border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%) $p;
+    color: var(--easyedu-danger) $p;
+  }
+
+  // Alternate command glyphs use the same paint as the geometric cross.
+  @if not $glyph {
+    .fa { color: currentColor; }
+  }
+
+  // K16-80 / Q17-T44: one Kit Close, desktop and touch variants. The glyph is
+  // centred by geometry (inset 50% + transform), so growing the frame cannot
+  // desync the drawn cross from its square.
+  @include scale.touch-target-floor((height, min-height, min-width, width));
+}
+
+@mixin overflow-button($size: regular) {
+  @include icon-button($size);
+
+  background: var(--easyedu-surface-soft);
+  border: 1px solid var(--easyedu-card-border);
+  color: var(--easyedu-text-muted);
+  font-size: 1.1rem;
+  font-weight: 800;
+  min-height: 2rem;
+  min-width: 2.15rem;
+  padding: 0 0.42rem;
+}
+
+@mixin action-menu-trigger($size: small) {
+  @include icon-button($size);
+
+  background: color-mix(in srgb, var(--easyedu-primary-soft) 62%, #fff 38%);
+  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 18%, #fff 82%);
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--easyedu-primary-strong) 76%, var(--easyedu-text-muted) 24%);
+  min-height: 1.64rem;
+  min-width: 2.08rem;
+  padding: 0.14rem 0.48rem;
+  transform: translateY(0);
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 82%, #fff 18%);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 32%, #fff 68%);
+    box-shadow:
+      0 0.16rem 0.38rem rgba(31, 68, 104, 0.08),
+      0 0 0 0.14rem color-mix(in srgb, var(--easyedu-primary) 14%, transparent);
+    color: var(--easyedu-primary-strong);
+    outline: 0;
+    transform: translateY(-0.02rem);
+  }
+
+  &:focus-visible {
+    @include focus.ring(
+      $border-color: color-mix(in srgb, var(--easyedu-primary) 32%, #fff 68%),
+      $base-shadow: 0 0.16rem 0.38rem rgba(31, 68, 104, 0.08)
+    );
+
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 82%, #fff 18%);
+    color: var(--easyedu-primary-strong);
+    transform: translateY(-0.02rem);
+  }
+}
+
+@mixin action-menu-trigger-icon {
+  background: linear-gradient(currentColor, currentColor) center / 0.76rem 0.095rem no-repeat;
+  display: inline-block;
+  height: 0.58rem;
+  line-height: 1;
+  position: relative;
+  width: 0.82rem;
+
+  &::before,
+  &::after {
+    background: currentColor;
+    border-radius: 999px;
+    content: "";
+    height: 0.095rem;
+    left: 0.03rem;
+    position: absolute;
+    width: 0.76rem;
+  }
+
+  &::before {
+    top: 0.1rem;
+  }
+
+  &::after {
+    bottom: 0.1rem;
+  }
+}
+
+// Standard action row for Moodle admin forms. The right alignment follows
+// Moodle's completion flow; compact screens receive a full-width action.
+@mixin admin-form-actions($alignment: flex-end) {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  justify-content: $alignment;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+
+  @media (max-width: 36rem) {
+    align-items: stretch;
+
+    .btn,
+    button,
+    input[type="submit"] {
+      width: 100%;
+    }
+  }
+}
+
+// Shared row geometry for view-level actions. It owns alignment and rhythm,
+// while each button keeps its Moodle semantics and EasyEdu button mixin.
+@mixin action-row($alignment: center, $gap: 0.55rem) {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+  justify-content: $alignment;
+}
+
+@mixin admin-primary-nav {
+  align-items: stretch;
+  background: var(--easyedu-navigation-desktop-surface, linear-gradient(
+    105deg,
+    color-mix(in srgb, var(--easyedu-primary-soft) 34%, #fff 66%) 0%,
+    color-mix(in srgb, var(--easyedu-surface) 96%, #fff 4%) 48%,
+    color-mix(in srgb, var(--easyedu-accent-soft) 26%, #fff 74%) 100%
+  ));
+  border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 72%, #fff 28%);
+  border-radius: calc(var(--easyedu-control-radius) + 0.12rem);
+  box-shadow: none;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  justify-content: center;
+  margin: 0 0 1.05rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--easyedu-focus-ring-width) 0.42rem;
+  scrollbar-width: none;
+  white-space: nowrap;
+
+  // The guide launcher is a persistent help entry, not another view tab.
+  // Keep its wrapper at the far start edge, matching the CCB reference.
+  > .easyedu-guide,
+  > .easyedu-admin-primary-nav__guide,
+  > [class*="easyedu-guide"] {
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    margin-right: auto;
+    min-width: 2.55rem;
+    order: -1;
+  }
+
+  // Use the balanced structure when the guide must stay at the start edge
+  // while the navigation actions remain centred against the whole rail.
+  // The empty third grid track mirrors the guide track without fake markup.
+  &.easyedu-admin-primary-nav--balanced {
+    display: grid;
+    grid-template-columns: 2.55rem minmax(0, 1fr) 2.55rem;
+
+    > .easyedu-guide,
+    > .easyedu-admin-primary-nav__guide,
+    > [class*="easyedu-guide"] {
+      grid-column: 1;
+      margin-right: 0;
+      min-width: 2.55rem;
+    }
+
+    > .easyedu-admin-primary-nav__actions {
+      align-items: stretch;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      grid-column: 2;
+      justify-content: center;
+      min-width: 0;
+      white-space: nowrap;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 48rem) {
+    &.easyedu-admin-primary-nav--balanced {
+      display: flex;
+
+      > .easyedu-guide,
+      > .easyedu-admin-primary-nav__guide,
+      > [class*="easyedu-guide"] {
+        margin-right: 0.35rem;
+      }
+
+      > .easyedu-admin-primary-nav__actions {
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+@mixin admin-primary-nav-hide-guide-launcher {
+  // Use inside a responsive breakpoint when the product keeps the full guide
+  // available on desktop but removes the launcher from compact navigation.
+  > .easyedu-guide,
+  > .easyedu-admin-primary-nav__guide,
+  > [class*="easyedu-guide"],
+  [data-easyedu-guide-launcher],
+  [data-easyedu-guide-open] {
+    display: none !important;
+  }
+}
+
+@mixin admin-primary-nav-action($variant: default) {
+  // Canonical tone name (../_tones.scss); destructive stays accepted.
+  @if $variant == danger { $variant: destructive; }
+
+  @include action-button(regular);
+
+  & {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: color-mix(in srgb, var(--easyedu-text-muted) 82%, var(--easyedu-text) 18%);
+    flex: 0 0 auto;
+    font-family: inherit;
+    font-size: 0.89rem;
+    font-weight: 500;
+    line-height: 1.2;
+    min-height: 3rem;
+    min-width: 0;
+    padding: 0.58rem 0.82rem;
+    text-decoration: none;
+    transform: none;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      box-shadow 180ms ease,
+      transform 160ms ease;
+    white-space: nowrap;
+  }
+
+  .fa {
+    color: color-mix(in srgb, currentColor 82%, var(--easyedu-primary) 18%);
+    font-size: 0.88rem;
+    line-height: 1;
+    width: 1rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--easyedu-surface) 72%, transparent 28%);
+    box-shadow: inset 0 -0.16rem 0 color-mix(in srgb, var(--easyedu-primary) 42%, transparent 58%);
+    color: var(--easyedu-primary-strong);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: scale(0.985);
+  }
+
+  &.active,
+  &.is-active,
+    &[aria-current="page"],
+    &[aria-pressed="true"] {
+    background: color-mix(in srgb, var(--easyedu-surface) 84%, var(--easyedu-primary-soft) 16%);
+    box-shadow: inset 0 -0.2rem 0 var(--easyedu-primary);
+    color: var(--easyedu-primary-strong);
+
+    .fa {
+      color: var(--easyedu-primary);
+    }
+  }
+
+  &:focus-visible {
+    @include focus.ring(
+      $base-shadow: inset 0 -0.16rem 0 color-mix(in srgb, var(--easyedu-primary) 42%, transparent 58%)
+    );
+  }
+
+  &.active:focus-visible,
+  &.is-active:focus-visible,
+  &[aria-current="page"]:focus-visible,
+  &[aria-pressed="true"]:focus-visible {
+    @include focus.ring($base-shadow: inset 0 -0.2rem 0 var(--easyedu-primary));
+  }
+
+  @if $variant == destructive {
+    & {
+      color: var(--easyedu-danger);
+    }
+
+    .fa {
+      color: var(--easyedu-danger);
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--easyedu-danger-soft) 74%, #fff 26%);
+      border-color: color-mix(in srgb, var(--easyedu-danger) 24%, #fff 76%);
+      box-shadow: 0 0.14rem 0.34rem rgba(161, 43, 43, 0.07);
+      color: var(--easyedu-danger);
+    }
+
+    &:focus-visible {
+      @include focus.ring(
+        $color: var(--easyedu-focus-ring-danger),
+        $border-color: color-mix(in srgb, var(--easyedu-danger) 24%, #fff 76%)
+      );
+    }
+  } @else if $variant == format {
+    & {
+      color: color-mix(in srgb, var(--easyedu-accent) 62%, var(--easyedu-text-muted) 38%);
+    }
+
+    .fa {
+      color: color-mix(in srgb, var(--easyedu-accent) 72%, var(--easyedu-text-muted) 28%);
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--easyedu-accent-soft) 76%, #fff 24%);
+      border-color: color-mix(in srgb, var(--easyedu-accent) 24%, #fff 76%);
+      color: color-mix(in srgb, var(--easyedu-accent) 72%, var(--easyedu-text) 28%);
+    }
+
+    &:focus-visible {
+      @include focus.ring(
+        $color: var(--easyedu-focus-ring-accent),
+        $border-color: color-mix(in srgb, var(--easyedu-accent) 24%, #fff 76%)
+      );
+    }
+  }
+}
+
+@mixin guide-adjacent-action($variant: default, $size: regular, $override-legacy: false) {
+  // Canonical tone name (../_tones.scss); destructive stays accepted.
+  @if $variant == danger { $variant: destructive; }
+  // Opt-in only for a Guide host with historical forced solid-action paint
+  // (paint and, since K23-84, the depth shadow a host `.btn { box-shadow: none !important }` erases).
+  // It reuses this exact family/state palette instead of a consumer repaint.
+  $priority: null;
+  @if $override-legacy { $priority: !important; }
+  @include action-button($size, $override-legacy);
+
+  & {
+    background: var(--easyedu-surface) $priority;
+    border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 88%, #fff 12%) $priority;
+    border-radius: calc(var(--easyedu-control-radius) + 0.08rem);
+    box-shadow: 0 0.14rem 0.34rem rgba(31, 68, 104, 0.055) $priority;
+    color: color-mix(in srgb, var(--easyedu-text-muted) 78%, var(--easyedu-text) 22%) $priority;
+    flex: 0 0 auto;
+    font-size: 0.84rem;
+    font-weight: 700;
+    min-height: 2.1rem;
+    min-width: 0;
+    padding: 0.32rem 0.66rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .fa {
+    color: color-mix(in srgb, currentColor 80%, var(--easyedu-primary) 20%);
+    font-size: 0.88rem;
+    line-height: 1;
+    width: 1rem;
+  }
+
+  // Small is the published Guide utility density, not a regular-sized action
+  // with a Small argument silently overridden by this family's declarations.
+  // Keep the existing quiet paint, focus and transitions at every density.
+  @if scale.scale-step($size) == s {
+    & { @include button-size(small); min-width: 0; font-weight: 600; }
+    .fa { font-size: 0.875rem; width: 0.875rem; }
+  }
+
+  @include on-states((':hover', ':focus-visible', if($override-legacy, ':active', null))) {
+    background: var(--easyedu-primary-soft) $priority;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%) $priority;
+    box-shadow:
+      0 0.16rem 0.38rem rgba(31, 68, 104, 0.075),
+      0 0 0 0.14rem color-mix(in srgb, var(--easyedu-primary) 12%, transparent) $priority;
+    color: var(--easyedu-primary-strong) $priority;
+    outline: 0;
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus.ring(
+      $border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%),
+      $base-shadow: 0 0.16rem 0.38rem rgba(31, 68, 104, 0.075)
+    );
+  }
+
+  @if $variant == warning {
+    & {
+      background: color-mix(in srgb, var(--easyedu-warning-soft) 72%, #fff 28%);
+      border-color: color-mix(in srgb, var(--easyedu-warning) 24%, #fff 76%);
+      color: color-mix(in srgb, var(--easyedu-warning) 82%, var(--easyedu-text) 18%);
+    }
+
+    .fa {
+      color: var(--easyedu-warning);
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--easyedu-warning-soft);
+      border-color: color-mix(in srgb, var(--easyedu-warning) 38%, #fff 62%);
+      box-shadow:
+        0 0.16rem 0.38rem rgba(154, 101, 15, 0.075),
+        0 0 0 0.14rem color-mix(in srgb, var(--easyedu-warning) 14%, transparent);
+      color: color-mix(in srgb, var(--easyedu-warning) 88%, var(--easyedu-text) 12%);
+    }
+
+    &:focus-visible {
+      @include focus.ring(
+        $color: var(--easyedu-focus-ring-warning),
+        $border-color: color-mix(in srgb, var(--easyedu-warning) 38%, #fff 62%),
+        $base-shadow: 0 0.16rem 0.38rem rgba(154, 101, 15, 0.075)
+      );
+    }
+  } @else if $variant == destructive {
+    & {
+      background: var(--easyedu-danger-soft);
+      border-color: color-mix(in srgb, var(--easyedu-danger) 24%, #fff 76%);
+      color: var(--easyedu-danger);
+    }
+
+    .fa {
+      color: var(--easyedu-danger);
+    }
+  }
+}
+
+@mixin admin-secondary-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.46rem;
+}
+
+@mixin admin-secondary-action($variant: default) {
+  // Canonical tone name (../_tones.scss); destructive stays accepted.
+  @if $variant == danger { $variant: destructive; }
+
+  @include action-button(small);
+
+  & {
+    background: var(--easyedu-surface);
+    border: 1px solid var(--easyedu-control-border);
+    border-radius: 999px;
+    box-shadow: 0 0.08rem 0.2rem rgba(31, 68, 104, 0.035);
+    color: var(--easyedu-text-muted);
+    font-size: 0.82rem;
+    font-weight: 680;
+    min-height: 2rem;
+    padding: 0.26rem 0.64rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .fa {
+    color: color-mix(in srgb, var(--easyedu-text-muted) 80%, var(--easyedu-primary) 20%);
+    font-size: 0.82rem;
+    width: 0.95rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--easyedu-primary-soft);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%);
+    box-shadow: 0 0.14rem 0.32rem rgba(31, 68, 104, 0.08);
+    color: var(--easyedu-primary-strong);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus.ring(
+      $border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%),
+      $base-shadow: 0 0.14rem 0.32rem rgba(31, 68, 104, 0.08)
+    );
+  }
+
+  @if $variant == destructive {
+    &:focus-visible {
+      @include focus.ring(
+        $color: var(--easyedu-focus-ring-danger),
+        $border-color: color-mix(in srgb, var(--easyedu-danger) 24%, #fff 76%)
+      );
+    }
+  }
+
+  &.active,
+  &.is-active,
+  &[aria-pressed="true"] {
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 82%, #fff 18%);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 34%, #fff 66%);
+    color: var(--easyedu-primary-strong);
+  }
+
+  @if $variant == destructive {
+    & {
+      background: var(--easyedu-danger-soft);
+      border-color: color-mix(in srgb, var(--easyedu-danger) 24%, #fff 76%);
+      color: var(--easyedu-danger);
+    }
+
+    .fa {
+      color: var(--easyedu-danger);
+    }
+  }
+}
+
+// Existing compact workspace action frame. The host retains its minimum
+// inline extent through the content slot and its responsive visibility.
+@mixin workspace-panel-action-compact {
+  font-size: 0.82rem;
+  min-height: 2.35rem;
+  @content;
+  padding: 0.45rem 0.55rem;
+}
+
+
+// Guide Start/Replay: same solid action, frame and natural text-line metrics.
+// Guide demonstrations always wear `.btn.btn-primary` (host-forced paint, K23-84).
+@mixin demonstration-action {
+  @include selection-action($solid: true, $legacy-priority: true);
+  > :not(.fa) { line-height: normal; }
+  @media (max-width: 40rem), (pointer: coarse) {
+    min-block-size: var(--easyedu-touch-target-min);
+  }
+}
+
+// The existing small recovery action owns the companion row's accepted extent.
+@mixin selection-recovery-row-extent {
+  block-size: 1.9rem;
+}

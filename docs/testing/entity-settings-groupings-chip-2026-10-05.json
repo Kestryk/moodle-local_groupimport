@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "component": "8a982f17-c9c0-80e9-8008-bea4af064700",
+  "main": "8a982f17-c9c0-80e9-8008-bea4aeae46f0",
+  "libraryPage": "81455adb-6787-8068-8008-9ce6186bf6ef",
+  "standard": "8a982f17-c9c0-80e9-8008-bea4d57e9353",
+  "standardPage": "2b150968-5877-802e-8008-97c286173199",
+  "match": true,
+  "sourceFingerprint": [
+    {
+      "type": "board",
+      "rect": [
+        0,
+        0,
+        188,
+        23.48999999999978
+      ],
+      "fills": [
+        {
+          "fillColor": "#f0edf8",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [
+        {
+          "strokeColor": "#dacdf0",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": null,
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "radii": [
+        999,
+        999,
+        999,
+        999
+      ]
+    },
+    {
+      "type": "text",
+      "rect": [
+        8,
+        2,
+        172,
+        19.48999999999978
+      ],
+      "fills": [
+        {
+          "fillColor": "#6b4a91",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "radii": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "text": {
+        "characters": "ID · YEAR-2026",
+        "font": "Inter",
+        "size": "12.16",
+        "weight": "600",
+        "align": "center",
+        "verticalAlign": "center"
+      }
+    }
+  ],
+  "standardFingerprint": [
+    {
+      "type": "board",
+      "rect": [
+        0,
+        0,
+        188,
+        23.48999999999978
+      ],
+      "fills": [
+        {
+          "fillColor": "#f0edf8",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [
+        {
+          "strokeColor": "#dacdf0",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": null,
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "radii": [
+        999,
+        999,
+        999,
+        999
+      ]
+    },
+    {
+      "type": "text",
+      "rect": [
+        8,
+        2,
+        172,
+        19.48999999999978
+      ],
+      "fills": [
+        {
+          "fillColor": "#6b4a91",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "radii": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "text": {
+        "characters": "ID · YEAR-2026",
+        "font": "Inter",
+        "size": "12.16",
+        "weight": "600",
+        "align": "center",
+        "verticalAlign": "center"
+      }
+    }
+  ],
+  "text": {
+    "x": 1388.3624992370605,
+    "y": 5730.649999976158,
+    "width": 91.27499389648438,
+    "height": 15.200000762939453
+  },
+  "humanVisualValidated": false,
+  "nativeStyleChanged": false
+}

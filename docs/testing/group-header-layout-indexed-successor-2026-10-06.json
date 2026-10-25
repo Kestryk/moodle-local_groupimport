@@ -1,0 +1,93 @@
+{
+  "scope": "Fresh bounded indexed readback after hosted connection recovered; no token/Guide changes",
+  "records": [
+    {
+      "file": "220f6449-533e-815b-8008-ad9958d032a1",
+      "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+      "board": "83ffce63-041b-803e-8008-bee27b435d6a",
+      "w": 1240,
+      "h": 300,
+      "overflow": [],
+      "delta": 2.384185791015625e-7,
+      "gap": 8,
+      "paintReady": true,
+      "title": {
+        "font": "Inter",
+        "size": "14",
+        "ink": [
+          {
+            "fillColor": "#264861",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      "checkbox": {
+        "component": "e5bf882d-be5b-8059-8008-982e815deb67",
+        "w": 22.7199999999998,
+        "h": 22.720000000001164,
+        "targetW": 44,
+        "targetH": 44
+      },
+      "validation": []
+    },
+    {
+      "role": "library",
+      "file": "40e06342-8830-80d6-8008-96572effc11c",
+      "page": "2b5216d9-06a9-80a1-8008-9cf44cd3d119",
+      "board": "83ffce63-041b-803e-8008-bee2007d8828",
+      "w": 1240,
+      "h": 300,
+      "overflow": [],
+      "delta": 2.384185791015625e-7,
+      "gap": 8,
+      "paintReady": true,
+      "font": "Inter",
+      "size": "14",
+      "ink": [
+        {
+          "fillColor": "#264861",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "component": "e5bf882d-be5b-8059-8008-982e815deb67",
+      "validation": []
+    },
+    {
+      "role": "standard",
+      "file": "40e06342-8830-80d6-8008-96572effc11c",
+      "page": "2b5216d9-06a9-80a1-8008-9cf5f952460b",
+      "board": "83ffce63-041b-803e-8008-bee2018a577b",
+      "w": 1240,
+      "h": 300,
+      "overflow": [],
+      "delta": 2.384185791015625e-7,
+      "gap": 8,
+      "paintReady": true,
+      "font": "Inter",
+      "size": "14",
+      "ink": [
+        {
+          "fillColor": "#264861",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "component": "e5bf882d-be5b-8059-8008-982e815deb67",
+      "validation": []
+    }
+  ],
+  "native": false,
+  "human": false,
+  "cleanExport": false
+}

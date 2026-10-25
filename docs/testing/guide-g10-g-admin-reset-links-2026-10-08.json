@@ -1,0 +1,19 @@
+{
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [
+    {"id":"c53a1fb5-311f-80be-8008-c292cfb0fe75","componentId":"253eab0b-b38c-802b-8008-bb51d2ce5798","x":1312,"y":19840,"width":544,"height":180.8,"archived":[]}
+  ],
+  "hostId": "c53a1fb5-311f-80be-8008-c292cf77b6d3",
+  "mobileDestinationShift": [],
+  "recipe": "Existing Foundations Native confirmation Neutral Desktop; no new master",
+  "actionHeight": 37.6,
+  "sourcePaintPreserved": true,
+  "adaptiveLabelWidth": true,
+  "savedServerVerified": true,
+  "savedRoots": 1,
+  "savedVisibleDescendants": 15,
+  "rasterInspected": true,
+  "humanVisualValidated": false,
+  "fullNativePixelParity": false
+}

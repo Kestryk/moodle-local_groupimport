@@ -1,0 +1,790 @@
+@use "../easyedu" as easyedu;
+
+@media (max-width: 1200px) {
+  .local-groupimport-easystud {
+    &__layout {
+      grid-template-columns: 1fr;
+    }
+
+    &--structure-focus &-tree {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    &--structure-focus &-tree__section--ungrouped {
+      flex: none;
+    }
+  }
+
+  .local-groupimport-import {
+    // K21-53: the header is the Rail-anchor navigation band (Kit flex layout).
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &.has-preview &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &.has-preview.is-upload-collapsed &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &.has-preview &-card {
+      min-height: auto;
+    }
+
+    &.has-preview.is-upload-collapsed &-card--upload {
+      display: block;
+      @include easyedu.deposit-shell-inset(stacked);
+    }
+
+    &.has-preview.is-upload-collapsed &-card--upload &-fields,
+    &.has-preview.is-upload-collapsed &-card--upload &-form,
+    &.has-preview.is-upload-collapsed &-card--upload &-card__header > div {
+      opacity: 1;
+      pointer-events: auto;
+      position: static;
+      visibility: visible;
+    }
+
+    &.has-preview.is-upload-collapsed &-card--upload &-card__header {
+      @include easyedu.deposit-shell-folded-heading($stacked: true);
+    }
+
+    &__header-actions {
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .local-groupimport-easystud {
+    overflow-x: clip;
+    --local-groupimport-easystud-identity-border-width: 1.28rem;
+    --easyedu-identity-border-width: 1.28rem;
+
+    &-mobile-header-controls {
+      align-items: center;
+      display: flex;
+      gap: 0.55rem;
+      margin-top: 0.7rem;
+    }
+
+    &-mobile-guide-slot {
+      @include easyedu.admin-primary-nav-hide-guide-launcher;
+
+      display: none !important;
+    }
+
+    &__header-actions--desktop {
+      display: none !important;
+    }
+
+    &__layout-toggles,
+    &__panel-actions {
+      display: none !important;
+    }
+
+    &-mobile-guide-slot {
+      align-items: center;
+      display: flex;
+      min-height: var(--easyedu-touch-target-min);
+    }
+
+    &-mobile-guide-slot > [data-easyedu-guide-root] {
+      display: contents;
+    }
+
+    &-mobile-guide-slot [data-easyedu-guide-open] .easyedu-guide__launcher-label {
+      display: none;
+    }
+
+    &-mobile-view {
+      @include easyedu.mobile-entity-switcher;
+
+      display: grid;
+      margin: 0.8rem auto 1rem;
+      max-width: 42rem;
+    }
+
+    &-mobile-view > button {
+      @include easyedu.mobile-entity-switcher-button;
+    }
+
+    &[data-easystud-mobile-view-active="participants"] &__panel--structure,
+    &[data-easystud-mobile-view-active="groups"] &__panel--participants,
+    &[data-easystud-mobile-view-active="groupings"] &__panel--participants {
+      display: none;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] [data-easystud-mobile-entity-region="groupings"],
+    &[data-easystud-mobile-view-active="groupings"] [data-easystud-mobile-entity-region="groups"] {
+      display: none !important;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] &-create-row,
+    &[data-easystud-mobile-view-active="groupings"] &-create-row,
+    &[data-easystud-mobile-view-active="groups"] &-tree,
+    &[data-easystud-mobile-view-active="groupings"] &-tree {
+      display: block;
+    }
+
+    &-card-menu {
+      @include easyedu.mobile-card-menu-trigger;
+
+      display: inline-flex;
+      position: absolute;
+      right: 0.45rem;
+      // Direct participant/grouping triggers share the card's positioning
+      // context; the compact top inset keeps their touch-target centre aligned
+      // with the first content row.
+      top: 0.1rem;
+      z-index: 4;
+    }
+
+    // The participant headline content sits slightly above the direct-card
+    // positioning origin. Keep the touch target unchanged and compensate only
+    // its visual centre line.
+    &--responsive-workspace &-user > &-card-menu {
+      top: -0.08rem;
+    }
+
+    // Most group menus are injected as direct card children. Align them with
+    // the group title/count control line without altering the card box.
+    &--responsive-workspace &-group > &-card-menu {
+      top: 0.28rem;
+    }
+
+    // Group headers keep the menu in flow before their terminal member count.
+    &--responsive-workspace &-group__header > &-card-menu {
+      @include easyedu.card-header-terminal-slot(overflow);
+    }
+
+    // An in-flow menu does not need an additional absolute-action lane.
+    &--responsive-workspace &-tree__children > &-group > &-group__header {
+      @include easyedu.identity-card-action-clearance($flow: true);
+
+      > .local-groupimport-easystud-group__name {
+        min-width: 0;
+      }
+
+      > .badge {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+    }
+
+    &-card-menu__icon.fa {
+      @include easyedu.card-overflow-icon;
+      margin: 0;
+    }
+
+    [data-easystud-group-actions-toggle][data-easystud-card-menu][hidden] {
+      display: inline-flex !important;
+    }
+
+    &--responsive-workspace &-user {
+      @include easyedu.identity-card-action-clearance($person: true);
+      position: relative;
+    }
+
+    // The actions trigger is positioned against the card, but only its header
+    // needs an action lane. Reserving it on a Grouping section also shrinks its
+    // nested Group cards and can leave their title with no usable width.
+    &--responsive-workspace &-group,
+    &--responsive-workspace &-tree__section[data-easystud-grouping-id] {
+      position: relative;
+    }
+
+    &--responsive-workspace &-group > &-group__header {
+      @include easyedu.identity-card-action-clearance($flow: true);
+    }
+
+    &--responsive-workspace &-tree__section[data-easystud-grouping-id] > &-grouping__header {
+      @include easyedu.identity-card-action-clearance;
+    }
+
+    &--responsive-workspace &-user__headline {
+      align-items: center;
+      display: grid;
+      grid-template-areas: "identity email action";
+      @include easyedu.person-card-responsive-tracks;
+      width: 100%;
+    }
+
+    &--responsive-workspace &-user__headline-main {
+      grid-area: identity;
+      min-width: 0;
+    }
+
+    &--responsive-workspace &-user__name,
+    &--responsive-workspace &-user__email {
+      overflow: hidden;
+      overflow-wrap: normal;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &--responsive-workspace &-user__email {
+      grid-area: email;
+      min-width: 0;
+    }
+
+    &--responsive-workspace &-user__detail-button {
+      align-self: start;
+      grid-area: action;
+      justify-self: end;
+      margin-left: 0;
+    }
+
+    &--responsive-workspace:not(.local-groupimport-easystud--compact-users) &-user__headline,
+    &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline {
+      align-items: center;
+      display: grid;
+      grid-template-areas:
+        "identity action"
+        "email .";
+      grid-template-columns: minmax(0, 1fr) auto;
+      width: 100%;
+    }
+
+    &--responsive-workspace &-user__view,
+    &--responsive-workspace &-group__mail-button,
+    &--responsive-workspace &-group__member-search-button,
+    &--responsive-workspace &-group__duplicate-button,
+    &--responsive-workspace &-group__settings-button,
+    &--responsive-workspace &-group__delete-button,
+    &--responsive-workspace &-group__unlink-button,
+    &--responsive-workspace &-rename__toggle,
+    &--responsive-workspace &-grouping__search-button,
+    &--responsive-workspace &-grouping__duplicate-button,
+    &--responsive-workspace &-grouping__settings-button {
+      display: none !important;
+    }
+
+    &--responsive-workspace &-rename {
+      display: flex;
+    }
+
+    &--responsive-workspace &-rename__edit[hidden] {
+      display: none !important;
+    }
+
+    &--responsive-workspace &-rename__edit:not([hidden]) {
+      align-items: stretch;
+      display: grid;
+      flex: 1 1 100%;
+      gap: 0.4rem;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      margin-top: 0.4rem;
+      order: 20;
+      width: 100%;
+    }
+
+    &--responsive-workspace &-rename__edit .form-control {
+      @include easyedu.inline-edit-touch-control;
+    }
+
+    // K22-27: the touch field is 44 px from 1024 px down; its Kit icon-button
+    // peers follow it (the Kit itself only switches to touch at 48rem).
+    &--responsive-workspace &-rename__edit .easyedu-create-icon-button {
+      block-size: var(--easyedu-touch-target-min);
+      inline-size: var(--easyedu-touch-target-min);
+      min-block-size: var(--easyedu-touch-target-min);
+      min-inline-size: var(--easyedu-touch-target-min);
+    }
+
+    &--inline-editing &-mobile-actions,
+    &--inline-editing [data-easystud-card-menu] {
+      display: none !important;
+    }
+
+    // K22-27: the card menu is hidden while the rename editor is open (above),
+    // so its reserved lane goes back to the one-line editor.
+    &--responsive-workspace &-group > &-group__header.is-rename-editing > &-rename,
+    &--responsive-workspace &-tree__children > &-group > &-group__header.is-rename-editing > &-rename,
+    &--responsive-workspace &-tree__section[data-easystud-grouping-id] > &-grouping__header.is-rename-editing > &-rename {
+      @include easyedu.identity-card-action-lane-reclaim;
+    }
+
+    &-context-backdrop {
+      @include easyedu.mobile-context-backdrop;
+
+      display: block;
+    }
+
+    &-context-menu.is-mobile-sheet {
+      @include easyedu.mobile-context-sheet;
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__header {
+      @include easyedu.mobile-context-sheet-header;
+
+      display: flex;
+    }
+
+    // Same Kit Close component as every dialog (K16-71); only its place in the header is local.
+    &-context-menu.is-mobile-sheet &-context-menu__header button {
+      @include easyedu.close-button;
+
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__header strong {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__list {
+      @include easyedu.mobile-context-sheet-list;
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__list > button {
+      width: 100%;
+    }
+
+    // Sheet submenus expand inline under their trigger (accordion).
+    &-context-menu.is-mobile-sheet &-context-menu__submenu {
+      @include easyedu.menu-surface-inline($nested: true);
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__group.is-flattened &-context-menu__submenu {
+      @include easyedu.menu-submenu-indent($flat: true);
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__group > button,
+    &-context-menu.is-mobile-sheet &-context-menu__submenu > button {
+      @include easyedu.context-action-touch-minimum;
+      width: 100%;
+    }
+
+    &-context-menu.is-mobile-sheet [data-easystud-context-submenu-toggle][aria-expanded="true"] &-context-menu__chevron {
+      transform: rotate(90deg);
+    }
+
+    &--responsive-workspace &-user.is-selected {
+      @include easyedu.person-card-selected-unbounded;
+    }
+
+    &--responsive-workspace &-user__details,
+    &--responsive-workspace &-user__avatar {
+      display: none !important;
+    }
+
+    &--responsive-workspace &__filters-reset:not(.is-active),
+    &--responsive-workspace &__filters-reset--catalog:not(.is-active) {
+      display: none;
+    }
+
+    // Desktop Structure focus is cleared by the mobile view controller.
+    // Its Groups filter contents still belong to the visible Groups workspace.
+    &--responsive-workspace[data-easystud-mobile-view-active="groups"]
+      &-group-catalog-filters--structure {
+      display: grid;
+    }
+
+    // Compact Groups owns this existing Kit field even without desktop
+    // Structure focus. Keep its native search input and canonical field paint.
+    &--responsive-workspace[data-easystud-mobile-view-active="groups"]
+      &__search-field--structure {
+      display: flex;
+    }
+
+    &__layout {
+      gap: 1rem;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__panel {
+      height: auto;
+      min-height: min(42rem, calc(100vh - 8rem));
+      min-width: 0;
+      overflow-x: clip;
+
+      > .card-body {
+        height: auto;
+        min-height: min(38rem, calc(100vh - 10rem));
+      }
+    }
+
+    &__panel-heading {
+      @include easyedu.mobile-panel-heading-spacing;
+
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    &-column-heading {
+      @include easyedu.mobile-panel-heading-spacing;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] &-structure-groups {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      display: grid;
+      padding: 0;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] &-tree__groupings,
+    &[data-easystud-mobile-view-active="groups"] &-tree__section--ungrouped {
+      display: none !important;
+    }
+
+    // The base desktop mode hides the Groups disclosure outside Structure
+    // focus. In the responsive Groups workspace, keep the collapsed panel out
+    // of layout but restore it as soon as the existing transition opens it.
+    &[data-easystud-mobile-view-active="groups"] &-create-card--group &-advanced-filters.is-expanded {
+      display: block;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] &-create-card--group &-advanced-filters.is-collapsed {
+      display: none;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] &-create-card--group &-advanced-filters__more,
+    &[data-easystud-mobile-view-active="groups"] &-create-card--group &-advanced-filters__toggle {
+      display: revert;
+    }
+
+    &[data-easystud-mobile-view-active="groups"] &-group-catalog-filters--structure {
+      display: grid;
+    }
+
+    &-tree__section[data-easystud-grouping-id] {
+      @include easyedu.mobile-identity-rail-containment;
+
+      left: auto;
+      transform: none;
+    }
+
+    &__participant-list,
+    &-participant-groups__list,
+    &-structure-groups__list,
+    &-tree__groupings {
+      box-sizing: border-box;
+      padding-inline: 0.18rem;
+    }
+
+    &--responsive-workspace &-create-row {
+      min-height: 0;
+      transform: none;
+    }
+
+    &[data-easystud-mobile-view-active] &-tree {
+      gap: 0.55rem;
+      padding-bottom: 0 !important;
+      padding-top: 0.55rem !important;
+    }
+
+    &--responsive-workspace &__participant-list,
+    &--responsive-workspace &-structure-groups__list,
+    &--responsive-workspace &-tree__groupings {
+      gap: 0.55rem;
+    }
+
+    &--responsive-workspace &-user,
+    &--responsive-workspace &-group,
+    &--responsive-workspace &-tree__section[data-easystud-grouping-id] {
+      box-sizing: border-box;
+      margin-inline: 0;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    &--responsive-workspace &-group__members,
+    &--responsive-workspace &-group__member-add,
+    &--responsive-workspace &-group__member-search {
+      box-sizing: border-box;
+      max-width: none;
+      width: 100%;
+    }
+
+    // A grid-owned rhythm prevents the first member row from inheriting a
+    // different offset from following rows when the disclosure opens.
+    &--responsive-workspace &-group__members {
+      display: grid;
+      gap: 0.3rem;
+      list-style: none;
+    }
+
+    &--responsive-workspace &-group__members > &-member {
+      // Revealed members already use a 2.35rem cap. Give the initial preview
+      // rows the same block size so opening the list keeps one visual rhythm.
+      @include easyedu.related-person-row-compact-frame {
+      // This row has horizontal padding. Its responsive width must include that
+      // padding, otherwise the content-box calculation extends member rows past
+      // the nested Group card at compact widths.
+      box-sizing: border-box;
+      margin-block: 0;
+      max-width: 100%;
+      }
+      min-width: 0;
+      width: 100%;
+    }
+
+    // Grouping membership is useful desktop context but consumes the card's
+    // action/count row on a small Groups workspace.
+    &--responsive-workspace &-group__groupings--inline,
+    &--responsive-workspace &-group__groupings-details {
+      display: none !important;
+    }
+
+    // Direct card actions collapse into the local overflow menu. Clones in
+    // that menu must not inherit the direct-action hiding rules above; the
+    // controller includes only actions that no longer fit the card.
+    &--responsive-workspace &-group__actions-menu &-group__actions-menu-item {
+      display: inline-flex !important;
+    }
+
+    &-grouping-mobile-filters {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    [data-easystud-advanced-filters="structure-groupings"].is-expanded {
+      // The controller keeps the panel in the DOM during its collapse
+      // transition, so the state class—not [hidden]—is authoritative here.
+      display: block !important;
+    }
+
+    [data-easystud-advanced-filters="structure-groupings"].is-collapsed,
+    [data-easystud-advanced-filters="structure-groupings"][hidden] {
+      display: none !important;
+    }
+
+    // Search/add panels auto-expand their Grouping card. Their child list
+    // already sits beside the card's own border, so remove only the redundant
+    // inner guide while those panels are open; the card size is unchanged.
+    &--responsive-workspace
+      .local-groupimport-easystud-tree__section[data-easystud-grouping-id].is-expanded:has(
+        > .local-groupimport-easystud-container-search.is-open,
+        > .local-groupimport-easystud-group-email.is-open
+      )
+      > .local-groupimport-easystud-tree__children {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    &-advanced-filters__control--groupings-mobile {
+      display: inline-flex !important;
+    }
+
+    &-advanced-filters__control &-advanced-filters__toggle {
+      @include easyedu.filter-disclosure-trigger(touch);
+    }
+
+    &__filters-reset:not(.is-active) {
+      display: none;
+    }
+
+    &-grouping-mobile-filters__choices {
+      display: grid;
+      gap: 0.35rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    &-grouping-mobile-filters__choices .btn {
+      @include easyedu.filter-choice-touch-frame;
+    }
+
+    &-grouping-mobile-filters__choices .is-active {
+      @include easyedu.filter-choice-selected;
+    }
+
+    &-action-status {
+      @include easyedu.mobile-action-status(5.2rem);
+    }
+
+    &-action-status__spinner {
+      // Mirror the desktop action-busy indicator instead of introducing a
+      // responsive-only primary-blue spinner.
+      border: 0.22rem solid #dbeaf5;
+      border-radius: 50%;
+      border-right-color: #29724d;
+      border-top-color: #0c71c2;
+      height: 2.15rem;
+      width: 2.15rem;
+      animation: local-groupimport-easystud-action-busy 0.8s linear infinite;
+    }
+
+    &-back-to-top {
+      align-items: center;
+      background: var(--easyedu-primary);
+      border: 1px solid var(--easyedu-primary);
+      border-radius: var(--easyedu-control-radius);
+      bottom: calc(var(--easyedu-back-to-top-bottom, 0.85rem) + env(safe-area-inset-bottom));
+      box-shadow: var(--easyedu-shadow-soft);
+      color: var(--easyedu-identity-icon-color);
+      display: inline-flex;
+      height: var(--easyedu-touch-target-min);
+      justify-content: center;
+      position: fixed;
+      right: calc(0.85rem + env(safe-area-inset-right));
+      transition: bottom var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
+      width: var(--easyedu-touch-target-min);
+      z-index: 1062;
+    }
+
+    &-back-to-top[hidden] {
+      display: none;
+    }
+
+    &-back-to-top:focus-visible {
+      box-shadow: 0 0 0 0.2rem var(--easyedu-focus-ring), var(--easyedu-shadow-soft);
+      outline: 0;
+    }
+
+    &-context-menu:not([hidden]) ~ &-back-to-top,
+    &-back-to-top.is-obscured {
+      display: none;
+    }
+
+    &__clear-selection-frame,
+    &__clear-selection {
+      display: none;
+    }
+
+    &-selector {
+      @include easyedu.selection-checkbox(
+        var(--local-groupimport-easystud-selector-color),
+        large,
+        card
+      );
+    }
+
+    &--has-selection {
+      padding-bottom: 5.6rem;
+    }
+
+    &--has-selection &__panel-actions {
+      display: none;
+    }
+
+    &-mobile-actions {
+      @include easyedu.mobile-action-tray-surface;
+    }
+
+    &-mobile-actions__summary {
+      @include easyedu.mobile-action-tray-summary;
+    }
+
+    &-mobile-actions__buttons {
+      @include easyedu.mobile-action-tray-buttons;
+
+      .btn {
+        // Shared public selection actions own appearance and typography.
+        @include easyedu.mobile-action-tray-button;
+      }
+    }
+
+    &--participant-focus &__participant-content {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto minmax(18rem, auto) auto minmax(18rem, auto);
+    }
+
+    &--participant-focus &__filters,
+    &--participant-focus &-participant-groups__create,
+    &--participant-focus &__participant-list,
+    &--participant-focus &-participant-groups__list {
+      grid-column: 1;
+    }
+
+    &--participant-focus &__filters {
+      grid-row: 1;
+    }
+
+    &--participant-focus &__participant-list {
+      grid-row: 2;
+    }
+
+    &--participant-focus &-participant-groups__create {
+      grid-row: 3;
+    }
+
+    &--participant-focus &-participant-groups__list {
+      grid-row: 4;
+    }
+
+    &--structure-focus &-create-row,
+    &--structure-focus &-tree {
+      grid-template-columns: 1fr;
+    }
+
+    &--structure-focus &-tree__groupings {
+      min-width: 0;
+    }
+
+    &__participant-list,
+    &-participant-groups__list,
+    &-structure-groups__list,
+    &-tree__groupings {
+      max-height: min(44rem, 68vh);
+    }
+  }
+}
+
+// The four selected-group actions can exactly fit beside their summary in a
+// clean fixture at 769-800 px, but user font metrics or zoom leave no safe
+// gap. Reuse the established phone stack before that collision can put an
+// action beneath the selected-count summary.
+@media (max-width: 800px) {
+  .local-groupimport-easystud {
+    &--has-selection {
+      padding-bottom: 8.4rem;
+    }
+
+    &-mobile-actions {
+      @include easyedu.mobile-action-tray-stacked;
+    }
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .local-groupimport-easystud {
+    &-user:hover,
+    &-group:hover,
+    &-tree__section:hover {
+      transform: none;
+    }
+
+    &-user:hover::after,
+    &-group:hover::after {
+      opacity: 0;
+    }
+
+    &-user:hover::before,
+    &-group:hover::before {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .local-groupimport-import {
+    &__header-actions,
+    &-summary,
+    &-preview__toolbar {
+      grid-template-columns: 1fr;
+    }
+
+    &__header-actions {
+      display: grid;
+
+      .btn {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    &-preview__bulk-actions {
+      justify-content: stretch;
+
+      .btn {
+        flex: 1 1 auto;
+      }
+    }
+  }
+}

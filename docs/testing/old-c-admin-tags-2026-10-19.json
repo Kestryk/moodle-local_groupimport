@@ -1,0 +1,546 @@
+{
+  "base": "5dc4215c",
+  "scope": "OLD-C / K17-10: opt-in native multiple choices with selected-value chips in administration",
+  "kitCommit": "3d1b5951a1757eb6909b56a777a0ea60866ebf1d",
+  "kitBranch": "work/codex1/easyedu-kit-old-c-20261019",
+  "reference": "Foundations 08.4.1 Selection chip/S; PENPOT-PASSE/PASSE-2026-10-17.md",
+  "isolated": {
+    "cases": 16,
+    "locales": [
+      "fr",
+      "en"
+    ],
+    "widths": [
+      1600,
+      390
+    ],
+    "consoleErrors": 0,
+    "fieldHeights": [
+      38,
+      44
+    ],
+    "compactFieldHeights": [
+      32,
+      44
+    ],
+    "chipHeight": 24,
+    "chipFont": 11,
+    "chipGap": 8,
+    "chipInlinePadding": 8,
+    "removeTarget": 24,
+    "caretTargets": [
+      32,
+      44
+    ],
+    "clearTargets": [
+      28,
+      44
+    ],
+    "maxTextCentreDelta": 0,
+    "maxControlCentreDelta": 0,
+    "maxVerticalOverflow": 0,
+    "maxHorizontalOverflow": 0
+  },
+  "checks": {
+    "moodlecsErrors": 0,
+    "moodlecsWarnings": 19,
+    "phpLint": 3,
+    "eslint": "0 errors; 2 existing warnings; no increase",
+    "adapterCases": 9,
+    "builds": "admin_choices/searchable_choices AMD; conservative page styles; Node 22.11.0 / Sass 1.79.1",
+    "escaping": "PASS",
+    "filterEngine": "PASS",
+    "amdExports": "PASS",
+    "cssParity": "Existing ordered rules unchanged; only tagged/chip selectors added; global CSS 0 rules"
+  },
+  "native": {
+    "status": "BLOCKED",
+    "reason": "Protocol secret files removed; replacement path requested",
+    "pool": 8052,
+    "candidateCopied": false,
+    "serverWrites": 0,
+    "leaseReleased": true
+  },
+  "report": "docs/testing/old-c-admin-tags-2026-10-19.md",
+  "proof": "C:/dev/artifacts/old-c-20261019/validated-page-css-focus/results.json",
+  "limits": [
+    "No native Moodle PASS claimed",
+    "Native 4.5 and speech screen-reader checks remain open",
+    "Pre-existing Intl/M3 controller differences preserved; tagged helper and full SCSS match canonical Kit"
+  ],
+  "measurements": [
+    {
+      "consumer": "plugin",
+      "lang": "fr",
+      "width": 1600,
+      "field": {
+        "x": 592,
+        "y": 36,
+        "w": 416,
+        "h": 38,
+        "right": 1008,
+        "bottom": 74,
+        "cx": 800,
+        "cy": 55
+      },
+      "caret": {
+        "x": 975,
+        "y": 39,
+        "w": 32,
+        "h": 32,
+        "right": 1007,
+        "bottom": 71,
+        "cx": 991,
+        "cy": 55
+      },
+      "clear": {
+        "x": 947,
+        "y": 41,
+        "w": 28,
+        "h": 28,
+        "right": 975,
+        "bottom": 69,
+        "cx": 961,
+        "cy": 55
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "plugin",
+      "lang": "fr",
+      "width": 390,
+      "field": {
+        "x": 16,
+        "y": 36,
+        "w": 358,
+        "h": 44,
+        "right": 374,
+        "bottom": 80,
+        "cx": 195,
+        "cy": 58
+      },
+      "caret": {
+        "x": 329,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 373,
+        "bottom": 80,
+        "cx": 351,
+        "cy": 58
+      },
+      "clear": {
+        "x": 285,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 329,
+        "bottom": 80,
+        "cx": 307,
+        "cy": 58
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "plugin",
+      "lang": "en",
+      "width": 1600,
+      "field": {
+        "x": 592,
+        "y": 36,
+        "w": 416,
+        "h": 38,
+        "right": 1008,
+        "bottom": 74,
+        "cx": 800,
+        "cy": 55
+      },
+      "caret": {
+        "x": 975,
+        "y": 39,
+        "w": 32,
+        "h": 32,
+        "right": 1007,
+        "bottom": 71,
+        "cx": 991,
+        "cy": 55
+      },
+      "clear": {
+        "x": 947,
+        "y": 41,
+        "w": 28,
+        "h": 28,
+        "right": 975,
+        "bottom": 69,
+        "cx": 961,
+        "cy": 55
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "plugin",
+      "lang": "en",
+      "width": 390,
+      "field": {
+        "x": 16,
+        "y": 36,
+        "w": 358,
+        "h": 44,
+        "right": 374,
+        "bottom": 80,
+        "cx": 195,
+        "cy": 58
+      },
+      "caret": {
+        "x": 329,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 373,
+        "bottom": 80,
+        "cx": 351,
+        "cy": 58
+      },
+      "clear": {
+        "x": 285,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 329,
+        "bottom": 80,
+        "cx": 307,
+        "cy": 58
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "kit",
+      "lang": "fr",
+      "width": 1600,
+      "field": {
+        "x": 592,
+        "y": 36,
+        "w": 416,
+        "h": 38,
+        "right": 1008,
+        "bottom": 74,
+        "cx": 800,
+        "cy": 55
+      },
+      "caret": {
+        "x": 975,
+        "y": 39,
+        "w": 32,
+        "h": 32,
+        "right": 1007,
+        "bottom": 71,
+        "cx": 991,
+        "cy": 55
+      },
+      "clear": {
+        "x": 947,
+        "y": 41,
+        "w": 28,
+        "h": 28,
+        "right": 975,
+        "bottom": 69,
+        "cx": 961,
+        "cy": 55
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "kit",
+      "lang": "fr",
+      "width": 390,
+      "field": {
+        "x": 16,
+        "y": 36,
+        "w": 358,
+        "h": 44,
+        "right": 374,
+        "bottom": 80,
+        "cx": 195,
+        "cy": 58
+      },
+      "caret": {
+        "x": 329,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 373,
+        "bottom": 80,
+        "cx": 351,
+        "cy": 58
+      },
+      "clear": {
+        "x": 285,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 329,
+        "bottom": 80,
+        "cx": 307,
+        "cy": 58
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "kit",
+      "lang": "en",
+      "width": 1600,
+      "field": {
+        "x": 592,
+        "y": 36,
+        "w": 416,
+        "h": 38,
+        "right": 1008,
+        "bottom": 74,
+        "cx": 800,
+        "cy": 55
+      },
+      "caret": {
+        "x": 975,
+        "y": 39,
+        "w": 32,
+        "h": 32,
+        "right": 1007,
+        "bottom": 71,
+        "cx": 991,
+        "cy": 55
+      },
+      "clear": {
+        "x": 947,
+        "y": 41,
+        "w": 28,
+        "h": 28,
+        "right": 975,
+        "bottom": 69,
+        "cx": 961,
+        "cy": 55
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "consumer": "kit",
+      "lang": "en",
+      "width": 390,
+      "field": {
+        "x": 16,
+        "y": 36,
+        "w": 358,
+        "h": 44,
+        "right": 374,
+        "bottom": 80,
+        "cx": 195,
+        "cy": 58
+      },
+      "caret": {
+        "x": 329,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 373,
+        "bottom": 80,
+        "cx": 351,
+        "cy": 58
+      },
+      "clear": {
+        "x": 285,
+        "y": 36,
+        "w": 44,
+        "h": 44,
+        "right": 329,
+        "bottom": 80,
+        "cx": 307,
+        "cy": 58
+      },
+      "chips": [
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        },
+        {
+          "height": 24,
+          "font": "11px",
+          "background": "rgb(244, 248, 252)",
+          "ink": "rgb(11, 79, 138)",
+          "textCentre": 0,
+          "removeCentre": 0
+        }
+      ],
+      "closingFocus": {
+        "closing": true,
+        "focused": true
+      },
+      "errors": [],
+      "status": "PASS"
+    }
+  ],
+  "closingFocusCases": 8
+}

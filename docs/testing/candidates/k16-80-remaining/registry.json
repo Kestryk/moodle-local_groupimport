@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "scenarios": [
+    {
+      "id": "K1680-F22C",
+      "status": "candidate",
+      "runtimeExecuted": true,
+      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f22c",
+      "rows": 32,
+      "languages": [
+        "fr",
+        "en"
+      ],
+      "widths": [
+        1600,
+        390
+      ],
+      "ciExecutable": false,
+      "files": [
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f22c/native.cjs.txt",
+          "originalSha256": "d507991f9278c06754b92b3378a9918fa58be64ceec791595c41e2c1165d22ca",
+          "candidateSha256": "8a00af9aa9b7e6f5b03327ef684c86d29de0b4d081beda76d18120941dc001cb"
+        },
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f22c/fixture.php.txt",
+          "originalSha256": "b2f3729d8a4cdbce01b63d75e9622e3beeda1baa72b7f8e89c19c55fdaaa6fc2",
+          "candidateSha256": "26a1cc576e727930bdb43791b5764cc3df790df5640d6d11639f63983035951e"
+        }
+      ]
+    },
+    {
+      "id": "K1680-F23C",
+      "status": "candidate",
+      "runtimeExecuted": true,
+      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f23c",
+      "rows": 8,
+      "languages": [
+        "fr",
+        "en"
+      ],
+      "widths": [
+        1600,
+        390
+      ],
+      "ciExecutable": false,
+      "files": [
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f23c/native.cjs.txt",
+          "originalSha256": "00c367023f19f66d027792bfe6caa47db2f740b63b06cb44af1573c7e8b579dd",
+          "candidateSha256": "b7887f5bd860a55fc51a9fa232538d3309d43dd74dbcffe8d50050ede5c4c742"
+        },
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f23c/fixture.php.txt",
+          "originalSha256": "ef59055b8fea11bf70daf0e4421fd92ee1299c1ee72fcae00d715f6d8c93b22d",
+          "candidateSha256": "67ac36e0bdd3eae4e4b14719ff9b671788f2036eb8ac1191ab87caf2f7e8b0ba"
+        }
+      ]
+    },
+    {
+      "id": "K1680-F25D",
+      "status": "candidate",
+      "runtimeExecuted": true,
+      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f25d",
+      "rows": 64,
+      "languages": [
+        "fr",
+        "en"
+      ],
+      "widths": [
+        1600,
+        390
+      ],
+      "ciExecutable": false,
+      "files": [
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f25d/native.cjs.txt",
+          "originalSha256": "4673c4a08c58b4a149487aefccfcae299d29c2a3ae1537258d98e1a8d68c3a5a",
+          "candidateSha256": "2f9e77458fd940382a9b6b4f5460bbff240837d17664263c1952b72784fcc996"
+        },
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f25d/fixture.php.txt",
+          "originalSha256": "9a028a14aa270a2acdcbafe34ae6ca6103f4bdc165ce1f6200055e8d75825724",
+          "candidateSha256": "a4da786fe99b6c5b47886c40371c09724edcd040f019253a25a7a312b96bca7e"
+        }
+      ]
+    },
+    {
+      "id": "K1680-F25E",
+      "status": "candidate",
+      "runtimeExecuted": true,
+      "executionEvidence": "C:\\dev\\artifacts\\k16-80-remaining-20261018\\f25e",
+      "rows": 16,
+      "languages": [
+        "fr",
+        "en"
+      ],
+      "widths": [
+        1600,
+        390
+      ],
+      "ciExecutable": false,
+      "files": [
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f25e/native.cjs.txt",
+          "originalSha256": "881116215649a24400f14fe3913eb2b51c56e2dca5419674573cc3f8d12d89b1",
+          "candidateSha256": "9d58e09843074c366d59d005d98d583a9c8604eea1910fe72db56a955a6895b5"
+        },
+        {
+          "path": "docs/testing/candidates/k16-80-remaining/f25e/fixture.php.txt",
+          "originalSha256": "37e56860470e1327e0e238c1269cb6315c8e7346b069b4def081ae8534ed80f2",
+          "candidateSha256": "dc489d99da308a8060af13e8a464b959a794645ecda899da4f8758ff5089178f"
+        }
+      ]
+    }
+  ]
+}

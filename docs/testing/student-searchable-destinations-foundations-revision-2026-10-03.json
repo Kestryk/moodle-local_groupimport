@@ -1,0 +1,39 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+  "pairs": [
+    {
+      "id": "a301101d-ddc2-807b-8008-bb881f0f94ae",
+      "state": "Open",
+      "provider": "a301101d-ddc2-807b-8008-bb863e6f8975",
+      "main": "a301101d-ddc2-807b-8008-bb863a8a5472",
+      "match": true,
+      "checkLast": true
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb881f7d040c",
+      "state": "Closed",
+      "provider": "a301101d-ddc2-807b-8008-bb871f3cb329",
+      "main": "a301101d-ddc2-807b-8008-bb871ebb30f3",
+      "match": true,
+      "checkLast": null
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb881fbe613d",
+      "state": "No results",
+      "provider": "a301101d-ddc2-807b-8008-bb8736e5ce27",
+      "main": "a301101d-ddc2-807b-8008-bb8735c0b7a1",
+      "match": true,
+      "checkLast": null
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb88200daffb",
+      "state": "Responsive open",
+      "provider": "a301101d-ddc2-807b-8008-bb874c54bca0",
+      "main": "a301101d-ddc2-807b-8008-bb874a26c246",
+      "match": true,
+      "checkLast": true
+    }
+  ],
+  "humanValidated": false
+}

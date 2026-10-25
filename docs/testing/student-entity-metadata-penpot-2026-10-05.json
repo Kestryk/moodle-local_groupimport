@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-05",
+  "batch": "EED-UI-2026-0073",
+  "scope": "Saved Product metadata anatomy/paint successor; not all dialogs, current native fixtures or human acceptance.",
+  "basis": {
+    "nativeRun": "easystud-authenticated-20261003T173718909Z-36552",
+    "freshNativeRun": false,
+    "sourceKitVersion": "0.4.106",
+    "metadataBlob": "928ac8928d5bf688484836a877c127525bdd29fd",
+    "nativeBuilder": "renderAdvancedListSection",
+    "namesAreIllustrative": true
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "board": "e38279dc-cd7d-80fa-8008-bc000f020794",
+    "archive": "386b6f86-a1e7-806b-8008-be2016d7d782",
+    "archiveHidden": true,
+    "groupingOriginalHidden": true,
+    "settingsProvider": "79c98099-5199-8000-8008-bbfe8b1b6bfc",
+    "sections": [
+      {"id": "fcb98309-36c1-8004-8008-bc008ad4740f", "title": "Members", "count": 1, "rows": 1},
+      {"id": "386b6f86-a1e7-806b-8008-be20a8c81909", "title": "Groupings", "count": 0, "rows": 0, "empty": true},
+      {"id": "386b6f86-a1e7-806b-8008-be21211faf3e", "title": "Groups", "count": 1, "rows": 1}
+    ],
+    "rows": [
+      {"id": "386b6f86-a1e7-806b-8008-be211f3ca189", "width": 684, "height": 72, "chips": 2},
+      {"id": "386b6f86-a1e7-806b-8008-be2121c919a5", "width": 564, "height": 72, "chips": 2}
+    ],
+    "rowPaint": {"fill": "#ffffff", "border": "#e3ecf4", "radius": 11.2},
+    "primaries": [
+      {"id": "386b6f86-a1e7-806b-8008-be21c6f8e7b9", "text": "Example user", "font": 13.44, "weight": 600, "colour": "#334b61"},
+      {"id": "386b6f86-a1e7-806b-8008-be21c793977a", "text": "Group 1", "font": 13.44, "weight": 600, "colour": "#334b61"}
+    ],
+    "chipProviders": [
+      {"id": "386b6f86-a1e7-806b-8008-be21200ac3fa", "component": "37222e98-689a-801a-8008-bbfd3ef0b534"},
+      {"id": "386b6f86-a1e7-806b-8008-be212076a5ba", "component": "37222e98-689a-801a-8008-bbfd3ef0b534"},
+      {"id": "386b6f86-a1e7-806b-8008-be21224242b8", "component": "37222e98-689a-801a-8008-bbfd3f6ad97a"},
+      {"id": "386b6f86-a1e7-806b-8008-be2122ae8f94", "component": "37222e98-689a-801a-8008-bbfd3f6ad97a"}
+    ],
+    "headerCentres": [
+      {"root": "fcb98309-36c1-8004-8008-bc008ad4740f", "titleDelta": 0, "glyphDelta": 0},
+      {"root": "386b6f86-a1e7-806b-8008-be20a8c81909", "titleDelta": 0, "glyphDelta": 0},
+      {"root": "386b6f86-a1e7-806b-8008-be21211faf3e", "titleDelta": 0, "glyphDelta": 0},
+      {"root": "e38279dc-cd7d-80fa-8008-bc0024b9c324", "titleDelta": 0, "glyphDelta": 0}
+    ]
+  },
+  "readback": {
+    "tolerance": 0.1,
+    "visibleDescendantOverflows": 0,
+    "visibleTextPaintOverflows": 0,
+    "finalGroupExportInspected": true,
+    "finalGroupingExportInspected": true,
+    "localComponentMastersCreated": 0,
+    "sourceFoundationUpdated": false,
+    "humanVisualValidated": false
+  },
+  "nextSourcePublication": [
+    "Paired Library/Standard Settings-list: coherent count, primary then chips, empty section.",
+    "Isolate existing metadata row recipe, preserve normal/compact density and primary role.",
+    "Read back affected narrow/product consumers; never bulk-update unrelated overrides."
+  ]
+}

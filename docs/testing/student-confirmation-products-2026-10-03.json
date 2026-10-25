@@ -1,0 +1,471 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+  "humanVisualValidated": false,
+  "examples": [
+    {
+      "id": "a301101d-ddc2-807b-8008-bb54f005672a",
+      "name": "Foundation / Native confirmation / Danger / Desktop / Delete groups",
+      "provider": "253eab0b-b38c-802b-8008-bb51d7c839ce",
+      "width": 544,
+      "height": 165.19999999999993,
+      "title": "Confirm deletion",
+      "description": "Some selected groups still contain students. Confirm deletion?",
+      "actions": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bb54f006f01d",
+          "provider": "724138fb-4a17-80dc-8008-babe45e05c1b",
+          "text": "Cancel",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 82,
+          "height": 37.600000000000364,
+          "x": 340.5999999999999,
+          "y": 111.60000000000002,
+          "rightInset": 121.40000000000009,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bb54f007008e",
+          "provider": "253eab0b-b38c-802b-8008-bb50b6134d03",
+          "text": "Confirm",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 94,
+          "height": 37.600000000000364,
+          "x": 433,
+          "y": 111.60000000000002,
+          "rightInset": 17,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": -0.3937492370605469,
+          "paintDeltaY": -0.0499994270503521,
+          "contained": true
+        }
+      ],
+      "titleStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb54f0058ab0",
+        "name": "header title",
+        "text": "Confirm deletion",
+        "font": "Inter",
+        "size": "16",
+        "weight": "700",
+        "align": "left",
+        "verticalAlign": "center",
+        "bounds": {
+          "x": 132,
+          "y": 752.4000000059605,
+          "width": 130.9250030517578,
+          "height": 19.200000762939453
+        }
+      },
+      "descriptionStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb54f006ab9e",
+        "name": "Confirmation description",
+        "text": "Some selected groups still contain students. Confirm deletion?",
+        "font": "Inter",
+        "size": "13",
+        "weight": "400",
+        "align": "left",
+        "verticalAlign": "top",
+        "bounds": {
+          "x": 129,
+          "y": 809.1999999880791,
+          "width": 383.7875061035156,
+          "height": 16
+        }
+      }
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb54f0403036",
+      "name": "Foundation / Native confirmation / Danger / Narrow / Delete groups",
+      "provider": "253eab0b-b38c-802b-8008-bb5234273aa8",
+      "width": 354,
+      "height": 180.8,
+      "title": "Confirm deletion",
+      "description": "Some selected groups still contain students. Confirm deletion?",
+      "actions": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bb54f041782b",
+          "provider": "724138fb-4a17-80dc-8008-babe45e05c1b",
+          "text": "Cancel",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 82,
+          "height": 37.600000000000364,
+          "x": 150.5999999999999,
+          "y": 127.19999999999999,
+          "rightInset": 121.40000000000009,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bb54f0419cfb",
+          "provider": "253eab0b-b38c-802b-8008-bb50b6134d03",
+          "text": "Confirm",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 94,
+          "height": 37.600000000000364,
+          "x": 243,
+          "y": 127.19999999999999,
+          "rightInset": 17,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": -0.3937492370605469,
+          "paintDeltaY": -0.0499994270503521,
+          "contained": true
+        }
+      ],
+      "titleStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb54f04048b9",
+        "name": "header title",
+        "text": "Confirm deletion",
+        "font": "Inter",
+        "size": "16",
+        "weight": "700",
+        "align": "left",
+        "verticalAlign": "center",
+        "bounds": {
+          "x": 2073,
+          "y": 226.40000000596046,
+          "width": 130.9250030517578,
+          "height": 19.200000762939453
+        }
+      },
+      "descriptionStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb54f04110c3",
+        "name": "Confirmation description",
+        "text": "Some selected groups still contain students. Confirm deletion?",
+        "font": "Inter",
+        "size": "13",
+        "weight": "400",
+        "align": "left",
+        "verticalAlign": "top",
+        "bounds": {
+          "x": 2070,
+          "y": 283.19999998807907,
+          "width": 274.9250183105469,
+          "height": 31.600000202655792
+        }
+      }
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb5519398d76",
+      "name": "Foundation / Native confirmation / Neutral / Desktop / Copy or Move",
+      "provider": "253eab0b-b38c-802b-8008-bb51d2ce5798",
+      "width": 544,
+      "height": 180.80000000000018,
+      "title": "How should this group be added?",
+      "description": "Keep the group in its original grouping, or move it by removing it from the original grouping.",
+      "actions": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bb55193b7405",
+          "provider": "724138fb-4a17-80dc-8008-babe45e05c1b",
+          "text": "Copy to grouping",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 153.00000000000006,
+          "height": 37.600000000000364,
+          "x": 209.5999999999999,
+          "y": 127.19999999999982,
+          "rightInset": 181.40000000000003,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": -2.842170943040401e-14,
+          "paintDeltaY": 0,
+          "contained": true
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bb55193b8828",
+          "provider": "db59201c-3dd6-8004-8008-babe0d7923f8",
+          "text": "Move to grouping",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 154,
+          "height": 37.600000000000364,
+          "x": 373,
+          "y": 127.19999999999982,
+          "rightInset": 17,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        }
+      ],
+      "titleStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb55193a1e38",
+        "name": "header title",
+        "text": "How should this group be added?",
+        "font": "Inter",
+        "size": "16",
+        "weight": "700",
+        "align": "left",
+        "verticalAlign": "center",
+        "bounds": {
+          "x": 132,
+          "y": 4556.4000000059605,
+          "width": 260.1125183105469,
+          "height": 19.200000762939453
+        }
+      },
+      "descriptionStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb55193b2c33",
+        "name": "Confirmation description",
+        "text": "Keep the group in its original grouping, or move it by removing it from the original grouping.",
+        "font": "Inter",
+        "size": "13",
+        "weight": "400",
+        "align": "left",
+        "verticalAlign": "top",
+        "bounds": {
+          "x": 129,
+          "y": 4613.199999988079,
+          "width": 501.0375061035156,
+          "height": 31.600000202655792
+        }
+      }
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb55196ba238",
+      "name": "Foundation / Native confirmation / Neutral / Narrow / Copy or Move",
+      "provider": "253eab0b-b38c-802b-8008-bb523352a496",
+      "width": 354,
+      "height": 196.39999999999964,
+      "title": "How should this group be added?",
+      "description": "Keep the group in its original grouping, or move it by removing it from the original grouping.",
+      "actions": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bb55196d2d93",
+          "provider": "724138fb-4a17-80dc-8008-babe45e05c1b",
+          "text": "Copy to grouping",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 153,
+          "height": 37.600000000000364,
+          "x": 19.600000000000023,
+          "y": 142.80000000000018,
+          "rightInset": 181.39999999999998,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bb55196d7147",
+          "provider": "db59201c-3dd6-8004-8008-babe0d7923f8",
+          "text": "Move to grouping",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 154,
+          "height": 37.600000000000364,
+          "x": 183,
+          "y": 142.80000000000018,
+          "rightInset": 17,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        }
+      ],
+      "titleStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb55196c2de2",
+        "name": "header title",
+        "text": "How should this group be added?",
+        "font": "Inter",
+        "size": "16",
+        "weight": "700",
+        "align": "left",
+        "verticalAlign": "center",
+        "bounds": {
+          "x": 724,
+          "y": 4556.4000000059605,
+          "width": 260.1125183105469,
+          "height": 19.200000762939453
+        }
+      },
+      "descriptionStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb55196cd5d1",
+        "name": "Confirmation description",
+        "text": "Keep the group in its original grouping, or move it by removing it from the original grouping.",
+        "font": "Inter",
+        "size": "13",
+        "weight": "400",
+        "align": "left",
+        "verticalAlign": "top",
+        "bounds": {
+          "x": 721,
+          "y": 4613.199999988079,
+          "width": 305.9875183105469,
+          "height": 31.600000202655792
+        }
+      }
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb55199c29d3",
+      "name": "Foundation / Native confirmation / Danger / Desktop / Delete groupings",
+      "provider": "253eab0b-b38c-802b-8008-bb51d7c839ce",
+      "width": 544,
+      "height": 165.19999999999982,
+      "title": "Confirm deletion",
+      "description": "Some selected groupings still contain groups. Confirm deletion?",
+      "actions": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bb55199c29df",
+          "provider": "724138fb-4a17-80dc-8008-babe45e05c1b",
+          "text": "Cancel",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 82,
+          "height": 37.600000000000364,
+          "x": 340.5999999999999,
+          "y": 111.60000000000036,
+          "rightInset": 121.40000000000009,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bb55199c6e51",
+          "provider": "253eab0b-b38c-802b-8008-bb50b6134d03",
+          "text": "Confirm",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 94,
+          "height": 37.600000000000364,
+          "x": 433,
+          "y": 111.60000000000036,
+          "rightInset": 17,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": -0.3937492370605469,
+          "paintDeltaY": -0.0499994270503521,
+          "contained": true
+        }
+      ],
+      "titleStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb55199c29d6",
+        "name": "header title",
+        "text": "Confirm deletion",
+        "font": "Inter",
+        "size": "16",
+        "weight": "700",
+        "align": "left",
+        "verticalAlign": "center",
+        "bounds": {
+          "x": 132,
+          "y": 4852.4000000059605,
+          "width": 130.9250030517578,
+          "height": 19.200000762939453
+        }
+      },
+      "descriptionStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb55199c29de",
+        "name": "Confirmation description",
+        "text": "Some selected groupings still contain groups. Confirm deletion?",
+        "font": "Inter",
+        "size": "13",
+        "weight": "400",
+        "align": "left",
+        "verticalAlign": "top",
+        "bounds": {
+          "x": 129,
+          "y": 4909.199999988079,
+          "width": 392.5375061035156,
+          "height": 16
+        }
+      }
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb5519cd9dd1",
+      "name": "Foundation / Native confirmation / Danger / Narrow / Delete groupings",
+      "provider": "253eab0b-b38c-802b-8008-bb5234273aa8",
+      "width": 354,
+      "height": 180.80000000000018,
+      "title": "Confirm deletion",
+      "description": "Some selected groupings still contain groups. Confirm deletion?",
+      "actions": [
+        {
+          "id": "a301101d-ddc2-807b-8008-bb5519cdcdda",
+          "provider": "724138fb-4a17-80dc-8008-babe45e05c1b",
+          "text": "Cancel",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 82,
+          "height": 37.600000000000364,
+          "x": 150.5999999999999,
+          "y": 127.19999999999982,
+          "rightInset": 121.40000000000009,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": 0,
+          "paintDeltaY": 0,
+          "contained": true
+        },
+        {
+          "id": "a301101d-ddc2-807b-8008-bb5519cdcddc",
+          "provider": "253eab0b-b38c-802b-8008-bb50b6134d03",
+          "text": "Confirm",
+          "font": "Inter",
+          "size": "14.08",
+          "width": 94,
+          "height": 37.600000000000364,
+          "x": 243,
+          "y": 127.19999999999982,
+          "rightInset": 17,
+          "align": "center",
+          "verticalAlign": "center",
+          "paintDeltaX": -0.3937492370605469,
+          "paintDeltaY": -0.0499994270503521,
+          "contained": true
+        }
+      ],
+      "titleStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb5519cdcdd1",
+        "name": "header title",
+        "text": "Confirm deletion",
+        "font": "Inter",
+        "size": "16",
+        "weight": "700",
+        "align": "left",
+        "verticalAlign": "center",
+        "bounds": {
+          "x": 724,
+          "y": 4852.4000000059605,
+          "width": 130.9250030517578,
+          "height": 19.200000762939453
+        }
+      },
+      "descriptionStyle": {
+        "id": "a301101d-ddc2-807b-8008-bb5519cdcdd9",
+        "name": "Confirmation description",
+        "text": "Some selected groupings still contain groups. Confirm deletion?",
+        "font": "Inter",
+        "size": "13",
+        "weight": "400",
+        "align": "left",
+        "verticalAlign": "top",
+        "bounds": {
+          "x": 721,
+          "y": 4909.199999988079,
+          "width": 283.6750183105469,
+          "height": 31.600000202655792
+        }
+      }
+    }
+  ],
+  "readbackDate": "2026-10-03",
+  "exportInspected": true
+}

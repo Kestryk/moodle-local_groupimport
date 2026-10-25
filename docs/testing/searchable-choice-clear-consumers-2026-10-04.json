@@ -1,0 +1,487 @@
+{
+  "date": "2026-10-04",
+  "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+  "pageId": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "humanAccepted": false,
+  "items": [
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba0a571f8a3",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "Any",
+      "selected": false,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b96e60ef7",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 130
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": true,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -26
+      }
+    },
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba0a5d9c48e",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "Any",
+      "selected": false,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b962b3955",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 130
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": true,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -26
+      }
+    },
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba0a6945937",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 284,
+      "triggerH": 32,
+      "summary": "Any",
+      "selected": false,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b95f9bc99",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 230
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": true,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -26
+      }
+    },
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba0f18e3e90",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "Any",
+      "selected": false,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b97a1bea8",
+      "before": {
+        "x": 293.9999999999999,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 130
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": true,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -26
+      }
+    },
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba0f345da54",
+      "provider": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "2 selected",
+      "selected": true,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b96d17d29",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 86
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": false,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14.000000000000114,
+        "chevronCentreDelta": 0,
+        "summaryGap": 18
+      }
+    },
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba110495fe6",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 294,
+      "triggerH": 44,
+      "summary": "Any",
+      "selected": false,
+      "touch": true,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b97440af5",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 240
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5aa17c92b1",
+        "clearHidden": true,
+        "size": [
+          36,
+          36
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -36
+      }
+    },
+    {
+      "rootId": "a301101d-ddc2-807b-8008-bba113744497",
+      "provider": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+      "w": 294,
+      "triggerH": 44,
+      "summary": "2 selected",
+      "selected": true,
+      "touch": true,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b96af365b",
+      "before": {
+        "x": 248,
+        "y": 4,
+        "w": 36,
+        "h": 36,
+        "summaryW": 196
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5aa17c92b1",
+        "clearHidden": false,
+        "size": [
+          36,
+          36
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": 12
+      }
+    },
+    {
+      "rootId": "c403923b-827e-80b7-8008-bbc4b5de6faf",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "Any",
+      "selected": false,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b9613c71c",
+      "before": {
+        "x": 293.9999999999999,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 130
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": true,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -26
+      }
+    },
+    {
+      "rootId": "c403923b-827e-80b7-8008-bbc4b5de6fb0",
+      "provider": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "2 selected",
+      "selected": true,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b968fedf8",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 86
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": false,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14.000000000000114,
+        "chevronCentreDelta": 0,
+        "summaryGap": 18
+      }
+    },
+    {
+      "rootId": "c403923b-827e-80b7-8008-bbc4b82d21c4",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 184,
+      "triggerH": 32,
+      "summary": "Any",
+      "selected": false,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b969b1b6f",
+      "before": {
+        "x": 293.9999999999999,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 130
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": true,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -26
+      }
+    },
+    {
+      "rootId": "c403923b-827e-80b7-8008-bbc4b5deceac",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 294,
+      "triggerH": 44,
+      "summary": "Any",
+      "selected": false,
+      "touch": true,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b9675eb4d",
+      "before": {
+        "x": 294,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 240
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5aa17c92b1",
+        "clearHidden": true,
+        "size": [
+          36,
+          36
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": -36
+      }
+    },
+    {
+      "rootId": "c403923b-827e-80b7-8008-bbc4b5deceae",
+      "provider": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+      "w": 294,
+      "triggerH": 44,
+      "summary": "2 selected",
+      "selected": true,
+      "touch": true,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b97064bfd",
+      "before": {
+        "x": 248,
+        "y": 4,
+        "w": 36,
+        "h": 36,
+        "summaryW": 196
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5aa17c92b1",
+        "clearHidden": false,
+        "size": [
+          36,
+          36
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": 12
+      }
+    },
+    {
+      "rootId": "df1dc7b5-2b58-807e-8008-bc36ec7372f8",
+      "provider": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+      "w": 359.9999999999999,
+      "triggerH": 32,
+      "summary": "2 selected",
+      "selected": true,
+      "touch": false,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b961caf58",
+      "before": {
+        "x": 293.9999999999999,
+        "y": 2,
+        "w": 28,
+        "h": 28,
+        "summaryW": 262
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5a9fedab9b",
+        "clearHidden": false,
+        "size": [
+          28,
+          28
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14,
+        "chevronCentreDelta": 0,
+        "summaryGap": 17.999999999999886
+      }
+    },
+    {
+      "rootId": "df1dc7b5-2b58-807e-8008-bc370dd287e4",
+      "provider": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+      "w": 294,
+      "triggerH": 44,
+      "summary": "2 selected",
+      "selected": true,
+      "touch": true,
+      "clearId": "cf371b29-2e8e-8011-8008-bd5b973bd5d7",
+      "before": {
+        "x": 248,
+        "y": 4,
+        "w": 36,
+        "h": 36,
+        "summaryW": 192
+      },
+      "after": {
+        "clearProvider": "cf371b29-2e8e-8011-8008-bd5aa17c92b1",
+        "clearHidden": false,
+        "size": [
+          36,
+          36
+        ],
+        "contained": true,
+        "glyphLinked": true,
+        "glyphCentreDelta": [
+          0,
+          0
+        ],
+        "chevronEnd": 14.000000000000227,
+        "chevronCentreDelta": 0,
+        "summaryGap": 12
+      }
+    }
+  ],
+  "exportInspected": "a301101d-ddc2-807b-8008-bba0f07b1569",
+  "kitCatalogueCommit": "3a5b401d5415c0e5867802331e2c5b219d133616",
+  "nativeRun": "easystud-authenticated-20261004T192321615Z-388"
+}

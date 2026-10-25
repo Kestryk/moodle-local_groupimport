@@ -1,0 +1,275 @@
+{
+  "records": [
+    {
+      "width": 1600,
+      "key": "participants",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 1600,
+      "key": "participants",
+      "index": 1,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 1600,
+      "key": "participants",
+      "index": 2,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 1600,
+      "key": "participants",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "participants",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "participants",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "participants",
+      "reducedChoiceStatic": true
+    },
+    {
+      "width": 1600,
+      "key": "participant-groups",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 1600,
+      "key": "participant-groups",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "participant-groups",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "participant-groups",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "participant-groups",
+      "reducedChoiceStatic": true
+    },
+    {
+      "width": 1600,
+      "key": "structure-groups",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 1600,
+      "key": "structure-groups",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "structure-groups",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "structure-groups",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 1600,
+      "key": "structure-groups",
+      "reducedChoiceStatic": true
+    },
+    {
+      "width": 768,
+      "key": "participants",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 768,
+      "key": "participants",
+      "index": 1,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 768,
+      "key": "participants",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 768,
+      "key": "participants",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 768,
+      "key": "participants",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 768,
+      "key": "participants",
+      "reducedChoiceStatic": true
+    },
+    {
+      "width": 768,
+      "key": "structure-groups",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 768,
+      "key": "structure-groups",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 768,
+      "key": "structure-groups",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 768,
+      "key": "structure-groups",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 768,
+      "key": "structure-groups",
+      "reducedChoiceStatic": true
+    },
+    {
+      "width": 390,
+      "key": "participants",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 390,
+      "key": "participants",
+      "index": 1,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 390,
+      "key": "participants",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 390,
+      "key": "participants",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 390,
+      "key": "participants",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 390,
+      "key": "participants",
+      "reducedChoiceStatic": true
+    },
+    {
+      "width": 390,
+      "key": "structure-groups",
+      "index": 0,
+      "searchPreservesSelection": true,
+      "clearOpenAndFocused": true
+    },
+    {
+      "width": 390,
+      "key": "structure-groups",
+      "iteration": 0,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 390,
+      "key": "structure-groups",
+      "iteration": 1,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 390,
+      "key": "structure-groups",
+      "iteration": 2,
+      "nestedClosedInOneClick": true,
+      "nextClickReopens": true
+    },
+    {
+      "width": 390,
+      "key": "structure-groups",
+      "reducedChoiceStatic": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "runId": "easystud-authenticated-20261006T055405901Z-38752",
+  "result": "PASS native search/selection/clear/Escape/nested parent close/reduced Motion at1600/768/390",
+  "servedSource": "9119637dfba7766cf4bdeeb9eb67b32e28730218",
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false
+  },
+  "humanVisualValidated": false
+}

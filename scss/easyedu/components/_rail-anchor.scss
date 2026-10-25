@@ -1,0 +1,958 @@
+@use "buttons";
+@use "focus";
+@use "animations";
+@use "loading";
+@use "navigation";
+
+// =============================================================================
+// EasyEdu "Rail-anchor" page structure (K21-51, validated by Kevin 22/10/2026)
+// =============================================================================
+//
+// STANDARD RULE for every EasyEdu view, in current plugins (EasyStud Student
+// Management, Mass Import...) and in every future EasyEdu plugin:
+//
+// 1. A view has exactly two structural floors, in this DOM order:
+//    a. The NAVIGATION BAND (`.easyedu-rail-anchor__band`), at the top of the view.
+//       It holds the primary rail (`.easyedu-rail-anchor__rail`) only, whose start
+//       is the plugin identity (tile + "Product / Active view"), the brand anchor
+//       of the plugin.
+//    b. ONE MAIN CONTENT FRAME (`.easyedu-rail-anchor__frame`) under the band. It
+//       wraps everything else of the view: the head (`.easyedu-rail-anchor__head`:
+//       view title + description only), filters, panels, lists, pagination...
+//       K22-09 (Penpot 09.5, "Piste 3 - Rail-ancre : 2 etages au lieu de 3"): when
+//       the view has several layouts, the frame opens on a head row
+//       (`.easyedu-rail-anchor__head-row`) where the head (start) and the view
+//       tabs (`.easyedu-rail-anchor__tabs`, end) share one line, top-aligned. On a
+//       line too narrow for both, the tabs wrap under the head, end-aligned. The
+//       tabs never get a band of their own.
+//    K22-19 (Penpot 09.5 "K22-H", Piste 3 card): on desktop the band and the frame
+//    form ONE white rounded card, joined by a thin hairline separator. The frame
+//    must therefore directly follow the band in the DOM.
+// 2. The identity lives in the rail. The head never repeats a product eyebrow on
+//    desktop (`.easyedu-rail-anchor__compact-eyebrow` is shown on compact only).
+// 3. Modals, menus, notifications and floating trays (for instance the sticky
+//    "N selected / Clear all" capsule) are NOT part of the band; they keep their
+//    own surfaces. Nothing is reordered with CSS `order`: DOM = reading = Tab order.
+// 4. Compact layouts (<= $compact-breakpoint) keep their drawer navigation and its
+//    identity (K21-19 Option A); the band hides its desktop parts and the frame
+//    collapses into the plain flow.
+//
+// Penpot reference: "EasyEdu Foundations", page "08.10.1 - Library / navigation
+// items": "EasyEdu / Navigation / Primary rail / Identity"
+// (d5e0c76a-500a-80ad-8008-d418806fa087) and "EasyEdu / Navigation / View tabs"
+// (d5e0c76a-500a-80ad-8008-d4175667c4c3), Tab / Selected and Tab / Default.
+//
+// Markup contract:
+// - navigation partial (easyedu_navigation.mustache) with `identityrail: true`,
+//   `drawertitle` (product name) and `identitysubtitle` (active view);
+// - a Guide launcher may expose `.easyedu-guide__launcher-short` (capsule label);
+// - view tabs: `.easyedu-view-tabs` > `.easyedu-view-tabs__tab` buttons using
+//   `aria-pressed` and/or `.active`.
+//
+// Usage (consumer root selector must be an id or equivalent so Moodle/Bootstrap
+// button states and the separately loaded Guide sheet cannot win):
+//   #my-plugin-root {
+//     @include easyedu.rail-anchor-page;
+//     .my-navigation-wrapper { @include easyedu.navigation-identity-rail; }
+//     .my-view-tabs { @include easyedu.view-tabs; }
+//   }
+
+$-rail-block-size: 4rem;
+$-rail-control-size: 2.5rem;
+
+// Band + single content frame. Include once on the view root.
+@mixin rail-anchor-page($compact-breakpoint: 64rem) {
+  --easyedu-rail-anchor-inset: 2rem;
+  // K22-37 (Kevin 22/10/2026): the rail sits closer to the card edges than the
+  // frame content: identity nearer the start edge, Guide + preferences nearer the end.
+  --easyedu-rail-anchor-edge: 1.25rem;
+  // The view root is the query container of the identity rail (narrow bands).
+  container-type: inline-size;
+
+  .easyedu-rail-anchor__band {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin: 0 0 1rem;
+    min-inline-size: 0;
+  }
+
+  .easyedu-rail-anchor__rail {
+    flex: 1 1 auto;
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  .easyedu-rail-anchor__tabs {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: flex-end;
+    margin-inline-start: auto;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    padding-inline-end: var(--easyedu-rail-anchor-inset);
+  }
+
+  .easyedu-rail-anchor__frame {
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-card-border);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding: 1.5rem var(--easyedu-rail-anchor-inset);
+  }
+
+  .easyedu-rail-anchor__head {
+    margin: 0 0 1.5rem;
+    min-inline-size: 0;
+  }
+
+  // K22-09 head row: title + description at the start, view tabs at the end.
+  .easyedu-rail-anchor__head-row {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: space-between;
+    margin: 0 0 1.5rem;
+    min-inline-size: 0;
+
+    > .easyedu-rail-anchor__head {
+      flex: 1 1 20rem;
+      margin: 0;
+    }
+
+    > .easyedu-rail-anchor__tabs {
+      // The frame padding already provides the inset.
+      padding-inline-end: 0;
+    }
+  }
+
+  // The floating compact launcher occupies the start-edge 44px lane. Keep the
+  // reading heading out of that lane even as its vertical position changes.
+  @media (max-width: 40rem) {
+    .easyedu-rail-anchor__head,
+    .easyedu-rail-anchor__head-row > .easyedu-rail-anchor__head {
+      @include navigation.navigation-content-clearance(0px);
+    }
+  }
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    .easyedu-rail-anchor__compact-eyebrow {
+      display: none;
+    }
+
+    // K22-19 (Kevin 22/10/2026, Penpot 09.5 "K22-H", Piste 3 card): the band and the
+    // frame read as ONE white card. The band is its top (card border, 16 px top
+    // corners) and ends on a full-width hairline separator painted inside the side
+    // borders; the frame that follows continues the card without a top edge.
+    .easyedu-rail-anchor__band {
+      background: var(--easyedu-surface);
+      border: 0.0625rem solid var(--easyedu-card-border);
+      border-block-end: 0;
+      border-start-end-radius: 1rem;
+      border-start-start-radius: 1rem;
+      box-shadow: inset 0 -0.0625rem 0 var(--easyedu-card-hairline);
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .easyedu-rail-anchor__band + .easyedu-rail-anchor__frame {
+      border-block-start: 0;
+      border-start-end-radius: 0;
+      border-start-start-radius: 0;
+    }
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) and (max-width: 75rem) {
+    --easyedu-rail-anchor-inset: 1.25rem;
+    --easyedu-rail-anchor-edge: 1rem;
+  }
+
+  @media (max-width: $compact-breakpoint) {
+    .easyedu-rail-anchor__band {
+      margin: 0;
+    }
+
+    .easyedu-rail-anchor__tabs {
+      display: none;
+    }
+
+    .easyedu-rail-anchor__frame {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
+}
+
+// Primary rail with integrated identity. Include on the element that already
+// includes `navigation-component` (the navigation wrapper).
+// Narrow rails (K22-05/06): the navigation controller collapses controls to icon
+// capsules only while the rail overflows (`.is-rail-collapsed`: utilities, then
+// inactive destinations, then the Guide); K22-13: a collapsed control unfolds in the
+// flow on hover/focus and its neighbours fold to make room (`.is-rail-unfolded`,
+// `.is-rail-yielded`, `--easyedu-rail-item-full`), never an overlay. K22-36: as a
+// last resort the active view condenses partially (`.is-rail-condensed`,
+// `--easyedu-rail-item-condensed`): truncated label, same active surface and icon.
+// No fixed width threshold: labels stay visible whenever they fit, in any language.
+@mixin navigation-identity-rail($compact-breakpoint: 64rem) {
+  // Capsule label of the Guide launcher: only the identity rail shows it.
+  .easyedu-guide__launcher-short {
+    display: none;
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      border-radius: 1rem;
+      box-shadow: none;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      justify-content: flex-start;
+      margin: 0;
+      min-block-size: $-rail-block-size;
+      overflow: visible;
+      padding: 0.75rem var(--easyedu-rail-anchor-edge, 1.25rem);
+      position: relative;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      gap: 0.625rem;
+      margin-inline-end: 2.25rem;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-tile {
+      align-items: center;
+      background: var(--easyedu-primary);
+      border-radius: 0.75rem;
+      box-sizing: border-box;
+      color: var(--easyedu-identity-icon-color);
+      display: inline-flex;
+      flex: 0 0 $-rail-control-size;
+      block-size: $-rail-control-size;
+      inline-size: $-rail-control-size;
+      justify-content: center;
+
+      > .fa {
+        font-size: 0.875rem;
+        line-height: 1;
+      }
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.0625rem;
+      min-inline-size: 0;
+    }
+
+    // K22-04: the product name takes the charter green (the Guide gradient's accent).
+    .easyedu-navigation--identity .easyedu-navigation__identity-name {
+      color: var(--easyedu-accent);
+      font: var(--easyedu-font-weight-strong) 1rem/1.2 var(--easyedu-font-family-ui);
+      white-space: nowrap;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-view {
+      color: var(--easyedu-text-muted);
+      font: var(--easyedu-font-weight-medium) 0.75rem/1.2 var(--easyedu-font-family-ui);
+      white-space: nowrap;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__identity-divider {
+      background: var(--easyedu-card-border);
+      block-size: 2rem;
+      flex: 0 0 0.0625rem;
+      inline-size: 0.0625rem;
+      margin-inline-end: 1.0625rem;
+    }
+
+    // Destinations: one capsule family (Penpot "pill" / "pill active").
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] > .easyedu-navigation__sections {
+      flex: 0 1 auto;
+      justify-content: flex-start;
+      margin: -0.25rem;
+      min-inline-size: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.25rem;
+      scrollbar-width: none;
+      width: auto;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__items {
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item {
+      align-items: center;
+      background: var(--easyedu-surface);
+      border: 0;
+      border-radius: 1.25rem;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: var(--easyedu-text-muted);
+      display: inline-flex;
+      font: var(--easyedu-font-weight-medium) 0.875rem/1.2 var(--easyedu-font-family-ui);
+      gap: 0.625rem;
+      block-size: $-rail-control-size;
+      min-block-size: $-rail-control-size;
+      padding: 0 1.25rem 0 0.375rem;
+      transform: none;
+      white-space: nowrap;
+
+      > .easyedu-navigation__item-icon {
+        align-items: center;
+        // K22-23: tinted so it stays visible on the white rail card.
+        background: var(--easyedu-navigation-item-icon-surface, var(--easyedu-surface-strong));
+        border-radius: 50%;
+        color: var(--easyedu-primary-strong);
+        display: inline-flex;
+        flex: 0 0 1.75rem;
+        font-size: 0.75rem;
+        block-size: 1.75rem;
+        inline-size: 1.75rem;
+        justify-content: center;
+        line-height: 1;
+        min-inline-size: 1.75rem;
+      }
+
+      &:hover {
+        background: color-mix(in srgb, var(--easyedu-primary-soft) 60%, var(--easyedu-surface) 40%);
+        box-shadow: none;
+        color: var(--easyedu-primary-strong);
+      }
+
+      &:focus-visible {
+        @include focus.ring;
+      }
+
+      &.active,
+      &[aria-current="page"] {
+        background: var(--easyedu-primary-soft);
+        box-shadow: none;
+        color: var(--easyedu-primary-strong);
+        font-weight: var(--easyedu-font-weight-semibold);
+
+        > .easyedu-navigation__item-icon {
+          background: var(--easyedu-primary);
+          color: var(--easyedu-identity-icon-color);
+        }
+      }
+
+      &.active:focus-visible,
+      &[aria-current="page"]:focus-visible {
+        @include focus.ring;
+      }
+    }
+
+    // Utilities grouped at the end: Guide capsule, then Display preferences.
+    .easyedu-navigation--identity .easyedu-navigation__utilities {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      gap: 0.625rem;
+      margin-inline-start: auto;
+      padding-inline-start: 1rem;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__guide-source,
+    .easyedu-navigation--identity .easyedu-navigation__preferences-source {
+      align-items: center;
+      display: flex;
+      inset: auto;
+      margin: 0;
+      position: static;
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher {
+      align-items: center;
+      background: linear-gradient(90deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 100%);
+      border: 0;
+      border-radius: 1.25rem;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: var(--easyedu-identity-icon-color);
+      display: inline-flex;
+      gap: 0.625rem;
+      block-size: $-rail-control-size;
+      min-block-size: $-rail-control-size;
+      // Penpot capsule: 116 px, glyph at 18 px, label 10 px after it.
+      min-inline-size: 7.25rem;
+      padding: 0 2rem 0 1.125rem;
+      transform: none;
+      transition: box-shadow var(--easyedu-motion-fast, 160ms) ease;
+
+      .easyedu-guide__launcher-icon {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        color: inherit;
+        block-size: 1rem;
+        inline-size: 1rem;
+        min-inline-size: 1rem;
+        transform: none;
+        // K22-24: the compass keeps its own compositing layer at rest. Otherwise the
+        // browser promotes it only while the hover rotation runs and drops the layer
+        // when it ends, re-rasterising the glyph with another antialiasing: a visible
+        // sharpness snap at the end of the animation.
+        will-change: transform;
+
+        .fa {
+          block-size: 1rem;
+          font-size: 0.875rem;
+          inline-size: 1rem;
+        }
+      }
+
+      .easyedu-guide__launcher-label {
+        display: none;
+      }
+
+      .easyedu-guide__launcher-short {
+        color: inherit;
+        display: inline;
+        font: var(--easyedu-font-weight-semibold) 0.875rem/1.2 var(--easyedu-font-family-ui);
+        white-space: nowrap;
+      }
+
+      // K22-03 signature hover (Kevin 22/10/2026, Penpot waiver for this point):
+      // the blue -> green gradient sweeps across the capsule, the compass seeks
+      // north (one turn with a small settle) and an accent glow lifts it. At rest
+      // the visible half of the double-width gradient is the original one.
+      background-image: linear-gradient(90deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 50%, var(--easyedu-primary) 100%);
+      background-position: 0% 50%;
+      background-size: 200% 100%;
+      transition:
+        background-position var(--easyedu-motion-slow, 480ms) ease,
+        box-shadow var(--easyedu-motion-fast, 160ms) ease;
+
+      &:hover,
+      &:focus-visible {
+        background-image: linear-gradient(90deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 50%, var(--easyedu-primary) 100%);
+        background-position: 100% 50%;
+        background-size: 200% 100%;
+        box-shadow: 0 0.3rem 0.9rem color-mix(in srgb, var(--easyedu-accent) 38%, transparent);
+        color: var(--easyedu-identity-icon-color);
+        transform: none;
+
+        .easyedu-guide__launcher-icon {
+          animation: easyedu-rail-compass-seek 700ms cubic-bezier(0.3, 0.7, 0.4, 1) 1;
+          background: transparent;
+          box-shadow: none;
+          color: inherit;
+          transform: none;
+        }
+      }
+
+      &:focus-visible {
+        @include focus.ring($base-shadow: 0 0.3rem 0.9rem color-mix(in srgb, var(--easyedu-accent) 38%, transparent));
+      }
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__preferences-source .easyedu-direct-icon {
+      &,
+      &.btn {
+        background: var(--easyedu-surface);
+        background-image: none;
+        border: 0.0625rem solid var(--easyedu-card-border);
+        border-radius: 0.75rem;
+        color: var(--easyedu-primary);
+        block-size: $-rail-control-size;
+        inline-size: $-rail-control-size;
+
+        > .fa {
+          flex-basis: 1rem;
+          font-size: 0.875rem;
+          block-size: 1rem;
+          inline-size: 1rem;
+        }
+
+        &:hover,
+        &:focus-visible {
+          background: var(--easyedu-primary-soft);
+          background-image: none;
+          border-color: color-mix(in srgb, var(--easyedu-primary) 40%, var(--easyedu-card-border) 60%);
+          color: var(--easyedu-primary-strong);
+        }
+
+        &:focus-visible {
+          @include focus.ring;
+        }
+      }
+    }
+  }
+
+  // Collapsed controls (K22-05, set by the navigation controller only while the
+  // rail overflows) and their unfolding (K22-13, replaces the K22-06 overlay). The
+  // collapsed slot is 40 px; the controller marks the hovered/focused one
+  // `.is-rail-unfolded` and it grows to its natural width IN THE FLOW, while
+  // neighbours fold temporarily (`.is-rail-yielded`) so nothing is covered. During
+  // that reflow (`.is-rail-reflowing`) every capsule has an explicit width so the
+  // fold/unfold animates; `.is-rail-measuring` freezes transitions while the
+  // controller measures the target layout. The label stays in the accessibility
+  // tree; it is only clipped while folded.
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-fitted > .easyedu-navigation__sections {
+      overflow: visible;
+    }
+
+    // :where() keeps this at 0,3,0 so the collapsed slot, the measuring freeze and
+    // the reduced-motion durations below still win.
+    // The active view takes part too (K22-36): its partial condensing animates.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-reflowing :where(
+      .easyedu-navigation__item:not(.is-rail-collapsed),
+      .easyedu-navigation__guide-source .easyedu-guide__launcher:not(.is-rail-collapsed)
+    ) {
+      flex: 0 0 auto;
+      inline-size: var(--easyedu-rail-item-condensed, var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto)));
+      overflow: hidden;
+      transition:
+        inline-size var(--easyedu-motion-fast, 160ms) ease,
+        padding var(--easyedu-motion-fast, 160ms) ease,
+        gap var(--easyedu-motion-fast, 160ms) ease,
+        background-color var(--easyedu-motion-fast, 160ms) ease,
+        background-position var(--easyedu-motion-slow, 480ms) ease,
+        box-shadow var(--easyedu-motion-fast, 160ms) ease;
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed,
+    .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher.is-rail-collapsed {
+      flex: 0 0 auto;
+      gap: 0;
+      inline-size: $-rail-control-size;
+      justify-content: flex-start;
+      margin-inline: 0;
+      min-inline-size: $-rail-control-size;
+      overflow: hidden;
+      transition:
+        inline-size var(--easyedu-motion-fast, 160ms) ease,
+        margin var(--easyedu-motion-fast, 160ms) ease,
+        padding var(--easyedu-motion-fast, 160ms) ease,
+        gap var(--easyedu-motion-fast, 160ms) ease,
+        background-color var(--easyedu-motion-fast, 160ms) ease,
+        background-position var(--easyedu-motion-slow, 480ms) ease,
+        box-shadow var(--easyedu-motion-fast, 160ms) ease;
+
+      > .easyedu-navigation__item-label,
+      .easyedu-guide__launcher-short {
+        opacity: 0;
+        transition: opacity var(--easyedu-motion-fast, 160ms) ease;
+      }
+
+      &.is-rail-unfolded {
+        gap: 0.625rem;
+        inline-size: var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto));
+        // K22-22: keeps its start edge while the preceding unfolded control folds back
+        // (set by the controller, animated with that fold), so it stays under the pointer.
+        margin-inline-start: var(--easyedu-rail-item-shift, 0px);
+
+        > .easyedu-navigation__item-label,
+        .easyedu-guide__launcher-short {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Spacing gives way after the neighbours (`.is-rail-tight`), animated with them.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-reflowing {
+      .easyedu-navigation__identity,
+      .easyedu-navigation__identity-divider,
+      .easyedu-navigation__items,
+      .easyedu-navigation__utilities {
+        transition:
+          margin var(--easyedu-motion-fast, 160ms) ease,
+          padding var(--easyedu-motion-fast, 160ms) ease,
+          gap var(--easyedu-motion-fast, 160ms) ease;
+      }
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-tight {
+      .easyedu-navigation__identity {
+        margin-inline-end: 0.75rem;
+      }
+
+      .easyedu-navigation__identity-divider {
+        margin-inline-end: 0.5rem;
+      }
+
+      .easyedu-navigation__items {
+        gap: 0.25rem;
+      }
+
+      .easyedu-navigation__utilities {
+        gap: 0.375rem;
+        padding-inline-start: 0.5rem;
+      }
+    }
+
+    // K22-36 condensed active view: only the missing width is given back. It keeps
+    // its active surface, filled icon circle and the start of its label (ellipsis);
+    // the end padding narrows to the icon-side rhythm.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-condensed {
+      flex: 0 0 auto;
+      inline-size: var(--easyedu-rail-item-condensed, auto);
+      overflow: hidden;
+      padding-inline-end: 0.75rem;
+    }
+
+    // Capped unfold (no room left even with every neighbour folded) and condensed
+    // active view: ellipsis, the accessible name stays complete.
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] :is(.is-rail-unfolded, .is-rail-condensed) {
+      > .easyedu-navigation__item-label,
+      .easyedu-guide__launcher-short {
+        min-inline-size: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed {
+      padding: 0 0.375rem;
+
+      &.is-rail-unfolded {
+        padding: 0 1.25rem 0 0.375rem;
+      }
+    }
+
+    .easyedu-navigation--identity .easyedu-navigation__guide-source .easyedu-guide__launcher.is-rail-collapsed {
+      // Glyph centred in the 40 px slot: (40 - 16) / 2.
+      padding: 0 0 0 0.75rem;
+
+      &.is-rail-unfolded {
+        padding: 0 2rem 0 1.125rem;
+      }
+    }
+
+    .easyedu-navigation--identity [data-easyedu-navigation-desktop].is-rail-measuring {
+      .easyedu-navigation__item,
+      .easyedu-guide__launcher,
+      .easyedu-navigation__item-label,
+      .easyedu-guide__launcher-short,
+      .easyedu-navigation__identity,
+      .easyedu-navigation__identity-divider,
+      .easyedu-navigation__items,
+      .easyedu-navigation__utilities {
+        transition: none;
+      }
+    }
+
+    @container (max-width: 50rem) {
+      .easyedu-navigation--identity .easyedu-navigation__identity {
+        margin-inline-end: 1rem;
+      }
+
+      .easyedu-navigation--identity .easyedu-navigation__identity-divider {
+        margin-inline-end: 0.75rem;
+      }
+    }
+  }
+
+  // K22-21 rail skeleton (EasyStud loading standard: a real page from the first
+  // frame, one shimmering skeleton per component). The navigation partial renders a
+  // decorative `.easyedu-navigation__rail-skeleton` (tile, identity lines, divider,
+  // one capsule per destination, Guide capsule, preferences square). With
+  // JavaScript, the real rail keeps its layout (so the controller can measure and
+  // fit it) but stays hidden under the skeleton until the controller marks it
+  // `.is-rail-ready` after its first fit; then the skeleton fades out and the rail
+  // fades in, already fitted. Without JavaScript, the skeleton never shows. The
+  // consumer adds `navigation-rail-skeleton-settled` on its settled page state as
+  // the fail-open path (the rail is never hidden longer than the page loading).
+  .easyedu-navigation--identity .easyedu-navigation__rail-skeleton {
+    display: none;
+  }
+
+  @media (min-width: calc(#{$compact-breakpoint} + 0.001rem)) {
+    :where(.jsenabled) & .easyedu-navigation--identity [data-easyedu-navigation-desktop] {
+      > .easyedu-navigation__rail-skeleton {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        gap: 0.5rem;
+        inset: 0;
+        overflow: hidden;
+        padding: 0.75rem var(--easyedu-rail-anchor-edge, 1.25rem);
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
+
+        // One sweep across the whole row: the white highlight only shows on the
+        // shapes (the gaps are the white card), and the page stays light.
+        @include loading.skeleton-shimmer-overlay;
+
+        > span {
+          background: var(--easyedu-loading-surface);
+          box-sizing: border-box;
+          flex: 0 0 auto;
+          position: relative;
+        }
+      }
+
+      &:not(.is-rail-ready) > :not(.easyedu-navigation__rail-skeleton) {
+        visibility: hidden;
+      }
+
+      // Fade out only on the way out: the skeleton shows instantly with the page.
+      &.is-rail-ready > .easyedu-navigation__rail-skeleton {
+        opacity: 0;
+        transition:
+          opacity var(--easyedu-loading-reveal-duration, 180ms) var(--easyedu-motion-ease, ease),
+          visibility 0s linear var(--easyedu-loading-reveal-duration, 180ms);
+        visibility: hidden;
+      }
+
+      &.is-rail-ready > :not(.easyedu-navigation__rail-skeleton) {
+        @include loading.loading-appearance;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-tile {
+        background: var(--easyedu-loading-surface-strong);
+        block-size: $-rail-control-size;
+        border-radius: 0.75rem;
+        inline-size: $-rail-control-size;
+      }
+
+      // Two identity lines (product, active view) on a transparent holder.
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-lines {
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        margin-inline-end: 1.75rem;
+
+        > span {
+          background: var(--easyedu-loading-surface-strong);
+          block-size: 0.75rem;
+          border-radius: 999px;
+          inline-size: 4.5rem;
+
+          + span {
+            background: var(--easyedu-loading-surface);
+            block-size: 0.5rem;
+            inline-size: 3.5rem;
+          }
+        }
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-divider {
+        background: var(--easyedu-card-border);
+        block-size: 2rem;
+        inline-size: 0.0625rem;
+        margin-inline-end: 0.5625rem;
+      }
+
+      // Destination capsules with their icon circle; the first stands for the
+      // (longer) active view. They shrink to icon capsules on narrow rails.
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-pill {
+        block-size: $-rail-control-size;
+        border-radius: 1.25rem;
+        flex: 0 1 8.5rem;
+        min-inline-size: $-rail-control-size;
+
+        &::before {
+          background: var(--easyedu-loading-surface-strong);
+          block-size: 1.75rem;
+          border-radius: 50%;
+          content: "";
+          inline-size: 1.75rem;
+          inset-block-start: 0.375rem;
+          inset-inline-start: 0.375rem;
+          position: absolute;
+        }
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-divider + .easyedu-navigation__rail-skeleton-pill {
+        flex-basis: 13rem;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-guide {
+        block-size: $-rail-control-size;
+        border-radius: 1.25rem;
+        inline-size: 7.25rem;
+        margin-inline-start: auto;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-square {
+        block-size: $-rail-control-size;
+        border-radius: 0.75rem;
+        inline-size: $-rail-control-size;
+      }
+
+      .easyedu-navigation__rail-skeleton > .easyedu-navigation__rail-skeleton-pill + .easyedu-navigation__rail-skeleton-square {
+        margin-inline-start: auto;
+      }
+    }
+  }
+
+  @at-root (without: rule) {
+    @keyframes easyedu-rail-compass-seek {
+      0% { transform: rotate(0deg); }
+      60% { transform: rotate(380deg); }
+      80% { transform: rotate(350deg); }
+      100% { transform: rotate(360deg); }
+    }
+  }
+
+  @include animations.motion-restricted {
+    .easyedu-navigation--identity .easyedu-guide__launcher,
+    .easyedu-navigation--identity .easyedu-navigation__item.is-rail-collapsed,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__item,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__identity,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__identity-divider,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__items,
+    .easyedu-navigation--identity .is-rail-reflowing .easyedu-navigation__utilities,
+    .easyedu-navigation--identity .is-rail-collapsed .easyedu-navigation__item-label,
+    .easyedu-navigation--identity .is-rail-collapsed .easyedu-guide__launcher-short {
+      transition-duration: 0.01ms;
+    }
+
+    .easyedu-navigation--identity .easyedu-guide__launcher .easyedu-guide__launcher-icon {
+      animation: none;
+      will-change: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .easyedu-navigation--identity .easyedu-guide__launcher .easyedu-guide__launcher-icon {
+      animation: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .easyedu-navigation--identity .easyedu-navigation__identity-tile,
+    .easyedu-navigation--identity .easyedu-guide__launcher {
+      border: 0.0625rem solid CanvasText;
+      forced-color-adjust: auto;
+    }
+  }
+}
+
+// K22-21 fail-open of the rail skeleton. Include on the identity-rail wrapper under
+// the consumer's settled page state (for instance
+// `#root[data-easystud-loading-state="ready"] .my-rail`): the real rail shows even
+// if the navigation controller never marked it ready.
+@mixin navigation-rail-skeleton-settled {
+  .easyedu-navigation--identity [data-easyedu-navigation-desktop]:not(.is-rail-ready) {
+    > .easyedu-navigation__rail-skeleton {
+      display: none;
+    }
+
+    > :not(.easyedu-navigation__rail-skeleton) {
+      visibility: visible;
+    }
+  }
+}
+
+// View tabs (Penpot "EasyEdu / Navigation / View tabs"): a soft track of equal
+// capsules. Works for two or more tabs; long translations grow the capsules.
+@mixin view-tabs($legacy-priority: false) {
+  align-items: center;
+  background: var(--easyedu-surface-strong);
+  border: 0.0625rem solid var(--easyedu-card-border);
+  border-radius: 1.5rem;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  max-inline-size: 100%;
+  // 4 px design padding includes the 1 px inner stroke: 48 px outer track.
+  padding: calc(0.25rem - 0.0625rem);
+  width: auto;
+
+  > .easyedu-view-tabs__tab {
+    @include view-tab($legacy-priority);
+  }
+
+  > .easyedu-view-tabs__tab.active,
+  > .easyedu-view-tabs__tab[aria-pressed="true"] {
+    @include view-tab-selected($legacy-priority);
+  }
+}
+
+// $legacy-priority (K23-84): tabs wear `.btn-outline-secondary`/`.btn-outline-primary
+// .btn-primary` compatibility classes that some host themes repaint with
+// !important in every state (DVL 4.5); the tab then owns every paint property of
+// every state at the same priority. Same Kit values; the selected rule still
+// follows the base rule, so its order of precedence is unchanged.
+@mixin view-tab($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
+  &,
+  &.btn {
+    align-items: center;
+    background: transparent $p;
+    border: 0 $p;
+    border-radius: 1.25rem;
+    box-shadow: none $p;
+    box-sizing: border-box;
+    color: var(--easyedu-text-muted) $p;
+    display: inline-flex;
+    flex: 1 1 0;
+    font: var(--easyedu-font-weight-medium) 0.875rem/1.2 var(--easyedu-font-family-ui);
+    gap: 0.5rem;
+    block-size: $-rail-control-size;
+    justify-content: center;
+    margin: 0;
+    min-block-size: $-rail-control-size;
+    min-inline-size: 13.75rem;
+    padding: 0 0.75rem;
+    white-space: nowrap;
+  }
+
+  > .fa {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border-radius: 50%;
+    color: var(--easyedu-text-muted);
+    display: inline-flex;
+    flex: 0 0 1.75rem;
+    font-size: 0.75rem;
+    block-size: 1.75rem;
+    inline-size: 1.75rem;
+    justify-content: center;
+    line-height: 1;
+    // Icon and tile change together: no blue glyph on a blue tile mid-transition.
+    transition: none;
+  }
+
+  @include buttons.on-states((':hover', ':focus', if($legacy-priority, ':active', null))) {
+    background: color-mix(in srgb, var(--easyedu-surface) 60%, transparent) $p;
+    box-shadow: none $p;
+    color: var(--easyedu-primary-strong) $p;
+  }
+
+  &:focus-visible {
+    @include focus.ring;
+  }
+}
+
+@mixin view-tab-selected($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
+  &,
+  &.btn {
+    background: var(--easyedu-surface) $p;
+    box-shadow: 0 0.125rem 0.375rem rgba(21, 82, 132, 0.14) $p;
+    color: var(--easyedu-primary-strong) $p;
+    font-weight: var(--easyedu-font-weight-semibold);
+  }
+
+  > .fa {
+    background: var(--easyedu-primary);
+    color: var(--easyedu-identity-icon-color);
+  }
+
+  &:focus-visible {
+    @include focus.ring($base-shadow: 0 0.125rem 0.375rem rgba(21, 82, 132, 0.14));
+  }
+}

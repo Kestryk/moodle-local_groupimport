@@ -1,0 +1,93 @@
+// Creation, rename and compact form controls.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-create-row {
+    background: var(--local-groupimport-easystud-surface-soft);
+    border: 1px solid #e3ece5;
+    border-radius: var(--local-groupimport-easystud-radius);
+    display: grid;
+    gap: 0.65rem;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+
+  &-create-card {
+    align-content: start;
+    display: grid;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  &-create-card__topline {
+    align-items: center;
+    display: grid;
+    gap: 0.65rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .easyedu-search-field--captioned {
+    @include easyedu.search-field-intrinsic;
+  }
+
+  // Keep hidden desktop Structure fields stronger than the captioned grid;
+  // compact entity regions already own visibility without Structure focus.
+  &:not(&--structure-focus):not(&--responsive-workspace) &__search-field--structure.easyedu-search-field {
+    display: none;
+  }
+
+  &-create,
+  &-rename {
+    align-items: center;
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  &-create:has(> .easyedu-field-stack) {
+    align-items: end;
+  }
+
+  &-create .form-control,
+  &-rename .form-control {
+    @include easyedu.foundation-text-field-peer-small;
+  }
+
+  &-rename {
+    margin-top: 0.45rem;
+  }
+
+  &-group__header > &-rename,
+  &-grouping__header > &-rename {
+    display: flex;
+    flex: 0 0 auto;
+    margin-top: 0;
+  }
+
+  &-rename__toggle {
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease,
+      box-shadow var(--easyedu-motion-fast) ease,
+      color var(--easyedu-motion-fast) ease;
+    @include easyedu.card-direct-action;
+  }
+
+  &-rename__edit {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    gap: 0.45rem;
+    margin-top: 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  // Save/Cancel paints, geometry and states come from the compact Foundation
+  // roles in control-typography. Do not stack a generic action-button skin
+  // here: it competes on hover/focus while leaving the resting state correct.
+
+  // Creation-button presentation is the public easyedu-create-icon-button
+  // class. Keep this consumer hook only for native command/tutorial targeting.
+
+}

@@ -1,0 +1,574 @@
+// Course Banner Builder-oriented primitives.
+//
+// These mixins capture reusable UI patterns that first appeared in Course
+// Banner Builder but are useful for other EasyEdu Moodle plugins: wide modals
+// with live previews, preview side actions, layer tables, source chains and
+// linked range/number controls.
+
+@use "buttons";
+@use "focus";
+@use "forms";
+@use "tables";
+@use "tooltips";
+
+@mixin admin-panel {
+  background: linear-gradient(
+    180deg,
+    var(--easyedu-surface) 0%,
+    color-mix(in srgb, var(--easyedu-surface) 94%, var(--easyedu-primary-soft) 6%) 100%
+  );
+  border: 0.0625rem solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-card-radius);
+  box-shadow: var(--easyedu-shadow-soft);
+  color: var(--easyedu-text);
+}
+
+@mixin modal-with-preview {
+  border: 0.0625rem solid var(--easyedu-modal-border);
+  border-radius: var(--easyedu-modal-radius);
+  box-shadow: var(--easyedu-modal-shadow);
+  overflow: hidden;
+
+  .modal-header {
+    background: var(--easyedu-modal-header-bg);
+    border-bottom: 0.0625rem solid var(--easyedu-modal-border);
+  }
+
+  .modal-title {
+    color: var(--easyedu-text);
+    font-weight: 760;
+  }
+
+  .modal-footer {
+    background: var(--easyedu-surface);
+    border-top: 0.0625rem solid var(--easyedu-modal-border);
+  }
+}
+
+@mixin preview-modal-dialog-shell($max-width: 105rem) {
+  display: flex;
+  height: calc(100vh - 1rem);
+  margin: 0.5rem auto;
+  max-height: calc(100vh - 1rem);
+  max-width: min(#{$max-width}, calc(100vw - 3rem));
+  width: min(#{$max-width}, calc(100vw - 3rem));
+}
+
+@mixin preview-modal-content-shell {
+  --easyedu-preview-modal-inline-space: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+// Align preview-editor chrome without owning the plugin's internal grid. The
+// body start edge and visible footer share one rhythm while plugins keep any
+// larger end padding required by preview-side action rails.
+@mixin preview-modal-inline-rhythm {
+  .modal-header,
+  .modal-footer {
+    padding-inline: var(--easyedu-preview-modal-inline-space, 1rem);
+  }
+
+  .local-course-banner-builder-layer-modal-body,
+  .local-course-banner-builder-slideshow-modal-body {
+    padding-left: var(--easyedu-preview-modal-inline-space, 1rem);
+  }
+}
+
+@mixin preview-modal-body-shell {
+  flex: 1 1 auto;
+  min-height: 0;
+  overscroll-behavior: contain;
+  position: relative;
+}
+
+@mixin preview-modal-footer-shell {
+  background: var(--easyedu-surface);
+  border-top: 0.0625rem solid var(--easyedu-modal-border);
+  flex: 0 0 auto;
+  position: relative;
+
+  &::before {
+    background: linear-gradient(to top, color-mix(in srgb, var(--easyedu-surface) 92%, transparent), transparent);
+    bottom: 100%;
+    content: "";
+    height: 1rem;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+}
+
+@mixin preview-surface {
+  background:
+    linear-gradient(45deg, rgba(15, 108, 191, 0.055) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(15, 108, 191, 0.055) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(15, 108, 191, 0.055) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(15, 108, 191, 0.055) 75%),
+    var(--easyedu-image-preview-bg);
+  background-position: 0 0, 0 0.52rem, 0.52rem -0.52rem, -0.52rem 0;
+  background-size: 1.04rem 1.04rem;
+  border: 0.0625rem solid var(--easyedu-image-preview-border);
+  border-radius: 0.86rem;
+  box-shadow: inset 0 0 0 0.0625rem color-mix(in srgb, var(--easyedu-surface) 72%, transparent);
+}
+
+@mixin banner-preview-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: center;
+
+  .btn,
+  button {
+    @include buttons.icon-button(small);
+
+    & {
+      background: transparent;
+      border: 0;
+      color: var(--easyedu-primary);
+      min-height: 1.95rem;
+      min-width: 1.95rem;
+      padding: 0.18rem;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.active,
+    &[aria-pressed="true"] {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary-strong);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      color: var(--easyedu-text-muted);
+      opacity: 0.54;
+      transform: none;
+    }
+  }
+}
+
+@mixin banner-preview-side-actions {
+  display: grid;
+  gap: 0.42rem;
+
+  .btn,
+  button,
+  summary {
+    @include buttons.action-button;
+
+    & {
+      background: var(--easyedu-surface);
+      border: 0.0625rem solid var(--easyedu-control-border);
+      border-radius: var(--easyedu-control-radius);
+      box-shadow: 0 0.12rem 0.32rem rgba(31, 42, 55, 0.035);
+      color: var(--easyedu-text-muted);
+      justify-content: flex-start;
+      min-height: 2.35rem;
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  .btn-primary,
+  .active,
+  [aria-pressed="true"],
+  [open] > summary {
+    background: var(--easyedu-primary);
+    border-color: var(--easyedu-primary);
+    color: var(--easyedu-surface);
+  }
+}
+
+@mixin accordion-action-button {
+  @include buttons.action-button;
+
+  & {
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-control-border);
+    border-radius: var(--easyedu-control-radius);
+    color: var(--easyedu-text-muted);
+    width: 100%;
+  }
+}
+
+@mixin preview-side-accordion-trigger($accent: var(--easyedu-primary)) {
+  --easyedu-preview-side-accent: #{$accent};
+
+  align-items: center;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--easyedu-preview-side-accent) 5%, var(--easyedu-surface) 95%),
+      var(--easyedu-surface)
+    );
+  border-color: color-mix(in srgb, var(--easyedu-preview-side-accent) 24%, var(--easyedu-control-border) 76%);
+  box-shadow: inset 0.16rem 0 0 color-mix(in srgb, var(--easyedu-preview-side-accent) 68%, transparent);
+  color: color-mix(in srgb, var(--easyedu-preview-side-accent) 72%, var(--easyedu-text) 28%);
+  font-size: 0.84rem;
+  font-weight: 600;
+  gap: 0.55rem;
+  justify-content: flex-start;
+  // Keep disclosures aligned with the compact command buttons around them.
+  min-height: 2.15rem;
+  overflow: hidden;
+  padding: 0.28rem 0.68rem;
+  position: relative;
+  text-align: left;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease;
+  z-index: 2;
+
+  &::after {
+    border-right: 0.11rem solid currentColor;
+    border-bottom: 0.11rem solid currentColor;
+    content: "";
+    flex: 0 0 0.42rem;
+    height: 0.42rem;
+    margin-left: auto;
+    opacity: 0.62;
+    transform: rotate(45deg) translate(-0.08rem, 0.08rem);
+    transform-origin: center;
+    transition: transform var(--easyedu-motion-fast) ease;
+    width: 0.42rem;
+  }
+
+  > .fa,
+  > .icon {
+    align-items: center;
+    background: color-mix(in srgb, var(--easyedu-preview-side-accent) 11%, var(--easyedu-surface) 89%);
+    border: 0.0625rem solid color-mix(in srgb, var(--easyedu-preview-side-accent) 20%, transparent);
+    border-radius: 0.32rem;
+    color: var(--easyedu-preview-side-accent);
+    display: inline-flex;
+    flex: 0 0 1.35rem;
+    height: 1.35rem;
+    justify-content: center;
+    margin: 0 !important;
+    width: 1.35rem;
+  }
+
+  > span {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--easyedu-preview-side-accent) 8%, var(--easyedu-surface) 92%),
+        var(--easyedu-surface)
+      );
+    border-color: color-mix(in srgb, var(--easyedu-preview-side-accent) 42%, var(--easyedu-control-border) 58%);
+    color: color-mix(in srgb, var(--easyedu-preview-side-accent) 84%, var(--easyedu-text) 16%);
+    transform: none !important;
+  }
+
+  &:focus-visible {
+    @include focus.ring(
+      $color: color-mix(in srgb, var(--easyedu-preview-side-accent) 22%, transparent),
+      $border-color: color-mix(in srgb, var(--easyedu-preview-side-accent) 42%, var(--easyedu-control-border) 58%)
+    );
+  }
+
+  &:active {
+    transform: none !important;
+  }
+
+  &[aria-expanded="true"] {
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--easyedu-preview-side-accent) 9%, var(--easyedu-surface) 91%),
+        var(--easyedu-surface)
+      );
+    border-color: color-mix(in srgb, var(--easyedu-preview-side-accent) 38%, var(--easyedu-control-border) 62%);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: inset 0.16rem 0 0 color-mix(in srgb, var(--easyedu-preview-side-accent) 78%, transparent);
+    color: color-mix(in srgb, var(--easyedu-preview-side-accent) 84%, var(--easyedu-text) 16%);
+
+    &::after {
+      transform: rotate(225deg) translate(-0.08rem, 0.08rem);
+    }
+  }
+}
+
+@mixin preview-side-accordion-panel($accent: var(--easyedu-primary)) {
+  --easyedu-preview-side-accent: #{$accent};
+
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--easyedu-preview-side-accent) 4%, var(--easyedu-surface) 96%),
+      var(--easyedu-surface) 3rem
+    );
+  border: 0.0625rem solid color-mix(in srgb, var(--easyedu-preview-side-accent) 34%, var(--easyedu-control-border) 66%);
+  border-top: 0;
+  border-radius: 0 0 var(--easyedu-control-radius) var(--easyedu-control-radius);
+  box-shadow: inset 0.18rem 0 0 color-mix(in srgb, var(--easyedu-preview-side-accent) 38%, transparent);
+  margin: 0 0 0.22rem;
+  padding: 0.72rem;
+
+  > summary {
+    display: none;
+  }
+}
+
+@mixin format-choice-card {
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-panel-radius);
+  box-shadow: none;
+  padding: 0.78rem;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease;
+}
+
+@mixin format-choice-card-hover {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--easyedu-primary) 3%, var(--easyedu-surface) 97%),
+      var(--easyedu-surface)
+    );
+  border-color: color-mix(in srgb, var(--easyedu-primary) 34%, var(--easyedu-control-border) 66%);
+}
+
+@mixin format-choice-card-selected {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--easyedu-primary) 6%, var(--easyedu-surface) 94%),
+      var(--easyedu-surface)
+    );
+  border-color: color-mix(in srgb, var(--easyedu-primary) 58%, var(--easyedu-control-border) 42%);
+  box-shadow: inset 0 0.18rem 0 var(--easyedu-primary);
+}
+
+@mixin slideshow-admin-grid {
+  align-items: stretch;
+}
+
+@mixin slideshow-card-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+}
+
+@mixin slideshow-card-body-layout {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+@mixin slideshow-settings-grid {
+  align-items: start;
+}
+
+@mixin slideshow-activation-band($accent: var(--easyedu-primary)) {
+  align-items: center;
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, #{$accent} 7%, var(--easyedu-surface) 93%),
+      var(--easyedu-surface)
+    );
+  border-bottom: 0.0625rem solid color-mix(in srgb, #{$accent} 18%, var(--easyedu-card-border) 82%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.8rem;
+  min-width: 0;
+  padding: 0.72rem 0.85rem;
+}
+
+@mixin slideshow-settings-section($accent: var(--easyedu-primary)) {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, #{$accent} 3.5%, var(--easyedu-surface) 96.5%),
+      var(--easyedu-surface-soft)
+    );
+  border: 0.0625rem solid color-mix(in srgb, #{$accent} 16%, var(--easyedu-card-border) 84%);
+  border-radius: var(--easyedu-control-radius);
+  min-width: 0;
+  padding: 0.72rem;
+  width: 100%;
+}
+
+@mixin slideshow-section-title($accent: var(--easyedu-primary)) {
+  align-items: center;
+  color: color-mix(in srgb, #{$accent} 76%, var(--easyedu-text) 24%);
+  display: flex;
+  font-size: 0.76rem;
+  font-weight: 700;
+  gap: 0.42rem;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  margin: 0 0 0.2rem;
+  text-transform: uppercase;
+
+  &::before {
+    background: #{$accent};
+    border-radius: 62.5rem;
+    content: "";
+    height: 0.32rem;
+    width: 0.32rem;
+  }
+}
+
+@mixin slideshow-toggle-row($accent: var(--easyedu-primary)) {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid color-mix(in srgb, #{$accent} 12%, var(--easyedu-control-border) 88%);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  cursor: pointer;
+  min-height: 2.3rem;
+  padding: 0.42rem 0.55rem;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease;
+
+  label {
+    cursor: pointer;
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, #{$accent} 34%, var(--easyedu-control-border) 66%);
+  }
+
+  &:focus-within {
+    @include focus.ring(
+      $color: color-mix(in srgb, #{$accent} 22%, transparent),
+      $border-color: color-mix(in srgb, #{$accent} 34%, var(--easyedu-control-border) 66%)
+    );
+  }
+
+  &:has(input:checked) {
+    background: color-mix(in srgb, #{$accent} 6%, var(--easyedu-surface) 94%);
+    border-color: color-mix(in srgb, #{$accent} 30%, var(--easyedu-control-border) 70%);
+  }
+
+  &:has(input:disabled) {
+    background: var(--easyedu-surface-soft);
+    border-color: var(--easyedu-control-border);
+    cursor: not-allowed;
+    opacity: 0.62;
+
+    label {
+      cursor: not-allowed;
+    }
+  }
+}
+
+@mixin slideshow-action-zone($accent: var(--easyedu-primary)) {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #{$accent} 2.5%, var(--easyedu-surface) 97.5%),
+      var(--easyedu-surface)
+    );
+  border-top: 0.0625rem solid color-mix(in srgb, #{$accent} 14%, var(--easyedu-card-border) 86%);
+  margin-top: auto;
+  padding: 0.85rem 0.85rem 0;
+}
+
+@mixin layer-table {
+  @include tables.data-table;
+
+  th,
+  td {
+    vertical-align: middle;
+  }
+
+  .btn {
+    border-radius: var(--easyedu-control-radius);
+  }
+}
+
+@mixin source-chain {
+  .easyedu-source-chain__toggle,
+  [data-action*="toggle-source-chain"] {
+    @include buttons.icon-button(small);
+
+    & {
+      background: var(--easyedu-primary-soft);
+      border: 0.0625rem solid color-mix(in srgb, var(--easyedu-primary) 24%, var(--easyedu-surface) 76%);
+      border-radius: 62.5rem;
+      color: var(--easyedu-primary);
+    }
+  }
+}
+
+@mixin color-picker-field {
+  align-items: center;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: auto minmax(7rem, 1fr);
+
+  input[type="color"] {
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-control-border);
+    border-radius: 0.62rem;
+    height: 2.35rem;
+    padding: 0.18rem;
+    width: 3.4rem;
+  }
+
+  input[type="text"] {
+    @include forms.native-select-control(small);
+  }
+}
+
+@mixin linked-range-number {
+  align-items: center;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: minmax(8rem, 1fr) auto minmax(4.6rem, 5.4rem);
+
+  input[type="range"] {
+    accent-color: var(--easyedu-primary);
+    min-width: 0;
+  }
+
+  input[type="number"] {
+    @include forms.native-select-control(small);
+
+    & {
+      text-align: center;
+    }
+  }
+
+  output,
+  [aria-live] {
+    color: var(--easyedu-text-muted);
+    font-size: 0.8rem;
+    font-weight: 650;
+    min-width: 3.4rem;
+    text-align: right;
+  }
+}
+
+@mixin help-tooltip {
+  @include tooltips.help-icon;
+
+  & {
+    text-decoration: none;
+  }
+}

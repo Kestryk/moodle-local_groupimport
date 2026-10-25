@@ -1,0 +1,23 @@
+// Transport large page configuration separately from Moodle's AMD call arguments.
+// K16-76: no accent bar under card titles any more (visual load); the title
+// accent controller is no longer started, which also removes its DOM observer.
+define(['local_groupimport/guide_api', 'local_groupimport/course_manager'],
+function(Guide, CourseManager) {
+    const init = configId => {
+        const element = document.getElementById(configId);
+        if (!element) {
+            throw new Error('EasyStud page configuration is missing.');
+        }
+        if (element.dataset.initialized === '1') {
+            return;
+        }
+        const config = JSON.parse(element.textContent);
+        if (!Array.isArray(config.guide) || !Array.isArray(config.manager)) {
+            throw new Error('EasyStud page configuration is invalid.');
+        }
+        element.dataset.initialized = '1';
+        Guide.init(...config.guide);
+        CourseManager.init(...config.manager);
+    };
+    return {init: init};
+});

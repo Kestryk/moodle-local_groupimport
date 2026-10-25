@@ -1,0 +1,1263 @@
+// EasyEdu object cards and identity rails.
+//
+// Use `object-card` for draggable/selectable entities such as participants,
+// groups, layers, banners or any object manipulated by the user. Use
+// `identity-rail` when the card needs a coloured left rail with a masked icon.
+//
+// Theme override tokens:
+// --easyedu-surface, --easyedu-card-border, --easyedu-card-radius,
+// --easyedu-card-shadow, --easyedu-identity-border-width,
+// --easyedu-identity-size, --easyedu-identity-icon-color.
+
+@use "focus";
+@use "accessibility";
+@use "typography";
+@use "entity-metadata" as metadata;
+
+@mixin object-card($identity-color) {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  border-left: var(--easyedu-identity-border-width) solid $identity-color;
+  border-radius: var(--easyedu-card-radius);
+  box-shadow: var(--easyedu-card-shadow);
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+
+  @include pointer-hover {
+    border-color: color-mix(in srgb, #{$identity-color} 32%, var(--easyedu-card-border) 68%);
+    box-shadow: var(--easyedu-shadow-soft);
+  }
+}
+
+// The single reusable card hover (K16-53 écart2): only a pointer that can
+// really hover paints it, so a tap on a touch screen never leaves a sticky
+// hover state. The hover never moves geometry (no translate, scale or height).
+// `$guard` lets an owner exclude states that keep their own signal, e.g.
+// ":not(.is-selected)".
+@mixin pointer-hover($guard: "") {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover#{$guard} {
+      @content;
+    }
+  }
+}
+
+// Subtle feedback for selectable container cards that are not draggable.
+@mixin non-draggable-card-hover(
+  $background: var(--easyedu-surface-soft),
+  $border: var(--easyedu-card-border),
+  $shadow: var(--easyedu-shadow-soft)
+) {
+  cursor: default;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  @include pointer-hover {
+    background: $background;
+    border-color: $border;
+    box-shadow: $shadow;
+  }
+}
+
+@mixin identity-rail($icon, $icon-color: var(--easyedu-identity-icon-color)) {
+  &::before {
+    align-items: center;
+    background-color: $icon-color;
+    content: "";
+    display: inline-flex;
+    height: var(--easyedu-identity-size);
+    justify-content: center;
+    left: calc(var(--easyedu-identity-border-width) / -2);
+    line-height: 1;
+    mask-image: $icon;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity var(--easyedu-motion-fast) ease;
+    width: var(--easyedu-identity-size);
+    z-index: 3;
+    -webkit-mask-image: $icon;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+  }
+}
+
+// Foundation for cards whose identity rail becomes a light outlined rail when
+// expanded. This is useful for containers such as groupings, folders or layer
+// groups where the open state should feel like a parent frame rather than a
+// draggable object.
+@mixin open-identity-rail-base($surface: var(--easyedu-surface-soft), $border: var(--easyedu-border-strong)) {
+  &::after {
+    background: $surface;
+    border: 0.1rem solid $border;
+    border-radius: 0.72rem 0 0 0.72rem;
+    bottom: -1px;
+    box-sizing: border-box;
+    content: "";
+    display: none;
+    left: calc(var(--easyedu-identity-border-width) * -1);
+    pointer-events: none;
+    position: absolute;
+    top: -1px;
+    width: var(--easyedu-identity-border-width);
+    z-index: 2;
+  }
+}
+
+@mixin open-identity-rail-state(
+  $surface: var(--easyedu-surface-soft),
+  $border: var(--easyedu-border-strong),
+  $icon-color: var(--easyedu-text-muted)
+) {
+  border-left-color: $surface;
+
+  &::before {
+    background-color: $icon-color;
+    left: calc(var(--easyedu-identity-border-width) / -2);
+  }
+
+  &::after {
+    background: $surface;
+    border-color: $border;
+    display: block;
+  }
+}
+
+@mixin card-header-row {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  min-width: 0;
+
+  > :first-child {
+    min-width: 0;
+  }
+}
+
+// Person identity, secondary email and persistent details action. Density is
+// chosen by the consumer's existing state, never by an internal breakpoint.
+// A null minimum lets a state adapter retain its inherited header height.
+@mixin person-card-headline($density: detailed, $min-height: 1.7rem) {
+  @if $density != detailed and $density != compact {
+    @error "person-card-headline expects detailed or compact.";
+  }
+
+  align-items: center;
+  display: grid;
+
+  @if $density == compact {
+    gap: 0.45rem;
+    grid-template-areas: "identity email action";
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    margin-bottom: 0;
+    min-width: 0;
+  } @else {
+    gap: 0.08rem 0.6rem;
+    grid-template-areas:
+      "identity action"
+      "email .";
+    grid-template-columns: minmax(0, 1fr) auto;
+    margin-bottom: 0.12rem;
+    min-height: $min-height;
+    width: 100%;
+  }
+}
+
+// A constrained identity keeps both pieces of information instead of starving
+// the email track beside an intrinsic name. The action remains beside the name.
+@mixin person-card-readable-summary($headline: ".easyedu-person-card__headline", $identity: ".easyedu-person-card__headline-main", $name: "strong", $email: ".easyedu-person-card__email") {
+  max-height: none;
+  #{$headline} {
+    grid-template-areas: "identity action" "email email";
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+  }
+  #{$identity} {
+    block-size: auto;
+    flex-wrap: wrap;
+    > #{$name} {
+      overflow: visible;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+  }
+  #{$email} {
+    overflow: visible;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+// Selectable object/container header with space reserved for the existing
+// overlay checkbox. Child semantics, rename state and mobile menus stay with
+// the consumer. Do not add clipping: menus may extend outside this row.
+@mixin selectable-card-header($density: regular, $touch-inset: false) {
+  @if $touch-inset {
+    padding-left: if($density == container, 3.35rem, 3.25rem);
+  } @else {
+  @if $density != regular and $density != container {
+    @error "selectable-card-header expects regular or container.";
+  }
+
+  @include card-header-row;
+
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: if($density == container, 0.5rem, 0.58rem);
+  margin-bottom: if($density == container, 0.22rem, 0.32rem);
+  min-height: if($density == container, 1.75rem, 1.95rem);
+  min-width: 0;
+  padding-left: 2.55rem;
+
+  @if $density == regular {
+    position: relative;
+  }
+  }
+}
+
+// Let the title yield after actions move into overflow, without shrinking controls.
+@mixin card-header-title-slot {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+// Opt in only after direct actions have exhausted the normal overflow menu.
+// The identity keeps the first row; terminal controls wrap without clipping.
+@mixin card-header-readable-fallback($plain-title: false) {
+  flex-wrap: wrap;
+  > :first-child {
+    flex-basis: 100%;
+    margin-block: 0;
+    max-width: 100%;
+    min-height: var(--easyedu-card-action-target);
+    min-width: 0;
+    @if $plain-title {
+      display: block;
+      line-height: var(--easyedu-card-action-target);
+      padding-block: 0;
+    }
+  }
+}
+
+// Keep the count after all direct actions and the overflow trigger in one flow.
+@mixin card-header-terminal-slot($slot: count) {
+  @if $slot == count {
+    margin-left: auto;
+    order: 99;
+  } @else if $slot == overflow {
+    inset: auto;
+    margin-left: 0;
+    order: 98;
+    position: relative;
+    transform: none;
+  } @else {
+    @error "card-header-terminal-slot expects count or overflow.";
+  }
+}
+
+// Stable title line for object cards. The main slot owns truncation while the
+// terminal slot keeps count badges and actions aligned as details expand.
+@mixin card-title-row($gap: 0.55rem) {
+  align-items: center;
+  display: grid;
+  gap: $gap;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  min-width: 0;
+  width: 100%;
+}
+
+@mixin card-title-main($gap: 0.45rem) {
+  align-items: center;
+  display: flex;
+  gap: $gap;
+  min-width: 0;
+}
+
+@mixin card-title($density: regular, $color: var(--easyedu-text)) {
+  @include typography.type-card-title;
+
+  color: $color;
+  letter-spacing: 0;
+  // Keep descenders visible in every participant, group, grouping and
+  // ungrouped card title, including titles rendered later in a list.
+  line-height: 1.35;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  // Density changes the shell, not identity typography. Foundations card
+  // mains share 14px/600; retain coloured rails/badges instead of title hues.
+  font-size: var(--easyedu-card-identity-title-size);
+  font-weight: var(--easyedu-font-weight-semibold);
+}
+
+// A3 K16-05: the shared controller places a 32x2px, 35% accent at the actual
+// text edge minus4px, on whole CSS pixels. Text layout owns no decorative width.
+@mixin card-title-accent($color) {
+  --easyedu-card-title-accent-color: #{$color};
+  background-image: none;
+  line-height: 20px;
+  // Measured text metrics: keep the Range and box centres within half a pixel.
+  margin-block: -2px 0;
+  padding-block: 2px 0;
+}
+
+
+// A single text column and one measured first line, independent of metadata rows.
+@mixin person-card-aligned-content {
+  align-items: start;
+  max-block-size: none;
+  padding-block: 8px;
+  --easyedu-person-first-line: 22px;
+  --easyedu-person-line-centre-adjust: -1px;
+
+  .easyedu-person-card__headline {
+    align-items: center;
+    display: grid;
+    gap: 4px 8px;
+    grid-template-areas: "identity action" "email .";
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: var(--easyedu-person-first-line) auto;
+    margin-bottom: 0;
+  }
+  .easyedu-person-card__headline-main {
+    block-size: var(--easyedu-person-first-line);
+    min-block-size: 0;
+    padding-inline-start: 0;
+  }
+  .easyedu-person-card__main,
+  .easyedu-person-card__meta {
+    margin-inline-start: 0;
+    padding-inline-start: 0;
+  }
+  .easyedu-person-card__main { padding-inline-start: 8px; }
+  .easyedu-person-card__meta {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .easyedu-person-card__meta-group {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+  }
+  .easyedu-person-card__meta-values {
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: 6px;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    > [hidden] { display: none !important; }
+    > :not([hidden]) {
+      flex: 0 0 auto;
+      max-inline-size: 100%;
+    }
+  }
+  .easyedu-person-card__meta-label {
+    @include accessibility.visually-hidden(logical);
+  }
+  .easyedu-person-card__email {
+    grid-area: email;
+    min-inline-size: 0;
+  }
+  .easyedu-person-card__detail-button {
+    align-self: center;
+    margin-block: -5px;
+    position: relative;
+    top: var(--easyedu-person-line-centre-adjust);
+  }
+}
+
+// Reserve the whole touch target plus text/accent clearance, not only the painted square.
+@mixin person-card-selection-column($target: 44px, $inset: 0.9rem, $gap: 12px) {
+  padding-inline-start: calc(#{$inset} + #{$target} + #{$gap});
+}
+
+// Header actions reserve a right gutter; metadata below the header can use it.
+@mixin person-card-metadata-below-actions {
+  .easyedu-person-card__meta {
+    inline-size: calc(100% + var(--easyedu-touch-target-min));
+    max-inline-size: none;
+  }
+}
+
+@mixin person-card-aligned-selector($padding, $target) {
+  inset-inline-start: 0.9rem;
+  position: absolute;
+  top: calc(#{$padding} + (var(--easyedu-person-first-line) - #{$target}) / 2 + var(--easyedu-person-line-centre-adjust));
+  transform: none;
+}
+
+// A related participant inside a Group is subordinate to the card identity,
+// but belongs to the same UI family. Consumer owns selection/removal behavior.
+@mixin related-person-name {
+  color: var(--easyedu-related-person-name-color);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-related-person-name-size);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
+}
+
+// Source-preserving row recipe extracted from EasyStud. These measured paints
+// and dimensions are deliberate component constants, not a new token scale.
+// Keep responsive density, faded extras and all disclosure Motion external.
+@mixin related-person-row {
+  align-items: center;
+  // K16-65/K16-74: a lighter veil so the row reads on every card surface (rest or selected green)
+  // instead of a white block.
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.45rem 0.25rem 0.45rem;
+
+  &.is-selected {
+    background: #eef6fc;
+    border-color: #9fbddd;
+  }
+}
+
+// Related group/grouping rows reuse the existing semantic metadata palette.
+@mixin related-person-row-tone($tone) {
+  @include metadata.entity-card-token-semantic($tone);
+  border-inline-start: 0.1875rem solid currentColor;
+
+  > .easyedu-related-person-row__name {
+    color: inherit;
+  }
+}
+
+@mixin related-person-selection-slot {
+  @include card-selection-slot;
+  margin-right: 0.1rem;
+}
+
+// Compose with related-person-name; preserve a shrinking, single-line lane
+// between the selection hit target and terminal removal action.
+@mixin related-person-name-layout {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// One size token for the public control and its legacy logical-size adapter.
+@function related-person-remove-size() {
+  @return var(--easyedu-related-person-remove-size);
+}
+
+@mixin related-person-remove-target {
+  block-size: related-person-remove-size();
+  inline-size: related-person-remove-size();
+  min-block-size: related-person-remove-size();
+  min-inline-size: related-person-remove-size();
+
+  @media (max-width: 48rem), (pointer: coarse) {
+    --easyedu-related-person-remove-size: var(--easyedu-touch-target-min);
+  }
+}
+
+@mixin related-person-remove {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #5c6c7d;
+  display: inline-grid;
+  flex: 0 0 auto;
+  font-size: 0;
+  font-weight: 700;
+  height: related-person-remove-size();
+  line-height: 1;
+  place-items: center;
+  padding: 0 !important;
+  position: relative;
+  text-decoration: none !important;
+  transition: color var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
+  width: related-person-remove-size();
+  @include related-person-remove-target;
+
+  // The sign is geometry, not a font glyph. Keep legacy aria-hidden content
+  // for compatibility; a single centred stroke serves every consumer.
+  > span {
+    visibility: hidden;
+  }
+
+  &::before {
+    background: currentColor;
+    block-size: 1.5px;
+    content: "";
+    inline-size: 12px;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+  // The action remains discoverable on touch screens, which have no hover.
+  @media (hover: none), (pointer: coarse) {
+    opacity: 1;
+  }
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    box-shadow: none;
+    color: var(--easyedu-primary-strong);
+    text-decoration: none !important;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:where(.easyedu-related-person-row:not(:hover):not(:focus-within) > *):not(.is-easyedu-guide-highlight-target):not([aria-expanded="true"]) {
+      opacity: 0;
+    }
+  }
+}
+
+// Optional metadata placed beside a title. It must yield before the title or
+// terminal actions are pushed out of the card header.
+@mixin card-title-context {
+  color: var(--easyedu-text-muted);
+  flex: 0 1 auto;
+  font-size: var(--easyedu-font-size-caption);
+  font-weight: var(--easyedu-font-weight-medium);
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin card-title-actions($gap: 0.35rem) {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: $gap;
+  justify-self: end;
+  min-width: max-content;
+}
+
+// Selection controls may stay in the normal card grid or overlay the leading
+// corner. The visual checkbox remains compact while its label owns the hit area.
+@mixin card-selection-slot($mode: flow) {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin: 0;
+  z-index: 4;
+
+  @if $mode == overlay {
+    grid-area: auto;
+    left: 0.55rem;
+    position: absolute;
+    top: 0.55rem;
+  } @else {
+    grid-area: selection;
+  }
+}
+
+// Opt-in fixed header track. Expanded content must not move the selection
+// target vertically. Owns no breakpoint, inline lane, checkbox paint or Motion;
+// apply only where the consumer has measured the shared header geometry.
+@mixin card-selection-header-anchor($block-start: 0.3rem) {
+  top: $block-start;
+  transform: none;
+}
+
+// Centre the full touch target on a measured first header row, not total card
+// height. Both inputs come from the existing composition's padding/row size.
+// Owns no breakpoint, title lane, checkbox paint, card height or disclosure.
+@mixin card-selection-first-row-anchor($content-padding, $first-row-height) {
+  @include card-selection-header-anchor(
+    calc(#{$content-padding} + (#{$first-row-height} - var(--easyedu-touch-target-min)) / 2)
+  );
+}
+
+// Accessible disclosure used when the title itself controls an expandable
+// container card. Keep aria-expanded on the button and pair the icon with
+// card-disclosure-icon.
+@mixin card-disclosure-title {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  display: flex;
+  gap: 0.48rem;
+  min-height: 2rem;
+  min-width: 0;
+  padding: 0.16rem 0.18rem;
+  text-align: left;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    border-radius: var(--easyedu-control-radius);
+    @include focus.ring;
+  }
+}
+
+@mixin card-disclosure-icon($color: var(--easyedu-text-muted), $compact: false) {
+  align-items: center;
+  color: $color;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  height: 1.25rem;
+  justify-content: center;
+  transition: transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+  width: 1.25rem;
+
+  // Existing compact relation sections keep their accepted 10px chevron.
+  @if $compact {
+    font-size: 0.625rem;
+  }
+}
+
+@mixin card-disclosure-expanded-icon {
+  transform: rotate(90deg);
+}
+
+// Use when a card needs to show related objects as pills on the title line
+// without letting those pills push action buttons or counts to a second line.
+@mixin related-tags-inline($max-width: min(34%, 13rem)) {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  margin: 0;
+  max-width: $max-width;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+
+  > * {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    max-width: min(100%, 12rem);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// Summary pill used when related tags cannot safely fit on one card line.
+// It can display either a count ("3 groupings") or a compact "+2" label.
+@mixin related-tags-summary(
+  $bg: var(--easyedu-grouping-soft),
+  $border: color-mix(in srgb, var(--easyedu-grouping) 24%, #fff 76%),
+  $text: var(--easyedu-grouping)
+) {
+  align-items: center;
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: 999px;
+  color: $text;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 660;
+  gap: 0.32rem;
+  justify-content: center;
+  line-height: 1.2;
+  max-width: none;
+  min-width: max-content;
+  padding: 0.2rem 0.58rem;
+  text-decoration: none;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease;
+
+  &:hover {
+    background: color-mix(in srgb, #{$bg} 72%, #fff 28%);
+    border-color: color-mix(in srgb, #{$border} 78%, #000 22%);
+    color: color-mix(in srgb, #{$text} 86%, #000 14%);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus.ring(
+      $color: color-mix(in srgb, #{$text} 22%, transparent),
+      $border-color: color-mix(in srgb, #{$border} 78%, #000 22%)
+    );
+
+    background: color-mix(in srgb, #{$bg} 72%, #fff 28%);
+    color: color-mix(in srgb, #{$text} 86%, #000 14%);
+    text-decoration: none;
+  }
+}
+
+@mixin related-tags-summary-icon {
+  font-size: 0.7rem;
+  transition: transform var(--easyedu-motion-fast) ease;
+}
+
+@mixin related-tags-expanded-icon {
+  transform: rotate(180deg);
+}
+
+// Revealed row containing all related tags. Keep it separate from the card title
+// line so dense cards do not break when tag names are long.
+@mixin related-tags-details($offset: 1.85rem) {
+  align-items: center;
+  display: grid;
+  gap: 0.18rem;
+  margin: 0.1rem 0 0.55rem $offset;
+  max-width: calc(100% - #{$offset});
+  min-width: 0;
+  overflow: hidden;
+  padding: 0.25rem 0 0;
+}
+
+@mixin related-tags-details-list {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-width: 0;
+
+  > * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+// Shared motion for cards that switch between compact and detailed density.
+// Plugins still decide the exact grid, avatar and metadata layout.
+@mixin density-transition {
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-normal) ease,
+    transform var(--easyedu-motion-normal) ease;
+}
+
+// Use only on a card's `:focus-within` state when a child control keeps the
+// actual keyboard focus. The child retains `focus.ring`; this contextual state
+// stays inside the card boundary and therefore cannot bleed into its identity
+// rail or a neighbouring list gutter.
+@mixin card-focus-context(
+  $base-shadow: null,
+  $preserve-identity-rail: false,
+  $identity-rail-color: null,
+  $strong-border: false
+) {
+  @include focus.contained-context-ring(
+    $border-color: var(--easyedu-control-focus-border),
+    $base-shadow: $base-shadow,
+    $preserve-identity-rail: $preserve-identity-rail,
+    $identity-rail-color: $identity-rail-color
+  );
+  @if $strong-border {
+    border-color: var(--easyedu-control-focus-border) !important;
+  }
+}
+
+@mixin selectable-card($identity-color) {
+  cursor: pointer;
+
+  &.is-selected,
+  &[aria-selected="true"] {
+    background: color-mix(in srgb, #{$identity-color} 13%, var(--easyedu-surface) 87%);
+    border-color: color-mix(in srgb, #{$identity-color} 48%, var(--easyedu-card-border) 52%);
+    border-left-color: $identity-color;
+    box-shadow: 0 0.45rem 1.1rem color-mix(in srgb, #{$identity-color} 18%, transparent);
+  }
+}
+
+@mixin expanded-card {
+  overflow: hidden;
+  transition:
+    background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+    border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+    box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+    max-height var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+
+  &.is-expanded {
+    box-shadow: var(--easyedu-shadow);
+  }
+}
+
+// List preview inside a card where the first items stay visible and the rest is
+// hinted by a soft fade plus a reveal toggle. The plugin owns which child items
+// are hidden/collapsed; the kit owns the motion and smoke/fade surface.
+@mixin preview-fade-list(
+  $collapsed-height: 4.2rem,
+  $expanded-height: 36rem,
+  $fade-color: var(--easyedu-surface-soft),
+  $fade-height: 2.45rem
+) {
+  display: block;
+  list-style: none;
+  max-height: $expanded-height;
+  overflow: hidden;
+  position: relative;
+  transition: margin var(--easyedu-motion-fast) ease;
+
+  &::after {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, #{$fade-color} 0%, transparent) 0%,
+      color-mix(in srgb, #{$fade-color} 78%, transparent) 48%,
+      color-mix(in srgb, #{$fade-color} 98%, transparent) 100%
+    );
+    border-radius: 0 0 0.62rem 0.62rem;
+    bottom: 0;
+    box-shadow: inset 0 -0.35rem 0.55rem color-mix(in srgb, #{$fade-color} 20%, transparent);
+    content: "";
+    height: $fade-height;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    transition: opacity var(--easyedu-motion-fast) ease;
+    z-index: 2;
+  }
+
+  &.has-extra-items:not(.is-expanded),
+  &.has-extra-members:not(.is-expanded),
+  &.has-extra-groups:not(.is-expanded) {
+    max-height: $collapsed-height;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &.is-expanded {
+    max-height: $expanded-height;
+  }
+}
+
+@mixin drag-handle($color: var(--easyedu-identity-icon-color)) {
+  &::after {
+    background: $color;
+    content: "";
+    height: 0.95rem;
+    left: calc(var(--easyedu-identity-border-width) / -2);
+    mask-image: var(--easyedu-drag-handle);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity var(--easyedu-motion-fast) ease;
+    width: 0.7rem;
+    z-index: 4;
+    -webkit-mask-image: var(--easyedu-drag-handle);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+  }
+
+  &:hover::before {
+    opacity: 0;
+  }
+
+  &:hover::after {
+    opacity: 0.92;
+  }
+}
+
+@mixin disabled-card {
+  filter: saturate(0.72);
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+// Wide, quiet chevron used at the bottom of a card to reveal hidden content.
+// The hover treatment deliberately uses only soft top/bottom rules so the card
+// itself remains visually calm.
+@mixin card-reveal-toggle($line-color: var(--easyedu-card-border), $text-color: var(--easyedu-text-muted)) {
+  align-items: center;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 0 1px, 0 1px;
+  border: 0;
+  border-radius: 0.28rem;
+  color: $text-color;
+  display: flex;
+  height: 1.55rem;
+  justify-content: center;
+  margin: 0.48rem auto 0;
+  padding: 0;
+  position: relative;
+  transition:
+    background-size var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease,
+    transform var(--easyedu-motion-fast) ease;
+  width: 100%;
+
+  &:hover,
+  &:focus-visible {
+    background: transparent;
+    background-image:
+      linear-gradient(90deg, transparent 0%, color-mix(in srgb, #{$line-color} 28%, transparent) 7%, #{$line-color} 20%, #{$line-color} 80%, color-mix(in srgb, #{$line-color} 28%, transparent) 93%, transparent 100%),
+      linear-gradient(90deg, transparent 0%, color-mix(in srgb, #{$line-color} 28%, transparent) 7%, #{$line-color} 20%, #{$line-color} 80%, color-mix(in srgb, #{$line-color} 28%, transparent) 93%, transparent 100%);
+    background-position: center top, center bottom;
+    background-repeat: no-repeat;
+    background-size: min(34rem, 96%) 1px, min(34rem, 96%) 1px;
+    color: $text-color;
+    outline: 0;
+  }
+
+  &:focus-visible {
+    @include focus.ring;
+  }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  .fa {
+    align-items: center;
+    display: inline-flex;
+    height: 1rem;
+    justify-content: center;
+    transition: transform var(--easyedu-motion-fast) ease;
+    width: 1rem;
+  }
+
+  &::before,
+  &::after {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1.2px);
+    background-size: 0.24rem 0.24rem;
+    content: "";
+    height: 0.72rem;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity var(--easyedu-motion-fast) ease;
+    width: 1rem;
+  }
+
+  &::before {
+    left: 0.85rem;
+  }
+
+  &::after {
+    right: 0.85rem;
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:focus-visible::before,
+  &:focus-visible::after {
+    opacity: 0.28;
+  }
+
+  &.is-expanded .fa,
+  &[aria-expanded="true"] .fa {
+    transform: rotate(180deg);
+  }
+}
+
+// Identity-title paint override without repeating typography or truncation policy.
+@mixin card-title-ink {
+  color: var(--easyedu-card-identity-title-color);
+  letter-spacing: 0;
+}
+
+// Accepted large avatar; compact visibility remains with the owning density controller.
+@mixin identity-avatar-large($touch: false) {
+  @if $touch {
+    font-size: 1rem;
+    height: 3.25rem !important;
+    line-height: 3.25rem;
+    width: 3.25rem !important;
+  } @else {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0.2rem 0.5rem rgba(31, 42, 55, 0.1);
+  display: inline-flex;
+  font-size: 1.35rem;
+  height: 5.35rem !important;
+  line-height: normal;
+  width: 5.35rem !important;
+  }
+}
+
+// Suppress only the terminal divider; keep row geometry and interaction.
+@mixin related-person-row-terminal-divider {
+  border-bottom-color: transparent;
+}
+
+// Accepted person-card density values; the host retains predicates and Motion.
+@mixin person-card-inset($density: detailed, $frame: true) {
+  @if $density == detailed {
+    padding: 0.45rem 0.9rem 0.85rem;
+  } @else if $density == compact {
+    max-height: 3.3rem;
+    min-height: 2.3rem;
+    @content;
+    padding: 0.45rem 0.9rem 0.45rem 3.2rem;
+  } @else if $density == expanded {
+    max-height: 34rem;
+    min-height: 8rem;
+    @content;
+    padding: 0.45rem 0.9rem 0.85rem;
+  } @else if $density == touch-detailed {
+    padding: 0.72rem 0.72rem 0.72rem 0.82rem;
+  } @else if $density == touch-compact {
+    @if $frame { min-height: 2.45rem; }
+    padding-left: 3.85rem;
+  } @else if $density == touch-expanded {
+    max-height: 38rem;
+    min-height: 7rem;
+    padding: 0.72rem 0.72rem 0.72rem 0.82rem;
+  } @else if $density == narrow-detailed {
+    padding-left: 1.85rem;
+  } @else if $density == narrow-expanded {
+    max-height: 42rem;
+    padding-left: 1.85rem;
+  } @else {
+    @error "Unknown person-card inset density: #{$density}.";
+  }
+}
+
+@mixin person-card-rail-inset($compact: false, $touch: false) {
+  padding-top: if($compact, 0, if($touch, 1.05rem, 1.35rem));
+}
+
+@mixin person-card-secondary-copy-paint($color) {
+  color: $color;
+}
+
+@mixin person-card-secondary-copy-type($density: detailed) {
+  font-size: if($density == compact, 0.8rem, if($density == touch, 0.82rem, 0.83rem));
+}
+
+@mixin identity-card-drag-glyph-block {
+  height: 0.78rem;
+}
+
+
+// Identity summary in a details window, retaining the existing entity palette.
+@mixin entity-identity-summary-edge($color) {
+  border-inline-start: 0.25rem solid $color;
+  border-radius: 0.125rem;
+}
+
+@mixin entity-identity-summary-inset {
+  padding-inline-start: 0.625rem;
+}
+
+@mixin entity-identity-person-visual {
+  border-radius: 50%;
+}
+
+@mixin entity-identity-person-image-frame {
+  block-size: 100% !important;
+  border: 0;
+  border-radius: inherit;
+  box-shadow: none;
+}
+
+@mixin entity-identity-person-image-inset {
+  padding: 0;
+}
+
+@mixin entity-identity-person-initials-paint {
+  background: var(--easyedu-participant-soft);
+  color: color-mix(in srgb, var(--easyedu-participant) 82%, #000 18%);
+}
+
+@mixin entity-identity-person-initials-size {
+  font-size: 1.125rem;
+}
+
+@mixin entity-identity-person-initials-leading {
+  line-height: 1;
+}
+
+@mixin related-person-row-details-inset {
+  background: var(--easyedu-surface-soft);
+  min-block-size: 2.5rem;
+  padding-inline: 0.75rem;
+}
+
+
+// Object-card modifiers preserve the existing logical/physical rail cascade.
+@mixin object-card-rail-edge($width, $color) {
+  border-left: $width solid $color;
+}
+
+@mixin object-card-inset($touch: false) {
+  padding: if($touch, 0.68rem 0.68rem 0.72rem, 0.6rem 0.7rem 0.62rem);
+}
+
+@mixin object-card-catalog-inset {
+  padding-top: 0.8rem;
+}
+
+@mixin card-title-block-inset($unassigned: false) {
+  padding-bottom: if($unassigned, 0.08em, 0);
+}
+
+@mixin card-title-object-leading {
+  line-height: 1.25;
+}
+
+
+// Accepted responsive title size; the host retains the containing breakpoint.
+@mixin card-title-responsive-size($nested: false) {
+  font-size: if($nested, 0.84rem, 0.94rem);
+}
+
+// Let the shared removal target participate in flow: a fixed compact cap would
+// clip its 44px touch target. Keep the accepted minimum and host declarations.
+@mixin related-person-row-compact-frame {
+  block-size: auto;
+  @content;
+  min-block-size: 2.35rem;
+}
+
+
+// Reserve an action lane, or reclaim it when the action joins normal flow.
+@mixin identity-card-action-clearance($person: false, $flow: false) {
+  $gap: if($person, 0.75rem, 0.45rem);
+  padding-right: if($flow, 0, calc(var(--easyedu-touch-target-min) + #{$gap}));
+}
+
+// Let one header child extend over the reserved action lane while that action
+// is hidden, without changing the header's own box (its padding is observed to
+// lay out card actions; changing it would rebuild a focused card menu).
+@mixin identity-card-action-lane-reclaim($person: false, $flow: false) {
+  $gap: if($person, 0.75rem, 0.45rem);
+  margin-inline-end: if($flow, 0, calc(-1 * (var(--easyedu-touch-target-min) + #{$gap})));
+}
+
+@mixin preview-fade-list-inset {
+  padding: 0;
+}
+
+
+// Semantic disclosure ink; preserve existing host aliases where they are public inputs.
+@mixin card-disclosure-ink($color: var(--easyedu-text), $quiet-unassigned: false) {
+  color: if($quiet-unassigned, #627387, $color);
+}
+
+// Existing narrow/flush adaptations of the same disclosure title control.
+@mixin card-disclosure-inset($variant) {
+  @if $variant == flush-end {
+    padding-right: 0;
+  } @else if $variant == narrow-leading {
+    padding-left: 1.3rem;
+  } @else {
+    @error "Unknown disclosure title inset: #{$variant}.";
+  }
+}
+
+
+// Existing creation-card presentation; placement remains owned by the workspace.
+@mixin identity-create-card-frame($intrinsic: false, $surface: var(--easyedu-surface-soft), $radius: var(--easyedu-card-radius)) {
+  @if $intrinsic { min-height: 0; }
+  @else {
+    background: $surface;
+    border: 1px solid #e3ece5;
+    border-radius: $radius;
+    padding: 0.8rem;
+  }
+}
+
+// Accepted dense person-card inset in the single-lane composition.
+@mixin identity-person-card-dense-inset {
+  min-height: 2.15rem;
+  padding-bottom: 0.38rem;
+  padding-top: 0.38rem;
+}
+
+
+// Long-list/Motion controllers own the window; remove only the legacy CSS cap.
+@mixin card-relation-list-unbounded { max-height: none; }
+
+// Selected responsive person cards retain their accepted expanded extent.
+@mixin person-card-selected-unbounded { max-height: none; }
+
+// Wrapped participant names share a real grid row with selection and actions.
+// Absolute grid items use that row as their containing block, not a fixed first
+// line or the whole card (which also contains email and deferred metadata).
+@mixin person-card-wrapped-name-row($name, $selector, $menu, $badge) {
+  align-items: center;
+  gap: 4px 8px;
+  grid-template-columns: var(--easyedu-touch-target-min) minmax(0, 1fr) var(--easyedu-card-action-target) var(--easyedu-touch-target-min);
+  grid-template-rows: auto auto auto auto;
+  padding-inline: 0.9rem;
+
+  .easyedu-person-card__main,
+  .easyedu-person-card__headline,
+  .easyedu-person-card__headline-main { display: contents; }
+
+  #{$name} { grid-area: 1 / 2; }
+  .easyedu-person-card__detail-button {
+    grid-area: 1 / 3;
+    align-self: center;
+    margin-block: -5px;
+    top: 0;
+  }
+  > #{$selector},
+  > #{$menu} {
+    position: absolute;
+    inset: auto;
+    inset-inline-start: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  > #{$selector} { grid-area: 1 / 1 / 2 / 2; }
+  > #{$menu} { grid-area: 1 / 4 / 2 / 5; }
+  .easyedu-person-card__email { grid-area: 2 / 2; }
+  #{$badge} {
+    grid-area: 3 / 2;
+    justify-self: end;
+  }
+  .easyedu-person-card__meta {
+    grid-area: 4 / 2;
+    inline-size: auto;
+    max-inline-size: 100%;
+  }
+}

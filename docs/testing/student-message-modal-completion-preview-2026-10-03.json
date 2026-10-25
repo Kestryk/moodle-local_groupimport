@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM-21 native bulk-message modal chrome and responsive geometry",
+  "kitVersion": "0.4.71",
+  "kitCommit": "5851a0f",
+  "sourceCommit": "e022b6c",
+  "runtimeCommit": "ced50ac",
+  "runId": "easystud-authenticated-20261003T203950810Z-39292",
+  "status": "passed",
+  "selectedTests": 1,
+  "widths": [1600, 768, 390],
+  "measurements": {
+    "closeWidthPx": 30.390625,
+    "closeHeightPx": 30.390625,
+    "closeGlyphPx": 20,
+    "footerButtonHeightPx": 26,
+    "footerRightEdgeDeltaPx": 0,
+    "textareaResize": "none"
+  },
+  "visualInspection": {
+    "phoneCapture": "playwright-output/student-message-footer-pre-a722d-eometry-and-responsive-body/message-footer-390.png",
+    "closeGlyphVisible": true,
+    "closeGlyphCentred": true,
+    "footerContained": true
+  },
+  "safety": {
+    "messageSent": false,
+    "fixtureRequested": false,
+    "fixtureCleanupComplete": true,
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true
+  },
+  "humanAccepted": false,
+  "remaining": [
+    "Publish paired Foundation and EasyStud Loading, Sending and Error specimens.",
+    "Include this change in the deferred combined human checklist."
+  ]
+}

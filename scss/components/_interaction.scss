@@ -1,0 +1,105 @@
+// Context menu and drag preview styles.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-context-menu {
+    @include easyedu.context-menu;
+
+    min-width: 13rem;
+    z-index: 1060;
+
+    &[hidden] {
+      display: none;
+    }
+
+    button {
+      &:focus {
+        @include easyedu.menu-item-active(
+          var(--local-groupimport-easystud-surface-soft), var(--local-groupimport-easystud-primary), null
+        );
+      }
+
+      &:focus-visible {
+        @include easyedu.ring;
+      }
+    }
+
+    // An open submenu keeps its trigger in the hover state.
+    [data-easystud-context-submenu-toggle][aria-expanded="true"] {
+      @include easyedu.menu-item-active;
+    }
+
+    .local-groupimport-easystud-context-menu__chevron.fa {
+      @include easyedu.menu-item-chevron;
+    }
+  }
+
+  &-context-menu__separator {
+    @include easyedu.menu-separator;
+  }
+
+  &-context-menu__group {
+    display: grid;
+    gap: 0.18rem;
+    min-width: 0;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  // Desktop flyout, positioned beside its trigger by the menu controller.
+  &-context-menu__submenu {
+    @include easyedu.menu-surface;
+
+    @include easyedu.context-submenu-viewport-bound;
+    overflow-y: auto;
+    position: fixed;
+    z-index: 1061;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  // A lone action is shown inline, as a plain top-level item.
+  &-context-menu__group.is-flattened &-context-menu__submenu {
+    @include easyedu.menu-surface-inline;
+  }
+
+  [data-selectable-type].is-selected {
+    outline: 0;
+  }
+
+  &-drag-preview {
+    @include easyedu.drag-preview-container;
+    @include easyedu.drag-preview-compact;
+
+    &.is-captured {
+      @include easyedu.drag-preview-captured;
+    }
+
+    &.has-stack {
+      @include easyedu.drag-preview-stack-layers;
+    }
+  }
+
+  &-context-menu__list {
+    display: grid;
+    gap: 0.18rem;
+    min-width: 0;
+  }
+
+  &-drag-preview__badge {
+    @include easyedu.drag-preview-count-badge;
+    @include easyedu.drag-preview-count-placement;
+  }
+
+  &-drag-preview__moving {
+    @include easyedu.drag-preview-moving-badge;
+  }
+
+  &-drag-preview__moving-icon {
+    @include easyedu.drag-preview-moving-icon(var(--easyedu-drag-handle));
+  }
+}

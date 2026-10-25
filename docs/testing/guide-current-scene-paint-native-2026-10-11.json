@@ -1,0 +1,216 @@
+{
+  "classification": "local-supervised",
+  "sourceProduct": "f6e9143585fc90bd0156862c58521ea30e03de35",
+  "runtimeProduct": "ec4987eee208eb5267d5dc2b09d2b6936754a75b",
+  "spec": "tools/playwright/guide-current-scene-matrix-native.spec.js",
+  "runId": "easystud-authenticated-20261011T095527454Z-50516",
+  "status": "passed",
+  "nativeLanguage": "en",
+  "motion": "no-preference",
+  "widths": [
+    1280,
+    390
+  ],
+  "nativeCases": 6,
+  "rows": [
+    {
+      "width": 1280,
+      "language": "en",
+      "name": "membership",
+      "mode": "add",
+      "record": {
+        "cursorFrames": 1203,
+        "menuFrames": 0,
+        "ghostFrames": 111,
+        "dropFrames": 58,
+        "outsideDropFrames": 0,
+        "outboundFrames": 104,
+        "maxCursorGhostDrift": 0.00006103515625,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu"
+        ],
+        "dropStyle": {
+          "style": "dashed",
+          "color": "color(srgb 0.429333 0.624 0.525333)",
+          "z": 2,
+          "ghostZ": 3
+        },
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "name": "membership",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1501,
+        "menuFrames": 331,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": true
+      }
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "name": "actions",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1526,
+        "menuFrames": 358,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 2,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "name": "membership",
+      "mode": "add",
+      "record": {
+        "cursorFrames": 2125,
+        "menuFrames": 566,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "name": "membership",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1499,
+        "menuFrames": 387,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": true
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "name": "actions",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1475,
+        "menuFrames": 360,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 2,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true
+  },
+  "retention": {
+    "mode": "dry-run",
+    "protectedRuns": 2,
+    "candidateCount": 0,
+    "deletedCount": 0
+  },
+  "failedPredecessor": {
+    "runId": "easystud-authenticated-20261011T095007860Z-43744",
+    "preserved": true,
+    "failure": "Authored transform string differs from browser-normalized keyframes; strict matrix successor retains >10 samples and <2px drift",
+    "cleanupComplete": true
+  },
+  "businessWrites": false,
+  "realUserProgressWritten": false,
+  "productAssetsChanged": false,
+  "humanAccepted": false,
+  "limitations": [
+    "EN normal desktop/phone only; FR/tablet/reduced artwork is not inferred.",
+    "Frame samples do not certify every painted glyph or human natural reading.",
+    "Fictional scene outcomes are not native Moodle assignment success."
+  ]
+}

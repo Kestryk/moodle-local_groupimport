@@ -1,0 +1,249 @@
+{{!
+    @template local_groupimport/easyedu_navigation
+
+    Reference wrapper for one normalized navigation context.
+    Consumers must adapt the namespace of the shared item partial.
+
+    Optional K21-51 identity rail (EasyEdu "Rail-anchor" standard): set `identityrail` and
+    `identitysubtitle` (active view). The desktop rail then starts with the product identity
+    (tile + drawertitle / identitysubtitle) and groups the Guide capsule and Display
+    preferences at its end, in DOM order. The compact drawer is unchanged.
+
+    Example context (json):
+    {
+        "rootid": "example-easystud-navigation",
+        "panelid": "example-easystud-navigation-panel",
+        "navigationlabel": "EasyStud spaces",
+        "triggerlabel": "Open EasyStud navigation",
+        "triggericon": "fa fa-bars",
+        "closeicon": "fa fa-times",
+        "closelabel": "Close navigation",
+        "drawertitle": "EasyStud",
+        "drawericon": "fa fa-users-gear",
+        "drawersubtitle": "Simplified participant management",
+        "drawersectionslabel": "EasyStud spaces",
+        "identityrail": true,
+        "identityicon": "fa fa-users-gear",
+        "identitysubtitle": "Student Management",
+        "hasitems": true,
+        "hasguide": false,
+        "emptylabel": "No destinations available",
+        "sections": [
+            {
+                "id": "spaces",
+                "label": "EasyStud spaces",
+                "items": [
+                    {
+                        "id": "participants",
+                        "kind": "link",
+                        "islink": true,
+                        "current": true,
+                        "url": "/local/groupimport/manage.php?id=2",
+                        "label": "Student Management",
+                        "icon": "fa fa-users"
+                    },
+                    {
+                        "id": "import",
+                        "kind": "link",
+                        "islink": true,
+                        "current": false,
+                        "url": "/local/groupimport/index.php?id=2",
+                        "label": "Mass Import",
+                        "icon": "fa fa-file-import"
+                    }
+                ]
+            }
+        ],
+        "drawersections": [
+            {
+                "id": "spaces",
+                "label": "EasyStud spaces",
+                "items": [
+                    {
+                        "id": "drawer-participants",
+                        "kind": "link",
+                        "islink": true,
+                        "current": true,
+                        "url": "/local/groupimport/manage.php?id=2",
+                        "label": "Student Management",
+                        "icon": "fa fa-users"
+                    },
+                    {
+                        "id": "drawer-import",
+                        "kind": "link",
+                        "islink": true,
+                        "current": false,
+                        "url": "/local/groupimport/index.php?id=2",
+                        "label": "Mass Import",
+                        "icon": "fa fa-file-import"
+                    }
+                ]
+            }
+        ]
+    }
+}}
+<div
+    id="{{rootid}}"
+    class="easyedu-navigation{{#identityrail}} easyedu-navigation--identity{{/identityrail}}"
+    data-easyedu-navigation="1"
+    {{#anchorselector}}data-easyedu-navigation-anchor-selector="{{anchorselector}}"{{/anchorselector}}
+>
+    <nav
+        class="easyedu-navigation__desktop"
+        data-easyedu-navigation-desktop="1"
+        aria-label="{{navigationlabel}}"
+    >
+        {{#identityrail}}
+        {{! K22-21: decorative skeleton shown until the controller has fitted the rail. }}
+        <span class="easyedu-navigation__rail-skeleton" data-easyedu-rail-skeleton="1" aria-hidden="true">
+            <span class="easyedu-navigation__rail-skeleton-tile"></span>
+            <span class="easyedu-navigation__rail-skeleton-lines"><span></span><span></span></span>
+            <span class="easyedu-navigation__rail-skeleton-divider"></span>
+            {{#sections}}{{#items}}<span class="easyedu-navigation__rail-skeleton-pill"></span>{{/items}}{{/sections}}
+            {{#hasguide}}<span class="easyedu-navigation__rail-skeleton-guide"></span>{{/hasguide}}
+            <span class="easyedu-navigation__rail-skeleton-square"></span>
+        </span>
+        <div class="easyedu-navigation__identity">
+            <span class="easyedu-navigation__identity-tile" aria-hidden="true"><span class="fa {{identityicon}}"></span></span>
+            <span class="easyedu-navigation__identity-text">
+                <span class="easyedu-navigation__identity-name">{{drawertitle}}</span>
+                {{#identitysubtitle}}<span class="easyedu-navigation__identity-view">{{identitysubtitle}}</span>{{/identitysubtitle}}
+            </span>
+        </div>
+        <span class="easyedu-navigation__identity-divider" aria-hidden="true"></span>
+        {{/identityrail}}
+        {{^identityrail}}
+        {{#hasguide}}
+        <div class="easyedu-navigation__guide-source" data-easyedu-navigation-guide-source="1" data-easyedu-navigation-label-reveal="1">
+            {{{guidehtml}}}
+        </div>
+        {{/hasguide}}
+        {{/identityrail}}
+        {{#hasitems}}
+        <div class="easyedu-navigation__sections">
+            {{#sections}}
+            <section class="easyedu-navigation__section" data-easyedu-navigation-section="{{id}}">
+                <h2 class="easyedu-navigation__section-title">{{label}}</h2>
+                <ul class="easyedu-navigation__items">
+                    {{#items}}
+                        {{> local_groupimport/easyedu_navigation_items }}
+                    {{/items}}
+                </ul>
+            </section>
+            {{/sections}}
+        </div>
+        {{/hasitems}}
+        {{^hasitems}}
+        <p class="easyedu-navigation__empty">{{emptylabel}}</p>
+        {{/hasitems}}
+        {{#identityrail}}
+        <div class="easyedu-navigation__utilities">
+            {{#hasguide}}
+            <div class="easyedu-navigation__guide-source" data-easyedu-navigation-guide-source="1">
+                {{{guidehtml}}}
+            </div>
+            {{/hasguide}}
+        {{/identityrail}}
+        <div class="easyedu-navigation__preferences-source">
+            <button type="button" class="easyedu-direct-icon" data-easyedu-display-open
+                data-easyedu-display-tooltip
+                aria-label="{{#str}}displaypreferences, local_groupimport{{/str}}">
+                <span class="fa fa-sliders" aria-hidden="true"></span>
+            </button>
+        </div>
+        {{#identityrail}}
+        </div>
+        {{/identityrail}}
+    </nav>
+
+    <div class="easyedu-navigation__trigger-row" data-easyedu-navigation-trigger-row="1">
+        <button
+            type="button"
+            class="easyedu-navigation__trigger easyedu-modal-yield-control"
+            data-easyedu-navigation-open="1"
+            aria-controls="{{panelid}}"
+            aria-expanded="false"
+            aria-label="{{triggerlabel}}"
+        >
+            <span class="{{triggericon}}" aria-hidden="true"></span>
+            <span class="easyedu-navigation__trigger-label">{{triggerlabel}}</span>
+        </button>
+    </div>
+
+    <div
+        class="easyedu-navigation__backdrop"
+        data-easyedu-navigation-backdrop="1"
+        hidden
+    ></div>
+
+    <div
+        id="{{panelid}}"
+        class="easyedu-navigation__panel"
+        data-easyedu-navigation-panel="1"
+        role="dialog"
+        aria-modal="true"
+        aria-label="{{navigationlabel}}"
+        aria-hidden="true"
+        inert
+    >
+        <header class="easyedu-navigation__panel-header">
+            <span class="easyedu-navigation__panel-tile" aria-hidden="true"><span class="fa {{identityicon}}"></span></span>
+            <div class="easyedu-navigation__panel-heading">
+                <h2 class="easyedu-navigation__panel-title">{{#drawertitle}}{{drawertitle}}{{/drawertitle}}{{^drawertitle}}{{navigationlabel}}{{/drawertitle}}</h2>
+                {{#drawersubtitle}}<p class="easyedu-navigation__panel-subtitle">{{drawersubtitle}}</p>{{/drawersubtitle}}
+            </div>
+            <button
+                type="button"
+                class="easyedu-navigation__close"
+                data-easyedu-navigation-close="1"
+                aria-label="{{closelabel}}"
+            >
+                <span class="{{closeicon}}" aria-hidden="true"></span>
+            </button>
+        </header>
+
+        <div class="easyedu-navigation__panel-scroll" data-easyedu-navigation-panel-scroll="1">
+            <div class="easyedu-navigation__preferences-drawer">
+                <button type="button" class="easyedu-navigation__item" data-easyedu-display-open>
+                    <span class="easyedu-navigation__item-icon fa fa-sliders" aria-hidden="true"></span>
+                    <span class="easyedu-navigation__item-label">{{#str}}displaypreferences, local_groupimport{{/str}}</span>
+                </button>
+            </div>
+
+            {{#hasitems}}
+            <nav class="easyedu-navigation__sections" aria-label="{{navigationlabel}}">
+                {{#drawersections}}
+                <section class="easyedu-navigation__section" data-easyedu-navigation-section="{{id}}">
+                    <h3 class="easyedu-navigation__section-title">{{#spaceslabel}}{{spaceslabel}}{{/spaceslabel}}{{^spaceslabel}}{{label}}{{/spaceslabel}}</h3>
+                    <ul class="easyedu-navigation__items">
+                        {{#items}}
+                            {{> local_groupimport/easyedu_navigation_items }}
+                        {{/items}}
+                    </ul>
+                </section>
+                {{/drawersections}}
+            </nav>
+            {{/hasitems}}
+
+            <div class="easyedu-navigation__guide-slot" data-easyedu-navigation-guide-slot="1"></div>
+
+            {{#hasitems}}
+            {{#hasparticipantdropdown}}
+            <section
+                class="easyedu-navigation__section easyedu-navigation__section--participants"
+                data-easyedu-navigation-section="course-participants"
+            >
+                <h3 class="easyedu-navigation__section-title">{{participantnavigationlabel}}</h3>
+                <div
+                    class="easyedu-navigation__participant-links"
+                    data-easyedu-navigation-participant-links="1"
+                ></div>
+            </section>
+            {{/hasparticipantdropdown}}
+            {{/hasitems}}
+            {{^hasitems}}
+            <p class="easyedu-navigation__empty">{{emptylabel}}</p>
+            {{/hasitems}}
+        </div>
+    </div>
+</div>

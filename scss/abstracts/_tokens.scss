@@ -1,0 +1,127 @@
+@use "../easyedu/tokens" as easyedu;
+@use "../easyedu" as easyedukit;
+
+// Host-theme CSS hardening (2026-10-24, Kevin-approved, triggered by a DVL 4.5
+// custom-theme leak: fonts/colours/spacing bleeding through on that instance).
+// Two deliberately moderate techniques, neither `!important` nor Shadow DOM
+// (that full rewrite is a separate, future-roadmap chantier):
+//   1. The duplicated class below (`.local-groupimport-easystud` twice in one
+//      compound selector) triples this rule's specificity so it reliably beats
+//      a host theme's own selectors on these properties, without an arms race.
+//   2. The properties re-declared here are a *targeted* reset, not `all: unset`:
+//      just the ones that most often leak from a host theme (font, colour,
+//      box-sizing, list markers, text alignment).
+// `--easyedu-font-family-ui` itself stays `inherit` on purpose (EasyStud is
+// designed to blend with the host body font in most themes) — re-asserting
+// `font-family: var(--easyedu-font-family-ui)` here does not change that
+// intent, it only stops a host theme's own higher-specificity rule from
+// forcing a *different* family than the one EasyStud/the Kit resolved.
+//
+// K23-73 (2026-10-24): the token mixins MUST stay on the single-class selector
+// below, never inside the duplicated-class rule. The root `<div>` also carries
+// `.easyedu-ui`, whose own token block (same 0,1,0 weight, later in the
+// cascade) is meant to win on that element — notably
+// `--easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif` over the
+// compat default `inherit`. Doubling the class made `inherit` win instead, and
+// `inherit` is invalid inside a `font:` shorthand, so every Kit title using
+// `font: <weight> <size>/<lh> var(--easyedu-font-family-ui)` (app identity,
+// nav tabs, card titles, view switcher) silently fell back to the root's
+// inherited 15px/400 in the host system font.
+.local-groupimport-easystud {
+  @include easyedu.token-defaults;
+  @include easyedu.groupimport-compat-tokens;
+  // The animation level policy is page-wide: utilities/_animations.scss.
+}
+
+.local-groupimport-easystud.local-groupimport-easystud {
+  box-sizing: border-box;
+  color: var(--local-groupimport-easystud-text);
+  font-family: var(--easyedu-font-family-ui);
+  // 2026-10-24 fix: do NOT force font-size/line-height here. This is the page ROOT, not a
+  // body-text element — every descendant that doesn't set its own size (title bars, nav identity,
+  // column headers...) inherits straight from here. Forcing --easyedu-font-size-body (0.9rem =
+  // 14.4px) replaced the ~16px previously inherited from Moodle's own body, silently shrinking
+  // every such element by ~10% while rem-sized Kit components stayed put — exactly the "text
+  // looks inconsistent everywhere" regression Kevin reported right after this hardening shipped.
+  // font-family/color/box-sizing/list-style/text-align are still safe to force here: a host theme
+  // overriding those is the actual leak this chantier targets; font-size/line-height were never
+  // the reported problem and the host's own inherited baseline is what the rest of the Kit was
+  // built against.
+  list-style: none;
+  margin: 1.5rem 0;
+  text-align: left;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+// Confirmed on a real DVL 4.5 pass (2026-10-24): that theme ships
+// `body.pagelayout-incourse #region-main a:not(.btn) { text-decoration:
+// underline; }`, which was winning over the Kit's own nav/tab links (e.g.
+// "Simplified participant management", "Mass Import" were underlined — never
+// an intentional Kit style). CSS specificity compares ID count first, so no
+// amount of doubled *classes* (the rule above) can ever outrank a host
+// selector that carries one real ID, regardless of how many classes it adds.
+// The root `<div>` genuinely has `id="local-groupimport-easystud"` (see
+// templates/manage.mustache), so using it here is not invented weight; the
+// leading `html` ancestor is the one deliberate, bounded addition — a single,
+// well-known idiom to match the host rule's selector *count* (id:1, class:2,
+// type:2 on both sides) so the plugin's own later stylesheet wins the tie by
+// source order, without `!important` and without escalating again if a theme
+// adds yet another class to its own selector (that would still tie, not lose).
+html #local-groupimport-easystud.local-groupimport-easystud.local-groupimport-easystud a,
+html #local-groupimport-easystud.local-groupimport-easystud.local-groupimport-easystud button {
+  text-decoration: none;
+}
+
+// Mass Import (index.php) is its own Moodle page, not a tab inside the
+// Student Management shell above: its root is `#local-groupimport-import` /
+// `.local-groupimport-import` (see scss/views/_mass-import.scss, which already
+// re-declares box-sizing/colour/font-size/line-height there — targeted reset,
+// technique 2, done). This isolated rule only adds technique 1 (the duplicated
+// class, for specificity) as a *separate* rule so it does not get inherited by
+// that file's `&__x` BEM nesting, which would otherwise turn `&__eyebrow` into
+// an invalid `.local-groupimport-import.local-groupimport-import__eyebrow`.
+.local-groupimport-import.local-groupimport-import {
+  box-sizing: border-box;
+  color: var(--local-groupimport-easystud-text);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 1rem;
+  line-height: var(--easyedu-line-height-body);
+  list-style: none;
+  text-align: left;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+// Same confirmed DVL 4.5 leak and same ID-tie fix as the Student Management
+// root above: the root `<div>` genuinely has `id="local-groupimport-import"`
+// (see index.php), so this is matching the host rule's id:1/class:2/type:2
+// weight with real, existing selectors plus one bounded `html` ancestor.
+html #local-groupimport-import.local-groupimport-import.local-groupimport-import a,
+html #local-groupimport-import.local-groupimport-import.local-groupimport-import button {
+  text-decoration: none;
+}
+
+// Administration (admin_externalpage, #page-admin-setting-local_groupimport)
+// keeps Moodle's native admin form controls on purpose (see
+// scss/views/_admin-settings.scss header comment) — their own font/colour
+// is intentional, not a leak, so only box-sizing is hardened here. The ID
+// selector is already higher specificity than almost any host-theme class
+// selector, so no duplicated-class trick is needed on this one.
+#page-admin-setting-local_groupimport {
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}

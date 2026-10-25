@@ -1,0 +1,1620 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM51 paired Settings row/Open/Closed/Empty and Groupings chip; scoped linked Product full-dialog and specimen publication.",
+  "foundation": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPage": "81455adb-6787-8068-8008-9ce6186bf6ef",
+    "libraryHost": "37222e98-689a-801a-8008-bbfd3b2f8022",
+    "open": {
+      "main": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "component": "79c98099-5199-8000-8008-bbfe8b1b6bfc"
+    },
+    "row": {
+      "component": "8a982f17-c9c0-80e9-8008-be9d6ae9bedb",
+      "main": "8a982f17-c9c0-80e9-8008-be9d6a82f6f7"
+    },
+    "empty": {
+      "component": "8a982f17-c9c0-80e9-8008-be9e1fa8d620",
+      "main": "8a982f17-c9c0-80e9-8008-be9e1e108e78"
+    },
+    "closed": {
+      "component": "8a982f17-c9c0-80e9-8008-be9ee1861dae",
+      "main": "8a982f17-c9c0-80e9-8008-be9ee12bac3c"
+    },
+    "narrow": "8a982f17-c9c0-80e9-8008-be9ee1902c38",
+    "rows": [
+      "8a982f17-c9c0-80e9-8008-be9d8b4c1213",
+      "8a982f17-c9c0-80e9-8008-be9d8b58154f"
+    ],
+    "csv": "8a982f17-c9c0-80e9-8008-be9e1d4f6160",
+    "partial": "8a982f17-c9c0-80e9-8008-be9ddec4a16e"
+  },
+  "standard": {
+    "page": "2b150968-5877-802e-8008-97c286173199",
+    "host": "79c98099-5199-8000-8008-bbff04d6f95e",
+    "open": "79c98099-5199-8000-8008-bbff0772a642",
+    "items": [
+      {
+        "role": "row",
+        "id": "8a982f17-c9c0-80e9-8008-be9f19364bfd",
+        "component": "8a982f17-c9c0-80e9-8008-be9d6ae9bedb"
+      },
+      {
+        "role": "empty",
+        "id": "8a982f17-c9c0-80e9-8008-be9f19b622b1",
+        "component": "8a982f17-c9c0-80e9-8008-be9e1fa8d620"
+      },
+      {
+        "role": "closed",
+        "id": "8a982f17-c9c0-80e9-8008-be9f19f0cffb",
+        "component": "8a982f17-c9c0-80e9-8008-be9ee1861dae"
+      },
+      {
+        "role": "row-narrow",
+        "id": "8a982f17-c9c0-80e9-8008-be9f1a12cd84",
+        "component": "8a982f17-c9c0-80e9-8008-be9d6ae9bedb"
+      }
+    ]
+  },
+  "pairs": [
+    {
+      "component": "79c98099-5199-8000-8008-bbfe8b1b6bfc",
+      "main": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "standard": "79c98099-5199-8000-8008-bbff0772a642",
+      "match": true,
+      "fingerprint": [
+        {
+          "type": "board",
+          "name": "ROOT",
+          "x": 0,
+          "y": 0,
+          "w": 700,
+          "h": 216,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#fbfdff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#d9e7f1",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 16,
+          "y": 12.417,
+          "w": 24,
+          "h": 24,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "Icon / Chevron down (master; source vector)",
+          "x": 21,
+          "y": 19.417,
+          "w": 14,
+          "h": 10,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 23.333,
+          "y": 22.333,
+          "w": 9.333,
+          "h": 3.333,
+          "rotation": 0,
+          "fills": [],
+          "strokes": [
+            {
+              "color": "#0b5ea8",
+              "width": 2,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Heading",
+          "x": 42,
+          "y": 10.05,
+          "w": 400,
+          "h": 28,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#263b4f",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Members",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Count / Settings",
+          "x": 462,
+          "y": 11.775,
+          "w": 132,
+          "h": 25.82,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#edf7f1",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#cfe3d6",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 470,
+          "y": 13.775,
+          "w": 116,
+          "h": 21.82,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#225842",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "2 member(s)",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "Separator",
+          "x": 1,
+          "y": 48,
+          "w": 698,
+          "h": 1,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#d9e7f1",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Row / Settings / Default",
+          "x": 8.8,
+          "y": 57.6,
+          "w": 684,
+          "h": 72,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#ffffff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#e3ecf4",
+              "width": 1,
+              "opacity": null
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Primary",
+          "x": 17.12,
+          "y": 64.32,
+          "w": 667.36,
+          "h": 22,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#334b61",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Alex Dupont",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+          "x": 17.12,
+          "y": 89.6,
+          "w": 284,
+          "h": 23.49,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#eef6fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#c9deef",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 24.8,
+          "y": 91.34,
+          "w": 268.64,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#2f5f89",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Email address · alex.dupont@example.edu",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+          "x": 305.92,
+          "y": 89.6,
+          "w": 116,
+          "h": 23.49,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#eef6fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#c9deef",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 313.6,
+          "y": 91.34,
+          "w": 100.64,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#2f5f89",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "ID · 10482",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Row / Settings / Default",
+          "x": 8.8,
+          "y": 135.36,
+          "w": 684,
+          "h": 72,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#ffffff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#e3ecf4",
+              "width": 1,
+              "opacity": null
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Primary",
+          "x": 17.12,
+          "y": 142.08,
+          "w": 667.36,
+          "h": 22,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#334b61",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Léa Martin",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+          "x": 17.12,
+          "y": 167.36,
+          "w": 284,
+          "h": 23.49,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#eef6fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#c9deef",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 24.8,
+          "y": 169.1,
+          "w": 268.64,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#2f5f89",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Email address · lea.martin@example.edu",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+          "x": 305.92,
+          "y": 167.36,
+          "w": 116,
+          "h": 23.49,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#eef6fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#c9deef",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 313.6,
+          "y": 169.1,
+          "w": 100.64,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#2f5f89",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "ID · 10483",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "CSV action / linked Small",
+          "x": 606,
+          "y": 8.8,
+          "w": 78,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Buttons / Selection action / Small / Neutral outline / Default",
+          "x": 606,
+          "y": 8.8,
+          "w": 78,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#ffffff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#5c6c7d",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Label — override in instance",
+          "x": 640.32,
+          "y": 9.487,
+          "w": 30,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "CSV",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Icons / Editor and content / file-export (solid)",
+          "x": 622.24,
+          "y": 17.76,
+          "w": 12.48,
+          "h": 12.48,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "Glyph — file-export / solid",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "svg-g",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        }
+      ]
+    },
+    {
+      "component": "8a982f17-c9c0-80e9-8008-be9d6ae9bedb",
+      "main": "8a982f17-c9c0-80e9-8008-be9d6a82f6f7",
+      "standard": "8a982f17-c9c0-80e9-8008-be9f19364bfd",
+      "match": true,
+      "fingerprint": [
+        {
+          "type": "board",
+          "name": "ROOT",
+          "x": 0,
+          "y": 0,
+          "w": 684,
+          "h": 72,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#ffffff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#e3ecf4",
+              "width": 1,
+              "opacity": null
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Primary",
+          "x": 8.32,
+          "y": 6.72,
+          "w": 667.36,
+          "h": 22,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#334b61",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Alex Dupont",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+          "x": 8.32,
+          "y": 32,
+          "w": 284,
+          "h": 23.49,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#eef6fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#c9deef",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 16,
+          "y": 33.74,
+          "w": 268.64,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#2f5f89",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Email address · alex.dupont@example.edu",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+          "x": 297.12,
+          "y": 32,
+          "w": 116,
+          "h": 23.49,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#eef6fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#c9deef",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 304.8,
+          "y": 33.74,
+          "w": 100.64,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#2f5f89",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "ID · 10482",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        }
+      ]
+    },
+    {
+      "component": "8a982f17-c9c0-80e9-8008-be9e1fa8d620",
+      "main": "8a982f17-c9c0-80e9-8008-be9e1e108e78",
+      "standard": "8a982f17-c9c0-80e9-8008-be9f19b622b1",
+      "match": true,
+      "fingerprint": [
+        {
+          "type": "board",
+          "name": "ROOT",
+          "x": 0,
+          "y": 0,
+          "w": 700,
+          "h": 112,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#fbfdff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#d9e7f1",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 16,
+          "y": 12.417,
+          "w": 24,
+          "h": 24,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "Icon / Chevron down (master; source vector)",
+          "x": 21,
+          "y": 19.417,
+          "w": 14,
+          "h": 10,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 23.333,
+          "y": 22.333,
+          "w": 9.333,
+          "h": 3.333,
+          "rotation": 0,
+          "fills": [],
+          "strokes": [
+            {
+              "color": "#0b5ea8",
+              "width": 2,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Heading",
+          "x": 42,
+          "y": 10.05,
+          "w": 400,
+          "h": 28,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#263b4f",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Groupings",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "Separator",
+          "x": 1,
+          "y": 48,
+          "w": 698,
+          "h": 1,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#d9e7f1",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Count / Groupings",
+          "x": 462,
+          "y": 13.34,
+          "w": 132,
+          "h": 22.33,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#f0edf8",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#dacdf0",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 470,
+          "y": 14.5,
+          "w": 116,
+          "h": 20,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#6b4a91",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "0 groupings",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "CSV action / linked Small",
+          "x": 606,
+          "y": 8.8,
+          "w": 78,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Buttons / Selection action / Small / Neutral outline / Disabled",
+          "x": 606,
+          "y": 8.8,
+          "w": 78,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#f7f9fc",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#d9e2ec",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Label — override in instance",
+          "x": 640.32,
+          "y": 9.487,
+          "w": 30,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "CSV",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Icons / Editor and content / file-export (solid)",
+          "x": 622.24,
+          "y": 17.76,
+          "w": 12.48,
+          "h": 12.48,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "Glyph — file-export / solid",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "svg-g",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#a3afba",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#a3afba",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        },
+        {
+          "type": "text",
+          "name": "Empty message",
+          "x": 16,
+          "y": 60,
+          "w": 668,
+          "h": 38,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#71869b",
+              "opacity": null
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "This group is not assigned to any grouping yet.",
+            "font": "Inter",
+            "size": "12.8",
+            "weight": "400"
+          }
+        }
+      ]
+    },
+    {
+      "component": "8a982f17-c9c0-80e9-8008-be9ee1861dae",
+      "main": "8a982f17-c9c0-80e9-8008-be9ee12bac3c",
+      "standard": "8a982f17-c9c0-80e9-8008-be9f19f0cffb",
+      "match": true,
+      "fingerprint": [
+        {
+          "type": "board",
+          "name": "ROOT",
+          "x": 0,
+          "y": 0,
+          "w": 700,
+          "h": 48,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#fbfdff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#d9e7f1",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Icons / Navigation / Chevron",
+          "x": 16,
+          "y": 12.417,
+          "w": 24,
+          "h": 24,
+          "rotation": 180,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "Icon / Chevron down (master; source vector)",
+          "x": 21,
+          "y": 19.417,
+          "w": 14,
+          "h": 10,
+          "rotation": 180,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 23.333,
+          "y": 23.167,
+          "w": 9.333,
+          "h": 3.333,
+          "rotation": 180,
+          "fills": [],
+          "strokes": [
+            {
+              "color": "#0b5ea8",
+              "width": 2,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Heading",
+          "x": 42,
+          "y": 10.05,
+          "w": 400,
+          "h": 28,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#263b4f",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "Members",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Modals / Entity metadata / Count / Settings",
+          "x": 462,
+          "y": 11.775,
+          "w": 132,
+          "h": 25.82,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#edf7f1",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#cfe3d6",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Text",
+          "x": 470,
+          "y": 13.775,
+          "w": 116,
+          "h": 21.82,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#225842",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "2 member(s)",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "CSV action / linked Small",
+          "x": 606,
+          "y": 8.8,
+          "w": 78,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Buttons / Selection action / Small / Neutral outline / Default",
+          "x": 606,
+          "y": 8.8,
+          "w": 78,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#ffffff",
+              "opacity": 1
+            }
+          ],
+          "strokes": [
+            {
+              "color": "#5c6c7d",
+              "width": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "Label — override in instance",
+          "x": 640.32,
+          "y": 9.487,
+          "w": 30,
+          "h": 30.4,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": [],
+          "text": {
+            "copy": "CSV",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600"
+          }
+        },
+        {
+          "type": "board",
+          "name": "EasyEdu / Icons / Editor and content / file-export (solid)",
+          "x": 622.24,
+          "y": 17.76,
+          "w": 12.48,
+          "h": 12.48,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "Glyph — file-export / solid",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "group",
+          "name": "svg-g",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        },
+        {
+          "type": "path",
+          "name": "svg-path",
+          "x": 623.28,
+          "y": 19.378,
+          "w": 10.4,
+          "h": 9.244,
+          "rotation": 0,
+          "fills": [
+            {
+              "color": "#5c6c7d",
+              "opacity": 1
+            }
+          ],
+          "strokes": []
+        }
+      ]
+    }
+  ],
+  "standardReadback": [
+    {
+      "id": "79c98099-5199-8000-8008-bbff0772a642",
+      "name": "EasyEdu / Modals / Entity metadata / Disclosure / Settings list / Open / Linked",
+      "component": "79c98099-5199-8000-8008-bbfe8b1b6bfc",
+      "width": 700,
+      "height": 216,
+      "overflow": [],
+      "texts": [
+        {
+          "text": "Members",
+          "font": "Inter",
+          "size": "14.08",
+          "weight": "600",
+          "bounds": {
+            "x": 782,
+            "y": 5825.60000038147,
+            "width": 64.4375,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "text": "2 member(s)",
+          "font": "Inter",
+          "size": "12.48",
+          "weight": "600",
+          "bounds": {
+            "x": 1229.4624996185303,
+            "y": 5826.39999961853,
+            "width": 77.0625,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "Alex Dupont",
+          "font": "Inter",
+          "size": "13.44",
+          "weight": "600",
+          "bounds": {
+            "x": 757.1199999999999,
+            "y": 5874.320000000001,
+            "width": 79.42500305175781,
+            "height": 16
+          }
+        },
+        {
+          "text": "Email address · alex.dupont@example.edu",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 774.3,
+            "y": 5903.239999976158,
+            "width": 249.63751220703125,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "ID · 10482",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 1074.525001144409,
+            "y": 5903.239999976158,
+            "width": 58.787498474121094,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "Léa Martin",
+          "font": "Inter",
+          "size": "13.44",
+          "weight": "600",
+          "bounds": {
+            "x": 757.1199999999999,
+            "y": 5952.080000000001,
+            "width": 68.92500305175781,
+            "height": 16
+          }
+        },
+        {
+          "text": "Email address · lea.martin@example.edu",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 779.4999998092651,
+            "y": 5980.9999999761585,
+            "width": 239.22500610351562,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "ID · 10483",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 1074.4500003814696,
+            "y": 5980.9999999761585,
+            "width": 58.9375,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "CSV",
+          "font": "Inter",
+          "size": "12.48",
+          "weight": "600",
+          "bounds": {
+            "x": 1380.3200001907348,
+            "y": 5826.39999961853,
+            "width": 26.399999618530273,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-be9f19364bfd",
+      "name": "EasyEdu / Modals / Entity metadata / Row / Settings / Default",
+      "component": "8a982f17-c9c0-80e9-8008-be9d6ae9bedb",
+      "width": 684,
+      "height": 72,
+      "overflow": [],
+      "texts": [
+        {
+          "text": "Alex Dupont",
+          "font": "Inter",
+          "size": "13.44",
+          "weight": "600",
+          "bounds": {
+            "x": 1548.32,
+            "y": 5816.72,
+            "width": 79.42500305175781,
+            "height": 16
+          }
+        },
+        {
+          "text": "Email address · alex.dupont@example.edu",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 1565.5,
+            "y": 5845.639999976158,
+            "width": 249.63751220703125,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "ID · 10482",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 1865.7250011444091,
+            "y": 5845.639999976158,
+            "width": 58.787498474121094,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-be9f19b622b1",
+      "name": "EasyEdu / Modals / Entity metadata / Disclosure / Settings list / Empty",
+      "component": "8a982f17-c9c0-80e9-8008-be9e1fa8d620",
+      "width": 700,
+      "height": 112,
+      "overflow": [],
+      "texts": [
+        {
+          "text": "Groupings",
+          "font": "Inter",
+          "size": "14.08",
+          "weight": "600",
+          "bounds": {
+            "x": 1582,
+            "y": 6005.60000038147,
+            "width": 70.6500015258789,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "text": "0 groupings",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 2032.7000007629395,
+            "y": 6006.39999961853,
+            "width": 70.60000610351562,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "CSV",
+          "font": "Inter",
+          "size": "12.48",
+          "weight": "600",
+          "bounds": {
+            "x": 2180.320000190735,
+            "y": 6006.39999961853,
+            "width": 26.399999618530273,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "This group is not assigned to any grouping yet.",
+          "font": "Inter",
+          "size": "12.8",
+          "weight": "400",
+          "bounds": {
+            "x": 1748.1750030517578,
+            "y": 6060.525000572205,
+            "width": 283.6500244140625,
+            "height": 15.999999046325684
+          }
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-be9f19f0cffb",
+      "name": "EasyEdu / Modals / Entity metadata / Disclosure / Settings list / Closed",
+      "component": "8a982f17-c9c0-80e9-8008-be9ee1861dae",
+      "width": 700,
+      "height": 48,
+      "overflow": [],
+      "texts": [
+        {
+          "text": "Members",
+          "font": "Inter",
+          "size": "14.08",
+          "weight": "600",
+          "bounds": {
+            "x": 1582,
+            "y": 6185.60000038147,
+            "width": 64.4375,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "text": "2 member(s)",
+          "font": "Inter",
+          "size": "12.48",
+          "weight": "600",
+          "bounds": {
+            "x": 2029.4624996185303,
+            "y": 6186.39999961853,
+            "width": 77.0625,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "CSV",
+          "font": "Inter",
+          "size": "12.48",
+          "weight": "600",
+          "bounds": {
+            "x": 2180.320000190735,
+            "y": 6186.39999961853,
+            "width": 26.399999618530273,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-be9f1a12cd84",
+      "name": "Settings row / narrow wrapped usage",
+      "component": "8a982f17-c9c0-80e9-8008-be9d6ae9bedb",
+      "width": 324,
+      "height": 96,
+      "overflow": [],
+      "texts": [
+        {
+          "text": "Alex Dupont",
+          "font": "Inter",
+          "size": "13.44",
+          "weight": "600",
+          "bounds": {
+            "x": 2308.3199999999997,
+            "y": 5816.72,
+            "width": 79.42500305175781,
+            "height": 16
+          }
+        },
+        {
+          "text": "Email address · alex.dupont@example.edu",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 2325.5,
+            "y": 5845.639999976158,
+            "width": 249.63751220703125,
+            "height": 15.200000762939453
+          }
+        },
+        {
+          "text": "ID · 10482",
+          "font": "Inter",
+          "size": "12.16",
+          "weight": "600",
+          "bounds": {
+            "x": 2336.9250011444096,
+            "y": 5873.639999976158,
+            "width": 58.787498474121094,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    }
+  ],
+  "humanVisualValidated": false,
+  "nativeStyleChanged": false,
+  "standardPending": false,
+  "productPending": false,
+  "productEvidence": "entity-settings-list-product-2026-10-05.json",
+  "groupingsChipEvidence": "entity-settings-groupings-chip-2026-10-05.json",
+  "exportsInspected": [
+    "Library Open",
+    "Library Empty",
+    "Standard Closed",
+    "Standard narrow row"
+  ],
+  "source": {
+    "entityMetadataBlob": "928ac8928d5bf688484836a877c127525bdd29fd",
+    "modalsBlob": "8b053bd14b2b0b279d29155e2e14878aa0fa2379",
+    "nativeReference": "easystud-authenticated-20261005T170755545Z-45416",
+    "newScssDeclarations": 0
+  },
+  "fingerprintNormalization": "Only root name and absolute location ignored; all visible geometry/paint/type/text preserved."
+}

@@ -1,0 +1,193 @@
+{
+  "scope": "SM52 referential-integrity recovery; SM49/SM48 new protocol save verification",
+  "report": {
+    "codes": [
+      "component-id-mismatch",
+      "missing-slot"
+    ],
+    "button": "cf371b29-2e8e-8011-8008-bd5e281db1ba",
+    "icon": "cf371b29-2e8e-8011-8008-bd5e281db1bc"
+  },
+  "repair": {
+    "root": "cf371b29-2e8e-8011-8008-bd5e281d5df1",
+    "method": "resetOverrides against saved shared capsule; preserve x/y/frame and exact1 selected/Clear selection copy",
+    "component": "8a982f17-c9c0-80e9-8008-bebd115453f6",
+    "validation": [],
+    "saveMarker": "Enregistré"
+  },
+  "keyboard": {
+    "protocol": {
+      "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+      "board": "83ffce63-041b-803e-8008-bed331360ce3",
+      "controls": [
+        {
+          "id": "83ffce63-041b-803e-8008-bed3340a49f5",
+          "host": "83ffce63-041b-803e-8008-bed3337ba6be",
+          "state": "Default",
+          "component": "e5bf882d-be5b-8059-8008-982e815deb67"
+        },
+        {
+          "id": "83ffce63-041b-803e-8008-bed3360fe1a7",
+          "host": "83ffce63-041b-803e-8008-bed335937895",
+          "state": "Checked",
+          "component": "e5bf882d-be5b-8059-8008-982e82000822"
+        },
+        {
+          "id": "83ffce63-041b-803e-8008-bed33787b2c2",
+          "host": "83ffce63-041b-803e-8008-bed3373c26d1",
+          "state": "Focus-visible",
+          "component": "9df758e8-c120-80dc-8008-9bcceb5a863b"
+        },
+        {
+          "id": "83ffce63-041b-803e-8008-bed338d89497",
+          "host": "83ffce63-041b-803e-8008-bed3387fe70f",
+          "state": "Disabled",
+          "component": "9df758e8-c120-80dc-8008-9bccebd8032b"
+        }
+      ],
+      "notes": [
+        "83ffce63-041b-803e-8008-bed331a1673d",
+        "83ffce63-041b-803e-8008-bed33243e0b3",
+        "83ffce63-041b-803e-8008-bed332d5c645",
+        "83ffce63-041b-803e-8008-bed3344ae739",
+        "83ffce63-041b-803e-8008-bed334e8b5d6",
+        "83ffce63-041b-803e-8008-bed336598784",
+        "83ffce63-041b-803e-8008-bed336d09607",
+        "83ffce63-041b-803e-8008-bed337b6008e",
+        "83ffce63-041b-803e-8008-bed3381b7cc8",
+        "83ffce63-041b-803e-8008-bed338f8b62f",
+        "83ffce63-041b-803e-8008-bed3395dcd2a"
+      ]
+    },
+    "validation": []
+  },
+  "readback": {
+    "board": "83ffce63-041b-803e-8008-bed331360ce3",
+    "width": 1240,
+    "height": 320,
+    "overflow": [],
+    "controls": [
+      {
+        "id": "83ffce63-041b-803e-8008-bed3340a49f5",
+        "host": "83ffce63-041b-803e-8008-bed3337ba6be",
+        "state": "Default",
+        "component": "e5bf882d-be5b-8059-8008-982e815deb67",
+        "w": 22.7199999999998,
+        "h": 22.720000000001164,
+        "hostW": 44,
+        "hostH": 44,
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bed3360fe1a7",
+        "host": "83ffce63-041b-803e-8008-bed335937895",
+        "state": "Checked",
+        "component": "e5bf882d-be5b-8059-8008-982e82000822",
+        "w": 22.7199999999998,
+        "h": 22.720000000001164,
+        "hostW": 44,
+        "hostH": 44,
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bed33787b2c2",
+        "host": "83ffce63-041b-803e-8008-bed3373c26d1",
+        "state": "Focus-visible",
+        "component": "9df758e8-c120-80dc-8008-9bcceb5a863b",
+        "w": 22.7199999999998,
+        "h": 22.720000000001164,
+        "hostW": 44,
+        "hostH": 44,
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bed338d89497",
+        "host": "83ffce63-041b-803e-8008-bed3387fe70f",
+        "state": "Disabled",
+        "component": "9df758e8-c120-80dc-8008-9bccebd8032b",
+        "w": 22.7199999999998,
+        "h": 22.720000000001164,
+        "hostW": 44,
+        "hostH": 44,
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "validation": []
+  },
+  "yieldRecovery": {
+    "product": {
+      "student": {
+        "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+        "board": "83ffce63-041b-803e-8008-bed2e0b583ee",
+        "controls": [
+          {
+            "id": "83ffce63-041b-803e-8008-bed2e340b3cc",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "83ffce63-041b-803e-8008-bed2e4edbe92",
+            "hidden": true,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "83ffce63-041b-803e-8008-bed2e68027db",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          }
+        ],
+        "existingCount": 8
+      },
+      "massImport": {
+        "page": "220f6449-533e-815b-8008-ad9958d032a2",
+        "board": "83ffce63-041b-803e-8008-bed2fb223ccb",
+        "controls": [
+          {
+            "id": "83ffce63-041b-803e-8008-bed2fd2b2cf3",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "83ffce63-041b-803e-8008-bed2fe8e287e",
+            "hidden": true,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "83ffce63-041b-803e-8008-bed300145c91",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          }
+        ],
+        "existingCount": 16
+      }
+    },
+    "validation": []
+  },
+  "persistedServerGet": {
+    "status": 200,
+    "allThreeProtocolBoardsPresent": true
+  },
+  "caveats": [
+    "Original Product protocol IDs were in-memory only and disappeared after owned browser restart",
+    "Original metadata retained historically; successor IDs here are authoritative",
+    "File.export penpot/zip returned No matching clause; no binary backup claim",
+    "External capsule/keyboard SVGs and error report preserved before owned reload",
+    "Guide untouched; whole-page visual and human gates open"
+  ]
+}

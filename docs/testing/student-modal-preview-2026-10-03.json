@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "checkpoint": "student-modal-local-preview-2026-10-03",
+  "scope": "Prepared entity chrome and matched right-aligned native modal actions; bounded Participant focus and Move root-layer corrections. No Save, Send, move confirmation or fixtures.",
+  "status": {
+    "managedLocalPreview": true,
+    "scopedNativeChecksPassed": true,
+    "agentFinalCapturesInspected": 21,
+    "humanVisualValidated": false,
+    "fullBodyStyleParity": false,
+    "fullPluginMigration": false,
+    "productionDeployment": false
+  },
+  "source": {
+    "kitImplementation": "cd9b56e6389c58e6bff609c0fad0fa2ad6825fe6",
+    "kitDocumentation": "8448c74589e79f92cd6d0aafd154bed21ad3f7b1",
+    "consumerImplementation": "f938c9c38f176edda5162e145bcbf194d315118b",
+    "participantFocusCorrection": "6fea6707468c279d3719ce2fb45a84916c962897",
+    "entityResponsiveEntryProtocol": "d7324ecd4b3d1230879b6fe94b7486e21536f1ac",
+    "entityVisibleFooterProtocol": "bccc643f64e433227f51897168cfd15df730f069",
+    "moveLayerCorrection": "c4c095e1ebf2b36a347e76c67e4a217cda7d3a52",
+    "messageNativeCancelProtocol": "d73f218ab7fc1dd732ab4a93069f5a05b3857ead",
+    "modules": {
+      "scss/easyedu/_foundation-classes.scss": "90c09595d954c299c3f7273a57eec09bafe80a6d",
+      "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540",
+      "scss/easyedu/adapters/_moodle-message-dialog.scss": "399ce8afd30f8e8f24453b95bbaf9ca789269687"
+    },
+    "canonicalConsumerRuntimeGitContentEqual": true,
+    "canonicalConsumerRawBytesEqual": true,
+    "runtimeRawBytesEqual": false,
+    "runtimeDifference": "Checkout CRLF/LF only; all three Git blobs and text after EOL normalisation match. No SCSS rule divergence.",
+    "assets": {
+      "styles.css": "ef489ccc40b8d95e24a0650a3bc5dbef83455c41",
+      "amd/src/course_manager.js": "b2433ebe0e88688a9b2bba4b2dd2ed4f4b7855e4",
+      "amd/build/course_manager.min.js": "d8c36bf13c86e3321c0b5091046fa22a3528bd1d",
+      "templates/manage.mustache": "b4fb2ff4d24c1e343d7bd94b147d981e4ea81055"
+    }
+  },
+  "runtime": {
+    "profile": "easystud-moodle51",
+    "branch": "preview/moodle51/easystud-phase0-mass-admin",
+    "testedHead": "62fe6ff136b3cd037507c4bef9e9799ede908b8d",
+    "cleanAtProof": true,
+    "cachePurged": true,
+    "url": "http://localhost/local/groupimport/manage.php?id=5",
+    "declaredMoodleFloor": 2025100600,
+    "executedCompatibility": ["Local Moodle 5.1 only"],
+    "pluginVersionUnchanged": true,
+    "documentationSuccessors": "Later documentation-only promotion may advance HEAD; browser proof remains pinned to testedHead and assets, not re-labelled as a new run."
+  },
+  "tests": {
+    "entity": {
+      "runId": "easystud-authenticated-20261003T030420619Z-47764",
+      "spec": "tools/playwright/student-entity-dialog-chrome.spec.js",
+      "specBlob": "62dfca706babcc964c205417b6bc9c32a6211fea",
+      "status": "passed",
+      "cases": 9,
+      "widths": [1600, 768, 390],
+      "entry": "Participant native eye at each width; Group/Grouping native desktop gear then responsive resize. NOT proof of mobile settings entry.",
+      "checks": ["Conditional/read-only content", "Title/eyebrow/icon roles", "Root layer", "Matched action geometry", "Right alignment", "Normal body scroll", "Visible/unobscured button centres", "Participant return focus"],
+      "output": "playwright-output/student-entity-dialog-chro-96493-ntent-and-Foundation-chrome/entity-dialog-chrome.json",
+      "finalCaptures": "participant/group/grouping-1600/768/390.png; nine additional -entry.png captures retain initial scroll state",
+      "pinnedMedia": 18,
+      "retentionReport": "retention-reports/retention-20261003T030654Z.json"
+    },
+    "move": {
+      "runId": "easystud-authenticated-20261003T030321296Z-47512",
+      "spec": "tools/playwright/student-move-dialog-audit.spec.js",
+      "specBlob": "6ded4c911b5dc2a5c878896f3722b3f6862fed46",
+      "status": "passed",
+      "cases": 9,
+      "widths": [1600, 768, 390],
+      "entry": "Native participant/group actions at each width; existing grouped group included. Cancel only.",
+      "checks": ["Native destination options", "Conditional origin checkbox", "Paired regular footer geometry", "Right alignment", "Canonical fixed-root layer", "Unobscured leading help characters"],
+      "output": "playwright-output/student-move-dialog-audit--9e21d-ticipant-and-group-branches/move-native.json",
+      "finalCaptures": "move-participants/groups/groups-in-grouping-1600/768/390.png",
+      "pinnedMedia": 9,
+      "retentionReport": "retention-reports/retention-20261003T030654Z.json"
+    },
+    "message": {
+      "runId": "easystud-authenticated-20261003T030220435Z-42504",
+      "spec": "tools/playwright/student-message-footer-preview.spec.js",
+      "specBlob": "0477a44d09361f22b13f74ab276d8d7b0eebad8c",
+      "status": "passed",
+      "cases": 3,
+      "widths": [1600, 768, 390],
+      "entry": "Native selected-participant Message command; core/modal_save_cancel footer Cancel only, never Send.",
+      "checks": ["Native body loaded", "Compact paired density", "Right alignment", "Unobscured button centres", "Phone content fit", "No page errors"],
+      "output": "playwright-output/student-message-footer-pre-a722d-eometry-and-responsive-body/message-footer-geometry.json",
+      "finalCaptures": "message-footer-1600/768/390.png",
+      "pinnedMedia": 3,
+      "retentionReport": "retention-reports/retention-20261003T030655Z.json"
+    }
+  },
+  "artifactLifecycle": {
+    "base": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/<runId>/",
+    "manifest": "artifact-manifest.json",
+    "cleanup": "cleanup.json",
+    "allFinalRuns": {"selectedTests": 1, "exitCode": 0, "credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true, "fixtureRequested": false},
+    "totalPinnedMedia": 30,
+    "agentInspectedFinalModalCaptures": 21,
+    "retention": {"mode": "dry-run", "protectedManifests": 3, "candidates": 0, "unmanaged": 0, "deleted": 0, "errors": 0}
+  },
+  "retainedFailedRuns": [
+    {"runId": "easystud-authenticated-20261003T010619880Z-13084", "reason": "Native Participant lacked return focus; fixed in 6fea670", "cleanupComplete": true},
+    {"runId": "easystud-authenticated-20261003T025134893Z-26428", "reason": "Test assumed a mobile full-card settings command absent from native menu; responsive geometry and entry now separated", "cleanupComplete": true},
+    {"runId": "easystud-authenticated-20261003T025831819Z-41496", "reason": "Test used header hide instead of footer cancel; actual native template consulted", "cleanupComplete": true}
+  ],
+  "limitations": [
+    "Native Group/Grouping mobile settings entry is not certified or invented",
+    "Foreign CCB sticky trigger remains visible over some narrow entity/Message body edges; whole-body overlay acceptance remains open",
+    "Entity fields/filepicker/metadata bodies remain partly consumer-owned; not a whole-plugin class-only claim",
+    "Destructive-confirmation and Copy/Move-choice footers still require canonical migration",
+    "All-state translations/RTL/forced-colours, missing destination runtime states and business mutations are not executed",
+    "Pre-existing Administration hint-location source-contract failure and Sass mixed-declarations warning remain separately recorded",
+    "Guided visits stay in their separate shared project; human checklist deferred"
+  ],
+  "platformOwnerProposal": {
+    "sharedFilesEdited": false,
+    "targets": ["0073 batch", "source/component crosswalk", "plan/current-state", "scenario registry"],
+    "scenarioClass": "local-supervised",
+    "owner": "EasyStud/QA",
+    "scenarios": ["student-entity-dialog-chrome", "student-modal-footers"],
+    "next": "Record this source/runtime proof with human acceptance false; retain previous pins and failed-run evidence. CI reuse requires a deterministic disposable course and credential-free harness."
+  }
+}

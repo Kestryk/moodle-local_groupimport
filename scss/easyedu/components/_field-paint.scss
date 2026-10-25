@@ -1,0 +1,69 @@
+// Internal field paint shared by distinct single-line and multiline recipes.
+// Geometry, font size, rows, labels and commands are not part of this helper.
+@use "focus";
+@use "animations";
+
+// $legacy-priority (K23-84): an illustration field (readonly, never focused) may
+// meet a host theme that greys every readonly/disabled field with !important
+// (DVL 4.5 `_forms.scss`). The opt-in keeps the same Kit paint at that priority.
+@mixin placeholder($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
+  &::placeholder {
+    font: inherit;
+    color: var(--easyedu-text-muted) $p;
+    opacity: 1;
+  }
+}
+
+@mixin paint($legacy-priority: false) {
+  $p: if($legacy-priority, !important, null);
+  background: var(--easyedu-surface) $p;
+  border: 0.0625rem solid var(--easyedu-control-border) $p;
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none $p;
+  box-sizing: border-box;
+  color: var(--easyedu-field-text) $p;
+  opacity: 1 $p;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  @include placeholder($legacy-priority);
+
+  // Resting hover must never obscure keyboard focus or an explicit error.
+  &:hover:not(:disabled):not([aria-disabled="true"]):not(:focus):not(:focus-visible):not([aria-invalid="true"]) {
+    border-color: var(--easyedu-field-hover-border) $p;
+  }
+
+  &:focus,
+  &:focus-visible {
+    background: var(--easyedu-surface) $p;
+    color: var(--easyedu-field-text) $p;
+    @include focus.ring($border-color: var(--easyedu-control-focus-border), $native-overrides: $legacy-priority);
+  }
+
+  // Validation is explicit; untouched required fields must not paint red.
+  &[aria-invalid="true"] {
+    border-color: var(--easyedu-field-error-border) $p;
+    color: var(--easyedu-field-error-text) $p;
+
+    &::placeholder { color: var(--easyedu-field-error-text) $p; }
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    background: var(--easyedu-field-disabled-surface) $p;
+    border-color: var(--easyedu-control-border) $p;
+    box-shadow: none $p;
+    color: var(--easyedu-field-disabled-text) $p;
+    cursor: not-allowed;
+    opacity: 1;
+
+    &::placeholder { color: var(--easyedu-field-disabled-text) $p; }
+  }
+
+  @include animations.motion-restricted {
+    transition: none;
+  }
+}

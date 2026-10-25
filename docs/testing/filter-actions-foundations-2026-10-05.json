@@ -1,0 +1,98 @@
+{
+  "lot": "SM-43B",
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "libraryPage": "3ade82ad-bce8-8059-8008-9c07259b5c06",
+  "standardPage": "d0d0680d-7d36-80da-8008-97a6a5b5b9d6",
+  "libraryHost": "cf371b29-2e8e-8011-8008-bdb56e782ae0",
+  "standardHost": "386b6f86-a1e7-806b-8008-bdb6fd014b04",
+  "pairs": [
+    {
+      "state": "Off",
+      "master": "cf371b29-2e8e-8011-8008-bdb59d1e51b3",
+      "component": "cf371b29-2e8e-8011-8008-bdb59d752a4b",
+      "standard": "386b6f86-a1e7-806b-8008-bdb6fd46721b",
+      "equal": true,
+      "contained": true
+    },
+    {
+      "state": "On",
+      "master": "cf371b29-2e8e-8011-8008-bdb59d7dbb7e",
+      "component": "cf371b29-2e8e-8011-8008-bdb59dcdc075",
+      "standard": "386b6f86-a1e7-806b-8008-bdb6fd7601f4",
+      "equal": true,
+      "contained": true
+    },
+    {
+      "state": "Hover",
+      "master": "cf371b29-2e8e-8011-8008-bdb59dd3f923",
+      "component": "cf371b29-2e8e-8011-8008-bdb59e2f7ec0",
+      "standard": "386b6f86-a1e7-806b-8008-bdb6fda944d3",
+      "equal": true,
+      "contained": true
+    },
+    {
+      "state": "Focus",
+      "master": "cf371b29-2e8e-8011-8008-bdb6194bf2ce",
+      "component": "cf371b29-2e8e-8011-8008-bdb619b69b99",
+      "standard": "386b6f86-a1e7-806b-8008-bdb6fdcf942e",
+      "equal": true,
+      "contained": true
+    },
+    {
+      "state": "Disabled off",
+      "master": "cf371b29-2e8e-8011-8008-bdb619c2a886",
+      "component": "cf371b29-2e8e-8011-8008-bdb61a33309a",
+      "standard": "386b6f86-a1e7-806b-8008-bdb6fdff9fe9",
+      "equal": true,
+      "contained": true
+    },
+    {
+      "state": "Disabled on",
+      "master": "cf371b29-2e8e-8011-8008-bdb61a3d6876",
+      "component": "cf371b29-2e8e-8011-8008-bdb61aa97f69",
+      "standard": "386b6f86-a1e7-806b-8008-bdb6fe2b7010",
+      "equal": true,
+      "contained": true
+    }
+  ],
+  "rows": [
+    {
+      "density": "Regular",
+      "id": "386b6f86-a1e7-806b-8008-bdba00fce8ae",
+      "component": "386b6f86-a1e7-806b-8008-bdba01230516",
+      "toggle": "386b6f86-a1e7-806b-8008-bdba010c8af5",
+      "reset": "386b6f86-a1e7-806b-8008-bdba0116dfa8",
+      "standard": "386b6f86-a1e7-806b-8008-bdba6c556b07",
+      "gap": 12,
+      "h": 44,
+      "resetH": 30.400000000001455,
+      "resetText": {
+        "x": 333.5250011444092,
+        "y": 9433.899999904632,
+        "width": 33.13749694824219,
+        "height": 15.200000762939453
+      }
+    },
+    {
+      "density": "Touch",
+      "id": "386b6f86-a1e7-806b-8008-bdba0125541a",
+      "component": "386b6f86-a1e7-806b-8008-bdba014949ba",
+      "toggle": "386b6f86-a1e7-806b-8008-bdba01314069",
+      "reset": "386b6f86-a1e7-806b-8008-bdba013932a8",
+      "standard": "386b6f86-a1e7-806b-8008-bdba6c698360",
+      "gap": 12,
+      "h": 44,
+      "resetH": 44,
+      "resetText": {
+        "x": 683.5250011444092,
+        "y": 9433.900000572205,
+        "width": 33.13749694824219,
+        "height": 15.199999809265137
+      }
+    }
+  ],
+  "removedOwnedEmptyBoard": true,
+  "sourceAndStandardExportsInspected": true,
+  "nativeVerified": false,
+  "humanVisualValidated": false
+}

@@ -1,0 +1,126 @@
+// Native single-line fields measured from Foundations 08.4 / 08.4.1.
+// Apply to the input itself, never to a search wrapper or its adjacent actions.
+//
+// Text field is the reference family of the shared size scale (../_scale.scss):
+// S/M/L are exactly scale s/m/l (32/38/48 px); xs and xl extend it. Historical
+// names small/regular/large stay accepted.
+@use "sass:map";
+@use "field-paint";
+@use "../scale";
+
+// Block padding = (height - 1.2 line-height x font size - 2 px border) / 2,
+// which gives the measured 0.875rem painted text inset at every step.
+$-field-block-padding: (
+  xs: 0.4rem,
+  s: 0.4875rem,
+  m: 0.6rem,
+  l: 0.9125rem,
+  xl: 1.0875rem,
+);
+
+// Shared native field typography; search wrappers keep ownership of geometry.
+@mixin field-text($size: small) {
+  font-family: var(--easyedu-font-family-ui);
+  font-size: scale.scale-font($size);
+  font-weight: 400;
+  line-height: 1.2;
+  @include field-paint.placeholder;
+}
+
+@mixin foundation-text-field($size: regular, $legacy-priority: false) {
+  $step: scale.scale-step($size);
+
+  // The family token may resolve to `inherit`, which is invalid inside `font`.
+  // Longhands preserve the measured density while inheriting the Moodle family.
+  @include field-text($step);
+  height: auto;
+  min-height: scale.scale-size($step);
+  min-width: 0;
+  // Border plus padding gives the measured 0.875rem painted text inset.
+  padding: map.get($-field-block-padding, $step) 0.8125rem;
+
+  @include field-paint.paint($legacy-priority);
+}
+
+// A paired Small control, not a sixth step or a change to the published S/32px.
+// Shared with its icon-button peer, including the workspace's 1024px boundary.
+@mixin field-peer-small-size($fixed-frame: false) {
+  block-size: var(--easyedu-button-height-s);
+  min-block-size: var(--easyedu-button-height-s);
+  @if $fixed-frame { max-block-size: var(--easyedu-button-height-s); }
+
+  @media (max-width: 1024px) {
+    block-size: var(--easyedu-touch-target-min);
+    min-block-size: var(--easyedu-touch-target-min);
+    @if $fixed-frame { max-block-size: var(--easyedu-touch-target-min); }
+  }
+}
+
+// Small search frame: share the native Small text field typography.
+// The frame (including its border), not its borderless input, owns final height.
+@mixin search-field-peer-small-frame {
+  box-sizing: border-box;
+  padding-block: 0;
+  @include field-peer-small-size($fixed-frame: true);
+  > input {
+    @include field-text;
+    box-sizing: border-box;
+    block-size: 100%;
+    min-block-size: 0;
+    margin-block: 0;
+  }
+}
+
+// A text Cancel beside a Small field shares the same final frame as icon peers.
+@mixin field-peer-small-action {
+  box-sizing: border-box;
+  padding-block: 0;
+  @include field-peer-small-size;
+}
+
+// Native text/search inputs only. Paint, focus and invalid/disabled states stay
+// in the existing S field; the inline padding and type scale are unchanged.
+@mixin foundation-text-field-peer-small {
+  @include foundation-text-field(small);
+  & {
+    padding-block: 0.4375rem;
+    @include field-peer-small-size;
+  }
+}
+
+// Composite search: the caption stays outside the measured input frame. The
+// icon shares its grid cell, so a caption cannot enlarge the Small field peer.
+@mixin search-field-peer-small {
+  block-size: auto;
+  max-block-size: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: minmax(0, 1fr);
+  min-block-size: 0;
+  padding: 0;
+
+  > input {
+    @include foundation-text-field-peer-small;
+    & {
+      grid-area: 1 / 1;
+      inline-size: 100%;
+      padding-inline-start: 2.25rem;
+    }
+  }
+  > .fa {
+    align-self: center;
+    grid-area: 1 / 1;
+    justify-self: start;
+    margin-inline-start: 0.8125rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+  > .easyedu-field-caption { grid-area: 1 / 1; }
+  &:has(> .easyedu-field-caption) {
+    > input, > .fa { grid-row: 2; }
+  }
+  &:focus-within { box-shadow: none; outline: 0; }
+}

@@ -1,0 +1,38 @@
+{
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM-17 native More filters hover, focus and original disclosure Motion",
+  "kitRevision": "7c4118166d1914df05aa8335e47bed786ebb2669",
+  "consumerRevision": "21d8588557f26ad512d706e6abb6162a7aeb6ddb",
+  "runtimeRevision": "785d2458f15a2886f26eba8495b1f29cc939246a",
+  "queue": "20261003T125514Z-12c4f12f06",
+  "cacheRefreshed": true,
+  "runId": "easystud-authenticated-20261003T125612349Z-13384",
+  "specBlob": "5a83b5a9096d136543e6873dc3ce97eaf036a320",
+  "status": "passed",
+  "widths": [1600, 768, 390],
+  "fontPx": 12.16,
+  "paintedGapPx": 6.72,
+  "heightsPx": [33.59375, 44, 44],
+  "checks": [
+    "Native hover uses the quiet shared surface and ordinary control border",
+    "Native keyboard focus retains the shared ring",
+    "Original opening and closing is-easyedu-disclosing phases observed at all three widths",
+    "Final ARIA and inert states remain correct",
+    "Label, glyph and control remain contained"
+  ],
+  "businessPosts": 0,
+  "fixtures": false,
+  "pageErrors": [],
+  "captures": [
+    "playwright-output/student-more-filters-previ-053f1-nd-retain-disclosure-Motion/more-filters-hover-1600.png",
+    "playwright-output/student-more-filters-previ-053f1-nd-retain-disclosure-Motion/more-filters-hover-768.png",
+    "playwright-output/student-more-filters-previ-053f1-nd-retain-disclosure-Motion/more-filters-hover-390.png",
+    "playwright-output/student-more-filters-previ-053f1-nd-retain-disclosure-Motion/more-filters-expanded-1600.png",
+    "playwright-output/student-more-filters-previ-053f1-nd-retain-disclosure-Motion/more-filters-expanded-768.png",
+    "playwright-output/student-more-filters-previ-053f1-nd-retain-disclosure-Motion/more-filters-expanded-390.png"
+  ],
+  "agentInspected": true,
+  "humanVisualValidated": false,
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true},
+  "notProven": ["Human acceptance", "All role counts and role fixture", "Whole-card visual parity", "Reduced-motion native disclosure", "Native transfer DB integration"]
+}

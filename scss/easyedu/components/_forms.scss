@@ -1,0 +1,1810 @@
+// EasyEdu form-related primitives.
+//
+// `dropdown-menu` styles custom menus opened by plugin controls. Keep native
+// Moodle form controls in place where possible, then use tokens to make their
+// focus states and menu surfaces consistent.
+//
+// Theme override tokens:
+// --easyedu-surface, --easyedu-dropdown-border, --easyedu-dropdown-radius,
+// --easyedu-dropdown-shadow.
+@use "accessibility";
+@use "feedback";
+@use "focus";
+@use "panels";
+@use "typography";
+@use "control-treatment" as controls;
+@use "animations";
+@use "../scale";
+@use "text-fields";
+
+// Solid large deposit surface from Foundations. The consumer keeps its native
+// upload control, validation and progress inside __control; no simulated input.
+@mixin file-deposit {
+  background: var(--easyedu-surface-soft);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-radius-lg);
+  box-sizing: border-box;
+  min-inline-size: 0;
+  padding: 1rem;
+
+  .easyedu-file-deposit__heading {
+    align-items: start;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    margin-block-end: 0.75rem;
+  }
+
+  .easyedu-file-deposit__icon {
+    @include panels.section-icon-tile;
+    font-size: 1.25rem;
+    .fa { margin: 0; line-height: 1; }
+  }
+
+  .easyedu-file-deposit__title {
+    @include typography.type-card-title;
+    color: var(--easyedu-text);
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .easyedu-file-deposit__support {
+    @include typography.type-caption;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .easyedu-file-deposit__control {
+    min-inline-size: 0;
+  }
+
+  &:focus-within {
+    border-color: var(--easyedu-control-focus-border);
+  }
+}
+
+@mixin dropdown-menu {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-dropdown-border);
+  border-radius: var(--easyedu-dropdown-radius);
+  box-shadow: var(--easyedu-dropdown-shadow);
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.35rem;
+}
+
+// Keep captioned searches at their native input's intrinsic width inside wide lanes.
+@mixin search-field-intrinsic {
+  align-self: start;
+  inline-size: fit-content;
+  justify-self: start;
+  max-inline-size: 100%;
+}
+
+@mixin search-field($small-peer: true) {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  @if $small-peer {
+    @include text-fields.search-field-peer-small-frame;
+  } @else {
+    min-height: var(--easyedu-control-height);
+  }
+  padding-inline: 0.68rem;
+  transition:
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  .fa {
+    color: var(--easyedu-text-muted);
+  }
+
+  input {
+    @include text-fields.field-text;
+    border: 0;
+    box-shadow: none;
+    min-width: 0;
+    padding: 0;
+
+    &:focus {
+      @include focus.delegated-ring;
+    }
+  }
+
+  &:focus-within {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+}
+
+// State and touch target adapters for native filter-choice buttons. The owner
+// keeps the existing responsive boundary and selection/ARIA behaviour.
+@mixin filter-choice-touch-frame {
+  min-height: var(--easyedu-touch-target-min);
+  line-height: normal;
+}
+
+@mixin filter-choice-selected {
+  background: var(--easyedu-primary-soft);
+  border-color: var(--easyedu-control-focus-border);
+  color: var(--easyedu-primary-strong);
+}
+
+// Inline editing composes the accepted control frames without owning the
+// consumer's grid placement. The content slot preserves its cascade order.
+@mixin inline-edit-touch-control {
+  min-height: var(--easyedu-touch-target-min);
+}
+
+@mixin inline-edit-surface {
+  background: color-mix(in srgb, var(--easyedu-surface) 92%, var(--easyedu-primary-soft) 8%);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-control-radius);
+  @content;
+  padding: 0.35rem;
+}
+
+@mixin inline-edit-action($compact: false) {
+  @if $compact {
+    padding-inline: 0.65rem;
+  } @else {
+    line-height: normal;
+  }
+}
+
+@mixin segmented-toggle {
+  background: var(--easyedu-surface-strong);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 0.18rem;
+  padding: 0.22rem;
+
+  .btn,
+  button {
+    border: 0;
+    border-radius: 999px;
+    color: var(--easyedu-text-muted);
+    font-weight: 700;
+    min-height: 2.1rem;
+
+    &.active,
+    &[aria-pressed="true"] {
+      background: var(--easyedu-surface);
+      box-shadow: 0 0.2rem 0.48rem rgba(31, 42, 55, 0.1);
+      color: var(--easyedu-primary-strong);
+    }
+  }
+}
+
+// Accessible single-choice control with the visual weight of the segmented
+// controls used across EasyEdu. Keep the native radio in the accessibility
+// tree and place the visible surface immediately after it.
+@mixin segmented-choice($size: regular) {
+  background: var(--easyedu-surface-strong);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: calc(var(--easyedu-control-radius) + 0.16rem);
+  box-sizing: border-box;
+  display: grid;
+  gap: 0.45rem;
+  min-inline-size: 0;
+  overflow: visible;
+  padding: 0.45rem;
+
+  .easyedu-segmented-choice__label {
+    background: var(--easyedu-surface-strong);
+    box-sizing: border-box;
+    color: var(--easyedu-text);
+    display: block;
+    float: none;
+    font-size: 0.82rem;
+    font-weight: 750;
+    inline-size: fit-content;
+    line-height: 1.25;
+    margin: 0;
+    max-inline-size: calc(100% - 0.5rem);
+    overflow-wrap: anywhere;
+    padding: 0.15rem 0.35rem 0.2rem;
+    white-space: normal;
+  }
+
+  // Canonical contained structure. The native legend remains available to
+  // assistive technology while the visible heading sits inside the surface,
+  // avoiding browser-specific fieldset border notches and overlays.
+  .easyedu-segmented-choice__legend {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .easyedu-segmented-choice__options {
+    display: grid;
+    gap: 0.35rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .easyedu-segmented-choice__option {
+    cursor: pointer;
+    margin: 0;
+    min-width: 0;
+    position: relative;
+  }
+
+  .easyedu-segmented-choice__input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .easyedu-segmented-choice__surface {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border: 1px solid transparent;
+    border-radius: var(--easyedu-control-radius);
+    color: var(--easyedu-text-muted);
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 3.5rem;
+    padding: 0.58rem 0.68rem;
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease,
+      box-shadow var(--easyedu-motion-fast) ease;
+
+    > .fa {
+      align-items: center;
+      background: var(--easyedu-primary-soft);
+      border-radius: 0.58rem;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      height: 2rem;
+      justify-content: center;
+      line-height: 1;
+      width: 2rem;
+    }
+
+    strong,
+    small {
+      display: block;
+    }
+
+    strong {
+      color: var(--easyedu-text);
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
+    small {
+      font-size: 0.72rem;
+      line-height: 1.3;
+      margin-top: 0.12rem;
+    }
+  }
+
+  .easyedu-segmented-choice__option:hover .easyedu-segmented-choice__surface {
+    border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%);
+  }
+
+  .easyedu-segmented-choice__input:focus-visible + .easyedu-segmented-choice__surface {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  .easyedu-segmented-choice__input:checked + .easyedu-segmented-choice__surface {
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 55%, #fff 45%);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 42%, #fff 58%);
+    color: var(--easyedu-primary-strong);
+  }
+
+  // A choice locked while an animation plays stays visible but dimmed (Penpot E3).
+  .easyedu-segmented-choice__input:disabled + .easyedu-segmented-choice__surface {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  @if $size == compact {
+    gap: 0.32rem;
+    padding: 0.35rem;
+
+    .easyedu-segmented-choice__label {
+      font-size: 0.76rem;
+      padding: 0.1rem 0.28rem 0.16rem;
+    }
+
+    .easyedu-segmented-choice__options {
+      gap: 0.28rem;
+    }
+
+    .easyedu-segmented-choice__surface {
+      gap: 0.48rem;
+      min-height: 2.85rem;
+      padding: 0.42rem 0.52rem;
+
+      > .fa {
+        border-radius: 0.48rem;
+        font-size: 0.82rem;
+        height: 1.7rem;
+        width: 1.7rem;
+      }
+
+      strong {
+        font-size: 0.78rem;
+      }
+
+      small {
+        font-size: 0.68rem;
+      }
+    }
+  }
+
+  &.easyedu-segmented-choice--contained {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    display: block;
+    padding: 0;
+
+    > .easyedu-segmented-choice__body {
+      background: var(--easyedu-surface-strong);
+      border: 1px solid var(--easyedu-card-border);
+      border-radius: calc(var(--easyedu-control-radius) + 0.16rem);
+      box-sizing: border-box;
+      display: grid;
+      gap: 0.45rem;
+      min-inline-size: 0;
+      padding: 0.55rem;
+    }
+
+    .easyedu-segmented-choice__label {
+      background: transparent;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      padding: 0 0.25rem 0.1rem;
+    }
+
+    @if $size == compact {
+      > .easyedu-segmented-choice__body {
+        gap: 0.32rem;
+        padding: 0.42rem;
+      }
+    }
+  }
+
+  @media (max-width: 42rem) {
+    .easyedu-segmented-choice__options {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+// Text hierarchy for switch helpers and their section label. Consumers retain
+// placement; the accepted caption type and paint have one definition here.
+//
+// K16-46/K20-10: the on/off word ("Enable"/"Disable", "Activé"/"Désactivé")
+// next to a Kit toggle is never shown as visible text, on any toggle that
+// uses this mixin without $label — the native checkbox state already carries
+// the meaning for sighted users. The node and its accessible text stay in the
+// DOM (visually-hidden, not display:none) so screen readers still announce it.
+@mixin toggle-check-caption($label: false) {
+  @if $label {
+    @include typography.type-caption;
+
+    color: #40566c;
+    font-weight: var(--easyedu-font-weight-semibold);
+  } @else {
+    @include accessibility.visually-hidden;
+  }
+}
+
+// Plain native-checkbox line composes with the selected filter-toggle variant.
+// It does not replace the native input or the switch track's own geometry.
+@mixin toggle-check-line {
+  align-items: center;
+  color: #516679;
+  display: inline-flex;
+  gap: 0.45rem;
+  margin: 0;
+  white-space: nowrap;
+}
+
+@mixin toggle-check {
+  align-items: center;
+  background: var(--easyedu-surface-soft);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 700;
+  gap: 0.55rem;
+  min-height: var(--easyedu-control-height);
+  padding: 0.35rem 0.65rem;
+  // K16-45: the visually hidden native input is absolute; the toggle must contain it, otherwise it
+  // anchors to the dialog and focusing it scrolls the whole dialog (footer pushed up, white gap).
+  position: relative;
+  transition:
+    background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+    border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+    box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+    color var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+
+  &:hover {
+    background: var(--easyedu-surface);
+    border-color: var(--easyedu-control-focus-border);
+  }
+
+  &:focus-within {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  span {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.5rem;
+    padding-inline-start: 2.15rem;
+    position: relative;
+  }
+
+  span::before,
+  span::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%;
+    transition:
+      background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+      border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+      box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+  }
+
+  span::before {
+    background: #e8eef5;
+    border: 1px solid var(--easyedu-control-border);
+    border-radius: 999px;
+    height: 0.95rem;
+    inset-inline-start: 0;
+    transform: translateY(-50%);
+    width: 1.72rem;
+  }
+
+  span::after {
+    background: var(--easyedu-surface);
+    border-radius: 50%;
+    box-shadow: 0 0.06rem 0.18rem rgba(45, 65, 84, 0.22);
+    height: 0.59rem;
+    inset-inline-start: 0.17rem;
+    transform: translateY(-50%);
+    width: 0.59rem;
+  }
+
+  input:checked + span::before {
+    background: var(--easyedu-accent);
+    border-color: var(--easyedu-accent);
+  }
+
+  input:checked + span::after {
+    transform: translate(0.79rem, -50%);
+  }
+
+  input:disabled + span,
+  &[aria-disabled="true"] span {
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+
+}
+
+// Foundations Filter toggle: quiet borderless row, distinct from the framed
+// generic toggle-check used in forms/dialogs. Native checkbox remains authority.
+@mixin filter-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-filter-toggle-text);
+  cursor: pointer;
+  display: inline-flex;
+  font: 600 var(--easyedu-font-size-caption)/1.25 var(--easyedu-font-family-ui);
+  min-block-size: var(--easyedu-touch-target-min);
+  padding: 0;
+  position: relative;
+
+  &:focus-within {
+    @include focus.ring;
+  }
+
+  input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  span {
+    align-items: center;
+    display: inline-flex;
+    min-block-size: var(--easyedu-touch-target-min);
+    padding-inline-start: 3rem;
+    position: relative;
+  }
+
+  span::before,
+  span::after {
+    content: "";
+    inset-block-start: 50%;
+    position: absolute;
+    transition:
+      background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+  }
+
+  span::before {
+    background: var(--easyedu-filter-toggle-track);
+    border-radius: 999px;
+    height: 1.25rem;
+    inset-inline-start: 0;
+    transform: translateY(-50%);
+    width: 2.25rem;
+  }
+
+  span::after {
+    background: var(--easyedu-surface);
+    border-radius: 50%;
+    height: 0.875rem;
+    inset-inline-start: 0.1875rem;
+    transform: translateY(-50%);
+    width: 0.875rem;
+  }
+
+  input:checked + span::before {
+    background: var(--easyedu-filter-toggle-active);
+  }
+
+  input:checked + span::after {
+    transform: translate(1rem, -50%);
+  }
+
+  &:dir(rtl) input:checked + span::after {
+    transform: translate(-1rem, -50%);
+  }
+
+  input:disabled + span,
+  &[aria-disabled="true"] span {
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+
+  @include animations.motion-restricted {
+    span::before,
+    span::after { transition: none; }
+  }
+}
+
+// OLD-B K16-46: the existing switch, without a visible state caption. The
+// setting's external native label remains its accessible name. Track36x20,
+// thumb14 and inset3 are inherited unchanged from filter-toggle.
+@mixin filter-toggle-standalone {
+  block-size: var(--easyedu-touch-target-min);
+  inline-size: var(--easyedu-touch-target-min);
+  justify-content: center;
+
+  > span {
+    inline-size: 2.25rem;
+    padding: 0;
+  }
+}
+
+// Opt-in trailing variant: same native checkbox, track, thumb and Motion as
+// filter-toggle. Its label wraps independently of the reserved switch lane.
+@mixin filter-toggle-trailing {
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-font-size-caption);
+  font-weight: 600;
+  line-height: 1.25;
+  min-inline-size: 0;
+  white-space: normal;
+
+  span {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 2.75rem;
+  }
+
+  span::before {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+  }
+
+  span::after {
+    inset-inline-start: auto;
+    inset-inline-end: 1.1875rem;
+  }
+
+  &:not([aria-disabled="true"]):hover:has(input:not(:disabled)) {
+    color: var(--easyedu-primary-strong);
+  }
+}
+
+// Opt-in keyboard focus for a borderless catalogue switch. Keep the native
+// input and 44px label hit target; the existing track owns the small focus ring.
+// This is separate from the original caption-wide and framed toggle recipes.
+@mixin filter-toggle-track-focus {
+  &:focus-within {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  input:focus-visible:not(:disabled) + span::before {
+    @include focus.ring;
+  }
+
+  @media (forced-colors: active) {
+    input:focus-visible:not(:disabled) + span::before {
+      box-shadow: none;
+      outline-color: Highlight;
+    }
+  }
+}
+
+// Catalogue controls stay adjacent rather than sitting at opposite ends of a
+// stretched grid. Native Reset closure/filter predicates remain product-owned.
+@mixin filter-actions($spread: false) {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  gap: 0.75rem;
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+
+  @if $spread {
+    justify-content: space-between;
+    flex-direction: row;
+    > .easyedu-filter-toggle { inline-size: auto; }
+    > .easyedu-filter-reset { align-self: center; }
+  }
+
+  > .easyedu-filter-toggle {
+    flex: 0 1 auto;
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  > .easyedu-filter-reset {
+    flex: 0 0 auto;
+    inline-size: auto;
+  }
+}
+
+@mixin advanced-filter-box {
+  @include search-field($small-peer: false);
+
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 0.7rem;
+}
+
+// The opt-in native-affordance variant keeps the host theme's select arrow.
+// Touch uses the shared target token; regular/large/small defaults stay intact.
+@mixin native-select-control($size: regular, $native-affordance: false) {
+  @if $native-affordance {
+    background-color: var(--easyedu-surface);
+  } @else {
+    background: var(--easyedu-surface);
+  }
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-text);
+  max-width: 100%;
+  transition:
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  // Shared scale (../_scale.scss); s/m/l keep the production select
+  // derivatives. `touch` is regular geometry on the 44 px touch floor.
+  @if $size == touch {
+    font-size: scale.select-font(m);
+    min-height: var(--easyedu-touch-target-min);
+    padding: scale.select-padding(m);
+  } @else {
+    font-size: scale.select-font($size);
+    min-height: scale.select-height($size);
+    padding: scale.select-padding($size);
+  }
+
+  &:focus,
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @if $native-affordance {
+      background-color: var(--easyedu-surface-soft);
+    } @else {
+      background: var(--easyedu-surface-soft);
+    }
+    color: var(--easyedu-text-muted);
+    cursor: not-allowed;
+    opacity: 0.72;
+  }
+}
+
+@mixin multi-select-list($size: regular) {
+  @include native-select-control($size);
+
+  display: block;
+  overflow: auto;
+
+  @if $size == small {
+    border-radius: 0.72rem;
+    min-height: 5.6rem;
+    padding: 0.22rem;
+  } @else if $size == large {
+    min-height: 13rem;
+    padding: 0.45rem;
+  } @else {
+    min-height: 10.5rem;
+    padding: 0.35rem;
+  }
+
+  option {
+    border-radius: 0.42rem;
+    margin: 0.08rem 0;
+
+    @if $size == small {
+      font-size: 0.78rem;
+      padding: 0.22rem 0.34rem;
+    } @else {
+      padding: 0.34rem 0.42rem;
+    }
+
+    &:checked {
+      background: linear-gradient(180deg, var(--easyedu-primary-soft), var(--easyedu-primary-soft));
+      color: var(--easyedu-primary-strong);
+      font-weight: 700;
+    }
+  }
+}
+
+// One available-width footer on desktop and touch. Padding, rather than an
+// outer margin, guarantees a clear gap even inside equal-height filter shells
+// whose consumer intentionally keeps margin-block-start: auto.
+@mixin filter-disclosure-row {
+  align-items: center;
+  align-self: stretch;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  margin-block-start: 0;
+  padding: 1rem 0 0;
+  width: 100%;
+}
+
+// A quiet text action: hover underlines the label, never fills the filter
+// footer. Compact keeps its natural width; Wide and Touch fill the same lane.
+@mixin filter-disclosure-trigger($size: compact) {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--easyedu-text-muted);
+  display: inline-flex;
+  @include controls.filter-disclosure-type;
+  gap: 0.42rem;
+  justify-content: center;
+  min-width: 0;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  @if $size == touch {
+    min-height: 2.75rem;
+    padding: 0.62rem 0.9rem;
+    width: 100%;
+  } @else if $size == wide {
+    border-radius: var(--easyedu-control-radius);
+    min-height: 2.1rem;
+    padding: 0.42rem 0.68rem;
+    width: 100%;
+  } @else {
+    min-height: 2.1rem;
+    padding: 0.42rem 0.68rem;
+  }
+
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--easyedu-primary-strong);
+
+    > span:not([aria-hidden="true"]) {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.25em;
+    }
+  }
+
+  &[aria-expanded="true"],
+  &.is-expanded {
+    color: var(--easyedu-primary-strong);
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    background: transparent;
+    border-color: transparent;
+    color: var(--easyedu-text-subtle);
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+}
+
+// The legacy fold-button adapter shares this neutral glyph frame with filters.
+// Parent trigger owns type, target, focus and Motion; this adds no new paint.
+@mixin filter-disclosure-neutral-icon {
+  background: transparent;
+  border: 0;
+  height: auto;
+  width: auto;
+}
+
+// Accepted disclosure glyph type and Motion, independent of host positioning.
+@mixin filter-disclosure-icon {
+  font-size: 0.68rem;
+  line-height: 1;
+  transition: transform var(--easyedu-motion-fast) ease;
+}
+
+@mixin filter-section-label {
+  @include typography.type-eyebrow;
+
+  letter-spacing: 0.03em;
+  color: var(--easyedu-text-muted);
+}
+
+// Opt-in More Filters composition. The button retains the full available hit
+// lane and keyboard ring; only its intrinsic content capsule receives paint.
+// Keep the default recipe unchanged for accepted Compact/Show-all consumers.
+@mixin filter-disclosure-capsule {
+  padding-block: 0;
+
+  > .easyedu-filter-disclosure__content {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--easyedu-control-radius);
+    box-sizing: border-box;
+    display: inline-flex;
+    gap: 0.42rem;
+    justify-content: center;
+    max-inline-size: 100%;
+    min-block-size: 1.75rem;
+    min-inline-size: 0;
+    padding: 0.25rem 0.68rem;
+    text-decoration: none;
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease;
+
+    > span:not([aria-hidden="true"]) {
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+    }
+
+    > [aria-hidden="true"] { flex: 0 0 auto; }
+  }
+
+  &:hover:not(:disabled):not([aria-disabled="true"]) > .easyedu-filter-disclosure__content,
+  &[aria-expanded="true"]:not(:disabled):not([aria-disabled="true"]) > .easyedu-filter-disclosure__content {
+    background: var(--easyedu-primary-soft);
+    border-color: var(--easyedu-control-border);
+    text-decoration: none;
+  }
+}
+
+// Discreet text variant of the capsule (D2 A, 16/10/2026), in the family of
+// the discreet "Select all" text button: 12 px semibold primary label, 12 px
+// chevron, 2 x 8 px padding, radius 8, never underlined. Hover and the open
+// state paint the capsule with the primary soft surface (#eaf3fb, ~8 %); an active-filter
+// count pill sits inside the capsule on the label baseline. The thin focus
+// ring is keyboard-only (:focus-visible) and painted on the capsule.
+@mixin filter-disclosure-text-capsule {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  outline: 0;
+
+  > .easyedu-filter-disclosure__content {
+    background: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+    color: var(--easyedu-primary);
+    font-size: 0.75rem;
+    font-weight: var(--easyedu-font-weight-semibold);
+    gap: 0.375rem;
+    line-height: 1.125rem;
+    min-block-size: 0;
+    padding: 0.125rem 0.5rem;
+    text-decoration: none;
+
+    > span,
+    > span:not([aria-hidden="true"]) {
+      text-decoration: none;
+    }
+
+    // K16-86: the label's cap ink sat 0.5 px above the count disc and the chevron (ink measured at
+    // 200 %); a relative nudge aligns the three without changing the capsule height.
+    > span:not([aria-hidden="true"]):not([data-easystud-advanced-filters-count]) {
+      // A transform renders at sub-pixel; a relative top was snapped to the pixel grid.
+      transform: translateY(0.5px);
+    }
+
+    > .fa {
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+  }
+
+  &:hover:not(:disabled):not([aria-disabled="true"]),
+  &[aria-expanded="true"]:not(:disabled):not([aria-disabled="true"]) {
+    background: transparent;
+    border-color: transparent;
+
+    > .easyedu-filter-disclosure__content {
+      background: var(--easyedu-primary-soft);
+      border-color: transparent;
+      color: var(--easyedu-primary-strong);
+    }
+
+    > .easyedu-filter-disclosure__content > span {
+      text-decoration: none;
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    @include focus.delegated-ring;
+  }
+
+  &:focus-visible > .easyedu-filter-disclosure__content {
+    @include focus.ring;
+  }
+}
+
+// Active-filter count inside the text capsule. Compact is the small badge
+// variant for More filters; regular remains available to other consumers.
+@mixin filter-disclosure-count($size: regular) {
+  $diameter: 16px;
+  $font-size: 10px;
+  @if $size == compact {
+    $diameter: 14px;
+    $font-size: 9px;
+  } @else if $size != regular {
+    @error "filter-disclosure-count expects regular or compact.";
+  }
+  align-items: center;
+  background: var(--easyedu-primary);
+  block-size: $diameter;
+  border-radius: 999px;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-size: $font-size;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  justify-content: center;
+  line-height: 1;
+  inline-size: $diameter;
+  min-inline-size: $diameter;
+  padding: 0;
+  // Own pixel-snapped layer: the digit keeps the same place in the disc whatever the
+  // fractional position of the capsule (Moins/Plus de filtres differed by half a pixel).
+  will-change: transform;
+
+  // Centre the digit's ink, not its font box. The line box is trimmed to the
+  // cap height, then placed in the middle of the disc.
+  @supports (text-box: trim-both cap alphabetic) and (padding-top: 1cap) {
+    display: inline-block;
+    // K16-86 (17/10, ink measured at 200 % on "1"): the digit sat 0.75 px above the disc centre with
+    // the former -0.6 px: the digits' ink is centred on the cap box itself.
+    padding-block-start: calc(($diameter - 1cap) / 2);
+    text-align: center;
+    text-box: trim-both cap alphabetic;
+    vertical-align: middle;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Full-width trailing toggle and separate quiet recovery footer (K16-11).
+@mixin filter-actions-stacked {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  grid-column: 1 / -1;
+  margin-block-start: 12px;
+  inline-size: 100%;
+  > label { inline-size: 100%; margin: 0; }
+  > button { align-self: flex-end; justify-self: end; inline-size: fit-content; margin: 0 0 0 auto; }
+}
+
+@mixin filter-panel-trailing-actions {
+  display: grid;
+  row-gap: 12px;
+  > .easyedu-filter-actions { margin-block-start: 0; }
+}
+
+// Backward-compatible name retained for existing consumers.
+@mixin more-filters-toggle {
+  @include filter-disclosure-trigger(compact);
+}
+
+// Visual checkbox used for multi-selection in card/list interfaces. Keep the
+// real input in the DOM for accessibility and plugin business logic; this mixin
+// only owns the compact EasyEdu square and its checked/disabled states.
+@mixin selection-checkbox(
+  $checked-color: var(--easyedu-primary),
+  $size: regular,
+  $variant: default
+) {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  margin: 0;
+  position: relative;
+
+  @if $variant == card {
+    border-radius: 0.62rem;
+    min-height: 2rem;
+    min-width: 2rem;
+  }
+
+  input {
+    cursor: pointer;
+    height: 100%;
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .easyedu-selection-checkbox__ui,
+  > span {
+    background: var(--easyedu-surface);
+    border: 1.5px solid var(--easyedu-control-border);
+    border-radius: 0.4rem;
+    box-shadow: 0 0.1rem 0.35rem rgba(31, 42, 55, 0.06);
+    display: inline-flex;
+    position: relative;
+    transition:
+      background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+
+    @if $size == large {
+      height: 1.42rem;
+      width: 1.42rem;
+    } @else if $size == small {
+      height: 1rem;
+      width: 1rem;
+    } @else {
+      height: 1.15rem;
+      width: 1.15rem;
+    }
+
+    @if $variant == card {
+      background: color-mix(in srgb, var(--easyedu-surface) 88%, var(--easyedu-surface-soft) 12%);
+      border-color: color-mix(in srgb, var(--easyedu-control-border) 88%, #fff 12%);
+      box-shadow: 0 0.12rem 0.38rem rgba(31, 42, 55, 0.08);
+    }
+
+    &::after {
+      border-bottom: 2px solid #fff;
+      border-right: 2px solid #fff;
+      content: "";
+      height: 0.52rem;
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -58%) rotate(45deg) scale(0.8);
+      transition:
+        opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+        transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+      width: 0.28rem;
+    }
+  }
+
+  @if $variant == card {
+    &:hover .easyedu-selection-checkbox__ui,
+    &:hover > span {
+      border-color: color-mix(in srgb, #{$checked-color} 44%, var(--easyedu-control-border) 56%);
+      box-shadow: 0 0 0 0.16rem color-mix(in srgb, #{$checked-color} 10%, transparent);
+    }
+
+    &:active .easyedu-selection-checkbox__ui,
+    &:active > span {
+      transform: scale(0.94);
+    }
+  }
+
+  input:checked + .easyedu-selection-checkbox__ui,
+  input:checked + span {
+    @include selection-checkbox-checked-paint($checked-color);
+
+    &::after {
+      @include selection-checkbox-checked-mark;
+    }
+  }
+
+  input:indeterminate + .easyedu-selection-checkbox__ui,
+  input:indeterminate + span {
+    @include selection-checkbox-checked-paint($checked-color);
+
+    &::after {
+      background: #fff;
+      border: 0;
+      border-radius: 999px;
+      height: 0.12rem;
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      width: 0.58rem;
+    }
+  }
+
+  input:focus-visible + .easyedu-selection-checkbox__ui,
+  input:focus-visible + span {
+    @include focus.ring;
+  }
+
+  input:disabled {
+    cursor: not-allowed;
+  }
+
+  input:disabled + .easyedu-selection-checkbox__ui,
+  input:disabled + span,
+  &[aria-disabled="true"] .easyedu-selection-checkbox__ui,
+  &[aria-disabled="true"] > span {
+    background: var(--easyedu-surface-soft);
+    border-color: var(--easyedu-card-border);
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+
+  @if $variant == card and $size == large {
+    min-height: var(--easyedu-touch-target-min);
+    min-width: var(--easyedu-touch-target-min);
+  }
+}
+
+// Inline panel revealed under a card, grouping, filter box or compact action.
+// Useful for search fields, paste/add-by-identifier inputs and similar transient
+// controls that should expand smoothly without becoming a full modal.
+// K16-83 (no dotted frames inside cards): the same quiet veil as the card's empty
+// row and member rows (K16-77), no visible border.
+@mixin inline-reveal-panel($max-height: 24rem) {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid transparent;
+  border-radius: var(--easyedu-radius-sm);
+  margin-top: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0.65rem;
+  transform: translateY(-0.06rem);
+  transition:
+    opacity var(--easyedu-motion-fast) ease,
+    transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+
+  &.is-open,
+  &[aria-expanded="true"] {
+    margin-top: 0.6rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Search-only disclosure: one shrinking field and one Cancel action, no title.
+// Consumers retain native search/filter ownership and existing Motion lifecycle.
+@mixin card-inline-search-panel {
+  container: easyedu-inline-search / inline-size;
+  @include inline-reveal-panel(8rem);
+  padding: 0.55rem;
+
+  &.is-open {
+    margin-top: 0.55rem;
+  }
+}
+
+@mixin card-inline-search-row {
+  align-items: stretch;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+@mixin card-inline-search-field {
+  @include text-fields.search-field-peer-small-frame;
+}
+
+@mixin filepicker($size: regular) {
+  align-items: center;
+  background: var(--easyedu-surface-soft);
+  border: 2px dashed var(--easyedu-control-border);
+  border-radius: var(--easyedu-radius-lg);
+  display: grid;
+  gap: 0.65rem;
+  justify-items: center;
+  min-height: 8rem;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  @if $size == compact {
+    gap: 0.35rem;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 7rem;
+    padding: 0.875rem 1rem;
+    margin: 0;
+  }
+
+  input[type="file"] {
+    height: 100%;
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  &:hover,
+  &.is-drag-over {
+    background: #fff;
+    border-color: var(--easyedu-accent);
+  }
+
+  &:focus-within {
+    @include focus.ring(
+      $color: var(--easyedu-focus-ring-accent),
+      $border-color: var(--easyedu-accent)
+    );
+
+    background: #fff;
+  }
+}
+
+@mixin filepicker-icon {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: 0.85rem;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  font-size: 1.25rem;
+  height: 2.8rem;
+  justify-content: center;
+  line-height: 1;
+  width: 2.8rem;
+}
+
+@mixin color-picker-control($size: regular) {
+  --easyedu-color-picker-gap: 0.65rem;
+  --easyedu-color-picker-padding-block: 0.42rem;
+  --easyedu-color-picker-padding-inline: 0.55rem;
+  --easyedu-color-picker-swatch-height: 2rem;
+  --easyedu-color-picker-swatch-width: 3.1rem;
+  --easyedu-color-picker-text-size: 0.78rem;
+
+  @if $size == small {
+    --easyedu-color-picker-gap: 0.48rem;
+    --easyedu-color-picker-padding-block: 0.3rem;
+    --easyedu-color-picker-padding-inline: 0.42rem;
+    --easyedu-color-picker-swatch-height: 1.65rem;
+    --easyedu-color-picker-swatch-width: 2.55rem;
+    --easyedu-color-picker-text-size: 0.76rem;
+  } @else if $size == large {
+    --easyedu-color-picker-gap: 0.75rem;
+    --easyedu-color-picker-padding-block: 0.52rem;
+    --easyedu-color-picker-padding-inline: 0.68rem;
+    --easyedu-color-picker-swatch-height: 2.4rem;
+    --easyedu-color-picker-swatch-width: 3.7rem;
+    --easyedu-color-picker-text-size: 0.9rem;
+  } @else if $size != regular {
+    @error "color-picker-control expects small, regular or large.";
+  }
+
+  @if $size == regular {
+    // Foundation M is a 160px control at every viewport; its Hex lane is
+    // allowed to shrink rather than stretching the entire native setting row.
+    inline-size: 10rem;
+  }
+
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-border-strong);
+  border-radius: var(--easyedu-control-radius);
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: var(--easyedu-color-picker-gap);
+  max-width: 100%;
+  min-width: 0;
+  padding: var(--easyedu-color-picker-padding-block) var(--easyedu-color-picker-padding-inline);
+  transition:
+    background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  &:hover:not(.is-disabled):not([aria-disabled="true"]) {
+    border-color: color-mix(in srgb, var(--easyedu-primary) 42%, var(--easyedu-control-border) 58%);
+  }
+
+  &:focus-within {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &.is-invalid,
+  &[aria-invalid="true"] {
+    border-color: var(--easyedu-danger);
+  }
+
+  &.is-disabled,
+  &[aria-disabled="true"] {
+    background: var(--easyedu-surface-soft);
+    color: var(--easyedu-text-subtle);
+    cursor: not-allowed;
+    opacity: 0.68;
+  }
+
+  &.is-readonly,
+  &[data-readonly="true"] {
+    background: color-mix(in srgb, var(--easyedu-surface-soft) 72%, var(--easyedu-surface) 28%);
+  }
+}
+
+@mixin color-picker-input {
+  background: transparent;
+  border: 0;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  flex: 0 0 var(--easyedu-color-picker-swatch-width, 3.1rem);
+  height: var(--easyedu-color-picker-swatch-height, 2rem);
+  max-width: var(--easyedu-color-picker-swatch-width, 3.1rem);
+  min-width: 0;
+  padding: 0;
+  width: var(--easyedu-color-picker-swatch-width, 3.1rem);
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: 1px solid rgba(37, 55, 70, 0.14);
+    border-radius: 0.55rem;
+  }
+
+  &::-moz-color-swatch {
+    border: 1px solid rgba(37, 55, 70, 0.14);
+    border-radius: 0.55rem;
+  }
+
+  &:focus {
+    @include focus.delegated-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@mixin color-picker-value {
+  color: var(--easyedu-text-muted);
+  font-size: 0.78rem;
+  font-weight: 760;
+  letter-spacing: 0.04em;
+}
+
+// Editable hexadecimal companion for the native colour swatch. The text
+// field remains the authoritative named Moodle control; the swatch is an
+// unnamed enhancement synchronized by the consumer controller.
+@mixin color-picker-hex-input {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  flex: 1 1 7.4rem;
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-color-picker-text-size, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  min-height: var(--easyedu-color-picker-swatch-height, 2rem);
+  min-width: 0;
+  padding: 0 0.2rem;
+  text-transform: uppercase;
+
+  &:focus,
+  &:focus-visible {
+    @include focus.delegated-ring;
+  }
+
+  &:read-only {
+    color: var(--easyedu-text-muted);
+    cursor: default;
+  }
+
+  &:disabled {
+    color: var(--easyedu-text-subtle);
+    cursor: not-allowed;
+  }
+}
+
+// Align a Moodle QuickForm colour group without changing its submission
+// structure. Apply this to the group's `.felement` after `color-picker-control`.
+@mixin moodle-color-picker-group {
+  > fieldset > .d-flex {
+    align-items: center !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0.55rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  > fieldset > .d-flex > .fitem {
+    flex: 1 1 auto;
+    margin: 0 !important;
+    min-width: 0;
+    order: 2;
+  }
+
+  > fieldset > .d-flex > input[type="color"] {
+    flex: 0 0 3.1rem;
+    order: 1;
+  }
+
+  > fieldset > .d-flex input[type="text"] {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+// Moodle's setting_heading emits direct h3.main siblings inside a fieldset.
+// Separate sections without changing native heading typography, setting rows
+// or their end margins. Also support a settings renderer without a fieldset.
+@mixin moodle-admin-section-spacing {
+  > h3.main,
+  > fieldset > h3.main {
+    margin-block-start: var(--easyedu-admin-section-gap, 2.5rem);
+    @media (max-width: 48rem) {
+      margin-block-start: var(--easyedu-admin-section-gap-narrow, 2rem);
+    }
+  }
+}
+
+// K20-13: one card per Moodle admin section, drawn on the native DOM. Moodle
+// prints h3.main, its description box and the setting rows as flat siblings of
+// the fieldset (no section wrapper), so each run "heading -> description ->
+// rows" is painted as contiguous card segments: frame on both sides, top edge
+// and radius on the heading, a Kit hairline between rows, bottom edge and
+// radius on the last row of the section. No wrapper, no script, nothing hidden
+// (the E5 attempt of 15/10 rewrote the DOM and broke the page). Include it on
+// the fieldset that holds the headings.
+// K21-15: the card follows the Kit panel of Mass Import (1.5 rem inset, semantic
+// primary rail on top, compact icon tile beside the section title with the
+// description aligned on the title text) and gives every setting row 1.25 rem
+// of vertical air. Type sizes and control sizes are unchanged. The icon tile is
+// optional: `$icon` is the class of a decorative element inside the heading.
+@mixin moodle-admin-section-card($heading: "h3.main", $icon: null) {
+  --easyedu-admin-card-padding: 1.5rem;
+  --easyedu-admin-row-padding: 1.25rem;
+  --easyedu-admin-heading-gap: 0.75rem;
+  --easyedu-admin-copy-inset: 0rem;
+
+  @if $icon {
+    --easyedu-admin-copy-inset: calc(var(--easyedu-section-icon-size-compact) + var(--easyedu-admin-heading-gap));
+  }
+
+  @media (max-width: 48rem) {
+    --easyedu-admin-card-padding: 1rem;
+    --easyedu-admin-row-padding: 1rem;
+    --easyedu-admin-copy-inset: 0rem;
+  }
+
+  > #{$heading},
+  > #{$heading} + .formsettingheading,
+  > .form-item {
+    background: var(--easyedu-surface);
+    border-inline: 1px solid var(--easyedu-card-border);
+    box-sizing: border-box;
+    padding-inline: var(--easyedu-admin-card-padding);
+  }
+
+  > #{$heading} {
+    background-image: var(--easyedu-semantic-rail-primary);
+    background-repeat: no-repeat;
+    background-size: 100% 0.35rem;
+    border-block-start: 1px solid var(--easyedu-card-border);
+    border-start-end-radius: var(--easyedu-card-radius);
+    border-start-start-radius: var(--easyedu-card-radius);
+    margin-block: var(--easyedu-admin-section-gap, 1.5rem) 0;
+    padding-block: var(--easyedu-admin-card-padding) 0.5rem;
+
+    @media (max-width: 48rem) {
+      margin-block-start: var(--easyedu-admin-section-gap-narrow, 1rem);
+    }
+
+    @if $icon {
+      align-items: center;
+      display: flex;
+      gap: var(--easyedu-admin-heading-gap);
+
+      .#{$icon} {
+        @include panels.section-icon-tile($size: compact);
+
+        // Same glyph size as the Kit compact tile (.easyedu-icon-tile--compact).
+        font-size: 1.0625rem;
+      }
+    }
+  }
+
+  > #{$heading} + .formsettingheading {
+    margin: 0;
+    padding-block: 0 var(--easyedu-admin-card-padding);
+    padding-inline-start: calc(var(--easyedu-admin-card-padding) + var(--easyedu-admin-copy-inset));
+  }
+
+  > .form-item {
+    border-block-start: 1px solid var(--easyedu-card-hairline);
+    margin: 0;
+    padding-block: var(--easyedu-admin-row-padding);
+  }
+
+  // The header (title, description, section actions) is closed by the card
+  // border colour, the rows between them keep the lighter Kit hairline.
+  > #{$heading} + .formsettingheading + .form-item {
+    border-block-start-color: var(--easyedu-card-border);
+  }
+
+  // Section end: the row (or a description without rows) right before the next
+  // heading, or the last child of the fieldset.
+  > .form-item:is(:has(+ #{$heading}), :last-child),
+  > #{$heading} + .formsettingheading:is(:has(+ #{$heading}), :last-child) {
+    border-block-end: 1px solid var(--easyedu-card-border);
+    border-end-end-radius: var(--easyedu-card-radius);
+    border-end-start-radius: var(--easyedu-card-radius);
+    padding-block-end: var(--easyedu-admin-card-padding);
+  }
+}
+
+// K20-13: the native admin row keeps its two columns, label | control (Moodle's
+// col-sm-3 / col-sm-9), on the Kit grid: a bounded label column, the control
+// column starting on one shared vertical line, stacked on phones. The label's
+// first line is centred on the first control row (the label line height is 1.5em).
+// K21-15: a row whose first control is taller than a field (Kit switch at the
+// touch-target size) sets --easyedu-admin-row-control-height to that token.
+@mixin moodle-admin-setting-row($label-column: minmax(12rem, 22rem)) {
+  align-items: start;
+  column-gap: 2rem;
+  display: grid;
+  grid-template-columns: $label-column minmax(0, 1fr);
+  row-gap: 0.25rem;
+
+  > .form-label,
+  > .form-setting {
+    inline-size: auto;
+    max-inline-size: none;
+    min-inline-size: 0;
+  }
+
+  > .form-label {
+    margin-block-end: 0;
+  }
+
+  > .form-label label {
+    padding-block-start: max(0px, calc((var(--easyedu-admin-row-control-height, var(--easyedu-control-height)) - 1.5em) / 2));
+  }
+
+  @media (max-width: 48rem) {
+    grid-template-columns: minmax(0, 1fr);
+
+    > .form-label label {
+      padding-block-start: 0;
+    }
+  }
+}
+
+// Moodle admin_setting renders a progressive colour control, its default
+// value and help as siblings. Keep the control/default on one responsive row
+// while allowing a conditional notice to consume a separate full-width row.
+@mixin moodle-admin-color-setting {
+  .form-setting {
+    align-items: start;
+    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    row-gap: 0.3rem;
+
+    > .easyedu-ui { display: contents; }
+
+    > .easyedu-ui > .easyedu-color-picker {
+      grid-column: 1;
+      order: 1;
+    }
+
+    > .form-defaultinfo {
+      align-self: center;
+      grid-column: 2;
+      margin-top: 0;
+      order: 2;
+    }
+
+    > .easyedu-ui > [data-easyedu-colour-contrast-note] {
+      grid-column: 1 / -1;
+      max-width: 22rem;
+      order: 3;
+    }
+
+    > .form-text {
+      grid-column: 1 / -1;
+      margin-top: 0.3rem;
+      order: 4;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .form-setting { column-gap: 1rem; }
+  }
+}
+
+@mixin detected-token-input {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  display: grid;
+  gap: 0.45rem;
+  min-height: var(--easyedu-control-height);
+  padding: 0.45rem;
+
+  input,
+  textarea {
+    border: 0;
+    box-shadow: none;
+    min-height: 2rem;
+    resize: vertical;
+
+    &:focus {
+      @include focus.delegated-ring;
+    }
+  }
+
+  &:focus-within {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+}
+
+@mixin detected-token-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-height: 1.7rem;
+}
+
+@mixin detected-token($variant: success) {
+  @if $variant == warning {
+    @include feedback.token-pill(var(--easyedu-warning-soft), #ead7bf, var(--easyedu-warning));
+  } @else if $variant == error {
+    @include feedback.token-pill(var(--easyedu-danger-soft), #efc5c5, var(--easyedu-danger));
+  } @else {
+    @include feedback.token-pill(var(--easyedu-success-soft), #c7e3d1, var(--easyedu-success));
+  }
+}
+
+// Inline editing composes the accepted control frames without owning the
+// consumer's grid placement. The content slot preserves its cascade order.
+@mixin inline-edit-touch-control {
+  min-height: var(--easyedu-touch-target-min);
+}
+
+@mixin inline-edit-surface {
+  background: color-mix(in srgb, var(--easyedu-surface) 92%, var(--easyedu-primary-soft) 8%);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-control-radius);
+  @content;
+  padding: 0.35rem;
+}
+
+@mixin inline-edit-action($compact: false) {
+  @if $compact {
+    padding-inline: 0.65rem;
+  } @else {
+    line-height: normal;
+  }
+}
+
+// K16-80 / Q17-T44: was 2.65rem (42.4 px), under the Kit's 44 px touch minimum.
+@mixin inline-create-touch-field {
+  min-height: var(--easyedu-touch-target-min);
+}
+
+// Existing pill-shaped role choices, kept separate from native selects.
+@mixin toggle-choice-rounded {
+  @include typography.control-label-natural-metrics;
+  border-radius: 999px !important;
+  white-space: nowrap;
+}
+
+// Checked/indeterminate share one paint; the owning predicate stays native.
+@mixin selection-checkbox-checked-paint($color) {
+  background: $color;
+  border-color: $color;
+  box-shadow: 0 0 0 0.18rem color-mix(in srgb, #{$color} 14%, transparent);
+}
+
+@mixin selection-checkbox-checked-mark {
+  opacity: 1;
+  transform: translate(-50%, -58%) rotate(45deg) scale(1);
+}
+
+
+@mixin filter-disclosure-icon {
+  font-size: 0.68rem;
+  line-height: 1;
+  transition: transform var(--easyedu-motion-fast) ease;
+}
+
+
+@mixin filter-section-label {
+  @include typography.type-eyebrow;
+
+  letter-spacing: 0.03em;
+  color: var(--easyedu-text-muted);
+}
+
+
+// Accepted native settings-field caption tone.
+@mixin settings-field-heading-ink { color: var(--easyedu-text-muted); }
+
+
+// Accepted narrow filter/creation shell inset; the host owns its display predicate.
+@mixin control-shell-touch-inset { padding: 0.68rem; }
+@mixin filter-panel-touch-extent { max-height: 42rem; }

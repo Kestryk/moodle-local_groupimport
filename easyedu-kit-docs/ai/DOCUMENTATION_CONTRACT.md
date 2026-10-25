@@ -1,0 +1,1328 @@
+Participant metadata disclosure follows participantcardcollapsed until a manual desktop density choice overrides it for the current model. Automatic compact layout must not override the admin default. Preserve mobile membership-only policy and Motion timing. See docs/testing/participant-collapse-default-2026-10-25.md.
+
+All actual search frames and adjacent Cancel actions share the Kit Small field-peer height (30.4px, 44px through 1024px). Keep inline geometry, native placeholders, type and icon containment unchanged; substitute page plus Guide CSS for native A/B checks. See docs/testing/search-field-small-2026-10-25.md.
+
+Parent-dependent Mustache fragments retain their native list/menu roles and exact HTML-only lint exemptions; validate their real parent examples. Guide status/dialog roles use compatible neutral elements. Preserve no-JavaScript real-content recovery via the Moodle body bootstrap class. See docs/testing/mustache-html-validation-2026-10-25.md.
+
+Mixed historical contracts must retain their live keyboard, Motion and map/privacy
+assertions when retiring whole-monolith reconstruction proofs. Follow actual split
+module maps; do not invert the public Guide sourcesContent guard. A missing old
+producer can conceal a real label change: participant-panel-title stays unresolved.
+See docs/testing/fixtures-suite2-2026-10-25.md.
+
+Retired historical scripts require explicit per-contract decisions and recoverable
+Git blobs. Count RETIRED separately from PASS. Preserve mixed contracts protecting
+keyboard behavior, source-map privacy, Motion or disputed paint. Field-peer Reset
+still exposes the actual 38px variant; a historical file mismatch cannot retire it.
+See docs/testing/contracts-decisions-2026-10-25.md.
+
+Card detail commands share the existing entity-specific language keys across context menus, direct ARIA/help and modal headings. Preserve action IDs and handlers; Guide captions must use the same current names. See docs/testing/card-detail-labels-2026-10-25.md.
+
+Fixture modernization follows actual I3/I4/I6 producers and dependencies, never
+new expected values or replacement historical references. Require unique syntax
+boundaries for extracted declarations. Keep the default historical parity FAIL
+separate from an explicit current-baseline parity run; never count that additional
+run as a repair of a historical assertion. See docs/testing/fixtures-suite-2026-10-25.md.
+
+Foundation selection commands keep the primary Kit palette even with the Bootstrap compatibility class btn-outline-secondary. Preserve explicit destructive, solid, disabled and borderless recovery variants; do not change native secondary buttons outside this component. See docs/testing/selection-action-primary-palette-2026-10-24.md.
+
+Shared floating Guide binding accepts either its navigation root or an ancestor containing it. Keep one binding implementation, preserve inactive state, scroll visibility, native click delegation and pagehide cleanup on both workspaces.
+
+Student Management configures the shared workspace lane surface with --easyedu-surface on every Moodle host. Keep the existing outlined Kit lanes and their seam-free split segments. Moodle 5.3 navigation and narrow metadata adaptations remain independent; do not remove their host guard or change the global soft-surface token used by other consumers. See docs/testing/unified-workspace-surface-2026-10-24.md.
+
+Guide document scroll lock compensates only a disappearing scrollbar, once per shared lock. Preserve existing inline padding and priority until the final root releases it; stable gutters already reserve their space. Native proof must require a nonzero real document scrollbar, not only Moodle's inner scroller or headless-hidden scrollbars. Keep fullscreen parking and release timing unchanged. See docs/testing/guide-scrollbar-lock-2026-10-24.md.
+
+Constrained responsive Grouping headers reuse the Group in-flow overflow slot and release the absolute touch-action lane. Keep the shared title budget, selector/disclosure space, original menu commands and terminal Group count order. Test actual caption capacity as well as the preferred 7.5rem: mandatory selector/chevron geometry can cap the narrowest desktop identity below that preference. See docs/testing/card-title-priority-2026-10-24.md.
+
+Captioned search density uses the Kit intrinsic-width mixin, capped by its container without a fixed width or smaller text. Preserve caption-above and icon/input row, desktop Structure visibility and compact entity-region visibility. Full details shares the same participant search. See docs/testing/search-field-density-2026-10-24.md.
+
+Floating Guide access is an explicit Student Management adapter opt-in. Measure the navigation anchor against the native navbar, including compact zero-height anchors and Moodle's inner scroller. Delegate to the original Guide without moving its flow launcher or changing fullscreen/Motion. Keep the inactive copy disabled and preserve Close focus/scroll. See docs/testing/guide-floating-launcher-2026-10-24.md.
+
+Narrow Group/Grouping headers exhaust the native overflow menu before opting into the shared readable-identity row. Retain the action-sized first row, selector anchor and native menu closure; measure against card bounds, not only the header content box.
+
+Drawer-narrowed card headers let titles yield to the existing terminal count/overflow slots. Open menus escape paginated and intermediate workspace clipping via dropdown-card-open-host only while open. Resolve card action overflow inside the view mutation before entry paint; keep Motion and post-render geometry sources. See docs/testing/k23-36-drawer-card-headers.md.
+
+Guide reading dialogs reset navigation-host nowrap at their boundary. Preserve
+the explicit no-wrap control roles; compare complete painted concept captions
+and notice copy across desktop hosting and the compact body portal. See
+docs/testing/audit-13bis-2026-10-24.md.
+
+Responsive static Guide specimens use the existing narrated-action policy through
+64rem. Keep live card menus independent; retain the pointed action, name and count.
+
+Card member counts occupy the terminal header slot after direct actions and overflow. Use card-header-terminal-slot for count/overflow and release obsolete absolute-action clearance. Verify actual boxes at all five widths, plus native menu and selection behavior. No local offsets or extra DOM controls.
+
+Demonstration completion uses one existing success disc with the plain check glyph, not check-circle inside another disc. Preserve the 32px flex frame, semantic palette and hidden/accessible state. Measure pseudo-element and disc centres without introducing optical offsets.
+
+Checklist descriptions retain intentional plain-text paragraph breaks through the shared Kit caption recipe. Keep textContent, path events and existing typography; a copy change must preserve the complete instructions and every unrelated translation. See docs/testing/guide-readability-completion-2026-10-23.md.
+
+Fullscreen parking must preserve parent-relative sibling flow, not only border-box dimensions. Leave unstable groups live; retain the Close release barrier and Motion timings. Test external browser exit followed by immediate Close with actual locale labels. See docs/testing/guide-fullscreen-geometry-2026-10-23.md.
+
+# EasyEdu documentation contract
+
+English is the canonical language-key inventory. Complete Portuguese (pt,
+European Portuguese) and German (de) translations preserve key order, PHP and
+JavaScript interpolation tokens, HTML markup and technical file-header examples.
+Keep language packs separate from plugin translations and distinguish string
+manager loading proof from browser layout certification. See
+docs/localisation-pt-de-2026-10-25.md.
+
+Release AMD uses Moodle's official Grunt pipeline and lockfile, not handwritten
+wrapper equivalence. Run build-amd-official.cjs and its --check mode after any
+module-specific builder; preserve product sources, lint gates and historical
+behaviour assertions. See docs/testing/official-amd-build-2026-10-25.md.
+
+Privacy tests keep their discovery/export/erasure assertions across database
+drivers. Normalize SQL context ids for strict identity checks and use fresh
+preference reads plus database assertions after deletion by id. Uninstall must
+retain shared Motion and unrelated settings; see the privacy lifecycle test notes.
+
+View-level Motion and card arrival have separate ownership. Scope hydration
+with withoutListArrival during the desktop view reveal; preserve standalone
+pagination and the canonical selection-action paint, including footer Cancel.
+
+Empty list messages retain the 08.13 Kit paint. Reserve the existing pagination
+side lanes instead of adding message offsets: keep empty lanes invisible and
+inert, disable Select all, and clear the state when results return. Distinguish
+simultaneous desktop column alignment from responsive per-entity content-slot
+measurements; a hidden neighbour has no meaningful screen Y coordinate.
+
+Filter separation belongs to the common advanced-filter panel, not a Participants-only adapter. List selection, paging and tools consume one intrinsic wrap guard; preserve the narrow pager row and native handlers. Verify all column roles and painted controls, including narrowed desktop content. See docs/testing/k23-filter-pagination-2026-10-23.md.
+
+Column overflow copies preserve the existing Kit action icon-gap token even after the selection-action skin is removed. Verify the real reduced-menu entry and its painted icon-to-label separation; a full toolbar or an absent overflow trigger is not proof.
+
+Both card-search Cancel selectors must retain the same compact Kit recipe even when the general secondary-button class is present. Check computed typography/radius as well as containment; geometry alone cannot detect a regular-density cascade override.
+
+Constrained card search switches only its visible Cancel label, using the existing rename X frame through a named container. Preserve the accessible command and filtering scope; dynamically rendered fields consume the same opt-in class as server cards. Rename Save uses the existing canonical floppy icon. Do not duplicate controls or alter desktop defaults. See the adaptive-card-search component note.
+
+Theme-configuration width patches replace their exact owned predecessor blocks
+after a live SCSS hash comparison and backup. Preserve unrelated rules and banner
+preferences. Native Participants verification follows the explicit native URL
+and asserts its final path; a redirected EasyStud page does not prove the Moodle
+table. See docs/operations/README-K23-10-UNIVERSAL-WIDTH.md.
+
+Responsive navigation preferences use the shared list action before the spaces
+heading; keep desktop controls and display handlers unchanged. Workspace column
+boundaries opt into the existing Kit lane mixin, including seam-free start/end
+segments and host-specific surfaces. Do not restore a duplicate 5.3 border or
+apply the full-width course-drawer trial through plugin CSS. See
+docs/testing/k23-nav-drawers-lanes-2026-10-23.md.
+
+Guide Close waits for host release after an external browser fullscreen exit,
+even when fullscreen ownership has already ended. Keep the independent parked
+state and release promise in the shared controller, embedded mirror and AMD
+adapter. Preserve Escape semantics, host dimensions and Motion durations. See
+docs/testing/guide-host-release-2026-10-22.md for native and asynchronous proof.
+
+G1 personal animation choice reuses the server M1 resolver and current-user
+Moodle preference repository. Keep Save explicit, Cancel/Escape reversible and
+the underlying Guide open. The embedded Kit owns the preference-window/radio
+recipe; external Kit/Penpot propagation and human acceptance remain separate.
+See `docs/display-preferences-2026-10-17.md` for build and supervised proof.
+
+Responsive Groups owns its existing Structure-search field even after the
+compact controller clears desktop Structure focus. Restore visibility only in
+the active Groups workspace; preserve canonical Kit field geometry and native
+search handlers. See docs/testing/catalog-search-k17-21-2026-10-17.md.
+
+Student Management panel opacity/transform during view swaps belongs to Motion;
+the container keeps only its CSS shadow transition. Focus-state transforms must
+not add another interpolation during the return. This is separate from shared
+floating-menu Motion and does not authorize retiming either controller.
+
+Integrated panels own Escape through native Cancel and restore the visible opener
+after their existing Motion closure. Keep ordinary Tab order and nested-key priority;
+never trap inline search/add/rename as a modal. Space selection plus native Move
+access is the keyboard drag alternative; opening/cancelling does not prove a real
+transfer. Preserve business handlers and tutorial code under the focus-only exception.
+
+Long native Message titles shrink beside Close and wrap without changing dialog
+width. Capture synthetic stress before restoring original text; distinguish shell
+containment while loading from settled body layout. Use the visible mobile Clear
+selection command before switching entity type; never submit destructive dialogs.
+
+K16 Reset parity follows the effective native Grouping-search Cancel cascade,
+not an earlier compact adapter overridden by public secondary classes. Preserve
+regular secondary padding/radius/type and the38px field-row height when mobile
+stacks Reset. Confirm real menu access and exact native geometry in both modes.
+
+Rollback owns modal-local keyboard handling, safe initial Cancel focus and return
+to its surviving History trigger after native Motion. Keep import/restore commands
+untouched. Native readiness must precede choosing desktop or compact History access;
+source/build/paired browser proof and human acceptance remain separate.
+
+S1 external-dialog cues consume Kit186's public layering role; page cues remain
+1020 and pointer-events:none. The body portal relays only --easyedu-modal-layer.
+Check actual inert frame paint through a restored test-only edge probe, never
+change product pointer behavior. Native editor proof covers six of twelve
+current modal targets; destination/member/activity gates remain distinct.
+Preserve every original path/storage ID, command and accepted Motion.
+
+Kevin's12Oct whole-backlog directive replaces historical Guide-first ordering,
+not scope or proof. Use docs/execution-priority-2026-10-12.json and its coverage
+gate before choosing a lot. Shared prerequisites precede compositions; already
+verified fixes need remaining gates, not reimplementation. Never drop older
+SM/R10/Guide requests or treat a rejected alternative as required implementation.
+
+Local loading/on-demand successors require the recorded I1–I13 before/after
+grid in docs/claude-guide-paths-skeleton-intake-2026-10-12.md. Preserve data*,
+model selection/counts, Guide readiness/signals, card Motion and modal focus.
+T052 measured baseline precedes loading work; T054 runs last/default-off using
+in-memory data, never network at click. Inapplicable invariants need reasons,
+not invented native PASS. Guide audit PG-A4/A5/A7 remain human decisions.
+
+Unified narration child typography owns its paint, even beneath a finished
+display:contents live region. Reapply only existing semantic completion roles
+on that child; prove active/reset metrics and engine/template bytes unchanged.
+Already-correct saved source/Standard/product examples are reused, not redrawn.
+Paint-role parity is not exact caption/body density or human acceptance.
+
+Recap disclosure vendors the existing Motion dependency atomically with Guide
+template/controller/SCSS. Preserve scene clocks/scroll/fade and legacy static
+fallback. Execute actual generated named AMD and callable dependency exports;
+do not rely on the old zero-dependency string replacement. Stop/reset cancels
+effects and restores local open state. Isolated reversal is not native final
+entry or every-phase target proof; retain distinct source/design/native gates.
+
+Keyboard successors inspect current rendered lesson controls instead of an
+old numeric Practice index. Retain real Tab/Shift-Tab, Home/End, typing/nested
+Escape and surviving-opener focus. Isolate QA reading state without altering
+tabindex or invoking course actions; preserve the original historical spec.
+A scene lifecycle matrix does not complete its separate keyboard gate.
+
+Scene matrices enumerate real current Start entries, not inert introduction
+specimens or historical kind counts. Cover both Inspection entities and Add/Move,
+normal lifecycle versus reduced static outcome, and actual1280x800 final view.
+Use QA storage/cleanup, retain historical oracles and measure bounded case costs;
+fewer initial GETs via real resize does not replace cold compact initialization.
+Lifecycle/endpoint proof does not certify every continuous illustrated target.
+
+Guide introduction specimens reuse real Small outline/control/vector recipes
+as inert spans, never button commands, target IDs, path exercises or tab stops.
+Preview captions identify them as examples; capability still controls Fullscreen.
+Preserve stale-oracle predecessors when correcting list-versus-topic geometry
+or a pre-existing approved title role. Compare complete unrelated CSS and engines;
+source/design/isolated/native/human proof remain separate gates.
+
+Approved identity-corridor composition is CSS-only: preserve markup/classes,
+data attributes, PHP, JS/AMD and Motion. Add scope to the original61-task intake,
+never replace received wording/proof. Use semantic rail/surface tokens and Kit
+recipes before linked Foundations/product propagation. CSS cannot assign disabled
+to native hidden pagination controls; retain that functional gap separately.
+Verify drag/auto-scroll, sticky/pagination, swaps, Complete alignment and Guide
+paint natively. Planning/design approval is not implemented or human-tested UI.
+
+Compact reading lanes retain complete localized group names and both modes.
+Preserve fractional-wrap/height failures and reuse scene gutters/caption roles;
+never shrink type or round away a whole-row change. Settled Reset and final
+continuous playback are separate native gates. Human checklist remains open.
+
+Continuous demo containment reserves invisible target layout before its owned
+scroll/reveal; preserve existing clocks and cursor/ghost choreography. Number-free
+visible narration retains a complete polite accessible announcement. Resize and
+rotation reveal the active tab with tracked cleanup. Keep source, served/native,
+paired design and human gates separate; mobile content reduction needs approval.
+
+Discovery reading chrome uses canonical caption/Small primitives and the same
+existing progress-label slot. No new template, controller, reading-state key or
+consumer CSS. Keep baseline and successor helpers immutable and scoped: an
+introductory slide can intentionally have no interface target. Test its dedicated
+cue on a real contextual slide, and retain narrow-width footer wrapping.
+
+Native viewport proof separates a settled phase reveal from locator-induced
+autoscroll on sticky playback controls. Preserve failed specs and use painted
+hit-tested pointer successors, not force/DOM clicks or weaker bounds. Reading
+order waits finite slide-entry motion. Saved Penpot override strings alone do
+not certify cached glyph paint; retain the original type while reflowing it.
+
+Claude review1 reopens previous scene-header proofs: containment does not prove
+visible expected memberships or phase clearance. Preserve clocks and original
+card choreography. Move one membership element between ready header and its home
+anchor; restore owned scroll padding and observers at finish/exit. Settle finite
+header transitions before the existing final recap scroll. Reordering explanatory
+blocks never changes stable slide/path IDs, targets or stored reading order.
+
+Timed Guide scenes opt into manual entry atomically with template/engine/data.
+Keep creation and guided paths distinct. Start is disabled while playing/paused;
+preserve clocks and legacy autoplay. Check host-relative containment and painted
+labels before activation; select preserved tabs by inspector, not CDP index.
+Isolated localized state proof is not served/native or human acceptance.
+
+Font-name search can return a nearby family such as Inter Tight. Verify exact
+family/id/variant/weight after application and in paired saved/raster readback;
+do not infer typography parity from font size or source link alone.
+
+Keyboard navigation can scroll after focusin. Keep its label tooltip anchored
+through that navigation-only scroll and cancel queued frames on teardown;
+do not drop focus help or change existing Guide Motion to obtain a native PASS.
+
+Tooltip fixtures must use the actual consumer root selector and resolved host
+tokens. A pointer still over a target after fullscreen exit cannot certify a
+new pointer-entry event. Keep paint expectations and wait completed cleanup;
+do not change product Motion to compensate for a harness lifecycle error.
+
+When the user rejects a candidate, withdraw its unconsumed source recipe and
+archive exact owned design specimens recoverably. Reconcile the preferred
+existing source with the Kit before any consumer or preview activation.
+
+Tooltip extraction preserves complete emitted CSS and independently pinned
+consumer help-icon/focus additions. Compare the exact new canonical recipe and
+untouched canonical baseline, not a false whole-module equality. Guide tooltip
+portal/fullscreen/keyboard cleanup and paired design remain separate gates.
+
+Discovery progression uses its dedicated4px source recipe and semantic accent
+roles. Preserve historical8px Guide/Checklist families; pair Library/Standards
+and decoded saved paint before product propagation. Default raster, isolated
+custom-palette helper and native configured-palette proof are separate gates.
+
+The10 October additive review is retained in student-feedback-successor-2026-10-10:
+one traceable lot per distinct request, repeated wording merged with full scope,
+previous proof retained and renewed user reports reopened. Prioritize Guide
+changes and shared prerequisites; update source/design/served/native/human gates
+separately. Record the reusable transposition method continuously for future CCB
+without modifying that consumer now. Local Skeleton readiness follows real
+component lifecycle, not invented delay or automatic global page replacement.
+
+Targetless Guide viewport refreshes retain an explicit queued target until its
+first paint. Preserve explicit replacement and disconnected-target clearing;
+test the actual frame queue and baseline failure before native integration.
+Do not repair this scheduling race with longer delays, changed Motion or CSS.
+
+Reduced-motion native exits can resolve during an originating Guide click.
+Before opening a compact card menu, await that exit and the next frame so its
+outside-click listener cannot close the just-opened target. Preserve event-order
+diagnostics and unchanged strict replay; no timed-delay or shared Motion patch.
+
+Native dialog guards respect aria-hidden as well as layout: a closed offcanvas
+drawer may retain a non-empty rect. Preserve genuinely active foreign dialogs,
+the failed native review evidence and the strict unchanged successor scenario;
+do not change Navigation/Guide Motion to work around this adapter distinction.
+
+Native editor inspection completes field steps on real typed focus events, not
+Guide highlight. Cancel completes after exit/removal; prior-step review awaits
+that same exit without completion. Preserve foreign dialogs, original save
+code and read-only lists. Reuse canonical invitation/checklist/Motion; isolated
+adapter/layout proof does not certify native fields or human acceptance.
+
+Responsive editor availability checks actual direct-control paint, not DOM
+presence. Reuse the original single-entity editor and menu recipe; preserve
+metadata/multiselection gates and return focus to the visible card trigger.
+Native inventory can finish successfully while recording missing entries:
+only a strict successor requiring every entry proves restored access.
+
+Compact checklist review uses its actual Restore control before accessing
+hidden steps. Preserve the immutable failed no-Restore scenario and use a
+separate native successor; do not disable compact reduction, force a hidden
+row or change product Motion to repair the test's missing user action.
+
+Source-member guidance is a distinct optional path, never an alias of global
+Participant assignment. Qualify modal targets by member context and complete
+the last milestone only after successful native movemembers. Review closes only
+the owned dialog context and must not reapply an already-active workspace mode
+that clears selection. Preserve prior paths/storage and distinguish isolated
+signals, native open/search/Cancel and real business completion.
+
+Native mobile selection proxies are Guide/focus targets. Retain keyed button
+identity across selection/density refreshes; remove only obsolete action keys.
+A visible replacement does not preserve a cue attached to the previous node.
+Keep native commands, labels, palette and Motion unchanged and preserve the
+failed browser run until an unchanged strict successor proves the correction.
+
+Shared native Move dialogs must expose their actual Participant/Member/Group
+context before Guide progression observes them. Qualify product targets and
+openers by that context and clear it only in the completed exit callback.
+Read-only advanced member/group lists are not selection dropdowns. Adapter
+isolation does not implement a new guided path or prove native modal stacking.
+
+Before editing linked Guide glyphs after a Foundations provider change, check
+pending native Library updates and file referential validation. A failed queued
+save may remain blocked even after local repairs validate. Preserve exact owned
+pending geometry, never reload unknown user edits, reconcile with the native
+Library transaction and restore product copy/layout overrides. Verify saved IDs
+and tagged rects afterward; local validation alone is not successful persistence.
+
+Fullscreen vector adaptation is paint-only. Preserve the entire native engine
+outside the exact glyph branch and keep legacy icon fallback. Saved Foundations
+geometry requires decoded Transit rects, not ID presence or NaN lazy shape fields.
+Check native currentColor, scale, centring, Enter/Exit, Escape and opener focus;
+never treat a deterministic build or saved source as served/human acceptance.
+
+Reading navigation saves only when canonical applyActiveSlide applies the real
+destination. Wait for that destination, not the click's outgoing-frame state.
+Initialization/opening stay read-only; retain the prior immutable diagnostic
+and preserve shared Motion and course command identity.
+
+Native first-introduction checks use versioned stable IDs and explicit supported
+historical maps. Preserve old index-pinned specs; successors must inspect intro
+before navigating to Practice. Synthetic reading history belongs only to isolated
+QA storage, never a user's live key or fabricated Moodle completion.
+
+Introduction specimen data remains opt-in until Foundations and first-slide
+activation gates pass. Static examples reuse Kit classes and have no native
+commands. Preserve card explanations, course actions and reading/path state;
+isolated test success must not be reported as a served first-slide change.
+
+Stable reading migration preparation is opt-in and must not silently activate
+through a Kit update. Product activation requires a new presentation key, exact
+per-origin maps and stable slide IDs, with original first-save backup preserved.
+Pure migration tests do not certify a rendered first slide or native persistence.
+
+Product completion signals which reveal the next Guide target follow native
+action enablement and responsive replacement rendering. Do not compensate for
+an early business-adapter signal with arbitrary Guide delays or forced hidden
+targets; verify the real selection-to-action transition at the tablet boundary.
+
+Keep layout/copy and workflow target oracles separate: a passing desktop/phone
+Move scenario does not certify tablet visibility. Preserve the768px failure
+with active step/current target/control bounds before selecting an adapter or
+shared correction. Do not force hidden native selects: choose visible canonical
+options and never confirm a course transaction in presentation tests.
+
+Native fixed-overlay centring compares the actual root layout bounds, not
+innerWidth/clientWidth alone: a reserved scrollbar gutter can make both differ
+from the fixed containing block. Keep the strict subpixel oracle, persist
+geometry before assertions and preserve failed immutable runs. An admin
+open/Cancel and paragraph-containment PASS does not validate welcome eligibility,
+global reset, native dots, modal path targets or the remaining curriculum.
+
+Card-reading explanation copy may reuse common introduction layout with no
+capability topic. Preserve static illustration and native target/opener IDs.
+Do not advertise proposed inspection animation recipes or new paths as installed.
+Practice creation itself mutates course data; final membership confirmation is
+not the only mutation. Record explained-copy, full illustration and native gates separately.
+
+Common introductions modernize an existing lesson unless an explicit persisted
+index migration is authorized. Preserve count, presentationKey, offset, path IDs
+and real business predicates. Keep isolated typography/palette, paired design,
+native preview and human acceptance separate. Capability-off reinit must hide help.
+
+Native Guide fullscreen activation consumes the canonical helper in the existing
+AMD boundary. Keep shared styling/translated labels separate from native business
+adapters. Assert actual fullscreenElement, first Escape preserving slide, close
+exit/focus and Show-in-interface exit before target. No forced fullscreen/mobile
+emulation or progression mutation to manufacture proof. Separate saved controls,
+isolated Chrome, native Moodle and the still-open human checklist.
+
+Welcome native failure before acknowledgement must retain its exact source and
+cleanup. Initialize isolated regression beneath a hidden loading shell and
+reveal naturally. No manufactured eligibility, weakened visibility assertion or
+consumer-only style patch; observers are bounded and cleared on Guide teardown.
+
+G10-C playback uses canonical Kit0.4.149; its saved design proof is not a
+served-preview claim. Preserve the existing scene's reading/WAAPI/scroll owner;
+Pause retains remaining time, Next drains one phase, and departure aborts all
+pending gates. Test the actual localized consumer template and built AMD.
+Await WAAPI pause readiness before comparing clocks. Follow the G10 ledger for
+separate Foundations/product/saved/native/human gates and unresolved G10-D..H.
+
+Guide G10 review reopens user-reported presentation/highlight failures despite
+earlier scoped PASS. Content writers own declarative proposals, not runtime/Kit
+or Foundation publication. Record all4+20 native slides before deduplication and
+preserve stable path/storage migration boundaries. Pause/Skip, server welcome
+and desktop fullscreen are new requested features, not existing capabilities.
+The G10 fullscreen request supersedes G7's assessment-only boundary, without
+authorizing unrelated browser/server configuration or automatic course actions.
+
+Guide Escape is handled before the typing guard, but only when a nested control
+has not consumed it. Preserve text-editing arrows/Home/End, Tab trapping, original
+exit Motion and real opener focus. Isolated keyboard proof does not replace the
+served native six-route gate or human acceptance; never issue course commands
+to test a Practice-only keyboard interaction.
+Native End-navigation tests derive the actual retained curriculum boundary;
+four Discovery samples are not the complete native slide count. Tab-boundary
+checks use real browser keys without altering tabindex or forcing clicks.
+Preserve immutable failed harness evidence and exact product assets when the
+defect is an incorrect test expectation rather than a runtime failure.
+
+Correlated Guide layout propagation keeps linked recipes and actual localized
+copy at every size. Longer desktop step labels can increase intrinsic copy/pill
+width without changing font or provider identity. If a board needs more height,
+move it into verified free page space rather than overlapping its neighbour;
+record original board/child geometry and archive states before the move.
+Practice clear remains available beside the result heading, while unused Replay
+is recoverably hidden. Recheck actual textBounds after paint settles: root
+containment alone can miss a multiline description clipped by its own text box.
+Keep historical saved-proof records immutable and add bounded successor records.
+
+For an accepted Guide utility composition without a complete Library provider,
+clone the actual ordinary host (Penpot Board.clone), preserving its nested
+linked primitives and painted properties; do not redraw it field by field or
+pretend the clone is a published shared recipe. Compare relative descendant
+geometry and paint before export. Floating-point translation noise is recorded
+separately from paint differences; publish the exact recipe in Foundations when
+its writer is available, then replace the temporary product copies explicitly.
+
+Source-preserving transfer preparation is not Library publication. Record exact
+temporary provider/main/host IDs and saved descendant references before a file
+switch; retain the accepted ordinary source. Delete only those owned temporary
+identities after canonical Foundation fingerprint parity and saved publication.
+
+Foundations must not depend on a consumer library that already depends on it.
+For exact accepted-source promotion, use owned native clipboard transport of
+the ordinary host, preserving nested canonical links, then compare complete
+properties. A failed connectLibrary may expose a zero-component placeholder:
+do not bypass the dependency cycle or redraw the source. Decode UTF8 records
+explicitly before fingerprint comparison. Suspended-renderer saved proof may
+use its owned browser context request without exporting session state; that
+does not certify raster or justify discarding unknown editor writes.
+
+A failed remote design export need not block scoped raster proof: use the owned
+editor's actual browser screenshot after fonts/paint settle, retain real overlays
+and restore the viewport. Centre on the control itself; a wider host can clip
+its child in the available canvas. Keep cropped diagnostics, inspect contained
+successors, manifest media outside Git and record this as a different proof
+transport, not a repaired export service or human acceptance.
+
+Guide product relinking preserves real copy and conditional step states, not
+the generic provider's dummy completed rows. Use ordinary product composition
+hosts for linked state rows; hide old slots without adding structural children
+to a component copy. Normalize child coordinates from the provider after root
+movement: root setters may already translate descendants. Verify settled paint
+and saved references/archives before continuing. Intrinsic title-height changes
+are content adaptations, not a new typography scale or stylesheet exception.
+
+Discovery Foundation publication retains the historical Guide providers. Use
+one canonical component per new recipe and linked Standards instances; remove
+only exact owned temporary transfer mains after recursive fingerprint parity.
+An icon-only Small action is not a text button. After swapping its linked glyph,
+normalize descendant geometry from the master, then inspect settled raster.
+Record saved-file persistence independently from editor and human validation.
+Keep Guide consumer relinking and the complete curriculum as separate gates.
+
+G9 paired-design progress is partial until correlated tablet/phone slides and
+native-modal/checklist compositions are inspected. Clone of a nested linked
+checkbox may not persist in its destination: instantiate the canonical provider,
+read back its component identity and inspect paint. Never infer complete design
+publication from an added contract note or outer-board containment alone.
+Native Motion successors use normal preference and real scene progression,
+preserving word-count reading pauses and exact sticky-edge oracles. Deny course
+writes, preserve failures, disconnect observers and keep selected specs immutable.
+
+Guide G9 Reset/Cancel proof includes re-entry, reload and late native events;
+immediate empty progress alone is insufficient. Preserve Return-to-Guide state
+and other paths. Mobile Participants Move uses addusers; source-member Move
+uses movemembers. Illustrations must reflect this distinction without issuing
+transactions. Keep historical timing diagnostics when longer reading copy
+requires a separate presentation successor; do not relax native target oracles.
+
+Guide compact hit-target proof scrolls the actual earlier row into its bounded
+viewport before measuring its centre. Never force-click or confuse off-scroll
+geometry with modal interception. Restore state is a boolean attribute and must
+survive native progress re-render; keep real dialog fields clickable as well.
+
+Guide launcher restored pointer focus must retain resting paint; use canonical
+`:focus-visible` focus paint and never blur the opener to hide a state defect.
+Assert real hover and keyboard focus separately from pointer Close.
+
+G8 never automatically renders completed checklists on reload. Unfinished paths
+offer explicit Resume/Cancel, expiring after20s without deleting progress.
+Restart/reset are path-local Guide storage only. All dependency completion
+signals pass the same gate before persistence. Previous highlight review does
+not advance business progress; Practice auto next highlight is opt-in. Close
+native dialogs with their existing Motion and await completion before reviewing
+an earlier target; read-only reopen never submits a command. Verify native
+hit-target/focus/visibility with dialogs, not only isolated Guide state.
+
+G7 explicitly redesigns Discovery checklist chrome, preserving completion IDs
+and legacy paths. Track reduced Restore and >3-step scrolling separately from
+the six-stage Practice integration. Test synchronized actual cursor/ghost paint,
+overlap-time dashed target, contained live/final state and cancellable modal-body
+reveal scrolling. Keep previous G6 scenarios/proof pinned and block business
+writes. Guide-local Library publication is not Foundation catalogue acceptance.
+
+Native G7 run41716 failed at the unchanged <1px sticky oracle (actual22px).
+Retain the source and failed evidence. Reading-body padding must be compensated
+in canonical SCSS, not by relaxing the oracle or hiding native controls. Scope
+checklist subtitle fonts to copy only; native action glyphs keep their own font.
+
+Practice uses a separate practice-membership path, preserving legacy storage.
+Only the next unfinished unlocked milestone accepts an adapter signal. Do not
+reuse broad legacy copy/drag/create-grouping events as membership proof. Group
+creation and final assignment complete only in their successful native response
+branches. A destination change uses the authoritative select and existing group.
+Tests use isolated signals or cancel native dialogs; do not create/move data to
+prove presentation. Keep complete business workflow acceptance separate.
+
+Pinned Sass may hoist plain sizing declarations before a recipe's nested paint.
+Use an explicit trailing & sizing block and inspect compiled/native dimensions;
+never relax a Small-size assertion to match an unintended regular control.
+
+Discovery long checklist rows retain intrinsic content height inside bounded
+scroll. Prerequisites remain in flow, without legacy duplicate lock overlays.
+Inspect native captures and assert each copy lane's containment; count/outer
+bounds alone can pass while titles and descriptions are clipped. Historical
+whole-file identity specs are commit-bounded proofs, not current multi-lot tests.
+
+Guide refinement preserves accepted Overview/natural-card structure. G6 retained
+checklist layout; G7 explicitly reopens its opt-in chrome. Practice invalid patterns use the canonical Warning notice
+with explicit aria-invalid recovery. Prove quiet Show/Return wrapping/paint,
+near-cursor menu, contrast, instruction transition and neutral completion on
+desktop/tablet/mobile; keep Foundation publication and human review separate.
+
+Guide full-scene successors verify natural/compact cards, result metadata,
+live instructions, confirmation, persistent membership and invitation/recap,
+not only modal bounds. Keep the adapted and embedded Mustache regions aligned.
+Cancel result/slide/exit work and wait for exit before target focus; preserve
+native card Motion, storage IDs and reference curriculum. A Guide project
+export is not Foundation Library publication; keep that and human gates open.
+
+Guide synchronization retains EasyStud localized empty defaults and fallbacks
+explicitly, and normalizes wrapper line endings before comparing. Discovery
+shell adoption is separate from curriculum replacement and native proof; retain
+old paths/storage while new sample scenes are still being integrated.
+
+Guide demo handoffs replace presentation through the Kit, not the native engine
+with demo.js. Preserve IDs/storage/unlock paths, highlight geometry/lifecycle,
+accepted card Motion and legacy curriculum; four demo slides are not the full
+programme. Read declared source/reference precedence, confirm released writer
+ownership and serialize the dedicated channel. No raw demo/vendor/profile/
+internal-note copying or automatic real exercises/cleanup to manufacture proof.
+
+Native report palette successors preserve complete default/unrelated CSS and
+commands. Native inline summaries/single-message lines are separate from resized
+generic providers. Public paint flags are validated and independent; warnings
+and danger never inherit brand success. A real Moodle cascade with transient
+specimens is not an import lifecycle or settings-persistence result. Keep the
+historical diagnostic/guards pinned and add a separately bounded successor.
+Qualify composed native `.btn` interaction paint so later theme CSS cannot win
+an equal-specificity tie. Preserve the failing native run and unchanged strict
+scenario; a rest-paint sentinel alone cannot prove canonical hover ownership.
+Native cascade protocols may stub the global unsent-message read with an empty
+result instead of reading a private draft; unknown methods remain denied. Keep
+paint and protocol failures distinct. Native font/radius/line metrics can expose
+isolated Penpot differences: retain exact partial-write IDs and reconcile every
+paired copy after reconnection before claiming design parity.
+Catalogue focus audits distinguish a mouse `:focus-within` label ring from
+real sequential keyboard focus. Retain the44px native label target and disabled
+semantics when exploring track-only paint. A test-only Kit example is not a
+public class, paired design or served correction; state those gates separately.
+After an MCP suspended/heartbeat error, verify exact saved IDs before replay:
+the requested write may have completed. Readback of current dimensions is
+separate from whole recursive paint, exported raster and human acceptance.
+
+Penpot persistence recovery separates autosave from version snapshots. After a
+snapshot504, read the actual saved file and exact affected objects before reload
+or replay; metadata presence alone is not geometry proof. Decode Transit shape
+wrappers rather than scraping numeric text. Resize through Shape.resize, not
+readonly width/height setters. Measure raw relative geometry deltas separately
+from exact paint/type/content fingerprints: rounding ties are not real drift.
+Keep the owned-browser helper read-only, bounded and disconnected in finally;
+never export authentication or alter another window's server/token/profile.
+
+Dialog palette opt-ins preserve official/plain/neutral/danger semantics and
+all geometry/Motion. Canonical Kit owns tints; expose validated role flags
+separately from rail selectors. Clear only the two optional dialog tint tokens
+before reusing a portal's existing relay. Never duplicate relays or use private
+PHP/JS gradients. Unknown timed-out Penpot writes require readback before replay;
+do not attach the implementation tools to the Guide's local server/profile.
+
+View-switch semantic paint is an opt-in tiled recipe, not new compact icon
+geometry. Compare disabled/pressed/hover specificity against the complete
+consumer cascade, preserve all unrelated CSS and original Motion, and keep
+default/custom Penpot publication, isolated paint and served-native proof
+separate. Test distinct readable and chosen primary values without saving
+settings just to obtain a visual result.
+
+Group member-fold selection cleanup is scoped to the exact Group identity,
+including its catalogue copies, not to a user across every membership. Execute
+the original disclosure mutation and reconcile the existing selection authority;
+do not rewrite accepted Motion or make reopening restore hidden selections.
+Preserve unrelated Groups and record isolated versus actual native proof.
+
+Qualify visible native controls before retaining stable IDs for closed-state
+assertions: :visible locators correctly disappear when the parent closes.
+Native menu modal return focus owns the original visible menu trigger, not its
+hidden option. Preserve failed oracles and separate an actually missing sticky
+action from a geometry regression. Core login/template failures before auth
+provide no widget proof; retain them, check current read-only state and do not
+extend UI deadlines or rewrite product styles to bypass a runtime failure.
+
+Qualify actual choice family before asserting its terminal animation. Legacy
+effects without end fill can show full content immediately before hidden;
+capture that failed frame and consume canonical Framed Motion at the adapter,
+not a private style/engine. Preserve native values, nested close and pointer/
+reduced policies separately from endpoint geometry and human acceptance.
+
+Native choice terminal audits measure ancestor and following sibling continuity
+as well as host bottom; a shrinking panel alone cannot prove no text jump.
+Record pause/finish endpoint sampling distinctly from natural fluency/reversal.
+Use real desktop/mobile view and action access, retain focus and native values,
+and never invoke Move/Save to validate layout.
+
+A wider responsive matrix can reveal untouched legacy Group/Grouping defects.
+Retain that failed matrix rather than reducing width/entity coverage. Diagnose
+actual empty flex items and check the active editor, pointer/title lane and
+whole unrelated source/CSS/Motion identity before promoting a shared correction.
+
+First-row selection proof separates centre/size/title clearance from absolute
+whole-card padding and palette parity. Retain old Small usages recoverably;
+use ordinary hosts for new linked controls, qualify visible semantic titles,
+and verify settled paint plus actual autosave/server persistence. Unavailable
+text bounds are not numeric zero and must not trigger speculative repositioning.
+
+When real startup finishes after fail-open, distinguish transport delay from
+late-ready recovery. Preserve the failed immutable runs, fixed deadline and
+existing fades; verify actual initialized/stable markers before ready recovery.
+An opt-in consumer recovery must never replay Skeleton or claim startup speed
+from a controlled native GET hold. Check timer/observer cleanup through exit races.
+
+Card keyboard audits distinguish visible pointer targets from real sequential
+focusability. A negative-tabindex input reached by programmatic focus is not
+a keyboard-entry PASS. Preserve diagnostic source, native paint/state records
+and existing Motion before publishing the size/track successor.
+
+When exact Penpot page/shape IDs are known, prefer indexed Page.getShapeById
+readback and bounded descendant checks. Repeated global shape scans can exhaust
+the hosted task despite an intact editor. Reconcile recorded IDs after a read
+timeout; never replay publication blindly.
+
+After nested component replacement, validate file referential integrity and
+actual autosave/server persistence before claiming publication. A successful
+MCP getter or contained editor paint can coexist with a rejected update-file.
+Preserve report, owned SVG/copy and exact pending IDs before reload; recover
+canonical references first, then recreate only missing owned additions.
+
+Public modal-yield successors compare complete CSS and template outside their
+one opt-in. Keep native type baselines and actual mobile open/Close/focus proof;
+normal/reduced visibility is independent from Message/Guide or full keyboard
+acceptance. Older embedded Navigation drift is not implicit sync permission.
+
+Navigation continuation distinguishes all native row/label typography from
+modal layering: being below the dialog is not the same as yielding paint through
+its backdrop. Audit actual mobile entry and active modal markers; preserve
+ordinary trigger availability, close focus and accepted Motion/Guide ownership.
+
+Intrinsic icon-width successors retain the immutable painted diagnostic and
+compare complete generated CSS. Bound changes to shared width declarations;
+keep all markup/controllers/Motion and source vector paint unchanged. Native
+raster centre and four-peer density checks do not certify all upload lifecycles.
+
+Cloud centring proof measures native foreground raster as well as the icon slot
+and fonts. Preserve the line-box predecessor; palette-aware pixel separation
+must not include pale surface/border. Source vector bounds, raster crop and
+human acceptance are distinct; never infer all-size proof from Compact alone.
+
+Quiet recovery native proof samples desktop rest/hover/keyboard-modality focus
+and the unchanged phone proxy. Zero-alpha transitioned paint can retain white
+RGB channels: assert exact alpha rather than invisible triplets. DOM readiness
+and font settlement remain mandatory; preserve failed harness predecessors and
+distinguish focus paint from full keyboard tab-order/localization acceptance.
+
+A quiet recovery action is an explicit shared opt-in inside the framed desktop
+capsule, not a global neutral-button repaint. Preserve original density/Motion,
+mobile action proxies and complete unrelated CSS. Publish all states and settle
+linked icon descendants before capsule/Product propagation and native proof.
+
+Never assume desktop panel overflow exists on mobile. Inspect native responsive
+visibility, expose requested non-selection actions outside hidden desktop bars,
+reuse canonical button recipes and delegate to the existing controller. Assert
+the real visible action and responsive selection proxy with bounded timeouts;
+preserve the historical failed run, native commands and original Motion.
+
+A served responsive hit-target failure requires an explicit geometry successor:
+preserve the historical run and strict oracles, record bounds before assertions,
+reserve only the affected title lane through a parameterized shared opt-in and
+compare complete unrelated generated CSS with the correct compiler version.
+Do not shrink touch targets, rewrite accepted Motion or claim native coverage
+from isolated visibility tests or a design readback.
+
+Participant membership-only mobile density must stay independent from desktop
+card density. Opt in only Groups/Groupings rows, retain roles/profile fields
+and desktop preferences, and preserve existing resize/swap Motion. Test zero,
+one, two, deselection, manual-full precedence and breakpoint return. Guide and
+Grouping semantics do not inherit this participant-only rule. Source/isolated
+proof is not native responsive geometry or paired design/human acceptance.
+
+Settings-list structural publication can add source-width sample rows and CSV
+offsets to resized copies. Inspect settled consumers after the update; hide
+inherited dummy rows and compose canonical linked rows on an ordinary host.
+Keep original names/counts/CSV and scrolling excerpts, archive prior lists.
+Text.layoutChild may be null outside a layout parent: reconcile a partial host
+before resuming, never blindly create duplicates. Export stalls do not authorize
+closing an unsaved editor or claiming visual acceptance from readback alone.
+
+Nested disclosure closure can move its trigger before pointerup/click. Release
+and cancellation cleanup must observe owned pointer IDs at document capture,
+not only the workspace root; preserve suppression of the original click while
+clearing stale markers before the next genuine press. Test outside releases
+and cancellation. Assert the actual caption's computed type as well as the
+button: legacy mobile descendant overrides can escape a button-only oracle.
+Keep historical failed immutable scenarios, scoped successors and cleanup.
+
+SM-58 draft previews are decorative and use the exact last valid draft token.
+Preserve labelled/named Hex, native settings persistence and previous module
+pins. Import only the scoped canonical controller/SCSS, compare all unrelated
+CSS and retain the historical SM-46 gate. Paired Penpot, isolated, served native
+and human acceptance remain independent; reconcile unknown editor writes.
+
+Custom semantic rails inherit a Kit-owned gradient from validated chosen colours.
+Copy only scoped modules when a consumer pins other modules independently;
+whole-directory sync must not downgrade earlier lots. Compare complete generated
+CSS and preserve default endpoints. Native draft paint is not settings persistence.
+
+Card module successors keep historical extraction pins and add a distinct
+current source pin. A fixed-header candidate does not certify paired design,
+served runtime, full responsive coverage or whole-CSS extraction equivalence.
+
+Checkbox header-track audits measure both painted square and full touch target
+against the actual title before/after density disclosure. Preserve finite card
+Motion and export geometry only. Diagnostic overlap reports are not regression
+or human PASS; do not move a checkbox by centring on total expanded card height.
+
+Test intrinsic native wrapper widths with long unselected options as well as
+fixed fixtures. Option width must not change default/help wrapping at hidden;
+canonical inline-size containment preserves the selected summary's width role.
+
+Native inline default/help ancestry must retain its baseline through dropdown
+cleanup. Measure ancestor and sibling copy as well as host bottom; canonical
+grid flow owns this fix, never native per-setting offsets or new type rules.
+
+After authenticated navigation failure, preserve the failed run and cleanup.
+Use bounded DOM navigation with independent strict widget/font readiness;
+record only timestamps and sanitized pathnames, never auth queries or state.
+
+Native Administration choices must inject canonical Motion for single/multiple
+selects and receive saved animation policy separately from their labels. Verify
+generated AMD dependencies/exports, required native fallback and open-list Reset.
+An adapter fixture must support Babel AMD exports objects and await the actual
+open state before its settled-list pointer probe; do not weaken pointer checks.
+
+Dropdown exit continuity requires exact terminal before-hidden and following
+help/default/host measurements, not only ARIA or duration. Collapse outside
+margins through a canonical opt-in; retain existing card Motion, pointer/focus
+policy and failing predecessor evidence. Build only in the source worktree,
+verify the builder's module-directory arguments, then promote committed assets.
+
+Retain user review successors as additive deduplicated lots, including partially
+written feedback; never invent its missing sentence. A separate Penpot tab or
+browser profile does not establish an independent MCP connection. Serialize
+shared Foundations writes and publish an explicit Guide/source writer handoff.
+
+Before a metadata documentation successor promotion, inspect the touched
+document's historical prerequisites as well as recent CSS commits. Missing
+proof JSON/consumerSync records must be restored without downgrading current
+Kit pins. Preserve any runtime conflict snapshot and stop writes until explicit
+recovery approval; unchanged rendered assets do not make a dirty preview clean.
+
+Metadata composition proof must match counts and the native primary-then-chips
+row anatomy, not only containment. Settings and Participant detail-list densities
+are different. Linked copies reject structural children: compose on a local
+host with linked controls and retain prior specimens; inspect final exports
+after correcting any partial write. Record pending Foundation/Standard source
+changes separately from product overrides and unchanged native CSS.
+
+Dense overflow presentation delegates to canonical Kit includes. Existing
+Bootstrap utility conflicts are retained only with an explicit legacy adapter,
+not new forced declarations in the plugin. Preserve native tags/counts/ARIA and
+Motion; whole-CSS identity is required. Keep earlier token proof pins historical.
+
+Dense metadata extraction preserves detected lookup feedback and explicit
+consumer palette aliases. Compare the complete emitted CSS and canonical module,
+not a subset of new selectors; transfer is not class-only or human acceptance.
+
+After a startup-deadline failure, distinguish native cached GET timing from
+Playwright routing, which disables HTTP cache. Preserve strict readiness and
+the original product fail-open deadline; record sanitized request/response
+phases and unexpected writes without exporting auth queries. A fast direct
+resource GET does not certify the whole native lifecycle or diagnose the cause.
+
+Skeleton catalogue reconciliation includes the canonical 1px inner cue contour,
+not only gradient fill and static section accent. A current connected provider
+does not prove that its product copies received the remote-library update.
+Inspect copies after the update and preserve unknown update results; use a
+subpixel tolerance for floating-point bounds, without masking real overflow.
+
+Skeleton route proofs inspect the painted element for direct bars and ::after
+only for overlay bars. Preserve failed immutable-oracle evidence. Actual
+initial page headings have eyebrow/title/description cues, no invented action
+bars; reuse skeleton-page-heading across consumers without altering readiness,
+native controls or existing Motion. Geometry, full lifecycle and human review
+remain separate evidence gates.
+
+Compact course navigation compositions use Moodle's exported destination order
+and capabilities as authority. Guide precedes product tools and native course
+participants. Capture exact copied/native equality without activating routes;
+export safe pathnames only, never authentication queries. Preserve the generic
+Foundation pane and publish product-only composition children through linked
+controls. Keep an incomplete replaced pane recoverable, and distinguish a
+tall inventory specimen from actual short-viewport scrolling or human approval.
+
+Colour-panel integration embeds the exact optional Kit controller plus SCSS.
+Keep the named Hex, native swatch fallback, validation/contrast, Restore, Save
+and loading lifecycle unchanged. Draft Apply dispatches input/change only.
+Paired Foundations source/Standard, product popup readback and native guarded
+three-width proof must be recorded separately from human acceptance.
+
+Admin section flow owns only the native h3.main start margin. Verify actual
+fieldset anatomy, three-width paint/containment and untouched control/type/end
+margin declarations. Reuse the canonical Kit include, not private per-setting
+offsets. Public layout diagrams are guidance, not full native form acceptance.
+
+
+SM-44 explicitly supersedes the historical compact Native Message footer with
+Regular paired actions. Preserve older source/browser guards and add a strict
+successor; compare complete unrelated CSS/body/loading/commands/Motion. History
+opts into shared header/title/Close classes only; rollback stays unchanged.
+Source/Standard/product publication, native open/Cancel and human gates differ.
+
+
+Trailing catalogue switches opt in to canonical filter-actions; preserve
+legacy leading/framed controls. Keep responsive Reset closure unchanged and
+compare the full unrelated CSS and commands against the previous served pin.
+Publication IDs alone are not paired visual proof. If the editor stops after
+a write, preserve that partial state and source candidate; do not promote it
+blindly or discard a possibly unsaved editing window.
+
+More Filters footer clearance uses shared internal padding, not a margin that
+equal-height shell auto spacing can consume. Preserve original arrow Motion,
+native filter availability and the intentionally hidden desktop Groupings
+trigger. Keep historical filled-hover specs and add an explicit successor.
+
+Compact deposit hierarchy changes only shared density and class adapters.
+Assert tile/glyph centring and title/support/native-wrapper tracks, with the
+mobile zero-indent override. Keep native upload/draft/removal and all other
+CSS/controllers unchanged. Preserve old source gates and superseded product
+compositions; swaps must retain actual product text and settled geometry.
+
+Take the final native Mass Import heading as the typography reference. Student
+workspace headers reuse the existing Foundation Page title/Body/Eyebrow roles;
+do not invent another scale or globally shrink card controls. Preserve native
+font inheritance using longhands, and distinguish main-header paint containment
+from whole-board/copy/toolbar and Skeleton-geometry parity.
+
+Native motion tests must select the actual active workspace, not merely a
+`:visible` descendant of an inert/off-canvas column. Resolve semantic token
+paint against the configured canonical roles, not historical hard-coded defaults.
+Keep failed immutable specs and their cleanup. Destination choice opt-in passes
+the existing Motion module to the shared controller, not a plugin geometry fork.
+
+Framed Search/Add Motion owns the direct panel and `is-open` measurement.
+Compare sampled vertical insets, natural ancestor and final hidden state;
+do not solve padding-floor jumps by changing all card/Show-all durations.
+Keep the opt-in shared function identical and execute its generated AMD export.
+Record isolated reversal/policy proof separately from native responsive routes.
+
+The 2026-10-04 feedback successor explicitly allows retained local QA roles
+only in course 5, on owned nologin users, with capability-free roles and both
+runtime/fixture leases. Preserve exact ownership and pre-existing relationship
+proof; do not let temporary-fixture runners remove retained manual-test data.
+Specific Search/Add disclosure smoothing and regular Message footer density
+are reopened user gates, not permission to rewrite all existing card Motion.
+The final Mass Import heading reference supersedes blanket typography shrink.
+
+Compact Navigation audits wait for terminal opening opacity, pass viewport
+arguments explicitly into browser evaluation and distinguish destination links
+from native auxiliary actions. After Penpot text-lane/library changes, force
+text layout then read settled painted bounds and export again; an initial PNG
+may still contain stale text paint. Assert visible linked glyphs separately.
+Use shared opt-in Typography roles without rewriting original drawer Motion.
+
+Card-local search has a field/Cancel row, not an invented heading. Read the
+generated native markup and actual responsive route before publishing. Transfer
+existing layout declarations into canonical Kit recipes with whole-CSS identity
+proof; retain source commands and Motion. Reconcile the actual narrower product
+field and conditional menu icon, not just the linked provider name.
+
+Desktop recovery surfaces reuse the canonical linked capsule and Small neutral
+action; do not retain a regular-height instance override. Compare settled icon
+root and paint, currentColor, count type and canvas centre. Native widths depend
+on font and translation, not the fixed Penpot specimen width. Keep mobile trays
+and native selection commands unchanged; publication is not human acceptance.
+
+Adding a canonical choice child requires settled narrow/touch consumer readback:
+the new child's inherited position may retain the provider's width. Preserve
+Chevron end alignment and map the shared clear size to actual trigger density.
+Empty/Any product specimens hide selected-source clear; do not publish a visible
+clear with zero selection. Reconcile after a library-update click timeout before
+retrying: the change may already have applied. Disconnect only the owned helper,
+not the persistent dedicated Chrome window.
+
+Preserve the consumer Sass version for bounded shared-source sync. Compare the
+entire generated CSS diff: a newer fixture compiler can alter existing nested
+selectors/media groups even when only an additive palette recipe was imported.
+After a Penpot file switch, plugin storage may reset; persist exact publication
+and consumer IDs before switching. Relink existing wrappers with original glyph
+components, normalize descendants from the linked master and preserve the old
+wrapper recoverably. A linked outer tile is not proof of glyph containment.
+
+Mass Import state header propagation qualifies effective visible ancestry;
+hidden archives and loading shells are not live main headers. Check actual
+font ID/variant and painted text bounds after family/size changes. A returned
+font-size alone may leave cached Source Sans paint in an Inter composition.
+Record missing native introductions separately; do not insert text over a
+state's existing summary or certify full state lifecycle from initial GETs.
+
+Catalogue filters use public easyedu-filter-toggle, not the generic framed
+dialog toggle-check. Assert native compact sibling geometry and checkbox/Reset
+behaviour, including responsive Groups where desktop focus classes are cleared.
+A parent disclosure visible in mobile does not prove its filter contents are
+visible; check the intended catalogue, not only the parent shell.
+
+Mass Import initial layout evidence waits for both the workspace and native
+file picker to be ready. Header geometry alone does not certify a completed
+deposit screenshot. Mobile product boards include a documentation margin:
+measure the inner course viewport before changing an outer board's width.
+Preserve explicit missing shared-provider gates; existing composition repairs
+do not establish Foundation Standard/Library publication.
+
+Choice exit Motion still moves adjacent controls after ARIA reports closed.
+Keep its temporary pointer guard until settled closure, freeze the animation
+time synchronously during a physical outside press, then resume after click.
+Preserve keyboard, reduced motion and cleanup. Native Reset proof must cover
+this in-flight path, not only an open list or fully settled Escape closure.
+
+Semantic custom-palette text must be checked against its actual soft surface,
+not only white. Keep saved Hex values and shared Kit component recipes intact;
+derive safe foreground tokens in the native configuration adapter. Initial and
+live adjustment notices must use the same role-specific surface threshold.
+Record computed-paint contrast proof separately from whole-view/native-DOM
+proof: transient test specimens and PHP configuration stubs do not establish
+persisted settings, cross-role backgrounds or human acceptance.
+
+Native settings adapters must preserve select names/options, required fallback,
+disabled synchronization and reset semantics. An isolated reset PASS after
+Escape does not certify clicking a button below an open in-flow dropdown:
+focusout reflow can move that target before click. Record and test both paths
+before promoting the adapter, and repair shared dismissal in the Kit.
+
+After any searchable-choice controller rebuild, execute the generated AMD
+module and compare its callable exports with every public source export.
+Presence of a function name in source or generated text is insufficient:
+an omitted AMD return member previously broke More filters parent closure.
+Native disclosure proof asserts final panel class, inert, ARIA and no page
+error, as well as the preserved transition and nested dropdown closure.
+
+Modal-header Close uses one canonical compact geometry: `close-button` maps to
+the linked Foundation `Core action / Secondary / S` component at `1.9rem`
+square. Do not resize it in a consumer or publish another Close family. Native
+open/cancel proof must also assert centred glyph paint, semantic danger hover,
+completed exit Motion and focus restoration to the surviving real opener.
+
+Moodle native message portals use that same Close control, a non-resizable
+Foundation textarea and the shared unboxed modal spinner. Do not reintroduce a
+radial blue halo, framed loading tile or drop shadow around the spinner. Keep
+native async loading, recipients, focus trap and Send behavior product-owned;
+visual proof opens and cancels only.
+
+Tray geometry checks include painted label and icon bounds inside horizontal
+padding, not only the outer button frame. Long labels wrap in the canonical
+tray-density recipe; flex-row neighbours retain equal height. Preserve a
+frame-only PASS as scoped evidence if captures later reveal paint overflow.
+After a Penpot icon swap, reapply its absolute-layout override and normalize
+descendants from the master dimensions. Never resize text from zero/stale
+painted bounds. Publish the same long-label usage in Standard and Library.
+
+Selection toolbars use the canonical opt-in selection-action class, including
+the native mobile tray. Remove the class from overflow menu clones. Keep the
+full controller/template baseline comparison after exact class-only adapters;
+normalize CRLF/LF without weakening the CSS declaration/order gate. Penpot
+linked text bounds can be stale: read back after settling, check painted text
+and icon geometry, and qualify selected entity types before enabling actions.
+Do not wrap a toolbar whose native resolver uses the More menu.
+Assert actual desktop/tray height as well as font and palette. A density
+modifier must match the semantic role's specificity; historical typography-only
+proof must remain explicitly scoped when a geometry gap is found afterward.
+When a multi-case native test times out, distinguish the global deadline from
+its individual readiness assertion. Preserve the failure and cleanup, record
+per-case navigation/readiness/completion timings and keep each assertion's
+timeout unchanged. A bounded harness budget correction is not a UI fix.
+
+This portable contract applies to every AI agent working on EasyStud. The
+canonical wording is maintained in the EasyEdu platform repository under
+`AI/DOCUMENTATION_CONTRACT.md`.
+
+Public or paid-plugin archives must never vendor this `ai/` directory or other
+internal audit/history material. Use the SCSS-only exporter and its contract
+test for public Kit distribution. Copying Docs or AI contracts into a consumer
+requires the explicit private-development acknowledgement; `export-ignore`
+remains mandatory on every consumer repository.
+
+Before editing, read the platform workflow, this plugin's `AGENTS.md`, the
+relevant UI Kit contracts and the canonical `EED-*` batch record when work
+crosses repositories.
+
+## Documentation impact
+
+| Change | Required record |
+| --- | --- |
+| User-visible feature or bug fix | Changelog and functional or technical documentation |
+| Reusable component, token, template or interaction | Kit/consumer contract, examples, docs and changelog |
+| Script, test, validation or workflow | Procedure, evidence format and validation result |
+| Fragile behavior or repeated integration mistake | AI rule, checklist or contract |
+| Cross-repository or release work | Canonical batch page and portable backlink |
+
+## Final agent report
+
+Every final report must state branches and dirty state, changed files, docs and
+changelog updates, AI-contract decisions, checks run and skipped, evidence,
+risks, cleanup, rollback notes and the next step. Git remains authoritative;
+Syncthing and future BookStack/design/automation integrations are secondary
+publishing or transport layers only.
+
+## Native-dialog and visual-proof guardrails
+
+Selection-action compositions distinguish selected members from selected groups.
+Before propagating a toolbar, resolve effective visible ancestry and selected
+entity type; hidden legacy columns are not current consumers. Linked provider
+overrides are not newly catalogued Library states. Keep compact geometry proof,
+semantic palette parity, full-view propagation and actual transfer proof separate.
+
+Skeleton source proof must retain loading bootstraps, fail-open, cue counts and
+non-Skeleton Motion. Compare painted loop endpoints and interruptible appearance
+separately from native lifecycle. Hold native initialization GETs only within a
+bounded supervised gate, release in finally and never manufacture loading state
+or hide real overlays to obtain a capture. Preserve historical asset pins.
+When a native colour assertion fails, resolve the actual cue recipe and token
+role before changing paint or expectations. Preserve the failed immutable spec
+and cleanup; a corrected test must still assert exact painted colour, distinct
+token roles and the original lifecycle, not just internal variable equality.
+Native loading element captures certify neither whole-page parity nor all
+descendant containment. Record native lifecycle and source/isolated palette
+checks separately from full-route Penpot composition and geometry gates.
+
+More-filters native proof must record both normal-motion transitional phases,
+not only final visibility. Preserve shared Touch density and the single unified
+filter block; inherited labels and actual icon paint require settled readback.
+The 2026-10-03 SM-17 successor proves three-width hover/focus/open-close only,
+not all-role fixtures, reduced-motion browser paths or human acceptance.
+
+An entity-metadata extraction must retain hidden CSV tables, the full-summary
+focus target, legacy weights and original Motion/scroll/state ownership.
+Record exact compiled CSS identity separately from public-class adoption or
+Penpot list publication. Inspect settled editor state after a write timeout
+before retrying; never duplicate or discard an unknown partial write.
+
+Preserve this consumer's native-dialog guardrails when importing a canonical
+AI-contract addition. Apply an explicit additive adaptation instead of replacing
+the consumer contract wholesale with a differently scoped Kit document.
+
+Source-preserving body extraction must keep a hash-verified pre-extraction CSS
+snapshot outside Git and compare the entire emitted selector/property sequence
+set. Preserve specificity, readonly/empty branches, conditional content and
+Motion. Opt-in Kit recipes must not change legacy defaults for other consumers.
+Record remaining public-class adoption and Penpot palette/density differences;
+unchanged CSS is not a fresh full-body visual or human acceptance.
+
+Native open/cancel audits also assert return focus on the actual trigger.
+Restore it in the completed modal-exit callback, never before Motion hides the
+dialog or after a cancelled exit. Keep the failed run and its immutable source
+revision; repair the source rather than deleting or weakening the assertion.
+
+Read the actual native Moodle modal template before selecting its footer:
+`core/modal_save_cancel` uses `cancel`, while header Close uses `hide`.
+Do not manufacture a mobile settings entry absent from native full-card menus.
+Desktop open followed by responsive resizing proves geometry, not mobile entry.
+
+Modal footer pairs align to the inline end and share density through the
+canonical `foundation-dialog-actions` recipe, not a consumer CSS override.
+Preserve adaptive translated widths, secondary palette and native Message
+compact density. After a linked parent/root moves, re-read absolute text
+coordinates in Standard and product copies; propagated root geometry alone
+does not prove label paint. Record paired height, font, containment and right
+inset. Keep old browser asset pins alongside current source candidates and
+never label an unserved modal candidate as a preview PASS.
+
+Inventory Group and Grouping separately before migrating their chrome. Keep
+Participant read-only, optional profile/native URLs, counts and CSV tables,
+image/enrolment key/delete-picture and configuration branches unchanged. Public
+chrome does not certify full body parity. Open/cancel proof never invokes Save,
+file upload, CSV export or native navigation.
+
+Penpot proxies must be compared by shape ID, not JavaScript object identity.
+A linked flex-button can recenter a manually placed label on the next update.
+Keep added glyphs in an ordinary composition host, retain the linked button,
+and use an explicit absolute label override where needed. Read painted icon/text
+bounds and gap after layout settles; also verify the actual font family, not
+only size. Do not append new children to a linked component copy.
+
+For a modal/navigation collision, measure the fixed root, ancestor contexts
+and painted helper characters. Consume the canonical layer class on the root,
+not a consumer-only z-index or a raised child. A failed Penpot connection keeps
+paired publication and preview promotion pending; do not silently certify an
+unserved source candidate or close the human checklist.
+
+For source-preserving modal copies, qualify text/field lookups by semantic
+name, provider and effective visible ancestry. Hidden legacy fields may share
+the same provider or font size. Verify the actual painted helper and field in
+a later readback, and keep their business content and spacing source-backed.
+
+After a native control blur/focus, wait for its exact terminal CSS transition
+before measurement; do not remove normal motion or weaken expected paint.
+Use real responsive routes and existing course data for open/cancel audits.
+Do not create empty data to certify a no-destination specimen.
+
+An API text override can report new characters while cached paint still shows
+an old label. Recompute the measured text layout while preserving the lane and
+growType, then read painted bounds and inspect the capture. Never infer pixel
+parity from a component link. Expand variant definitions when a Library listing
+exposes only its first member.
+
+Do not reset a nested product action merely to select Disabled: it can restore
+generic parent business copy. Use the exact linked state in an ordinary host,
+hide only the whole superseded action and re-read all visible content. A
+control test PASS is not a whole-dialog visual PASS if a capture reveals a
+floating navigation/help overlap. Preserve the defect and diagnose stacking;
+never hide native chrome merely to obtain clean evidence.
+
+Selected-member transfer snapshots explicit Group/User pairs at modal opening;
+deduplicate responsive copies without expanding to unrelated memberships. Use
+one guarded server transaction, not browser add-then-remove. Keep native APIs
+and their false/error handling; test doubles are not native DB/cache/hook proof.
+The local visual scenario must block POST and use open/search/Cancel only. Extra
+test roles and real transfer fixtures require separate bounded fixture gates.
+Dense-role fixtures must own both active-runtime and fixture-write leases,
+use new nologin users and namespaced capability-free roles only, persist IDs
+before mutation proceeds and verify exact ownership before cleanup. Compare
+pre-existing course/role relationship hashes after native cleanup. Keep native
+deleted-user tombstones/audit events; never purify them with broad SQL deletes.
+Historical source gates allow a future mode-only patch through an explicit
+successor that reconstructs and compares the original controller, not a blanket
+exception for all generated or JavaScript files.
+Search intentionally hides nonmatching rows without deleting native options.
+Count visibility-qualified matches in browser checks, keep selections independent
+of that count and preserve failed immutable evidence. Persist fixture cleanup
+hashes alongside ownership IDs, not only a passing browser result.
+Forwarded sticky-mobile clicks must return focus to the real visible button,
+not its CSS-hidden desktop source. Historical search-only whole-file gates stay
+pinned; use an explicit successor to preserve old Participant/Group commands,
+Kit assets and Motion while adding the member-specific endpoint and helper.
+
+Searchable multiple filters keep the original select/options and every chosen
+value authoritative while searching. Use the canonical single/multiple Kit
+controller and paint, not a private dropdown. Reset and role shortcuts refresh
+the enhancement after modifying native options. Keep native mobile visibility
+rules and filtering predicates unchanged. Record successor asset pins without
+rewriting historical Move/member proof. Verify font longhands with the inherited
+theme-family token; an isolated HTML PASS is not Moodle cascade/icon proof.
+
+More-filters wide/compact/touch use one canonical paint recipe. Read settled
+painted text/glyph bounds and paired containment after a shared-library update,
+not only provider IDs. A UI click timeout may already have applied the update:
+inspect the current banner/editor state before retrying. Preserve normal-motion
+expand/collapse, inert and ARIA behavior; source paint-only extraction cannot
+claim runtime transition proof.
+
+Student Management workspace availability and defaults are normalized on the
+server before rendering. Never initialize a hidden Complete view, and do not
+replace the compact Participants / Groups / Groupings switcher with the desktop
+two- or three-view model. Map a structure-first desktop preference to compact
+Groups; preserve the existing Motion controller for both initial states and
+subsequent user changes.
+
+The Discovery Guide inherits a desktop token snapshot when portalled. Responsive
+dimensions therefore belong on the shared dialog, not just its root. Assert
+phone height/reading edge after resize and single recap numbering. Source
+alignment, scene animation and native preview proof remain separate from
+Foundations publication and the pending combined human checklist.
+
+Guide headers consume shared dialog-heading/icon primitives, not local paint
+copies. Include these canonical modules in the sync gate. A rendering fixture
+must include actual host tokens and Moodle icon fonts; token-less equality is
+not a style proof. Completion check must disappear on reset. Linked icon root
+resizing does not necessarily scale glyph descendants: inspect containment and
+raster before propagating a provider update. G10-B source/isolated proof is
+not native preview, finished Penpot propagation or human validation.
+
+K16-01 card windows render only requested rows from the full state. Total badges,
+search and Select all must never derive their scope from the partial DOM. Retain
+stable disclosure controls, first-added focus and a polite live announcement;
+use Motion.resize without a consumer motion policy. Over-ceiling View all reuses
+native details and its actual opener. Ungrouped section pages contain folded
+cards only (10 desktop,6 at390); participant pills render6 desktop nodes or one
+compact line before +N. View all appears only at the50/12shown ceiling and opens
+the relevant relation section. Added rows fade through Motion.enter (0px travel),
+including reduced mode; minimal stays immediate. Announce the added row count.
+Record isolated three-level Motion compatibility separately from published M1
+server/CSS proof. See docs/testing/long-lists-k16-01-2026-10-16.md.
+
+Guide E1–E4 owns seven generic partials including fictional specimens and anatomy.
+Mirror and namespace-adapt them atomically with the engine/specimen SCSS; retain
+all six exports, translated consumer labels and unchanged product programs.
+Disabled segmented choices remain dimmed and native toggle inputs are contained
+by the positioned toggle root. Source parity does not certify native behavior.
+
+ANIM uses the single preferences-classes recipe and generic display_preferences
+composition. Guide entry buttons dispatch the consumer adapter; translated labels,
+Moodle preference persistence and lifecycle stay outside the generic Guide engine.
+
+
+The current Guide imports the single shared easyedu_bubble controller alongside
+fullscreen and Motion. Motion is injected into the import-free bubble module;
+never duplicate its renderer/placement/grace logic in a consumer. The Moodle
+adapter depends on both motion and easyedu_bubble and must round-trip exactly.
+See docs/testing/guide-bubble-mirror-2026-10-17.md (consumer) or
+docs/guide-bubble-mirror-2026-10-17.md (canonical) for current validation.
+
+
+A10's visually-hidden utility has one public Kit recipe, used through page
+scopes only. Keep descriptions in the DOM/accessibility tree, retain global
+CSS0rules and exact ordered pre-existing page CSS. Require current Guide/Kit
+parity and T037/T038/roundtrip/Light gates; no duplicate native tooltip or
+Guide-controller adaptation belongs in this utility. See
+docs/testing/a10-visually-hidden-817dea20-2026-10-17.md.
+
+K20-18 participant density resolves its existing 20/15-card page and tag overflow
+inside the Motion mutation before the target height is read. Deferred responsive
+work must not repaginate that same disclosure. Preserve the shared Motion API,
+normal/reduced/minimal policy, metadata contents and filter/sort scope. Native
+frame traces and audit remain distinct from the isolated controller contract.
+See docs/testing/participant-density-k20-18-2026-10-21.md.
+
+
+Assignment specimen descriptions own normal whitespace inside the shared Kit
+recipe. Navigation nowrap must not leak into their accepted localized note.
+Preserve widths/type/copy and the separate Ready rule. Native proofs measure
+all three descriptions against card/padding bounds in FR/EN at four widths;
+retain baseline overflow and keep unrelated mirror debt explicit. See
+docs/testing/k21-01-assignment-wrapping-2026-10-21.md.
+
+## Guide recap ownership (K20-14 to K20-17, 20 October 2026)
+
+Mass Import Steps to remember are text only, across every recap. Keep its animated
+stages intact, and preserve Student Management recap renderings (K17-44). Simple
+creation ends with the existing four-phase collapsible recap. Membership Replay
+uses the existing single-mode completion header; comparison choices return on
+replay. Assignment descriptions wrap in the Kit information-card recipe.
+See `docs/testing/guide-k20-14-17-2026-10-20.md`.
+
+
+K23 responsive Person copy and container title alignment are explicit composition
+opt-ins; never apply them to desktop defaults. Membership-control availability
+uses the full participant index, not visible cards, filters or empty containers.
+Retain settled desktop paint checks and report non-reproduced menu behavior
+separately. See docs/testing/k23-responsive-cards-2026-10-23.md.
+
+Rail-anchor phone headings reserve the shared compact navigation lane, including the nested head-row. Reuse navigation-content-clearance; preserve launcher placement, targets and native Moodle drawers.
+
+Constrained person summaries must not allocate an intrinsic name next to a zero-width email. Reuse person-card-readable-summary with consumer-owned selectors and an actual content container; keep fonts, action targets and selection untouched.
+
+Native inputs cannot wrap a long placeholder. Move its unchanged copy into a persistent associated caption composed from entity-field-caption, preserving native inputs and handlers. Do not shrink type to fit a translated field hint.
+
+Participant deferred rendering preserves focus on the same relation/control and its disclosure state only for the same participant. Never replace the modal trap, refocus an unrelated dialog or carry relation state into another participant.
+
+Guide tab focus centers the focused item in the existing navigation scroller, independently from the active slide. Preserve reading state and tracked listener lifecycle; native nearest scrolling ignores arrow overlays.
+
+Membership Start precedes Compare in reading, visual and keyboard order. Retain one original command and preserve completion and Motion. The discovery dialog owns prerequisite text wrapping through G4.
+
+Portalled Guide filter illustrations consume the canonical Search field recipe explicitly at compact widths. Never add easyedu-ui to the entire Guide to recover one missing ancestor; keep desktop paint and playback unchanged.
+
+Wrapped-name successors measure selection and menu against the full actual name Range on every sampled card. Preserve one-line versus multiline contrast, both densities, metadata containment and right-edge alignment. Use the shared intrinsic name row, never a card-index offset or hydration workaround.
+
+File-deposit removal explicitly restores the secondary text token after the regular button recipe; preserve destructive interaction states and filename type. Report summaries use the shared body role, semibold counts and their existing semantic colour parameters. See docs/testing/mass-import-summary-deposit-2026-10-24.md.
+
+Small field peers use the canonical opt-in paired S variant, never a global S-scale resize. Compare final input/action border boxes and the 1024px touch boundary; retain captions outside narrow search input frames and use native mobile menu access. See docs/testing/peer-small-fields-2026-10-24.md.
+
+PHP quality checks require a valid Moodle component context. Keep executable
+include guards and real package identities; declaration-only includes need no
+guard. Language-key sorting must preserve every evaluated FR/EN value. Record
+legacy preservation failures separately from current native fixture coverage;
+never replace historical baselines just to make the suite pass. See
+docs/testing/quality-pass-2026-10-25.md.
+
+
+Standalone post-I3 tests resolve current output-class producers and compare strict
+bilingual JSON to unchanged legacy fixtures against reconstituted producer bodies.
+Offline browser fixtures load declared page CSS, actual AMD dependencies and local
+Mustache partials. Keep historical snapshot oracles and security assertions intact;
+classify remaining failures rather than replacing their expected values. See
+`docs/testing/fixtures-post-i3-2026-10-25.md`.

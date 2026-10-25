@@ -1,0 +1,384 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+  "status": "structural and painted geometry agent-checked; human acceptance deferred",
+  "frames": [
+    {
+      "id": "a301101d-ddc2-807b-8008-bb897a5c7f30",
+      "parent": "00000000-0000-0000-0000-000000000000",
+      "bounds": {
+        "x": 80,
+        "y": 5260,
+        "width": 820,
+        "height": 720
+      },
+      "choice": "a301101d-ddc2-807b-8008-bb897bf52549",
+      "provider": "a301101d-ddc2-807b-8008-bb863e6f8975",
+      "choiceBounds": {
+        "x": 171,
+        "y": 5425.4,
+        "width": 637.9999999999998,
+        "height": 224
+      },
+      "checkLast": true,
+      "checkCenterDelta": 0,
+      "checkRightInset": 14,
+      "chevronRightInset": 14,
+      "font": [
+        {
+          "name": "Text",
+          "text": "Group A",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 185,
+            "y": 5436.00000038144,
+            "width": 54.337501525878906,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Placeholder / Default",
+          "text": "Search destinations",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 211.48000000000002,
+            "y": 5490.0000000238415,
+            "width": 130.65000915527344,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 1",
+          "text": "Group A",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 189,
+            "y": 5534.000000381469,
+            "width": 54.337501525878906,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 2",
+          "text": "Workshop B",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 189,
+            "y": 5574.000000381469,
+            "width": 80.38750457763672,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 3",
+          "text": "Project team",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 189,
+            "y": 5614.000000381469,
+            "width": 83.3125,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb897df5539c",
+      "parent": "00000000-0000-0000-0000-000000000000",
+      "bounds": {
+        "x": 940,
+        "y": 5260,
+        "width": 820,
+        "height": 720
+      },
+      "choice": "a301101d-ddc2-807b-8008-bb897f5a852d",
+      "provider": "a301101d-ddc2-807b-8008-bb863e6f8975",
+      "choiceBounds": {
+        "x": 1031,
+        "y": 5425.4,
+        "width": 638,
+        "height": 224
+      },
+      "checkLast": true,
+      "checkCenterDelta": 0,
+      "checkRightInset": 14,
+      "chevronRightInset": 14,
+      "font": [
+        {
+          "name": "Text",
+          "text": "Year 2026",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1045,
+            "y": 5436.00000038144,
+            "width": 68.38750457763672,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Placeholder / Default",
+          "text": "Search destinations",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1071.48,
+            "y": 5490.0000000238415,
+            "width": 130.65000915527344,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 1",
+          "text": "Without grouping",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1049,
+            "y": 5534.000000381469,
+            "width": 114.36250305175781,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 2",
+          "text": "Year 2026",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1049,
+            "y": 5574.000000381469,
+            "width": 68.38750457763672,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 3",
+          "text": "Project cohorts",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1049,
+            "y": 5614.000000381469,
+            "width": 100.8375015258789,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb8981c68306",
+      "parent": "00000000-0000-0000-0000-000000000000",
+      "bounds": {
+        "x": 1800,
+        "y": 5260,
+        "width": 500,
+        "height": 720
+      },
+      "choice": "a301101d-ddc2-807b-8008-bb898269bcf1",
+      "provider": "a301101d-ddc2-807b-8008-bb874c54bca0",
+      "choiceBounds": {
+        "x": 1889.890625,
+        "y": 5495.9,
+        "width": 320.21875,
+        "height": 248
+      },
+      "checkLast": true,
+      "checkCenterDelta": 0,
+      "checkRightInset": 14,
+      "chevronRightInset": 14,
+      "font": [
+        {
+          "name": "Text",
+          "text": "Group A",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1903.890625,
+            "y": 5509.50000038144,
+            "width": 54.337501525878906,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Placeholder / Default",
+          "text": "Search destinations",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1930.370625,
+            "y": 5566.5000000238415,
+            "width": 130.65000915527344,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 1",
+          "text": "Group A",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1907.890625,
+            "y": 5613.500000381469,
+            "width": 54.337501525878906,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 2",
+          "text": "Workshop B",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1907.890625,
+            "y": 5659.500000381469,
+            "width": 80.38750457763672,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 3",
+          "text": "Project team",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 1907.890625,
+            "y": 5705.500000381469,
+            "width": 83.3125,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "id": "a301101d-ddc2-807b-8008-bb8985502f8a",
+      "parent": "00000000-0000-0000-0000-000000000000",
+      "bounds": {
+        "x": 2340,
+        "y": 5260,
+        "width": 500,
+        "height": 720
+      },
+      "choice": "a301101d-ddc2-807b-8008-bb8986ba1cb5",
+      "provider": "a301101d-ddc2-807b-8008-bb874c54bca0",
+      "choiceBounds": {
+        "x": 2429.890625,
+        "y": 5495.9,
+        "width": 320.21875,
+        "height": 248
+      },
+      "checkLast": true,
+      "checkCenterDelta": 0,
+      "checkRightInset": 14,
+      "chevronRightInset": 14,
+      "font": [
+        {
+          "name": "Text",
+          "text": "Year 2026",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 2443.890625,
+            "y": 5509.50000038144,
+            "width": 68.38750457763672,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Placeholder / Default",
+          "text": "Search destinations",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 2470.370625,
+            "y": 5566.5000000238415,
+            "width": 130.65000915527344,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 1",
+          "text": "Without grouping",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 2447.890625,
+            "y": 5613.500000381469,
+            "width": 114.36250305175781,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 2",
+          "text": "Year 2026",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 2447.890625,
+            "y": 5659.500000381469,
+            "width": 68.38750457763672,
+            "height": 16.799999237060547
+          }
+        },
+        {
+          "name": "Option label 3",
+          "text": "Project cohorts",
+          "font": "Inter",
+          "size": "14",
+          "align": "left",
+          "verticalAlign": "center",
+          "bounds": {
+            "x": 2447.890625,
+            "y": 5705.500000381469,
+            "width": 100.8375015258789,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    }
+  ],
+  "humanValidated": false
+}

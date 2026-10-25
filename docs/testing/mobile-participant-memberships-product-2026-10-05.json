@@ -1,0 +1,1617 @@
+{
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "board": "8a982f17-c9c0-80e9-8008-beaaf2c3fa3b",
+    "mobileBoard": "cef95197-06bc-809e-8008-aeeaa9e3ad0d",
+    "records": [
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beaaf63bc263",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab90dc1e19",
+            "name": "Title",
+            "text": "Samira Benali",
+            "x": 66,
+            "y": 16,
+            "w": 147.43820224719104,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 186,
+              "y": 15011.400000095367,
+              "width": 86.2249984741211,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab90dc8102",
+            "name": "Metadata",
+            "text": "samira.benali@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 158,
+              "y": 15038.400000095367,
+              "width": 172.75,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63c3b41",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15069.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63c3b43",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 169.26249980926514,
+              "y": 15094.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63c3b4c",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15117.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63c3b4e",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 179.86250114440918,
+              "y": 15142.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": false,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63bc264",
+            "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63bc265",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf63c3b40",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beaaf933668d",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab006105c5",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab916f6216",
+            "name": "Title",
+            "text": "Alice Martin",
+            "x": 66,
+            "y": 16,
+            "w": 147.43820224719104,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 186,
+              "y": 15213.400000095367,
+              "width": 76.8125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab916f6217",
+            "name": "Metadata",
+            "text": "alice.martin@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 158,
+              "y": 15240.400000095367,
+              "width": 162.5,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab006105cb",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15271.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab006105cd",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 169.26249980926514,
+              "y": 15296.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab00617bbb",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15319.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab00617bbd",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 179.86250114440918,
+              "y": 15344.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": false,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab006105c6",
+            "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab006105c7",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab006105ca",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab03833017",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab0c22e50a",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e521",
+            "name": "Title",
+            "text": "Samira Benali",
+            "x": 66,
+            "y": 16,
+            "w": 162,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 776,
+              "y": 15011.400000095367,
+              "width": 86.2249984741211,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e522",
+            "name": "Metadata",
+            "text": "samira.benali@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 748,
+              "y": 15038.400000095367,
+              "width": 172.75,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e510",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15069.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e512",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2624998092651,
+              "y": 15094.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e513",
+            "name": "Product / Mobile participant metadata / Groups",
+            "text": "GROUPS",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15117.199999988079,
+              "width": 37.91250228881836,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e515",
+            "name": "Product / Mobile participant metadata / Group A / label",
+            "text": "Group A",
+            "x": 38,
+            "y": 147,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2250003814697,
+              "y": 15142.799999952316,
+              "width": 35.55000305175781,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e517",
+            "name": "Product / Mobile participant metadata / More / label",
+            "text": "+2",
+            "x": 102,
+            "y": 147,
+            "w": 30,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 821.2750005722046,
+              "y": 15142.799999952316,
+              "width": 11.437499046325684,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e518",
+            "name": "Product / Mobile participant metadata / Groupings",
+            "text": "GROUPINGS",
+            "x": 38,
+            "y": 174,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15165.199999988079,
+              "width": 54.0625,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e51a",
+            "name": "Product / Mobile participant metadata / Year 2026 / label",
+            "text": "Year 2026",
+            "x": 38,
+            "y": 195,
+            "w": 76,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 763.5625,
+              "y": 15190.799999952316,
+              "width": 44.86249923706055,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e51b",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 222,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15213.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e51d",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 243,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 769.8625011444092,
+              "y": 15238.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": true,
+          "selected": true,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e50b",
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e50c",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0c22e50f",
+            "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab0f4bc0c2",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab1646c13e",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab9220321e",
+            "name": "Title",
+            "text": "Alice Martin",
+            "x": 66,
+            "y": 16,
+            "w": 147.43820224719104,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 776,
+              "y": 15309.400000095367,
+              "width": 76.8125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab9220321f",
+            "name": "Metadata",
+            "text": "alice.martin@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 748,
+              "y": 15336.400000095367,
+              "width": 162.5,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c144",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15367.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c146",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2624998092651,
+              "y": 15392.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c14f",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15415.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c151",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 769.8625011444092,
+              "y": 15440.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": false,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c13f",
+            "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c140",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab1646c143",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab191902cc",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab217f3bf2",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f5a6c",
+            "name": "Title",
+            "text": "Samira Benali",
+            "x": 66,
+            "y": 16,
+            "w": 162,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 186,
+              "y": 15601.400000095367,
+              "width": 86.2249984741211,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f5a6d",
+            "name": "Metadata",
+            "text": "samira.benali@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 158,
+              "y": 15628.400000095367,
+              "width": 172.75,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f3bf8",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15659.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f3bfa",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 169.26249980926514,
+              "y": 15684.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f5a66",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15707.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f5a68",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 179.86250114440918,
+              "y": 15732.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": true,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f3bf3",
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f3bf4",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab217f3bf7",
+            "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab249cd918",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab2c6fdc5c",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700737",
+            "name": "Title",
+            "text": "Alice Martin",
+            "x": 66,
+            "y": 16,
+            "w": 162,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 186,
+              "y": 15803.400000095367,
+              "width": 76.8125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700738",
+            "name": "Metadata",
+            "text": "alice.martin@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 158,
+              "y": 15830.400000095367,
+              "width": 162.5,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700726",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15861.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700728",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 169.26249980926514,
+              "y": 15886.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700731",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 158,
+              "y": 15909.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700733",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 179.86250114440918,
+              "y": 15934.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": true,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c6fdc5d",
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700722",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2c700725",
+            "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab2f380370",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab379e754a",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7561",
+            "name": "Title",
+            "text": "Samira Benali",
+            "x": 66,
+            "y": 16,
+            "w": 162,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 776,
+              "y": 15601.400000095367,
+              "width": 86.2249984741211,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7562",
+            "name": "Metadata",
+            "text": "samira.benali@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 748,
+              "y": 15628.400000095367,
+              "width": 172.75,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7550",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15659.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7552",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2624998092651,
+              "y": 15684.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7553",
+            "name": "Product / Mobile participant metadata / Groups",
+            "text": "GROUPS",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15707.199999988079,
+              "width": 37.91250228881836,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7555",
+            "name": "Product / Mobile participant metadata / Group A / label",
+            "text": "Group A",
+            "x": 38,
+            "y": 147,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2250003814697,
+              "y": 15732.799999952316,
+              "width": 35.55000305175781,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7557",
+            "name": "Product / Mobile participant metadata / More / label",
+            "text": "+2",
+            "x": 102,
+            "y": 147,
+            "w": 30,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 821.2750005722046,
+              "y": 15732.799999952316,
+              "width": 11.437499046325684,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e7558",
+            "name": "Product / Mobile participant metadata / Groupings",
+            "text": "GROUPINGS",
+            "x": 38,
+            "y": 174,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15755.199999988079,
+              "width": 54.0625,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e755a",
+            "name": "Product / Mobile participant metadata / Year 2026 / label",
+            "text": "Year 2026",
+            "x": 38,
+            "y": 195,
+            "w": 76,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 763.5625,
+              "y": 15780.799999952316,
+              "width": 44.86249923706055,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e755b",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 222,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15803.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e755d",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 243,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 769.8625011444092,
+              "y": 15828.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": true,
+          "selected": true,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e754b",
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e754c",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab379e754f",
+            "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab3aa0c46c",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beab41d53bb0",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab9320ace0",
+            "name": "Title",
+            "text": "Alice Martin",
+            "x": 66,
+            "y": 16,
+            "w": 147.43820224719104,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 776,
+              "y": 15899.400000095367,
+              "width": 76.8125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab9320ace1",
+            "name": "Metadata",
+            "text": "alice.martin@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 748,
+              "y": 15926.400000095367,
+              "width": 162.5,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e1",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 15957.199999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e3",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2624998092651,
+              "y": 15982.799999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e4",
+            "name": "Product / Mobile participant metadata / Groups",
+            "text": "GROUPS",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 16005.199999988079,
+              "width": 37.91250228881836,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e6",
+            "name": "Product / Mobile participant metadata / Group A / label",
+            "text": "Group A",
+            "x": 38,
+            "y": 147,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 759.2250003814697,
+              "y": 16030.799999952316,
+              "width": 35.55000305175781,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e8",
+            "name": "Product / Mobile participant metadata / More / label",
+            "text": "+2",
+            "x": 102,
+            "y": 147,
+            "w": 30,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 821.2750005722046,
+              "y": 16030.799999952316,
+              "width": 11.437499046325684,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e9",
+            "name": "Product / Mobile participant metadata / Groupings",
+            "text": "GROUPINGS",
+            "x": 38,
+            "y": 174,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 16053.199999988079,
+              "width": 54.0625,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555eb",
+            "name": "Product / Mobile participant metadata / Year 2026 / label",
+            "text": "Year 2026",
+            "x": 38,
+            "y": 195,
+            "w": 76,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 763.5625,
+              "y": 16078.799999952316,
+              "width": 44.86249923706055,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555ec",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 222,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 748,
+              "y": 16101.199999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555ee",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 243,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 769.8625011444092,
+              "y": 16126.799999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": true,
+          "selected": false,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555dc",
+            "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555dd",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab41d555e0",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beab455ff38c",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beac1a09cbf3",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a4f",
+            "name": "Title",
+            "text": "Samira Benali",
+            "x": 66,
+            "y": 16,
+            "w": 147.43820224719093,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 2722,
+              "y": 5200.300000095367,
+              "width": 86.2249984741211,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a50",
+            "name": "Metadata",
+            "text": "samira.benali@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 2694,
+              "y": 5227.300000095367,
+              "width": 172.75,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a3d",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2694,
+              "y": 5258.099999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a3f",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2705.262499809265,
+              "y": 5283.699999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a48",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2694,
+              "y": 5306.099999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a4a",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2715.862501144409,
+              "y": 5331.699999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": false,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a09cbf4",
+            "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a39",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a3c",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a4b",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-beac1ad73180",
+        "overflow": [],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73198",
+            "name": "Title",
+            "text": "Alice Martin",
+            "x": 66,
+            "y": 16,
+            "w": 147.43820224719093,
+            "h": 24,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 2722,
+              "y": 5402.300000095367,
+              "width": 76.8125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73199",
+            "name": "Metadata",
+            "text": "alice.martin@example.edu",
+            "x": 38,
+            "y": 44,
+            "w": 266,
+            "h": 22,
+            "font": "Inter",
+            "size": "13",
+            "paint": {
+              "x": 2694,
+              "y": 5429.300000095367,
+              "width": 162.5,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73186",
+            "name": "Product / Mobile participant metadata / Roles",
+            "text": "ROLES",
+            "x": 38,
+            "y": 78,
+            "w": 62,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2694,
+              "y": 5460.099999988079,
+              "width": 29.30000114440918,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73188",
+            "name": "Product / Mobile participant metadata / Teacher / label",
+            "text": "Teacher",
+            "x": 38,
+            "y": 99,
+            "w": 58,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2705.262499809265,
+              "y": 5485.699999952316,
+              "width": 35.474998474121094,
+              "height": 11.199999809265137
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73191",
+            "name": "Product / Mobile participant metadata / Custom",
+            "text": "PROGRAMME",
+            "x": 38,
+            "y": 126,
+            "w": 90,
+            "h": 16,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2694,
+              "y": 5508.099999988079,
+              "width": 60.29999923706055,
+              "height": 11.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73193",
+            "name": "Product / Mobile participant metadata / Programme / label",
+            "text": "Programme — Design",
+            "x": 38,
+            "y": 147,
+            "w": 138,
+            "h": 20,
+            "font": "Inter",
+            "size": "9",
+            "paint": {
+              "x": 2715.862501144409,
+              "y": 5533.699999952316,
+              "width": 94.2750015258789,
+              "height": 11.199999809265137
+            }
+          }
+        ],
+        "state": {
+          "mobileOnly": true,
+          "membershipsVisible": false,
+          "selected": false,
+          "roleProfilePreserved": true,
+          "desktopUnchanged": true
+        },
+        "links": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73181",
+            "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73182",
+            "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73185",
+            "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-beac1ad73194",
+            "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+          }
+        ]
+      }
+    ],
+    "localMasters": 0
+  },
+  "tablet": {
+    "before": {
+      "selected": "01e728c3-f1ef-80b3-8008-b5b21d666458",
+      "compact": "01e728c3-f1ef-80b3-8008-b5b208fb25f9",
+      "parent": "92c1c225-95fb-802e-8008-aeaca9049a6f",
+      "summary": [
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca932588f",
+          "text": "24 participants · 3 selected"
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca9772fc1",
+          "text": "3 selected"
+        }
+      ]
+    },
+    "ids": [
+      "8a982f17-c9c0-80e9-8008-bead55cb2efa",
+      "8a982f17-c9c0-80e9-8008-bead56a2f227"
+    ]
+  }
+}

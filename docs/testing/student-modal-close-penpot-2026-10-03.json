@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "file": {
+    "id": "220f6449-533e-815b-8008-ad9958d032a1",
+    "name": "EasyStud — Product views"
+  },
+  "page": {
+    "id": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "name": "04 — Dialogues et modales"
+  },
+  "foundationProvider": {
+    "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+    "componentId": "761eab91-8390-80e8-8008-98c317ebe621",
+    "path": "EasyEdu / Buttons / Core action / Secondary",
+    "name": "S",
+    "width": 30.4,
+    "height": 30.4
+  },
+  "entityHeaderInstances": [
+    {
+      "entity": "participant",
+      "shapeId": "253eab0b-b38c-802b-8008-bae4aa338d6e",
+      "name": "INSTANCE — Core action / Modal close"
+    },
+    {
+      "entity": "group",
+      "shapeId": "253eab0b-b38c-802b-8008-bae50a6e136a",
+      "name": "INSTANCE — Core action / Modal close"
+    },
+    {
+      "entity": "grouping",
+      "shapeId": "253eab0b-b38c-802b-8008-bae586a7ae1e",
+      "name": "INSTANCE — Core action / Modal close"
+    }
+  ],
+  "productLocalCloseComponents": 0,
+  "status": "linked-existing-no-mutation",
+  "notes": [
+    "All three entity headers already consume the same Foundation Secondary S component.",
+    "No competing modal Close component was created in the product file.",
+    "A deeper structure read timed out after 120 seconds and was not retried unchanged; the direct provider and instance readback above completed before that timeout.",
+    "Human visual acceptance remains part of the later global checklist."
+  ]
+}

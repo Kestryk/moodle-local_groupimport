@@ -1,0 +1,15 @@
+// Shared-navigation consumer for the Mass Import workspace.
+.local-groupimport-import-navigation {
+  // Unlike Simplified Student Management, Mass Import has no participant
+  // selector across the phone viewport centre. Keep the shared fixed handle
+  // precisely centred instead of inheriting that consumer's clearance.
+  @media (max-width: 40rem) {
+    .easyedu-navigation__trigger {
+      inset-block-start: clamp(
+        var(--easyedu-navigation-trigger-safe-edge),
+        50dvh,
+        calc(100dvh - var(--easyedu-navigation-trigger-safe-edge))
+      );
+    }
+  }
+}

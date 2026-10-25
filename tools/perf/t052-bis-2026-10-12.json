@@ -1,0 +1,99 @@
+{
+  "lot": "T052-bis",
+  "runtimeHead": "814b22f05b3514fa5633efa93a92b20894498a8d",
+  "measuredCodeIdentical": true,
+  "byteSumsExact": true,
+  "cleanupComplete": true,
+  "curve": [
+    {
+      "participants": 100,
+      "htmlBytes": 14953167,
+      "sourceElements": 36336,
+      "liveDomElements": 51480,
+      "readyMs": null,
+      "observedMs": 75361.80000001192,
+      "state": "loading",
+      "longTasksMs": 68934,
+      "exceedsThirtySeconds": true,
+      "exceedsFiveMegabytes": true
+    },
+    {
+      "participants": 300,
+      "htmlBytes": 23088946,
+      "sourceElements": 60136,
+      "liveDomElements": 75680,
+      "readyMs": null,
+      "observedMs": 188060.10000002384,
+      "state": "loading",
+      "longTasksMs": 183155,
+      "exceedsThirtySeconds": true,
+      "exceedsFiveMegabytes": true
+    },
+    {
+      "participants": 500,
+      "htmlBytes": 31215034,
+      "sourceElements": 83936,
+      "liveDomElements": 99880,
+      "readyMs": null,
+      "observedMs": 264419.8000000119,
+      "state": "loading",
+      "longTasksMs": 258550,
+      "exceedsThirtySeconds": true,
+      "exceedsFiveMegabytes": true
+    }
+  ],
+  "regions800": [
+    {
+      "region": "group-member-lists",
+      "bytes": 19219200,
+      "sourceElements": 67800
+    },
+    {
+      "region": "data-attributes-json",
+      "bytes": 11437787,
+      "sourceElements": 0
+    },
+    {
+      "region": "participant-cards",
+      "bytes": 7290400,
+      "sourceElements": 26400
+    },
+    {
+      "region": "group-cards",
+      "bytes": 4465350,
+      "sourceElements": 19500
+    },
+    {
+      "region": "other-page-shell",
+      "bytes": 423370,
+      "sourceElements": 1713
+    },
+    {
+      "region": "groupings",
+      "bytes": 312700,
+      "sourceElements": 1520
+    },
+    {
+      "region": "profile-photo-description-markup",
+      "bytes": 132800,
+      "sourceElements": 1600
+    },
+    {
+      "region": "guide",
+      "bytes": 121539,
+      "sourceElements": 1103
+    }
+  ],
+  "instances800": {
+    "participant-cards": 800,
+    "group-cards": 600,
+    "groupings": 40,
+    "member-rows": 9600
+  },
+  "thresholds": {
+    "bytes": 5000000,
+    "readyMs": 30000,
+    "crossing": "at or below 100 participants; fixed 150 groups/40 groupings; lower exact crossing not measured"
+  },
+  "rawPath": "C:\\dev\\artifacts\\easystud-perf-server-20261012\\t052-bis\\RAW-T052-BIS-2026-10-12.json"
+}

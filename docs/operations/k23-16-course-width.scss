@@ -1,0 +1,12 @@
+/* K23-16-COURSEWIDTH */
+/* Temporary Boost patch: move this rule into the future EasyEdu theme. */
+/* The course banner's standard native shell is capped at 1320px. */
+body.path-course-view.pagelayout-course #page.drawers .main-inner {
+    max-width: 1320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+body.path-course-view.pagelayout-course .header-maxwidth,
+body.path-course-view.pagelayout-course .footer-popover {
+    max-width: 1320px !important;
+}

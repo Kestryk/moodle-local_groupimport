@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "provider": "8a982f17-c9c0-80e9-8008-bea4af064700",
+  "chip": "8a982f17-c9c0-80e9-8008-bea3325c60a3",
+  "text": "ID · YEAR-2026",
+  "font": "Inter",
+  "size": "12.16",
+  "weight": "600",
+  "rect": [
+    153.1199999999999,
+    2557.6,
+    284,
+    23.48999999999978
+  ],
+  "textBounds": {
+    "x": 249.4750030517577,
+    "y": 2561.74499961853,
+    "width": 91.27499389648438,
+    "height": 15.200000762939453
+  },
+  "deltaX": -0.007499999999993179,
+  "deltaY": 0,
+  "humanVisualValidated": false,
+  "nativeStyleChanged": false
+}

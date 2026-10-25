@@ -1,0 +1,884 @@
+// Layout, navigation, panels and filters.
+@use "../easyedu" as easyedu;
+
+// Fail open without Moodle's early JavaScript bootstrap (formerly body noscript/style).
+body:not(.jsenabled) #local-groupimport-easystud [data-easystud-real-content] {
+  position: relative !important;
+  visibility: visible !important;
+}
+
+.local-groupimport-easystud {
+  position: relative;
+
+  &-mobile-header-controls,
+  &-back-to-top {
+    display: none;
+  }
+
+  &-mobile-view {
+    display: none;
+  }
+
+  &-action-status {
+    display: none;
+  }
+
+  [data-easystud-advanced-filters="structure-groupings"],
+  &-advanced-filters__control--groupings-mobile {
+    display: none !important;
+  }
+
+  &-card-menu,
+  &-context-menu__header,
+  &-context-backdrop {
+    display: none;
+  }
+
+  &__navigation {
+    margin: 0;
+    @include easyedu.navigation-component(64rem, true);
+  }
+
+  &__intro {
+    color: var(--local-groupimport-easystud-text-muted);
+    font-size: var(--easyedu-font-size-body);
+    line-height: var(--easyedu-line-height-body);
+    margin: 0 0 1rem;
+    max-width: 64rem;
+  }
+
+  &__notifications {
+    display: grid;
+    gap: 0.55rem;
+    margin-bottom: 0.9rem;
+  }
+
+  &__notification {
+    @include easyedu.notification-soft-frame;
+    margin: 0;
+    transition: opacity var(--easyedu-motion-normal) ease, transform var(--easyedu-motion-normal) ease;
+
+    &.is-leaving {
+      opacity: 0;
+      transform: translateY(-0.2rem);
+    }
+  }
+
+  // The responsive live status owns this cue at <=1024px; never paint both.
+  @media (width > 1024px) {
+    @include easyedu.action-busy-indicator-bottom-end("data-easystud-action-busy-label");
+  }
+
+  // The panel actions bind with the course manager: until then they keep their exact
+  // footprint as skeleton capsules, then fade to their real look.
+  &__panel-actions > * {
+    transition:
+      background-color var(--easyedu-loading-reveal-duration, 320ms) ease,
+      border-color var(--easyedu-loading-reveal-duration, 320ms) ease,
+      color var(--easyedu-loading-reveal-duration, 320ms) ease;
+  }
+
+  &--booting &__panel-actions {
+    pointer-events: none;
+
+    // Temporary loading state: it must win over every button recipe.
+    > * {
+      background: var(--easyedu-loading-surface) !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      color: transparent !important;
+      overflow: hidden;
+      position: relative;
+
+      @include easyedu.skeleton-shimmer-overlay;
+
+      .fa,
+      img,
+      svg {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &[data-easystud-loading-state="loading"] {
+    overflow: hidden;
+
+    .local-groupimport-easystud__content {
+      box-sizing: border-box;
+      display: block;
+      inset-inline: 0;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      pointer-events: none;
+      position: absolute;
+      visibility: hidden;
+      width: 100%;
+    }
+  }
+
+  &.is-easystud-loading-content-entering &__content {
+    inset-inline: auto;
+    opacity: 0;
+    pointer-events: none;
+    position: relative;
+    @include easyedu.loading-opacity-transition(320ms);
+    visibility: visible;
+  }
+
+  &.is-easystud-loading-content-entered &__content {
+    opacity: 1;
+  }
+
+  &__loading-surface {
+    @include easyedu.navigation-skeleton-cue-overlay(
+      $surface: var(--local-groupimport-easystud-loading-surface),
+      $soft: var(--easyedu-loading-shimmer-soft),
+      $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight),
+      $radius: var(--local-groupimport-easystud-loading-radius)
+    );
+  }
+
+  &__loading-structure-card {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  &__loading-participant-list,
+  &__loading-structure-list {
+    align-content: start;
+    box-sizing: border-box;
+    display: grid;
+    gap: 0.55rem;
+    grid-auto-rows: max-content;
+    max-inline-size: 100%;
+    min-width: 0;
+  }
+
+  &__loading-participant-card {
+    @include easyedu.skeleton-section-frame(
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
+      $radius: 0.68rem
+    );
+
+    & {
+      align-items: center;
+      box-sizing: border-box;
+      display: grid;
+      gap: 0.55rem;
+      grid-template-columns: 2rem minmax(0, 1fr) auto auto;
+      max-inline-size: 100%;
+      @include easyedu.skeleton-card-frame(person);
+    }
+  }
+
+  &__loading-structure-list {
+    gap: 0.65rem;
+  }
+
+  &__loading-structure-card {
+    @include easyedu.skeleton-section-frame(
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
+      $radius: 0.68rem
+    );
+
+    & {
+      box-sizing: border-box;
+      max-inline-size: 100%;
+      @include easyedu.skeleton-card-frame(object);
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1200px) {
+    &__loading-participant-card:nth-child(n + 11) {
+      display: none;
+    }
+
+    &__loading-participant-list {
+      gap: 0.47rem;
+      max-height: 30.2rem;
+      overflow: hidden;
+    }
+
+    &__loading-participant-card {
+      @include easyedu.skeleton-card-person-compact;
+    }
+  }
+
+  // V4 represents only the loading workspace hierarchy. It intentionally does
+  // not imitate the ready-state title, tertiary selector or individual actions.
+
+  &__loading-structure-list {
+    margin-top: 0.15rem;
+  }
+
+  &__loading-participant-card,
+  &__loading-structure-card {
+    align-items: center;
+    display: flex;
+  }
+
+  &__loading-participant-card {
+    grid-template-columns: none;
+  }
+
+  // Component skeletons (T061): the lists that wait for the course state use the
+  // page skeleton's Kit aliases, shimmer and appearance; there is no page skeleton.
+  [data-easystud-sm-loading] {
+    --local-groupimport-easystud-loading-surface: var(--easyedu-loading-surface);
+    --local-groupimport-easystud-loading-surface-soft: var(--easyedu-loading-surface-soft);
+    --local-groupimport-easystud-loading-surface-strong: var(--easyedu-loading-surface-strong);
+    --local-groupimport-easystud-loading-border: var(--easyedu-loading-border);
+    --local-groupimport-easystud-loading-radius: var(--easyedu-loading-radius);
+    --local-groupimport-easystud-loading-gap: var(--easyedu-loading-stack-gap);
+    --local-groupimport-easystud-loading-shimmer-duration: var(--easyedu-loading-shimmer-duration);
+    --local-groupimport-easystud-loading-shimmer-highlight: var(--easyedu-loading-shimmer-highlight);
+
+    @include easyedu.loading-appearance;
+  }
+
+  &__loading-card-avatar {
+    @include easyedu.skeleton-card-avatar;
+  }
+
+  // Each line is a real surface so the Kit shimmer sweeps a visible grey bar.
+  &__loading-card-lines {
+    display: grid;
+    gap: 0.42rem;
+    inline-size: 100%;
+    justify-self: stretch;
+    min-width: 0;
+  }
+
+  &__loading-card-line {
+    @include easyedu.skeleton-card-copy-line(strong, var(--local-groupimport-easystud-loading-surface-strong));
+    inline-size: min(62%, 9rem);
+  }
+
+  &__loading-card-line--secondary {
+    @include easyedu.skeleton-card-copy-line(soft, var(--local-groupimport-easystud-loading-surface));
+    inline-size: min(88%, 13rem);
+  }
+
+  &__loading-structure-card &__loading-card-line {
+    inline-size: min(55%, 11rem);
+  }
+
+  &__loading-structure-card &__loading-card-line--secondary {
+    inline-size: min(80%, 16rem);
+  }
+
+  // Cards replacing the skeletons fade in once, on the first render of the course state.
+  // K23-21: a card already carrying its own JS creation/arrival entrance (.is-newly-created,
+  // played by Motion.enter in animateElementCreated; or .is-easystud-list-arriving, played by
+  // animateListArrival in local/cm/transitions.js) is excluded here. Both this CSS fade and
+  // those JS animations touch opacity; when the JS entrance is cancelled at its own (shorter)
+  // duration, the still-running CSS fade briefly takes over at its own, not-yet-complete value,
+  // producing a visible opacity dip/flicker right as the card settles ("bancale" appearance
+  // reported by Kevin, K23-21, 23/10/2026). Reproduced natively: the course-state first load and
+  // a "create group" action can land in the same render cycle (on-demand catalog hydration),
+  // stacking both animations on the freshly rendered card(s). See
+  // docs/testing/k23-21-new-group-card-entrance.md.
+  &.is-easystud-sm-entering
+    :is([data-easystud-user], [data-easystud-group-id]):not(.is-newly-created):not(.is-easystud-list-arriving) {
+    animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
+  }
+
+  &.is-easyedu-motion-off.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
+    animation: none;
+  }
+
+  @include easyedu.motion-restricted {
+    &.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 1200px) {
+  }
+
+  @media (max-width: 1024px) {
+    // Reserve the compact EasyStud header/navigation height that is rendered
+    // by the ready state above the workspace switcher.
+
+    @media (max-width: 390px) {
+    }
+
+    @media (min-width: 391px) and (max-width: 520px) {
+    }
+
+    @media (min-width: 521px) {
+    }
+  }
+
+  @media (max-width: 64rem) {
+  }
+
+  // Native browser zoom can reduce the effective CSS viewport below the phone
+  // breakpoint. Keep the Skeleton's large frames visible by stacking only its
+  // decorative fixed-width cues at that extreme width.
+  @media (max-width: 20rem) {
+    // The native-zoom viewport can reduce the available inline space to 160 CSS
+    // px. Give the compact Navigation Skeleton its resolved mobile block size
+    // explicitly so its frame remains measurable independently of grid sizing.
+  }
+
+  @media (min-width: 1025px) {
+    // Reserve the desktop navigation/header height used by the ready state.
+
+    @media (max-width: 1200px) {
+
+      @media (max-width: 1100px) {
+      }
+
+      @media (min-width: 1101px) {
+      }
+    }
+
+    @media (min-width: 1201px) {
+    }
+  }
+
+  &[data-easyedu-motion-policy="disabled"] &__loading-surface::after,
+  &.is-easyedu-motion-off &__loading-surface::after {
+    animation: none;
+    display: none;
+  }
+
+  // Static skeletons as soon as the animation level is not full.
+  @include easyedu.motion-restricted {
+    .local-groupimport-easystud__loading-surface::after {
+      animation: none;
+      display: none;
+    }
+  }
+
+  &__header {
+    align-items: flex-start;
+    display: block;
+    gap: 1rem;
+    margin-bottom: 0;
+  }
+
+  &__eyebrow {
+    color: var(--local-groupimport-easystud-primary);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+  }
+
+  &__header-actions,
+  &__panel-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__header-actions {
+    flex-wrap: nowrap;
+
+    @include easyedu.admin-primary-nav;
+
+    > .btn:not(.easyedu-guide__launcher),
+    > .easyedu-admin-primary-nav__actions > .btn {
+      @include easyedu.admin-primary-nav-action;
+    }
+
+    .easyedu-guide__launcher {
+      flex: 0 0 auto;
+      margin-right: 0;
+    }
+
+
+  }
+
+  &__panel-actions {
+    align-items: center;
+    // The Kit action-button owns the icon slot and its theme-overridable
+    // separation. Keep the compact row quieter than its former Bootstrap
+    // utility-margin plus gap combination.
+    --easyedu-action-icon-gap: 0.35rem;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    min-width: 0;
+    overflow: visible;
+    position: relative;
+  }
+
+  &__panel-actions .btn {
+    // Public Foundation selection actions own type, paint and icon spacing.
+    // Only the toolbar's overflow track belongs to this workspace adapter.
+    flex: 0 0 auto;
+  }
+
+  &__panel-action--overflow-hidden {
+    display: none !important;
+  }
+
+  // K17-78: the column header's "more actions" is the Kit overflow trigger (three dots, K17-53), the
+  // same definition as every card; only its place in the toolbar track belongs to this adapter.
+  &__panel-actions-more {
+    @include easyedu.card-overflow-trigger;
+
+    padding: 0;
+  }
+
+  &__panel-actions-menu {
+    @include easyedu.dropdown-menu;
+
+    min-width: 13.5rem;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.35rem);
+    z-index: 35;
+
+    &[hidden] {
+      display: none;
+    }
+
+    .btn {
+      // Overflow copies shed the selection-action skin, not its icon gap.
+      // Reuse the toolbar's Kit token without changing the native button size.
+      column-gap: var(--easyedu-action-icon-gap);
+      justify-content: flex-start;
+      text-decoration: none !important;
+      width: 100%;
+
+      &:hover,
+      &:active,
+      &:focus,
+      &:focus-visible {
+        text-decoration: none !important;
+      }
+
+      // K23-84: the copies keep their menu geometry but take the toolbar originals'
+      // Kit paint (selection-action-paint) instead of the Bootstrap native one,
+      // which host themes repaint with !important (DVL 4.5: black/purple outlines).
+      &.btn-outline-primary { @include easyedu.selection-action-paint($legacy-priority: true); }
+      &.btn-outline-secondary { @include easyedu.selection-action-paint(neutral, $legacy-priority: true); }
+      &.btn-outline-danger { @include easyedu.selection-action-paint(danger, $legacy-priority: true); }
+      &.btn-primary { @include easyedu.selection-action-paint($solid: true, $legacy-priority: true); }
+    }
+  }
+
+  &-mobile-actions {
+    display: none;
+  }
+
+  &--touch-drag-disabled [data-easystud-user],
+  &--touch-drag-disabled [data-easystud-group-id] {
+    -webkit-user-drag: none;
+    touch-action: manipulation;
+  }
+
+  &__participant-move-action {
+    display: inline-flex;
+  }
+
+  &--structure-focus &__participant-move-action {
+    display: none;
+  }
+
+  &__participant-group-action {
+    display: none;
+  }
+
+  &--participant-focus &__participant-group-action {
+    display: inline-flex;
+  }
+
+  &--participant-focus &__participant-group-action--first {
+    margin-left: auto;
+  }
+
+  &__header-actions {
+    margin-top: 0.85rem;
+  }
+
+  // K21-51: the view tabs moved to the navigation band; this wrapper now only
+  // hosts the fixed bottom selection capsule and takes no space in the flow.
+  &__layout-toggles {
+    display: block;
+    margin: 0;
+  }
+
+  &__clear-selection-frame {
+    @include easyedu.sticky-selection-panel(var(--local-groupimport-easystud-primary));
+
+    // K22-12: centre on the workspace, not the viewport, so an open course index or block
+    // drawer recentres the capsule with the content (workspace.js measures the root). The
+    // physical `left` keeps translateX(-50%) correct in RTL too; 50% / 100vw are the fallbacks.
+    inset-inline: auto;
+    left: var(--local-groupimport-easystud-selection-centre, 50%);
+    max-width: min(calc(var(--local-groupimport-easystud-selection-width, 100vw) - 2rem), 30rem);
+  }
+
+  &__clear-selection {
+    @include easyedu.sticky-selection-button($natural-labels: true);
+
+    // R10-12: only the recovery capsule owns a resting border.
+    &.btn {
+      @include easyedu.sticky-selection-recovery-paint;
+    }
+  }
+
+  &__clear-selection-count {
+    @include easyedu.sticky-selection-count;
+  }
+
+  // Keep the final list row and its bottom pagination scrollable above the
+  // fixed desktop recovery capsule. Responsive trays own their own clearance.
+  &--has-selection:not(&--responsive-workspace) {
+    padding-bottom: 5rem;
+  }
+
+  &__layout {
+    align-items: stretch;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &__panel {
+    // Page CSS follows the theme, unlike Moodle's aggregated plugin CSS.
+    // Keep the historical computed auto height explicitly: a viewport height
+    // constrains both nested lists and compresses their flex card children.
+    // Pagination limits the rendered inventory; the document owns scrolling.
+    height: auto;
+    overflow: visible;
+    position: relative;
+    // View swaps own panel opacity/transform through Motion. A second CSS
+    // transition from the focus state also moved the returning panel.
+    transition: box-shadow var(--easyedu-motion-normal) ease;
+
+    > .card-body {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      height: 100%;
+    }
+
+  }
+
+  &__panel-heading {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  &__panel-title {
+    margin: 0;
+  }
+
+  &__panel-title-wrap {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__panel-badge {
+    // Paint comes from count-badge; the existing card-label adoption owns geometry.
+    @include easyedu.count-badge(#e8f1fa, #d0dfef, #35556f);
+  }
+
+  &__filters {
+    @include easyedu.filter-shell;
+
+    background: var(--local-groupimport-easystud-surface-soft);
+    border-radius: var(--local-groupimport-easystud-radius);
+    gap: 0.22rem;
+    margin-bottom: 0.9rem;
+    overflow: visible;
+    padding: 0.8rem;
+  }
+
+  &:not(.local-groupimport-easystud--participant-focus):not(.local-groupimport-easystud--structure-focus) &__filters,
+  &:not(.local-groupimport-easystud--participant-focus):not(.local-groupimport-easystud--structure-focus) &-create-row {
+    align-content: start;
+  }
+
+  &:not(.local-groupimport-easystud--participant-focus):not(.local-groupimport-easystud--structure-focus) &-create-row {
+    min-height: 5.45rem;
+    transform: translateY(-0.08rem);
+  }
+
+  &__participant-main,
+  &__filters {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  &__participant-main {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  // K22-18: the Roles chips own a full row; the dropdowns below share one row
+  // (two side by side) and only stack when a dropdown would fall under 9rem.
+  // Toggles and Reset stay in the trailing filter actions, below this grid.
+  &__filters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  &__filters-grid > &__filter-group {
+    flex: 1 1 9rem;
+  }
+
+  &__filters-grid > &__filter-group--roles {
+    flex-basis: 100%;
+  }
+
+  &__filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  &__filter-group--participant-only {
+    display: none;
+  }
+
+  &__filter-label {
+    color: #627387;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__search-row {
+    align-items: stretch;
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  // Search presentation is emitted by the canonical easyedu-search-field
+  // class. Consumer filters retain only layout, commands and visibility.
+
+  &__filters-reset {
+    align-self: stretch;
+    white-space: nowrap;
+  }
+
+  &__filters-reset--catalog {
+    align-self: center;
+  }
+
+  &-advanced-filters {
+    // The desktop composition reserves this gap in both disclosure states so
+    // opening one column cannot move the opposite column or either list.
+    margin-block-start: var(--easyedu-gap);
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity var(--easyedu-motion-fast) ease;
+
+    &.is-collapsed {
+      display: none;
+    }
+
+    &.is-expanded {
+      opacity: 1;
+      overflow: visible;
+      pointer-events: auto;
+    }
+  }
+
+  &-advanced-filters__more {
+    display: inline-flex;
+    margin: 0;
+    text-align: center;
+  }
+
+  [data-easystud-filters] [data-easystud-advanced-filters="participants"] {
+    .local-groupimport-easystud__filters-grid {
+      gap: var(--easyedu-gap);
+    }
+
+    .local-groupimport-easystud__filter-group {
+      gap: calc(var(--easyedu-gap) / 2);
+    }
+  }
+
+  &-advanced-filters__toggle {
+    @include easyedu.filter-disclosure-trigger(wide);
+
+    margin: 0;
+
+    .fa {
+      @include easyedu.filter-disclosure-icon;
+    }
+
+    &[aria-expanded="true"] .fa {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-advanced-filters .form-select:focus,
+  &-advanced-filters .form-select:focus-visible,
+  &-advanced-filters select:focus,
+  &-advanced-filters select:focus-visible {
+    @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &__filter-group .form-select,
+  &__filter-group .custom-select,
+  &__filter-group select {
+    @include easyedu.native-select-control($native-affordance: true);
+    margin: 0.08rem;
+    width: calc(100% - 0.16rem);
+  }
+
+  // K16-69: a focus-view column heading is the Complete view's panel heading (title, count
+  // badge, then the column's own action bar, which reuses the panel action bar recipe).
+  &-column-heading {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    min-width: 0;
+  }
+
+  &-column-heading--participants,
+  &-column-heading--structure {
+    display: none;
+  }
+
+  // The panel heading would repeat the column headings: the focus views drop it.
+  &--participant-focus &__panel--participants &__panel-heading,
+  &--structure-focus &__panel--structure &__panel-heading {
+    display: none;
+  }
+
+  &__role-toggle-wrap {
+    display: grid;
+    min-width: 0;
+  }
+
+  &__role-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+
+    > .btn {
+      @include easyedu.toggle-choice-rounded;
+    }
+  }
+
+  &__role-select {
+    @include easyedu.native-select-control($native-affordance: true);
+    width: 100%;
+  }
+
+  &__search {
+    min-width: 0;
+  }
+
+  &__participant-list,
+  &-tree {
+    align-content: start;
+    grid-auto-rows: max-content;
+    flex: 1 1 auto;
+    max-height: none;
+    min-height: 0;
+    overflow: auto;
+    padding: 0.2rem 0.2rem 0 0;
+  }
+
+  &__participant-list {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  &__participant-content {
+    align-items: stretch;
+    display: flex;
+    flex: 1 1 auto;
+    gap: 1rem;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  &__empty-state {
+    @include easyedu.empty-state(panel);
+  }
+
+  &__empty-state--structure {
+    @include easyedu.empty-state-positive;
+  }
+
+  // K21-17: the participant list's "could not be loaded" state reuses the Kit
+  // warning notice (same recipe as the entity dialog's error state), not a raw Bootstrap alert.
+  &__sm-error {
+    margin: 0 0 0.7rem;
+  }
+
+  &__sm-error-copy {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.875rem;
+    justify-content: space-between;
+    min-inline-size: 0;
+
+    > p {
+      margin: 0;
+    }
+  }
+
+}
+
+// Icons wait for their font (js/loading_state_bootstrap.js): no missing-glyph box, same size.
+.easyedu-icon-font-pending :is(.fa, .fas, .far, .fa-solid, .fa-regular)::before,
+.easyedu-icon-font-pending .dropdown-toggle::after {
+  visibility: hidden;
+}
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  @media (max-width: 30rem) {
+    .local-groupimport-easystud__panel {
+      @include easyedu.navigation-content-clearance(24px);
+    }
+  }
+}
+
+// K21-51 "Rail-anchor" page structure (EasyEdu standard, Kit partial
+// easyedu/components/_rail-anchor.scss): navigation band (identity rail) above
+// one main content frame whose head row carries the title and the view tabs
+// (K22-09, Penpot 09.5 "Piste 3"). Id scope: Bootstrap button states and the
+// separately loaded Guide sheet must not override the Kit rail.
+#local-groupimport-easystud {
+  @include easyedu.rail-anchor-page(64rem);
+
+  // Kit class, not the shared __navigation wrapper: the page-CSS router would
+  // otherwise also ship these Student Management rules to Mass Import.
+  .easyedu-rail-anchor__rail {
+    @include easyedu.navigation-identity-rail(64rem);
+  }
+
+  // K22-21: never keep the rail skeleton past the page loading.
+  &:is([data-easystud-loading-state="ready"], [data-easystud-loading-state="degraded"]) .easyedu-rail-anchor__rail {
+    @include easyedu.navigation-rail-skeleton-settled;
+  }
+
+  .local-groupimport-easystud__layout-mode-group {
+    // The tabs keep Bootstrap `.btn-outline-*` classes (host-forced paint, K23-84).
+    @include easyedu.view-tabs($legacy-priority: true);
+  }
+}

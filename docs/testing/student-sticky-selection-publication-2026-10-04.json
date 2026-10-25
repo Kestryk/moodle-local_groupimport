@@ -1,0 +1,374 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "board": "cf371b29-2e8e-8011-8008-bd2decf669f1",
+  "old": "cf371b29-2e8e-8011-8008-bd2dedadbca1",
+  "instance": "cf371b29-2e8e-8011-8008-bd5e281d5df1",
+  "component": "cf371b29-2e8e-8011-8008-bd5d83152cb3",
+  "before": [
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2dedadbca1",
+      "type": "board",
+      "name": "Composition / Sticky clear selection / One selected",
+      "x": 595,
+      "y": 11775,
+      "w": 226,
+      "h": 44,
+      "fills": [
+        {
+          "fillColor": "#ffffff",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2dedd03ce4",
+      "type": "text",
+      "name": "Selection count",
+      "x": 608,
+      "y": 11789,
+      "w": 61,
+      "h": 15,
+      "fills": [
+        {
+          "fillColor": "#5c6c7d",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e1fa6126c",
+      "type": "board",
+      "name": "EasyEdu / Buttons / Selection action / Small / Neutral outline / Default",
+      "x": 673,
+      "y": 11778,
+      "w": 144,
+      "h": 38,
+      "fills": [
+        {
+          "fillColor": "#ffffff",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e1fa65dc8",
+      "type": "board",
+      "name": "EasyEdu / Icons / Feedback and identity / circle-xmark (solid)",
+      "x": 690.46,
+      "y": 11790.76,
+      "w": 12.480000000000018,
+      "h": 12.480000000001382,
+      "fills": [],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e484ed98e",
+      "type": "group",
+      "name": "Glyph — circle-xmark / solid",
+      "x": 691.5,
+      "y": 11791.800000000001,
+      "w": 10.400000000000091,
+      "h": 10.399999999999636,
+      "fills": [],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e484ed98f",
+      "type": "rectangle",
+      "name": "base-background",
+      "x": 691.5,
+      "y": 11791.800000000001,
+      "w": 10.400000000000091,
+      "h": 10.399999999999636,
+      "fills": [],
+      "hidden": true
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e484ed990",
+      "type": "group",
+      "name": "svg-g",
+      "x": 691.5,
+      "y": 11791.800000000001,
+      "w": 10.400000000000091,
+      "h": 10.399999999999636,
+      "fills": [],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e484ed991",
+      "type": "path",
+      "name": "svg-path",
+      "x": 691.5,
+      "y": 11791.800000000001,
+      "w": 10.400000000000091,
+      "h": 10.399999999999636,
+      "fills": [
+        {
+          "fillColor": "#0b5ea8",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e484ed992",
+      "type": "path",
+      "name": "svg-path",
+      "x": 691.5,
+      "y": 11791.800000000001,
+      "w": 10.400000000000091,
+      "h": 10.399999999999636,
+      "fills": [
+        {
+          "fillColor": "#0b5ea8",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd2e1fa65dc7",
+      "type": "text",
+      "name": "Label — override in instance",
+      "x": 708.5400000000001,
+      "y": 11789.5,
+      "w": 91,
+      "h": 15,
+      "fills": [
+        {
+          "fillColor": "#5c6c7d",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "hidden": false
+    }
+  ],
+  "readback": [
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281d5df1",
+      "type": "board",
+      "name": "EasyEdu / Panels / Desktop selection recovery / Visible",
+      "x": 0,
+      "y": 0,
+      "w": 218.88,
+      "h": 43.600000000000364,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#ffffff",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "component": "cf371b29-2e8e-8011-8008-bd5d83152cb3"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281db1b9",
+      "type": "text",
+      "name": "Selection count",
+      "x": 13.799999999999955,
+      "y": 14.299999999999272,
+      "w": 61,
+      "h": 15,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5c6c7d",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "fontSize": "12.48",
+      "fontWeight": "700",
+      "component": "cf371b29-2e8e-8011-8008-bd5d83152cb3",
+      "text": "1 selected",
+      "textBounds": {
+        "x": 624.3599999999999,
+        "y": 11788.499999988078,
+        "width": 60.67499923706055,
+        "height": 15.200000762939453
+      }
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281db1ba",
+      "type": "board",
+      "name": "EasyEdu / Buttons / Selection action / Small / Neutral outline / Default",
+      "x": 84.39999999999998,
+      "y": 6.600000000000364,
+      "w": 127.08000000000004,
+      "h": 30.399999999999636,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#ffffff",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "component": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281db1bc",
+      "type": "board",
+      "name": "EasyEdu / Icons / Feedback and identity / circle-xmark (solid)",
+      "x": 93.39999999999998,
+      "y": 15.56000000000131,
+      "w": 12.480000000000018,
+      "h": 12.479999999999563,
+      "hidden": false,
+      "fills": [],
+      "component": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281dd2ba",
+      "type": "group",
+      "name": "Glyph — circle-xmark / solid",
+      "x": 94.43999999999994,
+      "y": 16.600000000000364,
+      "w": 10.400000000000091,
+      "h": 10.400000000001455,
+      "hidden": false,
+      "fills": [],
+      "component": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281dd2bb",
+      "type": "rectangle",
+      "name": "base-background",
+      "x": 94.43999999999994,
+      "y": 16.600000000000364,
+      "w": 10.400000000000091,
+      "h": 10.400000000001455,
+      "hidden": true,
+      "fills": [],
+      "component": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281dd2bc",
+      "type": "group",
+      "name": "svg-g",
+      "x": 94.43999999999994,
+      "y": 16.600000000000364,
+      "w": 10.400000000000091,
+      "h": 10.400000000001455,
+      "hidden": false,
+      "fills": [],
+      "component": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281dd2bd",
+      "type": "path",
+      "name": "svg-path",
+      "x": 94.43999999999994,
+      "y": 16.600000000000364,
+      "w": 10.400000000000091,
+      "h": 10.400000000001455,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5c6c7d",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "component": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281dd2be",
+      "type": "path",
+      "name": "svg-path",
+      "x": 94.43999999999994,
+      "y": 16.600000000000364,
+      "w": 10.400000000000091,
+      "h": 10.400000000001455,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5c6c7d",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "component": "32eadb6d-165e-803e-8008-9891f9e7f0f5"
+    },
+    {
+      "id": "cf371b29-2e8e-8011-8008-bd5e281db1bb",
+      "type": "text",
+      "name": "Label — override in instance",
+      "x": 111.48000000000013,
+      "y": 14.299999999999272,
+      "w": 91,
+      "h": 15,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5c6c7d",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "fontSize": "12.48",
+      "fontWeight": "600",
+      "component": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Clear selection",
+      "textBounds": {
+        "x": 722.3899999940396,
+        "y": 11788.512499976157,
+        "width": 90.28750610351562,
+        "height": 15.200000762939453
+      }
+    }
+  ],
+  "centreDelta": 0,
+  "contained": true,
+  "oldHidden": true,
+  "buttonHeight": 30.399999999999636,
+  "iconCentreDelta": 9.094947017729282e-13,
+  "paintGap": 5.600000000000136
+}

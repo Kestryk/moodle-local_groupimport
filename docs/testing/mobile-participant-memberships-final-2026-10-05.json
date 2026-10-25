@@ -1,0 +1,689 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "stateBoard": "8a982f17-c9c0-80e9-8008-beaaf2c3fa3b",
+  "records": [
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beaaf63bc263",
+      "name": "Composition / Participant / Samira Benali / Memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": false,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Samira Benali",
+        "samira.benali@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 186,
+          "y": 15011.600000143051,
+          "width": 92.86250305175781,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beaaf63bc264",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beaaf63bc265",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beaaf63c3b40",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beaaf933668d",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab006105c5",
+      "name": "Composition / Participant / Alice Martin / Memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": false,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Alice Martin",
+        "alice.martin@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 186,
+          "y": 15213.600000143051,
+          "width": 82.7125015258789,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab006105c6",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab006105c7",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab006105ca",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab03833017",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab0c22e50a",
+      "name": "Composition / Participant / Samira Benali / Memberships visible",
+      "w": 326,
+      "h": 282,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": true,
+        "selected": true,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Samira Benali",
+        "samira.benali@example.edu",
+        "ROLES",
+        "Teacher",
+        "GROUPS",
+        "Group A",
+        "+2",
+        "GROUPINGS",
+        "Year 2026",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 776,
+          "y": 15011.600000143051,
+          "width": 92.86250305175781,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab0c22e50b",
+          "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab0c22e50c",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab0c22e50f",
+          "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab0f4bc0c2",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab1646c13e",
+      "name": "Composition / Participant / Alice Martin / Memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": false,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Alice Martin",
+        "alice.martin@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 776,
+          "y": 15309.600000143051,
+          "width": 82.7125015258789,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab1646c13f",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab1646c140",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab1646c143",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab191902cc",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab217f3bf2",
+      "name": "Composition / Participant / Samira Benali / Memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": true,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Samira Benali",
+        "samira.benali@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 186,
+          "y": 15601.600000143051,
+          "width": 92.86250305175781,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab217f3bf3",
+          "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab217f3bf4",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab217f3bf7",
+          "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab249cd918",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab2c6fdc5c",
+      "name": "Composition / Participant / Alice Martin / Memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": true,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Alice Martin",
+        "alice.martin@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 186,
+          "y": 15803.600000143051,
+          "width": 82.7125015258789,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab2c6fdc5d",
+          "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab2c700722",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab2c700725",
+          "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab2f380370",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab379e754a",
+      "name": "Composition / Participant / Samira Benali / Memberships visible",
+      "w": 326,
+      "h": 282,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": true,
+        "selected": true,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Samira Benali",
+        "samira.benali@example.edu",
+        "ROLES",
+        "Teacher",
+        "GROUPS",
+        "Group A",
+        "+2",
+        "GROUPINGS",
+        "Year 2026",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 776,
+          "y": 15601.600000143051,
+          "width": 92.86250305175781,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab379e754b",
+          "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab379e754c",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab379e754f",
+          "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab3aa0c46c",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beab41d53bb0",
+      "name": "Composition / Participant / Alice Martin / Memberships visible",
+      "w": 326,
+      "h": 282,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": true,
+        "selected": false,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Alice Martin",
+        "alice.martin@example.edu",
+        "ROLES",
+        "Teacher",
+        "GROUPS",
+        "Group A",
+        "+2",
+        "GROUPINGS",
+        "Year 2026",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 776,
+          "y": 15899.600000143051,
+          "width": 82.7125015258789,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab41d555dc",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab41d555dd",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab41d555e0",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beab455ff38c",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beac1a09cbf3",
+      "name": "Composition / Participant / Samira / Mobile resting memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": false,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Samira Benali",
+        "samira.benali@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 2722,
+          "y": 5200.500000143051,
+          "width": 92.86250305175781,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1a09cbf4",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a39",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a3c",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1a0a2a4b",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-beac1ad73180",
+      "name": "Composition / Participant / Alice / Mobile resting memberships hidden",
+      "w": 326,
+      "h": 186,
+      "state": {
+        "mobileOnly": true,
+        "membershipsVisible": false,
+        "selected": false,
+        "roleProfilePreserved": true,
+        "desktopUnchanged": true
+      },
+      "texts": [
+        "Alice Martin",
+        "alice.martin@example.edu",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 2722,
+          "y": 5402.500000143051,
+          "width": 82.7125015258789,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1ad73181",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1ad73182",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1ad73185",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beac1ad73194",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-bead55cb2efa",
+      "name": "Composition / Tablet Participant / Alice / Sole selected memberships visible",
+      "w": 680,
+      "h": 282,
+      "state": {
+        "selected": true,
+        "membershipsVisible": true,
+        "mobileOnly": true
+      },
+      "texts": [
+        "Alice Martin",
+        "alice.martin@example.edu",
+        "AM",
+        "ROLES",
+        "Teacher",
+        "GROUPS",
+        "Group A",
+        "Group 2",
+        "+1",
+        "GROUPINGS",
+        "Year 2026",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 248,
+          "y": 5183.600000143051,
+          "width": 82.7125015258789,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2efb",
+          "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead55cb2efc",
+          "component": "e5bf882d-be5b-8059-8008-982e7f285e14"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beada781cb2d",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beada7fb0db0",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        }
+      ]
+    },
+    {
+      "id": "8a982f17-c9c0-80e9-8008-bead56a2f227",
+      "name": "Composition / Tablet Participant / Samira / Memberships hidden",
+      "w": 680,
+      "h": 186,
+      "state": {
+        "selected": false,
+        "membershipsVisible": false,
+        "mobileOnly": true
+      },
+      "texts": [
+        "Samira Benali",
+        "samira.benali@example.edu",
+        "SB",
+        "ROLES",
+        "Teacher",
+        "PROGRAMME",
+        "Programme — Design"
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "title": {
+        "size": "14",
+        "weight": "700",
+        "color": "#264861",
+        "paint": {
+          "x": 248,
+          "y": 5481.600000143051,
+          "width": 92.86250305175781,
+          "height": 16.799999237060547
+        }
+      },
+      "headerDelta": 0,
+      "overflow": [],
+      "roots": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a2f228",
+          "component": "2b5216d9-06a9-80a1-8008-9cf4785fb105"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bead56a2f229",
+          "component": "e5bf882d-be5b-8059-8008-982e7eb40b84"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beadab4f3de1",
+          "component": "16efa6a5-be95-808f-8008-98eada4dab16"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-beadabc80617",
+          "component": "16efa6a5-be95-808f-8008-98eb989c1cb6"
+        }
+      ]
+    }
+  ],
+  "localMasters": 0,
+  "stage": "settled-canonical-title-successor",
+  "nativeGate": "pending"
+}

@@ -1,0 +1,342 @@
+// EasyEdu data tables, preview reports and status rows.
+
+@use "typography";
+@use "../tones";
+
+@mixin data-table {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-card-radius);
+  box-shadow: var(--easyedu-card-shadow);
+  overflow: hidden;
+  width: 100%;
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  th {
+    @include typography.type-eyebrow;
+
+    background: var(--easyedu-table-header-bg);
+    border-bottom: 1px solid var(--easyedu-table-row-border);
+    color: var(--easyedu-text);
+    padding: 0.62rem 0.7rem;
+  }
+
+  td {
+    @include typography.type-body;
+
+    border-bottom: 1px solid var(--easyedu-table-row-border);
+    color: var(--easyedu-text-muted);
+    padding: 0.58rem 0.7rem;
+    vertical-align: top;
+  }
+
+  tbody tr:hover {
+    background: var(--easyedu-table-row-hover);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+@mixin table-scroll-shell {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-card-radius);
+  position: relative;
+  width: 100%;
+}
+
+@mixin data-table-surface {
+  background: var(--easyedu-surface);
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+
+  thead th {
+    @include typography.type-eyebrow;
+
+    background:
+      linear-gradient(110deg, color-mix(in srgb, var(--easyedu-primary-soft) 42%, #fff 58%),
+        color-mix(in srgb, var(--easyedu-accent-soft) 20%, #fff 80%));
+    border-bottom: 1px solid var(--easyedu-table-row-border);
+    color: color-mix(in srgb, var(--easyedu-text) 88%, var(--easyedu-text-muted) 12%);
+  }
+
+  tbody td {
+    @include typography.type-body;
+
+    border-bottom: 1px solid var(--easyedu-table-row-border);
+    transition: background-color 150ms ease, border-color 150ms ease;
+  }
+
+  tbody tr:last-child > td {
+    border-bottom: 0;
+  }
+
+  tbody tr:hover > td {
+    background-color: color-mix(in srgb, var(--easyedu-table-row-hover) 72%, transparent 28%);
+  }
+
+  tbody tr:focus-within > td {
+    background-color: color-mix(in srgb, var(--easyedu-primary-soft) 42%, transparent 58%);
+  }
+}
+
+// Keeps dense administration table headings legible without splitting labels
+// in the middle of words. Consumers remain responsible for providing a
+// horizontal scroll shell when the complete table cannot fit its viewport.
+@mixin stable-table-header {
+  thead th {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    line-height: 1.2;
+    overflow-wrap: normal;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-break: normal;
+  }
+}
+
+@mixin semantic-table-surface($variant: primary) {
+  $variant: tones.tone-name($variant);
+  @include data-table-surface;
+
+  @if $variant == success {
+    --easyedu-table-semantic-border: #{tones.tone(success, border)};
+    --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-success);
+  } @else if $variant == warning {
+    --easyedu-table-semantic-border: #{tones.tone(warning, border)};
+    --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-warning);
+  } @else if $variant == danger {
+    --easyedu-table-semantic-border: #{tones.tone(danger, border)};
+    --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-danger);
+  } @else {
+    --easyedu-table-semantic-border: #{tones.tone(primary, border)};
+    --easyedu-table-semantic-rail: var(--easyedu-semantic-rail-primary);
+  }
+
+  border-top: 0.22rem solid var(--easyedu-table-semantic-border);
+}
+
+@mixin sticky-data-table($top: 0) {
+  @include data-table-surface;
+
+  thead th {
+    position: sticky;
+    top: $top;
+    z-index: 3;
+  }
+}
+
+@mixin table-locked-row {
+  cursor: default;
+
+  > td {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 0.42rem,
+      color-mix(in srgb, var(--easyedu-text-muted) 3.5%, transparent) 0.42rem,
+      color-mix(in srgb, var(--easyedu-text-muted) 3.5%, transparent) 0.72rem
+    );
+  }
+}
+
+@mixin table-status-row($variant) {
+  // error is the historical name of the danger tone (../_tones.scss).
+  @if $variant == danger { $variant: error; }
+  @if $variant == success {
+    background: var(--easyedu-table-success-bg);
+  } @else if $variant == warning {
+    background: var(--easyedu-table-warning-bg);
+  } @else if $variant == error {
+    background: var(--easyedu-table-error-bg);
+  } @else {
+    background: var(--easyedu-table-row-hover);
+  }
+}
+
+@mixin preview-table {
+  @include data-table;
+
+  .easyedu-table__row--success {
+    @include table-status-row(success);
+  }
+
+  .easyedu-table__row--warning {
+    @include table-status-row(warning);
+  }
+
+  .easyedu-table__row--error {
+    @include table-status-row(error);
+  }
+}
+
+@mixin table-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+@mixin report-summary-grid($columns: 2) {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  margin-bottom: 0.95rem;
+}
+
+@mixin report-summary-item($background: var(--easyedu-surface-soft), $border: var(--easyedu-card-border), $text: var(--easyedu-text)) {
+  @include typography.type-body;
+
+  align-items: center;
+  background: $background;
+  border: 1px solid $border;
+  border-radius: 0.85rem;
+  color: $text;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.7rem 0.8rem;
+
+  strong {
+    // Counts share the report's body scale, with emphasis rather than a
+    // larger heading role. Keep the semantic status colour supplied above.
+    font-size: inherit;
+    font-weight: var(--easyedu-font-weight-semibold);
+    line-height: inherit;
+  }
+}
+
+@mixin report-title($color: var(--easyedu-text-muted)) {
+  @include typography.type-eyebrow;
+
+  color: $color;
+  margin: 1rem 0 0.45rem;
+}
+
+@mixin report-list {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #e1e9f0;
+    border-radius: 0.72rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    line-height: 1.35;
+    padding: 0.62rem 0.72rem;
+  }
+
+  .fa {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.7rem;
+    height: 1.25rem;
+    justify-content: center;
+    margin-top: 0.05rem;
+    width: 1.25rem;
+  }
+}
+
+@mixin preview-notice($color: var(--easyedu-primary)) {
+  align-items: flex-start;
+  background:
+    radial-gradient(circle at 2rem 1.5rem, color-mix(in srgb, #{$color} 8%, transparent), transparent 7rem),
+    linear-gradient(180deg, #f7fbff 0%, #eef6fc 100%);
+  border: 1px solid color-mix(in srgb, #{$color} 16%, #d7e5f2 84%);
+  border-radius: 0.85rem;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 0.85rem;
+
+  > .fa {
+    align-items: center;
+    background: color-mix(in srgb, #{$color} 10%, #fff 90%);
+    border: 1px solid color-mix(in srgb, #{$color} 16%, #d4e4f2 84%);
+    border-radius: 0.75rem;
+    color: $color;
+    display: inline-flex;
+    height: 2.2rem;
+    justify-content: center;
+    width: 2.2rem;
+  }
+
+  strong {
+    color: var(--easyedu-text);
+    display: block;
+    font-weight: 720;
+    margin-bottom: 0.15rem;
+  }
+
+  p {
+    color: var(--easyedu-text-muted);
+    line-height: 1.42;
+  }
+}
+
+@mixin preview-toolbar {
+  align-items: center;
+  background: var(--easyedu-surface-soft);
+  border: 1px solid #e3eaf2;
+  border-radius: 0.85rem;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: auto minmax(16rem, 1fr) auto;
+  padding: 0.72rem;
+}
+
+@mixin preview-table-wrap {
+  border: 1px solid #dce6ef;
+  border-radius: 0.9rem;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+// Shared geometry for compact and multiline status labels inside data tables.
+// The fit-content block centres itself in its cell, while the inline padding
+// and text alignment keep wrapped validation messages clear of the pill edge.
+@mixin status-label-layout {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  inline-size: fit-content;
+  justify-content: center;
+  margin-inline: auto;
+  max-inline-size: 100%;
+  min-block-size: 1.75rem;
+  overflow-wrap: anywhere;
+  padding: 0.375rem 0.75rem;
+  text-align: center;
+  white-space: normal;
+}
+
+@mixin preview-status($background, $text) {
+  @include status-label-layout;
+
+  background: $background;
+  border-radius: 999px;
+  color: $text;
+  font-size: 0.74rem;
+  font-weight: 650;
+  line-height: 1.25;
+}

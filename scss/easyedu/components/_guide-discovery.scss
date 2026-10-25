@@ -1,0 +1,2087 @@
+// Opt-in presentation for the Guide handoff. Include after guide-shell and
+// guide-rich-navigation on the same root. Existing engine hooks are retained.
+@use "typography";
+@use "text-fields";
+@use "textareas";
+@use "buttons";
+@use "../foundation-classes" as foundation;
+@use "modals";
+@use "cards";
+@use "card-actions";
+@use "responsive";
+@use "overlays";
+@use "menus";
+@use "feedback";
+@use "forms";
+@use "animations";
+@use "focus";
+@use "tooltips";
+@use "../dialog-palette-classes" as palette;
+@use "guide-specimen";
+@use "guide-mass-import";
+
+// Visually hidden, still in the accessibility tree (accessible name stays complete).
+@mixin guide-visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// A teaching scene composes real card primitives, not a separate visual family.
+@mixin discovery-card($identity) {
+  @include cards.object-card($identity);
+  display: flex;
+  position: relative;
+  align-items: center;
+  min-width: 0;
+  min-height: 4.75rem;
+  padding: 1rem;
+  border-left-width: 1px;
+  border-inline-start: var(--easyedu-identity-border-width) solid $identity;
+  .easyedu-guide-scene__identity {
+    position: absolute;
+    inset-inline-start: calc(var(--easyedu-identity-border-width) * -1);
+    inset-block: 0;
+    width: var(--easyedu-identity-border-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.75rem;
+  }
+}
+
+@mixin guide-discovery-shell {
+  // A compact Guide is portalled outside the product's easyedu-ui ancestor.
+  // Its inert search illustrations still consume the canonical Search field.
+  @media (max-width: 64rem) {
+    .easyedu-guide-spec__surface > .easyedu-search-field {
+      @include forms.search-field;
+      box-sizing: border-box;
+      min-inline-size: 0;
+      > input {
+        background: transparent;
+        box-sizing: border-box;
+        inline-size: 100%;
+      }
+    }
+  }
+
+  // Long explanatory copy has a comfortable reading measure without narrowing
+  // the illustrated scene, cards, controls or recap. Consumers can override
+  // the token for an intentionally narrower Guide host.
+  --easyedu-guide-reading-measure: 38rem;
+
+  // K17-24: every element that carries a bubble, and both kinds of numbered
+  // slide navigation (previous / next arrows and pills), shows the hand cursor.
+  [data-easyedu-guide-bubble],
+  .easyedu-guide-nav-arrow,
+  .easyedu-guide-nav-item { cursor: pointer; }
+  .easyedu-guide-nav-arrow:disabled { cursor: default; }
+
+  --easyedu-guide-font-size-control: 0.78rem;
+  --easyedu-guide-font-size-body: 0.88rem;
+  // Matches the24px safety-note clearance in paired Introduction providers.
+  --easyedu-guide-introduction-trailing-clearance: 1.5rem;
+  --easyedu-guide-modal-width: 76.25rem;
+  --easyedu-guide-modal-height: min(50rem, calc(100dvh - 3rem));
+  --easyedu-guide-modal-max-height: calc(100dvh - 3rem);
+  --easyedu-guide-modal-min-height: 0;
+  --easyedu-guide-target-background: var(--easyedu-surface);
+  --easyedu-guide-target-border: var(--easyedu-border);
+  --easyedu-guide-target-color: var(--easyedu-primary);
+  --easyedu-guide-target-hover-background: var(--easyedu-primary-soft);
+  --easyedu-guide-target-hover-border: var(--easyedu-primary);
+  --easyedu-guide-target-hover-color: var(--easyedu-primary);
+
+  .easyedu-guide-modal {
+    align-items: center;
+    padding: max(1.5rem, env(safe-area-inset-top)) max(2rem, env(safe-area-inset-right))
+      max(1.5rem, env(safe-area-inset-bottom)) max(2rem, env(safe-area-inset-left));
+  }
+
+  .easyedu-guide-modal__dialog {
+    @include typography.type-ui-base;
+    // A desktop navigation host may use nowrap for its destinations. The
+    // reading dialog must not inherit that single-line chrome policy.
+    white-space: normal;
+    width: 100%;
+    min-width: 0;
+    height: var(--easyedu-guide-modal-height);
+    max-height: var(--easyedu-guide-modal-max-height);
+    max-width: var(--easyedu-guide-modal-width);
+    border-radius: 1rem;
+  }
+
+  // GS10 / T039 (accorded 13/10): one sticky common footer. The slide's
+  // "Show in interface" command docks on its left as the tertiary action,
+  // then Previous / Next on the right (reading and Tab order = visual order).
+  // Rhythm 12/24 and 38px Kit controls (AUDIT-GUIDE-RYTHME-2026-10-15).
+  // K17-20: the reading count and the docked command are two groups, so they
+  // are separated by the Kit gap (16px) and not by the 8px action gap.
+  .easyedu-guide-modal__footer {
+    column-gap: var(--easyedu-gap);
+    row-gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .easyedu-guide-interface-cue {
+    &[hidden] { display: none; }
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    min-width: 0;
+
+    .easyedu-guide-slide__show {
+      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+      @include buttons.button-size(small);
+      gap: var(--easyedu-action-icon-gap);
+      // Emitted after the mixin's own blocks: 38px like Previous/Next.
+      & { max-width: 100%; min-height: 2.375rem; padding-block: 0; padding-inline: 0.75rem; }
+      .fa { color: var(--easyedu-accent); }
+    }
+  }
+
+  .easyedu-guide-interface-return {
+    width: min(42rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    gap: 1rem;
+    .easyedu-guide-interface-return__text {
+      strong { @include typography.type-control-label; color: var(--easyedu-primary-strong); }
+      span { @include typography.type-caption; overflow-wrap: anywhere; white-space: normal; }
+    }
+  }
+  .easyedu-guide-interface-return__button,
+  .easyedu-guided-panel__return {
+    @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+    @include buttons.button-size(small);
+    gap: var(--easyedu-action-icon-gap);
+    .fa { color: var(--easyedu-accent); }
+  }
+  // K17-68 / K17-70: the footer actions share one touch height and stay inside the frame (they wrap onto a
+  // second row, full width on phones). Defined next to the Kit action it sizes, so the specificity matches.
+  .easyedu-guided-panel__footer > .easyedu-guided-panel__return { max-width: 100%; min-width: 0; }
+  @media (max-width: 64rem) {
+    .easyedu-guided-panel__footer > .easyedu-guided-panel__return { min-height: 2.75rem; }
+  }
+  @media (max-width: 40rem), (max-height: 32rem) {
+    .easyedu-guided-panel__footer > :is(.easyedu-guide-utility, .easyedu-guided-panel__return) {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+  }
+  // Both closes keep `.btn-outline-secondary` (host-forced paint, K23-84).
+  .easyedu-guide-interface-return__dismiss,
+  .easyedu-guided-panel__close { @include buttons.close-button($legacy-priority: true); }
+  .easyedu-guided-panel__minimize { @include buttons.icon-button($size: small); }
+  .easyedu-guided-panel__header strong { @include typography.type-control-label; color: var(--easyedu-text); }
+  .easyedu-guided-panel__header > div:first-child > span { @include typography.type-caption; text-transform: none; letter-spacing: 0; }
+  .easyedu-guided-panel__step strong { @include typography.type-control-label; font-size: 0.78rem; }
+  .easyedu-guided-panel__step small { @include typography.type-caption; }
+
+  .easyedu-guide-modal__title-wrap {
+    @include modals.dialog-heading;
+    flex-direction: row;
+    text-align: start;
+    > div {
+      display: grid;
+      gap: 0.125rem;
+    }
+
+    .easyedu-guide-modal__eyebrow {
+      @include typography.type-eyebrow;
+
+      color: var(--easyedu-primary);
+      margin: 0;
+    }
+
+    h2 {
+      @include typography.type-modal-title;
+      color: var(--easyedu-card-identity-title-color);
+      margin: 0;
+      text-transform: none;
+      text-align: start;
+    }
+
+    p {
+      @include typography.type-caption;
+      margin: 0.1875rem 0 0;
+      text-align: start;
+    }
+  }
+
+  .easyedu-guide-modal__title-short { display: none; }
+  .easyedu-guide-modal__header {
+    @include modals.dialog-header;
+    &.easyedu-dialog-header-palette--primary { @include palette.primary-header-paint; }
+    // C-G1: Guide window rhythm 16/24 (the dialog-header mixin gives 12/20).
+    & { padding: 1rem 1.5rem; gap: 0.75rem; }
+  }
+
+  .easyedu-guide-modal__close { @include buttons.close-button; }
+
+  .easyedu-guide-modal__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+  .easyedu-guide-introduction {
+    min-width: 0;
+    padding-block-end: var(--easyedu-guide-introduction-trailing-clearance);
+    // Portalled Guides can inherit nowrap from their Navigation launcher.
+    // Explanatory copy owns wrapping, independently of the host action skin.
+    white-space: normal;
+    &__topics {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    &__topic {
+      min-width: 0;
+      // One reading row per concept; examples never interrupt explanatory copy.
+      display: grid;
+      grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+      align-items: start;
+      gap: 0.75rem 1.5rem;
+      padding-block-end: 1.5rem;
+      border-block-end: 1px solid var(--easyedu-border);
+      &[hidden] { display: none; }
+      dt {
+        @include typography.type-control-label;
+        display: flex;
+        align-items: center;
+        gap: var(--easyedu-action-icon-gap);
+        color: var(--easyedu-card-identity-title-color);
+        .fa { flex: 0 0 1rem; text-align: center; color: var(--easyedu-primary); }
+      }
+      dd {
+        @include typography.type-caption;
+        min-width: 0;
+        margin: 0;
+        color: var(--easyedu-text-muted);
+        overflow-wrap: anywhere;
+      }
+    }
+    // Card/action lessons opt in explicitly. The six first-slide specimens
+    // retain their established two-lane anatomy instead of becoming dense
+    // three-column tiles. A container query follows the actual Guide reading
+    // lane, so a constrained dialog keeps the one-column mobile order.
+    &--lesson-reading {
+      container-type: inline-size;
+
+      // K17-35 (Penpot "Trois explications allégées et séparées"): three equal fluid columns split by
+      // 1 px vertical rules; stacked with horizontal rules in a compact reading lane. Heights follow the
+      // translated copy (no fixed height, no truncation). The 52 rem container query follows the lane.
+      .easyedu-guide-introduction__topics {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        margin-block: 1rem 0.75rem;
+      }
+
+      .easyedu-guide-introduction__topic {
+        grid-template-columns: minmax(0, 1fr);
+        align-content: start;
+        gap: 0.75rem;
+        padding: 1rem;
+        border-block-end: 0;
+
+        + .easyedu-guide-introduction__topic { border-block-start: 1px solid var(--easyedu-card-border); }
+
+        // K17-60: same type scale as the other Guide texts (base dt = control label, dd = caption).
+        dt {
+          align-items: center;
+          gap: 0.5rem;
+          color: var(--easyedu-card-title-ink);
+        }
+      }
+
+      .easyedu-guide-introduction__note {
+        padding-inline: 1rem;
+      }
+
+      @container (min-width: 52rem) {
+        .easyedu-guide-introduction__topics {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .easyedu-guide-introduction__topic {
+          padding: 1.5rem;
+          + .easyedu-guide-introduction__topic {
+            border-block-start: 0;
+            border-inline-start: 1px solid var(--easyedu-card-border);
+          }
+        }
+        .easyedu-guide-introduction__note { padding-inline: 1.5rem; }
+      }
+    }
+    &__note { @include typography.type-caption; color: var(--easyedu-text-muted); margin: 0; }
+    // Read-only teaching specimens have no controller attributes or tab stops.
+    // They share the real control primitives without pretending to perform actions.
+    &__specimen {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+    &__specimen-caption { @include typography.type-caption; color: var(--easyedu-text-muted); }
+    &__controls { display: inline-flex; align-items: center; gap: var(--easyedu-action-icon-gap); }
+    // Topics with a specimen keep heading/copy together in the reading lane.
+    &__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      > dt, > dd:not(.easyedu-guide-introduction__specimen) { grid-column: 1; }
+      > .easyedu-guide-introduction__specimen {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+      }
+    }
+    &__highlight {
+      @include typography.type-control-label;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--easyedu-action-icon-gap);
+      min-width: 0;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary);
+      > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+    }
+    &__navigation.easyedu-guide-nav {
+      display: flex;
+      padding: 0;
+      width: 100%;
+      min-width: 0;
+      pointer-events: none;
+      // The sample pill carries the same Kit bubble and hand cursor as the real ones.
+      .easyedu-guide-nav-item { max-width: 100%; pointer-events: auto; }
+    }
+    &__action {
+      @include buttons.selection-action(primary, $legacy-priority: true);
+      pointer-events: none;
+      > span:last-child { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+    }
+    &__highlight {
+      background: var(--easyedu-surface);
+      border-color: var(--easyedu-primary);
+      outline: 2px solid var(--easyedu-primary-soft);
+      outline-offset: 2px;
+    }
+    &__checklist {
+      display: grid;
+      gap: 0.5rem;
+      min-width: 0;
+      width: 100%;
+      margin: 0;
+      padding: 0.625rem;
+      list-style: none;
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: 0.5rem; align-items: center; }
+      .fa { text-align: center; color: var(--easyedu-primary); }
+    }
+    @media (max-width: 47.999rem) {
+      &__topic, &__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic {
+        grid-template-columns: minmax(0, 1fr);
+        > dt, > dd { grid-column: 1; }
+        > .easyedu-guide-introduction__specimen { grid-column: 1; grid-row: auto; margin-block-start: 0.5rem; }
+      }
+    }
+  }
+  .easyedu-guide-modal__fullscreen { @include buttons.close-button($glyph: false); }
+  // The vector inherits the existing Small control's density and state colour.
+  // No icon-font weight override or consumer compensation is necessary.
+  .easyedu-guide-fullscreen-glyph {
+    display: block;
+    inline-size: 1em;
+    block-size: 1em;
+    flex: none;
+  }
+  .easyedu-guide-modal:fullscreen {
+    background: var(--easyedu-surface);
+    padding: 0;
+    // Native Moodle retains the document scrollbar layout width. Fullscreen
+    // belongs to the viewport, not that narrower body containing block.
+    width: 100vw;
+    height: 100dvh;
+    box-sizing: border-box;
+    overflow: hidden;
+    .easyedu-guide-modal__dialog {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+  @media (max-width: 63.999rem) {
+    .easyedu-guide-modal__fullscreen { display: none; }
+  }
+
+  // K19-02 is specific to Mass Import. Student Management retains the shared
+  // guide-visuals step labels; resetting both Guide roots removed them (K21-04).
+  &.easyedu-guide--mass-import .easyedu-guide-guided-card__steps li {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .easyedu-guide-guided-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    max-width: none;
+    box-shadow: none;
+    background: var(--easyedu-accent-soft);
+    border: 1px solid var(--easyedu-border);
+    gap: 1rem;
+    align-items: start;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    &__icon { width: 2.75rem; height: 2.75rem; font-size: 1.5rem; }
+    &__body {
+      align-items: start;
+      text-align: start;
+      gap: 0.375rem;
+      > small { @include typography.type-caption; color: var(--easyedu-accent); }
+      > strong { @include typography.type-control-label; font-size: 0.88rem; }
+      > span { @include typography.type-caption; }
+    }
+    &__steps {
+      display: flex;
+      flex-wrap: wrap;
+      counter-reset: discovery-step;
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      gap: 0.5rem 1rem;
+      li {
+        @include typography.type-caption;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        white-space: normal;
+        &::before {
+          counter-increment: discovery-step;
+          content: counter(discovery-step);
+          display: grid;
+          place-items: center;
+          flex: 0 0 0.9375rem;
+          width: 0.9375rem;
+          height: 0.9375rem;
+          border-radius: 50%;
+          background: var(--easyedu-accent);
+          color: white;
+          font-size: 0.625rem;
+        }
+      }
+    }
+    .easyedu-guide-slide__start {
+      @include buttons.selection-action($solid: true, $legacy-priority: true);
+      grid-column: 3;
+      width: auto;
+      justify-self: end;
+      min-height: 2.375rem;
+      font-size: 0.78rem;
+      align-self: center;
+      height: auto;
+    }
+    &__progress {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.375rem 0.75rem;
+      padding-block-start: 0.625rem;
+      border-block-start: 1px solid var(--easyedu-border);
+      > small { @include typography.type-caption; color: var(--easyedu-text-muted); }
+    }
+    &__reset {
+      // Unlike an action inside a bordered selection capsule, this standalone
+      // path recovery needs its own visible canonical neutral border.
+      @include buttons.selection-action(neutral, $legacy-priority: true);
+      & { @include buttons.button-size(small); }
+    }
+    [data-easyedu-guide-path-status] {
+      grid-column: 1 / -1;
+      min-width: 0;
+      &:empty { display: none; }
+    }
+    // K22-15: the course lacks a prerequisite of this path. Same striped locked surface
+    // as the locked checklist item; the Kit warning notice names the missing data and
+    // links the path that creates it. Geometry and responsive flow stay unchanged.
+    &.is-prerequisite-locked {
+      background: repeating-linear-gradient(-45deg, transparent 0 0.5rem,
+        color-mix(in srgb, var(--easyedu-text-muted) 5%, transparent) 0.5rem 1rem), var(--easyedu-surface-soft);
+      border-color: var(--easyedu-card-border);
+      border-style: dashed;
+      .easyedu-guide-guided-card__icon {
+        background: var(--easyedu-surface);
+        box-shadow: inset 0 0 0 1px var(--easyedu-card-border);
+        color: var(--easyedu-text-muted);
+      }
+      .easyedu-guide-guided-card__body > small { color: var(--easyedu-text-muted); }
+      .easyedu-guide-guided-card__steps li::before { background: var(--easyedu-text-muted); }
+      .easyedu-guide-slide__start:disabled {
+        background: var(--easyedu-surface-soft) !important;
+        border-color: var(--easyedu-card-border) !important;
+        color: var(--easyedu-text-muted) !important;
+      }
+    }
+    &__prerequisite {
+      &[hidden] { display: none; }
+      > .easyedu-notice { margin-block-start: 0.5rem; }
+    }
+    &__prerequisite-link {
+      color: var(--easyedu-notice-warning-ink);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      &[hidden] { display: none; }
+      &:hover { color: var(--easyedu-notice-warning-ink); text-decoration-thickness: 2px; }
+      &:focus-visible { border-radius: 0.25rem; outline: 2px solid var(--easyedu-control-focus-border); outline-offset: 2px; }
+    }
+  }
+
+  // K18-16: the first-visit welcome is the Kit V3 banner
+  // (components/_v3-banner.scss), anchored to the launcher at every width.
+  .easyedu-guide-welcome {
+    &[hidden] { display: none; }
+  }
+
+  // K20-02: the notice and navigation share the dialog's final auto row.
+  // Natural wrapping grows the notice upward; Previous/Next keep their 64px row.
+  .easyedu-guide-modal__footer-stack { min-width: 0; }
+  .easyedu-guide-modal__resume-slot {
+    &:empty { display: none; }
+    > .easyedu-guide-resume {
+      position: static;
+      width: auto;
+      max-width: 100%;
+      margin: 0;
+      border-inline: 0;
+      border-radius: 0;
+      > span { min-width: 0; overflow-wrap: anywhere; }
+    }
+  }
+
+  .easyedu-guide-resume {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    position: fixed;
+    inset-block-end: 1rem;
+    inset-inline-end: 1rem;
+    width: min(30rem, calc(100vw - 2rem));
+    padding: 0.75rem;
+    border: 1px solid var(--easyedu-border);
+    border-radius: var(--easyedu-radius-lg);
+    background: var(--easyedu-surface);
+    z-index: 1070;
+    > span { @include typography.type-caption; flex: 1 1 10rem; }
+    .btn { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); }
+    .btn-primary { @include buttons.selection-action($solid: true, $legacy-priority: true); }
+    &[hidden] { display: none; }
+  }
+
+  .easyedu-guide-modal__footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .easyedu-guide-modal__hero-icon {
+    @include modals.dialog-heading-icon;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .easyedu-guide-nav .easyedu-guide-nav-item {
+    @include typography.type-control-label;
+    flex: 0 0 11.875rem;
+    min-width: 0;
+    min-height: 3rem;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: var(--easyedu-guide-font-size-control);
+
+    &.is-active {
+      background: var(--easyedu-accent-soft);
+      border-color: var(--easyedu-accent);
+      color: var(--easyedu-accent);
+      transform: none;
+    }
+  }
+
+  .easyedu-guide-nav-copy {
+    // K1: fill the pill so the Guide badge sits on its right inner edge.
+    flex: 1 1 auto;
+    min-width: 0;
+
+    > span {
+      overflow: visible;
+      overflow-wrap: anywhere;
+      text-overflow: clip;
+      white-space: normal;
+    }
+
+    // K17-27: the French rendering is the reference for every language. The
+    // title stays on one line (ellipsis, full text in the Guide bubble) so a
+    // longer translation never makes the pills taller or wraps their text.
+    > .easyedu-guide-nav-item__label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      // The number, separator and title spans keep the one-line rule.
+      span { overflow-wrap: normal; white-space: inherit; }
+    }
+  }
+
+  .easyedu-guide-nav-icon { width: 1.625rem; height: 1.625rem; font-size: 0.875rem; }
+  .easyedu-guide-nav-scroll-button { width: 1.875rem; height: 1.875rem; border-radius: 50%; }
+  .easyedu-guide-modal__progress {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    background: var(--easyedu-surface);
+  }
+  // The existing footer slot carries the reading count. Keep the top track,
+  // without a second visible label or another controller/storage contract.
+  .easyedu-guide-modal__progress-label { @include typography.type-caption; display: none; order: -1; }
+  .easyedu-guide-modal__progress-track {
+    height: 0.25rem;
+    width: 100%;
+    // The track belongs to the same product accent as its reading indicator.
+    background: var(--easyedu-accent-soft);
+    border-color: color-mix(in srgb, var(--easyedu-accent) 22%, var(--easyedu-surface) 78%);
+  }
+  .easyedu-guide-modal__footer { flex-direction: row; }
+  .easyedu-guide-modal__step-count {
+    @include typography.type-caption;
+    // Penpot20px counter track shares the exact footer centre of its controls.
+    line-height: 1.25rem;
+    display: block;
+    flex: 0 0 auto;
+    min-width: 0;
+    order: 0;
+    text-align: start;
+    width: auto;
+  }
+
+  .easyedu-guide-modal__progress-bar {
+    background: var(--easyedu-accent);
+  }
+
+  .easyedu-guide-modal__body {
+    --easyedu-guide-reading-inset: 1.5rem;
+    // C-G1 (AUDIT-GUIDE-RYTHME 1.2): the Foundations scope sets 1.2; the Guide
+    // prose reads at the Kit's 1.5 inside its own scope only (cards unchanged).
+    --easyedu-line-height-body: 1.5;
+    @include typography.type-body;
+    font-size: var(--easyedu-guide-font-size-body);
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    background: var(--easyedu-surface);
+    overflow-anchor: none;
+    overscroll-behavior: contain;
+    padding: var(--easyedu-guide-reading-inset);
+  }
+
+  .easyedu-guide-slide:has([data-easyedu-guide-scene]),
+  .easyedu-guide-slide:has([data-easyedu-guide-introduction]) {
+    animation: none; // The controller owns the cancellable 110/220ms crossfade.
+    display: block;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    > .easyedu-guide-slide__icon { display: none; }
+    > div { justify-items: stretch; min-width: 0; text-align: start; }
+    // Title to text 12px (rhythm scale), not the legacy 1.05rem.
+    .easyedu-guide-slide__header { justify-content: flex-start; text-align: start; margin-bottom: 0.75rem; }
+    &[hidden] { display: none; }
+    h3 { @include typography.type-control-label; font-size: var(--easyedu-guide-font-size-body); text-align: start; }
+    // Main slide title uses the existing section hierarchy, not the body role.
+    // Keep modal headings, illustrated cards and nested topic labels unchanged.
+    .easyedu-guide-slide__header > h3 {
+      @include typography.type-section-title;
+      // Slide title 18/24 (P-G1): one step above the 16px window title. It keeps
+      // the 600 section weight and the semantic reading ink.
+      color: var(--easyedu-text);
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      text-align: start;
+    }
+    .easyedu-guide-slide__kicker {
+      @include typography.type-eyebrow;
+      color: var(--easyedu-accent);
+      font-size: 0.68rem;
+      // K1: every slide now opens on its pill chapter. Start the reading lane
+      // at the same top on all slides, 4px above the title (Guide rhythm).
+      margin-block: 0 0.25rem;
+    }
+    .easyedu-guide-slide__content,
+    .easyedu-guide-slide__content p {
+      @include typography.type-body;
+      font-size: var(--easyedu-guide-font-size-body);
+      text-align: start;
+      white-space: normal;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    // Direct explanatory prose is deliberately bounded; the scene wrapper,
+    // illustration cards, controls, topic dl and ordered recap stay full lane.
+    .easyedu-guide-slide__content > p {
+      max-inline-size: min(100%, var(--easyedu-guide-reading-measure));
+      &:last-child { margin-block-end: 0; }
+    }
+  }
+
+  .easyedu-guide-scene {
+    @include guide-specimen.stage-panel;
+
+    [hidden] { display: none; }
+    // Scene spacing owns its direct copy only. Nested canonical notices/cards
+    // retain their own paragraph padding/margins after the Guide is portalled.
+    > p { margin-block: 0.5rem 0.75rem; }
+    &__caption, small { @include typography.type-caption; }
+    // A quiet, localized reminder that scenes are demonstrations. This remains
+    // a caption role, not a warning or a second status component.
+    &__caption-short { display: none; }
+    &__caption--safe-example {
+      display: inline-flex;
+      inline-size: fit-content;
+      max-inline-size: 100%;
+      margin: 0 0 0.75rem;
+      padding: 0.1875rem 0.5rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 999px;
+      background: var(--easyedu-surface);
+      color: var(--easyedu-text-muted);
+      overflow-wrap: anywhere;
+    }
+    &__concepts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; padding: 1rem; }
+    &__concepts > div { position: relative; min-width: 0; }
+    &__concepts > div > p { @include typography.type-caption; margin-block: 1rem; }
+    &__concepts .easyedu-guide-scene__person,
+    &__concepts .easyedu-guide-scene__card,
+    &__concepts .easyedu-guide-scene__grouping { min-height: 6.5rem; margin-block: 0; }
+    &__concept-arrow { position: absolute; inset-block-start: 2.75rem; inset-inline-end: -2rem; color: var(--easyedu-primary); font-size: 1.25rem; }
+    &__card { @include discovery-card(var(--easyedu-group-rail, var(--easyedu-accent))); }
+    &__grouping { @include discovery-card(var(--easyedu-grouping-rail, var(--easyedu-text-muted))); }
+    // Opt-in inspection composes the existing card, field, menu and token
+    // families. It is not a private consumer stylesheet or new type scale.
+    &__inspection-card {
+      @include discovery-card(var(--easyedu-group-rail, var(--easyedu-accent)));
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+      box-sizing: border-box;
+      &--grouping {
+        @include cards.object-card(var(--easyedu-grouping-rail, var(--easyedu-text-muted)));
+        border-left-width: 1px;
+        border-inline-start: var(--easyedu-identity-border-width) solid var(--easyedu-grouping-rail, var(--easyedu-text-muted));
+      }
+    }
+    &__inspection-stage { position: relative; }
+    &__inspection-header { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+    // Repeat only the child class: a second & would duplicate the dialog's
+    // outer selector and leave this flex lane inactive in the compiled host.
+    &__inspection-header .easyedu-guide-scene__card-copy { flex: 1 1 10rem; }
+    &__inspection-trigger { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); }
+    &__inspection-submit { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); }
+    &__inspection-desktop-trigger { @include card-actions.card-direct-action; }
+    &__inspection-mobile-trigger { @include responsive.mobile-card-menu-trigger; }
+    &__inspection-panel { display: grid; gap: 0.75rem; min-width: 0; }
+    &__inspection-panel textarea { @include textareas.foundation-textarea($size: small); width: 100%; resize: none; }
+    &__inspection-menu {
+      @include menus.menu-surface(small);
+      position: static;
+      width: 100%;
+      > span { @include typography.type-caption; }
+      > strong { @include menus.menu-item($size: small); }
+    }
+    &__inspection-chips {
+      @include forms.detected-token-row;
+      align-items: center;
+      > span { @include forms.detected-token; }
+      > .is-unresolved { @include forms.detected-token(error); }
+    }
+    &__example { margin-block: 1.5rem; }
+    &__person {
+      @include discovery-card(var(--easyedu-participant-rail, var(--easyedu-primary)));
+      margin-block: 0.625rem;
+      &.is-selected { background: var(--easyedu-primary-soft); border-color: var(--easyedu-primary); }
+    }
+    &__card-copy { display: grid; gap: 0.375rem; min-width: 0; }
+    // These labels describe the illustrated lanes, rather than inferring a
+    // business context from example names such as "Projet Orion".
+    &__lane-label {
+      @include typography.type-caption;
+      display: block;
+      color: var(--easyedu-text-muted);
+      font-weight: var(--easyedu-font-weight-semibold);
+      line-height: 1.2;
+    }
+    &__card-copy > strong, &__card-title > strong { @include typography.type-control-label; font-size: 0.88rem; }
+    // K17-32: the title row of an illustrated card. The pencil follows the title like on the real cards and
+    // is the Kit card direct action (same disc, same icon family).
+    &__card-title {
+      display: flex;
+      align-items: center;
+      gap: var(--easyedu-card-label-gap);
+      min-width: 0;
+      > strong { min-width: 0; overflow-wrap: anywhere; }
+      > input { @include text-fields.foundation-text-field($size: small); flex: 1 1 auto; min-width: 0; }
+    }
+    &__card-edit {
+      @include card-actions.card-direct-action;
+      &:disabled { opacity: 1; }
+    }
+    &__source-title { @include typography.type-control-label; display: block; font-size: 0.88rem; }
+    [data-guide-source-empty] { display: block; margin-block-start: 0.5rem; }
+    [data-guide-source-empty][hidden] { display: none; }
+    &__source {
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      background: var(--easyedu-surface);
+      .easyedu-guide-scene__lane-label { margin-block-end: 0.25rem; }
+    }
+    &__member { @include typography.type-caption; color: var(--easyedu-accent); }
+    &__field { display: grid; gap: 0.5rem; }
+    // Readonly illustration fields: hosts may grey readonly inputs with !important (K23-84).
+    &__field input { @include text-fields.foundation-text-field($size: small, $legacy-priority: true); width: 100%; }
+    &__creation-controls { display: grid; gap: 0.5rem; }
+    &__field { @include typography.type-control-label; font-size: 0.78rem; width: 100%; }
+    &__syntax {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-block: 1rem 0.75rem;
+      @include typography.type-caption;
+      b { color: var(--easyedu-primary); font-weight: var(--easyedu-font-weight-bold); }
+    }
+    &__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-block: 0.75rem; }
+    &__actions .btn { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); }
+    &__actions .btn-primary { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); }
+    &__utilities { display: flex; gap: 0.5rem; margin-inline-start: auto; }
+    // Translated utility labels may exceed one phone row. Keep their canonical
+    // density/gap, wrapping the candidate illustration rather than clipping it.
+    &[data-easyedu-guide-scene="inspection"] .easyedu-guide-scene__utilities {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+    }
+    &__utilities .btn {
+      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+      white-space: nowrap;
+    }
+    &__entry { display: flex; flex-wrap: wrap; margin-block: 0 1rem; }
+    &__start { @include buttons.demonstration-action; }
+    // Unified scene header composes the existing Small controls and Reading
+    // surface. The whole header owns sticky clearance, not its live child.
+    &__header {
+      display: grid;
+      gap: 0;
+      min-inline-size: 0;
+      padding: 0.5rem 0.75rem;
+      margin-block-end: 1rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.625rem;
+      background: var(--easyedu-surface);
+      position: relative;
+      inset-block-start: auto;
+      z-index: 6;
+      &[data-guide-playback-state="playing"],
+      &[data-guide-playback-state="paused"] {
+        border-color: var(--easyedu-primary);
+        position: sticky;
+        inset-block-start: calc(-1 * var(--easyedu-guide-reading-inset));
+        .easyedu-guide-scene__header-controls {
+          grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+          transition-delay: 0s, 0s, var(--easyedu-motion-slow);
+        }
+        .easyedu-guide-scene__reading { padding-block-start: 0; }
+      }
+      // K17-33 (Penpot "Fin de démonstration sobre"): a white card, success mark + two text lines on
+      // the left, the shared solid Kit action on the right. Scoped to the finished state.
+      &[data-guide-playback-state="finished"] {
+        align-items: center;
+        background: var(--easyedu-surface);
+        border: 1px solid var(--easyedu-card-border);
+        border-radius: 0.75rem;
+        box-shadow: none;
+        padding: 1rem;
+        .easyedu-guide-scene__reading { padding-block: 0; }
+        .easyedu-guide-scene__live-content {
+          align-items: center;
+          display: grid;
+          column-gap: 0.75rem;
+          grid-template-columns: 2rem minmax(0, 1fr);
+        }
+        // K17-65: one class deeper than the running-state rule (inline-block), so the mark is a centred flex disc.
+        .easyedu-guide-scene__live [data-guide-live-complete] {
+          align-items: center;
+          background: var(--easyedu-success-mark-soft);
+          border-radius: 50%;
+          color: var(--easyedu-success-mark);
+          display: inline-flex;
+          font-size: 1.25rem;
+          grid-row: 1;
+          height: 2rem;
+          justify-content: center;
+          line-height: 1;
+          margin: 0;
+          width: 2rem;
+        }
+        .easyedu-guide-scene__live [data-guide-live-complete][hidden] { display: none; }
+        [data-guide-live-copy] {
+          display: grid;
+          grid-column: 2;
+          grid-row: 1;
+          row-gap: 0.25rem;
+        }
+        // The later inline flow of the live copy would glue the two spans on one line: each is a block
+        // line, 4px apart (frames 28px apart), whatever the display of its wrapper.
+        .easyedu-guide-scene__finished-title,
+        .easyedu-guide-scene__finished-hint { display: block; }
+        .easyedu-guide-scene__finished-hint { margin-block-start: 0.25rem; }
+        .easyedu-guide-scene__finished-title {
+          color: var(--easyedu-card-title-ink);
+          font: 600 1rem/1.5 var(--easyedu-font-family-ui);
+        }
+        .easyedu-guide-scene__finished-hint {
+          color: var(--easyedu-text-muted);
+          font: 400 0.875rem/1.5 var(--easyedu-font-family-ui);
+        }
+        .easyedu-guide-scene__header-controls { align-self: center; }
+        // K18-11: Replay inherits the same solid Kit action and height as Start.
+        .easyedu-guide-scene__start { inline-size: auto; margin: 0; }
+      }
+      .easyedu-guide-scene__live {
+        display: contents;
+        // P-G4: the instruction is never truncated (no line-clamp, no CSS "…").
+        // Copy and activity dots flow inline so the dots follow the last word.
+        &-content { grid-column: 2; grid-row: 1; min-width: 0; display: block; }
+        [data-guide-live-copy] {
+          @include typography.type-body;
+          display: inline;
+          white-space: normal;
+          line-height: 1.5;
+        }
+        [data-guide-live-complete] { display: inline-block; margin-inline-end: var(--easyedu-action-icon-gap); vertical-align: middle; }
+        [data-guide-live-complete][hidden] { display: none; }
+        // type-body paints the child explicitly; finished paint cannot rely
+        // on inheriting from the display:contents live region. Keep active
+        // narration and all metrics intact, using the existing semantic roles.
+      }
+      .easyedu-guide-scene__playback[hidden] { display: none; }
+      .easyedu-guide-scene__start { @include buttons.demonstration-action; margin-inline-start: auto; }
+      .easyedu-guide-scene__start .fa { margin: 0; line-height: 1; }
+      .easyedu-guide-scene__playback { grid-column: 3; grid-row: 1; }
+    }
+    &__header-controls {
+      display: grid; grid-template-rows: 1fr; min-inline-size: 0;
+      transition: grid-template-rows var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+        visibility var(--easyedu-motion-slow);
+    }
+    // No comparison mode: narration and Start/Replay share one desktop row.
+    // The existing control collapse still owns playback entry/exit Motion.
+    &__header--single {
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 0.75rem;
+      .easyedu-guide-scene__reading { grid-column: 1; grid-row: 1; padding-block-start: 0; }
+      .easyedu-guide-scene__header-controls { grid-column: 2; grid-row: 1; }
+      .easyedu-guide-scene__start { margin-inline-start: 0; }
+      &[data-guide-playback-state="playing"], &[data-guide-playback-state="paused"] {
+        grid-template-columns: minmax(0, 1fr);
+        .easyedu-guide-scene__header-controls { grid-column: 1; inline-size: 0; }
+      }
+    }
+    &__header-controls-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; min-width: 0; min-height: 0; overflow: hidden; }
+    &__reading {
+      display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center; gap: 0.5rem; min-inline-size: 0; padding-block-start: 0.75rem;
+      transition: padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+    }
+    // K17-42: one size per level. The step caption is a caption (semibold), like the other small labels of the
+    // step block; the narration is the body role and the choice labels are control labels.
+    &__phase-caption {
+      @include typography.type-caption;
+      color: var(--easyedu-text);
+      font-weight: var(--easyedu-font-weight-semibold);
+      grid-column: 1;
+      grid-row: 1;
+    }
+    // E3 (K4): Add/Move are two Kit choice cards (native radios), not a small toggle.
+    &__modes {
+      @include forms.segmented-choice(compact);
+      inline-size: 100%;
+      margin: 0;
+      min-inline-size: 0;
+      .easyedu-segmented-choice__label { @include typography.type-control-label; }
+      .easyedu-segmented-choice__surface strong { @include typography.type-control-label; }
+      .easyedu-segmented-choice__surface small { @include typography.type-caption; }
+    }
+    @media (max-width: 40rem) {
+      // C-G3: the scene is full width (no border, 12px inner padding), so the
+      // header sits on the same edge as the rest of the scene: no negative margin.
+      // K17-46: the step block breathes on a phone. Kit padding on every side, one Kit gap between its rows
+      // (narration, then the full-width action) in the ready and finished states, and the same inner gap
+      // between the stacked controls.
+      &__header { padding: var(--easyedu-guide-scene-header-gap); }
+      &__header-controls-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--easyedu-guide-scene-header-gap);
+      }
+      &__header .easyedu-guide-scene__start { width: 100%; margin-inline-start: 0; }
+      &__reading { grid-template-columns: minmax(0, 1fr) auto; }
+      &__header .easyedu-guide-scene__live-content { grid-column: 1 / -1; grid-row: 2; }
+      // K17-46: once the step caption and the playback buttons are gone, the result line takes the first row
+      // (no empty row above it).
+      &__header[data-guide-playback-state="finished"] .easyedu-guide-scene__live-content { grid-row: 1; }
+      // K17-33: compact end card, the Replay action sits on a lower row, at the right, intrinsic width.
+      &__header[data-guide-playback-state="finished"] {
+        .easyedu-guide-scene__start { inline-size: auto; }
+        .easyedu-guide-scene__header-controls-inner { align-items: flex-end; }
+      }
+      &__header .easyedu-guide-scene__playback { grid-column: 2; grid-row: 1; }
+      &__header--single {
+        grid-template-columns: minmax(0, 1fr);
+        .easyedu-guide-scene__reading {
+          grid-column: 1;
+          grid-row: 1;
+          padding-block-end: var(--easyedu-guide-scene-header-gap);
+        }
+        .easyedu-guide-scene__header-controls { grid-column: 1; grid-row: 2; inline-size: auto; }
+        &[data-guide-playback-state="playing"], &[data-guide-playback-state="paused"] {
+          .easyedu-guide-scene__reading { padding-block-end: 0; }
+        }
+      }
+    }
+    &__actions .btn[data-guide-scene-command="replay"] {
+      @include buttons.demonstration-action;
+    }
+    &__actions .btn[data-guide-scene-command="add"],
+    &__actions .btn[data-guide-scene-command="move"] {
+      @include buttons.selection-action($legacy-priority: true);
+      &[aria-pressed="true"] { @include buttons.selection-action($solid: true, $legacy-priority: true); }
+    }
+    &__result-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 0.625rem; margin-block: 1rem; @include typography.type-caption; }
+    &__intro {
+      @include typography.type-caption;
+      min-width: 0;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      margin-block: 0 1rem;
+      line-height: 1.5;
+    }
+    &__live {
+      @include typography.type-body;
+      display: flex;
+      align-items: center;
+      color: var(--easyedu-text);
+      font-size: 0.78rem;
+      font-weight: var(--easyedu-font-weight-semibold);
+      min-height: 3rem;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--easyedu-primary);
+      gap: var(--easyedu-action-icon-gap);
+      border-radius: 0.625rem;
+      background: var(--easyedu-surface);
+      position: sticky;
+      // Sticky offsets use the padded scrollport's content edge. Compensate
+      // its inset, not the scene/card padding or the Moodle page.
+      inset-block-start: calc(-1 * var(--easyedu-guide-reading-inset));
+      z-index: 6;
+      margin-block: 0 1rem;
+      transition: background-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        border-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+      &[data-guide-live-state="finished"] {
+        background: var(--easyedu-accent-soft);
+        border-color: var(--easyedu-accent);
+        color: var(--easyedu-accent);
+        font-weight: var(--easyedu-font-weight-strong);
+      }
+      flex-wrap: wrap;
+      &-content { display: flex; align-items: center; gap: var(--easyedu-action-icon-gap); flex: 1 1 14rem; min-width: 0; }
+      [data-guide-live-complete] { flex: 0 0 auto; line-height: 1; }
+      [data-guide-live-copy] { min-width: 0; overflow-wrap: anywhere; }
+    }
+    &__playback {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--easyedu-action-icon-gap);
+      margin-inline-start: auto;
+      flex: 0 0 auto;
+    }
+    &__playback-button {
+      @include buttons.selection-action($legacy-priority: true);
+      @include buttons.icon-button($size: small);
+      > .fa { margin: 0; line-height: 1; }
+    }
+    // The single Kit inline activity dots (animations.activity-dots).
+    &__activity { @include animations.activity-dots; }
+    &__live[data-guide-playback-state="paused"] .easyedu-guide-scene__activity > span {
+      animation: none;
+      opacity: 0.6;
+    }
+    &__illustrated-checkbox {
+      @include forms.selection-checkbox;
+      flex: 0 0 auto;
+      margin-inline-end: 0.625rem;
+      pointer-events: none;
+    }
+    &__card.is-guide-drop-target::after {
+      @include overlays.file-drop-overlay;
+      border-radius: inherit;
+      background: transparent;
+      // Identity rail extends beyond the content padding-box. Keep the dashed
+      // target on the actual outer card, using the same Group identity colour.
+      inset-inline-start: calc(-1 * var(--easyedu-identity-border-width));
+      border-color: var(--easyedu-group-rail, var(--easyedu-accent));
+      // The shared deposit overlay defaults to4. Here the moving ghost is3:
+      // the destination must remain below it, not draw through its content.
+      z-index: 2;
+      content: '';
+    }
+    &__stage { display: grid; position: relative; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+    &__menu, &__dialog { grid-area: 2 / 1 / 3 / 3; justify-self: center; align-self: start; width: min(23rem, 100%); border: 1px solid var(--easyedu-border); border-radius: 0.75rem; background: var(--easyedu-surface); overflow: hidden; }
+    &__menu {
+      @include menus.menu-surface($size: small); padding: 1rem; gap: 0.5rem;
+      position: absolute; left: var(--easyedu-guide-menu-x, 0px); top: var(--easyedu-guide-menu-y, 0px);
+      z-index: 4; grid-area: auto; justify-self: auto;
+    }
+    &__menu > span { @include typography.type-caption; }
+    &__menu strong { @include menus.menu-item($size: small); background: var(--easyedu-primary-soft); color: var(--easyedu-primary); }
+    &__dialog header { @include modals.dialog-header; padding: 0.625rem 0.75rem; display: flex; justify-content: space-between; }
+    &__dialog > div {
+      padding: 0.75rem;
+      @include typography.type-caption;
+      // Navigation can portal a Guide from a nowrap launcher. Demo copy is
+      // paragraph content at every width, not a single-line field summary.
+      min-width: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    &__dialog footer { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.625rem 0.75rem; border-top: 1px solid var(--easyedu-border); }
+    &__dialog footer > * { @include buttons.selection-action($legacy-priority: true); @include buttons.button-size(small); flex: 0 1 6rem; text-align: center; }
+    &__dialog footer strong { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); }
+    &__destination { @include text-fields.foundation-text-field($size: small); display: flex; align-items: center; gap: 0.5rem; margin-block: 0.5rem; }
+    &__destination > span:last-child { margin-inline-start: auto; }
+    // The pointer is ONE neutral element (K15-30, C-G6): its glyph is the mouse arrow, or, when the
+    // Guide script sets data-guide-pointer="touch" (touch modality), the finger disc below. The element
+    // origin is the target point; the disc is centred on it.
+    &__cursor {
+      position: absolute; top: 0; left: 0; pointer-events: none; z-index: 5;
+      display: flex; line-height: 1;
+    }
+    &__cursor-mouse {
+      color: var(--easyedu-text); font-size: 1.125rem;
+      // White halo retains a dark silhouette over blue action surfaces.
+      filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
+        drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
+      // Minimal: no filter layer; the glyph keeps the same halo as a text shadow.
+      @include animations.motion-minimal {
+        filter: none;
+        text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
+      }
+    }
+    // C-G6 (P-G3, 16/10): Kit touch pointer. 32 px disc, primary at 16 %, 2 px primary ring at 55 %,
+    // 1 px white halo. States are driven by the Guide script on its animation clock: arrival (fade and
+    // 0.8 to 1 scale), tap (press 1 to 0.86 to 1 plus ripple 1 to 1.8), long press (ring fill, then the
+    // ripple), drag (the disc follows the card ghost), departure (fade). Reduced: fades only. Minimal:
+    // the disc is placed, never animated, and shows the ring alone.
+    @at-root {
+      @property --easyedu-guide-press {
+        syntax: "<number>";
+        inherits: true;
+        initial-value: 0;
+      }
+    }
+    &__cursor-touch {
+      --easyedu-guide-press: 0;
+      display: none; position: absolute; top: -1rem; left: -1rem;
+      box-sizing: border-box; inline-size: 2rem; block-size: 2rem; border-radius: 50%;
+      background: color-mix(in srgb, var(--easyedu-accent) 16%, transparent);
+      border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);
+      box-shadow: 0 0 0 1px white;
+      // Long-press progress: a ring that fills clockwise while --easyedu-guide-press goes 0 to 1.
+      &::after {
+        content: ''; position: absolute; inset: -2px; border-radius: 50%;
+        opacity: min(1, calc(var(--easyedu-guide-press) * 100));
+        background: conic-gradient(var(--easyedu-accent) calc(var(--easyedu-guide-press) * 1turn), transparent 0);
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+        mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+      }
+      @include animations.motion-minimal {
+        background: none; box-shadow: none;
+      }
+    }
+    &__cursor-ripple {
+      position: absolute; inset: -2px; border-radius: 50%; opacity: 0;
+      border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);
+    }
+    // The simple-creation stage is a plain block (no __stage class): it is the pointer's containing block.
+    // K17-32: its field rows and created cards are separated by one Kit gap.
+    [data-guide-simplecreate] { position: relative; }
+    [data-guide-simplecreate],
+    [data-guide-simplecreate-grouping-stage]:not([hidden]) {
+      display: grid;
+      gap: var(--easyedu-guide-scene-stack-gap);
+      min-inline-size: 0;
+    }
+    // K17-36: the creation demonstration (names typed, formula, groupings) owns its pointer and its two result lists.
+    &__creation-stage { position: relative; }
+    &__grouping-block { display: grid; gap: 0; }
+    // K17-44: the animated filter stage reuses the specimen surface and cards. Layout only: the panel itself is
+    // the scene's, so the specimen frame and padding are removed and the list stays at a readable width.
+    &__filters-stage.easyedu-guide-spec.easyedu-guide-spec--filters {
+      position: relative;
+      inline-size: min(100%, 24rem);
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    // K23-84: the illustrated search input is readonly; hosts may grey readonly
+    // inputs with !important. Keep the Kit search input paint (the frame owns it).
+    &__filters-stage [data-guide-filters-input] {
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      color: var(--easyedu-field-text) !important;
+    }
+    &__cursor[data-guide-pointer="touch"] {
+      .easyedu-guide-scene__cursor-mouse { display: none; }
+      .easyedu-guide-scene__cursor-touch { display: block; }
+    }
+    &__steps { padding-inline-start: 1.5rem; }
+    &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }
+    // The Guide navigation never wraps and the reading area inherits it: this note wraps itself.
+    &__note { @include typography.type-caption; margin-block: 1rem 1.5rem; min-inline-size: 0; overflow-wrap: anywhere; white-space: normal; }
+    &__context {
+      display: grid;
+      gap: 0.375rem;
+      margin-block: 1rem;
+      padding-block-start: 0.75rem;
+      border-block-start: 1px solid var(--easyedu-border);
+      @include typography.type-caption;
+      color: var(--easyedu-text-muted);
+      > p {
+        margin: 0;
+        line-height: 1.5;
+        min-inline-size: 0;
+        max-inline-size: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+    }
+    &__result { @include typography.type-caption; color: var(--easyedu-text-muted); line-height: 1.5; }
+    &__recap {
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      background: var(--easyedu-surface);
+      margin-block: 1rem;
+      @include typography.type-caption;
+      .easyedu-guide-scene__steps { display: grid; gap: 0.75rem; margin: 1rem 0 0; }
+      li { padding-inline-start: 0.25rem; line-height: 1.5; }
+    }
+    &__recap-toggle {
+      @include cards.card-disclosure-title;
+      @include typography.type-caption;
+      width: 100%;
+      justify-content: space-between;
+      > .fa {
+        @include cards.card-disclosure-icon;
+        transition-duration: var(--easyedu-guide-recap-motion-duration, var(--easyedu-motion-normal));
+      }
+      &[aria-expanded="true"] > .fa { transform: rotate(180deg); }
+    }
+    &__recap-body {
+      min-width: 0;
+      &[hidden] { display: none; }
+    }
+    &__memberships {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-block: 1rem;
+      @include typography.type-caption;
+      > span { @include feedback.token-pill(var(--easyedu-accent-soft), var(--easyedu-border), var(--easyedu-text)); }
+      // K17-42: the title is a semibold caption; the pill keeps the Kit weight on its name and its status.
+      > strong { font-weight: var(--easyedu-font-weight-semibold); }
+      b { font-weight: inherit; margin-inline-start: 0.25rem; color: var(--easyedu-accent); }
+      .is-absent { background: var(--easyedu-surface); opacity: 0.7; }
+      .is-removed { background: var(--easyedu-surface-soft); text-decoration: line-through; }
+    }
+    &__unchanged-label--compact, &__expected-label--compact { display: none; }
+    @media (max-width: 40rem) {
+      // Initial memberships are already explained by the scene's result
+      // paragraph. Do not repeat that sentence in compact resting chrome;
+      // playing/paused/finished narration remains visible and fully announced.
+      &__header[data-guide-playback-state="idle"] .easyedu-guide-scene__live-content { display: none; }
+      // Approved mobile resting preview: changes on one compact text lane,
+      // unchanged membership as a quiet caption. Playing/final results and
+      // the complete desktop token strip retain their original presentation.
+      &__memberships[data-guide-membership-preview] {
+        gap: 0.125rem;
+        margin-block: 0.5rem 0;
+        > strong { flex-basis: 100%; white-space: normal; }
+        [data-guide-membership-title] { display: none; }
+        .easyedu-guide-scene__expected-label--compact { display: block; font-weight: var(--easyedu-font-weight-semibold); }
+        > span {
+          @include typography.type-caption;
+          display: inline;
+          min-height: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          text-decoration: none;
+          white-space: normal;
+        }
+        > span:first-of-type {
+          order: 1;
+          flex-basis: 100%;
+          color: var(--easyedu-text-muted);
+          b { color: inherit; font-weight: 400; }
+        }
+        [data-guide-membership-origin]::after { content: " ·"; }
+        [data-guide-membership-origin] b::before,
+        [data-guide-membership-target] b::before { content: ": "; }
+        [data-guide-membership-origin] b,
+        [data-guide-membership-target] b { margin-inline-start: 0; }
+        .easyedu-guide-scene__unchanged-label--regular { display: none; }
+        .easyedu-guide-scene__unchanged-label--compact { display: inline; }
+      }
+    }
+    &__results { display: grid; gap: 0.75rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    [data-guide-ghost] {
+      @include overlays.drag-preview-surface(var(--easyedu-participant-rail, var(--easyedu-primary)));
+      @include overlays.drag-preview-moving-outline;
+      position: absolute;
+      margin: 0;
+      width: min(13.75rem, 45%);
+      min-height: 3.375rem;
+      gap: 0.625rem;
+      pointer-events: none;
+      z-index: 3;
+      .easyedu-guide-scene__identity {
+        position: static;
+        width: 1rem;
+        color: var(--easyedu-participant-rail, var(--easyedu-primary));
+      }
+    }
+    &__drag-badge { @include overlays.drag-preview-moving-badge; }
+  }
+
+  // Intrinsic, equal-width Kit actions at every width; never stretched (768).
+  @include guide-specimen.guide-specimen;
+
+  .easyedu-guide-modal__footer-actions {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    max-width: 100%;
+    gap: 0.5rem;
+    align-items: stretch;
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    order: 0;
+    width: auto;
+
+    .btn {
+      @include buttons.selection-action($legacy-priority: true);
+      @include buttons.button-size(small);
+      @include typography.type-control-label;
+      flex: 0 0 auto;
+      font-size: var(--easyedu-guide-font-size-control);
+      min-width: 6rem;
+      min-height: 2.375rem;
+      height: auto;
+      padding-inline: 1rem;
+      width: auto;
+    }
+    .btn-primary { @include buttons.selection-action($solid: true, $legacy-priority: true); @include buttons.button-size(small); min-height: 2.375rem; }
+    // This file follows the shared Guide shell: retain Touch44 after both
+    // discovery button recipes, rather than restoring their desktop38 minimum.
+    @media (max-width: 48rem), (pointer: coarse) {
+      flex-shrink: 1;
+      .btn, .btn-primary {
+        min-height: var(--easyedu-touch-target-min);
+        min-width: var(--easyedu-touch-target-min);
+      }
+    }
+  }
+
+  // Discovery opts into a restrained checklist. Legacy Guide consumers retain
+  // guided-panel geometry; completion, docking and target opening stay native.
+  .easyedu-guided-panel {
+    // The opt-in guided path remains operable while a real destination dialog
+    // is open. Its prior1070 tied the modal role and lost DOM paint ordering.
+    // Compose from the public modal layer, never a product-only z-index patch.
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
+    background: var(--easyedu-surface);
+    border: 1px solid var(--easyedu-border);
+    border-inline-start: 3px solid var(--easyedu-accent);
+    border-radius: 0.875rem;
+    // C-G4 (P-G2): padding 16 / reduced 12, gaps 8, step padding 12, one side by
+    // default (right); the docking class set by the controller still wins.
+    padding: 1rem;
+    gap: 0.75rem;
+    &:not(.is-docked-left):not(.is-docked-right) {
+      left: auto;
+      right: 1.25rem;
+    }
+    text-align: start;
+    // K17-30: Motion owns the end-of-path height and fade; the legacy padding/gap
+    // transitions would fight it for a few frames.
+    &.is-completing { transition: none; }
+    .easyedu-guided-panel__header {
+      align-items: center;
+      gap: 0.75rem;
+      > div:first-child { display: grid; gap: 0.25rem; }
+      // The title may wrap on 2 lines (type-control-label forces one).
+      strong { @include typography.type-control-label; color: var(--easyedu-text); font-size: 0.88rem; line-height: 1.25rem; white-space: normal; overflow-wrap: anywhere; }
+      > div:first-child > span { @include typography.type-caption; text-transform: none; letter-spacing: normal; font-weight: var(--easyedu-font-weight-regular); }
+    }
+    .easyedu-guided-panel__header-actions { max-width: none; }
+    .easyedu-guided-panel__close { @include buttons.close-button; }
+    // K20-01: the same Kit frame/paint and touch variant as the Close action.
+    // Keep the expand/minus glyph rather than drawing a second close cross.
+    .easyedu-guided-panel__restore,
+    .easyedu-guided-panel__minimize { @include buttons.close-button($glyph: false, $legacy-priority: true); }
+    .easyedu-guided-panel__steps {
+      grid-auto-rows: max-content;
+      align-content: start;
+      gap: 0.5rem;
+    }
+    .easyedu-guided-panel__step {
+      height: auto;
+      align-items: start;
+      padding: 0.75rem;
+      gap: 0.75rem;
+      > span:last-child { gap: 0.25rem; }
+      strong { line-height: 1.25rem; }
+      // Number: 24px circle centred on the first title line (20px line, -2px).
+      .easyedu-guided-panel__index {
+        width: 1.5rem; height: 1.5rem; min-width: 1.5rem; line-height: 1; margin-block-start: -0.125rem;
+        justify-content: center; align-items: center;
+      }
+      small { line-height: 1.5; font-weight: var(--easyedu-font-weight-regular); white-space: pre-line; }
+      &.is-locked {
+        background: repeating-linear-gradient(-45deg, transparent 0 0.5rem,
+          color-mix(in srgb, var(--easyedu-text-muted) 5%, transparent) 0.5rem 1rem), var(--easyedu-surface-soft);
+        border-color: var(--easyedu-border);
+        opacity: 1;
+        cursor: default;
+        &[data-easyedu-guide-lock-message]::before { display: none; }
+      }
+      .easyedu-guide-checklist__requirement {
+        color: var(--easyedu-text-muted);
+        font-size: 0.68rem;
+      }
+    }
+    .easyedu-guided-panel__message.is-complete {
+      @include typography.type-caption;
+      // K17-30: no scale/shadow pulse on the flat message; Motion fades it in.
+      animation: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: var(--easyedu-success-soft);
+      border: 1px solid var(--easyedu-border);
+      border-radius: var(--easyedu-radius-md);
+      max-height: none;
+      > .fa { color: var(--easyedu-success); }
+      > span:not(.fa) { @include typography.type-caption; }
+      .easyedu-guided-panel__message-compact { display: none; }
+    }
+    // E2 (K9): end box of a guided path: green check, "All set", "6 / 6 steps done", message,
+    // then "Back to the Guide" (secondary) and "Recommencer" (secondary). The cross stays the Kit close
+    // (K19-03: the former "Close" primary button duplicated the Kit cross and was removed).
+    .easyedu-guided-panel__done,
+    .easyedu-guided-panel__restart { display: none; }
+    &.is-complete {
+      text-align: start;
+      .easyedu-guided-panel__done {
+        align-items: center;
+        background: var(--easyedu-success);
+        border-radius: 50%;
+        color: #fff;
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 2rem;
+        justify-content: center;
+        // The check leads the header; it follows the title block in the DOM so title and subtitle keep their grid.
+        order: -1;
+        width: 2rem;
+      }
+      .easyedu-guided-panel__steps { display: none; }
+      .easyedu-guided-panel__message.is-complete {
+        background: transparent;
+        border: 0;
+        // The legacy success ring/glow does not belong to the flat end box (K17-30).
+        box-shadow: none;
+        padding: 0;
+        > .fa { display: none; }
+      }
+      .easyedu-guided-panel__footer {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+      // Penpot end box: only the Kit cross closes from the header (the end box is already compact).
+      &:not(.is-minimized) .easyedu-guided-panel__minimize { display: none; }
+      // Reduced by the user: the compact bar keeps its own check-less layout.
+      &.is-minimized .easyedu-guided-panel__done,
+      &.is-minimized .easyedu-guided-panel__restart { display: none; }
+      // Core action M (38 px): the end box buttons share one height.
+      .easyedu-guided-panel__footer .btn { min-height: 2.375rem; padding-inline: 1rem; width: auto; }
+      // TRI n°2: "Recommencer" sits with the end box's other buttons once the path is complete.
+      .easyedu-guided-panel__restart {
+        @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+        @include buttons.button-size(small);
+        display: inline-flex;
+        gap: var(--easyedu-action-icon-gap);
+        min-width: 0;
+        .fa { color: var(--easyedu-accent); }
+      }
+    }
+    &[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
+      max-height: min(19rem, 45dvh);
+      scrollbar-gutter: stable;
+      overscroll-behavior: contain;
+    }
+    &.is-minimized,
+    &.is-minimized.is-complete {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto;
+      padding: 0.75rem;
+      gap: 0;
+      min-height: 4.25rem;
+      .easyedu-guided-panel__header {
+        position: static;
+        inset: auto;
+        display: flex;
+        pointer-events: auto;
+        > div:first-child { display: grid; }
+      }
+      .easyedu-guided-panel__header-actions { grid-column: auto; grid-row: auto; }
+      .easyedu-guided-panel__close { display: inline-flex; }
+      .easyedu-guided-panel__message,
+      .easyedu-guided-panel__footer { display: none; }
+      // Reuse the current step, its number and its complete instruction.
+      .easyedu-guided-panel__steps {
+        display: block;
+        margin: 0.5rem 0 0;
+        padding: 0;
+        max-height: none;
+        overflow: visible;
+      }
+      .easyedu-guided-panel__step {
+        display: none;
+        &.is-active { display: grid; }
+      }
+      &.is-complete {
+        .easyedu-guided-panel__steps { display: none; }
+        gap: 0.75rem;
+        .easyedu-guided-panel__message.is-complete {
+          display: flex;
+          grid-column: 1;
+          grid-row: auto;
+          height: auto;
+          min-height: 0;
+          overflow: visible;
+          padding: 0.75rem;
+          [data-easyedu-guide-checklist-message-text] {
+            display: block !important;
+            min-width: 0;
+            overflow-wrap: anywhere;
+          }
+          .easyedu-guided-panel__message-compact { display: none !important; }
+        }
+      }
+    }
+  }
+
+  // A wide destination field may also reach beneath the desktop checklist.
+  // Honor the same target-relative vertical docking at every viewport size.
+  &[data-easyedu-guide-target-in-dialog][data-easyedu-guide-dialog-dock="top"] .easyedu-guided-panel {
+    top: max(1rem, env(safe-area-inset-top));
+    bottom: auto;
+  }
+
+  // K17-29: no intermediate auto-reduced checklist (shorter list, 35dvh budget) for
+  // a target inside a native dialog. When room is needed the checklist folds into
+  // the classic reduced state of the Reduce button (current step only).
+
+  // C-G2 (768, P-G1): use the screen height, stack the path card, 2-column explanations
+  // (container query above), 16px scene padding. Footer buttons keep their intrinsic width.
+  @media (max-width: 63.999rem) {
+    .easyedu-guide-modal__dialog {
+      --easyedu-guide-modal-height: calc(100dvh - 3rem);
+      --easyedu-guide-modal-max-height: calc(100dvh - 3rem);
+    }
+    // K17-47: every responsive guided-path block (tablet and phone, same markup on
+    // each slide) is one column: centred icon, text from the start edge, then one
+    // full-width step per line and the full-width start action.
+    .easyedu-guide-guided-card {
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: stretch;
+      text-align: start;
+      .easyedu-guide-guided-card__icon { grid-column: 1; grid-row: auto; justify-self: center; }
+      .easyedu-guide-guided-card__body {
+        align-items: stretch;
+        justify-items: stretch;
+        text-align: start;
+        > small, > strong, > span { text-align: start; }
+      }
+      .easyedu-guide-guided-card__steps {
+        align-items: stretch;
+        inline-size: 100%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        justify-content: flex-start;
+        li {
+          box-sizing: border-box;
+          display: grid;
+          grid-template-columns: 0.9375rem minmax(0, 1fr);
+          inline-size: 100%;
+          max-inline-size: 100%;
+          min-inline-size: 0;
+          text-align: start;
+        }
+      }
+      .easyedu-guide-slide__start { grid-column: 1; justify-self: stretch; }
+    }
+    .easyedu-guide-scene { padding: 1rem; }
+    // The scene already owns its bottom margin (one 24 / 16 gap, not 24 + 24).
+    .easyedu-guide-scene + .easyedu-guide-guided-card { margin-block-start: 0; }
+  }
+
+  @media (max-width: 40rem) {
+    .easyedu-guide-modal__title-wrap > div > p:not(.easyedu-guide-modal__eyebrow) { display: none; }
+    // The guided-path block is shared with tablet (K17-47, see the 63.999rem query).
+    .easyedu-guide-guided-card .easyedu-guide-slide__start { height: auto; min-height: 2.375rem; }
+    .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage, .easyedu-guide-scene__results { grid-template-columns: minmax(0, 1fr); }
+    .easyedu-guide-scene[data-guide-mode] .easyedu-guide-scene__stage::after,
+    .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
+    // The navigation portal snapshots root tokens inline. Responsive geometry
+    // belongs on the dialog so that inherited desktop snapshots cannot freeze it.
+    .easyedu-guide-modal__dialog {
+      --easyedu-guide-modal-height: calc(100dvh - 2.125rem);
+      --easyedu-guide-modal-max-height: calc(100dvh - 2.125rem);
+    }
+
+    .easyedu-guide-modal {
+      padding: max(1.0625rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+        max(1.0625rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    }
+
+    // C-G3 compact chrome: one-line title, 4px progress, pills below (P-G6).
+    .easyedu-guide-modal__header { min-height: 3.5rem; padding: 0.75rem 1rem; }
+    .easyedu-guide-modal__hero-icon, .easyedu-guide-modal__eyebrow { display: none; }
+    .easyedu-guide-modal__title-wrap h2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .easyedu-guide-modal__title-full { display: none; }
+    .easyedu-guide-modal__title-short { display: inline; }
+    .easyedu-guide-modal__progress { padding: 0; gap: 0; border-block-start: 0; }
+    .easyedu-guide-nav-wrap { margin-block: 0.5rem; }
+    .easyedu-guide-nav { padding-block-end: 0; }
+    // P-G6 option A: numbered 44px pills; only the active one is expanded with its
+    // chapter and title. The strip scrolls inside itself (K16-62 clip on the wrap).
+    .easyedu-guide-nav .easyedu-guide-nav-item {
+      flex: 0 0 2.75rem;
+      justify-content: center;
+      min-height: 2.75rem;
+      padding: 0;
+      &:not(.is-active) {
+        > .fa, .easyedu-guide-nav-item__icon, .easyedu-guide-nav-item__meta,
+        .easyedu-guide-nav-item__sep, .easyedu-guide-nav-item__text,
+        .easyedu-guide-nav-item__requirement { @include guide-visually-hidden; }
+        .easyedu-guide-nav-item__label { text-align: center; }
+      }
+      &.is-active {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        max-inline-size: 11.375rem;
+        padding: 0.25rem 0.75rem;
+        // K23-33: the step icon stayed visible on desktop for this same header;
+        // `display: none` here hid it under 40rem while its category label
+        // (`.easyedu-guide-nav-item__meta`, e.g. "Cards") kept showing, leaving
+        // an orphan label. Keep the existing icon, just shrink it to the 44px pill.
+        > .fa, .easyedu-guide-nav-item__icon {
+          flex: 0 0 auto;
+          height: 1.375rem;
+          width: 1.375rem;
+        }
+      }
+    }
+    // K17-69 superseded the wrapping fallback this rule used to need: the
+    // footer now holds icon trigger, counter, Previous and Next on a single
+    // fixed 64px row (see _guide.scss), so this media query must not force a
+    // second line or shrink the vertical padding that row depends on.
+    .easyedu-guide-modal__footer { flex-wrap: nowrap; padding-inline: 1rem; }
+    // GS10 phone: one footer row. The reading count yields its width and may
+    // break between "Step 3" and "of 12" inside the 38px row height.
+    .easyedu-guide-modal__step-count { flex: 1 1 0; min-width: 0; white-space: normal; }
+    // GS10 phone: the docked command keeps its accessible name but paints
+    // only its eye, a 38px square just left of Previous.
+    .easyedu-guide-interface-cue .easyedu-guide-slide__show {
+      min-width: 2.375rem;
+      padding-inline: 0;
+      .easyedu-guide-slide__show-label {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+    }
+    // C-G3: full-width scene, no border or nesting (the soft background reaches the
+    // reading edges); 12px inner padding; short "Example" badge, never an oval.
+    .easyedu-guide-scene {
+      margin-block: 1rem;
+      margin-inline: calc(-1 * var(--easyedu-guide-reading-inset));
+      padding: 0.75rem;
+      border: 0;
+      border-radius: 0;
+    }
+    .easyedu-guide-scene__caption-full { display: none; }
+    .easyedu-guide-scene__caption-short { display: inline; }
+    .easyedu-guide-scene__concepts { gap: 1rem; padding: 0; }
+    .easyedu-guide-scene__concept-arrow { display: none; }
+    .easyedu-guide-modal__body { --easyedu-guide-reading-inset: 1rem; }
+    .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }
+  }
+  // E4 (K5): numbered anatomy of a card and mini demonstration of the loupe. The specimen is inert
+  // and built from Kit recipes: object card (identity rail), card label, filled count badge, card
+  // action disc. Current cards only: no title underline (K16-76), actions shown on hover (K16-79),
+  // icon + number counter and pills closing the header row on the right (K16-81).
+  .easyedu-guide-anatomy {
+    --easyedu-anatomy-identity: var(--easyedu-participant);
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    min-inline-size: 0;
+    &--group { --easyedu-anatomy-identity: var(--easyedu-group); }
+    &--grouping { --easyedu-anatomy-identity: var(--easyedu-grouping); }
+    &__heading {
+      display: grid;
+      gap: 0.125rem;
+      strong { @include typography.type-control-label; color: var(--easyedu-text); }
+      span { @include typography.type-caption; }
+    }
+    &__specimen { min-inline-size: 0; overflow: visible; padding-block-start: 1.125rem; }
+    &__card {
+      @include cards.object-card(var(--easyedu-anatomy-identity));
+      align-items: start;
+      box-sizing: border-box;
+      display: grid;
+      gap: 0.5rem 0.75rem;
+      min-inline-size: 0;
+      padding: 1.25rem 0.875rem 0.75rem 1rem;
+      pointer-events: none;
+      &--participant { grid-template-columns: auto auto minmax(0, 1fr); align-items: center; }
+      &--nested { box-shadow: none; padding-block: 0.5rem; }
+    }
+    &__body { display: grid; gap: 0.375rem; min-inline-size: 0; }
+    &__row {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      min-inline-size: 0;
+      &--header { flex-wrap: nowrap; }
+    }
+    &__target { position: relative; }
+    &__name {
+      @include typography.type-control-label;
+      // K16-76: the title carries no accent underline.
+      color: var(--easyedu-card-identity-title-color);
+      letter-spacing: 0;
+      min-inline-size: 0;
+      text-decoration: none;
+    }
+    &__card--group .easyedu-guide-anatomy__name, &__card--grouping .easyedu-guide-anatomy__name { margin-inline-end: auto; }
+    &__meta { @include typography.type-caption; justify-self: start; }
+    &__avatar {
+      align-items: center;
+      background: var(--easyedu-primary-soft);
+      border-radius: 50%;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      font-size: 1.125rem;
+      height: 2.75rem;
+      justify-content: center;
+      width: 2.75rem;
+    }
+    &__box {
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-control-border);
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+      display: inline-block;
+      flex: 0 0 auto;
+      height: 1rem;
+      width: 1rem;
+    }
+    &__check { align-items: center; display: inline-flex; }
+    &__chevron, &__more {
+      align-items: center;
+      color: var(--easyedu-text-muted);
+      display: inline-flex;
+      height: 1.5rem;
+      justify-content: center;
+      width: 1.5rem;
+    }
+    &__more { justify-self: center; }
+    &__tags { align-items: center; display: flex; flex-wrap: wrap; gap: 0.375rem; }
+    &__tag {
+      @include feedback.card-label;
+      &--role { background: var(--easyedu-primary-soft); border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%); color: var(--easyedu-primary-strong); }
+      &--group, &--field { background: color-mix(in srgb, var(--easyedu-group) 10%, #fff 90%); border-color: color-mix(in srgb, var(--easyedu-group) 26%, #fff 74%); color: var(--easyedu-group); }
+      &--field { background: var(--easyedu-primary-soft); border-color: color-mix(in srgb, var(--easyedu-primary) 22%, #fff 78%); color: var(--easyedu-primary-strong); }
+      &--grouping { background: color-mix(in srgb, var(--easyedu-grouping) 10%, #fff 90%); border-color: color-mix(in srgb, var(--easyedu-grouping) 26%, #fff 74%); color: var(--easyedu-grouping); }
+    }
+    // K16-81: actions (shown here as on hover) then the counter, right-aligned.
+    &__actions { align-items: center; display: inline-flex; gap: 0.125rem; margin-inline-start: auto; }
+    &__action {
+      align-items: center;
+      border-radius: 999px;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.875rem;
+      height: 1.75rem;
+      justify-content: center;
+      position: relative;
+      width: 1.75rem;
+      &--end { margin-inline-start: auto; }
+      &.is-pointed { @include card-actions.card-action-disc(var(--easyedu-primary-soft)); box-shadow: 0 0 0 2px var(--easyedu-primary); }
+    }
+    &__count {
+      @include feedback.card-label;
+      @include feedback.count-badge-filled(var(--easyedu-anatomy-identity));
+      position: relative;
+    }
+    &__members {
+      display: grid;
+      gap: 0.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        align-items: center;
+        border-radius: var(--easyedu-control-radius);
+        display: flex;
+        gap: 0.5rem;
+        min-block-size: 1.75rem;
+        padding-inline: 0.25rem;
+        @include typography.type-caption;
+        color: var(--easyedu-text);
+        > span:nth-child(2) { flex: 1 1 auto; min-inline-size: 0; }
+        &.is-match { background: var(--easyedu-primary-soft); font-weight: var(--easyedu-font-weight-semibold); }
+        &[hidden] { display: none; }
+      }
+    }
+    &__remove {
+      align-items: center;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      height: 1.5rem;
+      justify-content: center;
+      position: relative;
+      width: 1.5rem;
+    }
+    &__children { display: grid; margin-block-start: 0.25rem; padding-inline-start: 1.5rem; position: relative; }
+    // Numbered marker: Kit primary disc with a short stem pointing at its zone.
+    &__pin {
+      align-items: center;
+      background: var(--easyedu-primary);
+      border-radius: 999px;
+      box-sizing: border-box;
+      color: var(--easyedu-on-primary, #fff);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.6875rem;
+      font-weight: var(--easyedu-font-weight-strong);
+      height: 1.125rem;
+      justify-content: center;
+      line-height: 1;
+      min-width: 1.125rem;
+      padding-inline: 0.2rem;
+    }
+    .easyedu-guide-anatomy__target > .easyedu-guide-anatomy__pin, .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin, .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin {
+      inset-block-start: -1.125rem;
+      inset-inline-start: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      &::after {
+        background: var(--easyedu-primary);
+        content: "";
+        height: 0.375rem;
+        inset-block-start: 100%;
+        inset-inline-start: 50%;
+        position: absolute;
+        width: 1px;
+      }
+    }
+    .easyedu-guide-anatomy__tags > .easyedu-guide-anatomy__pin { inset-inline-start: 0; transform: none; }
+    .easyedu-guide-anatomy__children > .easyedu-guide-anatomy__pin { inset-block-start: -0.5rem; inset-inline-start: 0; transform: none; }
+    &__hover {
+      @include typography.type-caption;
+      align-items: start;
+      display: flex;
+      gap: 0.5rem;
+      margin: 0;
+      .fa { color: var(--easyedu-primary); margin-block-start: 0.15rem; }
+    }
+    &__legend {
+      display: grid;
+      gap: 0.375rem 1.5rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        @include typography.type-caption;
+        align-items: center;
+        border-radius: var(--easyedu-control-radius);
+        color: var(--easyedu-text);
+        display: flex;
+        gap: 0.5rem;
+        min-inline-size: 0;
+        padding: 0.125rem 0.25rem;
+        transition: background-color var(--easyedu-motion-fast) ease;
+        // K17-61: hovering a number lights its zone, so it shows the hand cursor like every hover target.
+        cursor: pointer;
+        &:hover { background: var(--easyedu-primary-soft); }
+      }
+    }
+    // Legend row lit => its zone is lit (and the reverse is not available: the specimen is inert).
+    @for $n from 1 through 10 {
+      &:has(.easyedu-guide-anatomy__legend li[data-n="#{$n}"]:hover) .easyedu-guide-anatomy__pin[data-n="#{$n}"] {
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--easyedu-primary) 28%, transparent);
+      }
+      &:has(.easyedu-guide-anatomy__legend li[data-n="#{$n}"]:hover) .easyedu-guide-anatomy__target:has(> .easyedu-guide-anatomy__pin[data-n="#{$n}"]) {
+        outline: 2px solid var(--easyedu-primary);
+        outline-offset: 2px;
+      }
+    }
+    &__loupe {
+      border-block-start: 1px solid var(--easyedu-card-border);
+      display: grid;
+      gap: 0.5rem;
+      padding-block-start: 0.75rem;
+      &-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between;
+        strong { @include typography.type-control-label; color: var(--easyedu-text); }
+        // K17-39: the Kit selection action (its icon-to-label gap), like every other demonstration button.
+        .btn { @include buttons.demonstration-action; }
+        .btn .fa { margin: 0; line-height: 1; }
+      }
+      // K18-11: no finished-state override; Start and Replay share the solid action above.
+      // K17-39: the caption keeps room for its longest line count (two lines on a phone), so the page below
+      // never moves when the narration changes.
+      &-caption { @include typography.type-caption; margin: 0; min-block-size: 1.5em; }
+      @media (max-width: 40rem) {
+        &-caption { min-block-size: calc(2 * 1.4em); }
+      }
+      .easyedu-guide-anatomy__specimen { padding-block-start: 0; }
+      // K17-39: the mini demonstration is centred in the slide, and its search panel keeps its place while
+      // hidden, so the card never grows when it opens.
+      .easyedu-guide-anatomy__card { max-inline-size: 28rem; padding-block-start: 0.75rem; margin-inline: auto; inline-size: 100%; }
+      [data-guide-loupe-closed] { visibility: hidden; }
+    }
+    &__search {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      .fa { color: var(--easyedu-text-muted); }
+      &[hidden] { display: none; }
+      &-input {
+        @include typography.type-caption;
+        background: var(--easyedu-surface);
+        border: 1px solid var(--easyedu-primary);
+        border-radius: var(--easyedu-control-radius);
+        box-sizing: border-box;
+        color: var(--easyedu-text);
+        flex: 1 1 auto;
+        min-block-size: 1.75rem;
+        min-inline-size: 0;
+        padding: 0.25rem 0.5rem;
+      }
+      &-cancel {
+        @include typography.type-caption;
+        border: 1px solid var(--easyedu-control-border);
+        border-radius: var(--easyedu-control-radius);
+        color: var(--easyedu-text);
+        padding: 0.25rem 0.625rem;
+      }
+    }
+    @media (max-width: 40rem) {
+      &__legend { grid-template-columns: minmax(0, 1fr); }
+      // K17-39: the demonstration button takes its own full row on a phone, whatever its label, so the bar
+      // keeps one height while the label changes.
+      &__loupe-bar .btn { flex: 1 1 100%; }
+      &__avatar { height: 2.25rem; width: 2.25rem; }
+      &__action { height: 1.5rem; width: 1.5rem; font-size: 0.8125rem; }
+      // 390: the counter closes the title row; the actions take their own row beneath it.
+      &__row--header { flex-wrap: wrap; row-gap: 1.25rem; }
+      &__name { white-space: nowrap; }
+      &__actions { flex: 1 1 100%; margin-inline-start: 0; order: 3; }
+      &__count { margin-inline-start: auto; }
+      &__card--mini .easyedu-guide-anatomy__row--header { flex-wrap: nowrap; row-gap: 0; }
+      &__card--mini .easyedu-guide-anatomy__actions { flex: 0 0 auto; margin-inline-start: auto; order: 0; }
+    }
+  }
+  // GMI-C2: Mass Import specimens come after the shared anatomy so their placement overrides win ties.
+  @include guide-mass-import.guide-mass-import;
+  @include animations.motion-restricted($self: true) {
+    .easyedu-guide-welcome { animation: none; }
+    .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
+    .easyedu-guide-scene__activity > span { animation: none; }
+  }
+  &[data-easyedu-motion-policy="disabled"],
+  [data-easyedu-motion-policy="disabled"] &,
+  .easyedu-motion-disabled & {
+    .easyedu-guide-welcome { animation: none; }
+    .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
+    .easyedu-guide-scene__activity > span { animation: none; }
+  }
+}

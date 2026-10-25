@@ -1,0 +1,30 @@
+{
+  "lot": "SM-53",
+  "runId": "easystud-authenticated-20261005T213341684Z-34264",
+  "status": "PASS scoped painted-centre successor",
+  "sourceServed": "845dfe3bfc7ea0822c6a7bf50b9f9995cd516ffa",
+  "prerequisites": ["330a9e8f32925bcaf3fb1c28cc26759b87c307c2", "de2cfae86a54a91c3998a51cceeec94d475b139e"],
+  "kitCommit": "ca9aa6272ef5d07200332f12b79b586e5b4cfe7c",
+  "kitVersion": "0.4.116",
+  "runtimeHead": "dede197afbdc248799751b8d913405052eb4b281",
+  "cssBlob": "b8453b33054822e76205f2b4f7291c6692ea85bf",
+  "specBlob": "db6e499d9de75103eb1cf4f31d4cfe1e530082b6",
+  "specSha256": "CA871ED0F7F850564EDFBC8CA6001247E89CA314F1C2CBB176AFC90673EB3CD0",
+  "records": [
+    {"width": 1600, "paintCenterX": -0.5, "paintCenterY": 0.5},
+    {"width": 768, "paintCenterX": -0.5, "paintCenterY": -0.5},
+    {"width": 390, "paintCenterX": -0.5, "paintCenterY": 0.5}
+  ],
+  "tileSize": 35.1875,
+  "fontSize": 17,
+  "intrinsicGlyphWidth": 21.25,
+  "peersPerWidth": 4,
+  "pairedCloudProviders": 11,
+  "productUses": 18,
+  "pageErrors": 0,
+  "blockedRequests": 0,
+  "fixtureRequested": false,
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true},
+  "humanValidated": false,
+  "open": ["native FA versus vector ink-scale parity", "all upload lifecycle", "human acceptance"]
+}

@@ -1,0 +1,231 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+  "states": [
+    {
+      "standard": "5daf2376-ada4-8014-8008-ad80c02ddbb6",
+      "provider": "5daf2376-ada4-8014-8008-ad80436bc171",
+      "name": "EasyEdu / Forms / Colour picker / Panel / Open",
+      "width": 352.0000000000001,
+      "height": 581.6000000000004,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 247.0000000000001,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "5daf2376-ada4-8014-8008-ad80c0572bd4",
+      "provider": "5daf2376-ada4-8014-8008-ad8073039b56",
+      "name": "EasyEdu / Forms / Colour picker / Panel / Keyboard focus",
+      "width": 352,
+      "height": 581.6000000000004,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 247,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "5daf2376-ada4-8014-8008-ad80c0835d3a",
+      "provider": "5daf2376-ada4-8014-8008-ad80738f1560",
+      "name": "EasyEdu / Forms / Colour picker / Panel / Invalid HEX",
+      "width": 352,
+      "height": 617.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 247,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 38,
+      "overflow": []
+    },
+    {
+      "standard": "5daf2376-ada4-8014-8008-ad80c0adb98f",
+      "provider": "5daf2376-ada4-8014-8008-ad8073c777fb",
+      "name": "EasyEdu / Forms / Colour picker / Panel / Disabled",
+      "width": 352,
+      "height": 581.6000000000004,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 247,
+        "y": 17,
+        "colour": "#97a6b4"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdcccb445828",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb96738433",
+      "name": "EasyEdu / Forms / Colour picker / Panel / S / Invalid HEX",
+      "width": 320,
+      "height": 593.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 215,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 38,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdcccb8c5281",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb97b2ef6d",
+      "name": "EasyEdu / Forms / Colour picker / Panel / S / Disabled",
+      "width": 320,
+      "height": 557.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 215,
+        "y": 17,
+        "colour": "#97a6b4"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdcccbe5345a",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb99038bf4",
+      "name": "EasyEdu / Forms / Colour picker / Panel / S / Keyboard focus",
+      "width": 320,
+      "height": 557.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 215,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdcccc200b1d",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb9a48fdd8",
+      "name": "EasyEdu / Forms / Colour picker / Panel / S / Open",
+      "width": 320,
+      "height": 557.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 215,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdcccc65bbb2",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb9b763d33",
+      "name": "EasyEdu / Forms / Colour picker / Panel / L / Invalid HEX",
+      "width": 384,
+      "height": 641.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 279,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 38,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdccccaf5efe",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb9cbc575d",
+      "name": "EasyEdu / Forms / Colour picker / Panel / L / Disabled",
+      "width": 384,
+      "height": 605.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 279,
+        "y": 17,
+        "colour": "#97a6b4"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdccccf68b3c",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb9dfc4f6b",
+      "name": "EasyEdu / Forms / Colour picker / Panel / L / Keyboard focus",
+      "width": 384.0000000000002,
+      "height": 605.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 279.0000000000002,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    },
+    {
+      "standard": "386b6f86-a1e7-806b-8008-bdcccd475751",
+      "provider": "386b6f86-a1e7-806b-8008-bdcb9f53225c",
+      "name": "EasyEdu / Forms / Colour picker / Panel / L / Open",
+      "width": 384,
+      "height": 605.5999999999985,
+      "preview": {
+        "width": 80,
+        "height": 40,
+        "x": 279,
+        "y": 17,
+        "colour": "#0f6cbf"
+      },
+      "fingerprintEqual": true,
+      "visibleDescendants": 37,
+      "overflow": []
+    }
+  ],
+  "humanVisualValidated": false,
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "5daf2376-ada4-8014-8008-ad9db3131f63",
+    "compositions": [
+      {
+        "id": "386b6f86-a1e7-806b-8008-bdcec5439871",
+        "provider": "5daf2376-ada4-8014-8008-ad8044e4a033",
+        "width": 352.0000000000001,
+        "height": 581.6000000000004,
+        "visibleOverflow": []
+      },
+      {
+        "id": "386b6f86-a1e7-806b-8008-bdcec5b5ec70",
+        "provider": "5daf2376-ada4-8014-8008-ad8044e4a033",
+        "width": 352,
+        "height": 581.6000000000004,
+        "visibleOverflow": []
+      }
+    ]
+  }
+}

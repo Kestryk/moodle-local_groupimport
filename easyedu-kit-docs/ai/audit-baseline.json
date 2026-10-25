@@ -1,0 +1,210 @@
+﻿{
+    "version":  1,
+    "generatedAt":  "2026-07-04T23:04:14+02:00",
+    "note":  "Known EasyEdu UI Kit audit findings. Do not add new entries without review.",
+    "acceptedFindings":  [
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_overlays.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_overlays.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_overlays.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_overlays.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_pagination.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_pagination.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_modals.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_modals.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_guide.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_guide.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_menus.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_menus.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_modals.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_modals.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_tooltips.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_tooltips.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_tooltips.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_tooltips.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "inline-style|guide/templates/easyedu_guide.mustache",
+                                 "rule":  "inline-style",
+                                 "file":  "guide/templates/easyedu_guide.mustache",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_tables.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_tables.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_panels.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_panels.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_responsive.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_responsive.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_tables.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_tables.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "local-keyframes|scss/easyedu/components/_guide.scss",
+                                 "rule":  "local-keyframes",
+                                 "file":  "scss/easyedu/components/_guide.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_animations.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_animations.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_buttons.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_buttons.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_buttons.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_buttons.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "local-keyframes|scss/easyedu/components/_animations.scss",
+                                 "rule":  "local-keyframes",
+                                 "file":  "scss/easyedu/components/_animations.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/_theme-overrides.example.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/_theme-overrides.example.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/_tokens.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/_tokens.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_animations.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_animations.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_forms.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_forms.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_forms.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_forms.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_guide.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_guide.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_feedback.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_feedback.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_cards.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_cards.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "fixed-px-value|scss/easyedu/components/_cards.scss",
+                                 "rule":  "fixed-px-value",
+                                 "file":  "scss/easyedu/components/_cards.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             },
+                             {
+                                 "id":  "hardcoded-hex-colour|scss/easyedu/components/_feedback.scss",
+                                 "rule":  "hardcoded-hex-colour",
+                                 "file":  "scss/easyedu/components/_feedback.scss",
+                                 "severity":  "warning",
+                                 "acceptedReason":  "Existing finding accepted as baseline. Revisit during kit hardening."
+                             }
+                         ]
+}

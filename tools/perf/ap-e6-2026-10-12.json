@@ -1,0 +1,23 @@
+{
+  "lot": "AP-E6-server",
+  "runtimeHead": "814b22f05b3514fa5633efa93a92b20894498a8d",
+  "byteGain": 276800,
+  "byteGainPercent": 0.6377417895006966,
+  "defaultStateMatchesServed": true,
+  "checks": {
+    "default-payload-unchanged": true,
+    "group-structure-unchanged": true,
+    "all-light-identities-memberships-roles-preserved": true,
+    "one-participant-original-heavy-fields": true,
+    "native-source-dispatch": true,
+    "existing-sesskey-course-capability-gates-retained": true,
+    "invalid-user-rejected": true,
+    "student-without-managegroups-rejected": true
+  },
+  "cleanup": {
+    "complete": true,
+    "preExistingRelationshipsUnchanged": true,
+    "userTombstonesRetained": true
+  },
+  "raw": "C:\\dev\\artifacts\\easystud-perf-server-20261012\\ap-e6\\easystud-t052-7a5dc8aabc7c40ac891d85f82d2f7df7-baseline.json"
+}

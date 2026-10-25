@@ -1,0 +1,2411 @@
+{
+  "base": "abf3c636",
+  "kit": "79d7639",
+  "passed": true,
+  "cases": 6,
+  "matrix": "FR/EN x 1600/768/390",
+  "pageAndConsoleErrors": 0,
+  "maxRemoveGlyphDxPx": 0.0078125,
+  "maxRemoveGlyphDyPx": 0,
+  "removeSizePx": [
+    23.1875
+  ],
+  "maxRemoveSquareDifferencePx": 0.0,
+  "maxPickerPrincipalCentreDeltaPx": 0.0078125,
+  "summaryCounters": 0,
+  "identityContextRetained": true,
+  "coarsePointerRemoveOpacity": 1,
+  "moodlecs": {
+    "errors": 0,
+    "warnings": 0,
+    "phpFiles": 3,
+    "pluginUiVerified": true
+  },
+  "fixtureRestored": true,
+  "publishedLocalhost": false,
+  "humanAccepted": false,
+  "results": [
+    {
+      "width": 1600,
+      "lang": "fr",
+      "errors": [],
+      "modals": {
+        "participant": {
+          "counters": 0,
+          "rolePills": 1,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 481.5,
+              "y": 545.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 563.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 589.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 607.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 633.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 651.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 677.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 695.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 721.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 739.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 765.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 783.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 809.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 827.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 853.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 871.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 980.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 998.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1024.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1042.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1068.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1086.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1112.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1130.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1156.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1174.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1200.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1218.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1244.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1262.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1288.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1306.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": false
+        },
+        "group": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 481.5,
+              "y": 702.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 720.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 746.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 764.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [
+            {
+              "x": 1096.3125,
+              "y": 609.078125,
+              "width": 23.1875,
+              "height": 23.1875,
+              "cx": 1107.90625,
+              "cy": 620.671875,
+              "opacity": "0",
+              "dx": 0.0078125,
+              "dy": 0
+            }
+          ],
+          "picker": {
+            "x": 661.5,
+            "y": 849.796875,
+            "width": 470,
+            "height": 160.15625,
+            "cx": 896.5,
+            "cy": 929.875
+          },
+          "pickerItems": [
+            {
+              "x": 874.09375,
+              "y": 865.796875,
+              "width": 44.796875,
+              "height": 44.796875,
+              "cx": 896.4921875,
+              "cy": 888.1953125,
+              "dx": 0.0078125
+            },
+            {
+              "x": 774.515625,
+              "y": 916.1875,
+              "width": 243.96875,
+              "height": 28.5,
+              "cx": 896.5,
+              "cy": 930.4375,
+              "dx": 0
+            }
+          ],
+          "nativeInput": true,
+          "overflow": false,
+          "coarse": false
+        },
+        "grouping": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 481.5,
+              "y": 524.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 542.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 568.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 586.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 612.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 630.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 656.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 674.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 700.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 718.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 744.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 762.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 788.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 806.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 832.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 850.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1600,
+      "lang": "en",
+      "errors": [],
+      "modals": {
+        "participant": {
+          "counters": 0,
+          "rolePills": 1,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 481.5,
+              "y": 545.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 563.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 589.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 607.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 633.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 651.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 677.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 695.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 721.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 739.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 765.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 783.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 809.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 827.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 853.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 871.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 980.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 998.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1024.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1042.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1068.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1086.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1112.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1130.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1156.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1174.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1200.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1218.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1244.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1262.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 1288.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 1306.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": false
+        },
+        "group": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 481.5,
+              "y": 702.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 720.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 746.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 764.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [
+            {
+              "x": 1096.3125,
+              "y": 609.078125,
+              "width": 23.1875,
+              "height": 23.1875,
+              "cx": 1107.90625,
+              "cy": 620.671875,
+              "opacity": "0",
+              "dx": 0.0078125,
+              "dy": 0
+            }
+          ],
+          "picker": {
+            "x": 661.5,
+            "y": 849.796875,
+            "width": 470,
+            "height": 160.15625,
+            "cx": 896.5,
+            "cy": 929.875
+          },
+          "pickerItems": [
+            {
+              "x": 874.09375,
+              "y": 865.796875,
+              "width": 44.796875,
+              "height": 44.796875,
+              "cx": 896.4921875,
+              "cy": 888.1953125,
+              "dx": 0.0078125
+            },
+            {
+              "x": 799.625,
+              "y": 916.1875,
+              "width": 193.734375,
+              "height": 28.5,
+              "cx": 896.4921875,
+              "cy": 930.4375,
+              "dx": 0.0078125
+            }
+          ],
+          "nativeInput": true,
+          "overflow": false,
+          "coarse": false
+        },
+        "grouping": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 481.5,
+              "y": 524.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 542.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 568.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 586.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 612.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 630.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 656.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 674.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 700.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 718.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 744.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 762.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 788.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 806.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 481.5,
+              "y": 832.28125,
+              "width": 650,
+              "height": 36,
+              "cx": 806.5,
+              "cy": 850.28125,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 768,
+      "lang": "fr",
+      "errors": [],
+      "modals": {
+        "participant": {
+          "counters": 0,
+          "rolePills": 1,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 65.5,
+              "y": 545.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 563.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 589.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 607.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 633.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 651.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 677.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 695.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 721.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 739.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 765.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 783.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 809.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 827.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 853.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 871.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 980.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 998.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1024.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1042.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1068.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1086.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1112.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1130.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1156.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1174.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1200.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1218.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1244.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1262.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1288.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1306.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        },
+        "group": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 65.5,
+              "y": 707.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 725.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 751.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 769.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [
+            {
+              "x": 680.3125,
+              "y": 611.078125,
+              "width": 23.1875,
+              "height": 23.1875,
+              "cx": 691.90625,
+              "cy": 622.671875,
+              "opacity": "1",
+              "dx": 0.0078125,
+              "dy": 0
+            }
+          ],
+          "picker": {
+            "x": 245.5,
+            "y": 854.796875,
+            "width": 470,
+            "height": 160.15625,
+            "cx": 480.5,
+            "cy": 934.875
+          },
+          "pickerItems": [
+            {
+              "x": 458.09375,
+              "y": 870.796875,
+              "width": 44.796875,
+              "height": 44.796875,
+              "cx": 480.4921875,
+              "cy": 893.1953125,
+              "dx": 0.0078125
+            },
+            {
+              "x": 358.515625,
+              "y": 921.1875,
+              "width": 243.96875,
+              "height": 28.5,
+              "cx": 480.5,
+              "cy": 935.4375,
+              "dx": 0
+            }
+          ],
+          "nativeInput": true,
+          "overflow": false,
+          "coarse": true
+        },
+        "grouping": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 65.5,
+              "y": 535.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 553.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 579.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 597.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 623.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 641.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 667.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 685.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 711.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 729.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 755.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 773.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 799.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 817.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 843.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 861.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "errors": [],
+      "modals": {
+        "participant": {
+          "counters": 0,
+          "rolePills": 1,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 65.5,
+              "y": 545.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 563.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 589.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 607.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 633.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 651.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 677.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 695.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 721.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 739.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 765.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 783.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 809.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 827.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 853.96875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 871.96875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 980.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 998.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1024.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1042.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1068.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1086.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1112.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1130.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1156.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1174.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1200.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1218.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1244.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1262.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 1288.921875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 1306.921875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        },
+        "group": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 65.5,
+              "y": 707.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 725.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 751.671875,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 769.671875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [
+            {
+              "x": 680.3125,
+              "y": 611.078125,
+              "width": 23.1875,
+              "height": 23.1875,
+              "cx": 691.90625,
+              "cy": 622.671875,
+              "opacity": "1",
+              "dx": 0.0078125,
+              "dy": 0
+            }
+          ],
+          "picker": {
+            "x": 245.5,
+            "y": 854.796875,
+            "width": 470,
+            "height": 160.15625,
+            "cx": 480.5,
+            "cy": 934.875
+          },
+          "pickerItems": [
+            {
+              "x": 458.09375,
+              "y": 870.796875,
+              "width": 44.796875,
+              "height": 44.796875,
+              "cx": 480.4921875,
+              "cy": 893.1953125,
+              "dx": 0.0078125
+            },
+            {
+              "x": 383.625,
+              "y": 921.1875,
+              "width": 193.734375,
+              "height": 28.5,
+              "cx": 480.4921875,
+              "cy": 935.4375,
+              "dx": 0.0078125
+            }
+          ],
+          "nativeInput": true,
+          "overflow": false,
+          "coarse": true
+        },
+        "grouping": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 65.5,
+              "y": 535.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 553.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 579.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 597.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 623.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 641.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 667.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 685.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 711.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 729.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 755.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 773.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 799.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 817.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 65.5,
+              "y": 843.859375,
+              "width": 650,
+              "height": 36,
+              "cx": 390.5,
+              "cy": 861.859375,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "lang": "fr",
+      "errors": [],
+      "modals": {
+        "participant": {
+          "counters": 0,
+          "rolePills": 1,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 45,
+              "y": 596.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 614.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 640.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 658.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 684.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 702.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 728.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 746.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 772.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 790.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 816.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 834.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 860.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 878.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 904.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 922.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1031.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1049.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1075.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1093.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1119.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1137.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1163.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1181.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1207.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1225.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1251.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1269.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1295.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1313.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1339.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1357.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        },
+        "group": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 45,
+              "y": 765.265625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 783.265625,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 809.265625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 827.265625,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [
+            {
+              "x": 322.8125,
+              "y": 668.671875,
+              "width": 23.1875,
+              "height": 23.1875,
+              "cx": 334.40625,
+              "cy": 680.265625,
+              "opacity": "1",
+              "dx": 0.0078125,
+              "dy": 0
+            }
+          ],
+          "picker": {
+            "x": 17,
+            "y": 1040.390625,
+            "width": 341,
+            "height": 160.15625,
+            "cx": 187.5,
+            "cy": 1120.46875
+          },
+          "pickerItems": [
+            {
+              "x": 165.09375,
+              "y": 1056.390625,
+              "width": 44.796875,
+              "height": 44.796875,
+              "cx": 187.4921875,
+              "cy": 1078.7890625,
+              "dx": 0.0078125
+            },
+            {
+              "x": 65.515625,
+              "y": 1106.78125,
+              "width": 243.96875,
+              "height": 28.5,
+              "cx": 187.5,
+              "cy": 1121.03125,
+              "dx": 0
+            }
+          ],
+          "nativeInput": true,
+          "overflow": false,
+          "coarse": true
+        },
+        "grouping": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 45,
+              "y": 581.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 599.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 625.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 643.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 669.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 687.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 713.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 731.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 757.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 775.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 801.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 819.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 845.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 863.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 889.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 907.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "errors": [],
+      "modals": {
+        "participant": {
+          "counters": 0,
+          "rolePills": 1,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 45,
+              "y": 596.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 614.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 640.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 658.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 684.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 702.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 728.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 746.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 772.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 790.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 816.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 834.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 860.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 878.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 904.765625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 922.765625,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1031.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1049.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1075.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1093.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1119.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1137.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1163.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1181.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1207.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1225.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1251.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1269.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1295.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1313.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 1339.71875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 1357.71875,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        },
+        "group": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 45,
+              "y": 765.265625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 783.265625,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 809.265625,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 827.265625,
+              "background": "rgb(243, 238, 251)",
+              "type": "grouping",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [
+            {
+              "x": 322.8125,
+              "y": 668.671875,
+              "width": 23.1875,
+              "height": 23.1875,
+              "cx": 334.40625,
+              "cy": 680.265625,
+              "opacity": "1",
+              "dx": 0.0078125,
+              "dy": 0
+            }
+          ],
+          "picker": {
+            "x": 17,
+            "y": 1040.390625,
+            "width": 341,
+            "height": 160.15625,
+            "cx": 187.5,
+            "cy": 1120.46875
+          },
+          "pickerItems": [
+            {
+              "x": 165.09375,
+              "y": 1056.390625,
+              "width": 44.796875,
+              "height": 44.796875,
+              "cx": 187.4921875,
+              "cy": 1078.7890625,
+              "dx": 0.0078125
+            },
+            {
+              "x": 90.625,
+              "y": 1106.78125,
+              "width": 193.734375,
+              "height": 28.5,
+              "cx": 187.4921875,
+              "cy": 1121.03125,
+              "dx": 0.0078125
+            }
+          ],
+          "nativeInput": true,
+          "overflow": false,
+          "coarse": true
+        },
+        "grouping": {
+          "counters": 0,
+          "rolePills": 0,
+          "context": true,
+          "relationRows": [
+            {
+              "x": 45,
+              "y": 581.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 599.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 625.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 643.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 669.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 687.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 713.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 731.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 757.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 775.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 801.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 819.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 845.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 863.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            },
+            {
+              "x": 45,
+              "y": 889.875,
+              "width": 313,
+              "height": 36,
+              "cx": 201.5,
+              "cy": 907.875,
+              "background": "color(srgb 0.919529 0.954823 0.941765)",
+              "type": "group",
+              "border": "3px",
+              "hasTitle": true
+            }
+          ],
+          "removers": [],
+          "picker": null,
+          "pickerItems": [],
+          "nativeInput": false,
+          "overflow": false,
+          "coarse": true
+        }
+      },
+      "passed": true
+    }
+  ]
+}

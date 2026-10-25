@@ -1,0 +1,255 @@
+{{!
+    @template guide_specimen
+
+    Illustration only (E1, K2): current-product specimens that replace the former
+    mini-cards of Guide slides 4, 8, 9, 11 and 12. They are static: no timer, no
+    command, no form control, no data-easystud-* hook. The panel is announced once
+    as an image; the ready recap is a real list whose links only change the slide.
+    Context: prepared by local_groupimport\local\guide_specimen.
+
+    Example context (json):
+    {
+        "kind": "participant",
+        "participant": true,
+        "label": "Illustration",
+        "caption": "Example",
+        "captionshort": "Example",
+        "frames": []
+    }
+}}
+{{#ready}}
+<section class="easyedu-ui easyedu-guide-spec easyedu-guide-spec--ready" data-easyedu-guide-specimen="ready" aria-label="{{label}}">
+    <ul class="easyedu-guide-spec__tiles">
+        {{#tiles}}
+        <li class="easyedu-information easyedu-guide-spec__tile">
+            <div class="easyedu-information__header easyedu-information__header--small-icon">
+                <span class="easyedu-icon-tile easyedu-icon-tile--small" aria-hidden="true"><span class="fa {{icon}}"></span></span>
+                <strong class="easyedu-information__title">{{title}}</strong>
+            </div>
+            <p class="easyedu-information__description">{{text}}</p>
+            <button type="button" class="btn btn-link easyedu-guide-spec__review" data-easyedu-guide-goto="{{index}}">
+                <span>{{review}}</span><span class="fa fa-chevron-right" aria-hidden="true"></span>
+            </button>
+        </li>
+        {{/tiles}}
+    </ul>
+</section>
+{{/ready}}
+{{^ready}}
+<figure class="easyedu-guide-spec easyedu-guide-spec--{{kind}}" data-easyedu-guide-specimen="{{kind}}"{{^legendbelow}} role="img"{{/legendbelow}} aria-label="{{label}}">
+    <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example" aria-hidden="true"><span class="easyedu-guide-scene__caption-full">{{caption}}</span><span class="easyedu-guide-scene__caption-short">{{captionshort}}</span></p>
+    {{#participant}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        {{#frames}}
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>{{number}}</b><span>{{step}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                {{#card}}{{> guide_specimen_participant}}{{/card}}
+                {{#details}}
+                <div class="easyedu-guide-spec__popover">
+                    <small class="easyedu-guide-spec__eyebrow">{{eyebrow}}</small>
+                    <strong>{{title}}</strong>
+                    <dl class="easyedu-guide-spec__facts">
+                        {{#rows}}
+                        <div class="easyedu-guide-spec__fact"><dt><span class="fa {{icon}}" aria-hidden="true"></span><span>{{label}}</span></dt><dd>{{value}}</dd></div>
+                        {{/rows}}
+                    </dl>
+                </div>
+                {{/details}}
+            </div>
+        </div>
+        {{/frames}}
+    </div>
+    {{/participant}}
+    {{#filters}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        {{#frames}}
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>{{number}}</b><span>{{step}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                <span class="easyedu-search-field">
+                    <span class="fa fa-search" aria-hidden="true"></span>
+                    <input type="search" class="form-control" value="{{searchvalue}}" readonly tabindex="-1" aria-hidden="true">
+                </span>
+                <div class="easyedu-guide-spec__filter{{^rolefilter}} is-spacer{{/rolefilter}}"{{^rolefilter}} aria-hidden="true"{{/rolefilter}}>
+                    <span class="easyedu-guide-spec__filter-label">{{rolelabel}}</span>
+                    <span class="local-groupimport-easystud-token local-groupimport-easystud-token--role">{{rolevalue}}</span>
+                </div>
+                <div class="easyedu-guide-spec__bar">
+                    <span class="btn btn-sm btn-outline-secondary easyedu-guide-spec__select{{#pointselect}} is-guide-pointed{{/pointselect}}">{{selectlabel}}</span>
+                    <span class="easyedu-guide-spec__count">{{countlabel}}</span>
+                </div>
+                <div class="easyedu-guide-spec__list">
+                    {{#cards}}{{> guide_specimen_participant}}{{/cards}}
+                </div>
+                {{#selectionbar}}
+                <div class="easyedu-guide-spec__selection">
+                    <span class="easyedu-guide-spec__selection-count">{{summary}}</span>
+                    <span class="btn btn-outline-secondary btn-sm foundation-selection-action easyedu-selection-recovery-action{{#pointclear}} is-guide-pointed{{/pointclear}}"><span class="fa fa-times-circle" aria-hidden="true"></span><span>{{clear}}</span></span>
+                </div>
+                {{/selectionbar}}
+            </div>
+        </div>
+        {{/frames}}
+    </div>
+    {{/filters}}
+    {{#identifiers}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>1</b><span>{{stepgroup}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                {{#group}}{{> guide_specimen_group}}{{/group}}
+            </div>
+        </div>
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>2</b><span>{{stepgrouping}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                {{#grouping}}{{> guide_specimen_grouping}}{{/grouping}}
+            </div>
+        </div>
+    </div>
+    {{/identifiers}}
+    {{#assignment}}
+    <div class="easyedu-guide-spec__flow" aria-hidden="true">
+        <div class="easyedu-guide-spec__surface easyedu-guide-spec__tree">
+            {{#grouping}}{{> guide_specimen_grouping}}{{/grouping}}
+        </div>
+        <span class="easyedu-guide-spec__arrow fa fa-arrow-right" aria-hidden="true"></span>
+        {{#activity}}
+        <div class="easyedu-information easyedu-guide-spec__activity is-guide-path">
+            <div class="easyedu-information__header easyedu-information__header--small-icon">
+                <span class="easyedu-icon-tile easyedu-icon-tile--small" aria-hidden="true"><span class="fa fa-file-lines"></span></span>
+                <span class="easyedu-guide-spec__activity-copy">
+                    <small class="easyedu-guide-spec__eyebrow">{{eyebrow}}</small>
+                    <strong class="easyedu-information__title">{{type}}</strong>
+                </span>
+            </div>
+            <p class="easyedu-information__description">{{groupmode}}</p>
+            <p class="easyedu-information__description">{{groupinglabel}} <span class="local-groupimport-easystud-token local-groupimport-easystud-token--grouping">{{groupingname}}</span></p>
+            <p class="easyedu-information__description">{{note}}</p>
+        </div>
+        {{/activity}}
+    </div>
+    {{/assignment}}
+    {{#mifile}}
+    <div class="easyedu-ui easyedu-guide-spec__sheet" aria-hidden="true">
+        <p class="easyedu-guide-spec__file"><span class="fa fa-file-excel" aria-hidden="true"></span><strong>{{filename}}</strong></p>
+        <div class="easyedu-guide-spec__scroll">
+            <table class="easyedu-guide-spec__table">
+                <thead>
+                    <tr>
+                        <th class="easyedu-guide-spec__line"></th>
+                        {{#columns}}<th class="easyedu-guide-spec__column"><span class="easyedu-guide-anatomy__pin" data-n="{{n}}">{{n}}</span><span>{{label}}</span></th>{{/columns}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#rows}}
+                    <tr>
+                        <th class="easyedu-guide-spec__line" scope="row">{{line}}</th>
+                        <td>{{identifier}}</td>
+                        <td>{{group}}</td>
+                        <td>{{grouping}}</td>
+                    </tr>
+                    {{/rows}}
+                </tbody>
+            </table>
+        </div>
+        <ul class="easyedu-guide-spec__fields easyedu-tag-list">
+            {{#fields}}<li class="easyedu-tag">{{.}}</li>{{/fields}}
+        </ul>
+    </div>
+    <ol class="easyedu-guide-anatomy__legend easyedu-guide-spec__legend">
+        {{#legend}}
+        <li data-n="{{n}}"><span class="easyedu-guide-anatomy__pin" aria-hidden="true">{{n}}</span><span>{{label}}</span></li>
+        {{/legend}}
+    </ol>
+    {{/mifile}}
+    {{#mistrategy}}
+    <p class="easyedu-guide-spec__start" aria-hidden="true"><strong>{{#start}}{{title}}{{/start}}</strong><span>{{#start}}{{body}}{{/start}}</span></p>
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        {{#frames}}
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>{{number}}</b><span>{{step}}</span></p>
+            <div class="easyedu-ui easyedu-guide-spec__surface">
+                <fieldset class="easyedu-segmented-choice--contained easyedu-choice">
+                    <legend class="easyedu-segmented-choice__legend">{{strategy}}</legend>
+                    <div class="easyedu-segmented-choice__body">
+                        <div class="easyedu-segmented-choice__label" aria-hidden="true">{{strategy}}</div>
+                        <div class="easyedu-segmented-choice__options">
+                            {{#options}}
+                            <label class="easyedu-segmented-choice__option">
+                                <input type="radio" class="easyedu-segmented-choice__input" tabindex="-1" aria-hidden="true"{{#checked}} checked{{/checked}}>
+                                <span class="easyedu-segmented-choice__surface"><span class="fa {{icon}}" aria-hidden="true"></span><span><strong>{{title}}</strong><small>{{description}}</small></span></span>
+                            </label>
+                            {{/options}}
+                        </div>
+                    </div>
+                </fieldset>
+                {{#group}}
+                <div class="easyedu-guide-anatomy easyedu-guide-anatomy--group easyedu-guide-spec__group">
+                    <div class="easyedu-guide-anatomy__card easyedu-guide-anatomy__card--group">
+                        <div class="easyedu-guide-anatomy__row easyedu-guide-anatomy__row--header">
+                            <span class="easyedu-guide-anatomy__box"></span>
+                            <span class="easyedu-guide-anatomy__name">{{groupname}}</span>
+                            <span class="easyedu-guide-anatomy__count easyedu-guide-anatomy__count--group"><span class="fa fa-users"></span>{{groupcount}}</span>
+                        </div>
+                        <ul class="easyedu-guide-anatomy__members">
+                            {{#members}}
+                            <li><span class="easyedu-guide-anatomy__box"></span><span>{{membername}}</span>{{#membermark}}<span class="easyedu-guide-spec__mark{{#memberremoved}} is-removed{{/memberremoved}}">{{membermark}}</span>{{/membermark}}</li>
+                            {{/members}}
+                        </ul>
+                    </div>
+                </div>
+                {{/group}}
+            </div>
+        </div>
+        {{/frames}}
+    </div>
+    {{/mistrategy}}
+    {{#mirun}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        {{#frames}}
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>{{number}}</b><span>{{step}}</span></p>
+            <div class="easyedu-ui easyedu-guide-spec__surface">
+                {{#immediate}}
+                <aside class="easyedu-notice easyedu-notice--warning"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span><div><p>{{warning}}</p></div></aside>
+                <span class="easyedu-button easyedu-guide-spec__submit is-guide-pointed"><span class="fa fa-check" aria-hidden="true"></span>{{submit}}</span>
+                <div class="local-groupimport-import-summary easyedu-guide-spec__summary"><span class="local-groupimport-import-summary__item local-groupimport-import-summary__item--success easyedu-report-summary--success"><strong>{{donecount}}</strong> {{done}}</span></div>
+                {{/immediate}}
+                {{#background}}
+                <div class="easyedu-information easyedu-guide-spec__job">
+                    <p class="easyedu-information__description">{{queued}}</p>
+                    <p class="easyedu-information__description easyedu-guide-spec__progress">{{progress}}</p>
+                </div>
+                {{/background}}
+                {{#notification}}
+                <div class="easyedu-information easyedu-guide-spec__notification">
+                    <strong class="easyedu-information__title">{{notificationtitle}}</strong>
+                    <p class="easyedu-information__description">{{notificationbody}}</p>
+                </div>
+                {{/notification}}
+            </div>
+        </div>
+        {{/frames}}
+    </div>
+    {{/mirun}}
+    {{#mireport}}
+    <div class="easyedu-ui easyedu-guide-spec__report" aria-hidden="true">
+        <div class="local-groupimport-import-summary" aria-label="{{summarylabel}}">
+            <span class="local-groupimport-import-summary__item local-groupimport-import-summary__item--success easyedu-report-summary--success"><strong>{{successcount}}</strong> {{successheader}}</span>
+            <span class="local-groupimport-import-summary__item local-groupimport-import-summary__item--error"><strong>{{errorcount}}</strong> {{errorheader}}</span>
+        </div>
+        <h4 class="local-groupimport-import-report__title local-groupimport-import-report__title--success easyedu-report-title--success">{{successheader}}</h4>
+        <ul class="local-groupimport-import-report local-groupimport-import-report--success easyedu-report-list--success">
+            {{#success}}<li><span class="fa fa-check" aria-hidden="true"></span><span>{{.}}</span></li>{{/success}}
+        </ul>
+        <h4 class="local-groupimport-import-report__title local-groupimport-import-report__title--error">{{errorheader}}</h4>
+        <ul class="local-groupimport-import-report local-groupimport-import-report--error">
+            {{#errors}}<li><span class="fa fa-exclamation-triangle" aria-hidden="true"></span><span>{{.}}</span></li>{{/errors}}
+        </ul>
+        <span class="btn btn-outline-primary easyedu-action-with-icon easyedu-button--outline-primary easyedu-guide-spec__export"><span class="fa fa-file-excel" aria-hidden="true"></span><span>{{export}}</span></span>
+    </div>
+    {{/mireport}}
+</figure>
+{{/ready}}

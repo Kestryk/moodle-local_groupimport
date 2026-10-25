@@ -1,0 +1,158 @@
+{
+  "cascade": {
+    "base": "389b832d",
+    "passed": true,
+    "removedSelectors": [],
+    "priorityChanges": [],
+    "sheets": {
+      "styles.css": {
+        "orderedNodes": 0,
+        "byteIdenticalAfterLf": true
+      },
+      "styles/student-management.css": {
+        "orderedNodes": 23233,
+        "byteIdenticalAfterLf": true
+      },
+      "styles/mass-import.css": {
+        "orderedNodes": 7100,
+        "byteIdenticalAfterLf": true
+      },
+      "styles/administration.css": {
+        "orderedNodes": 5508,
+        "byteIdenticalAfterLf": true
+      }
+    },
+    "build": {
+      "sourceBytes": 1356784,
+      "pages": {
+        "student-management": {
+          "bytes": 1218677,
+          "keptSelectors": 6036,
+          "removedForeignSelectors": 687
+        },
+        "mass-import": {
+          "bytes": 339596,
+          "keptSelectors": 1602,
+          "removedForeignSelectors": 5121
+        },
+        "administration": {
+          "bytes": 264414,
+          "keptSelectors": 1271,
+          "removedForeignSelectors": 5452
+        }
+      }
+    },
+    "canonicalGuideFiles": [
+      "scss/easyedu/components/_guide.scss",
+      "scss/easyedu/components/_guide-discovery.scss",
+      "scss/easyedu/components/_guide-specimen.scss",
+      "scss/easyedu/components/_animations.scss",
+      "scss/easyedu/components/_card-actions.scss",
+      "scss/easyedu/components/_responsive.scss",
+      "scss/easyedu/_tokens.scss"
+    ],
+    "runtimeAccess": false,
+    "published": false,
+    "globalRules": 0,
+    "historicalRemovedSelectors": [
+      ".local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene[data-guide-mode=move] .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__stage::after",
+      ".local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene[data-guide-mode=actions] .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__stage::after",
+      ".local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene[data-guide-mobile-actions] .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__menu"
+    ],
+    "canonicalSharedFiles": [
+      "scss/easyedu/adapters/_moodle-file-deposit.scss",
+      "scss/easyedu/adapters/_moodle-message-dialog.scss",
+      "scss/easyedu/components/_animations.scss",
+      "scss/easyedu/components/_buttons.scss",
+      "scss/easyedu/components/_card-actions.scss",
+      "scss/easyedu/components/_card-metadata.scss",
+      "scss/easyedu/components/_card-responsive.scss",
+      "scss/easyedu/components/_cards.scss",
+      "scss/easyedu/components/_color-panel.scss",
+      "scss/easyedu/components/_control-treatment.scss",
+      "scss/easyedu/components/_course_banner_builder.scss",
+      "scss/easyedu/components/_entity-fields.scss",
+      "scss/easyedu/components/_entity-metadata.scss",
+      "scss/easyedu/components/_feedback.scss",
+      "scss/easyedu/components/_field-paint.scss",
+      "scss/easyedu/components/_focus.scss",
+      "scss/easyedu/components/_forms.scss",
+      "scss/easyedu/components/_guide-discovery.scss",
+      "scss/easyedu/components/_guide-specimen.scss",
+      "scss/easyedu/components/_guide.scss",
+      "scss/easyedu/components/_identity-card-surfaces.scss",
+      "scss/easyedu/components/_loading.scss",
+      "scss/easyedu/components/_menus.scss",
+      "scss/easyedu/components/_modals.scss",
+      "scss/easyedu/components/_navigation-skeleton.scss",
+      "scss/easyedu/components/_navigation.scss",
+      "scss/easyedu/components/_overlays.scss",
+      "scss/easyedu/components/_pagination-responsive.scss",
+      "scss/easyedu/components/_pagination.scss",
+      "scss/easyedu/components/_panels.scss",
+      "scss/easyedu/components/_reports.scss",
+      "scss/easyedu/components/_responsive.scss",
+      "scss/easyedu/components/_searchable-choices.scss",
+      "scss/easyedu/components/_tables.scss",
+      "scss/easyedu/components/_text-fields.scss",
+      "scss/easyedu/components/_textareas.scss",
+      "scss/easyedu/components/_tooltips.scss",
+      "scss/easyedu/components/_typography.scss",
+      "scss/easyedu/_components.scss",
+      "scss/easyedu/_data-classes.scss",
+      "scss/easyedu/_dialog-classes.scss",
+      "scss/easyedu/_dialog-palette-classes.scss",
+      "scss/easyedu/_foundation-classes.scss",
+      "scss/easyedu/_index.scss",
+      "scss/easyedu/_preferences-classes.scss",
+      "scss/easyedu/_report-palette-classes.scss",
+      "scss/easyedu/_theme-overrides.example.scss",
+      "scss/easyedu/_tokens.scss",
+      "scss/easyedu/_workspace-classes.scss",
+      "scss/easyedu/_workspace-control-classes.scss"
+    ]
+  },
+  "canonicalAlignment": {
+    "reference": "389b832d",
+    "sharedDefinitionsOnly": true,
+    "consumerChanged": false,
+    "mainChanged": false,
+    "files": [
+      {
+        "file": "scss/easyedu/_dialog-classes.scss",
+        "canonicalBeforeSha256": "4b5b2cad47ae6958a3a9e81fe1417427a7289c7fd80f9b380d8208df9f0f75bd",
+        "servedSha256": "35c9b99a6954ff72b237c66bf541137f9730826515417328375bf5378ec1ff6c"
+      },
+      {
+        "file": "scss/easyedu/adapters/_moodle-message-dialog.scss",
+        "canonicalBeforeSha256": "4c08746f9b121eeee4ad7fd8a96367c0fb63599a90059fd3d7bd3ebb2b272ba6",
+        "servedSha256": "899dcc0ccdf806a2345c49cdd7af14dc60dcf695f4ccc9c0b75242782b5476c8"
+      },
+      {
+        "file": "scss/easyedu/components/_cards.scss",
+        "canonicalBeforeSha256": "f930a39fc76fd4864372b4424c4150812d63a7887033ff0a5477a7e457ce691e",
+        "servedSha256": "7d4060a6d9e70ed1cb185d5084f61d810f991f472967a844f84b6d49d8da9b57"
+      },
+      {
+        "file": "scss/easyedu/components/_feedback.scss",
+        "canonicalBeforeSha256": "b7a33f6fc5c11c2809f27d6535ca32c04999fcb9277ccfea8314e3a4d6b1e514",
+        "servedSha256": "9e5c883cdba97e7a591397cec2da7f1cf469fae5bd7b63b48e8c0cbef526035e"
+      },
+      {
+        "file": "scss/easyedu/components/_forms.scss",
+        "canonicalBeforeSha256": "9e0002bac3a0140b9dc9841d6b607d7eaddceb6335c91cfc445e57e766a8141a",
+        "servedSha256": "9874ced8baee45f714fbd2c714ea970056bac4e6a49e9a4823c7e317300d4cea"
+      },
+      {
+        "file": "scss/easyedu/components/_modals.scss",
+        "canonicalBeforeSha256": "5b4110991a85f84f352752e76463698eacd226c588ed15f874b4b201cd5d34a1",
+        "servedSha256": "00499216425e48f1131c3c8cf0a18607341704f91e17f761f65c68d62584ad19"
+      },
+      {
+        "file": "scss/easyedu/components/_tables.scss",
+        "canonicalBeforeSha256": "755e8f1ec0946cce2de405f1af32b86370f98c4aa458298d56d415a4d34d1ccb",
+        "servedSha256": "09b6d2ed406dc237d964b0f308d167948fec4f9f07a2390278621b8fec9fecf4"
+      }
+    ]
+  }
+}

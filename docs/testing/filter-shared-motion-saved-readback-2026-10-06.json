@@ -1,0 +1,21 @@
+{
+  "library": {
+    "page": "81455adb-6787-8068-8008-9ce9b711604d",
+    "board": "83ffce63-041b-803e-8008-bf30283568e7",
+    "width": 1600,
+    "height": 440,
+    "overflow": [],
+    "validation": []
+  },
+  "foundationServer": {
+    "status": 200,
+    "initialGuideIdsPresent": true,
+    "exactProviderSuccessorPersistence": "GET200 confirms all four exact searchable Closed/Open copy IDs and policy saved"
+  },
+  "productServer": {
+    "status": 200,
+    "policySaved": true,
+    "copySaved": true
+  },
+  "humanVisualValidated": false
+}

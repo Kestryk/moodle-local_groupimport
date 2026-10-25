@@ -1,0 +1,452 @@
+// Shared loading and skeleton primitives.
+//
+// Consumers own their DOM selectors, page geometry and readiness lifecycle.
+// The kit owns only the visual surface, shimmer, bounded stack rhythm and
+// opacity handoff used by proven EasyEdu loading states.
+
+@use "typography";
+@use "sass:map";
+@use "animations";
+
+@mixin skeleton-surface(
+  $surface: var(--easyedu-loading-surface),
+  $border: var(--easyedu-loading-border),
+  $radius: var(--easyedu-loading-radius)
+) {
+  & {
+    background: $surface;
+    border: 0.0625rem solid $border;
+    border-radius: $radius;
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media (forced-colors: active) {
+    background: Canvas;
+    border-color: CanvasText;
+  }
+}
+
+// Compose with skeleton-surface for the inline-start accent of each principal
+// Skeleton section. Logical properties place it on the correct side in RTL.
+@mixin skeleton-section-inline-accent(
+  $color: var(--easyedu-loading-section-rail-accent),
+  $width: var(--easyedu-loading-section-border-width)
+) {
+  & {
+    border-inline-start: $width solid $color;
+  }
+
+  @media (forced-colors: active) {
+    & {
+      border-inline-start-color: CanvasText;
+    }
+  }
+}
+
+// A structural page container is not a Skeleton card. Use this block-start
+// accent only for large left/right layout regions; internal cards retain the
+// K3 logical inline-start accent above.
+@mixin skeleton-structural-container-block-accent(
+  $color: var(--easyedu-loading-container-accent),
+  $width: var(--easyedu-loading-container-border-width)
+) {
+  & {
+    border-block-start: $width solid $color;
+  }
+
+  @media (forced-colors: active) {
+    & {
+      border-block-start-color: CanvasText;
+    }
+  }
+}
+
+// Deprecated name retained for source compatibility. It deliberately paints
+// the inline-start accent; K3 does not permit a top Skeleton accent.
+@mixin skeleton-section-top-border(
+  $color: var(--easyedu-loading-section-rail-accent),
+  $width: var(--easyedu-loading-section-border-width)
+) {
+  @include skeleton-section-inline-accent($color, $width);
+}
+
+// A principal Skeleton frame is static by contract. Consumers select it under
+// their own breakpoint and layout selectors; it supplies no page geometry.
+@mixin skeleton-section-frame(
+  $surface: var(--easyedu-loading-section-surface),
+  $border: var(--easyedu-loading-section-border),
+  $radius: var(--easyedu-loading-section-radius),
+  $accent: var(--easyedu-loading-section-rail-accent),
+  $accent-width: var(--easyedu-loading-section-border-width)
+) {
+  @include skeleton-surface($surface, $border, $radius);
+  @include skeleton-section-inline-accent($accent, $accent-width);
+
+  & {
+    animation: none;
+  }
+}
+
+// Use only for large structural left/right page containers. It stays static
+// and deliberately does not replace the K3 card-level section frame.
+@mixin skeleton-structural-container-frame(
+  $surface: var(--easyedu-loading-container-surface),
+  $border: var(--easyedu-loading-container-border),
+  $radius: var(--easyedu-loading-container-radius),
+  $accent: var(--easyedu-loading-container-accent),
+  $accent-width: var(--easyedu-loading-container-border-width)
+) {
+  @include skeleton-surface($surface, $border, $radius);
+  @include skeleton-structural-container-block-accent($accent, $accent-width);
+
+  & {
+    animation: none;
+  }
+}
+
+// Structural heading slots stay outside the decorative skeleton body so their
+// localised title remains available to assistive technology.
+@mixin skeleton-section-heading {
+  & {
+    align-items: center;
+    column-gap: var(--easyedu-loading-section-heading-gap);
+    display: grid;
+    grid-template-columns: var(--easyedu-loading-section-icon-slot-size) minmax(0, 1fr);
+    min-inline-size: 0;
+  }
+}
+
+@mixin skeleton-section-icon-slot {
+  & {
+    align-items: center;
+    color: var(--easyedu-loading-section-accent);
+    display: grid;
+    inline-size: var(--easyedu-loading-section-icon-slot-size);
+    justify-content: center;
+  }
+
+  @media (forced-colors: active) {
+    & {
+      color: CanvasText;
+    }
+  }
+}
+
+@mixin skeleton-section-title {
+  @include typography.type-section-title;
+
+  & {
+    color: var(--easyedu-loading-section-accent);
+    margin-block: 0;
+    min-inline-size: 0;
+  }
+
+  @media (forced-colors: active) {
+    & {
+      color: CanvasText;
+    }
+  }
+}
+
+// Apply to the non-interactive navigation-shaped skeleton block, not to page
+// layout or a product's real navigation control.
+@mixin skeleton-section-navigation-gap(
+  $gap: var(--easyedu-loading-section-navigation-gap)
+) {
+  & {
+    margin-block-start: $gap;
+  }
+}
+
+// Use for a product-owned group of decorative cues. Logical alignment mirrors
+// automatically in RTL; individual cues may opt into a shimmer primitive.
+@mixin skeleton-cue-stack($gap: var(--easyedu-loading-section-stack-gap)) {
+  & {
+    align-content: start;
+    display: grid;
+    gap: $gap;
+    justify-items: start;
+    min-inline-size: 0;
+  }
+}
+
+// Both workspace columns use one quiet framed search/filter region. Consumers
+// supply decorative cue markup and page placement, never separate paint recipes.
+@mixin skeleton-filter-region($radius: var(--easyedu-loading-radius)) {
+  @include skeleton-section-frame(
+    $surface: var(--easyedu-loading-frame-surface), $border: var(--easyedu-loading-border), $radius: $radius
+  );
+  & {
+    box-sizing: border-box;
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: minmax(0, 1fr);
+    max-inline-size: 100%;
+    padding: 0.7rem;
+  }
+}
+
+// Heading placeholders follow their actual three-line content; a historical
+// minimum height for absent actions must not create a large empty header.
+@mixin skeleton-page-heading {
+  & {
+    box-sizing: border-box;
+    display: grid;
+    gap: 0.7rem;
+    max-inline-size: 100%;
+    min-height: 0;
+    min-width: 0;
+    padding: 0.2rem 0.4rem 0.35rem;
+  }
+}
+
+@mixin skeleton-selector-options($count: 3) {
+  & { grid-template-columns: repeat($count, minmax(0, 1fr)); }
+}
+
+// Consumers apply this only in their own narrow-width rule. It changes the
+// reusable visual density, never page widths, offsets or loading lifecycle.
+@mixin skeleton-section-compact {
+  & {
+    --easyedu-loading-section-icon-slot-size: var(--easyedu-loading-section-compact-icon-slot-size);
+    --easyedu-loading-section-heading-gap: var(--easyedu-loading-section-compact-heading-gap);
+    --easyedu-loading-section-navigation-gap: var(--easyedu-loading-section-compact-navigation-gap);
+  }
+}
+
+// Use for simple bars whose complete background moves with the shimmer.
+@mixin skeleton-shimmer-direct(
+  $animation-name: easyedu-skeleton-shimmer,
+  $duration: var(--easyedu-loading-shimmer-duration),
+  $surface: var(--easyedu-loading-surface),
+  $highlight: var(--easyedu-loading-highlight)
+) {
+  & {
+    animation: $animation-name $duration linear infinite;
+    background-color: $surface;
+    background-image: linear-gradient(
+      90deg,
+      transparent 30%,
+      $highlight 50%,
+      transparent 70%
+    );
+    background-repeat: no-repeat;
+    background-size: 190% 100%;
+  }
+
+  [data-easyedu-motion-policy="disabled"] &,
+  .is-easyedu-motion-off & {
+    animation: none;
+  }
+
+  // Static skeleton as soon as the animation level is not full.
+  @include animations.motion-restricted {
+    animation: none;
+  }
+
+  @media (forced-colors: active) {
+    animation: none;
+  }
+}
+
+// Use when a stable base colour must remain visible below a light sweep.
+@mixin skeleton-shimmer-overlay(
+  $animation-name: easyedu-skeleton-shimmer,
+  $duration: var(--easyedu-loading-shimmer-duration),
+  $soft: var(--easyedu-loading-shimmer-soft),
+  $highlight: var(--easyedu-loading-shimmer-highlight)
+) {
+  &::after {
+    animation: $animation-name $duration linear infinite;
+    background-image: linear-gradient(
+      108deg,
+      transparent 30%,
+      $soft 42%,
+      $highlight 50%,
+      $soft 58%,
+      transparent 70%
+    );
+    background-position: 180% 0;
+    background-repeat: no-repeat;
+    background-size: 190% 100%;
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  [data-easyedu-motion-policy="disabled"] &::after,
+  .is-easyedu-motion-off &::after {
+    animation: none;
+  }
+
+  // Static skeleton as soon as the animation level is not full.
+  @include animations.motion-restricted {
+    &::after {
+      animation: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+// Prevent touching rows and accidental large voids in grid-based skeletons.
+// Product tests must still assert the allowed minimum and maximum measured gap.
+@mixin skeleton-stack($gap: var(--easyedu-loading-stack-gap)) {
+  & {
+    align-content: start;
+    display: grid;
+    gap: $gap;
+    grid-auto-rows: max-content;
+  }
+}
+
+// Fade only the decorative loading root, not individual frames or live cards.
+// Readiness and the outgoing/content handoff stay owned by the consumer.
+@mixin loading-appearance {
+  & {
+    animation: easyedu-skeleton-appear var(--easyedu-loading-appearance-duration) var(--easyedu-motion-ease, ease) backwards;
+  }
+
+  [data-easyedu-motion-policy="disabled"] &,
+  .is-easyedu-motion-off & {
+    animation: none;
+  }
+
+  @include animations.motion-restricted {
+    animation: none;
+  }
+
+  @media (forced-colors: active) {
+    & { animation: none; }
+  }
+}
+
+@mixin loading-opacity-transition($duration: var(--easyedu-loading-reveal-duration)) {
+  & {
+    transition: opacity $duration var(--easyedu-motion-ease, ease);
+  }
+
+  @include animations.motion-restricted {
+    transition-duration: 0.001ms;
+  }
+}
+
+@mixin loading-opacity-hidden {
+  & {
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+// Keep the actual control's intrinsic size and border width while its handler
+// is not bound. This works on native input buttons, which cannot paint ::after.
+@mixin loading-control-capsule {
+  @include skeleton-shimmer-direct(
+    $highlight: var(--easyedu-loading-shimmer-highlight)
+  );
+  border-color: transparent;
+  border-radius: 999px;
+  box-shadow: none;
+  color: transparent;
+  cursor: wait;
+  text-shadow: none;
+
+  > *,
+  &::before {
+    visibility: hidden;
+  }
+}
+
+// A loaded control replaces its own capsule once; never animate a page mask.
+@mixin loading-control-reveal {
+  @include loading-appearance;
+}
+
+// Exact accepted entity-dialog footprints. Inline extent stays with the field layout;
+// surface, shimmer and reveal still compose the existing loading primitives.
+$skeleton-entity-block-sizes: (
+  value: 1.25rem,
+  label: 0.75rem,
+  control: 2.375rem,
+  area: 7rem,
+  row: 2.5rem,
+  pills: 1.375rem,
+  media: 7rem,
+  control-regular: 2.7rem,
+  control-compact: 2.6rem,
+  control-tall: 6.2rem,
+  card-title: 1rem,
+  card-title-detailed: 1.15rem,
+  action: 2.45rem
+);
+
+@mixin skeleton-entity-block-size($role: value, $physical: false) {
+  @if not map.has-key($skeleton-entity-block-sizes, $role) {
+    @error "Unknown skeleton entity footprint: #{$role}.";
+  }
+  @if $physical {
+    height: map.get($skeleton-entity-block-sizes, $role);
+  } @else {
+    block-size: map.get($skeleton-entity-block-sizes, $role);
+  }
+}
+
+// Accepted awaiting-card frames; no fake-page container or readiness lifecycle.
+@mixin skeleton-card-frame($kind) {
+  @if $kind == person {
+    min-height: 2.72rem;
+    padding: 0.45rem 0.55rem;
+  } @else if $kind == object {
+    min-height: 3.6rem;
+    padding: 0.58rem 0.65rem;
+  } @else if $kind == workspace {
+    min-height: 23rem;
+    @content;
+    padding: 1rem;
+  } @else if $kind == workspace-compact {
+    min-height: 18rem;
+  } @else {
+    @error "Unknown skeleton card kind: #{$kind}.";
+  }
+}
+
+@mixin skeleton-card-person-compact {
+  min-height: 2.5rem;
+}
+
+@mixin skeleton-card-avatar {
+  block-size: 2rem;
+  border-radius: 50%;
+  inline-size: 2rem;
+}
+
+@mixin skeleton-card-copy-line($tone: strong, $surface: var(--easyedu-loading-surface-strong)) {
+  @if $tone == strong {
+    background: $surface;
+    block-size: 0.6rem;
+    border-radius: 999px;
+  } @else if $tone == soft {
+    background: $surface;
+    block-size: 0.45rem;
+  } @else {
+    @error "Unknown skeleton copy tone: #{$tone}.";
+  }
+}
+
+
+// Existing pending-content insets. Page placement and readiness remain consumer-owned.
+@mixin skeleton-pending-inset($kind) {
+  @if $kind == settings { padding: 0.5rem 0.25rem 1rem; }
+  @else if $kind == import { padding-block: 0.45rem 0.9rem; }
+  @else { @error "Unknown pending skeleton inset: #{$kind}."; }
+}

@@ -1,0 +1,21 @@
+{
+  "lot":"R10-21",
+  "source":"80e9d2beec195b43d4b8fc9e3abe1b9f62a8ec51",
+  "runtime":"c40a023b0dde7027124c4088acc2f80c63480e07",
+  "spec":"participant-panel-title-native.spec.js",
+  "languages":["en","fr"],
+  "widths":[390,768,1280],
+  "runs":["easystud-authenticated-20261011T122711120Z-51260","easystud-authenticated-20261011T122811616Z-15676"],
+  "cases":6,
+  "status":"passed",
+  "panelCopyContained":true,
+  "compactNavigationUnchanged":true,
+  "pageErrors":[],
+  "businessWrites":false,
+  "settingsWrites":false,
+  "cleanup":{"credentialsCleared":true,"leaseReleased":true,"ownedChildStopped":true},
+  "penpotSavedTitles":4,
+  "penpotPaintedLabels":4,
+  "wholeBoardCertified":false,
+  "humanAccepted":false
+}

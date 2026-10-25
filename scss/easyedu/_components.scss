@@ -1,0 +1,45 @@
+// Backward-compatible aggregator for the EasyEdu component mixins.
+//
+// Historical plugin SCSS imports `@use "../easyedu" as easyedu;` and calls
+// mixins such as `easyedu.object-card`. Keep forwarding every component family
+// from here so older plugins continue to compile while the kit is now easier to
+// read and synchronise between independent Moodle plugins.
+
+@forward "components/panels";
+@forward "components/typography";
+@forward "components/focus";
+@forward "components/cards";
+@forward "components/identity-card-surfaces";
+@forward "components/card-actions";
+@forward "components/card-metadata";
+@forward "components/card-responsive";
+@forward "components/buttons";
+@forward "components/forms";
+@forward "components/color-panel";
+@forward "components/searchable-choices";
+@forward "components/text-fields";
+@forward "components/textareas";
+@forward "components/menus";
+@forward "components/modals";
+@forward "components/entity-fields";
+@forward "components/entity-metadata";
+@forward "components/feedback";
+@forward "components/notices";
+@forward "components/v3-banner";
+@forward "components/overlays";
+@forward "components/guide";
+@forward "components/guide-discovery";
+@forward "components/tooltips";
+@forward "components/tables";
+@forward "components/responsive";
+@forward "components/navigation";
+@forward "components/navigation-skeleton";
+@forward "components/rail-anchor";
+@forward "components/animations";
+@forward "components/loading";
+@forward "components/pagination";
+@forward "components/course_banner_builder";
+@forward "components/pagination-responsive";
+@forward "components/control-treatment";
+@forward "components/reports";
+@forward "components/accessibility";

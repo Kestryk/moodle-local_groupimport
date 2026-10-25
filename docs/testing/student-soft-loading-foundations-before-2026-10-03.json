@@ -1,0 +1,2093 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "page": "81455adb-6787-8068-8008-9ce40b87e999",
+  "reason": "Recoverable pre-SM16 visible geometry/paint snapshot; hidden legacy descendants remain unchanged.",
+  "mains": [
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "path": "EasyEdu / Loading / Skeleton bar / M",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac7928487fe1",
+      "bounds": {
+        "x": 780,
+        "y": 1874,
+        "width": 400,
+        "height": 20
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdce4ae6b",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 780,
+            "y": 1874,
+            "width": 400,
+            "height": 20
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac792a9e49c7",
+      "path": "EasyEdu / Loading / Skeleton Table row",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac792a0a0a33",
+      "bounds": {
+        "x": 560,
+        "y": 2258.8,
+        "width": 840,
+        "height": 42.40000000000009
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bddf0c5ca",
+          "name": "Static table row frame",
+          "bounds": {
+            "x": 560,
+            "y": 2258.8,
+            "width": 840,
+            "height": 42.40000000000009
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bde59f302",
+          "name": "Column cue 1",
+          "bounds": {
+            "x": 576,
+            "y": 2272,
+            "width": 18,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bde92ce65",
+          "name": "Column cue 2",
+          "bounds": {
+            "x": 712,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdebbe8fc",
+          "name": "Column cue 3",
+          "bounds": {
+            "x": 848,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdee5ac1f",
+          "name": "Column cue 4",
+          "bounds": {
+            "x": 984,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdf0eb38b",
+          "name": "Column cue 5",
+          "bounds": {
+            "x": 1120,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdf3ab044",
+          "name": "Column cue 6",
+          "bounds": {
+            "x": 1256,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac7928f1449a",
+      "path": "EasyEdu / Loading / Skeleton bar / L",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac7928df0baa",
+      "bounds": {
+        "x": 1920,
+        "y": 1990,
+        "width": 620,
+        "height": 24
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdf7cca0d",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 1920,
+            "y": 1990,
+            "width": 620,
+            "height": 24
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac7929ea08ce",
+      "path": "EasyEdu / Loading / Skeleton Card",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac7929a0faee",
+      "bounds": {
+        "x": 1950,
+        "y": 2107.2,
+        "width": 560,
+        "height": 57.59999999999991
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bdfcc6a5a",
+          "name": "Static section frame",
+          "bounds": {
+            "x": 1950,
+            "y": 2107.2,
+            "width": 560,
+            "height": 57.59999999999991
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be0012b6b",
+          "name": "Static inline-start accent",
+          "bounds": {
+            "x": 1950,
+            "y": 2115.2,
+            "width": 3,
+            "height": 41.59999999999991
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be030612d",
+          "name": "Identity cue",
+          "bounds": {
+            "x": 1962,
+            "y": 2119.2,
+            "width": 32,
+            "height": 32
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be05ff84c",
+          "name": "Title cue",
+          "bounds": {
+            "x": 2006,
+            "y": 2119.2,
+            "width": 260,
+            "height": 14
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be08406ba",
+          "name": "Metadata cue",
+          "bounds": {
+            "x": 2006,
+            "y": 2141.2,
+            "width": 184,
+            "height": 10
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be0b81a88",
+          "name": "Action cue",
+          "bounds": {
+            "x": 2462,
+            "y": 2121.2,
+            "width": 28,
+            "height": 28
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "path": "EasyEdu / Loading / Skeleton bar / S",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac7927dd8343",
+      "bounds": {
+        "x": 860,
+        "y": 1758,
+        "width": 240,
+        "height": 16
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be0fe01ee",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 860,
+            "y": 1758,
+            "width": 240,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac792823ad27",
+      "path": "EasyEdu / Loading / Skeleton bar / S",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac792811081a",
+      "bounds": {
+        "x": 2110,
+        "y": 1758,
+        "width": 240,
+        "height": 16
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be13b497e",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 2110,
+            "y": 1758,
+            "width": 240,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "path": "EasyEdu / Loading / Skeleton Stack",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac792b1cd715",
+      "bounds": {
+        "x": 700,
+        "y": 2389.36,
+        "width": 560,
+        "height": 217.27999999999975
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be19618e3",
+          "name": "Static participant row 0",
+          "bounds": {
+            "x": 700,
+            "y": 2389.36,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be1cc2cd4",
+          "name": "Static inline-start accent 0",
+          "bounds": {
+            "x": 700,
+            "y": 2395.36,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be1fae605",
+          "name": "Identity cue 0",
+          "bounds": {
+            "x": 712,
+            "y": 2397.36,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be22de695",
+          "name": "Name cue 0",
+          "bounds": {
+            "x": 752,
+            "y": 2403.12,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be25d4920",
+          "name": "Action cue 0",
+          "bounds": {
+            "x": 1210,
+            "y": 2399.12,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be28d24f0",
+          "name": "Static participant row 1",
+          "bounds": {
+            "x": 700,
+            "y": 2447.28,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be2b19e68",
+          "name": "Static inline-start accent 1",
+          "bounds": {
+            "x": 700,
+            "y": 2453.28,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be2df7834",
+          "name": "Identity cue 1",
+          "bounds": {
+            "x": 712,
+            "y": 2455.28,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be30fde7c",
+          "name": "Name cue 1",
+          "bounds": {
+            "x": 752,
+            "y": 2461.04,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be346aad2",
+          "name": "Action cue 1",
+          "bounds": {
+            "x": 1210,
+            "y": 2457.04,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be37d9859",
+          "name": "Static participant row 2",
+          "bounds": {
+            "x": 700,
+            "y": 2505.2000000000003,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be3ba5f08",
+          "name": "Static inline-start accent 2",
+          "bounds": {
+            "x": 700,
+            "y": 2511.2000000000003,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be3e851d3",
+          "name": "Identity cue 2",
+          "bounds": {
+            "x": 712,
+            "y": 2513.2000000000003,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be4181e68",
+          "name": "Name cue 2",
+          "bounds": {
+            "x": 752,
+            "y": 2518.96,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be44a6623",
+          "name": "Action cue 2",
+          "bounds": {
+            "x": 1210,
+            "y": 2514.96,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be47f4418",
+          "name": "Static participant row 3",
+          "bounds": {
+            "x": 700,
+            "y": 2563.1200000000003,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be4af6f0e",
+          "name": "Static inline-start accent 3",
+          "bounds": {
+            "x": 700,
+            "y": 2569.1200000000003,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be4dd1247",
+          "name": "Identity cue 3",
+          "bounds": {
+            "x": 712,
+            "y": 2571.1200000000003,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be5124389",
+          "name": "Name cue 3",
+          "bounds": {
+            "x": 752,
+            "y": 2576.88,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be542700d",
+          "name": "Action cue 3",
+          "bounds": {
+            "x": 1210,
+            "y": 2572.88,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "path": "EasyEdu / Loading / Skeleton bar / L",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac7928b2412c",
+      "bounds": {
+        "x": 670,
+        "y": 1990,
+        "width": 620,
+        "height": 24
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be5860a08",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 670,
+            "y": 1990,
+            "width": 620,
+            "height": 24
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac792891f8bd",
+      "path": "EasyEdu / Loading / Skeleton bar / M",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac79287e00a0",
+      "bounds": {
+        "x": 2030,
+        "y": 1874,
+        "width": 400,
+        "height": 20
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be5bf519e",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 2030,
+            "y": 1874,
+            "width": 400,
+            "height": 20
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac792bd98d05",
+      "path": "EasyEdu / Loading / Skeleton Stack",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac792b940204",
+      "bounds": {
+        "x": 1950,
+        "y": 2389.3599999999997,
+        "width": 560,
+        "height": 217.2800000000002
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be61ac6e3",
+          "name": "Static participant row 0",
+          "bounds": {
+            "x": 1950,
+            "y": 2389.3599999999997,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be65288f1",
+          "name": "Static inline-start accent 0",
+          "bounds": {
+            "x": 1950,
+            "y": 2395.3599999999997,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be68439a6",
+          "name": "Identity cue 0",
+          "bounds": {
+            "x": 1962,
+            "y": 2397.3599999999997,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be6bb7a44",
+          "name": "Name cue 0",
+          "bounds": {
+            "x": 2002,
+            "y": 2403.12,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be6f2ed39",
+          "name": "Action cue 0",
+          "bounds": {
+            "x": 2460,
+            "y": 2399.12,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be72f2424",
+          "name": "Static participant row 1",
+          "bounds": {
+            "x": 1950,
+            "y": 2447.2799999999997,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be76b89be",
+          "name": "Static inline-start accent 1",
+          "bounds": {
+            "x": 1950,
+            "y": 2453.2799999999997,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be79dc79f",
+          "name": "Identity cue 1",
+          "bounds": {
+            "x": 1962,
+            "y": 2455.2799999999997,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be7d5947c",
+          "name": "Name cue 1",
+          "bounds": {
+            "x": 2002,
+            "y": 2461.0399999999995,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be80cb882",
+          "name": "Action cue 1",
+          "bounds": {
+            "x": 2460,
+            "y": 2457.0399999999995,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be8444684",
+          "name": "Static participant row 2",
+          "bounds": {
+            "x": 1950,
+            "y": 2505.2,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be87c43f5",
+          "name": "Static inline-start accent 2",
+          "bounds": {
+            "x": 1950,
+            "y": 2511.2,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be8b3082d",
+          "name": "Identity cue 2",
+          "bounds": {
+            "x": 1962,
+            "y": 2513.2,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be8ed9878",
+          "name": "Name cue 2",
+          "bounds": {
+            "x": 2002,
+            "y": 2518.9599999999996,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be912e8ce",
+          "name": "Action cue 2",
+          "bounds": {
+            "x": 2460,
+            "y": 2514.9599999999996,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be9401f3e",
+          "name": "Static participant row 3",
+          "bounds": {
+            "x": 1950,
+            "y": 2563.12,
+            "width": 560,
+            "height": 43.51999999999998
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be96c5aee",
+          "name": "Static inline-start accent 3",
+          "bounds": {
+            "x": 1950,
+            "y": 2569.12,
+            "width": 3,
+            "height": 31.519999999999982
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be99e7133",
+          "name": "Identity cue 3",
+          "bounds": {
+            "x": 1962,
+            "y": 2571.12,
+            "width": 27.519999999999982,
+            "height": 27.519999999999982
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7be9d0acbe",
+          "name": "Name cue 3",
+          "bounds": {
+            "x": 2002,
+            "y": 2576.8799999999997,
+            "width": 290,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bea062d18",
+          "name": "Action cue 3",
+          "bounds": {
+            "x": 2460,
+            "y": 2572.8799999999997,
+            "width": 24,
+            "height": 24
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac792afca9e3",
+      "path": "EasyEdu / Loading / Skeleton Table row",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac792ab093cc",
+      "bounds": {
+        "x": 1810,
+        "y": 2258.8,
+        "width": 840,
+        "height": 42.399999999999636
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bea68a097",
+          "name": "Static table row frame",
+          "bounds": {
+            "x": 1810,
+            "y": 2258.8,
+            "width": 840,
+            "height": 42.40000000000009
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bea931939",
+          "name": "Column cue 1",
+          "bounds": {
+            "x": 1826,
+            "y": 2272,
+            "width": 18,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7beabced50",
+          "name": "Column cue 2",
+          "bounds": {
+            "x": 1962,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7beaecc80b",
+          "name": "Column cue 3",
+          "bounds": {
+            "x": 2098,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7beb1abf55",
+          "name": "Column cue 4",
+          "bounds": {
+            "x": 2234,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7beb4be6c5",
+          "name": "Column cue 5",
+          "bounds": {
+            "x": 2370,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7beb6b4891",
+          "name": "Column cue 6",
+          "bounds": {
+            "x": 2506,
+            "y": 2272,
+            "width": 112,
+            "height": 16
+          },
+          "fill": [
+            "#dce7f0"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "path": "EasyEdu / Loading / Skeleton Card",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac79290dd76e",
+      "bounds": {
+        "x": 700,
+        "y": 2107.2,
+        "width": 560,
+        "height": 57.59999999999991
+      },
+      "paint": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bebdb0158",
+          "name": "Static section frame",
+          "bounds": {
+            "x": 700,
+            "y": 2107.2,
+            "width": 560,
+            "height": 57.600000000000364
+          },
+          "fill": [
+            "#ffffff"
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bec0959f0",
+          "name": "Static inline-start accent",
+          "bounds": {
+            "x": 700,
+            "y": 2115.2,
+            "width": 3,
+            "height": 41.59999999999991
+          },
+          "fill": [
+            "#0f6cbf"
+          ],
+          "stroke": []
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bec30ee02",
+          "name": "Identity cue",
+          "bounds": {
+            "x": 712,
+            "y": 2119.2,
+            "width": 32,
+            "height": 32
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bec6515f7",
+          "name": "Title cue",
+          "bounds": {
+            "x": 756,
+            "y": 2119.2,
+            "width": 260,
+            "height": 14
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7bec9d2f83",
+          "name": "Metadata cue",
+          "bounds": {
+            "x": 756,
+            "y": 2141.2,
+            "width": 184,
+            "height": 10
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad7becd0ffd3",
+          "name": "Action cue",
+          "bounds": {
+            "x": 1212,
+            "y": 2121.2,
+            "width": 28,
+            "height": 28
+          },
+          "fill": [
+            {
+              "type": "linear",
+              "startX": 0,
+              "startY": 0.5,
+              "endX": 1,
+              "endY": 0.5,
+              "width": 1,
+              "stops": [
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 0
+                },
+                {
+                  "color": "#edf3f7",
+                  "opacity": null,
+                  "offset": 0.48
+                },
+                {
+                  "color": "#dce7f0",
+                  "opacity": null,
+                  "offset": 1
+                }
+              ]
+            }
+          ],
+          "stroke": [
+            {
+              "color": "#cfdee9",
+              "width": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

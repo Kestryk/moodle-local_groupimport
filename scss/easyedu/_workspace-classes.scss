@@ -1,0 +1,79 @@
+// Opt-in management workspace chrome. Measurements: accepted EasyStud desktop
+// 92c1c225-95fb-802e-8008-ae9f13f14484 and 390px participant composition.
+// This owns presentation only; consumers retain navigation and panel behaviour.
+@use "components/typography" as type;
+
+@mixin workspace-classes {
+  .easyedu-ui .easyedu-workspace-identity {
+    min-inline-size: 0;
+  }
+  .easyedu-ui .easyedu-workspace-eyebrow {
+    @include type.type-eyebrow;
+    color: var(--easyedu-primary);
+    display: block;
+    margin: 0 0 0.75rem;
+  }
+  .easyedu-ui .easyedu-workspace-title-control {
+    margin: 0 0 0.75rem;
+    min-inline-size: 0;
+    .select-menu { max-inline-size: 100%; }
+    .select-menu > .dropdown-toggle {
+      @include type.type-page-title;
+      align-items: center;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      color: var(--easyedu-workspace-title-color);
+      display: inline-flex;
+      font-size: var(--easyedu-workspace-title-size);
+      gap: var(--easyedu-action-icon-gap);
+      max-inline-size: 100%;
+      min-block-size: 0;
+      min-inline-size: 0;
+      padding: 0;
+      text-align: start;
+      white-space: normal;
+      &::after { flex: 0 0 auto; margin-inline-start: 0; }
+    }
+  }
+  // K21-51: plain view title when no native participant selector is available.
+  .easyedu-ui .easyedu-workspace-title {
+    @include type.type-page-title;
+    color: var(--easyedu-workspace-title-color);
+    font-size: var(--easyedu-workspace-title-size);
+    margin: 0 0 0.75rem;
+  }
+  .easyedu-ui .easyedu-workspace-description {
+    @include type.type-body;
+    color: var(--easyedu-workspace-description-color);
+    margin: 0;
+    max-inline-size: 68.75rem;
+  }
+  .easyedu-ui .easyedu-workspace-panel {
+    background-color: var(--easyedu-surface);
+    background-image: var(--easyedu-semantic-rail-primary);
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 100% 0.25rem;
+    border: 0.0625rem solid var(--easyedu-border);
+    border-radius: 0.875rem;
+    box-shadow: none;
+    min-inline-size: 0;
+    > .card-body { padding: 1.5rem 1.25rem; }
+  }
+  .easyedu-ui .easyedu-workspace-panel--success {
+    background-image: var(--easyedu-semantic-rail-success);
+  }
+  .easyedu-ui .easyedu-workspace-panel-title {
+    color: var(--easyedu-workspace-panel-title-color);
+    font: 700 var(--easyedu-workspace-panel-title-size)/1.5 var(--easyedu-font-family-ui);
+    margin: 0;
+  }
+  @media (max-width: 40rem) {
+    .easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle {
+      font-size: var(--easyedu-workspace-title-size-narrow);
+    }
+    .easyedu-ui .easyedu-workspace-panel > .card-body { padding: 1rem; }
+  }
+}

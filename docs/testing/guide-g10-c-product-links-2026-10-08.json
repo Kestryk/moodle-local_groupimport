@@ -1,0 +1,202 @@
+{
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [
+    {
+      "id": "007cab03-0a24-8025-8008-c1f86792c85b",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "x": 32,
+      "y": 10770,
+      "width": 750,
+      "height": 58.39999999999998,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c1f88f946f85",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88b1ed50",
+      "x": 32,
+      "y": 10836,
+      "width": 750,
+      "height": 58.400000000000034,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c1f88fd0908c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "x": 846,
+      "y": 10782,
+      "width": 358.00000000000045,
+      "height": 103.99999999999997,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c205f4c275b5",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "x": 470,
+      "y": 15510,
+      "width": 358.00000000000045,
+      "height": 103.99999999999997,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c205f591af75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "x": 892,
+      "y": 15510,
+      "width": 358.00000000000045,
+      "height": 103.99999999999997,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c205f65ed302",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "x": 48,
+      "y": 17718,
+      "width": 735.9999999999998,
+      "height": 58.400000000001455,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c205f7b5d7df",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "x": 846,
+      "y": 17718,
+      "width": 736,
+      "height": 58.400000000001455,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c206da1fd181",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "x": 24,
+      "y": 7690,
+      "width": 1172,
+      "height": 58.399999999999636,
+      "archived": []
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c206db18e191",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "x": 1324,
+      "y": 7690,
+      "width": 1172,
+      "height": 58.399999999999636,
+      "archived": []
+    }
+  ],
+  "instructionOverrides": {
+    "007cab03-0a24-8025-8008-c1f86792c85b": "2 · Ouvrez les actions des membres, puis choisissez Déplacer.",
+    "007cab03-0a24-8025-8008-c1f88f946f85": "Démonstration terminée · récapitulatif ci-dessous.",
+    "007cab03-0a24-8025-8008-c1f88fd0908c": "3 · Recherchez le groupe de destination, puis vérifiez votre choix.",
+    "007cab03-0a24-8025-8008-c205f4c275b5": "Dans Participants, cochez Alex puis ouvrez Déplacer les participants.",
+    "007cab03-0a24-8025-8008-c205f591af75": "Dans Projet Orion, cochez Alex et Léa puis ouvrez les actions de membres.",
+    "007cab03-0a24-8025-8008-c205f65ed302": "Recherchez Projet Horizon, vérifiez la destination, puis confirmez.",
+    "007cab03-0a24-8025-8008-c205f7b5d7df": "Recherchez Projet Horizon, vérifiez la destination, puis confirmez.",
+    "007cab03-0a24-8025-8008-c206da1fd181": "1 · Cliquez et maintenez Alex, puis glissez sa carte vers le groupe Projet Horizon.",
+    "007cab03-0a24-8025-8008-c206db18e191": "4 · Vérifier la destination, puis cliquer sur « Déplacer » pour valider."
+  },
+  "mobileDestinationShift": [
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1ddf6ff4905",
+      "toY": 15632
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1ddf7489e58",
+      "toY": 15662
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1ddf76a289e",
+      "toY": 15756
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1753b400",
+      "toY": 15768
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de178df834",
+      "toY": 15848
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de17bbcf30",
+      "toY": 15866
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de17e99042",
+      "toY": 15900
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1823b8dd",
+      "toY": 16074
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1a79cf2e",
+      "toY": 15632
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1aadc4b2",
+      "toY": 15645
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1ad6e21d",
+      "toY": 15643
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1b0b7498",
+      "toY": 15684
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1b3f311e",
+      "toY": 15697
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1b6f50a8",
+      "toY": 15695
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1ba6bfa4",
+      "toY": 15756
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1bd0146f",
+      "toY": 15768
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1be5ef31",
+      "toY": 15848
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1c119932",
+      "toY": 15866
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1c4226d0",
+      "toY": 15900
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1de1c74238f",
+      "toY": 16074
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1df61fa9bb3",
+      "toY": 16422
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1df62304947",
+      "toY": 16422
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1df6262ed29",
+      "toY": 16404
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1df629b67f9",
+      "toY": 16422
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1df62c4130a",
+      "toY": 16422
+    }
+  ],
+  "scope": "G10-C nine Reading instances; original copy/host coordinates retained; 25 correlated phone elements shifted 28px for clearance.",
+  "humanVisualValidated": false
+}

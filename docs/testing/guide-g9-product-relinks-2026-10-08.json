@@ -1,0 +1,991 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "G9-E Guide Foundations relinking tranche 1",
+  "date": "2026-10-08",
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "kitVersion": "0.4.146",
+  "components": [
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88a731b93210770",
+      "id": "007cab03-0a24-8025-8008-c1f86792c85b",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Desktop",
+      "x": 32,
+      "y": 10770,
+      "width": 750,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d31eb6f9a8",
+          "hidden": false,
+          "name": "Guide / Discovery / Animation step banner / Active"
+        }
+      ],
+      "overrides": {
+        "Instruction": "2 · Ouvrez les actions des membres, puis choisissez Déplacer."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88b1ed503210836",
+      "id": "007cab03-0a24-8025-8008-c1f88f946f85",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88b1ed50",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Finished Desktop",
+      "x": 32,
+      "y": 10836,
+      "width": 750,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d31ec2673b",
+          "hidden": false,
+          "name": "Guide / Discovery / Animation step banner / Finished"
+        }
+      ],
+      "overrides": {
+        "Instruction": "Démonstration terminée · récapitulatif ci-dessous."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88bc893d84610782",
+      "id": "007cab03-0a24-8025-8008-c1f88fd0908c",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Phone",
+      "x": 846,
+      "y": 10782,
+      "width": 358.00000000000045,
+      "height": 76,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d31ecc070a",
+          "hidden": false,
+          "name": "Guide / Discovery / Animation step banner / Phone"
+        }
+      ],
+      "overrides": {
+        "Instruction": "3 · Recherchez le groupe de destination, puis vérifiez votre choix."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9cfb9a723212130",
+      "id": "007cab03-0a24-8025-8008-c1f8902313ab",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cfb9a72",
+      "providerPath": "EasyEdu / Guide Discovery / Resume invitation",
+      "providerName": "Desktop",
+      "x": 32,
+      "y": 12130,
+      "width": 750,
+      "height": 72,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85529137e",
+          "hidden": false,
+          "name": "Resume / Desktop"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85559b55a",
+          "hidden": false,
+          "name": "Resume / Copy"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855820915",
+          "hidden": false,
+          "name": "Resume / Action"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855a49f78",
+          "hidden": false,
+          "name": "Resume / Label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855d146b1",
+          "hidden": false,
+          "name": "Resume / Cancel"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855f244dd",
+          "hidden": false,
+          "name": "Resume / Cancel label"
+        }
+      ],
+      "overrides": {
+        "Explanation": "Un parcours guidé est en cours."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9d33f5a53212308",
+      "id": "007cab03-0a24-8025-8008-c1f890daab55",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d33f5a5",
+      "providerPath": "EasyEdu / Guide Discovery / Completion notice",
+      "providerName": "Complete",
+      "x": 32,
+      "y": 12308,
+      "width": 750,
+      "height": 74,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8565307e2",
+          "hidden": false,
+          "name": "Completion / Quiet surface"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8567bbb61",
+          "hidden": false,
+          "name": "Completion / Copy"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dc36c6e051",
+          "hidden": false,
+          "name": "Completion / Semantic success icon"
+        }
+      ],
+      "overrides": {
+        "Completion copy": "Parcours terminé. Revenez au guide pour poursuivre, ou fermez ce parcours."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9cacc3ab83012130",
+      "id": "007cab03-0a24-8025-8008-c1f89183e981",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab",
+      "providerPath": "EasyEdu / Guide Discovery / Path invitation",
+      "providerName": "Phone",
+      "x": 830,
+      "y": 12130,
+      "width": 358.00000000000045,
+      "height": 500,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e856a88234",
+          "hidden": false,
+          "name": "Invitation / Phone390"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e856ceef49",
+          "hidden": false,
+          "name": "Invitation / Eyebrow"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e856fc8457",
+          "hidden": false,
+          "name": "Invitation / Title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85732bab8",
+          "hidden": false,
+          "name": "Invitation / Description"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8575c7b68",
+          "hidden": false,
+          "name": "Invitation / Pill 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e857956e8a",
+          "hidden": false,
+          "name": "Invitation / Counter15px 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e857c84a6e",
+          "hidden": false,
+          "name": "Invitation / Counter label 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8580a9172",
+          "hidden": false,
+          "name": "Invitation / Step 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85847db5d",
+          "hidden": false,
+          "name": "Invitation / Pill 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85874478d",
+          "hidden": false,
+          "name": "Invitation / Counter15px 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8589693cc",
+          "hidden": false,
+          "name": "Invitation / Counter label 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e858ca256c",
+          "hidden": false,
+          "name": "Invitation / Step 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e858f5e482",
+          "hidden": false,
+          "name": "Invitation / Pill 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8591eaac7",
+          "hidden": false,
+          "name": "Invitation / Counter15px 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8594610a1",
+          "hidden": false,
+          "name": "Invitation / Counter label 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8597bcfd7",
+          "hidden": false,
+          "name": "Invitation / Step 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e859a785eb",
+          "hidden": false,
+          "name": "Invitation / Pill 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e859d1eeff",
+          "hidden": false,
+          "name": "Invitation / Counter15px 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e859f1b575",
+          "hidden": false,
+          "name": "Invitation / Counter label 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a1e256e",
+          "hidden": false,
+          "name": "Invitation / Step 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a4359f0",
+          "hidden": false,
+          "name": "Invitation / Pill 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a65ab9c",
+          "hidden": false,
+          "name": "Invitation / Counter15px 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a851d16",
+          "hidden": false,
+          "name": "Invitation / Counter label 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85abee406",
+          "hidden": false,
+          "name": "Invitation / Step 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85afd687b",
+          "hidden": false,
+          "name": "Invitation / Pill 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85b31c59f",
+          "hidden": false,
+          "name": "Invitation / Counter15px 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85b5bc865",
+          "hidden": false,
+          "name": "Invitation / Counter label 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85b8f020e",
+          "hidden": false,
+          "name": "Invitation / Step 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85bc8f0e7",
+          "hidden": false,
+          "name": "Invitation / Start"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85bf4a3c4",
+          "hidden": false,
+          "name": "Invitation / Start label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1d9c9fa02ed",
+          "hidden": false,
+          "name": "Invitation / Emblem slot / Phone"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1d9ca275d66",
+          "hidden": false,
+          "name": "Invitation / Route / Foundations"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation à un groupe",
+        "Description": "Six étapes réelles. Seule votre confirmation modifie les données du cours.",
+        "Step copy 0": "Créer un groupe",
+        "Step copy 1": "Ouvrir la vue Participants",
+        "Step copy 2": "Sélectionner un participant",
+        "Step copy 3": "Ouvrir Déplacer les participants",
+        "Step copy 4": "Rechercher et choisir la destination",
+        "Step copy 5": "Vérifier, puis confirmer"
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9cdd4fc083012646",
+      "id": "007cab03-0a24-8025-8008-c1f8933449bc",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cdd4fc0",
+      "providerPath": "EasyEdu / Guide Discovery / In-progress footer",
+      "providerName": "Phone",
+      "x": 830,
+      "y": 12646,
+      "width": 358.00000000000045,
+      "height": 70,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85c27c5ac",
+          "hidden": false,
+          "name": "Invitation / Reset"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85c4f47dc",
+          "hidden": false,
+          "name": "Invitation / Reset label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85c88780f",
+          "hidden": false,
+          "name": "Invitation / Restart rule"
+        }
+      ],
+      "overrides": {
+        "Progress explanation": "Parcours en cours."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed9bf59c1c3211248",
+      "id": "007cab03-0a24-8025-8008-c1f903b0f1b4",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9bf59c1c",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Expanded Desktop",
+      "x": 32,
+      "y": 11248,
+      "width": 400,
+      "height": 432,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29af9f773",
+          "hidden": false,
+          "name": "Checklist / Expanded"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b36799d",
+          "hidden": false,
+          "name": "Checklist / Title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b53d472",
+          "hidden": false,
+          "name": "Checklist / Progress"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b788c63",
+          "hidden": false,
+          "name": "Checklist / visible step 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b94ac32",
+          "hidden": false,
+          "name": "Checklist / step copy 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29babde7c",
+          "hidden": false,
+          "name": "Checklist / visible step 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29bc773de",
+          "hidden": false,
+          "name": "Checklist / step copy 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29be525dc",
+          "hidden": false,
+          "name": "Checklist / visible step 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29bffe2b8",
+          "hidden": false,
+          "name": "Checklist / step copy 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c1ddd3e",
+          "hidden": false,
+          "name": "Checklist / scroll hint"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d2ddc6e81f",
+          "hidden": false,
+          "name": "EasyEdu / Buttons / Core action / Secondary / S"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0db8f7065a5",
+          "hidden": false,
+          "name": "Checklist / Minimize / Shared Small"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd2deae4a7",
+          "hidden": false,
+          "name": "Checklist / description 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd36917b68",
+          "hidden": false,
+          "name": "Checklist / description 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd36c66d96",
+          "hidden": false,
+          "name": "Checklist / prerequisite 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd3d7d9b6e",
+          "hidden": false,
+          "name": "Checklist / description 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd3db295d1",
+          "hidden": false,
+          "name": "Checklist / prerequisite 2"
+        }
+      ],
+      "overrides": {
+        "Title": "Parcours guidé : créer un groupe",
+        "Progress": "0 / 6 étapes accomplies",
+        "Scroll hint": "Étapes 4–6 : scroll interne · textes non comprimés"
+      },
+      "hiddenGenericRows": true,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88d329da5311328",
+      "id": "007cab03-0a24-8025-8008-c1f9050ce3d7",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Active",
+      "x": 53,
+      "y": 11328,
+      "width": 358,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Créer un groupe",
+        "Description": "Saisissez le nom, puis utilisez le contrôle de création.",
+        "Step number": "1"
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed8911c0545311430",
+      "id": "007cab03-0a24-8025-8008-c1f9056ad461",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed8911c054",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Locked",
+      "x": 53,
+      "y": 11430,
+      "width": 358,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Ouvrir la vue Participants",
+        "Description": "Passez à Participants et groupes, ou Participants sur mobile.",
+        "Step number": "2",
+        "Prerequisite": "Après : Créer un groupe"
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed8911c0545311532",
+      "id": "007cab03-0a24-8025-8008-c1f906a65c86",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed8911c054",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Locked",
+      "x": 53,
+      "y": 11532,
+      "width": 358,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Sélectionner un participant",
+        "Description": "Utilisez la case du participant. Aucune appartenance ne change.",
+        "Step number": "3",
+        "Prerequisite": "Après : Ouvrir la vue Participants"
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed9c48e86248611248",
+      "id": "007cab03-0a24-8025-8008-c1f907c62b47",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c48e862",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Reduced Phone",
+      "x": 486,
+      "y": 11248,
+      "width": 358,
+      "height": 96,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c3ba132",
+          "hidden": false,
+          "name": "Checklist / Reduced desktop"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c58de82",
+          "hidden": false,
+          "name": "Checklist / Reduced title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c78873b",
+          "hidden": false,
+          "name": "Checklist / Reduced progress"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c98e853",
+          "hidden": false,
+          "name": "Checklist / Restore"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29cbd366a",
+          "hidden": false,
+          "name": "Checklist / Reduced phone"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d2ddd9b611",
+          "hidden": false,
+          "name": "EasyEdu / Buttons / Core action / Secondary / S"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0db8ffddae3",
+          "hidden": false,
+          "name": "Checklist / Restore / Linked expand"
+        }
+      ],
+      "overrides": {
+        "Title": "Sélectionner un participant",
+        "Progress": "2 / 6 étapes accomplies"
+      },
+      "intrinsicTitleHeight": 40,
+      "progressY": 62,
+      "copyNote": "Active step retained; redundant path-title prefix omitted in reduced presentation.",
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed9c48e86248611360",
+      "id": "007cab03-0a24-8025-8008-c1f9086e972f",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c48e862",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Reduced Phone",
+      "x": 486,
+      "y": 11360,
+      "width": 358,
+      "height": 96,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29cd61720",
+          "hidden": false,
+          "name": "Checklist / Phone title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29cf52e61",
+          "hidden": false,
+          "name": "Checklist / Phone progress"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29d0fa21b",
+          "hidden": false,
+          "name": "Checklist / Phone restore"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d3d9a7dd6d",
+          "hidden": false,
+          "name": "EasyEdu / Buttons / Core action / Secondary / S"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0db905337dc",
+          "hidden": false,
+          "name": "Checklist / Restore / Linked expand"
+        }
+      ],
+      "overrides": {
+        "Title": "Sélectionner un participant",
+        "Progress": "2 / 6 étapes accomplies"
+      },
+      "intrinsicTitleHeight": 40,
+      "progressY": 62,
+      "copyNote": "Active step retained; redundant path-title prefix omitted in reduced presentation.",
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed9c2847214814162",
+      "id": "007cab03-0a24-8025-8008-c1f95999fa4d",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c284721",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Expanded Phone",
+      "x": 48,
+      "y": 14162,
+      "width": 357.9999999999998,
+      "height": 346,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd96631f8d",
+          "hidden": false,
+          "name": "Checklist / Surface 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd96a21d78",
+          "hidden": false,
+          "name": "Checklist / Title 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd96f5d5c9",
+          "hidden": false,
+          "name": "Checklist / Minimize 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9746453a",
+          "hidden": false,
+          "name": "Checklist / Progress 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9780a0d5",
+          "hidden": false,
+          "name": "Checklist / Earlier review 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd97b4070a",
+          "hidden": false,
+          "name": "Checklist / Earlier title 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd98011270",
+          "hidden": false,
+          "name": "Checklist / Current 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd984ef0c9",
+          "hidden": false,
+          "name": "Checklist / Current title 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd98939d2c",
+          "hidden": false,
+          "name": "Checklist / Current description 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd98d96973",
+          "hidden": false,
+          "name": "Checklist / Scroll hint 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd992b8180",
+          "hidden": false,
+          "name": "Checklist / Scroll cue 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9974fd2a",
+          "hidden": false,
+          "name": "Checklist / Scroll thumb 48"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation\nà un groupe",
+        "Progress": "4 / 6 étapes accomplies",
+        "Scroll hint": "Étape 6 dans le défilement interne"
+      },
+      "intrinsicTitleHeight": 40,
+      "hiddenGenericRows": true,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88e2c48b4814258",
+      "id": "007cab03-0a24-8025-8008-c1f95a9d7d61",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88e2c48b",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Complete",
+      "x": 64,
+      "y": 14258,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Ouvrir Déplacer les participants",
+        "Description": "Étape accomplie · vous pouvez la consulter."
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88d329da4814360",
+      "id": "007cab03-0a24-8025-8008-c1f95adcdb86",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Active",
+      "x": 64,
+      "y": 14360,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Rechercher et choisir le groupe",
+        "Description": "Le champ reste utilisable dans la modale.",
+        "Step number": "5"
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed9c28472187014162",
+      "id": "007cab03-0a24-8025-8008-c1f95c19b142",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c284721",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Expanded Phone",
+      "x": 870,
+      "y": 14162,
+      "width": 357.9999999999999,
+      "height": 346,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd99b920df",
+          "hidden": false,
+          "name": "Checklist / Surface 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9a0572af",
+          "hidden": false,
+          "name": "Checklist / Title 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9a6245cb",
+          "hidden": false,
+          "name": "Checklist / Minimize 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9abeebe7",
+          "hidden": false,
+          "name": "Checklist / Progress 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9afd382a",
+          "hidden": false,
+          "name": "Checklist / Earlier review 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9b36b1bf",
+          "hidden": false,
+          "name": "Checklist / Earlier title 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9b79cb67",
+          "hidden": false,
+          "name": "Checklist / Current 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9bb7353e",
+          "hidden": false,
+          "name": "Checklist / Current title 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9c02f190",
+          "hidden": false,
+          "name": "Checklist / Current description 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9c538f7e",
+          "hidden": false,
+          "name": "Checklist / Scroll hint 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9caa6eca",
+          "hidden": false,
+          "name": "Checklist / Scroll cue 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9cf8f3e9",
+          "hidden": false,
+          "name": "Checklist / Scroll thumb 870"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation\nà un groupe",
+        "Progress": "4 / 6 étapes accomplies",
+        "Scroll hint": "Étape 6 dans le défilement interne"
+      },
+      "intrinsicTitleHeight": 40,
+      "hiddenGenericRows": true,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88e2c48b87014258",
+      "id": "007cab03-0a24-8025-8008-c1f95d550491",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88e2c48b",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Complete",
+      "x": 886,
+      "y": 14258,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Ouvrir Déplacer les participants",
+        "Description": "Étape accomplie · vous pouvez la consulter."
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88d329da87014360",
+      "id": "007cab03-0a24-8025-8008-c1f95d9a16cc",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Active",
+      "x": 886,
+      "y": 14360,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Rechercher et choisir le groupe",
+        "Description": "Le champ reste utilisable dans la modale.",
+        "Step number": "5"
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    }
+  ],
+  "mobileDestinationShift": [
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9d409738",
+      "fromY": 14452,
+      "toY": 14540
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9d895387",
+      "fromY": 14452,
+      "toY": 14540
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9dd55d61",
+      "fromY": 14466,
+      "toY": 14554
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9e2d9e3c",
+      "fromY": 14461,
+      "toY": 14549
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9e89c183",
+      "fromY": 14516,
+      "toY": 14604
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9ed61306",
+      "fromY": 14544,
+      "toY": 14632
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9f16cb4d",
+      "fromY": 14554,
+      "toY": 14642
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9f540900",
+      "fromY": 14553,
+      "toY": 14641
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9f8bb815",
+      "fromY": 14590,
+      "toY": 14678
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9fbf5363",
+      "fromY": 14600,
+      "toY": 14688
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9ff74f74",
+      "fromY": 14540,
+      "toY": 14628
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dda02a972b",
+      "fromY": 14660,
+      "toY": 14748
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dda048baf5",
+      "fromY": 14660,
+      "toY": 14748
+    }
+  ],
+  "texts": 63,
+  "icons": 11,
+  "issues": [],
+  "overviewUnchanged": true,
+  "savedServerReadback": true,
+  "savedVerification": {
+    "scenario": "tools/penpot/read-saved-guide-relinks.cjs",
+    "classification": "local-supervised",
+    "roots": 19,
+    "descendants": 258,
+    "archivesRetained": 100,
+    "relocatedDestinationShapes": 13,
+    "editorWrites": 0,
+    "moodleWrites": 0,
+    "helperDisconnected": true
+  },
+  "exportInspectedBoardIds": [
+    "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+    "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+    "4ee6f77a-1dfb-809b-8008-c1dd939450a8"
+  ],
+  "pendingExportBoardIds": [],
+  "completeGuidePropagation": false,
+  "humanVisualValidated": false,
+  "recoveryNotes": [
+    "Initial banner override name mismatch: exact pending instance read back and continued, no duplicate replay.",
+    "Board75 rows initially double-shifted during root/child move: restored child positions from masters; final export and containment audited.",
+    "Initial board75 export server timeout: readback retained, subsequent export inspected."
+  ],
+  "remaining": [
+    "Correlated phone/tablet Practice/Organisation/Actions boards76/78",
+    "Other accepted Guide scene/return compositions",
+    "Complete curriculum and separate Mass Import guide",
+    "Combined human checklist"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "batch": "SM-30",
+  "kitVersion": "0.4.73",
+  "foundations": {
+    "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPageId": "3ade82ad-bce8-8059-8008-9c07259b5c06",
+    "libraryHostId": "11206fb4-1be0-8047-8008-bc35d4721785",
+    "standardPageId": "d0d0680d-7d36-80da-8008-97a6a5b5b9d6",
+    "standardHostId": "df1dc7b5-2b58-807e-8008-bc363a861ffd",
+    "components": {
+      "toggleOff": "11206fb4-1be0-8047-8008-bc35d8e109c3",
+      "toggleOn": "11206fb4-1be0-8047-8008-bc35d8e6e430",
+      "resetRest": "11206fb4-1be0-8047-8008-bc35d8ea5884",
+      "resetHover": "11206fb4-1be0-8047-8008-bc35d8f0aabd",
+      "resetFocusVisible": "11206fb4-1be0-8047-8008-bc35d8f6356b",
+      "disclosureWide": "11206fb4-1be0-8047-8008-bc35d8fcef28",
+      "disclosureTouch": "11206fb4-1be0-8047-8008-bc35d90dd284"
+    },
+    "standardInstancesLinked": true
+  },
+  "product": {
+    "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+    "pageId": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "hostId": "df1dc7b5-2b58-807e-8008-bc36e705b19d",
+    "name": "Student management — More Filters / canonical composition",
+    "desktopPanelId": "df1dc7b5-2b58-807e-8008-bc36e991fff9",
+    "mobilePanelId": "df1dc7b5-2b58-807e-8008-bc36ef187833",
+    "linkedFoundationsControls": true,
+    "allReadBackShapesContained": true,
+    "desktopDisclosureHeight": 34,
+    "responsiveDisclosureHeight": 44
+  },
+  "visualExportInspected": true,
+  "humanAccepted": false
+}

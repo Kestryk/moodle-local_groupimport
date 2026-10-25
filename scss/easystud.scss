@@ -1,0 +1,35 @@
+// EasyStud / EasyEdu theme entry point.
+// Keep this file as orchestration only: reusable visual language lives in partials.
+@use "abstracts/tokens";
+@use "components/accessibility";
+@use "components/layout";
+@use "components/mass-import-navigation";
+@use "components/participants";
+@use "components/forms";
+@use "components/structure";
+@use "components/modals";
+@use "components/workspace-shared";
+@use "components/easyedu-guide";
+@use "components/settings-modal";
+@use "components/entity-dialog";
+@use "components/interaction";
+@use "views/admin-settings";
+@use "views/mass-import";
+@use "components/background-import";
+@use "components/tooltips";
+@use "responsive/desktop";
+@use "utilities/animations";
+@use "responsive/mobile";
+@use "components/control-typography";
+@use "components/typography-identity";
+// Product typography is intentionally last so responsive consumer rules cannot
+// override the shared semantic roles.
+@use "components/typography";
+@use "components/foundation-classes";
+@use "components/workspace-lanes";
+@use "components/card-labels";
+@use "components/structure-summary";
+@use "components/filter-toggle";
+@use "components/cards-light";
+@use "components/card-titles";
+@use "components/long-lists";

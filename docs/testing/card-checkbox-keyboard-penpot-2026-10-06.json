@@ -1,0 +1,195 @@
+{
+  "scope": "Native checkbox keyboard protocol; paint/size propagation still OPEN",
+  "foundationLibrary": {
+    "role": "library",
+    "page": "81455adb-6787-8068-8008-9ce9b711604d",
+    "board": "b9192da3-1671-803e-8008-bece01fbb104",
+    "controls": [
+      {
+        "id": "b9192da3-1671-803e-8008-bece0305dde4",
+        "host": "b9192da3-1671-803e-8008-bece02e2042d",
+        "component": "e5bf882d-be5b-8059-8008-982e815deb67",
+        "state": "Default",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-bece039266b8",
+        "host": "b9192da3-1671-803e-8008-bece036f8852",
+        "component": "e5bf882d-be5b-8059-8008-982e82000822",
+        "state": "Checked",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-bece0414dcc9",
+        "host": "b9192da3-1671-803e-8008-bece03f6b0d6",
+        "component": "9df758e8-c120-80dc-8008-9bcceb5a863b",
+        "state": "Focus-visible",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-bece0491fef0",
+        "host": "b9192da3-1671-803e-8008-bece04738261",
+        "component": "9df758e8-c120-80dc-8008-9bccebd8032b",
+        "state": "Disabled",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      }
+    ],
+    "notes": [
+      "b9192da3-1671-803e-8008-bece0244771e",
+      "b9192da3-1671-803e-8008-bece028c1e15",
+      "b9192da3-1671-803e-8008-bece02b79f94",
+      "b9192da3-1671-803e-8008-bece0317737e",
+      "b9192da3-1671-803e-8008-bece0341f4da",
+      "b9192da3-1671-803e-8008-bece03a7b561",
+      "b9192da3-1671-803e-8008-bece03cb25ce",
+      "b9192da3-1671-803e-8008-bece0426784a",
+      "b9192da3-1671-803e-8008-bece044fd480",
+      "b9192da3-1671-803e-8008-bece04a0f014",
+      "b9192da3-1671-803e-8008-bece04c76131"
+    ],
+    "width": 1240,
+    "height": 320,
+    "overflow": []
+  },
+  "foundationStandard": {
+    "role": "standard",
+    "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+    "board": "b9192da3-1671-803e-8008-bece0718e943",
+    "controls": [
+      {
+        "id": "b9192da3-1671-803e-8008-bece07dcbeed",
+        "host": "b9192da3-1671-803e-8008-bece07b80e95",
+        "component": "e5bf882d-be5b-8059-8008-982e815deb67",
+        "state": "Default",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-bece087c4cb4",
+        "host": "b9192da3-1671-803e-8008-bece0849b122",
+        "component": "e5bf882d-be5b-8059-8008-982e82000822",
+        "state": "Checked",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-bece090aa083",
+        "host": "b9192da3-1671-803e-8008-bece08e8783d",
+        "component": "9df758e8-c120-80dc-8008-9bcceb5a863b",
+        "state": "Focus-visible",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-bece09abb075",
+        "host": "b9192da3-1671-803e-8008-bece097d8fff",
+        "component": "9df758e8-c120-80dc-8008-9bccebd8032b",
+        "state": "Disabled",
+        "width": 22.7199999999998,
+        "height": 22.720000000001164,
+        "hostWidth": 44,
+        "hostHeight": 44,
+        "centreX": 0,
+        "centreY": 0
+      }
+    ],
+    "notes": [
+      "b9192da3-1671-803e-8008-bece0735a485",
+      "b9192da3-1671-803e-8008-bece07650c23",
+      "b9192da3-1671-803e-8008-bece078b2f40",
+      "b9192da3-1671-803e-8008-bece07edb509",
+      "b9192da3-1671-803e-8008-bece081affe1",
+      "b9192da3-1671-803e-8008-bece089199e1",
+      "b9192da3-1671-803e-8008-bece08c1065f",
+      "b9192da3-1671-803e-8008-bece0920eae0",
+      "b9192da3-1671-803e-8008-bece094ab112",
+      "b9192da3-1671-803e-8008-bece09bbfdef",
+      "b9192da3-1671-803e-8008-bece09e35c91"
+    ],
+    "width": 1240,
+    "height": 320,
+    "overflow": []
+  },
+  "product": {
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "board": "b9192da3-1671-803e-8008-becf41c32518",
+    "controls": [
+      {
+        "id": "b9192da3-1671-803e-8008-becf4342c107",
+        "host": "b9192da3-1671-803e-8008-becf4309948a",
+        "state": "Default",
+        "component": "e5bf882d-be5b-8059-8008-982e815deb67"
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-becf442eb821",
+        "host": "b9192da3-1671-803e-8008-becf4402ecaf",
+        "state": "Checked",
+        "component": "e5bf882d-be5b-8059-8008-982e82000822"
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-becf4518529c",
+        "host": "b9192da3-1671-803e-8008-becf44e83f44",
+        "state": "Focus-visible",
+        "component": "9df758e8-c120-80dc-8008-9bcceb5a863b"
+      },
+      {
+        "id": "b9192da3-1671-803e-8008-becf45fa4033",
+        "host": "b9192da3-1671-803e-8008-becf45cdcb20",
+        "state": "Disabled",
+        "component": "9df758e8-c120-80dc-8008-9bccebd8032b"
+      }
+    ],
+    "notes": [
+      "b9192da3-1671-803e-8008-becf41ffa2df",
+      "b9192da3-1671-803e-8008-becf42606069",
+      "b9192da3-1671-803e-8008-becf42b749d7",
+      "b9192da3-1671-803e-8008-becf435fe078",
+      "b9192da3-1671-803e-8008-becf43ac29c9",
+      "b9192da3-1671-803e-8008-becf4446baa3",
+      "b9192da3-1671-803e-8008-becf4490d530",
+      "b9192da3-1671-803e-8008-becf453812ba",
+      "b9192da3-1671-803e-8008-becf457d774a",
+      "b9192da3-1671-803e-8008-becf46132fb3",
+      "b9192da3-1671-803e-8008-becf465b1e82"
+    ]
+  },
+  "gates": {
+    "foundationContainment": true,
+    "productSettledReadback": false,
+    "cleanExport": false,
+    "native": false,
+    "human": false
+  }
+}

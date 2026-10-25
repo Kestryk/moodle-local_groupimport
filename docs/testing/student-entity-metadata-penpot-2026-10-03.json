@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "foundations": {
+    "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPageId": "81455adb-6787-8068-8008-9ce6186bf6ef",
+    "standardPageId": "2b150968-5877-802e-8008-97c286173199",
+    "libraryHostId": "37222e98-689a-801a-8008-bbfd3b2f8022",
+    "standardHostId": "79c98099-5199-8000-8008-bbff04d6f95e",
+    "componentPaths": [
+      "EasyEdu / Modals / Entity metadata / Count",
+      "EasyEdu / Modals / Entity metadata / Chip",
+      "EasyEdu / Modals / Entity metadata / Disclosure / Detail list",
+      "EasyEdu / Modals / Entity metadata / Disclosure / Settings list"
+    ],
+    "componentIds": [
+      "37222e98-689a-801a-8008-bbfd3c8173e7",
+      "37222e98-689a-801a-8008-bbfd3d08635b",
+      "37222e98-689a-801a-8008-bbfd3d8db9cc",
+      "37222e98-689a-801a-8008-bbfd3e0dda70",
+      "37222e98-689a-801a-8008-bbfd3e81af26",
+      "37222e98-689a-801a-8008-bbfd3ef0b534",
+      "37222e98-689a-801a-8008-bbfd3f6ad97a",
+      "79c98099-5199-8000-8008-bbfe87af4866",
+      "79c98099-5199-8000-8008-bbfe8b1b6bfc"
+    ],
+    "savedVersion": "Entity metadata — paired counts, chips and disclosure lists",
+    "sourceWeightMapping": {"650": 600},
+    "sourceWeightMappingReason": "Penpot accepts only standard font weights; the canonical SCSS retains native 650."
+  },
+  "product": {
+    "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+    "pageId": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "boardId": "e38279dc-cd7d-80fa-8008-bc000f020794",
+    "boardName": "Student management — Entity metadata / responsive dialog content",
+    "linkedShapeCount": 65,
+    "cards": [
+      {"name": "Participant details / Desktop", "height": 420, "overflow": false},
+      {"name": "Group settings / Desktop", "height": 420, "overflow": false},
+      {"name": "Grouping settings / Compact", "height": 430, "overflow": false},
+      {"name": "Responsive rule", "height": 430, "overflow": false}
+    ],
+    "savedVersions": [
+      "Entity metadata — Foundations linked into EasyStud dialogs",
+      "Entity metadata — corrected card containment and compact wording"
+    ]
+  },
+  "readback": {
+    "ordinaryLinkedInstancesOnlyInStandardAndProduct": true,
+    "newProductLocalComponentMasters": 0,
+    "cardContainmentFailures": 0,
+    "sourceAndConsumerBoardsOverlap": false,
+    "visualExportBeforeContainmentCorrectionInspected": true,
+    "postCorrectionGeometryReadbackPassed": true,
+    "postCorrectionExportTimedOut": true,
+    "humanVisualValidated": false
+  }
+}

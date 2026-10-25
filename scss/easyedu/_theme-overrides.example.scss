@@ -1,0 +1,31 @@
+// Example Moodle theme overrides for the shared EasyEdu visual language.
+//
+// Copy only the variables you want to override into your Moodle theme SCSS.
+// Do not edit the plugin's compiled `styles.css`: Moodle themes can safely
+// target plugin roots and override the public `--easyedu-*` variables instead.
+
+.local-groupimport-easystud,
+.local-groupimport-import,
+.easyedu-theme {
+  // Brand colours.
+  --easyedu-primary: #005f73;
+  --easyedu-primary-soft: #e7f5f7;
+  --easyedu-primary-strong: #03495a;
+  --easyedu-accent: #2a9d8f;
+  --easyedu-accent-soft: #edf9f6;
+
+  // Shape and elevation.
+  --easyedu-radius: 0.9rem;
+  --easyedu-card-radius: 1rem;
+  --easyedu-count-bg: #f4faf8;
+  --easyedu-count-border: #cce5dc;
+  --easyedu-count-text: #245f50;
+  --easyedu-modal-radius: 1.1rem;
+  --easyedu-tooltip-glow: rgba(42, 157, 143, 0.12);
+  --easyedu-shadow: 0 0.55rem 1.35rem rgba(15, 52, 68, 0.1);
+
+  // Optional semantic remapping for EasyStud object types.
+  --easyedu-participant: #315f8f;
+  --easyedu-group: #26724e;
+  --easyedu-grouping: #61758c;
+}

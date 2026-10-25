@@ -1,0 +1,53 @@
+{
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM-14 native searchable multiple filters; no business writes",
+  "kitRevision": "df067f8f571c965a38bcbf941e7194c8a6035b72",
+  "consumerRevision": "6e8a2a7be235f71c49d3ab82e3e9b8f645d25e18",
+  "runtimeRevision": "cae152ae60922f13ffc7c6efc6ab9af2dba1002f",
+  "queue": "20261003T123319Z-79f1f50bea",
+  "cacheRefreshed": true,
+  "runId": "easystud-authenticated-20261003T123356784Z-14216",
+  "specBlob": "943f153616922b917d6b32a9e9e9e74b7cf50be8",
+  "status": "passed",
+  "nativeMultipleSelectionCases": 6,
+  "widths": [
+    1600,
+    768,
+    390
+  ],
+  "checks": [
+    "Selected native options retained during filtering/no-results",
+    "Independent pressed/check state and translated summary",
+    "Native Reset clears select and trigger",
+    "Original OR group predicate matches native filtered cards",
+    "Both group catalogue filters searchable/resettable",
+    "Native 390px role fallback searchable; grouping visibility retained",
+    "Regular 14px trigger and 38px/44px geometry contained"
+  ],
+  "businessPosts": 0,
+  "fixtures": false,
+  "pageErrors": [],
+  "captures": [
+    "playwright-output/student-searchable-filters-19d6b-and-reset-across-workspaces/catalog-participants-1600.png",
+    "playwright-output/student-searchable-filters-19d6b-and-reset-across-workspaces/catalog-structure-1600.png",
+    "playwright-output/student-searchable-filters-19d6b-and-reset-across-workspaces/participant-groupings-1600.png",
+    "playwright-output/student-searchable-filters-19d6b-and-reset-across-workspaces/participant-groups-1600.png",
+    "playwright-output/student-searchable-filters-19d6b-and-reset-across-workspaces/participant-groups-390.png",
+    "playwright-output/student-searchable-filters-19d6b-and-reset-across-workspaces/participant-groups-768.png"
+  ],
+  "agentInspected": true,
+  "humanVisualValidated": false,
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true
+  },
+  "notProven": [
+    "Human acceptance",
+    "All role counts and role fixture",
+    "Native transfer DB integration",
+    "Every dropdown state/Moodle 4.5",
+    "Whole filter block/card visual parity outside cropped controls",
+    "Original card Motion runtime regression (static unchanged)"
+  ]
+}

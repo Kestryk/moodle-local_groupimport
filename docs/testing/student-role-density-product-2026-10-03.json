@@ -1,0 +1,251 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "board": "c403923b-827e-80b7-8008-bbc4b5de0b53",
+  "bounds": {
+    "x": 80,
+    "y": 7840,
+    "width": 1240,
+    "height": 920
+  },
+  "originalPreserved": "a301101d-ddc2-807b-8008-bba0f07b1569",
+  "rule": "<=6 quick buttons; >6 canonical searchable multiple; below768 search regardless of count",
+  "overflow": [],
+  "controls": [
+    {
+      "id": "c403923b-827e-80b7-8008-bbc4b5de6faf",
+      "name": "EasyEdu / Forms / Searchable multiple choice / M / Closed",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "bounds": {
+        "x": 560,
+        "y": 8086,
+        "width": 184,
+        "height": 38
+      },
+      "texts": [
+        {
+          "text": "Any",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 574,
+            "y": 8096.600000381441,
+            "width": 25.600000381469727,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "id": "c403923b-827e-80b7-8008-bbc4b5de6fb0",
+      "name": "EasyEdu / Forms / Searchable multiple choice / M / Open",
+      "provider": "a301101d-ddc2-807b-8008-bb9f51fafbcd",
+      "bounds": {
+        "x": 344,
+        "y": 8086,
+        "width": 184,
+        "height": 224
+      },
+      "texts": [
+        {
+          "text": "2 selected",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 358,
+            "y": 8096.600000381441,
+            "width": 68.76250457763672,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Search options",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 384.48,
+            "y": 8150.600000023842,
+            "width": 99.4000015258789,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Group A",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 362,
+            "y": 8194.60000038147,
+            "width": 54.337501525878906,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Workshop B",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 362,
+            "y": 8234.60000038147,
+            "width": 80.38750457763672,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Project team",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 362,
+            "y": 8274.60000038147,
+            "width": 83.3125,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "id": "c403923b-827e-80b7-8008-bbc4b82d21c4",
+      "name": "Roles / Searchable multiple choice / M / Closed",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "bounds": {
+        "x": 128,
+        "y": 8086,
+        "width": 184,
+        "height": 38
+      },
+      "texts": [
+        {
+          "text": "Any",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 142,
+            "y": 8096.600000381441,
+            "width": 25.600000381469727,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "id": "c403923b-827e-80b7-8008-bbc4b5deceac",
+      "name": "EasyEdu / Forms / Searchable multiple choice / M / Closed",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "bounds": {
+        "x": 880,
+        "y": 8076,
+        "width": 294,
+        "height": 44
+      },
+      "texts": [
+        {
+          "text": "Any",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 894,
+            "y": 8089.600000381441,
+            "width": 25.600000381469727,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "id": "c403923b-827e-80b7-8008-bbc4b5deceae",
+      "name": "EasyEdu / Forms / Searchable multiple choice / Responsive / Open",
+      "provider": "a301101d-ddc2-807b-8008-bb9f6a93cc2b",
+      "bounds": {
+        "x": 880,
+        "y": 8176,
+        "width": 294,
+        "height": 248
+      },
+      "texts": [
+        {
+          "text": "2 selected",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 894,
+            "y": 8189.600000381441,
+            "width": 68.76250457763672,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Search options",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 920.48,
+            "y": 8246.600000023842,
+            "width": 99.4000015258789,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Group A",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 898,
+            "y": 8293.60000038147,
+            "width": 54.337501525878906,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Workshop B",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 898,
+            "y": 8339.60000038147,
+            "width": 80.38750457763672,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Project team",
+          "family": "Inter",
+          "size": "14",
+          "bounds": {
+            "x": 898,
+            "y": 8385.60000038147,
+            "width": 83.3125,
+            "height": 16.799999237060547
+          },
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    }
+  ],
+  "humanVisualValidated": false
+}

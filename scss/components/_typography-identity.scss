@@ -1,0 +1,40 @@
+// Student Management identity typography remains here until that view receives
+// its own Kit migration. Mass Import and Administration now own their direct
+// semantic-role bindings in `views/`.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  font-family: var(--easyedu-font-family-ui);
+
+  &__eyebrow,
+  &-settings-modal__eyebrow {
+    @include easyedu.type-eyebrow;
+
+    @include easyedu.dialog-eyebrow-ink(var(--local-groupimport-easystud-primary));
+  }
+
+  &__intro {
+    @include easyedu.type-body;
+
+    color: var(--easyedu-text-muted);
+  }
+
+  &__panel-title {
+    @include easyedu.type-panel-title;
+  }
+
+  &__filter-label {
+    @include easyedu.type-control-label;
+
+    color: var(--easyedu-text-muted);
+  }
+
+  &-advanced-filters &__filter-label {
+    @include easyedu.filter-section-label;
+  }
+
+  &-modal__header h3,
+  &-settings-modal__heading h3 {
+    @include easyedu.type-modal-title;
+  }
+}

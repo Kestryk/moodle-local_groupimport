@@ -1,0 +1,181 @@
+// Navigation Skeleton primitives.
+//
+// The outer frame is deliberately static. Consumers apply the animated cue
+// mixins only to decorative descendants, so a large navigation-shaped surface
+// never repaints its complete area while loading.
+
+@use "loading";
+
+// Use on the large, navigation-shaped outer frame only. Geometry, padding and
+// content structure stay consumer-owned.
+@mixin navigation-skeleton-frame(
+  $surface: var(--easyedu-loading-surface),
+  $border: var(--easyedu-loading-border),
+  $radius: var(--easyedu-loading-radius)
+) {
+  @include loading.skeleton-section-frame($surface, $border, $radius);
+}
+
+// CCB Slideshow establishes the reference density for a real Navigation
+// placeholder. The compact frame represents exactly one navigation line; it
+// remains decorative and does not create navigation markup.
+@mixin navigation-skeleton-compact-frame(
+  $surface: var(--easyedu-loading-section-surface),
+  $border: var(--easyedu-loading-section-border),
+  $radius: var(--easyedu-loading-section-radius)
+) {
+  @include navigation-skeleton-frame($surface, $border, $radius);
+
+  & {
+    align-items: center;
+    column-gap: var(--easyedu-navigation-skeleton-compact-guide-cue-gap);
+    display: grid;
+    grid-template-columns: var(--easyedu-navigation-skeleton-compact-guide-cue-size) minmax(0, 1fr);
+    min-block-size: var(--easyedu-navigation-skeleton-compact-min-block-size);
+    padding: var(--easyedu-navigation-skeleton-compact-padding);
+  }
+}
+
+// Use only for the decorative circle that mirrors an existing Guide start
+// affordance. It carries no focus, action or accessible name.
+@mixin navigation-skeleton-guide-start-cue(
+  $surface: var(--easyedu-loading-surface),
+  $soft: var(--easyedu-loading-shimmer-soft),
+  $highlight: var(--easyedu-loading-shimmer-highlight)
+) {
+  & {
+    block-size: var(--easyedu-navigation-skeleton-compact-guide-cue-size);
+    flex: none;
+    inline-size: var(--easyedu-navigation-skeleton-compact-guide-cue-size);
+  }
+
+  @include navigation-skeleton-cue-overlay(
+    $surface: $surface,
+    $soft: $soft,
+    $highlight: $highlight,
+    $radius: 50%
+  );
+}
+
+// Use on an opaque internal mark such as an icon, label or navigation row.
+@mixin navigation-skeleton-cue(
+  $surface: var(--easyedu-loading-surface),
+  $highlight: var(--easyedu-loading-highlight),
+  $radius: var(--easyedu-loading-radius)
+) {
+  & {
+    border-radius: $radius;
+    display: block;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  @include loading.skeleton-shimmer-direct(
+    $surface: $surface,
+    $highlight: $highlight
+  );
+
+  &:dir(rtl),
+  [dir="rtl"] & {
+    animation-direction: reverse;
+  }
+
+  @media (forced-colors: active) {
+    & {
+      background: CanvasText;
+      border: 0.0625rem solid CanvasText;
+    }
+  }
+}
+
+// Use on a softer internal mark when its stable base colour must remain
+// visible beneath the animated sweep.
+@mixin navigation-skeleton-cue-overlay(
+  $surface: var(--easyedu-loading-surface),
+  $soft: var(--easyedu-loading-shimmer-soft),
+  $highlight: var(--easyedu-loading-shimmer-highlight),
+  $radius: var(--easyedu-loading-radius)
+) {
+  & {
+    background: $surface;
+    border-radius: $radius;
+    display: block;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    position: relative;
+  }
+
+  @include loading.skeleton-shimmer-overlay(
+    $soft: $soft,
+    $highlight: $highlight
+  );
+
+  &:dir(rtl)::after,
+  [dir="rtl"] &::after {
+    animation-direction: reverse;
+  }
+
+  @media (forced-colors: active) {
+    & {
+      background: CanvasText;
+      border: 0.0625rem solid CanvasText;
+    }
+
+    &::after {
+      background-image: none;
+    }
+  }
+}
+
+// Use for the one canonical navigation line. The declared row does not wrap,
+// so consumers cannot turn the compact Navigation Skeleton into two text rows.
+@mixin navigation-skeleton-single-line {
+  & {
+    display: block;
+    inline-size: var(--easyedu-navigation-skeleton-compact-line-inline-size);
+    max-inline-size: 100%;
+    min-block-size: var(--easyedu-navigation-skeleton-compact-cue-min-block-size);
+  }
+}
+
+// Source-compatible cue-group primitive. It is a single non-wrapping logical
+// row; new consumers use navigation-skeleton-single-line with one compact cue.
+@mixin navigation-skeleton-cue-stack(
+  $gap: var(--easyedu-navigation-skeleton-compact-cue-gap)
+) {
+  & {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: $gap;
+    justify-content: start;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    overflow: hidden;
+  }
+}
+
+@mixin navigation-skeleton-compact-cue(
+  $surface: var(--easyedu-loading-surface),
+  $soft: var(--easyedu-loading-shimmer-soft),
+  $highlight: var(--easyedu-loading-shimmer-highlight),
+  $radius: var(--easyedu-loading-radius)
+) {
+  & {
+    min-block-size: var(--easyedu-navigation-skeleton-compact-cue-min-block-size);
+  }
+
+  @include navigation-skeleton-cue-overlay($surface, $soft, $highlight, $radius);
+}
+
+// Consumers opt into this under their own mobile query. It changes only the
+// reusable visual density, not the consumer's navigation lifecycle or layout.
+@mixin navigation-skeleton-compact-mobile {
+  & {
+    --easyedu-navigation-skeleton-compact-min-block-size: var(--easyedu-navigation-skeleton-compact-mobile-min-block-size);
+    --easyedu-navigation-skeleton-compact-padding: var(--easyedu-navigation-skeleton-compact-mobile-padding);
+    --easyedu-navigation-skeleton-compact-guide-cue-size: var(--easyedu-navigation-skeleton-compact-mobile-guide-cue-size);
+    --easyedu-navigation-skeleton-compact-guide-cue-gap: var(--easyedu-navigation-skeleton-compact-mobile-guide-cue-gap);
+    --easyedu-navigation-skeleton-compact-cue-min-block-size: var(--easyedu-navigation-skeleton-compact-mobile-cue-min-block-size);
+  }
+}

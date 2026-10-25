@@ -1,0 +1,343 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "humanVisualValidated": false,
+  "actions": [
+    {
+      "host": "103e019a-f5a8-8027-8008-b13972f375fd",
+      "board": "Student management — Tablet / Groupings",
+      "narrow": true,
+      "previous": "103e019a-f5a8-8027-8008-b13972f37669",
+      "current": "a301101d-ddc2-807b-8008-bb5adf6611f0",
+      "provider": "a301101d-ddc2-807b-8008-bb560653720a",
+      "field": "103e019a-f5a8-8027-8008-b13972f37668",
+      "width": 38,
+      "height": 42.400000000000546,
+      "fieldHeight": 42.399999999999636,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b13972778241",
+      "board": "Student management — Tablet / Groups",
+      "narrow": true,
+      "previous": "103e019a-f5a8-8027-8008-b139727782ab",
+      "current": "a301101d-ddc2-807b-8008-bb5adfb4516e",
+      "provider": "a301101d-ddc2-807b-8008-bb5605015999",
+      "field": "103e019a-f5a8-8027-8008-b139727782aa",
+      "width": 38,
+      "height": 42.400000000000546,
+      "fieldHeight": 42.399999999999636,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b1331542b655",
+      "board": "Student management — Mobile / Groupings",
+      "narrow": true,
+      "previous": "103e019a-f5a8-8027-8008-b13315cfc37b",
+      "current": "a301101d-ddc2-807b-8008-bb5adff5e801",
+      "provider": "a301101d-ddc2-807b-8008-bb560653720a",
+      "field": "103e019a-f5a8-8027-8008-b133157aa1c7",
+      "width": 38,
+      "height": 42.400000000000546,
+      "fieldHeight": 42.399999999999636,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b132f45b5ce6",
+      "board": "Student management — Mobile / Groups",
+      "narrow": true,
+      "previous": "103e019a-f5a8-8027-8008-b132f4f297f7",
+      "current": "a301101d-ddc2-807b-8008-bb5ae0477ede",
+      "provider": "a301101d-ddc2-807b-8008-bb5605015999",
+      "field": "103e019a-f5a8-8027-8008-b132f4acd8db",
+      "width": 38,
+      "height": 42.400000000000546,
+      "fieldHeight": 42.399999999999636,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": -4.547473508864641e-13
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131ee9aefe5",
+      "board": "Student management — Desktop / Participants & groups",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131efd8095c",
+      "current": "a301101d-ddc2-807b-8008-bb5ae08ae457",
+      "provider": "a301101d-ddc2-807b-8008-bb5602971dfe",
+      "field": "103e019a-f5a8-8027-8008-b131ef42550b",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131ee9aefe5",
+      "board": "Student management — Desktop / Participants & groups",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131f0d2855e",
+      "current": "a301101d-ddc2-807b-8008-bb5ae0c24a13",
+      "provider": "a301101d-ddc2-807b-8008-bb5603c792c6",
+      "field": "103e019a-f5a8-8027-8008-b131f055bc38",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131fb0a926c",
+      "board": "Student management — Desktop / Groups & groupings",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131fc45797d",
+      "current": "a301101d-ddc2-807b-8008-bb5ae0fa1226",
+      "provider": "a301101d-ddc2-807b-8008-bb5602971dfe",
+      "field": "103e019a-f5a8-8027-8008-b131fb41b7d8",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131fb0a926c",
+      "board": "Student management — Desktop / Groups & groupings",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131fd86fa47",
+      "current": "a301101d-ddc2-807b-8008-bb5ae1306574",
+      "provider": "a301101d-ddc2-807b-8008-bb5603c792c6",
+      "field": "103e019a-f5a8-8027-8008-b131fcf2aef1",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131f43b46fc",
+      "board": "Student management — Desktop / Groups & groupings",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131f51ebb39",
+      "current": "a301101d-ddc2-807b-8008-bb5ae1679b2b",
+      "provider": "a301101d-ddc2-807b-8008-bb5602971dfe",
+      "field": "103e019a-f5a8-8027-8008-b131f48027b6",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131f43b46fc",
+      "board": "Student management — Desktop / Groups & groupings",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131f64a1f88",
+      "current": "a301101d-ddc2-807b-8008-bb5ae19cef51",
+      "provider": "a301101d-ddc2-807b-8008-bb5603c792c6",
+      "field": "103e019a-f5a8-8027-8008-b131f5bddc18",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131e7ca3e3f",
+      "board": "Student management — Desktop / Complete view",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131e8943e89",
+      "current": "a301101d-ddc2-807b-8008-bb5ae1cef461",
+      "provider": "a301101d-ddc2-807b-8008-bb5602971dfe",
+      "field": "103e019a-f5a8-8027-8008-b131e80bf309",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    },
+    {
+      "host": "103e019a-f5a8-8027-8008-b131e7ca3e3f",
+      "board": "Student management — Desktop / Complete view",
+      "narrow": false,
+      "previous": "103e019a-f5a8-8027-8008-b131e9972e83",
+      "current": "a301101d-ddc2-807b-8008-bb5ae2046fbb",
+      "provider": "a301101d-ddc2-807b-8008-bb5603c792c6",
+      "field": "103e019a-f5a8-8027-8008-b131e9151b6f",
+      "width": 38,
+      "height": 38,
+      "fieldHeight": 38,
+      "fieldCenterDelta": 0,
+      "gap": 8,
+      "paths": [
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "centerX": 0,
+          "centerY": 0
+        }
+      ]
+    }
+  ]
+}

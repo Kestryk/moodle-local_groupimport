@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-04",
+  "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+  "pageId": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "boardId": "df1dc7b5-2b58-807e-8008-bc36e705b19d",
+  "touchHost": { "id": "df1dc7b5-2b58-807e-8008-bc36ef187833", "x": 904, "width": 342, "padding": 24, "innerWidth": 294 },
+  "controls": [
+    {
+      "role": "Filter toggle / Off",
+      "id": "df1dc7b5-2b58-807e-8008-bc370e996517",
+      "providerShapeId": "11206fb4-1be0-8047-8008-bc35d545c4d4",
+      "before": { "x": 928, "y": 11280, "width": 250, "height": 44 },
+      "after": { "x": 928, "y": 11280, "width": 294, "height": 44 },
+      "linked": true,
+      "track": { "width": 36, "height": 20 },
+      "thumb": { "width": 14, "height": 14 },
+      "fontSize": 12.16,
+      "descendantsOutsideHost": []
+    },
+    {
+      "role": "Filter Reset / Rest",
+      "id": "df1dc7b5-2b58-807e-8008-bc370f07f6c0",
+      "providerShapeId": "11206fb4-1be0-8047-8008-bc35d6ec7eb0",
+      "before": { "x": 928, "y": 11345, "width": 72, "height": 30.4 },
+      "after": { "x": 928, "y": 11345, "width": 294, "height": 44 },
+      "linked": true,
+      "fontSize": 12.16,
+      "descendantsOutsideHost": []
+    },
+    {
+      "role": "Searchable multiple choice / Compact touch / Open",
+      "id": "df1dc7b5-2b58-807e-8008-bc370dd287e4",
+      "providerShapeId": "cf371b29-2e8e-8011-8008-bcea9012992f",
+      "before": { "x": 912, "y": 11002, "width": 324, "height": 254 },
+      "after": { "x": 928, "y": 11002, "width": 294, "height": 254 },
+      "linked": true,
+      "triggerHeight": 44,
+      "chevronRootSize": 24,
+      "chevronEndInset": 14,
+      "descendantsOutsideHost": []
+    }
+  ],
+  "nativeRun": "easystud-authenticated-20261004T182752684Z-36068",
+  "nativeWidths": [1600, 768, 390],
+  "nativeResult": "passed",
+  "inspectedInternally": true,
+  "foundationPending": ["Filter toggle On configurable primary role", "Touch Reset provider in Standard and Library"],
+  "humanAccepted": false
+}

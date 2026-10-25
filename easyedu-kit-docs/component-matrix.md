@@ -1,0 +1,168 @@
+# EasyEdu Component Extraction Matrix
+
+More-filters checkpoint 0.4.61 centralises calm hover and legacy-mobile
+delegation. Five existing Wide pairs are reconciled and five Touch pairs are
+published in Foundations 08.5/08.5.1; sixteen visible EasyStud controls inherit
+the same family. Source/isolated paint gates pass; native preview and deferred
+human acceptance remain separate.
+
+Searchable single-choice source checkpoint 0.4.59 adds a native-select
+enhancement and opt-in public class family, distinct from segmented
+`easyedu-choice`. Four paired Foundations 08.4/08.4.1 definitions and eight
+linked EasyStud closed/open destination compositions are recorded. The isolated
+1600/768/390 interaction gate passes; runtime and human acceptance remain
+separate. Searchable multiple filters now share that controller/paint as a
+source checkpoint 0.4.60; six multiple-mode Standard/Library pairs and linked
+EasyStud Desktop/Mobile filter compositions are published and agent-inspected.
+The isolated three-width interaction and native field-density gates pass.
+Native Moodle filter/reset proof and human acceptance remain separate gates.
+Native field and choice typography uses longhands so the inherited-family token
+cannot invalidate the declared density through the `font` shorthand.
+
+Entity metadata source checkpoint 0.4.58 adds opt-in list/count/semantic/CSV and
+readonly summary/empty/description recipes. EasyStud removes 205 net local SCSS
+lines with exact compiled CSS preservation. Public-class adoption, legacy weight
+normalization and paired Foundation/product publication remain separate gates.
+
+Entity fields now have twelve resting Standard/Library pairs at Foundations
+08.4/08.4.1, with matching recursive geometry/paint and seventeen linked
+EasyStud page-04 fields. The scoped caption/value/editing reconciliation is
+recorded in the consumer readback; metadata lists, focus exceptions, native
+responsive compositions and human acceptance remain open.
+
+Modal footers: regular Destination/entity and compact native Message share
+right-aligned, wrapping `foundation-dialog-actions` with matched paired
+geometry. Four Foundation Standard/Library pairs and eleven EasyStud hosts
+have recorded readbacks and a scoped local preview proof; human acceptance
+is deferred. Explicit neutral/Danger confirmation and identity-surface
+extractions are subsequent source candidates, not covered by that older run.
+
+Modal opt-ins: `easyedu-modal-layer` (fixed-root ordering above navigation) and
+`easyedu-lookup-dialog` (neutral identifier lookup composition). Consumers own
+focus, lookup data and Motion; paired Penpot/runtime evidence stays separate.
+Neutral lookup Desktop/Narrow now has paired 09.2/09.2.1 linked specimens;
+EasyStud owns the longer helper and wrapping result tokens. This is not
+whole-dialog state coverage or human acceptance.
+
+This matrix tracks the full EasyStud visual language and its migration into the
+portable EasyEdu kit.
+
+Status values:
+
+- `done`: reusable kit API exists and is documented.
+- `partial`: foundation exists, but EasyStud refinements still need extraction.
+- `todo`: not yet extracted from EasyStud.
+
+| Family | EasyStud sources | Kit target | Status | Notes |
+| --- | --- | --- | --- | --- |
+| Tokens | `scss/abstracts/_tokens.scss`, `scss/easyedu/_tokens.scss` | `scss/easyedu/_tokens.scss`, `docs/tokens.md` | partial | Focus geometry and semantic colours are public under `EED-UI-2026-0002`; guide, tables, drag/drop and responsive still need additional non-focus tokens. |
+| Focus-visible | Shared interactive component families | `components/_focus.scss`, `docs/components/focus.md` | partial | One `0.18rem` geometry, semantic colours, base-shadow composition and forced-colors outline are implemented. `contained-context-ring` keeps non-interactive identity-rail/dense-card context inside its boundary while the real child control keeps the outer ring; Moodle 5.1 consumer browser parity remains. |
+| Typography | EasyStud management headings, cards, forms and modals | `components/_typography.scss`, `docs/components/typography.md` | done | One inherited Moodle font family, a short size scale and four weights; authored plugin content remains outside this contract. |
+| Animations | `scss/utilities/_animations.scss` | `scss/easyedu/components/_animations.scss` | partial | Modal, slide, pop-in, card/content reveal, pagination swap, success, drag/drop and busy keyframes/mixins exist. Persistent track changes use one 320ms layout-disclosure transition instead of stacking a swap animation over geometry; exact remaining per-component timing audit remains. |
+| Loading/skeletons | `scss/components/_layout.scss`, `scss/views/_mass-import.scss`, `scss/views/_admin-settings.scss` | `components/_loading.scss`, `docs/components/loading.md` | partial | K3.1 static inline-start cards and block-start containers remain. SM-16 adds quiet separate rail/cue tokens, a seamless 3.2s internal sweep and interruptible 320ms appearance. Consumer geometry/readiness/reveal/fail-open stay owned; native and human proof are separate. |
+| Navigation Skeleton | All EasyEdu views with real navigation | `components/_navigation-skeleton.scss`, `docs/components/navigation-skeleton.md`, `docs/components/skeleton-coverage.md` | partial | K3.1 makes a compact static one-line frame, decorative Guide-start circle and one internal cue canonical. RTL, reduced-motion and forced-colors safeguards are Kit-owned; markup, lifecycle and consumer validation remain separately owned. |
+| Rail-anchor page | Every EasyEdu view (standard rule, K21-51, Kevin 22/10/2026) | `components/_rail-anchor.scss` (rule in its header comment), `navigation/` (`identityrail`, `identitysubtitle`), Penpot Foundations 08.10.1 Primary rail / Identity and View tabs | partial | Navigation band at the top (identity rail: tile + Product / Active view, destinations, Guide capsule, Display preferences; then view tabs on the same line or wrapped end-aligned), then ONE main content frame wrapping title + description and the whole view. Compact drawer identity (K21-19) unchanged. Student Management (K21-51) and Mass Import (K21-53, single layout: no view tabs) adopted; future plugins reuse the same mixins. Narrow rails (K22-05/06): the navigation controller folds controls to icon capsules only while the rail overflows (utilities, then inactive destinations, then the Guide) and a folded control unfolds in the flow on hover/focus (K22-13): neighbours fold temporarily (those after it first), then the rail spacing tightens, and only then is the label width capped with an ellipsis, so nothing is ever covered; product name in the accent green (K22-04); Guide capsule signature hover (K22-03). |
+| Panels/layout | `scss/components/_layout.scss`, `scss/views/_mass-import.scss` | `components/_panels.scss`, `docs/components/panels.md` | partial | Panel/header/actions/split, regular and compact public heading-icon tiles, sticky selection and semantic accent rail primitives exist; plugin-specific panel height orchestration remains. |
+| Cards | `scss/components/_participants.scss`, `_structure.scss` | `components/_cards.scss`, `docs/components/cards.md` | partial | Base, rail, selected, expanded, drag-handle, reveal-toggle, preview fade lists, related-tag summaries, density transition, contained focus context, open identity rail, shared identity/member typography and source-preserving related-person row/removal recipes exist. Foundation/native member density is still unresolved; domain-specific card body layouts remain plugin-owned. |
+| Buttons/actions | `_layout.scss`, `_structure.scss`, `_forms.scss` | `components/_buttons.scss`, `docs/components/buttons.md` | partial | Icon/action/close/overflow triggers include size, state, balanced admin primary nav, responsive guide-hiding and admin secondary actions. `action-content` plus public `easyedu-action-with-icon` provide one fixed icon slot and token gap even when Moodle owns the button skin; plugin-specific toolbar orchestration remains. |
+| Forms/filters | `_forms.scss`, `_structure.scss` | `components/_forms.scss`, `components/_text-fields.scss`, `components/_textareas.scss`, `docs/components/forms.md` | partial | Native Text-field and Textarea S/M/L recipes map their eighteen Foundations masters (six states each), sharing internal field paint without sharing geometry; native consumer/human proof remains separate. Search, segmented toggle, regular/compact segmented single choice, subtly animated selection checkbox, inline reveal panel, more filters, filepicker, public S/M/L colour picker with editable Hex value and complete interaction states, native select and compact/admin multiselect primitives exist. Textarea consumers preserve rows/resizing and require panel reflow. M/L selected-file states expose type and removal; single/multiple limits and token detection remain consumer-owned. |
+| Dropdowns/menus | `_forms.scss`, `_interaction.scss`, `_structure.scss` | `components/_menus.scss`, `components/_searchable-choices.scss`, `docs/components/dropdowns.md`, `docs/components/searchable-choices.md` | partial | Menu/context/overflow surfaces include size variants and documented states. Searchable single/multiple choices share an interruptible in-flow growth Motion with synchronized chevron and reduced-motion completion; responsive long-press positioning remains plugin-owned. |
+| Tooltips | `scss/components/_tooltips.scss` | `components/_tooltips.scss`, `docs/components/tooltips.md` | partial | Hover bubble, help icon and EasyStud-style custom popover surfaces exist; trigger timing remains plugin-owned. |
+| Modals | `_modals.scss`, `_settings-modal.scss`, `_tutorial.scss` | `components/_modals.scss`, `components/_entity-fields.scss`, `_dialog-classes.scss`, `docs/components/modals.md` | partial | Surface/header/icon/section/confirm/settings/detail, source-preserving opt-in entity fields, entity chrome and right-aligned matched native actions, shared metadata-disclosure focus, contextual semantic chrome, native-modal runtime animation and history-list primitives exist; plugin-specific body layouts remain. |
+| Tables/import | `scss/views/_mass-import.scss` | `components/_tables.scss`, `docs/components/tables.md` | partial | Data/preview/status rows, semantic and sticky table surfaces, report summaries, toolbars and additive draggable object-row cell states, including an opt-in affordance, exist; selection, ordering and overflow remain plugin-owned. |
+| Course Banner Builder preview editors | `local/course_banner_builder/scss/components/*` | `components/_course_banner_builder.scss`, `docs/examples/course-banner-builder.md` | partial | Wide preview modals, shared one-rem inline rhythm, preview surfaces, side disclosures, format choices, equal-height slideshow cards with content-sized sections and anchored actions, layer tables, source-chain controls, colour fields, linked range/number controls and help icons now have reusable primitives. JS interaction contracts and action-rail dimensions remain plugin-owned. |
+| Badges/tokens | `_structure.scss`, `_participants.scss`, `_settings-modal.scss` | `components/_feedback.scss`, `docs/components/badges.md` | partial | Token, identity badge, count, filled count and overflow toggles exist; plugin-specific colours remain. |
+| Empty states | `_structure.scss`, `_participants.scss`, `_mass-import.scss` | `components/_feedback.scss`, `docs/components/empty-states.md` | partial | Base, inline and search variants exist; table-specific copy remains. |
+| Drag/drop | `_interaction.scss`, `_structure.scss`, `_tutorial.scss` | `components/_overlays.scss`, `components/_tables.scss`, `docs/components/drag-drop.md` | partial | Drop overlay, insert drop target, fixed previews and source placeholders remain available; native table rows use non-destructive object-row cell states while JS drag behaviour remains plugin-owned. |
+| Guide | `_tutorial.scss`, `amd/src/course_manager.js` | `components/_guide.scss`, `guide/`, `docs/components/guide.md`, `docs/components/guide-adapter-integration.md` | partial | `EED-UI-2026-0003` provides the responsive/focus lifecycle; `EED-UI-2026-0004` adds atomic source synchronization, `init`/`destroy` AMD packaging, adapter ownership and the cross-product acceptance matrix. Consumer parity and browser approval remain gated. |
+| Navigation | `templates/manage.mustache`, `amd/src/course_manager.js`, `scss/responsive/_desktop.scss` | `components/_navigation.scss`, `navigation/`, `docs/components/navigation.md` | partial | The vendorable source contract includes one normalized context, shared item partial, separate desktop/compact wrappers, accessible panel controller and an optional Guide launcher/body-portal bridge. EasyStud and CCB reconnection plus browser parity remain consumer-owned batches. |
+| Responsive | `scss/responsive/_mobile.scss`, `_desktop.scss` | `components/_responsive.scss`, `docs/components/responsive.md` | partial | Stack/action tray surface, summary/buttons, stacked narrow tray, cards/guide hooks and pagination layout helpers exist; filter orchestration remains plugin-owned. |
+| Orchestration | `amd/src/course_manager.js` | `docs/components/orchestration.md` | done | Behavioural contract exists for dynamic views, filters, pagination, Ajax mutations, responsive action trays and guided highlight refresh hooks. |
+
+## Next extraction lots
+
+1. Documentation skeleton and manifest.
+2. Core component API: buttons, tooltips, dropdowns, empty states, badges.
+3. Cards and panels: identity rails, expanded states, action bars.
+4. Modals and tables/import.
+5. Apply the new motion/modal primitives back to EasyStud selectors where doing so does not change behaviour.
+6. Audit remaining settings/detail modal internals: filepicker, metadata lists, field help icons and image previews.
+7. Audit responsive filter orchestration and plugin-specific list state transitions against the documented orchestration contract.
+8. Adapt the stable Navigation source contract in each approved consumer batch,
+   then validate visual, keyboard and accessibility parity before any
+   cross-product promotion decision.
+
+## Audit Pass Notes
+
+### Guide
+
+The guide is the highest-risk cross-plugin component. The kit contract now
+documents the full distinction between:
+
+- `target`: the real action/completion target;
+- `highlightTarget`: the visual area to show the user;
+- temporary show-in-interface highlights;
+- persistent guided checklist highlights.
+
+Plugins should no longer implement local selector/highlight logic. If a target
+can be empty, such as a configured-source table before setup, the plugin must
+expose a stable wrapper around the relevant controls and use that wrapper as the
+visual highlight target.
+
+The historical EasyStud learning scenes have also been converted into generic
+guide primitives. Reusable scenes should now be implemented as data-driven kit
+blocks (`visualassignment`, `visualdragdrop`, `visualpaste`,
+`visualcontextmenu`, `visualactionflow`, `visualformula`, `visualsteps`,
+`visualkeys` and related card/detail variants) rather than copied as
+plugin-prefixed HTML. These scenes intentionally favour a shared visual canvas,
+small semantic accents and explanatory motion over nested bordered cards.
+
+### Reusable UI Components
+
+The following component families now have import audit checklists in their
+component documentation:
+
+- buttons and compact action triggers;
+- dropdowns, context menus and overflow menus;
+- tooltips and help icons;
+- forms, filters, multiselects, file pickers and detected-token inputs;
+- modals, Moodle native modal bridges and metadata lists;
+- object cards, identity rails, related tags and open container rails.
+
+These checklists should be read before moving UI between EasyStud,
+Course Banner Builder or a future EasyEdu plugin. If a plugin still needs a
+local override after following the checklist, document why the override is
+plugin-specific instead of reusable kit behaviour.
+
+### EasyStud Inverse Audit
+
+The EasyStud / GroupImport UI has been reviewed from the plugin back into the
+kit to identify reusable patterns that were still too local.
+
+Newly extracted into the kit:
+
+- `selection-checkbox` for selectable cards, nested members and list rows.
+- `inline-reveal-panel` for card-contained search, paste and add-by-text panels.
+- `identity-badge` for a single high-priority card title-line label.
+- `preview-fade-list` for collapsed child lists with a smoked fade and smooth
+  expansion.
+
+Already covered by kit primitives:
+
+- object cards, identity rails and opened container rails;
+- related tag summaries and revealed tag rows;
+- card reveal toggles and density transitions;
+- compact action menus, overflow triggers and context menus;
+- drop overlays, drag previews, disabled zones and busy indicators;
+- modal shells, settings/detail sections, metadata lists and file drop states;
+- guide modal, guided checklist, return panel and viewport-anchored highlights.
+
+Still intentionally plugin-owned:
+
+- Moodle capability checks and action availability;
+- exact data attributes and Ajax payloads;
+- drag/drop compatibility rules;
+- pagination, filter data and result counting;
+- guide slide wording, target keys and course-specific examples;
+- business decisions about when a card opens, collapses or selects related
+  objects.

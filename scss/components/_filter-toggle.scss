@@ -1,0 +1,39 @@
+// "More filters" text button (D2 variant A, PENPOT-S6-D2).
+// Same family as the discreet "Select all": label, chevron and active-filter
+// count share one capsule; the paired-lane layout (13477769) is unchanged.
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule {
+    @include easyedu.filter-disclosure-text-capsule;
+
+    .local-groupimport-easystud-advanced-filters__more {
+      font: inherit;
+    }
+
+    &[aria-expanded="true"] .fa {
+      transform: rotate(180deg);
+    }
+  }
+
+  .local-groupimport-easystud-advanced-filters__count {
+    @include easyedu.filter-disclosure-count(compact);
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .easyedu-filter-actions {
+    @include easyedu.filter-actions-stacked;
+  }
+  .easyedu-filter-actions--inline {
+    @include easyedu.filter-actions($spread: true);
+    margin-block-start: 12px;
+  }
+  [data-easystud-advanced-filters] > div:not(.local-groupimport-easystud__filters-grid) {
+    @include easyedu.filter-panel-trailing-actions;
+  }
+  .local-groupimport-easystud__filters-reset {
+    @include easyedu.filter-reset;
+  }
+}

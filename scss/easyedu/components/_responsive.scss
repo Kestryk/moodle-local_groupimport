@@ -1,0 +1,570 @@
+// Responsive helpers for EasyEdu plugin views.
+
+@use "card-actions";
+@use "focus";
+@use "forms";
+
+@mixin responsive-stack($breakpoint: 52rem) {
+  @media (max-width: $breakpoint) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@mixin mobile-action-tray {
+  @media (max-width: 52rem) {
+    @include mobile-action-tray-surface;
+  }
+}
+
+@mixin mobile-action-tray-surface($bottom: 0.72rem, $z-index: 1065, $inline: 0.72rem) {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: 1rem;
+  bottom: $bottom;
+  box-sizing: border-box;
+  box-shadow: 0 1rem 2.2rem rgba(31, 42, 55, 0.18);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  left: $inline;
+  max-width: calc(100vw - (#{$inline} * 2));
+  padding: 0.58rem;
+  position: fixed;
+  right: $inline;
+  z-index: $z-index;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@mixin mobile-action-tray-summary {
+  color: var(--easyedu-text);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0 0.2rem;
+  white-space: nowrap;
+}
+
+@mixin mobile-action-tray-buttons {
+  display: flex;
+  gap: 0.42rem;
+  justify-content: flex-end;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin mobile-action-tray-button {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.35rem;
+  min-height: 2.35rem;
+  white-space: nowrap;
+}
+
+@mixin mobile-action-tray-stacked {
+  grid-template-columns: 1fr;
+
+  .easyedu-mobile-action-tray__summary,
+  [data-easyedu-mobile-action-summary],
+  [data-easystud-mobile-actions-summary] {
+    text-align: center;
+  }
+
+  .easyedu-mobile-action-tray__buttons,
+  [data-easyedu-mobile-action-buttons],
+  [data-easystud-mobile-actions-buttons] {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+
+    .btn {
+      flex: 1 1 calc(50% - 0.42rem);
+      justify-content: center;
+      min-width: min(10rem, 100%);
+    }
+  }
+}
+
+@mixin mobile-filter-toggle {
+  @media (max-width: 52rem) {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.45rem;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@mixin mobile-card-density {
+  @media (max-width: 52rem) {
+    border-radius: 0.85rem;
+    font-size: 0.92rem;
+    padding-block: 0.55rem;
+
+    [type="checkbox"] {
+      min-height: 1.35rem;
+      min-width: 1.35rem;
+    }
+  }
+}
+
+@mixin mobile-guided-panel {
+  @media (max-width: 52rem) {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    max-width: none;
+    right: 0.75rem;
+    width: auto;
+  }
+}
+
+// Three-way entity navigation for compact management workspaces. Consumers
+// own labels and state; the kit only provides a stable, themeable surface.
+@mixin mobile-entity-switcher {
+  background: color-mix(in srgb, var(--easyedu-surface-soft) 84%, var(--easyedu-surface) 16%);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: calc(var(--easyedu-control-radius) + 0.18rem);
+  display: grid;
+  gap: 0.28rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0.3rem;
+  width: 100%;
+}
+
+@mixin mobile-entity-switcher-button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-text-muted);
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 0.38rem;
+  justify-content: center;
+  min-height: var(--easyedu-touch-target-min);
+  min-width: 0;
+  padding: 0.42rem 0.48rem;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--easyedu-surface);
+    border-color: var(--easyedu-control-focus-border);
+    color: var(--easyedu-primary-strong);
+    outline: 0;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &[aria-pressed="true"],
+  &.is-active {
+    background: var(--easyedu-surface);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 28%, var(--easyedu-surface) 72%);
+    box-shadow: var(--easyedu-shadow-soft);
+    color: var(--easyedu-primary-strong);
+  }
+
+  // The selected state paints its own shadow later in the cascade: keep the
+  // keyboard ring on top of it.
+  &[aria-pressed="true"]:focus-visible,
+  &.is-active:focus-visible {
+    @include focus.ring(
+      $border-color: var(--easyedu-control-focus-border),
+      $base-shadow: var(--easyedu-shadow-soft)
+    );
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Compact plugin navigation. Keep every destination available and let touch
+// users pan the rail instead of replacing the navigation with the active item.
+@mixin mobile-primary-nav-rail {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: flex-start;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0.3rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > * {
+    flex: 0 0 auto;
+    min-height: var(--easyedu-touch-target-min);
+    scroll-snap-align: start;
+    white-space: nowrap;
+  }
+}
+
+// Off-canvas alternative for plugin navigation when a horizontal rail would
+// consume too much vertical or horizontal space. Keep destinations in the DOM
+// and let the consumer own open/close state, focus return and Escape handling.
+@mixin mobile-primary-nav-panel($z-index: 1066) {
+  background: var(--easyedu-surface);
+  border-right: 1px solid var(--easyedu-card-border);
+  box-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  inset: 0 auto 0 0;
+  max-width: min(22rem, calc(100vw - 3rem));
+  overflow-y: auto;
+  padding: calc(0.8rem + env(safe-area-inset-top)) 0.8rem calc(0.8rem + env(safe-area-inset-bottom));
+  position: fixed;
+  transform: translateX(-105%);
+  transition: transform var(--easyedu-motion-normal) ease;
+  width: 88vw;
+  z-index: $z-index;
+
+  &.is-open {
+    // `none` preserves the open position without making this panel the
+    // containing block for viewport-fixed consumer overlays.
+    transform: none;
+  }
+}
+
+@mixin mobile-primary-nav-backdrop($z-index: 1065) {
+  background: rgba(25, 39, 54, 0.38);
+  inset: 0;
+  position: fixed;
+  z-index: $z-index;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@mixin mobile-primary-nav-trigger {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-primary-strong);
+  display: inline-flex;
+  font-weight: 650;
+  gap: 0.55rem;
+  min-height: var(--easyedu-touch-target-min);
+  padding: 0.55rem 0.78rem;
+
+  &:focus-visible {
+    @include focus.ring;
+  }
+}
+
+@mixin mobile-panel-heading-spacing {
+  padding-top: 0.45rem;
+}
+
+@mixin mobile-identity-rail-containment {
+  box-sizing: border-box;
+  inline-size: 100%;
+  margin-inline: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+}
+
+@mixin mobile-action-status($bottom: 0.75rem, $z-index: 1072) {
+  align-items: center;
+  background: color-mix(in srgb, var(--easyedu-surface) 96%, transparent 4%);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: 999px;
+  bottom: calc(#{$bottom} + env(safe-area-inset-bottom));
+  box-shadow: var(--easyedu-shadow-soft);
+  color: var(--easyedu-text);
+  display: inline-flex;
+  gap: 0.48rem;
+  left: 50%;
+  max-width: calc(100vw - 1.5rem);
+  padding: 0.48rem 0.72rem;
+  position: fixed;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: $z-index;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@mixin mobile-card-menu-trigger {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  // K17-53: round target (22 px radius on the 44 px touch target), blue horizontal ellipsis.
+  border-radius: 999px;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 var(--easyedu-touch-target-min);
+  height: var(--easyedu-touch-target-min);
+  justify-content: center;
+  min-width: var(--easyedu-touch-target-min);
+  padding: 0;
+  // Owns the box the ellipsis dots and the disc share (F06); consumers may still place it absolutely.
+  position: relative;
+
+  // Keep the visual control deliberately smaller than its touch target. The
+  // trigger must contain one glyph/surface only so legacy buttons can be
+  // normalised without injecting a second action control.
+  > :first-child {
+    align-items: center;
+    background: transparent;
+    border-radius: calc(var(--easyedu-control-radius) - 0.18rem);
+    display: inline-flex;
+    height: 1.82rem;
+    justify-content: center;
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      color var(--easyedu-motion-fast) ease;
+    width: 1.82rem;
+
+    @include card-actions.overflow-ellipsis-glyph;
+  }
+
+  // K16-55: same 24 px hover disc as every card action (Kit card-action-disc), painted on the
+  // trigger so it stays centred in the 44 px touch target.
+  &:hover,
+  &[aria-expanded="true"],
+  &:focus-visible {
+    @include card-actions.card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
+    border-color: transparent;
+    color: var(--easyedu-primary);
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    color: var(--easyedu-field-disabled-text);
+    cursor: default;
+    opacity: 0.62;
+
+    > :first-child {
+      background: transparent;
+    }
+  }
+}
+
+@mixin mobile-filter-disclosure {
+  background: var(--easyedu-surface-soft);
+  border: 1px solid var(--easyedu-filter-border);
+  border-radius: var(--easyedu-control-radius);
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.65rem;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@mixin mobile-filter-disclosure-trigger {
+  @include forms.filter-disclosure-trigger(touch);
+}
+
+@mixin mobile-context-backdrop($z-index: 1070) {
+  background: rgba(31, 42, 55, 0.34);
+  inset: 0;
+  position: fixed;
+  z-index: $z-index;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@mixin mobile-context-sheet($z-index: 1071) {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-dropdown-border);
+  border-radius: 1rem 1rem 0 0;
+  bottom: 0;
+  box-shadow: 0 -1rem 2.5rem rgba(31, 42, 55, 0.2);
+  box-sizing: border-box;
+  display: grid;
+  gap: 0;
+  left: 0;
+  max-height: min(70dvh, 36rem);
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: auto;
+  width: 100%;
+  z-index: $z-index;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@mixin mobile-context-sheet-header {
+  align-items: center;
+  border-bottom: 1px solid var(--easyedu-card-border);
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+  min-height: var(--easyedu-touch-target-min);
+  padding: 0.55rem 0.75rem;
+}
+
+@mixin mobile-context-sheet-list {
+  display: grid;
+  gap: 0.2rem;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.45rem 0.55rem calc(0.55rem + env(safe-area-inset-bottom));
+
+  [role="menuitem"],
+  button,
+  a {
+    min-height: var(--easyedu-touch-target-min);
+  }
+}
+
+// Keeps the desktop semantic rail readable on compact screens. Consumers
+// should reduce the surrounding list width, never the rail itself.
+@mixin mobile-preserved-identity-rail {
+  --easyedu-identity-border-width: 1.28rem;
+
+  box-sizing: border-box;
+  margin-inline: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  width: 100%;
+}
+
+@mixin mobile-navigation-guide-row {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+@mixin mobile-navigation-section {
+  border-top: 1px solid var(--easyedu-card-border);
+  display: grid;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
+}
+
+@mixin mobile-navigation-link {
+  align-items: center;
+  background: var(--easyedu-surface-soft);
+  border: 1px solid var(--easyedu-card-border);
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-text);
+  display: flex;
+  font: inherit;
+  justify-content: flex-start;
+  min-height: var(--easyedu-touch-target-min);
+  font-weight: 620;
+  gap: 0.58rem;
+  padding: 0.48rem 0.62rem;
+  text-decoration: none !important;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease,
+    transform var(--easyedu-motion-fast) ease;
+  width: 100%;
+
+  > .fa:first-child {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border: 1px solid var(--easyedu-card-border);
+    border-radius: calc(var(--easyedu-control-radius) - 0.18rem);
+    color: var(--easyedu-primary-strong);
+    display: inline-flex;
+    flex: 0 0 1.85rem;
+    height: 1.85rem;
+    justify-content: center;
+    margin: 0 !important;
+    width: 1.85rem;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"],
+  &.active {
+    background: var(--easyedu-primary-soft);
+    border-color: var(--easyedu-control-focus-border);
+    color: var(--easyedu-primary-strong);
+    outline: 0;
+    text-decoration: none !important;
+  }
+
+  &:hover {
+    box-shadow: 0 0.22rem 0.55rem rgba(31, 68, 104, 0.08);
+    transform: translateX(0.08rem);
+  }
+
+  &[aria-current="page"] > .fa:first-child,
+  &.active > .fa:first-child {
+    background: var(--easyedu-primary);
+    border-color: var(--easyedu-primary);
+    color: var(--easyedu-identity-icon-color);
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+}
+
+@mixin mobile-back-to-top($z-index: 1062) {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  bottom: calc(var(--easyedu-back-to-top-bottom, 0.85rem) + env(safe-area-inset-bottom));
+  box-shadow: var(--easyedu-shadow-soft);
+  color: var(--easyedu-identity-icon-color);
+  display: inline-flex;
+  height: var(--easyedu-touch-target-min);
+  justify-content: center;
+  position: fixed;
+  right: calc(0.85rem + env(safe-area-inset-right));
+  width: var(--easyedu-touch-target-min);
+  z-index: $z-index;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &:focus-visible {
+    @include focus.ring($base-shadow: var(--easyedu-shadow-soft));
+  }
+}

@@ -1,0 +1,31 @@
+// Student Management typography remains late in the entry point until its own
+// migration slice. Mass Import and Administration declare the shared roles in
+// their owning view partials and do not depend on this compatibility layer.
+
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  @include easyedu.type-ui-base;
+
+  &__panel-title {
+    @include easyedu.type-panel-title;
+
+    margin: 0;
+  }
+
+  &-tree__section--ungrouped > &-tree__toggle {
+    @include easyedu.type-section-title;
+
+    @include easyedu.card-disclosure-ink($quiet-unassigned: true);
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  &-group__name {
+    @include easyedu.card-title(regular, var(--easyedu-card-identity-title-color));
+  }
+
+  &-grouping__name {
+    @include easyedu.card-title(container, var(--easyedu-card-identity-title-color));
+  }
+}

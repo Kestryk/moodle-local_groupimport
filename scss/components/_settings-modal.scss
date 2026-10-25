@@ -1,0 +1,66 @@
+// Group/grouping details dialog: native hooks kept by the entity dialog (T048).
+// Layout, fields, relations and footer live in components/_entity-dialog.scss;
+// this partial keeps the file drop state, the dashed deposit, the image preview
+// and the Kit switch that existing commands and tests rely on.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-settings-modal__dialog {
+    @include easyedu.context-modal-variant(success);
+    @include easyedu.modal-file-drop-state(".is-file-drag-over", var(--local-groupimport-easystud-primary));
+  }
+
+  &-settings-modal__image {
+    @include easyedu.image-preview;
+
+    @include easyedu.image-preview-details-paint;
+    margin-bottom: 0;
+
+    img {
+      @include easyedu.image-preview-intrinsic-image;
+    }
+
+    &-placeholder {
+      @include easyedu.image-preview-placeholder;
+
+      @include easyedu.image-preview-placeholder-details-paint;
+    }
+
+    &-placeholder > .fa {
+      @include easyedu.image-preview-placeholder-details-paint($glyph: true);
+    }
+  }
+
+  &-settings-modal__filepicker:not(.easyedu-filepicker) {
+    @include easyedu.settings-modal-filepicker;
+  }
+
+  &-settings-modal__filename {
+    @include easyedu.image-preview-filename;
+  }
+
+  &-settings-modal__help {
+    @include easyedu.contextual-help-control;
+  }
+
+  &-settings-modal__image-toggle {
+    // Exact shared Kit composition: no consumer-owned colour, transform or
+    // timing is added to the accepted CCB toggle surface.
+    @include easyedu.toggle-check;
+    @include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));
+
+    min-width: 0;
+
+    > span {
+      min-width: 0;
+    }
+
+    small {
+      @include easyedu.toggle-check-caption;
+    }
+  }
+
+  &-settings-modal__image-toggle-label {
+    @include easyedu.toggle-check-caption($label: true);
+  }
+}

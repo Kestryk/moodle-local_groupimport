@@ -1,0 +1,67 @@
+// Shared EasyEdu guide integration used by the active EasyStud guide.
+// Active guide visuals stay scoped to this root; the obsolete tutorial markup
+// has been retired.
+@use "../easyedu" as easyedu;
+
+// One persistent Guide root, including its body/fullscreen portals.
+// Keep two-class specificity of the former page-root branch without duplicating every rule.
+.local-groupimport-easystud-easyedu-guide.easyedu-guide {
+  --easyedu-guide-accent: var(--local-groupimport-easystud-primary, #0f6cbf);
+  --easyedu-guide-accent-strong: var(--local-groupimport-easystud-primary-strong, #0b4f90);
+  --easyedu-guide-text: var(--local-groupimport-easystud-text, #243447);
+  --easyedu-guide-muted: var(--local-groupimport-easystud-text-muted, #5f7389);
+  --easyedu-guide-surface: #fff;
+  --easyedu-guide-soft: #f6f9fc;
+  --local-groupimport-easystud-guide-launcher-gradient: linear-gradient(135deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 100%);
+  --local-groupimport-easystud-guide-launcher-border: rgba(255, 255, 255, 0.86);
+  --local-groupimport-easystud-guide-launcher-radius: 0.9rem;
+  --local-groupimport-easystud-guide-launcher-shadow: 0 0.48rem 1rem rgba(35, 93, 115, 0.28);
+
+  @include easyedu.guide-shell;
+  @include easyedu.guide-rich-navigation;
+  @include easyedu.guide-visuals;
+  @include easyedu.guided-panel;
+
+  &.easyedu-guide--discovery {
+    @include easyedu.guide-discovery-shell;
+  }
+
+  .easyedu-guide__launcher {
+    .easyedu-guide__launcher-icon,
+    > .fa {
+      background: var(--local-groupimport-easystud-guide-launcher-gradient);
+      border-color: var(--local-groupimport-easystud-guide-launcher-border);
+      border-radius: var(--local-groupimport-easystud-guide-launcher-radius);
+      box-shadow: var(--local-groupimport-easystud-guide-launcher-shadow);
+    }
+  }
+
+  // K23-67 fix: this visually-hidden (sr-only) treatment is for the launcher's non-floating,
+  // icon-only compact form (label kept for screen readers only). The floating/sticky variant
+  // (--floating) reuses the same .easyedu-guide__launcher-label class but needs its label to
+  // actually become visible on hover — an explicit `width: 1px` here always wins over that
+  // variant's `max-inline-size` hover expansion (a fixed width caps the rendered size below any
+  // max-width), so the label stayed stuck at 1px no matter what. Excluding --floating here, not
+  // widening the selector in _guide.scss, since the sr-only intent is still correct everywhere else.
+  .easyedu-guide__launcher:not(.easyedu-guide__launcher--floating) .easyedu-guide__launcher-label {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .easyedu-guide-step-pill--warning {
+    background: var(--easyedu-warning-soft, #fff4df);
+    border-color: rgba(154, 101, 15, 0.32);
+    color: var(--easyedu-warning, #9a650f);
+
+    .fa {
+      color: var(--easyedu-warning, #9a650f);
+    }
+  }
+}

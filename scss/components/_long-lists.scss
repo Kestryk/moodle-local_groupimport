@@ -1,0 +1,133 @@
+// K16-01: bounded card content, using the existing Kit controls and caption roles.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-long-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-start: 0.75rem;
+
+    [data-easystud-long-list-count] {
+      margin-inline-end: auto;
+      color: var(--easyedu-text-muted);
+      font-size: var(--easyedu-font-size-caption);
+    }
+
+    .easyedu-button {
+      min-width: 0;
+      white-space: normal;
+      text-align: center;
+    }
+
+    &__quiet,
+    [data-easystud-long-list-action="select"] {
+      @include easyedu.selection-recovery-action;
+    }
+
+    [data-easystud-long-list-action="select"] {
+      margin-inline-start: auto;
+    }
+
+    // Formula A buttons are Kit small buttons, one height for every control of the row.
+    [data-easystud-long-list-action="more"],
+    [data-easystud-long-list-action="all"],
+    [data-easystud-long-list-action="less"],
+    [data-easystud-long-list-action="select"] {
+      @include easyedu.button-size(small);
+
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+    }
+
+    // K16-66: the count never overlaps the actions; it wraps above them first.
+    [data-easystud-long-list-count] {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    &__per-page {
+      color: var(--easyedu-text-muted);
+      font-size: var(--easyedu-font-size-caption);
+      white-space: nowrap;
+    }
+  }
+
+  // Formula C: the Kit pagination bar under a long section. Its geometry, count and controls come
+  // from the shared pagination styles; only the section placement is set here.
+  &-pagination--section {
+    margin-block-start: 0.75rem;
+    width: 100%;
+
+    .local-groupimport-easystud-pagination__tools {
+      gap: 0.5rem;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &-group__members.local-groupimport-easystud-long-list__members {
+    @include easyedu.card-relation-list-unbounded;
+    overflow: visible;
+    mask-image: none;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &-tree__children[hidden] ~ &-long-list,
+  &-tree__children[hidden] ~ &-pagination--section {
+    display: none;
+  }
+
+  // K17-51: the groups without grouping fold with the same footer chevron as every other group
+  // (card-fold-chevron); the header no longer hosts a second fold control.
+}
+
+// Compact navigation has no Complete tab. Its existing Ungrouped filter is the
+// entry to the same bounded section, retaining the normal Groups workspace.
+@media (max-width: 1024px) {
+  #local-groupimport-easystud[data-easystud-mobile-view-active="groups"]:has(
+    [data-easystud-catalog-show-ungrouped="structure"]:checked
+  ) {
+    .local-groupimport-easystud-structure-groups {
+      display: none;
+    }
+
+    .local-groupimport-easystud-tree__section--ungrouped {
+      display: block !important;
+    }
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .local-groupimport-easystud-pagination__select {
+    @include easyedu.pagination-select-button($legacy-priority: true);
+    white-space: nowrap;
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+.local-groupimport-easystud {
+  // K17-50: the pagination bar of a long section reuses the list columns' bar. The selection and
+  // its count take their own width, so the count never runs into the page arrows.
+  @media (min-width: 48.0625rem) {
+    &-pagination--section {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.34rem 0.75rem;
+
+      .local-groupimport-easystud-pagination__tools {
+        margin-inline-start: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+  "localMasters": 0,
+  "metadata": {
+    "rows": [
+      {"section": "fcb98309-36c1-8004-8008-bc008ad4740f", "row": "8a982f17-c9c0-80e9-8008-bea0ad704db9", "kind": "members", "count": 1},
+      {"section": "386b6f86-a1e7-806b-8008-be21211faf3e", "row": "8a982f17-c9c0-80e9-8008-bea0afb02b61", "kind": "groups", "count": 1}
+    ],
+    "empty": "386b6f86-a1e7-806b-8008-be20a8c81909",
+    "emptyProvider": "8a982f17-c9c0-80e9-8008-be9e1fa8d620"
+  },
+  "full": [
+    {
+      "old": "cef95197-06bc-809e-8008-af3549b39ab1",
+      "host": "8a982f17-c9c0-80e9-8008-bea2fde43847",
+      "section": "8a982f17-c9c0-80e9-8008-bea2fe86b783",
+      "rows": ["8a982f17-c9c0-80e9-8008-bea2ffdac728", "8a982f17-c9c0-80e9-8008-bea32be4cff9", "8a982f17-c9c0-80e9-8008-bea32dc81bf1"],
+      "kind": "members",
+      "count": 3,
+      "rect": [136, 2200, 772, 216],
+      "clip": true,
+      "archiveHidden": true,
+      "names": ["Alice Martin", "Samira Benali", "Alex Dupont"],
+      "ids": ["10482", "10503", "10621"]
+    },
+    {
+      "old": "cef95197-06bc-809e-8008-af354af014e8",
+      "host": "8a982f17-c9c0-80e9-8008-bea32fcf39a9",
+      "section": "8a982f17-c9c0-80e9-8008-bea33082e42e",
+      "rows": ["8a982f17-c9c0-80e9-8008-bea3325c60a1"],
+      "kind": "groupings",
+      "count": 1,
+      "rect": [136, 2468, 772, 136],
+      "clip": false,
+      "archiveHidden": true,
+      "names": ["Year 2026"],
+      "ids": ["YEAR-2026"]
+    },
+    {
+      "old": "cef95197-06bc-809e-8008-af354d70b04d",
+      "host": "8a982f17-c9c0-80e9-8008-bea334c3faf2",
+      "section": "8a982f17-c9c0-80e9-8008-bea33576c152",
+      "rows": ["8a982f17-c9c0-80e9-8008-bea3371a04a2", "8a982f17-c9c0-80e9-8008-bea339f97723"],
+      "kind": "groups",
+      "count": 2,
+      "rect": [1016, 2636, 772, 216],
+      "clip": false,
+      "archiveHidden": true,
+      "names": ["Group A", "Group B"],
+      "ids": ["GROUP-A", "GROUP-B"],
+      "members": [3, 8]
+    }
+  ],
+  "typeReadback": {"family": "Inter", "primarySize": 13.44, "primaryWeight": 600, "chipSize": 12.16, "chipWeight": 600, "headerSize": 14.08},
+  "recoverablePartial": "8a982f17-c9c0-80e9-8008-bea2fde43847",
+  "partialReconciled": true,
+  "partialCause": "Text.layoutChild is null in ordinary chip layout; guard optional access and reconcile existing host/rows before resuming.",
+  "semanticGroupingsChipProviderPending": false,
+  "semanticGroupingsChipProvider": "8a982f17-c9c0-80e9-8008-bea4af064700",
+  "exportsInspected": ["Metadata Group populated and empty", "Full Grouping dialog", "Full Group dialog", "Standard Groupings semantic chip"],
+  "interruptedExport": "Metadata Grouping export stalled; cancel read-only export orchestration without closing the design tab.",
+  "geometryReadback": "entity-settings-list-product-readback-2026-10-05.json",
+  "finalGeometryPending": false,
+  "finalExportsPending": false,
+  "humanVisualValidated": false,
+  "nativeStyleChanged": false
+}

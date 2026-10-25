@@ -1,0 +1,393 @@
+// Participant cards and participant metadata.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-user {
+    @include easyedu.object-card(var(--local-groupimport-easystud-participant-rail));
+    @include easyedu.identity-rail(var(--local-groupimport-easystud-icon-user));
+
+    align-items: start;
+    @include easyedu.identity-card-paint(person);
+    cursor: grab;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: 6.35rem minmax(0, 1fr);
+    @include easyedu.person-card-inset;
+    position: relative;
+    @include easyedu.density-transition;
+
+    // K16-53 écart2: common identity-card hover (real pointer only, Kit soft
+    // shadow, no lift), declared before focus and selection so they keep priority.
+    @include easyedu.identity-card-hover(person) {
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant-rail));
+    }
+
+    &:focus-within {
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
+      @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14), $strong-border: true);
+      // Border priority is owned by the contextual Kit variant.
+    }
+
+    &.is-selected {
+      @include easyedu.identity-card-surface-ink(var(--local-groupimport-easystud-participant-soft));
+      @include easyedu.identity-card-paint(person, selected);
+      @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
+
+      &::before {
+        @include easyedu.identity-card-rail-glyph-surface;
+      }
+    }
+
+    &.is-dragging {
+      @include easyedu.drag-source-placeholder;
+    }
+
+  }
+
+  &-selector {
+    --local-groupimport-easystud-selector-color: var(--local-groupimport-easystud-participant);
+
+    @include easyedu.selection-checkbox(
+      var(--local-groupimport-easystud-selector-color),
+      regular,
+      card
+    );
+  }
+
+  &-selector--group {
+    --local-groupimport-easystud-selector-color: var(--local-groupimport-easystud-group);
+  }
+
+  &-selector--section {
+    --local-groupimport-easystud-selector-color: var(--local-groupimport-easystud-grouping);
+  }
+
+  [data-selectable-type].is-selected > .local-groupimport-easystud-selector .local-groupimport-easystud-selector__ui,
+  &-selector input:checked + &-selector__ui {
+    @include easyedu.selection-checkbox-checked-paint(var(--local-groupimport-easystud-selector-color));
+
+    &::after {
+      @include easyedu.selection-checkbox-checked-mark;
+    }
+  }
+
+  &--compact-users &-user {
+    align-items: center;
+    gap: 0.55rem;
+    grid-template-columns: minmax(0, 1fr);
+    @include easyedu.person-card-inset(compact) {
+      overflow: visible;
+    }
+    @include easyedu.density-transition;
+  }
+
+  // M53 (22/10/2026): the Kit compact inset's 3.3rem max-height assumed the metadata block was
+  // always hidden in this density. Now that [hidden] follows the shared admin-default/override
+  // policy (see the &-user__meta[hidden] rule above), a card whose metadata is genuinely shown
+  // must be allowed to grow past that cap, or its content overflows into the next card. Layout
+  // (avatar column, padding) is intentionally left untouched here — that is the dedicated
+  // single-selected "expanded" inset's job, a separate design state.
+  &--compact-users &-user:has(&-user__meta:not([hidden])) {
+    max-height: none;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected,
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-density-expanded {
+    align-items: start;
+    gap: 0.85rem;
+    grid-template-columns: 5.9rem minmax(0, 1fr);
+    @include easyedu.person-card-inset(expanded) {
+      overflow: visible;
+    }
+  }
+
+  &-user::after,
+  &-group::after {
+    @include easyedu.identity-card-rail-glyph-surface;
+    content: "";
+    @include easyedu.identity-card-drag-glyph-block;
+    left: calc(var(--local-groupimport-easystud-identity-border-width) / -2);
+    mask-image: var(--local-groupimport-easystud-drag-handle);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.88);
+    transition: opacity var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+    -webkit-mask-image: var(--local-groupimport-easystud-drag-handle);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    width: 0.46rem;
+    z-index: 3;
+  }
+
+  &-user:hover::after,
+  &-group:hover::after {
+    opacity: 0.92;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &-user:hover::before,
+  &-group:hover::before {
+    opacity: 0;
+  }
+
+  &-user::before,
+  &-user::after {
+    left: calc(var(--local-groupimport-easystud-identity-border-width) / -2);
+  }
+
+  &--participant-focus &-participant-groups__list &-group {
+    cursor: default;
+  }
+
+  &--participant-focus &-participant-groups__list &-group:hover::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+
+  &--participant-focus &-participant-groups__list &-group:hover::before {
+    opacity: 1;
+  }
+
+  &--compact-users &-user > .local-groupimport-easystud-selector {
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    @media (min-width: 1025px) {
+      @include easyedu.card-selection-header-anchor;
+    }
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected > .local-groupimport-easystud-selector {
+    left: 0.9rem;
+    @include easyedu.card-selection-header-anchor;
+  }
+
+  &-user__rail {
+    align-content: center;
+    align-items: center;
+    align-self: stretch;
+    display: grid;
+    gap: 0.45rem;
+    justify-items: center;
+    @include easyedu.person-card-rail-inset;
+  }
+
+  &-user > .local-groupimport-easystud-selector {
+    @include easyedu.card-selection-slot(overlay);
+
+    left: 0.9rem;
+    margin-top: 0;
+    @include easyedu.card-selection-header-anchor;
+    z-index: 6;
+  }
+
+  &-user__avatar {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+
+    img,
+    .userinitials {
+      @include easyedu.identity-avatar-large;
+    }
+
+    .userinitials {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &--compact-users &-user__avatar img,
+  &--compact-users &-user__avatar .userinitials {
+    display: none;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__avatar img,
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__avatar .userinitials {
+    display: inline-flex;
+  }
+
+  &-user__main {
+    min-width: 0;
+  }
+
+  &--compact-users &-user__rail {
+    align-items: center;
+    display: none;
+    @include easyedu.person-card-rail-inset($compact: true);
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__rail {
+    align-items: start;
+
+    display: grid;
+    @include easyedu.person-card-rail-inset;
+  }
+
+  &--compact-users &-user__main {
+    display: block;
+    min-width: 0;
+    width: 100%;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__main {
+    display: block;
+  }
+
+  &-user__headline {
+    @include easyedu.person-card-headline;
+  }
+
+  &-user__headline-main {
+    @include easyedu.card-title-main;
+
+    grid-area: identity;
+  }
+
+  &-user__name {
+    @include easyedu.card-title(compact, var(--easyedu-card-identity-title-color));
+
+    display: block;
+  }
+
+  &-user__primary-badge {
+    @include easyedu.identity-badge(
+      var(--local-groupimport-participant-badge-bg, #e8f4ff),
+      color-mix(in srgb, var(--local-groupimport-participant-badge-color, #0b4f8a) 22%, #fff 78%),
+      var(--local-groupimport-participant-badge-color, #0b4f8a)
+    );
+  }
+
+  &-user__detail-button {
+    grid-area: action;
+    @include easyedu.card-direct-action;
+  }
+
+  &-user__email {
+    @include easyedu.person-card-secondary-copy-paint(var(--local-groupimport-easystud-text-muted));
+    display: block;
+    @include easyedu.person-card-secondary-copy-type;
+    grid-area: email;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--compact-users &-user__headline {
+    @include easyedu.person-card-headline(compact);
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline {
+    @include easyedu.person-card-headline(detailed, $min-height: null);
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline-main {
+    grid-area: identity;
+    min-width: 0;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__detail-button {
+    align-self: center;
+    grid-area: action;
+    justify-self: end;
+    margin-left: 0;
+  }
+
+  &--compact-users &-user__headline-main {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &--compact-users &-user__primary-badge {
+    @include easyedu.identity-badge-compact-type;
+    max-width: min(7.5rem, 38%);
+    @include easyedu.identity-badge-compact-inset;
+  }
+
+  &--compact-users &-user__email {
+    display: block;
+    @include easyedu.person-card-secondary-copy-type(compact);
+    margin-left: 0;
+    min-width: 0;
+  }
+
+  &--compact-users &-user__detail-button {
+    align-self: center;
+    flex: 0 0 auto;
+    grid-area: action;
+    justify-self: end;
+    margin-left: 0;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__detail-button,
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-density-expanded &-user__detail-button {
+    align-self: start;
+  }
+
+  &-user__meta {
+    @include easyedu.card-metadata;
+  }
+
+  // M53 (22/10/2026): the native [hidden] attribute (set per card from the shared
+  // admin-default/override policy, local/sm/participants.isMetaCollapsed) must decide this
+  // block's visibility. An explicit, same-specificity override here (rather than relying on
+  // the UA stylesheet's unmarked [hidden] rule winning a cascade tie against the class
+  // selector above) keeps that true in every density, including compact.
+  &-user__meta[hidden] {
+    display: none;
+  }
+
+  // K22-11: a participant with no role, no group, no grouping and no profile field has no
+  // metadata row at all; the block must not reserve its margin when the card is expanded.
+  &-user__meta[data-easystud-user-meta-empty] {
+    display: none;
+  }
+
+  &--compact-users &-user__avatar {
+    display: none;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__avatar {
+    display: inline-flex;
+  }
+
+  &-user__meta-group {
+    @include easyedu.card-metadata-row;
+  }
+
+  &-user__meta-label {
+    @include easyedu.card-metadata-label;
+  }
+
+  &-user__meta-tags {
+    @include easyedu.card-metadata-values;
+  }
+
+}
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and
+  // groupings" switch is the same compact Kit selection action as the desktop density switch, on its
+  // own line, left-aligned, with the lane's 0.75rem rhythm instead of a full-width tray button.
+  .local-groupimport-easystud__membership-toggle:not([hidden]) {
+    display: flex;
+    inline-size: fit-content;
+    margin-block: 0.25rem 0.75rem;
+  }
+}
+
+// Component-owned composition and state refinements (I13).
+.local-groupimport-easystud {
+  &-user.is-selected:focus-within {
+    @include easyedu.identity-card-rail-ink(var(--local-groupimport-easystud-participant));
+    @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14), $strong-border: true);
+    // Border priority is owned by the contextual Kit variant.
+  }
+}

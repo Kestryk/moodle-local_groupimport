@@ -1,0 +1,245 @@
+// Foundations / Card quick actions / Direct icon. Layout-only placement stays
+// with the consumer; this recipe owns the five measured visual states.
+@use "focus";
+@use "buttons";
+
+// One token for the accepted direct target, desktop menu and compact visual.
+// Composition preserves the existing declaration order and 29.6px header row.
+@function card-action-target-size() {
+  @return var(--easyedu-card-action-target);
+}
+
+@mixin card-action-target($composition: direct) {
+  @if $composition == direct {
+    align-items: center;
+  }
+  block-size: card-action-target-size();
+  @if $composition == direct {
+    display: inline-flex;
+  }
+  inline-size: card-action-target-size();
+  @if $composition == direct {
+    justify-content: center;
+  }
+  @if $composition != visual {
+    margin-block: calc((1.85rem - var(--easyedu-card-action-target)) / 2);
+    min-block-size: card-action-target-size();
+    min-inline-size: card-action-target-size();
+  }
+}
+
+@mixin card-overflow-icon {
+  color: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+// Foundations / Card quick actions / Overflow trigger (desktop).
+// Source-preserving extraction: responsive positioning and 44px touch-target
+// composition remain with mobile-card-menu-trigger and the consumer adapter.
+// Shared hover/pressed disc of every card header action: 24 px, radial paint,
+// so borders and the 44 px touch target never resize it.
+@mixin card-action-disc($color) {
+  background: radial-gradient(circle, $color 0 0.75rem, transparent calc(0.75rem + 0.6px));
+}
+
+// K17-53 (Foundations "Autres actions", horizontal ellipsis): the ONE glyph of every overflow
+// trigger. Three 3 px dots, 6 px apart (15 x 3 px ink), painted in currentColor on the glyph's
+// ::before: no font metrics, no icon font, no raster. Applied by card-overflow-trigger and
+// mobile-card-menu-trigger, which own the positioned box the dots are drawn in.
+//
+// F06 (K16-80, 20/10): the dots are drawn in the trigger's own box (inset 0), centred at 50% and
+// 50% +/- 6 px exactly like the 24 px disc (radial at 50% 50% of the same box). The former 15 x 3 px
+// flex child sat on a half pixel in every even target (44 - 15 and 44 - 3 are odd) and on arbitrary
+// fractions in rem-sized ones; Chrome snaps that small box to the pixel grid before painting, so the
+// ink drifted up to 0.5 px from the disc. One shared box removes both the parity and the snapping gap.
+// K17-77 still holds: every dot is whole (nothing clips its 0.6 px edge any more).
+@function overflow-ellipsis-dot($x) {
+  @return radial-gradient(circle at $x 50%, currentColor 0 1.5px, transparent calc(1.5px + 0.6px));
+}
+
+@mixin overflow-ellipsis-glyph {
+  &::before {
+    background:
+      overflow-ellipsis-dot(calc(50% - 6px)),
+      overflow-ellipsis-dot(50%),
+      overflow-ellipsis-dot(calc(50% + 6px));
+    content: "";
+    display: block;
+    font-size: 0;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+// Foundations / Card quick actions / Overflow trigger. Same visual states as the
+// direct icon (24 px radial disc, no ring, K16-55); the box (32 px desktop, 44 px
+// touch target on mobile) stays with the consumer, so only colour and paint are set here.
+@mixin card-overflow-trigger {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.95rem;
+  height: 2rem;
+  justify-content: center;
+  line-height: 1;
+  // Owns the box the ellipsis dots and the disc share (F06); consumers may still place it absolutely.
+  position: relative;
+  width: 2rem;
+
+  > .fa {
+    @include overflow-ellipsis-glyph;
+  }
+
+  &,
+  &.btn {
+    &:hover,
+    &:focus-visible {
+      @include card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
+      border-color: transparent;
+      color: var(--easyedu-primary);
+      text-decoration: none;
+    }
+
+    &[aria-expanded="true"] {
+      @include card-action-disc(var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)));
+      color: var(--easyedu-primary);
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    }
+
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
+  }
+}
+
+// K17-51: the one fold chevron of every group card (validated K16-76 look: icon only,
+// the Kit recovery-action target, chevron down that turns up when unfolded). The consumer supplies
+// the native button, its accessible name and the fold behaviour; it stays at the foot of the card.
+@mixin card-fold-chevron {
+  @include buttons.selection-recovery-action;
+
+  margin: 0.35rem 0 0;
+  width: fit-content;
+
+  .fa {
+    transition: transform var(--easyedu-motion-fast) ease;
+  }
+
+  &.is-expanded .fa,
+  &[aria-expanded="true"] .fa {
+    transform: rotate(180deg);
+  }
+}
+
+@mixin card-direct-action($size: 1.85rem) {
+  // Moodle loads Bootstrap states after plugin CSS. Qualify native .btn
+  // composition in the shared recipe, rather than adding consumer !important.
+  &,
+  &.btn {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: var(--easyedu-primary);
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 0.95rem;
+    height: $size;
+    justify-content: center;
+    line-height: 1;
+    @include card-action-zero-inset;
+    text-decoration: none;
+    width: $size;
+
+    > .fa,
+    > .icon {
+      align-items: center;
+      display: inline-flex;
+      flex: 0 0 0.95rem;
+      font-size: inherit;
+      height: 0.95rem;
+      justify-content: center;
+      // Natural font metrics centre the glyph inside the unchanged fixed frame.
+      line-height: normal;
+      margin: 0;
+      width: 0.95rem;
+    }
+
+    &:hover,
+    &:focus-visible {
+      // K16-55 (keep the hover disc inside its target): a 24 px disc inside the unchanged
+      // hit target, without the outline ring. A radial paint, so .p-0 / borders cannot resize it.
+      @include card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
+      border-color: transparent;
+      color: var(--easyedu-primary-strong);
+      text-decoration: none;
+    }
+
+    &:active,
+    &[aria-pressed="true"],
+    &[aria-expanded="true"],
+    &.is-active {
+      @include card-action-disc(var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)));
+      border-color: transparent;
+      color: var(--easyedu-primary-strong);
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    }
+
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
+
+    &:disabled,
+    &[aria-disabled="true"],
+    &.disabled {
+      background: var(--easyedu-card-action-disabled-bg, #f0f4f8);
+      border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
+      color: var(--easyedu-card-action-disabled-color, #9aa9b8);
+      cursor: not-allowed;
+      opacity: 1;
+    }
+  }
+}
+
+// Header action ink only; the owning card retains hover/focus/selection predicates.
+@mixin card-action-ink($state: rest) {
+  @if $state == rest {
+    color: var(--easyedu-card-action-neutral);
+  } @else if $state == active {
+    color: var(--easyedu-primary);
+  } @else {
+    @error "Unknown card action ink state: #{$state}.";
+  }
+}
+
+@mixin card-action-icon-type {
+  font-size: var(--easyedu-card-action-icon-size);
+}
+
+
+// Shared flush inset for the accepted card-action compositions.
+@mixin card-action-zero-inset {
+  padding: 0;
+}
+
+
+// Existing compact eye frame, kept at its current narrow breakpoint by the host.
+@mixin card-detail-touch-frame {
+  height: 1.85rem;
+  min-width: 1.85rem;
+  width: 1.85rem;
+}

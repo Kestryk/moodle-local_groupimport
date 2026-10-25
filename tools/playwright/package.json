@@ -1,0 +1,9 @@
+{
+  "name": "local-groupimport-playwright-audit",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1"
+  }
+}

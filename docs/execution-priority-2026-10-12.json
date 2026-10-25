@@ -1,0 +1,76 @@
+{
+  "animG1PersonalPreference20261017": {
+    "decision": "K17-05 validation1",
+    "scope": "G1 personal display and animation preference; desktop icon, drawer and Guide",
+    "record": "docs/display-preferences-2026-10-17.md",
+    "humanAcceptance": "open",
+    "externalKitPenpotPropagation": "open"
+  },
+  "steering20261014": {
+    "source": "Kevin instruction 2026-10-14",
+    "penpotOperator": "Claude only; Codex does no Penpot operation",
+    "seriesBFirst": "T048 (K18) participant/group/grouping details redesign; Claude design before integration",
+    "k17": "Added to R10-21: Participants heading for the left column above filters search",
+    "seriesAThenOwnedR10": true
+  },
+  "program": "EED-UI-2026-0073",
+  "directive": "Kevin20261012: compare entire backlog by urgency, impact and dependency; do every retained requirement, not newest first",
+  "record": "docs/execution-priority-2026-10-12.md",
+  "supersedesSchedulingOnly": true,
+  "receivedScopesAndEvidenceUnchanged": true,
+  "humanChecklistOpen": true,
+  "mode": "sequential-existing-Source-Kit-worktrees",
+  "dependencyMeaning": "Required technical implementation/protocol slice, not all umbrella scope or human closure; gated business proof stays explicit and does not block independent safe lots",
+  "active": "EXEC-01",
+  "activeProgress": {"id":"PG-S1","record":"docs/guide-modal-layer-s1-progress-2026-10-12.md","canonicalKitVersion":"0.4.186","sourceBuilt":true,"pairedDesignSaved":true,"nativeVerified":false,"humanAccepted":false},
+  "sources": [
+    "docs/student-management-completion-queue-2026-10-03.md",
+    "docs/student-feedback-successor-2026-10-04.md",
+    "docs/student-review-successor-2026-10-05.md",
+    "docs/student-feedback-successor-2026-10-06.md",
+    "docs/testing/student-feedback-intake-2026-10-10.json",
+    "docs/testing/claude-interface-review-intake-2026-10-11.json",
+    "docs/guide-engineering-projection-2026-10-11.md",
+    "docs/guide-content-proposal-intake-2026-10-08.md",
+    "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
+    "docs/claude-global-audit-roadmap-2026-10-11.md"
+  ],
+  "groups": [
+    {"id":"EXEC-00","priority":"continuous","title":"Ownership, source pins, documentation and public distribution boundaries","after":[],"ids":["T001","T003","T031","SM-18","R10-33"]},
+    {"id":"EXEC-01","priority":"P1","title":"Visible modal Guide cues","after":[],"ids":["PG-S1","T004"]},
+    {"id":"EXEC-02","priority":"P1","title":"Reliable native progression and selection safety","after":["EXEC-01"],"ids":["PG-A2","PG-A1","PG-A3","PG-A6","PG-A8","SM-11","SM-19","SM-32","SM-34","SM-62","R10-04"]},
+    {"id":"EXEC-03","priority":"P1 shared prerequisite","title":"Canonical modal header, body and footer contract","after":["EXEC-01","EXEC-02"],"ids":["T041","T042","T043","T044","T045","T046","T047","T048","T049","T050","T051","SM-01","SM-02","SM-10","SM-13","SM-21","SM-44","SM-51"]},
+    {"id":"EXEC-04","priority":"P1-P2 shared prerequisite","title":"Shared typography, palette, field and identity densities","after":["EXEC-03"],"ids":["T002","T032","T033","T034","T035","T060","SM-03","SM-05","SM-06","SM-22","SM-23","SM-24","SM-28","SM-42","SM-45","SM-46","SM-56","SM-57","SM-58","SM-59","SM-60","SM-64","SM-72","R10-01","R10-02","R10-06","R10-09","R10-10","R10-14","R10-24","R10-25","R10-26"]},
+    {"id":"EXEC-05","priority":"P2 Guide composition","title":"Guide reading, curriculum and remaining presentation gates","after":["EXEC-02","EXEC-03","EXEC-04"],"ids":["T006","T007","T008","T009","T010","T011","T012","T013","T014","T015","T037","T038","T039","T040","PG-A4","PG-A5","PG-A7","SM-61","R10-03","R10-28","R10-29","R10-30","R10-31","R10-32","G11-A","G11-B","G11-C","G11-D","G11-E","G11-F","G11-G","G11-H","G11-I"]},
+    {"id":"EXEC-06","priority":"P1-P2 control prerequisites","title":"Search, choices, More Filters and disclosure fluency","after":["EXEC-03","EXEC-04"],"ids":["SM-12","SM-14","SM-17","SM-29","SM-30","SM-31","SM-33","SM-35","SM-36","SM-41","SM-43","SM-54","SM-55","SM-65","SM-66","SM-69","SM-71","SM-73","R10-07","R10-08","R10-11","R10-13","R10-15"]},
+    {"id":"EXEC-07","priority":"P2 stable layouts","title":"Student three views, cards, mobile navigation, drag, sticky and pagination","after":["EXEC-04","EXEC-05","EXEC-06"],"ids":["T016","T017","T018","T019","T020","T021","T022","T036","SM-04","SM-07","SM-08","SM-09","SM-27","SM-37","SM-38","SM-47","SM-48","SM-49","SM-50","SM-52","SM-63","SM-67","SM-68","SM-70","R10-05","R10-12","R10-18","R10-19","R10-20","R10-21","R10-22","R10-23","R10-27"]},
+    {"id":"EXEC-08","priority":"P2 stable import layouts","title":"Mass Import proportions, picker, preview, results and history","after":["EXEC-03","EXEC-04","EXEC-07"],"ids":["T005","T023","T024","T025","T026","T027","T028","T029","T030","SM-20","SM-53","R10-17"]},
+    {"id":"EXEC-09","priority":"high-risk gated architecture","title":"Upgrade-safe component rename, not a folder-only rename","after":["EXEC-02","EXEC-03","EXEC-07","EXEC-08"],"ids":["SM-25"]},
+    {"id":"EXEC-10","priority":"mandatory measured prerequisite","title":"Large test-course baseline and retained synthetic roles","after":["EXEC-07","EXEC-08"],"ids":["T052","SM-15","SM-39"]},
+    {"id":"EXEC-11","priority":"P2 loading reliability","title":"Local skeleton regions and loading/error/readiness states","after":["EXEC-01","EXEC-03","EXEC-06","EXEC-10"],"ids":["T061","SM-16","SM-26","SM-40","R10-16"]},
+    {"id":"EXEC-12","priority":"measured optimization","title":"CSS weight and cached deferred AMD modules","after":["EXEC-09","EXEC-10","EXEC-11"],"ids":["T053","T055"]},
+    {"id":"EXEC-13","priority":"last runtime optimization","title":"Default-off in-memory on-demand rendering","after":["EXEC-07","EXEC-09","EXEC-10","EXEC-11","EXEC-12"],"ids":["T054"]},
+    {"id":"EXEC-14","priority":"continuous plus final release gate","title":"Cross-surface regression, accessibility, locales, code audit and release hardening","after":["EXEC-05","EXEC-07","EXEC-08","EXEC-09","EXEC-11","EXEC-12","EXEC-13"],"ids":["T056","T057","T058","T059","AUD-CLAUDE-01"]}
+  ],
+  "decisionGates": {
+    "PG-A4":"Kevin: retain, remove or re-expose dormant paths",
+    "PG-A5":"Kevin: editor close/Save outcome and wording",
+    "PG-A7":"Kevin: grouping-action wording versus automatic opener",
+    "T038":"Kevin: short bilingual navigation labels",
+    "T049":"Kevin: non-redundant Guide dialog title proposal",
+    "T039":"Existing Kevin choice retains the dedicated interface cue; alternate footer merge is not authorized",
+    "SM-25":"Upgrade design, rollback and controlled install/upgrade test scope before live migration"
+  },
+  "approvedDecisionsNotReasked": {"A1":"28px subsection tile","A2":"real available panel width","A3":"card title600"},
+  "conditions": {
+    "urgentRegressionsInterrupt":"verified data loss/security/broken operation, not mere recency",
+    "doNotRedoVerifiedImplementations":"close only remaining proof/coverage/design gaps; human acceptance stays open",
+    "fixtureBusinessProof":"dedicated supervised test scope and lease, never real course/user mutation",
+    "loadingBeforeAfter":"I1-I13 for each affected lot",
+    "onDemandData":"initial in-memory payload; no course-data network at click; default-off flag",
+    "deferredModules":"code-module loading is separate from prohibited click-driven course-data fetching",
+    "lineage":"Kit -> Foundation source/Standard -> linked product -> consumer -> managed preview -> native",
+    "sharedPlatformPlanning":"read-only; local projection is handoff to planning owner, not another shared master",
+    "ccb":"method documentation only; implementation deferred to its own programme"
+  }
+}

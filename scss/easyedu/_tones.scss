@@ -1,0 +1,93 @@
+// EasyEdu semantic tones (Kit chantier, 20/10/2026).
+//
+// One vocabulary for every component variant that carries a meaning:
+//
+//   primary    main action, selection, information in the product colour
+//   secondary  outlined neutral action (OLD-B R13 Core action / Secondary)
+//   success    completed, valid, created
+//   warning    reversible risk, attention needed
+//   danger     destructive or invalid (aliases: destructive, error)
+//   info       explanatory notice; same blue as primary by default, kept
+//              separate so a theme can recolour help without recolouring CTAs
+//   neutral    quiet chrome in a muted ink (selection recovery, card actions
+//              at rest, neutral status dialogs)
+//
+// Each tone exposes five roles: ink (text, icon, outline), soft (tinted
+// surface), strong (hover or pressed ink), border (resting frame on a tinted
+// surface) and ring (keyboard focus). Every role points at an existing colour
+// token: this file adds names, never new colours. If a component and EasyStud
+// disagree on a colour, EasyStud wins (policy of 20/10/2026).
+
+@use "sass:list";
+@use "sass:map";
+
+$tones: (primary, secondary, success, warning, danger, info, neutral);
+$tone-roles: (ink, soft, strong, border, ring);
+
+// Historical variant names accepted by the existing mixins.
+$tone-aliases: (
+  destructive: danger,
+  error: danger,
+);
+
+@function tone-name($tone) {
+  @if map.has-key($tone-aliases, $tone) {
+    @return map.get($tone-aliases, $tone);
+  }
+  @if list.index($tones, $tone) {
+    @return $tone;
+  }
+  @error "EasyEdu tones are primary, secondary, success, warning, danger, info or neutral (aliases: destructive, error); got `#{$tone}`.";
+}
+
+@function tone($tone, $role: ink) {
+  @if not list.index($tone-roles, $role) {
+    @error "EasyEdu tone roles are ink, soft, strong, border or ring; got `#{$role}`.";
+  }
+  @return var(--easyedu-tone-#{tone-name($tone)}-#{$role});
+}
+
+// Public tone tokens. Included once by `token-defaults`.
+@mixin tone-token-defaults {
+  --easyedu-tone-primary-ink: var(--easyedu-primary);
+  --easyedu-tone-primary-soft: var(--easyedu-primary-soft);
+  --easyedu-tone-primary-strong: var(--easyedu-primary-strong);
+  --easyedu-tone-primary-border: var(--easyedu-semantic-border-primary);
+  --easyedu-tone-primary-ring: var(--easyedu-focus-ring);
+
+  --easyedu-tone-secondary-ink: var(--easyedu-text);
+  --easyedu-tone-secondary-soft: var(--easyedu-surface-soft);
+  --easyedu-tone-secondary-strong: var(--easyedu-text);
+  --easyedu-tone-secondary-border: var(--easyedu-control-border);
+  --easyedu-tone-secondary-ring: var(--easyedu-focus-ring);
+
+  --easyedu-tone-success-ink: var(--easyedu-success);
+  --easyedu-tone-success-soft: var(--easyedu-success-soft);
+  --easyedu-tone-success-strong: var(--easyedu-success);
+  --easyedu-tone-success-border: var(--easyedu-semantic-border-success);
+  --easyedu-tone-success-ring: var(--easyedu-focus-ring-accent);
+
+  --easyedu-tone-warning-ink: var(--easyedu-warning);
+  --easyedu-tone-warning-soft: var(--easyedu-warning-soft);
+  --easyedu-tone-warning-strong: var(--easyedu-warning);
+  --easyedu-tone-warning-border: var(--easyedu-semantic-border-warning);
+  --easyedu-tone-warning-ring: var(--easyedu-focus-ring-warning);
+
+  --easyedu-tone-danger-ink: var(--easyedu-danger);
+  --easyedu-tone-danger-soft: var(--easyedu-danger-soft);
+  --easyedu-tone-danger-strong: var(--easyedu-danger);
+  --easyedu-tone-danger-border: var(--easyedu-semantic-border-danger);
+  --easyedu-tone-danger-ring: var(--easyedu-focus-ring-danger);
+
+  --easyedu-tone-info-ink: var(--easyedu-info);
+  --easyedu-tone-info-soft: var(--easyedu-info-soft);
+  --easyedu-tone-info-strong: var(--easyedu-primary-strong);
+  --easyedu-tone-info-border: var(--easyedu-semantic-border-primary);
+  --easyedu-tone-info-ring: var(--easyedu-focus-ring);
+
+  --easyedu-tone-neutral-ink: var(--easyedu-text-muted);
+  --easyedu-tone-neutral-soft: var(--easyedu-surface-soft);
+  --easyedu-tone-neutral-strong: var(--easyedu-text);
+  --easyedu-tone-neutral-border: var(--easyedu-card-border);
+  --easyedu-tone-neutral-ring: var(--easyedu-focus-ring);
+}

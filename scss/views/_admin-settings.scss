@@ -1,0 +1,559 @@
+// EasyStud administration settings page.
+//
+// This file only targets the Moodle admin settings page for this plugin. It
+// keeps Moodle's native admin form controls and applies the EasyEdu visual
+// language around them so settings remain accessible and theme-overridable.
+//
+// K18-15: four sections (operation and views, display and accessibility,
+// identification and import, history and privacy) on the Student Management
+// proportions: Inter 20/30 page title, 16/24 section titles, 14.4/21.6 text,
+// 12.16/18.24 labels, 38 px fields (44 px touch), and 32 px page margins.
+// Sections follow one reading column; native setting rows stack at 390 px.
+// K18-18: the real page is painted from the first frame; only the field
+// controls that wait for Moodle's dependency logic sit behind Kit skeletons.
+@use "../easyedu" as easyedu;
+@use "../easyedu/foundation-classes" as foundations;
+
+// `local-groupimport-admin-settings-page--loading` is server-rendered even
+// without scripts. Moodle adds `jsenabled` only from its early body bootstrap,
+// so it is the reliable gate for this decorative JavaScript-only state.
+// Component skeletons (as in Student Management): each pending control keeps its
+// exact footprint, shows the Kit skeleton surface with its shimmer and hides its
+// content. Titles, descriptions, labels and actions are never masked.
+// The page id is carried by the body itself, so the loading gate is a compound selector.
+body#page-admin-setting-local_groupimport.jsenabled.local-groupimport-admin-settings-page--loading #adminsettings {
+  .form-item .form-setting > :is(.defaultsnext, .easyedu-ui):not(:has(> .easyedu-color-picker)),
+  .form-item .easyedu-color-picker {
+    @include easyedu.navigation-skeleton-cue-overlay;
+
+    pointer-events: none;
+
+    // Natural control size first, then the Kit field floor, so the footprint matches.
+    & {
+      min-block-size: var(--easyedu-control-height);
+    }
+
+    > * {
+      visibility: hidden;
+    }
+  }
+
+  // The default value and the description of a pending field stay readable text.
+  .form-item .form-setting > .form-defaultinfo,
+  .form-item .form-setting > .form-text.mt-2 {
+    visibility: visible;
+  }
+}
+
+#page-admin-setting-local_groupimport {
+  @include easyedu.token-defaults;
+  @include easyedu.groupimport-compat-tokens;
+  @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
+
+  #adminsettings {
+    @include foundations.foundation-scope;
+    @include easyedu.type-ui-base;
+
+    // Measured Student Management rhythm (Penpot K18-15): every role uses a 1.5 line height.
+    --easyedu-line-height-title: 1.5;
+    --easyedu-line-height-body: 1.5;
+  }
+
+  // Controls replacing their skeletons fade in once, as the lists of Student Management do.
+  // K23-85: the seven colour-palette settings (primary, accent, participant, group,
+  // grouping, badge background/text) wrap their real control in a `.easyedu-ui`
+  // `display: contents` host (scoping, see _forms.scss), which cannot itself paint
+  // an animation. Reaching the actual swatch box keeps every palette selector on
+  // this page under the exact same one-shot fade as every other field, instead of
+  // appearing instantly or getting a bespoke treatment per setting.
+  &.is-easystud-admin-entering #adminsettings .form-item .form-setting > *,
+  &.is-easystud-admin-entering #adminsettings .form-item .form-setting > .easyedu-ui > .easyedu-color-picker {
+    animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
+  }
+
+  &.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > *,
+  &.is-easyedu-motion-off.is-easystud-admin-entering #adminsettings .form-item .form-setting > .easyedu-ui > .easyedu-color-picker {
+    animation: none;
+  }
+
+  @include easyedu.motion-restricted {
+    &.is-easystud-admin-entering #adminsettings .form-item .form-setting > *,
+    &.is-easystud-admin-entering #adminsettings .form-item .form-setting > .easyedu-ui > .easyedu-color-picker {
+      animation: none;
+    }
+  }
+
+  // Page frame: content 1536 px with 32 px margins on a wide viewport, 16 px on a phone.
+  .settingsform {
+    box-sizing: border-box;
+    margin-inline: auto;
+    max-inline-size: 100rem;
+    padding-inline: 2rem;
+
+    @media (max-width: 48rem) {
+      padding-inline: 1rem;
+    }
+  }
+
+  #adminsettings {
+    margin-inline: auto;
+    max-inline-size: 100%;
+  }
+
+  // Moodle prints the settings-page name as a direct H2. The custom identity
+  // immediately below carries the product name plus the dedicated Administration
+  // title and description, so the native H2 would repeat the EasyStud label.
+  #adminsettings > .settingsform > h2 {
+    display: none;
+  }
+
+  // K18-37: one reading column of sections at every width, as in Student
+  // Management and Mass Import (no column-count split of the sections).
+  // K20-13: each section is a Kit card again (frame, hairlines between rows,
+  // 24 px between cards), drawn on the native siblings by the Kit adapter.
+  #adminsettings > .settingsform > fieldset {
+    border: 0;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+
+    @include easyedu.moodle-admin-section-card($icon: "local-groupimport-admin-settings__section-icon");
+
+    > .clearer {
+      display: none;
+    }
+
+    // The page identity already ends with its own 24 px gap.
+    > .formsettingheading:has(.local-groupimport-admin-settings__page-identity) + h3.main {
+      margin-block-start: 0;
+    }
+  }
+
+  // Moodle's generic heading box carries a card padding and border: reset it.
+  #adminsettings .formsettingheading {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    .form-description,
+    .form-setting {
+      max-width: none;
+    }
+  }
+
+  // K21-15: the identity stands apart from the first card by the narrow section gap.
+  #adminsettings .formsettingheading:has(.local-groupimport-admin-settings__page-identity) {
+    column-span: all;
+    margin: 0 0 var(--easyedu-admin-section-gap-narrow);
+  }
+
+  .local-groupimport-admin-settings__page-identity {
+    display: block;
+    padding-block: 0;
+  }
+
+  // K21-15: the EasyStud eyebrow wears the Mass Import ink and case (primary,
+  // uppercase, strong) while keeping its caption size.
+  .local-groupimport-admin-settings__page-eyebrow {
+    @include easyedu.type-caption;
+
+    color: var(--local-groupimport-easystud-primary);
+    display: block;
+    font-weight: var(--easyedu-font-weight-strong);
+    line-height: var(--easyedu-line-height-body);
+    margin-block-end: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  // Project Moodle's native headings onto the measured Foundation roles.
+  .local-groupimport-admin-settings__page-title {
+    @include easyedu.type-page-title;
+
+    border: 0;
+    font-weight: var(--easyedu-font-weight-semibold);
+    margin: 0;
+    padding: 0;
+  }
+
+  .local-groupimport-admin-settings__page-description {
+    @include easyedu.type-body;
+
+    color: var(--easyedu-text-muted);
+    margin: 0.5rem 0 0;
+    max-inline-size: 58rem;
+  }
+
+  // Section titles: native h3.main, 16/24 semibold, kept with their description.
+  // Margins and padding belong to the section card (moodle-admin-section-card).
+  #adminsettings h3.main,
+  #adminsettings .formsettingheading h3 {
+    @include easyedu.type-section-title;
+
+    border: 0;
+    break-after: avoid;
+    margin: 0;
+    padding: 0;
+  }
+
+  .local-groupimport-admin-settings__section-copy {
+    break-before: avoid;
+    margin-block-end: 0;
+
+    > :last-child {
+      margin-block-end: 0;
+    }
+
+    p {
+      @include easyedu.type-body;
+
+      color: var(--easyedu-text-muted);
+      margin: 0 0 0.5rem;
+    }
+
+    // Section actions (reset guide, restore colours) sit one Kit gap below the copy.
+    > .easyedu-ui {
+      margin-block-start: var(--easyedu-gap);
+    }
+
+    // K23-86: the section commands are Kit Secondary / M actions with the primary
+    // ink (`easyedu-button--secondary-accent`, K21-03), as the search Cancel.
+    // The reset command is a link (no-JavaScript fallback): host themes colour
+    // `#page a:not(.btn)` and, at hover/focus, `#page #region-main a:not(.btn)…`
+    // with !important (DVL 4.5, weight id 2 / class 4). The Kit recipe opts into the
+    // host adapter priority and this bounded selector — the page's real body id plus
+    // #region-main, one doubled class — out-weighs that host rule once, by
+    // construction, without escalating further.
+    @at-root html body#page-admin-setting-local_groupimport #region-main .easyedu-ui.easyedu-ui :is(a, button).easyedu-button--secondary.easyedu-button--secondary {
+      @include foundations.foundation-button($secondary: true, $legacy-priority: true);
+    }
+
+    .easyedu-caption {
+      @include easyedu.type-caption;
+
+      line-height: var(--easyedu-line-height-body);
+    }
+
+    .easyedu-form-note {
+      margin-block-start: 0.5rem;
+    }
+  }
+
+  // Identifier fields: two compact lists of Kit chips.
+  .local-groupimport-admin-settings__field-grid {
+    align-items: stretch;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-block: 0.5rem;
+  }
+
+  .local-groupimport-admin-settings__field-card {
+    @include easyedu.filter-shell;
+
+    align-content: start;
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+
+    h4 {
+      @include easyedu.type-caption;
+
+      border: 0;
+      color: var(--easyedu-text-muted);
+      font-weight: var(--easyedu-font-weight-semibold);
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
+    }
+  }
+
+  .local-groupimport-admin-settings__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+  }
+
+  .local-groupimport-admin-settings__chip {
+    @include easyedu.token-pill(var(--easyedu-info-soft), var(--easyedu-semantic-border-primary), var(--easyedu-primary-strong));
+
+    gap: 0.38rem;
+    max-width: 100%;
+
+    .fa {
+      font-size: 0.72rem;
+      opacity: 0.82;
+    }
+  }
+
+  .local-groupimport-admin-settings__chip--custom {
+    background: var(--easyedu-accent-soft);
+    border-color: var(--easyedu-semantic-border-success);
+    color: color-mix(in srgb, var(--easyedu-accent) 82%, var(--easyedu-text) 18%);
+  }
+
+  .local-groupimport-admin-settings__chip-label,
+  .local-groupimport-admin-settings__chip-key {
+    @include easyedu.type-caption;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .local-groupimport-admin-settings__chip-label {
+    max-width: 16rem;
+  }
+
+  .local-groupimport-admin-settings__chip-key {
+    color: color-mix(in srgb, currentColor 68%, var(--easyedu-surface) 32%);
+    font-weight: var(--easyedu-font-weight-medium);
+    max-width: 12rem;
+  }
+
+  .local-groupimport-admin-settings__empty {
+    @include easyedu.inline-empty-state;
+    @include easyedu.type-caption;
+
+    @include easyedu.inline-empty-state-compact;
+  }
+
+  // Setting rows: no card per setting (K18-15, that made every element too
+  // large); K20-13 restores the native label | control columns inside the
+  // section card, with the Kit hairline between rows. Stacked on phones.
+  #adminsettings .form-item.row {
+    break-inside: avoid;
+
+    @include easyedu.moodle-admin-setting-row;
+  }
+
+  // K21-15: the Kit switch is drawn at the touch-target size; its label centres on it.
+  #adminsettings .form-item.row:has(.form-setting > .form-checkbox.defaultsnext) {
+    --easyedu-admin-row-control-height: var(--easyedu-touch-target-min);
+  }
+
+  #adminsettings .form-item .form-label,
+  #adminsettings .form-item .form-setting {
+    box-sizing: border-box;
+    flex: none;
+    max-inline-size: 100%;
+    padding: 0;
+    text-align: start;
+    width: 100%;
+  }
+
+  #adminsettings .form-item .form-setting {
+    display: block;
+  }
+
+  // Moodle right-aligns the label column with an important utility; a start-aligned
+  // flex column keeps the label and its technical name at the inline start.
+  #adminsettings .form-item .form-label {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-block-end: 0.25rem;
+
+    label {
+      @include easyedu.type-caption;
+
+      color: var(--easyedu-text);
+      font-weight: var(--easyedu-font-weight-semibold);
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
+    }
+
+    .form-shortname {
+      @include easyedu.type-caption;
+
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
+    }
+  }
+
+  // Moodle renders admin_setting descriptions as .form-text, not the
+  // .form-description used by other forms. Keep both on the Kit caption role.
+  // K21-15: :where() keeps this base below the layout adapters (colour and
+  // compact control lines), which own the margins of their default value.
+  #adminsettings .form-item {
+    :where(.form-description, .form-setting > .form-text.mt-2, .form-setting > .form-defaultinfo) {
+      @include easyedu.type-caption;
+
+      color: var(--easyedu-text-muted);
+      line-height: var(--easyedu-line-height-body);
+      margin-block: 0.5rem 0;
+      max-inline-size: none;
+    }
+
+    .form-text.mt-2 p {
+      margin: 0;
+    }
+  }
+
+  // Fields: 38 px (Kit control height) on desktop, 44 px (Kit touch target) on touch.
+  #adminsettings .form-item .form-setting {
+    input.form-control[type="text"] {
+      @include easyedu.foundation-text-field;
+
+      box-sizing: border-box;
+      inline-size: 100%;
+      max-inline-size: 100%;
+    }
+
+    > .defaultsnext:not(.easyedu-ui) {
+      max-inline-size: 100%;
+    }
+
+    .form-check,
+    .form-checkbox {
+      align-items: center;
+      display: flex;
+      min-block-size: var(--easyedu-control-height);
+    }
+  }
+
+  // Short numeric fields keep a compact width instead of stretching.
+  #adminsettings #admin-historyretentiondays input.form-control[type="text"],
+  #adminsettings #admin-importmaxrows input.form-control[type="text"] {
+    inline-size: 8rem;
+  }
+
+  // K21-15: compact controls (numbers, switches) share one control line: the
+  // control, then its default value centred on it, the description below.
+  // The controls keep their Kit sizes; only their placement changes.
+  #adminsettings #admin-historyretentiondays .form-setting,
+  #adminsettings #admin-importmaxrows .form-setting,
+  #adminsettings .form-item .form-setting:has(> .form-checkbox.defaultsnext) {
+    align-items: center;
+    column-gap: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    > .defaultsnext {
+      flex: none;
+      inline-size: auto;
+      min-inline-size: 0;
+      margin-block: 0;
+    }
+
+    > .form-defaultinfo {
+      margin-block: 0;
+    }
+
+    > .form-text:not(.defaultsnext) {
+      flex-basis: 100%;
+    }
+  }
+
+  // Keep the native setting markup and use the public Kit layout adapter:
+  // the default value sits beside the M picker, with help/notice below.
+  // K21-15: scoped under #adminsettings so the adapter grid wins over the
+  // generic `.form-setting { display: block }` above (it never applied before).
+  #adminsettings #admin-themeprimarycolor,
+  #adminsettings #admin-themeaccentcolor,
+  #adminsettings #admin-themeparticipantcolor,
+  #adminsettings #admin-themegroupcolor,
+  #adminsettings #admin-themegroupingcolor,
+  #adminsettings #admin-participantprimarybadgebgcolor,
+  #adminsettings #admin-participantprimarybadgetextcolor {
+    @include easyedu.moodle-admin-color-setting;
+  }
+
+  #adminsettings > .settingsform > .row:last-child {
+    margin-left: 0;
+    margin-right: 0;
+
+    @include easyedu.admin-form-actions(center);
+
+    margin-block-start: var(--easyedu-admin-section-gap);
+
+    > [class*="offset-"] {
+      flex: 0 0 auto;
+      margin-left: 0;
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+      width: auto;
+    }
+
+    // Adapt only this plugin's native Moodle save command to the shared Kit.
+    > [class*="offset-"] > button[type="submit"].btn.btn-primary {
+      // K23-86: hosts that repaint `button[type=submit].btn-primary` with !important
+      // (DVL 4.5) must not replace the Kit core action paint.
+      @include foundations.foundation-button($legacy-priority: true);
+      & {
+        box-sizing: border-box;
+        max-inline-size: 100%;
+      }
+      @include easyedu.touch-target-floor(min-block-size);
+    }
+
+    button,
+    input[type="submit"] {
+      &:focus-visible {
+        @include easyedu.ring($border-color: var(--easyedu-control-focus-border), $native-overrides: true);
+      }
+
+      &:focus:not(:focus-visible) {
+        @include easyedu.pointer-focus-outline;
+      }
+    }
+  }
+
+  #id_s_local_groupimport_enablesimplifiedview,
+  #id_s_local_groupimport_showcompleteview,
+  #id_s_local_groupimport_enableanimations {
+    &:focus-visible {
+      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
+      border-color: var(--easyedu-control-focus-border);
+      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+    }
+
+    &:focus:not(:focus-visible) {
+      @include easyedu.pointer-focus-outline;
+    }
+  }
+
+  // Size the native inline wrapper too: its short default must not constrain
+  // the enhanced field. Shared opt-in, no per-setting width exceptions.
+  .form-setting > .easyedu-ui,
+  .form-setting .easyedu-searchable-choice {
+    @include easyedu.setting-choice-width;
+
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
+
+  // The native fallback covers every plugin setting, including future fields.
+  // Enhanced controls use public Kit markup/classes instead of private paint.
+  select[name^="s_local_groupimport_"][multiple] {
+    @include easyedu.multi-select-list;
+
+    width: 100%;
+  }
+
+  select[name^="s_local_groupimport_"]:not([multiple]) {
+    @include easyedu.native-select-control;
+
+    @include easyedu.setting-choice-width;
+    width: 100%;
+  }
+
+  // Touch targets: the Kit touch size for every field of the page.
+  @media (max-width: 48rem), (pointer: coarse) {
+    #adminsettings .form-item .form-setting {
+      input.form-control[type="text"],
+      .easyedu-searchable-choice__trigger {
+        min-block-size: var(--easyedu-touch-target-min);
+      }
+
+      .form-check,
+      .form-checkbox {
+        min-block-size: var(--easyedu-touch-target-min);
+      }
+    }
+
+    .local-groupimport-admin-settings__field-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

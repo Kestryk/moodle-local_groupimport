@@ -1,0 +1,42 @@
+{
+  "runId": "easystud-authenticated-20261010T071531176Z-45856",
+  "sourceHead": "4c6413ef8542391b327e6272454bad4e62647cc4",
+  "runtimeHead": "5f6da55ff6e548f1abb1e1c34fcad6b75b15da93",
+  "scenario": "guide-method-native.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "language": "en",
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "cases": 3,
+  "paintedTextNodesPerCase": 12,
+  "allContained": true,
+  "sharedTopics": 3,
+  "visualMethodPills": 4,
+  "pathCompletionPreserved": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "businessWrites": false,
+  "cleanupComplete": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "diagnosticPredecessor": "guide-method-native-2026-10-10.json",
+  "retryReason": "Unauthenticated destination GET returned login without database-error page after previous failed run",
+  "databaseRootCauseEstablished": false,
+  "productAssetsChangedDuringRetry": false,
+  "humanVisualValidated": false,
+  "remaining": [
+    "French native paragraph/pill paint",
+    "Whole raster/glyph/type proof",
+    "Recap modernization",
+    "Curriculum migration",
+    "Other G11/SM/human lots"
+  ]
+}

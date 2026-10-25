@@ -1,0 +1,1541 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-03",
+  "batch": "EED-UI-2026-0073",
+  "scope": "Resting-state shared entity-field specimens and seventeen EasyStud page-04 field references only. Not metadata-list publication, all-state parity or human acceptance.",
+  "source": {
+    "fieldModule": "scss/easyedu/components/_entity-fields.scss",
+    "fieldBlob": "856b660320140982af0fc2091a3adbf1233e66ed",
+    "fieldSourceCommit": "0e1466d2f9ecb7087c59c8b831207f78d8390d3d",
+    "metadataModule": "scss/easyedu/components/_entity-metadata.scss",
+    "metadataBlob": "16f9c79c6a2f8a0d3965e66e73ebd6c295db65d2"
+  },
+  "foundation": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "standardPage": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+    "libraryPage": "81455adb-6787-8068-8008-9ce9b711604d",
+    "standardHost": "a301101d-ddc2-807b-8008-bb6dd6dc6194",
+    "libraryHost": "a301101d-ddc2-807b-8008-bb6b608ca7c5",
+    "fingerprintProperties": [
+      "relative bounds",
+      "four radii",
+      "fills",
+      "strokes",
+      "shadows",
+      "opacity",
+      "text/font/size/weight/line/align/vertical",
+      "recursive children"
+    ],
+    "items": [
+      {
+        "name": "Regular / Detail",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b62ba4106",
+        "standardId": "a301101d-ddc2-807b-8008-bb6dd8a6402e",
+        "width": 378,
+        "height": 60,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b6312f758",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b639444e9",
+            "role": "Value",
+            "text": "alice.martin",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dd8a6402f",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dd8a64030",
+            "role": "Value",
+            "text": "alice.martin",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Regular / Detail empty",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b657ddc81",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b648ff161",
+        "standardId": "a301101d-ddc2-807b-8008-bb6dd968b3d1",
+        "width": 378,
+        "height": 60,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b64cddc03",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b651e89b0",
+            "role": "Value",
+            "text": "Not specified",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dd968b3d2",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dd968b3d3",
+            "role": "Value",
+            "text": "Not specified",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Regular / Readonly count",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b67513b13",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b660142ec",
+        "standardId": "a301101d-ddc2-807b-8008-bb6dda15cf32",
+        "width": 378,
+        "height": 68,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b664c1640",
+            "role": "Caption",
+            "text": "Members",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b66fcf472",
+            "role": "Value",
+            "text": "12",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dda15cf33",
+            "role": "Caption",
+            "text": "Members",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dda15cf35",
+            "role": "Value",
+            "text": "12",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Regular / Editable",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b69a08117",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b67dd3eeb",
+        "standardId": "a301101d-ddc2-807b-8008-bb6ddadcfa3c",
+        "width": 378,
+        "height": 72,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b6840cbb7",
+            "role": "Caption",
+            "text": "Name",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b68d3cb01",
+            "role": "Text",
+            "text": "Group A",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddadd0eee",
+            "role": "Caption",
+            "text": "Name",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddadd0ef1",
+            "role": "Text",
+            "text": "Group A",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Regular / Textarea",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6cfa210f",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b6a38f40a",
+        "standardId": "a301101d-ddc2-807b-8008-bb6ddb58ad38",
+        "width": 378,
+        "height": 144,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b6aa25909",
+            "role": "Caption",
+            "text": "Description",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b6b522b03",
+            "role": "Text",
+            "text": "Description of this group.",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "top",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddb58ad39",
+            "role": "Caption",
+            "text": "Description",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddb58ad3c",
+            "role": "Text",
+            "text": "Description of this group.",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "top",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Narrow / Detail",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b70705841",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b6df3d628",
+        "standardId": "a301101d-ddc2-807b-8008-bb6ddbcf251c",
+        "width": 324,
+        "height": 60,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b6e9ce1ef",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b6f870889",
+            "role": "Value",
+            "text": "alice.martin",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddbcf251d",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddbcf251e",
+            "role": "Value",
+            "text": "alice.martin",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Narrow / Detail empty",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b73a970c6",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b723a4bb4",
+        "standardId": "a301101d-ddc2-807b-8008-bb6ddc49f1c1",
+        "width": 324,
+        "height": 60,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b72992c07",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b73263416",
+            "role": "Value",
+            "text": "Not specified",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddc49f1c2",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddc49f1c3",
+            "role": "Value",
+            "text": "Not specified",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Narrow / Readonly count",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b75fbbc93",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b7436a2a4",
+        "standardId": "a301101d-ddc2-807b-8008-bb6ddcd5c8d9",
+        "width": 324,
+        "height": 68,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b74998310",
+            "role": "Caption",
+            "text": "Members",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b7570cbae",
+            "role": "Value",
+            "text": "12",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddcd5c8da",
+            "role": "Caption",
+            "text": "Members",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddcd5c8dc",
+            "role": "Value",
+            "text": "12",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Narrow / Editable",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b789f3af4",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b7698ac9a",
+        "standardId": "a301101d-ddc2-807b-8008-bb6dde08ad0a",
+        "width": 324,
+        "height": 72,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b76fcc07a",
+            "role": "Caption",
+            "text": "Name",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b77b4e4b9",
+            "role": "Text",
+            "text": "Group A",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dde08ad0b",
+            "role": "Caption",
+            "text": "Name",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6dde08ad0e",
+            "role": "Text",
+            "text": "Group A",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Narrow / Textarea",
+        "componentId": "a301101d-ddc2-807b-8008-bb6b7b012149",
+        "mainId": "a301101d-ddc2-807b-8008-bb6b7943855e",
+        "standardId": "a301101d-ddc2-807b-8008-bb6ddf627386",
+        "width": 324,
+        "height": 144,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b79a13b3c",
+            "role": "Caption",
+            "text": "Description",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6b7a276d2f",
+            "role": "Text",
+            "text": "Description of this group.",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "top",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddf627387",
+            "role": "Caption",
+            "text": "Description",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ddf62a5b3",
+            "role": "Text",
+            "text": "Description of this group.",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "top",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Regular / Readonly empty",
+        "componentId": "a301101d-ddc2-807b-8008-bb6f09a2e140",
+        "mainId": "a301101d-ddc2-807b-8008-bb6f0901f4ab",
+        "standardId": "a301101d-ddc2-807b-8008-bb6f1a6cf331",
+        "width": 378,
+        "height": 68,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f090719f1",
+            "role": "Caption",
+            "text": "Configuration data",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f090719f3",
+            "role": "Value",
+            "text": "Not set",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f1a6cf332",
+            "role": "Caption",
+            "text": "Configuration data",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f1a6cf334",
+            "role": "Value",
+            "text": "Not set",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      },
+      {
+        "name": "Narrow / Readonly empty",
+        "componentId": "a301101d-ddc2-807b-8008-bb6f0a519124",
+        "mainId": "a301101d-ddc2-807b-8008-bb6f09bc156a",
+        "standardId": "a301101d-ddc2-807b-8008-bb6f1aee0d08",
+        "width": 324,
+        "height": 68,
+        "linked": true,
+        "fingerprintMatch": true,
+        "mainText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f09c05369",
+            "role": "Caption",
+            "text": "Configuration data",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f09c09b39",
+            "role": "Value",
+            "text": "Not set",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "standardText": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f1aee63e6",
+            "role": "Caption",
+            "text": "Configuration data",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6f1aee63e8",
+            "role": "Value",
+            "text": "Not set",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ]
+      }
+    ],
+    "humanVisualValidated": false
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "hosts": [
+      {
+        "id": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "name": "Participant details",
+        "x": 992,
+        "y": 1130,
+        "w": 820,
+        "h": 980
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "name": "Group advanced settings",
+        "x": 112,
+        "y": 1734,
+        "w": 820,
+        "h": 1180
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeffae533daf",
+        "name": "Grouping advanced settings",
+        "x": 992,
+        "y": 2170,
+        "w": 820,
+        "h": 800
+      }
+    ],
+    "items": [
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e79102ecd",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1016,
+        "y": 1334,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e79105d19",
+            "role": "Caption",
+            "text": "Username",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e791081e9",
+            "role": "Value",
+            "text": "alice.martin",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e79ca71b6",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1410,
+        "y": 1334,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e79ca71b7",
+            "role": "Caption",
+            "text": "ID number",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e79ca71b8",
+            "role": "Value",
+            "text": "10482",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e7a9ec127",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1016,
+        "y": 1408,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7a9ec128",
+            "role": "Caption",
+            "text": "Institution",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7a9ec129",
+            "role": "Value",
+            "text": "Example University",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e7b7438a9",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1410,
+        "y": 1408,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7b7438aa",
+            "role": "Caption",
+            "text": "Department",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7b7438ab",
+            "role": "Value",
+            "text": "Digital learning",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e7c4dedae",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1016,
+        "y": 1482,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7c4dedaf",
+            "role": "Caption",
+            "text": "City",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7c4dedb0",
+            "role": "Value",
+            "text": "Paris",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e7d27363e",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1410,
+        "y": 1482,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7d27363f",
+            "role": "Caption",
+            "text": "Country",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7d273640",
+            "role": "Value",
+            "text": "France",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e7ea17b00",
+        "name": "Detail",
+        "host": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "x": 1016,
+        "y": 1556,
+        "w": 378,
+        "h": 60,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7ea17b01",
+            "role": "Caption",
+            "text": "Language",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e7ea18d58",
+            "role": "Value",
+            "text": "English",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6406fe46",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e960c04e0",
+        "name": "Editable",
+        "host": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "x": 336,
+        "y": 1830,
+        "w": 272,
+        "h": 72,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e960c8386",
+            "role": "Caption",
+            "text": "Name",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e960e50d5",
+            "role": "Text",
+            "text": "Group A",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b69a08117",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e97fb2ef6",
+        "name": "Editable",
+        "host": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "x": 624,
+        "y": 1830,
+        "w": 284,
+        "h": 72,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e97fb2ef7",
+            "role": "Caption",
+            "text": "ID number",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e97fb635d",
+            "role": "Text",
+            "text": "GROUP-A",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b69a08117",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e9a0583e2",
+        "name": "Editable",
+        "host": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "x": 624,
+        "y": 1914,
+        "w": 284,
+        "h": 72,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9a0583e3",
+            "role": "Caption",
+            "text": "Enrolment key",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b69a08117",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e9c39ea50",
+        "name": "Textarea",
+        "host": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "x": 136,
+        "y": 2018,
+        "w": 772,
+        "h": 144,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9c3a3070",
+            "role": "Caption",
+            "text": "Description",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9c3b1682",
+            "role": "Text",
+            "text": "Project group for the course.",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "top",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6cfa210f",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e9d758df3",
+        "name": "Readonly count",
+        "host": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "x": 336,
+        "y": 1916,
+        "w": 272,
+        "h": 68,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9d75ece1",
+            "role": "Caption",
+            "text": "Members",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9d762d9f",
+            "role": "Value",
+            "text": "3 members",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b67513b13",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e9e633555",
+        "name": "Editable",
+        "host": "cef95197-06bc-809e-8008-aeffae533daf",
+        "x": 1016,
+        "y": 2266,
+        "w": 378,
+        "h": 72,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9e633556",
+            "role": "Caption",
+            "text": "Name",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9e634884",
+            "role": "Text",
+            "text": "Year 2026",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b69a08117",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e9f3d3549",
+        "name": "Editable",
+        "host": "cef95197-06bc-809e-8008-aeffae533daf",
+        "x": 1410,
+        "y": 2266,
+        "w": 378,
+        "h": 72,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9f3d354a",
+            "role": "Caption",
+            "text": "ID number",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9f3d354d",
+            "role": "Text",
+            "text": "YEAR-2026",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b69a08117",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6e9fdea5eb",
+        "name": "Textarea",
+        "host": "cef95197-06bc-809e-8008-aeffae533daf",
+        "x": 1016,
+        "y": 2454,
+        "w": 772,
+        "h": 144,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9fdea5ec",
+            "role": "Caption",
+            "text": "Description",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6e9fdea5ef",
+            "role": "Text",
+            "text": "Groups assigned to the 2026 course cohort.",
+            "font": "Inter",
+            "size": "13.76",
+            "weight": "400",
+            "color": "#1d2125",
+            "align": "left",
+            "verticalAlign": "top",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b6cfa210f",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6ea0b3d632",
+        "name": "Readonly count",
+        "host": "cef95197-06bc-809e-8008-aeffae533daf",
+        "x": 1016,
+        "y": 2352,
+        "w": 378,
+        "h": 68,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ea0b3d633",
+            "role": "Caption",
+            "text": "Groups",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6ea0b3d635",
+            "role": "Value",
+            "text": "2 groups",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#263b4f",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6b67513b13",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb6fabf392d1",
+        "name": "Readonly empty",
+        "host": "cef95197-06bc-809e-8008-aeffae533daf",
+        "x": 1410,
+        "y": 2352,
+        "w": 378,
+        "h": 68,
+        "withinHost": true,
+        "texts": [
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6fabf43964",
+            "role": "Caption",
+            "text": "Configuration data",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "color": "#62788e",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          },
+          {
+            "id": "a301101d-ddc2-807b-8008-bb6fabf4cf8f",
+            "role": "Value",
+            "text": "Not set",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "400",
+            "color": "#8a9bad",
+            "align": "left",
+            "verticalAlign": "center",
+            "paintContained": true
+          }
+        ],
+        "visible": true,
+        "componentId": "a301101d-ddc2-807b-8008-bb6f09a2e140",
+        "libraryId": "40e06342-8830-80d6-8008-96572effc11c",
+        "path": "EasyEdu / Forms / Entity field / Regular"
+      }
+    ],
+    "humanVisualValidated": false
+  },
+  "roles": {
+    "caption": {
+      "font": "Inter",
+      "size": 12.16,
+      "weight": 600,
+      "color": "#62788e"
+    },
+    "value": {
+      "font": "Inter",
+      "size": 14.08,
+      "weight": 400,
+      "color": "#263b4f"
+    },
+    "editing": {
+      "font": "Inter",
+      "size": 13.76,
+      "weight": 400,
+      "color": "#1d2125"
+    },
+    "empty": {
+      "font": "Inter",
+      "size": 14.08,
+      "weight": 400,
+      "color": "#8a9bad"
+    }
+  },
+  "archive": {
+    "mode": "Original fields/captions/controls hidden and recoverable, not deleted. Intermediate wrong Configuration detail-empty instance also hidden.",
+    "intermediateHidden": "a301101d-ddc2-807b-8008-bb6ea1848c6a"
+  },
+  "captures": {
+    "root": "%LOCALAPPDATA%/EasyEdu/artifacts/penpot/entity-fields-20261003-a",
+    "files": [
+      "participant.png",
+      "group.png",
+      "grouping.png",
+      "participant-whole.png",
+      "group-whole.png",
+      "grouping-whole.png"
+    ],
+    "method": "Owned editor viewport capture after fitting exact specimen; no reload/close/design write.",
+    "agentInspected": true,
+    "fullProductRasterExport": "FAILED_TIMEOUT; retained as failure, not visual acceptance.",
+    "limits": "Editor chrome/toolbar, native zoom and raster blur remain; viewport captures do not prove all pixels/states.",
+    "retention": {
+      "mode": "dry-run",
+      "manifestsFound": 1,
+      "candidateCount": 0,
+      "deletedCount": 0,
+      "protectedCount": 6,
+      "unmanagedCount": 0,
+      "errors": []
+    }
+  },
+  "exceptions": [
+    "Source focus #86B7E0 remains distinct from general #8ABCE3; resting specimens do not certify focus states.",
+    "Detail empty is optional composition only; native participant values unchanged.",
+    "Textarea height/rows are illustrative composition; native resizing and rows retained.",
+    "No new responsive modal routes or all-page propagation claim.",
+    "Lists, image/file/Close, legacy weights and public-class adoption remain separate work.",
+    "Shared dirty Platform crosswalk/plan/state/registry await owner integration."
+  ],
+  "humanVisualValidated": false
+}

@@ -1,0 +1,283 @@
+// EasyEdu hover-only help bubbles.
+//
+// Use this for custom plugin help bubbles when native browser `title` would
+// duplicate the information or provide too little styling control.
+
+@use "focus";
+
+@mixin tooltip-surface($long: false) {
+  background:
+    radial-gradient(circle at 1.2rem 0.6rem, var(--easyedu-tooltip-glow), transparent 5.5rem),
+    var(--easyedu-tooltip-bg);
+  border: 1px solid var(--easyedu-tooltip-border);
+  border-radius: 0.64rem;
+  box-shadow: var(--easyedu-tooltip-shadow);
+  color: var(--easyedu-tooltip-text);
+  font-size: if($long, 0.76rem, 0.74rem);
+  font-weight: if($long, 560, 680);
+  line-height: if($long, 1.35, 1.2);
+  max-width: if($long, 19rem, 14rem);
+  padding: if($long, 0.48rem 0.58rem, 0.34rem 0.46rem);
+}
+
+@mixin hover-help-host {
+  position: relative;
+
+  &::after {
+    @include tooltip-surface;
+
+    bottom: calc(100% + 0.45rem);
+    content: attr(data-easyedu-hover-help);
+    left: 50%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, 0.2rem);
+    transition:
+      opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+    white-space: normal;
+    z-index: 1065;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+// Existing Foundations Light Short/Long specimens, not a new visual family.
+// Opt in explicitly: legacy hover-help and dark informational popovers retain
+// their defaults. Width adapts to the label; minimum height follows the source.
+@mixin foundation-light-tooltip($long: false) {
+  @include tooltip-surface($long);
+
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: if($long, 600, 700);
+  line-height: 1.35;
+  min-height: if($long, 4rem, 2.125rem);
+  text-align: if($long, left, center);
+}
+
+@mixin popover-surface {
+  --easyedu-tooltip-bg: linear-gradient(135deg, #183a59 0%, #1f6b57 100%);
+  --easyedu-tooltip-border: rgba(255, 255, 255, 0.28);
+  --easyedu-tooltip-glow: rgba(255, 255, 255, 0.14);
+  --easyedu-tooltip-shadow:
+    0 0.7rem 1.6rem rgba(20, 44, 67, 0.2),
+    0 0.08rem 0.24rem rgba(12, 28, 44, 0.16);
+  --easyedu-tooltip-text: #fff;
+  --easyedu-tooltip-arrow-bg: #1b4e5a;
+  --easyedu-tooltip-arrow-border: rgba(255, 255, 255, 0.28);
+
+  @include tooltip-surface;
+
+  display: block;
+  max-width: min(22rem, calc(100vw - 1.5rem));
+  pointer-events: none;
+  transform-origin: bottom center;
+
+  .popover-arrow {
+    height: 0.72rem;
+    position: absolute;
+    width: 0.72rem;
+
+    &::before {
+      background: var(--easyedu-tooltip-arrow-bg);
+      border: 1px solid var(--easyedu-tooltip-arrow-border);
+      content: "";
+      height: 0.5rem;
+      position: absolute;
+      transform: rotate(45deg);
+      width: 0.5rem;
+    }
+  }
+
+  // K23-84: Kit bubbles are portalled `.popover` elements, outside the hardened
+  // page roots. Host themes style `.popover` (font) and may force its body paint
+  // (DVL 4.5: `.popover .popover-body { background: white !important; color: … !important }`,
+  // grey text on a white plate inside the Kit gradient). The bubble declares the
+  // Kit UI family and owns its inner paint at the same priority.
+  font-family: var(--easyedu-font-family-ui);
+
+  &.popover,
+  & {
+    .popover-header {
+      background: transparent !important;
+      border: 0;
+      color: var(--easyedu-tooltip-text) !important;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.46rem 0.62rem 0;
+    }
+
+    .popover-body {
+      background: transparent !important;
+      color: var(--easyedu-tooltip-text) !important;
+      font-size: 0.76rem;
+      font-weight: 540;
+      letter-spacing: 0.005em;
+      line-height: 1.38;
+      padding: 0.46rem 0.62rem 0.52rem;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Existing dense long-copy help recipe. Consumers opt in explicitly; keep
+// short popovers and tooltip-surface($long: true) unchanged.
+@mixin popover-long-copy {
+  max-width: min(28rem, calc(100vw - 1.5rem));
+
+  .popover-body {
+    font-size: 0.71rem;
+    font-weight: 470;
+    line-height: 1.48;
+    padding: 0.52rem 0.66rem 0.56rem;
+  }
+}
+
+@mixin positioned-popover-arrows($base-class) {
+  #{$base-class}--top .popover-arrow,
+  #{$base-class}--bottom .popover-arrow {
+    left: calc(50% - 0.36rem);
+  }
+
+  #{$base-class}--top .popover-arrow {
+    bottom: -0.32rem;
+
+    &::before {
+      border-left: 0;
+      border-top: 0;
+    }
+  }
+
+  #{$base-class}--bottom .popover-arrow {
+    top: -0.32rem;
+
+    &::before {
+      border-bottom: 0;
+      border-right: 0;
+    }
+  }
+
+  #{$base-class}--left .popover-arrow,
+  #{$base-class}--right .popover-arrow {
+    top: calc(50% - 0.36rem);
+  }
+
+  #{$base-class}--left .popover-arrow {
+    right: -0.32rem;
+
+    &::before {
+      border-bottom: 0;
+      border-left: 0;
+    }
+  }
+
+  #{$base-class}--right .popover-arrow {
+    left: -0.32rem;
+
+    &::before {
+      border-right: 0;
+      border-top: 0;
+    }
+  }
+}
+
+// Canonical contextual-help control, extracted from the first accepted CCB
+// Slideshow question-mark control. The consumer keeps its native button/link
+// semantics, accessible name and cursor; this mixin owns only geometry and
+// visual interaction states.
+@mixin contextual-help-control {
+  align-items: center !important;
+  appearance: none !important;
+  background: var(--easyedu-primary-soft) !important;
+  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 24%, #fff 76%) !important;
+  border-radius: 999px !important;
+  box-sizing: border-box;
+  color: var(--easyedu-primary) !important;
+  display: inline-flex !important;
+  flex: 0 0 1.15rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  height: 1.15rem !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  max-height: 1.15rem !important;
+  max-width: 1.15rem !important;
+  min-height: 1.15rem !important;
+  min-width: 1.15rem !important;
+  padding: 0 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+  vertical-align: middle !important;
+  width: 1.15rem !important;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%) !important;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%) !important;
+    color: var(--easyedu-primary) !important;
+    text-decoration: none !important;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+
+    // Contextual help is frequently composed with Moodle/Bootstrap `.btn` and
+    // legacy `.btn-link` utilities. Keep the shared ring authoritative even
+    // when those higher-specificity utilities publish their own focus paint.
+    border-color: var(--easyedu-control-focus-border) !important;
+    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+    outline: var(--easyedu-focus-outline-width) solid transparent !important;
+    outline-offset: var(--easyedu-focus-outline-offset) !important;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+}
+
+// Backward-compatible public name. Consumers migrate selectors separately;
+// the canonical geometry is nevertheless unique in the Kit.
+@mixin help-icon {
+  @include contextual-help-control;
+}
+
+// The host supplies readable semantic roles (not raw chosen colours). A
+// transparent glow keeps white body copy at their AA contrast; the far end
+// and arrow only darken the supplied role. Geometry and interaction are owned
+// by popover-surface and the host's portal bridge.
+@mixin _popover-palette($role) {
+  --easyedu-tooltip-bg: linear-gradient(135deg, #{$role} 0%, color-mix(in srgb, #{$role} 82%, #000 18%) 100%);
+  --easyedu-tooltip-glow: transparent;
+  --easyedu-tooltip-text: #fff;
+  --easyedu-tooltip-arrow-bg: color-mix(in srgb, #{$role} 90%, #000 10%);
+}
+
+// Opt in after popover-surface. No marker retains the classic green recipe.
+// Informational primary takes precedence when both roles are customised.
+@mixin palette-aware-popover {
+  &[data-easyedu-custom-palette~="success"]:not([data-easyedu-custom-palette~="primary"]) {
+    @include _popover-palette(var(--easyedu-accent));
+  }
+  &[data-easyedu-custom-palette~="primary"] {
+    @include _popover-palette(var(--easyedu-primary-strong));
+  }
+}

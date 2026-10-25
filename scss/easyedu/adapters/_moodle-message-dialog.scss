@@ -1,0 +1,120 @@
+// Opt-in skin for Moodle's core bulk-message portal. The caller decorates the
+// existing modal and relays resolved workspace tokens; Moodle owns its form,
+// events, focus trap, recipients, asynchronous body and sending behaviour.
+@use "../foundation-classes" as foundations;
+@use "../components/buttons";
+@use "../components/modals";
+@use "../components/textareas";
+@use "../components/typography";
+
+@mixin moodle-message-dialog {
+  @include foundations.foundation-scope;
+  @include modals.native-modal-loading;
+
+  .modal-dialog {
+    box-sizing: border-box;
+    height: min(58vh, 34rem);
+    max-height: calc(100dvh - 1rem);
+    max-width: min(48rem, calc(100vw - 2rem));
+    width: min(48rem, calc(100vw - 2rem));
+  }
+
+  .modal-content {
+    @include modals.context-modal-surface;
+    @include modals.context-modal-variant(primary);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .modal-content .modal-header {
+    @include modals.dialog-header;
+    flex: 0 0 auto;
+  }
+
+  .modal-header [data-action="hide"],
+  .modal-header .close,
+  .modal-header .btn-close {
+    @include buttons.close-button;
+    & {
+      flex: 0 0 auto;
+      font-size: 1rem;
+      margin: 0;
+      opacity: 1;
+    }
+  }
+
+  .modal-title {
+    @include typography.type-modal-title;
+    color: var(--easyedu-card-identity-title-color);
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .modal-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 1rem;
+  }
+
+  .modal-body form,
+  .modal-body .form-group,
+  .modal-body .form-control-wrapper,
+  .modal-body .fitem,
+  .modal-body .felement,
+  .easyedu-message-dialog__field-wrap {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .easyedu-message-dialog__field-wrap { margin: 0; width: 100%; }
+
+  .modal-footer {
+    @include foundations.foundation-dialog-actions;
+    & {
+      flex: 0 0 auto;
+      padding: 0.8rem 1rem;
+    }
+  }
+
+  .easyedu-message-dialog__field {
+    @include textareas.foundation-textarea;
+    & {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 12rem;
+      resize: none;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .modal-dialog {
+      // A capped field must not leave a fixed-height blank body below it.
+      // Size the phone dialog to its native content; keep the viewport limit.
+      height: auto;
+      margin: 0.5rem auto;
+      max-width: calc(100vw - 1rem);
+      width: calc(100vw - 1rem);
+    }
+    .modal-content { height: auto; max-height: calc(100dvh - 1rem); }
+    .modal-body { flex: 0 1 auto; }
+    .modal-body form,
+    .easyedu-message-dialog__field-wrap { flex: 0 0 auto; }
+    .easyedu-message-dialog__field {
+      flex: 0 0 auto;
+      height: clamp(11rem, 30dvh, 16rem);
+      max-height: 16rem;
+      min-height: 11rem;
+      resize: none;
+    }
+  }
+}

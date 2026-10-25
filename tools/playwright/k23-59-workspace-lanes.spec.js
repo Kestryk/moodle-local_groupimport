@@ -1,0 +1,40 @@
+﻿const {test,expect}=require('@playwright/test');const fs=require('fs');
+test.use({launchOptions:{executablePath:process.env.EASYSTUD_CHROME_PATH},ignoreHTTPSErrors:true});
+test('K23-59 shared white column paint',async({page,context})=>{
+ test.setTimeout(900000);page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(120000);
+ const dir=process.env.K2359_DIR,version=process.env.K2359_VERSION,url=new URL(process.env.EASYEDU_MOODLE_URL),base=url.origin;
+ const result={version,url:url.origin+url.pathname+url.search,rows:[],errors:[],console:[],stages:[],cssRequests:{before:0,after:0}};const save=()=>fs.writeFileSync(dir+'/'+version+'.json',JSON.stringify(result,null,2));const stage=s=>{result.stages.push({s,time:new Date().toISOString()});save()};let paint='before';
+ await context.route('**/local/groupimport/styles/student-management.css*',r=>{result.cssRequests[paint]++;return r.fulfill({contentType:'text/css',body:fs.readFileSync(paint==='before'?process.env.K2359_BASELINE_CSS:process.env.K2359_CANDIDATE_CSS,'utf8')})});
+ await context.route('**/api/rest/v2/user/current/preferences/**',r=>r.request().method()==='POST'?r.fulfill({contentType:'application/json',body:'{}'}):r.continue());
+ await context.route('**/lib/ajax/service.php?*',r=>{let c;try{c=r.request().postDataJSON()}catch{}if(Array.isArray(c)&&c.every(x=>/^core_user_(set|update)_user_preferences?$/.test(x.methodname)))return r.fulfill({contentType:'application/json',body:JSON.stringify(c.map(()=>({error:false,data:{}})))});return r.continue()});
+ page.on('pageerror',e=>{result.errors.push({stage:result.stages.at(-1)?.s,message:e.message,stack:e.stack});save()});page.on('console',e=>{if(e.type()==='error'){result.console.push({stage:result.stages.at(-1)?.s,message:e.text()});save()}});
+ try{
+  stage('login');const login=await context.request.get(base+'/login/index.php'),token=(await login.text()).match(/name="logintoken" value="([^"]+)"/)?.[1];if(!token)throw Error('Login token unavailable');const authenticated=await context.request.post(base+'/login/index.php',{maxRedirects:0,form:{username:process.env.EASYEDU_MOODLE_USERNAME,password:process.env.EASYEDU_MOODLE_PASSWORD,logintoken:token}});if(![302,303].includes(authenticated.status()))throw Error('Authentication not confirmed: HTTP '+authenticated.status());stage('authenticated');
+  for(const lang of ['fr','en'])for(paint of ['before','after']){
+   await page.setViewportSize({width:1600,height:1100});url.searchParams.set('lang',lang);stage(lang+'-'+paint+'-navigate');await page.goto(url.href,{waitUntil:'domcontentloaded'});await page.waitForSelector('#local-groupimport-easystud[data-easystud-loading-state="ready"]',{timeout:120000});await page.evaluate(()=>document.fonts.ready);for(let i=0;i<2;i++){const closer=page.locator('.drawer.show [data-action="closedrawer"]:visible').first();if(!await closer.count())break;await closer.click();await page.waitForTimeout(350);}const dismiss=page.locator('[data-easyedu-guide-welcome-dismiss]:visible');if(await dismiss.count())await dismiss.first().click();
+   for(const width of [1600,1280,768,390]){
+    await page.setViewportSize({width,height:1100});await page.waitForTimeout(500);const views=width>1024?['participants','structure']:['participants','groups','groupings'];
+    for(const view of views){stage([lang,paint,width,view].join('-'));const selector=width>1024?'[data-easystud-layout-mode="'+view+'"]:visible':'[data-easystud-mobile-view="'+view+'"]:visible';await page.locator(selector).first().click();await page.waitForTimeout(600);await page.mouse.move(0,0);await page.evaluate(()=>document.activeElement?.blur());await page.evaluate(()=>Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))));
+     const measurement=await page.evaluate(()=>{
+      const root=document.querySelector('#local-groupimport-easystud'),b=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}};const visible=e=>e.checkVisibility({visibilityProperty:true,opacityProperty:true})&&e.getBoundingClientRect().width>5;
+      const style=e=>{const s=getComputedStyle(e);return{background:s.backgroundColor,shadow:s.boxShadow,border:[s.borderTopWidth,s.borderRightWidth,s.borderBottomWidth,s.borderLeftWidth,s.borderTopColor,s.borderRightColor,s.borderBottomColor,s.borderLeftColor],radius:[s.borderTopLeftRadius,s.borderTopRightRadius,s.borderBottomRightRadius,s.borderBottomLeftRadius],padding:[s.paddingTop,s.paddingRight,s.paddingBottom,s.paddingLeft],margin:[s.marginTop,s.marginRight,s.marginBottom,s.marginLeft],gap:[s.rowGap,s.columnGap]}};
+      const laneSelectors=['.local-groupimport-easystud__panel','.local-groupimport-easystud__filters','.local-groupimport-easystud-participant-groups__create','.local-groupimport-easystud__participant-list','.local-groupimport-easystud-participant-groups__list','.local-groupimport-easystud-create-card--group','.local-groupimport-easystud-create-card--grouping','.local-groupimport-easystud-structure-groups','.local-groupimport-easystud-tree__groupings'];
+      const lanes=laneSelectors.flatMap(selector=>[...root.querySelectorAll(selector)].filter(visible).map((e,i)=>({selector,index:i,box:b(e),style:style(e)})));
+      const cardSelectors=['[data-easystud-user]','[data-easystud-group-id]','[data-easystud-grouping-id]'];const cards=cardSelectors.flatMap(selector=>[...root.querySelectorAll(selector)].filter(visible).slice(0,6).map((e,i)=>({selector,index:i,id:e.getAttribute('data-easystud-user-id')||e.getAttribute('data-easystud-group-id')||e.getAttribute('data-easystud-grouping-id')||e.getAttribute('data-easystud-user'),box:b(e),style:style(e),parentBox:b(e.parentElement)})));
+      return{host53:document.body.classList.contains('local-groupimport-host-moodle53'),rootFont:getComputedStyle(document.documentElement).fontSize,laneToken:getComputedStyle(root).getPropertyValue('--easyedu-lane-surface').trim(),lanes,cards};
+     });result.rows.push({lang,paint,width,view,...measurement});save();if(lang==='fr'&&[1600,390].includes(width)){await page.locator('#local-groupimport-easystud').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/'+version+'-'+paint+'-'+width+'-'+view+'.png',fullPage:false});}
+    }
+   }
+  }
+  const key=r=>[r.lang,r.width,r.view].join('|'),before=new Map(result.rows.filter(r=>r.paint==='before').map(r=>[key(r),r]));result.comparisons=[];
+  for(const after of result.rows.filter(r=>r.paint==='after')){
+   const old=before.get(key(after)),opaque=after.lanes.filter(e=>e.style.background!=='rgba(0, 0, 0, 0)'),oldOpaque=old.lanes.filter(e=>e.style.background!=='rgba(0, 0, 0, 0)');const unexpected=opaque.filter(e=>e.style.background!=='rgb(255, 255, 255)');let differences=[],maxGeometryDelta=0;
+   for(const family of ['lanes','cards']){if(old[family].length!==after[family].length)differences.push(family+'-count');for(let i=0;i<Math.min(old[family].length,after[family].length);i++){const a=old[family][i],z=after[family][i],sa={...a.style},sz={...z.style};if(family==='lanes'){delete sa.background;delete sz.background;}if(JSON.stringify(sa)!==JSON.stringify(sz))differences.push({family,index:i,before:sa,after:sz});for(const axis of ['w','h'])maxGeometryDelta=Math.max(maxGeometryDelta,Math.abs(a.box[axis]-z.box[axis]));}}
+   result.comparisons.push({key:key(after),opaqueLanes:opaque.length,beforeColors:[...new Set(oldOpaque.map(e=>e.style.background))],afterColors:[...new Set(opaque.map(e=>e.style.background))],unexpected,differences,maxGeometryDelta,pass:opaque.length>0&&!unexpected.length&&!differences.length&&maxGeometryDelta<=.5});
+  }
+  save();expect(result.cssRequests.before).toBeGreaterThan(0);expect(result.cssRequests.after).toBeGreaterThan(0);expect(result.comparisons.filter(r=>!r.pass)).toEqual([]);expect(result.errors).toEqual([]);
+ }catch(e){result.failure={message:e.message,stack:e.stack};save();await page.screenshot({path:dir+'/'+version+'-failure.png'}).catch(()=>{});throw e;}
+});
+
+
+

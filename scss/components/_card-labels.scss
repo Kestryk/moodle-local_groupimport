@@ -1,0 +1,88 @@
+// Card label harmony (D3 variant A, PENPOT-S6-D3).
+// One 22 px label height for every label, pill and counter of the participant,
+// group and grouping card headers, centred on the title line; the K21 header
+// counters share the same height (D4). Paint stays with each semantic recipe.
+// The D3 table also aligns the list toolbar (32 px), member rows (40 px line,
+// 32 px remove target, 44 px for touch) and header action targets (32 px).
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-user__primary-badge,
+  .local-groupimport-easystud-user__meta .local-groupimport-easystud-token,
+  .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle,
+  .local-groupimport-easystud-group__header > .badge,
+  .local-groupimport-easystud-group__header .local-groupimport-easystud-token,
+  .local-groupimport-easystud-group__groupings-details .local-groupimport-easystud-token,
+  .local-groupimport-easystud-grouping__header .badge,
+  .local-groupimport-easystud__panel-badge {
+    @include easyedu.card-label;
+  }
+
+  // Bootstrap's p-0 utility is !important on the overflow toggles.
+  .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle.p-0 {
+    @include easyedu.card-label-overflow;
+  }
+
+  .local-groupimport-easystud-group__groupings--inline,
+  .local-groupimport-easystud-group__groupings-details-list,
+  .local-groupimport-easystud-user__meta-tags {
+    gap: var(--easyedu-card-label-gap);
+  }
+
+  .local-groupimport-easystud-group__header,
+  .local-groupimport-easystud-grouping__header,
+  .local-groupimport-easystud-tree__toggle,
+  .local-groupimport-easystud-user__headline-main {
+    align-items: center;
+  }
+
+  // Header action targets: one 32 px target on every card.
+  // K22-17: the rename toggle sits one level deeper than the other header
+  // actions (inside its own .local-groupimport-easystud-rename form), so it
+  // needs its own selector rather than the ">" combinator used above. It must
+  // stay scoped to that direct form child: a plain descendant selector also
+  // matches the clone the card menu overflow (group_cards.js,
+  // ensureNestedGroupActionMenus) appends to the "..." menu, forcing that
+  // clone back to this fixed 32 px square and squeezing its appended label to
+  // zero width (crayon only, no visible text).
+  .local-groupimport-easystud-user__detail-button,
+  .local-groupimport-easystud-group__header > .btn-link:not(.local-groupimport-easystud-card-menu),
+  .local-groupimport-easystud-group__header > .local-groupimport-easystud-group__members-toggle,
+  .local-groupimport-easystud-grouping__header > .btn-link:not(.local-groupimport-easystud-card-menu),
+  .local-groupimport-easystud-group__header > .local-groupimport-easystud-rename > .local-groupimport-easystud-rename__toggle,
+  .local-groupimport-easystud-grouping__header > .local-groupimport-easystud-rename > .local-groupimport-easystud-rename__toggle {
+    @include easyedu.card-action-target;
+  }
+
+  &:not(.local-groupimport-easystud--responsive-workspace) .local-groupimport-easystud-card-menu {
+    @include easyedu.card-action-target(menu);
+  }
+
+  // The compact card menu keeps its 44 px touch target; its visible surface
+  // joins the 32 px family.
+  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-card-menu > :first-child {
+    @include easyedu.card-action-target(visual);
+  }
+
+  // Member rows: checkbox, name and remove button centred on one 40 px line.
+  .local-groupimport-easystud-member {
+    align-items: center;
+    box-sizing: border-box;
+    min-block-size: var(--easyedu-related-person-line);
+    padding-block: 0;
+  }
+
+  .local-groupimport-easystud-member__remove.easyedu-related-person-row__remove {
+    @include easyedu.related-person-remove-target;
+  }
+
+  // K16-31/K16-32: the list toolbar keeps the Kit sizes of each control
+  // (Select all, result count, sort, page arrows); the forced 32 px height and 32 px circles are gone.
+}
+
+// Component-owned composition and state refinements (I13).
+#local-groupimport-easystud {
+  .local-groupimport-easystud-user__meta .badge {
+    @include easyedu.card-label;
+  }
+}

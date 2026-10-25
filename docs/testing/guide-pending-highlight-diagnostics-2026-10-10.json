@@ -1,0 +1,426 @@
+{
+  "sourceCommit": "49b840d7da73582f2aa4ecb78cc813fffe02a19a",
+  "runtimeHead": "d1e64db87eccdc6c446761208babbb331bedadd7",
+  "humanAcceptance": false,
+  "exitCode": 1,
+  "evidence": [
+    {
+      "runId": "easystud-authenticated-20261010T131016060Z-46592",
+      "classification": "local-supervised",
+      "scope": "matrix",
+      "rows": [],
+      "errors": [],
+      "blocked": [],
+      "diagnostic": {
+        "currentTargetConnected": false,
+        "context": null
+      },
+      "settingsSaved": false,
+      "fixtureRequested": false,
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true,
+        "fixtureCleanupComplete": true
+      }
+    },
+    {
+      "runId": "easystud-authenticated-20261010T131402807Z-46364",
+      "classification": "exploratory",
+      "scope": "readiness",
+      "rows": [],
+      "errors": [],
+      "blocked": [],
+      "diagnostic": {
+        "currentTargetConnected": false,
+        "flow": [
+          {
+            "phase": "capture",
+            "target": null,
+            "start": true,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "open-target",
+            "target": "tutorial:close-group-editor",
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "bubble",
+            "target": null,
+            "start": true,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "ready-resolved",
+            "value": true,
+            "configPresent": true
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "bubble",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": false,
+            "card": true,
+            "menuHidden": true
+          },
+          {
+            "phase": "open-target",
+            "target": "tutorial:group-editor-entry",
+            "start": false,
+            "card": false,
+            "menuHidden": false
+          },
+          {
+            "phase": "menu-visibility",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": false
+          }
+        ],
+        "context": null
+      },
+      "settingsSaved": false,
+      "fixtureRequested": false,
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true,
+        "fixtureCleanupComplete": true
+      }
+    },
+    {
+      "runId": "easystud-authenticated-20261010T131932188Z-4116",
+      "classification": "exploratory",
+      "scope": "target",
+      "rows": [],
+      "errors": [],
+      "blocked": [],
+      "diagnostic": {
+        "currentTargetConnected": false,
+        "flow": [
+          {
+            "phase": "capture",
+            "target": null,
+            "start": true,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "open-target",
+            "target": "tutorial:close-group-editor",
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "bubble",
+            "target": null,
+            "start": true,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "ready-resolved",
+            "value": true,
+            "configPresent": true
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "bubble",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": false,
+            "card": true,
+            "menuHidden": true
+          },
+          {
+            "phase": "open-target",
+            "target": "tutorial:group-editor-entry",
+            "start": false,
+            "card": false,
+            "menuHidden": false
+          },
+          {
+            "phase": "menu-visibility",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": false
+          }
+        ],
+        "targets": [
+          {
+            "hidden": false,
+            "connected": true,
+            "rects": 1,
+            "width": 733.40625,
+            "height": 44,
+            "display": "flex",
+            "visibility": "visible",
+            "menuHidden": false
+          }
+        ],
+        "timers": 0,
+        "targetConfig": [
+          "[data-easystud-structure-groups] [data-easystud-open-advanced-settings][data-easystud-advanced-target=\"group\"]",
+          "[data-easystud-context-action=\"group-open-advanced-settings\"]:not([hidden])"
+        ],
+        "pathStep": {
+          "id": "open-editor",
+          "title": "Open the card settings",
+          "description": "Use the settings control for one card. On mobile, use its card action menu. Opening the editor does not change course data.",
+          "target": "groupEditorAction",
+          "completionMode": "event",
+          "autoHighlightNext": true,
+          "open": "tutorial:group-editor-entry",
+          "openDelay": 360,
+          "beforeHighlight": "tutorial:close-group-editor"
+        },
+        "context": null
+      },
+      "settingsSaved": false,
+      "fixtureRequested": false,
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true,
+        "fixtureCleanupComplete": true
+      }
+    },
+    {
+      "runId": "easystud-authenticated-20261010T132130963Z-18884",
+      "classification": "exploratory",
+      "scope": "cue",
+      "rows": [],
+      "errors": [],
+      "blocked": [],
+      "diagnostic": {
+        "currentTargetConnected": false,
+        "flow": [
+          {
+            "phase": "sample",
+            "delay": 0,
+            "menuHidden": true,
+            "cueHidden": true,
+            "current": false,
+            "display": "flex",
+            "visibility": "visible"
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "sample",
+            "delay": 100,
+            "menuHidden": true,
+            "cueHidden": true,
+            "current": false,
+            "display": "flex",
+            "visibility": "visible"
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "sample",
+            "delay": 400,
+            "menuHidden": true,
+            "cueHidden": true,
+            "current": false,
+            "display": "flex",
+            "visibility": "visible"
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "sample",
+            "delay": 800,
+            "menuHidden": true,
+            "cueHidden": true,
+            "current": false,
+            "display": "flex",
+            "visibility": "visible"
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": true,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "open-target",
+            "target": "tutorial:close-group-editor",
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "bubble",
+            "target": null,
+            "start": true,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "ready-resolved",
+            "value": true,
+            "configPresent": true
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "bubble",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": true
+          },
+          {
+            "phase": "capture",
+            "target": null,
+            "start": false,
+            "card": true,
+            "menuHidden": true
+          },
+          {
+            "phase": "open-target",
+            "target": "tutorial:group-editor-entry",
+            "start": false,
+            "card": false,
+            "menuHidden": false
+          },
+          {
+            "phase": "menu-visibility",
+            "target": null,
+            "start": false,
+            "card": false,
+            "menuHidden": false
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          },
+          {
+            "phase": "sample",
+            "delay": 1200,
+            "menuHidden": false,
+            "cueHidden": true,
+            "current": false,
+            "timers": 1,
+            "display": "flex",
+            "visibility": "visible"
+          },
+          {
+            "phase": "cue-mutation",
+            "hidden": true,
+            "current": false
+          }
+        ],
+        "targets": [
+          {
+            "hidden": false,
+            "connected": true,
+            "rects": 1,
+            "width": 733.40625,
+            "height": 44,
+            "display": "flex",
+            "visibility": "visible",
+            "menuHidden": false
+          }
+        ],
+        "timers": 0,
+        "targetConfig": [
+          "[data-easystud-structure-groups] [data-easystud-open-advanced-settings][data-easystud-advanced-target=\"group\"]",
+          "[data-easystud-context-action=\"group-open-advanced-settings\"]:not([hidden])"
+        ],
+        "pathStep": {
+          "id": "open-editor",
+          "title": "Open the card settings",
+          "description": "Use the settings control for one card. On mobile, use its card action menu. Opening the editor does not change course data.",
+          "target": "groupEditorAction",
+          "completionMode": "event",
+          "autoHighlightNext": true,
+          "open": "tutorial:group-editor-entry",
+          "openDelay": 360,
+          "beforeHighlight": "tutorial:close-group-editor"
+        },
+        "context": null
+      },
+      "settingsSaved": false,
+      "fixtureRequested": false,
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true,
+        "fixtureCleanupComplete": true
+      }
+    }
+  ],
+  "isolatedRace": "Actual frame helpers reproduce explicit queued target erased by targetless refresh.",
+  "successor": "Canonical Kit pending-target preservation; explicit replacement and absent/removed clearing retained; native replay required."
+}

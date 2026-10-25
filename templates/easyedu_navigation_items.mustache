@@ -1,0 +1,79 @@
+{{!
+    @template local_groupimport/easyedu_navigation_items
+
+    Shared item partial used by desktop and compact wrappers.
+    HTML validation runs in easyedu_navigation, which supplies its list parent.
+
+    Example context (json):
+    {
+        "id": "participants",
+        "kind": "link",
+        "islink": true,
+        "current": true,
+        "url": "/local/groupimport/manage.php?id=2",
+        "label": "Student Management",
+        "icon": "fa fa-users"
+    }
+}}
+<li
+    class="easyedu-navigation__entry easyedu-navigation__entry--{{kind}}"
+    data-easyedu-navigation-item-id="{{id}}"
+>
+    {{#islink}}
+    <a
+        class="easyedu-navigation__item {{#current}}active{{/current}} {{#destructive}}easyedu-navigation__item--destructive{{/destructive}}"
+        {{^disabled}}{{#url}}href="{{url}}"{{/url}}{{/disabled}}
+        {{#download}}download{{/download}}
+        {{#current}}aria-current="page"{{/current}}
+        {{#disabled}}aria-disabled="true" tabindex="-1"{{/disabled}}
+        {{#accessiblelabel}}aria-label="{{accessiblelabel}}"{{/accessiblelabel}}
+    >
+        {{#icon}}<span class="easyedu-navigation__item-icon {{icon}}" aria-hidden="true"></span>{{/icon}}
+        <span class="easyedu-navigation__item-label">{{label}}</span>
+        {{#badge}}<span class="easyedu-navigation__badge">{{badge}}</span>{{/badge}}
+    </a>
+    {{/islink}}
+
+    {{#isbutton}}
+    <button
+        type="button"
+        class="easyedu-navigation__item {{#current}}active{{/current}} {{#destructive}}easyedu-navigation__item--destructive{{/destructive}}"
+        data-easyedu-navigation-action="{{action}}"
+        {{#current}}aria-current="page"{{/current}}
+        {{#disabled}}disabled aria-disabled="true"{{/disabled}}
+        {{#accessiblelabel}}aria-label="{{accessiblelabel}}"{{/accessiblelabel}}
+    >
+        {{#icon}}<span class="easyedu-navigation__item-icon {{icon}}" aria-hidden="true"></span>{{/icon}}
+        <span class="easyedu-navigation__item-label">{{label}}</span>
+        {{#badge}}<span class="easyedu-navigation__badge">{{badge}}</span>{{/badge}}
+    </button>
+    {{/isbutton}}
+
+    {{#isdisclosure}}
+    <button
+        type="button"
+        class="easyedu-navigation__item"
+        data-easyedu-navigation-disclosure="1"
+        aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
+        {{#disabled}}disabled aria-disabled="true"{{/disabled}}
+        {{#accessiblelabel}}aria-label="{{accessiblelabel}}"{{/accessiblelabel}}
+    >
+        {{#icon}}<span class="easyedu-navigation__item-icon {{icon}}" aria-hidden="true"></span>{{/icon}}
+        <span class="easyedu-navigation__item-label">{{label}}</span>
+        {{#badge}}<span class="easyedu-navigation__badge">{{badge}}</span>{{/badge}}
+        <span class="easyedu-navigation__disclosure-icon {{disclosureicon}}" aria-hidden="true"></span>
+    </button>
+    {{/isdisclosure}}
+
+    {{#haschildren}}
+    <ul
+        class="easyedu-navigation__items"
+        data-easyedu-navigation-children="1"
+        {{^expanded}}hidden{{/expanded}}
+    >
+        {{#children}}
+            {{> local_groupimport/easyedu_navigation_items }}
+        {{/children}}
+    </ul>
+    {{/haschildren}}
+</li>

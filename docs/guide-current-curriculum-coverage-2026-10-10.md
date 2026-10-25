@@ -1,0 +1,81 @@
+# Current Student Management curriculum coverage
+
+Current11 October activity successor: twelve readings, seven invitations and
+nine definitions. The activity invitation uses prepare-activity-grouping, while
+all eight earlier definitions and their stored progress remain unchanged. See
+guide-activity-path-2026-10-11 and guide-activity-final-review-2026-10-11 for
+native milestone/final-cue/reload scopes. The exact engineering projection is
+guide-engineering-projection-2026-10-11; older inventories below stay pinned.
+
+Current11 October served successor adds verify-with-filters to search-filter-select:
+twelve stable reading IDs, seven invitations and eight definitions. Sourcee0aa7fb
+and runtime522e714 have six native EN-normal/FR-reduced three-width cases,
+separate from768 isolated completion and136 historical migration positions.
+No old path/progress/style is changed. Details:
+guide-filter-verification-path-2026-10-11.md. Historical inventories below remain
+pinned; human acceptance and the activity-grouping proposal remain open.
+
+Current11 October successor at sourcefa794d5 verifies the inventory below in
+both languages,54 localized milestones,136 historical reading positions and14
+retained path-state cases. See guide-current-path-reconciliation-2026-10-11.md
+for the proposal-to-current map and the two absent future paths. Source-member
+FR normal/reduced and timed-entry EN/FR normal/reduced now have separate native
+successors; older narrower evidence descriptions below remain historical.
+This coverage is not native business completion or human acceptance.
+
+Current-source inventory at49b840d, not a new human acceptance or whole-scene
+raster gate. The historical `testing/guide-modern-curriculum-content-crosswalk-2026-10-10.md`
+records the inactive proposal at its original revision; it is not today's active
+programme status. Its archived24 payloads and content-retention decisions remain
+unchanged. The current programme contains12 stable reading IDs, seven path
+definitions and six visible optional invitations:
+
+| Current reading ID | Optional native path |
+| --- | --- |
+| use-this-guide | None; navigation/path/checklist/highlight specimens, no group exercise |
+| understand-workspace | None |
+| create-structure | practice-membership |
+| read-participant-card | None |
+| read-group-card | inspect-group-settings |
+| read-grouping-card | inspect-grouping-settings |
+| add-or-move-members | reorganise-source-members |
+| search-filter-select | None |
+| pasted-identifiers | None |
+| choose-right-action | try-actions |
+| use-groupings-in-activities | create-grouping |
+| ready-to-work | None |
+
+`first-structure` remains a historical compatibility definition/storage key.
+Its removed introductory invitation is intentionally not restored: the user's
+first lesson teaches the Guide itself, not creating a group. No old reading
+position or path completion is deleted to implement this inventory.
+
+## Evidence versus remaining coverage
+
+- Native English5216 and French34908 each verify36 reading cases and284
+  explanation nodes, at their recorded source/runtime pins. They cover the
+  original three invitations, not the three subsequently added paths.
+- Actual historical reading/migration fixtures cover136 positions and144
+  isolated localized explanation layouts; these do not replace native scenes.
+- Native Participant7280 and member10124 exercise their real typed selection,
+  searchable destination, cues/review and Cancel at three widths, without
+  confirming a course transaction. Their locale/Motion scope remains recorded.
+- Editor native46996 proves both contexts at three widths in English normal
+  motion. Variant46040 proves six French normal cases and two English reduced
+  desktop cases, but exposes the compact reduced start defect. Event probe10852
+  and isolated22 cases support its frame-gate successor; current replay is a
+  separate gate, not an assumed PASS.
+- Fullscreen native9760, Foundation publication and product relinks each have
+  separate saved/native evidence. User visual acceptance is still postponed.
+
+Current editor successor sourcea08ddf0/runtime83dc8b has18 native cases:
+27880 EN normal and7260 FR normal/EN reduced, each covering both editors at
+all three widths. Existing source/member proofs retain their narrower pins;
+this editor result does not certify unrelated paths or whole-scene paint.
+
+Remaining engineering is tracked in `guide-current-remaining-engineering-2026-10-10.md`.
+Keep normal reading, actual field/workflow targets, complete animated-scene
+paint, first-visit eligibility, global admin reset and real business completion
+as distinct scopes. Do not mutate the database or reset users to manufacture
+presentation proof. Mass Import content and older Student Management/admin/
+palette/skeleton/packaging/rename lots remain separate and retained.

@@ -1,0 +1,13 @@
+student;group;grouping
+test.etudiant.01@example.com;Group 1;Groupement A
+test.etudiant.04;Group 10;Groupement A
+test.etudiant.11@example.com;Group 5;Groupement B
+test.etudiant.13;QA Import - Nouveau groupe Alpha;Groupement C
+test.etudiant.14@example.com;QA Import - Nouveau groupe Alpha;QA Import - Nouveau groupement 2026
+unknown.student.001@example.invalid;Group 6;Groupement D
+unknown-user-qa-002;QA Import - Ne doit pas etre cree;QA Import - Ne doit pas etre cree
+test.etudiant.20@example.com;QA Import - Equipe Demo;QA Import - Cohorte Demo
+test.etudiant.12;QA Import - Controle doublon;Groupement E
+test.etudiant.12@example.com;QA Import - Controle doublon;Groupement E
+test.etudiant.16;;Groupement A
+;Group 2;Groupement A

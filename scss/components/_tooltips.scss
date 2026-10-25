@@ -1,0 +1,23 @@
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud-hover-popover {
+  position: absolute;
+  z-index: 1095;
+
+  @include easyedu.popover-surface;
+  @include easyedu.palette-aware-popover;
+
+  // WCAG 1.4.13: the content stays visible while the pointer is on it.
+  pointer-events: auto;
+}
+
+@include easyedu.positioned-popover-arrows(".local-groupimport-easystud-hover-popover");
+
+// K17-24: every element that opens the Kit bubble shows the hand cursor.
+.local-groupimport-easystud [data-easystud-hover-help]:not(:disabled, [aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+.local-groupimport-easystud-hover-popover--long {
+  @include easyedu.popover-long-copy;
+}

@@ -1,0 +1,141 @@
+$ErrorActionPreference = 'Stop'
+
+$pluginRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$massImport = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\views\_mass-import.scss')
+$administration = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\views\_admin-settings.scss')
+$lateTypography = @(
+    Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_typography.scss')
+    Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_typography-identity.scss')
+) -join "`n"
+$kitTypography = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_typography.scss')
+$kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit-docs\easyedu-kit.json') | ConvertFrom-Json
+
+# Git blob hashes compare normalized source, independently of checkout CRLF.
+$canonicalModules = @{
+    'scss/easyedu/_workspace-classes.scss' = 'b61bf590a58b83957d88f9237d316ed5a0eb057a'
+    'scss/easyedu/_data-classes.scss' = 'cbcbc8ff3dc3a08631df65a02d47f6d7bd303e60'
+    'scss/easyedu/_foundation-classes.scss' = '209f9946a22de22f7d6d09972b5c062303ce04de'
+    'scss/easyedu/_tokens.scss' = '29d63f60ebb3b7b35605e1434f047495566f0a20'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '4b786cfe902fe2a062f92b84434c561b284c80e7'
+    'scss/easyedu/components/_panels.scss' = '173c9208b4f7062a4bccb946a3fc300f0f0426a3'
+    'scss/easyedu/components/_typography.scss' = 'a7b0023677dd3b9d0221b567cc2ffe060ede6d83'
+    'scss/easyedu/components/_animations.scss' = '3111923198ef5c8ff739bcc764ca2714a1ec6465'
+    'scss/easyedu/components/_buttons.scss' = '41339db7c143bb41cf2815ff84d8acdcecb9a694'
+    'scss/easyedu/components/_forms.scss' = 'eb70edaf060645da95b194924952ca63eb71fc78'
+}
+foreach ($path in $canonicalModules.Keys) {
+    $actual = & git -C $pluginRoot hash-object $path
+    if ($LASTEXITCODE -ne 0 -or $actual -ne $canonicalModules[$path]) {
+        throw "Embedded Kit module diverges from the canonical source: $path"
+    }
+}
+
+foreach ($needle in @(
+    '@include easyedu.type-control-label;',
+    '@include easyedu.type-caption;',
+    '@include easyedu.action-row',
+    '@include easyedu.layout-disclosure-transition(grid-template-columns);'
+)) {
+    if (-not $massImport.Contains($needle)) {
+        throw "Mass Import is missing the direct Kit contract: $needle"
+    }
+}
+
+if ($massImport -notmatch '(?s)&\.has-preview\.is-upload-collapsed &-card--upload &-fields,.*?&-card__header > div\s*\{.*?position:\s*absolute;') {
+    throw 'Collapsed Mass Import upload content must leave layout flow while the CSV identity remains visible.'
+}
+
+if ($massImport -match '(?s)&-card__header > \.easyedu-icon-tile\s*\{[^}]*?(?:opacity:\s*0|visibility:\s*hidden|display:\s*none)') {
+    throw 'Collapsed Mass Import upload rail must preserve its centred CSV identity icon.'
+}
+foreach ($phase in @('is-upload-collapsing', 'is-upload-expanding')) {
+    if (-not $massImport.Contains($phase)) {
+        throw "Mass Import is missing the staged disclosure phase: $phase"
+    }
+}
+
+foreach ($needle in @(
+    '@include easyedu.type-ui-base;',
+    '@include easyedu.type-panel-title;',
+    '@include easyedu.section-icon-tile',
+    '@include easyedu.multi-select-list;',
+    '@include easyedu.native-select-control;',
+    '@include easyedu.admin-form-actions(center);'
+)) {
+    if (-not $administration.Contains($needle)) {
+        throw "Administration is missing the direct Kit contract: $needle"
+    }
+}
+
+if ($lateTypography -match 'local-groupimport-import|page-admin-setting-local_groupimport') {
+    throw 'Mass Import and Administration must not be restyled by late compatibility typography layers.'
+}
+
+if (($massImport + "`n" + $administration) -match 'font-weight:\s*[0-9]' -or
+        ($massImport + "`n" + $administration) -match 'letter-spacing:\s*-') {
+    throw 'Mass Import and Administration must use the shared weight and spacing contracts.'
+}
+
+if ($kitTypography -match '@mixin type-page-identity') {
+    throw 'The embedded Kit must use type-page-title directly.'
+}
+
+$kitDataClasses = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\_data-classes.scss')
+$kitTables = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_tables.scss')
+foreach ($needle in @('margin-inline: auto;', 'padding: 0.375rem 0.75rem;', 'text-align: center;')) {
+    if (-not $kitTables.Contains($needle)) {
+        throw "The embedded multiline status-label geometry is missing: $needle"
+    }
+}
+if (-not $kitDataClasses.Contains('@include tables.status-label-layout;')) {
+    throw 'The embedded easyedu-status class must consume the canonical status-label layout.'
+}
+
+$kitForms = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_forms.scss')
+$depositAdapter = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\adapters\_moodle-file-deposit.scss')
+if ($kitForms -notmatch '(?s)\.easyedu-file-deposit__title\s*\{\s*@include typography\.type-card-title;' -or
+    $kitForms -notmatch '(?s)\.easyedu-file-deposit__support\s*\{\s*@include typography\.type-caption;\s*line-height: 1\.2;') {
+    throw 'The embedded file-deposit title/help roles diverge from Foundations.'
+}
+if ($depositAdapter -match 'font:\s*700\s+1\.0625rem/1\.2' -or
+    $depositAdapter -match 'font:\s*500\s+0\.75rem/1\.2') {
+    throw 'The embedded Moodle adapter restored legacy local deposit typography.'
+}
+
+if ($kitManifest.consumerSync.sourceCommit -notmatch '^[0-9a-f]{40}$') {
+    throw 'The embedded Kit manifest does not pin the canonical Phase 0 source commit.'
+}
+
+$markup = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'index.php')
+if (-not $markup.Contains('table-reboot easyedu-data-table')) {
+    throw 'Kit tables must opt out of Moodle automatic table decoration.'
+}
+foreach ($class in @('easyedu-ui', 'easyedu-panel__title', 'easyedu-information', 'easyedu-tag', 'easyedu-empty')) {
+    if (-not $markup.Contains($class)) { throw "Missing shared class: $class" }
+}
+if (($markup.Split('easyedu-action-with-icon').Count - 1) -lt 2) {
+    throw 'Both report-export actions must consume the public icon-and-label class.'
+}
+if ($massImport -match '\.fp-btn-choose|\.filepicker-container|\.easyedu-file-deposit') {
+    throw 'File deposit presentation must live in the canonical Kit adapter, not the plugin view.'
+}
+
+$importForm = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'classes\form\import_form.php')
+$importController = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\src\csv_import.js')
+foreach ($needle in @('data-easyedu-remove-label', "'maxfiles' => 1")) {
+    if (-not $importForm.Contains($needle)) { throw "Missing selected-file contract: $needle" }
+}
+foreach ($needle in @('draftfiles_ajax.php', 'easyedu-file-deposit__file-type',
+        'easyedu-file-deposit__remove', 'Motion.swap(button', 'waitForTransition(content, ''opacity'')',
+        'waitForTransition(grid, ''grid-template-columns'')')) {
+    if (-not $importController.Contains($needle)) { throw "Missing selected-file/motion controller contract: $needle" }
+}
+if ($importController.Contains('Motion.swap(uploadCard')) {
+    throw 'Upload-column geometry must not stack Motion.swap over the Kit layout transition.'
+}
+
+if ($kitManifest.consumerSync.fullTreeIdentical -ne $false) {
+    throw 'Phase 0 must preserve and disclose the deferred embedded-tree drift.'
+}
+
+Write-Output 'EasyStud Phase 0 Mass Import and Administration contract passed.'

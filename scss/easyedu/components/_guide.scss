@@ -1,0 +1,3776 @@
+// EasyEdu guide and guided checklist primitives.
+//
+// Include `guide-shell` under a plugin-owned root selector. The mixin emits the
+// reusable visual structure for the tutorial launcher, modal, slides,
+// interface highlight and guided checklist without forcing global selectors.
+
+@use "focus";
+@use "typography";
+@use "animations";
+
+@mixin guide-launcher-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0.9rem;
+  color: #fff;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.45rem;
+  min-height: 2.55rem;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  position: relative;
+  text-decoration: none;
+  transition: box-shadow 0.16s ease, transform 0.16s ease;
+
+  .easyedu-guide__launcher-icon,
+  > .fa {
+    align-items: center;
+    background: linear-gradient(135deg, var(--easyedu-primary) 0%, var(--easyedu-accent) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 0.9rem;
+    box-shadow: 0 0.48rem 1rem rgba(35, 93, 115, 0.28);
+    color: #fff;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 2.55rem;
+    justify-content: center;
+    line-height: 1;
+    min-width: 2.55rem;
+    transition:
+      background 0.18s ease,
+      border-color 0.16s ease,
+      box-shadow 0.16s ease,
+      color 0.16s ease,
+      transform 0.16s ease;
+    width: 2.55rem;
+  }
+
+  .easyedu-guide__launcher-icon .fa,
+  > .fa {
+    align-items: center;
+    color: inherit;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 1.2rem;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    width: 1.2rem;
+
+    &::before {
+      display: block;
+      line-height: 1;
+    }
+  }
+
+  .easyedu-guide__launcher-label {
+    color: var(--easyedu-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &:hover {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--easyedu-accent);
+    outline: 0;
+    text-decoration: none;
+    transform: translateY(-0.08rem);
+  }
+
+  // Restoring focus after a pointer-opened Guide must not simulate hover.
+  // Keep the keyboard-visible focus treatment and the real hover unchanged.
+  &:focus-visible {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--easyedu-accent);
+    outline: 0;
+    text-decoration: none;
+  }
+
+  &:hover .easyedu-guide__launcher-icon,
+  &:hover > .fa {
+    background: #fff;
+    border-color: color-mix(in srgb, var(--easyedu-accent) 32%, #fff 68%);
+    box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);
+    color: var(--easyedu-accent);
+    transform: scale(1.04);
+  }
+
+  &:focus-visible .easyedu-guide__launcher-icon,
+  &:focus-visible > .fa {
+    background: #fff;
+    border-color: color-mix(in srgb, var(--easyedu-accent) 32%, #fff 68%);
+    box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);
+    color: var(--easyedu-accent);
+  }
+
+  &:focus-visible {
+    @include focus.ring($color: var(--easyedu-focus-ring-accent));
+  }
+}
+
+@mixin guide-shell {
+  --easyedu-guide-action-radius: var(--easyedu-control-radius, 0.72rem);
+  --easyedu-guide-action-padding: 0.38rem 0.78rem;
+  --easyedu-guide-action-min-height: 2.25rem;
+
+  .easyedu-guide__launcher {
+    @include guide-launcher-button;
+  }
+
+  // Library / Guide launcher / Desktop / Default; flow launchers stay unchanged.
+  .easyedu-guide__launcher.easyedu-guide__launcher--floating {
+    background: var(--local-groupimport-easystud-guide-launcher-gradient);
+    border: 0;
+    // K23-67: half of the 48px resting frame, so the circle at rest is unchanged while the box
+    // can still grow into a pill once hover expands it (a 50% radius would instead race toward
+    // an ellipse as inline-size grows).
+    border-radius: 1.5rem;
+    box-shadow: var(--local-groupimport-easystud-guide-launcher-shadow);
+    box-sizing: border-box;
+    color: var(--easyedu-identity-icon-color);
+    gap: 0;
+    block-size: 3rem;
+    inline-size: 3rem;
+    min-block-size: 3rem;
+    min-inline-size: 3rem;
+    inset-block-start: calc(var(--easyedu-guide-floating-top, 0px) + max(0.75rem, env(safe-area-inset-top)));
+    inset-inline-end: max(1rem, env(safe-area-inset-right));
+    opacity: 0;
+    overflow: hidden;
+    padding-inline: 0.85rem;
+    pointer-events: none;
+    position: fixed;
+    transform: scale(0.85);
+    // K23-67: hover-to-expand adds inline-size/padding to the same --easyedu-motion-slow (220ms)
+    // family already used for this button's own show/hide transition below, so expanding on
+    // hover and appearing on scroll read as one consistent pace rather than two.
+    transition:
+      inline-size var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      opacity var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      padding-inline var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      visibility 0s linear var(--easyedu-motion-slow);
+    visibility: hidden;
+    // K23-44/K23-61: the floating trigger shares --easyedu-navigation-layer-trigger (1064) with
+    // every other compact-nav trigger, which is correct for those siblings but not high enough
+    // here: local_course_banner_builder forces `.drawer-toggler`/`.drawer-right-toggle` (Moodle's
+    // native course-index and blocks-drawer openers) to z-index:1200 !important site-wide
+    // (docs/foundations-student-management.md, EED-UI-2026-0073). Rather than raising the shared
+    // token for every consumer (a Kit-wide z-index arms race), give only this floating button a
+    // dedicated value above that known ceiling so it can never be painted under a native drawer
+    // opener, now or if a future Moodle/theme change repositions one.
+    z-index: var(--easyedu-guide-floating-layer, 1210);
+
+    .easyedu-guide__launcher-short {
+      display: none;
+    }
+
+    // K23-67: hover/focus reveal, text collapsed to zero width at rest. Reuses the Kit's own
+    // expand-to-label pattern (the desktop nav rail's Guide launcher label reveal,
+    // _navigation.scss "is-label-revealed"/:hover rules) rather than a bespoke tooltip/popover.
+    .easyedu-guide__launcher-label {
+      color: inherit;
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-family: var(--easyedu-font-family-ui);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      align-items: center;
+      justify-content: center;
+      max-inline-size: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-inline-size var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+      white-space: nowrap;
+    }
+
+    .easyedu-guide__launcher-icon,
+    .easyedu-guide__launcher-icon .fa {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      color: inherit;
+      flex: 0 0 auto;
+      // K23-67: Kevin reported the K23-61 size (1.25rem, 42% of the 48px frame, matching the
+      // Kit's generic hero-icon ratio) still read oversized. Match instead the exact glyph size
+      // of the Guide's own icon-only control (.easyedu-direct-icon, the Display preferences
+      // trigger in this same modal's footer, templates/easyedu_guide.mustache) at its
+      // touch-target size: 1rem (scss/easyedu/_preferences-classes.scss, the
+      // "max-width: 48rem, pointer: coarse" branch of card-direct-action). The 48px circle
+      // itself stays unchanged — still the documented floating/thumb-reachable size
+      // (Foundations Library / Guide launcher / Desktop / Default). Color stays this button's
+      // identity-icon color (inherit), not .easyedu-direct-icon's var(--easyedu-primary): that
+      // reference sits on a transparent background, this icon sits on a filled brand gradient
+      // and needs the contrast treatment it already had.
+      font-size: 1rem;
+      block-size: 1rem;
+      inline-size: 1rem;
+      min-inline-size: 1rem;
+      transform: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      // Match the outer inset so the caption is centred in its lane after the icon.
+      gap: 0.85rem;
+      .easyedu-guide__launcher-label {
+        max-inline-size: calc(var(--easyedu-guide-floating-label-width, 6rem) + 0.125rem);
+        opacity: 1;
+      }
+    }
+
+    &.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+      transition-delay: 0s;
+      visibility: visible;
+
+      &:hover,
+      &:focus-visible {
+        // K23-67: expand only once fully shown, so the icon never changes width while it is
+        // still fading/scaling in or out.
+        inline-size: auto;
+      }
+    }
+
+    &:focus-visible {
+      @include focus.ring($base-shadow: var(--local-groupimport-easystud-guide-launcher-shadow));
+    }
+
+    .easyedu-motion-reduced & {
+      transform: none;
+      transition-duration: var(--easyedu-motion-fast);
+    }
+
+    .easyedu-motion-disabled & {
+      transform: none;
+      transition: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: var(--easyedu-motion-fast);
+
+      &,
+      &.is-visible {
+        transform: none;
+      }
+    }
+  }
+
+  // K23-61: show_only_fake_blocks(true) (K23-44) stops real/fake block content from loading on
+  // Student Management and Mass Import, but Moodle's core "Add a block" affordance still counts
+  // toward hasblocks while course editing is on, so the native blocks-drawer opener (top-right,
+  // the same corner as the floating Guide trigger above) renders anyway. `.local-groupimport-
+  // easystud__navigation` is the shared rail class rendered on both workspaces (templates/
+  // manage.mustache and index.php); scope the hide to it so native course pages keep that
+  // control exactly as K23-44 intended. (Selector text also keeps this rule routed into both
+  // student-management.css and mass-import.css by tools/release/build-page-styles.cjs.)
+  @at-root body:has(.local-groupimport-easystud__navigation) .drawer-toggles [data-target="theme_boost-drawers-blocks"] {
+    // !important: Boost's `.drawer-toggles .drawer-toggler .btn` (3 compound selectors) and CCB's
+    // own forced z-index rule on this exact button both out-specify a plain descendant hide here.
+    display: none !important;
+  }
+
+  .easyedu-guide-modal {
+    align-items: center;
+    background: rgba(17, 30, 43, 0.42);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    padding:
+      max(1rem, env(safe-area-inset-top))
+      max(1rem, env(safe-area-inset-right))
+      max(1rem, env(safe-area-inset-bottom))
+      max(1rem, env(safe-area-inset-left));
+    position: fixed;
+    // Consumers may portal the dialog outside a transformed compact drawer.
+    // Keep the global overlay above that drawer without coupling it to a
+    // product-specific stacking number.
+    z-index: calc(var(--easyedu-navigation-layer-panel, 1066) + 1);
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.is-open .easyedu-guide-modal__dialog {
+      animation: easyedu-guide-modal-in 0.24s ease-out both;
+    }
+  }
+
+  .easyedu-guide-modal__dialog {
+    background: #fbfcfe;
+    border: 1px solid var(--easyedu-card-border);
+    border-radius: 1.2rem;
+    box-shadow: 0 1.2rem 3.2rem rgba(15, 33, 50, 0.26);
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    height: var(--easyedu-guide-modal-height);
+    max-height: var(--easyedu-guide-modal-max-height);
+    max-width: var(--easyedu-guide-modal-width);
+    min-height: var(--easyedu-guide-modal-min-height);
+    overflow: hidden;
+    width: min(96vw, var(--easyedu-guide-modal-width));
+  }
+
+  .easyedu-guide-modal__header,
+  .easyedu-guide-modal__footer {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding: 1rem 1.15rem;
+  }
+
+  .easyedu-guide-modal__header {
+    background: #f6f9fc;
+    border-bottom: 1px solid var(--easyedu-card-border);
+  }
+
+  .easyedu-guide-modal__title-wrap {
+    align-items: center;
+    display: flex;
+    gap: 0.85rem;
+    min-width: 0;
+
+    > div {
+      display: grid;
+      gap: 0.125rem;
+      min-width: 0;
+    }
+
+    .easyedu-guide-modal__eyebrow {
+      @include typography.type-eyebrow;
+
+      color: var(--easyedu-primary);
+      margin: 0;
+    }
+
+    p {
+      color: var(--easyedu-text-muted);
+      font-size: 0.88rem;
+      margin: 0.2rem 0 0;
+    }
+  }
+
+  .easyedu-guide-modal__title-wrap h2 {
+    @include typography.type-modal-title;
+
+    margin: 0;
+  }
+
+  .easyedu-guide-modal__hero-icon,
+  .easyedu-guide-slide__icon {
+    align-items: center;
+    background: #eef6fc;
+    border: 1px solid #d4e4f2;
+    border-radius: 0.85rem;
+    color: var(--easyedu-primary);
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+
+    &::before {
+      display: block;
+      line-height: 1;
+      margin: 0;
+      text-align: center;
+      width: 1em;
+    }
+  }
+
+  .easyedu-guide-modal__hero-icon {
+    font-size: 1.1rem;
+    height: 2.6rem;
+    position: relative;
+    width: 2.6rem;
+
+    &::before {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .easyedu-guide-modal__map-flow {
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: nowrap;
+    gap: 0.32rem;
+    justify-content: flex-end;
+    margin-left: auto;
+    min-width: 0;
+  }
+
+  .easyedu-guide-modal__map-item {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d7e4ef;
+    border-radius: 0.85rem;
+    box-shadow: 0 0.18rem 0.42rem rgba(31, 42, 55, 0.05);
+    color: #31475b;
+    display: inline-flex;
+    font-size: 0.72rem;
+    font-weight: 700;
+    gap: 0.32rem;
+    min-height: 1.85rem;
+    padding: 0.28rem 0.48rem;
+
+    .fa {
+      align-items: center;
+      border-radius: 0.48rem;
+      color: #fff;
+      display: inline-flex;
+      height: 1.2rem;
+      justify-content: center;
+      width: 1.2rem;
+    }
+  }
+
+  .easyedu-guide-modal__map-item--participant .fa,
+  .easyedu-guide-modal__map-item--source .fa {
+    background: #4873ad;
+  }
+
+  .easyedu-guide-modal__map-item--group .fa,
+  .easyedu-guide-modal__map-item--layer .fa {
+    background: #29724d;
+  }
+
+  .easyedu-guide-modal__map-item--grouping .fa,
+  .easyedu-guide-modal__map-item--banner .fa {
+    background: #6a7f98;
+  }
+
+  .easyedu-guide-modal__map-arrow {
+    color: #8aa0b4;
+    font-size: 0.68rem;
+  }
+
+  .easyedu-guide-modal__eyebrow {
+    color: var(--easyedu-primary);
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .easyedu-guide-slide h3 {
+    color: var(--easyedu-text);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .easyedu-guide-modal__close {
+    align-items: center;
+    border-radius: 0.8rem;
+    display: inline-flex;
+    height: 2.35rem;
+    justify-content: center;
+    padding: 0;
+    width: 2.35rem;
+  }
+
+  .easyedu-guide-modal__nav {
+    border-bottom: 1px solid var(--easyedu-card-border);
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.65rem 1rem;
+    scrollbar-width: thin;
+
+    button {
+      align-items: center;
+      background: #f7fbff;
+      border: 1px solid #d4e2ef;
+      border-radius: 999px;
+      color: #40566e;
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.82rem;
+      font-weight: 650;
+      gap: 0.35rem;
+      min-height: 2rem;
+      padding: 0.35rem 0.75rem;
+
+      &.is-active {
+        background: var(--easyedu-primary);
+        border-color: var(--easyedu-primary);
+        color: #fff;
+      }
+    }
+  }
+
+  .easyedu-guide-modal__body {
+    background: #fbfcfe;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .easyedu-guide-modal__progress {
+    align-items: center;
+    background: #fbfcfe;
+    display: block;
+    padding: 0 1.5rem 1rem;
+  }
+
+  .easyedu-guide-modal__progress-track {
+    background: #e8f3ed;
+    border: 1px solid #c9e2d3;
+    border-radius: 999px;
+    height: 0.5rem;
+    overflow: hidden;
+  }
+
+  .easyedu-guide-modal__progress-bar {
+    background: linear-gradient(90deg, #29724d 0%, #57a879 100%);
+    border-radius: inherit;
+    display: block;
+    height: 100%;
+    transition: width 260ms ease;
+  }
+
+  .easyedu-guide-modal__progress-label {
+    display: none;
+  }
+
+  .easyedu-guide-slide {
+    align-items: start;
+    background: #fff;
+    border: 1px solid #dce8f2;
+    border-left: 0.45rem solid var(--easyedu-primary);
+    border-radius: 1rem;
+    box-shadow: 0 0.45rem 1rem rgba(31, 68, 104, 0.08);
+    animation: easyedu-guide-slide-in 0.22s ease-out both;
+    display: grid;
+    gap: 0.95rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 14rem;
+    padding: 1.25rem;
+  }
+
+  .easyedu-guide-slide[hidden] {
+    display: none;
+  }
+
+  .easyedu-guide-slide__header {
+    align-items: center;
+    display: flex;
+    gap: 1.05rem;
+    justify-content: space-between;
+    margin-bottom: 1.05rem;
+    min-width: 0;
+  }
+
+  .easyedu-guide-slide__icon {
+    font-size: 1.12rem;
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  .easyedu-guide-slide__content {
+    color: #53677c;
+    font-size: 0.98rem;
+    line-height: 1.58;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+
+    p,
+    span,
+    strong,
+    li {
+      max-width: 100%;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+      word-break: normal;
+    }
+  }
+
+  .easyedu-guide-slide__locked {
+    align-items: flex-start;
+    background:
+      linear-gradient(135deg, rgba(255, 246, 223, 0.86), rgba(255, 255, 255, 0.96));
+    border: 1px solid #ecd49b;
+    border-radius: 0.95rem;
+    color: #40566e;
+    display: none;
+    gap: 0.82rem;
+    margin-top: 0.85rem;
+    padding: 1rem;
+
+    h4 {
+      color: #203348;
+      font-size: 1rem;
+      font-weight: 820;
+      line-height: 1.2;
+      margin: 0 0 0.34rem;
+    }
+
+    p {
+      color: #526a82;
+      margin: 0;
+    }
+  }
+
+  .easyedu-guide-slide__locked-icon {
+    align-items: center;
+    background: #fff6df;
+    border: 1px solid #ecd49b;
+    border-radius: 0.72rem;
+    color: #7a5a12;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 2.2rem;
+    justify-content: center;
+    width: 2.2rem;
+  }
+
+  .easyedu-guide-slide.is-locked-active {
+    .easyedu-guide-slide__show,
+    .easyedu-guide-slide__content,
+    .easyedu-guide-visual,
+    > div > .easyedu-guide-slide__start:not(.easyedu-guide-slide__unlock) {
+      display: none;
+    }
+
+    .easyedu-guide-slide__locked {
+      display: flex;
+    }
+  }
+
+  .easyedu-guide-slide.is-active {
+    .easyedu-guide-visual,
+    .easyedu-guide-guided-card,
+    .easyedu-guide-slide__locked {
+      animation: easyedu-guide-scene-panel-in 620ms var(--easyedu-motion-ease) both;
+    }
+
+    .easyedu-guide-mouse-pointer {
+      animation: easyedu-guide-context-pointer 2.65s ease-in-out infinite;
+    }
+
+    .easyedu-guide-mouse-click {
+      animation: easyedu-guide-click-ring 2.65s ease-in-out infinite;
+    }
+
+    .easyedu-guide-demo-menu {
+      animation: easyedu-guide-menu-pop 2.85s ease-in-out infinite;
+    }
+
+    .easyedu-guide-demo-card {
+      animation: easyedu-guide-demo-drag 2.95s ease-in-out infinite;
+    }
+
+    .easyedu-guide-demo-cursor {
+      animation: easyedu-demo-cursor-click 2.95s ease-in-out infinite;
+    }
+
+    .easyedu-guide-demo-drop {
+      animation: easyedu-guide-drop-overlay 2.95s ease-in-out infinite;
+    }
+
+    .easyedu-guide-fake-button {
+      animation: easyedu-guide-action-nudge 2.75s ease-in-out infinite;
+    }
+  }
+
+  .easyedu-guide-slide__start {
+    align-items: center;
+    background: var(--easyedu-primary);
+    background-color: var(--easyedu-primary);
+    border: 1px solid var(--easyedu-primary);
+    border-radius: var(--easyedu-guide-action-radius);
+    color: #fff;
+    display: inline-flex;
+    flex-wrap: wrap;
+    font-weight: 720;
+    gap: 0.35rem;
+    justify-content: center;
+    justify-self: center;
+    line-height: 1.2;
+    margin: 1.25rem auto 0;
+    max-width: 100%;
+    min-height: var(--easyedu-guide-action-min-height);
+    min-width: 0;
+    padding: var(--easyedu-guide-action-padding);
+    text-align: center;
+    white-space: normal;
+
+    &:hover,
+    &:focus {
+      background: var(--easyedu-primary-strong);
+      background-color: var(--easyedu-primary-strong);
+      border-color: var(--easyedu-primary-strong);
+      color: #fff;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary-strong));
+    }
+
+    .fa {
+      align-items: center;
+      display: inline-flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    span:not(.fa) {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .easyedu-guide-slide__show {
+    align-items: center;
+    background: var(--easyedu-guide-target-background, var(--easyedu-primary));
+    background-color: var(--easyedu-guide-target-background, var(--easyedu-primary)) !important;
+    border-color: var(--easyedu-guide-target-border, var(--easyedu-primary)) !important;
+    border-radius: var(--easyedu-guide-action-radius);
+    color: var(--easyedu-guide-target-color, #fff) !important;
+    display: inline-flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+    justify-content: center;
+    line-height: 1.18;
+    margin-left: auto;
+    margin-top: 0;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: var(--easyedu-guide-action-padding);
+    text-align: center;
+    white-space: normal;
+
+    &:hover,
+    &:focus {
+      background: var(--easyedu-guide-target-hover-background, var(--easyedu-primary-strong));
+      background-color: var(--easyedu-guide-target-hover-background, var(--easyedu-primary-strong)) !important;
+      border-color: var(--easyedu-guide-target-hover-border, var(--easyedu-primary-strong)) !important;
+      color: var(--easyedu-guide-target-hover-color, #fff) !important;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary-strong));
+    }
+
+    .fa {
+      color: currentColor;
+      flex: 0 0 auto;
+      line-height: 1;
+    }
+  }
+
+  .easyedu-guide-modal__footer {
+    background: #fbfdff;
+    border-top: 1px solid var(--easyedu-card-border);
+    box-shadow: 0 -0.45rem 1rem rgba(31, 42, 55, 0.05);
+    // K17-69: Display preferences + step count stay as one left-hand group; Previous/Next stay as
+    // one right-hand group. space-between keeps a single flexible gap between the two groups at
+    // every width instead of a fixed middle gap, so the row never grows past the modal footer.
+    justify-content: space-between;
+  }
+
+  // K17-62/69: icon-only Display preferences trigger and the step counter share one axis, 12px
+  // apart (Penpot K17-62-69-PRODUCT-VIEWS-2026-10-18, footer table). This wrapper is layout-only;
+  // it carries no Kit control of its own.
+  .easyedu-guide-modal__footer-primary {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .easyedu-guide-modal__step-count {
+    color: var(--easyedu-text-muted);
+    font-size: 0.82rem;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+
+  .easyedu-guide-modal__step-count-compact {
+    display: none;
+  }
+
+  @media (max-width: 30rem) {
+    .easyedu-guide-modal__step-count-long {
+      display: none;
+    }
+    .easyedu-guide-modal__step-count-compact {
+      display: inline;
+    }
+  }
+
+  .easyedu-guide-modal__footer-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    min-width: 0;
+
+    .btn {
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+      line-height: 1.18;
+      max-width: 100%;
+      border-radius: var(--easyedu-guide-action-radius);
+      min-height: var(--easyedu-guide-action-min-height);
+      min-width: 0;
+      overflow-wrap: anywhere;
+      padding: var(--easyedu-guide-action-padding);
+      text-align: center;
+      white-space: normal;
+
+      &:focus-visible {
+        @include focus.ring;
+      }
+    }
+
+    [data-easyedu-guide-previous] {
+      background: #fff;
+      border-color: color-mix(in srgb, var(--easyedu-primary) 42%, #fff 58%);
+      color: var(--easyedu-primary);
+
+      &:hover,
+      &:focus {
+        background: color-mix(in srgb, var(--easyedu-primary) 10%, #fff 90%);
+        border-color: var(--easyedu-primary);
+        color: var(--easyedu-primary-strong);
+      }
+    }
+
+    [data-easyedu-guide-next] {
+      background: var(--easyedu-primary);
+      border-color: var(--easyedu-primary);
+      color: #fff;
+
+      &:hover,
+      &:focus {
+        background: var(--easyedu-primary-strong);
+        border-color: var(--easyedu-primary-strong);
+        color: #fff;
+      }
+    }
+  }
+
+  // Previous/Next wear `.btn-outline-secondary`/`.btn-primary`, which host themes
+  // may repaint with !important in every state (DVL 4.5, K23-84): both footer
+  // actions own their paint at the same priority, the pressed state included.
+  [data-easyedu-guide-next].btn {
+    background: var(--easyedu-primary);
+    background-color: var(--easyedu-primary) !important;
+    border-color: var(--easyedu-primary) !important;
+    color: #fff !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: var(--easyedu-primary-strong);
+      background-color: var(--easyedu-primary-strong) !important;
+      border-color: var(--easyedu-primary-strong) !important;
+      color: #fff !important;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary-strong), $native-overrides: true);
+    }
+  }
+
+  [data-easyedu-guide-previous].btn {
+    background: #fff;
+    background-color: #fff !important;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 42%, #fff 58%) !important;
+    color: var(--easyedu-primary) !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: color-mix(in srgb, var(--easyedu-primary) 10%, #fff 90%);
+      background-color: color-mix(in srgb, var(--easyedu-primary) 10%, #fff 90%) !important;
+      border-color: var(--easyedu-primary) !important;
+      color: var(--easyedu-primary-strong) !important;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary), $native-overrides: true);
+    }
+  }
+
+  .is-easyedu-guide-highlight-target {
+    scroll-margin-block: 6rem;
+  }
+
+  .easyedu-guide-interface-return {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #cfe1ef;
+    border-radius: 1rem;
+    bottom: calc(1.45rem + var(--easyedu-guide-bottom-obstruction, 0px));
+    box-shadow: 0 0.85rem 1.8rem rgba(31, 42, 55, 0.16);
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    max-width: min(42rem, calc(100vw - 2.7rem));
+    padding: 0.8rem 0.9rem;
+    position: fixed;
+    right: 1.35rem;
+    z-index: 1048;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 180ms ease, transform 180ms ease;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.is-closing {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(0.45rem);
+    }
+  }
+
+  .easyedu-guide-interface-return__text {
+    display: grid;
+    gap: 0.08rem;
+    min-width: 0;
+
+    strong {
+      color: var(--easyedu-primary-strong);
+      font-size: 0.88rem;
+      font-weight: 780;
+      line-height: 1.2;
+    }
+
+    span {
+      color: var(--easyedu-text-muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+  }
+
+  .easyedu-guide-interface-return__actions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.35rem;
+    min-width: max-content;
+  }
+
+  .easyedu-guide-interface-return__button {
+    align-items: center;
+    background: var(--easyedu-primary);
+    background-color: var(--easyedu-primary) !important;
+    border-color: var(--easyedu-primary) !important;
+    color: #fff !important;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 0.32rem;
+    justify-content: center;
+    line-height: 1.18;
+    max-width: none;
+    min-width: max-content;
+    min-height: 2.5rem;
+    border-radius: 0.72rem;
+    font-size: 0.74rem;
+    font-weight: 740;
+    padding: 0.34rem 0.72rem;
+    overflow-wrap: anywhere;
+    text-align: center;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus {
+      background: var(--easyedu-primary-strong);
+      background-color: var(--easyedu-primary-strong) !important;
+      border-color: var(--easyedu-primary-strong) !important;
+      color: #fff !important;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary-strong));
+    }
+  }
+
+  .easyedu-guide-interface-return__dismiss {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d5e2ed;
+    border-radius: 0.65rem;
+    color: #63788d;
+    display: grid;
+    height: 2.5rem;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    place-items: center;
+    width: 2.5rem;
+
+    .fa {
+      line-height: 1;
+      margin: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background: #f7fbff;
+      border-color: #bdd4e7;
+      color: #203244;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: #bdd4e7);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .easyedu-guide-interface-return {
+      align-items: stretch;
+      grid-template-columns: minmax(0, 1fr);
+      left: 1rem;
+      max-width: calc(100vw - 2rem);
+      right: 1rem;
+    }
+
+    .easyedu-guide-interface-return__actions {
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .easyedu-guide-interface-return__button {
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+
+  .easyedu-guide-checklist {
+    background: #fff;
+    border: 1px solid #cfe0ef;
+    border-radius: 1rem;
+    bottom: 1rem;
+    box-shadow: 0 0.8rem 2rem rgba(15, 33, 50, 0.18);
+    display: grid;
+    gap: 0.65rem;
+    max-width: min(24rem, calc(100vw - 2rem));
+    padding: 0.82rem;
+    position: fixed;
+    right: 1rem;
+    width: 22rem;
+    z-index: 1070;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.is-minimized {
+      width: auto;
+
+      .easyedu-guide-checklist__items,
+      .easyedu-guide-checklist__complete {
+        display: none;
+      }
+    }
+
+    &.is-complete .easyedu-guide-checklist__complete {
+      animation: easyedu-guide-success 0.7s ease-out both;
+      background: var(--easyedu-accent);
+      color: #fff;
+      display: block;
+    }
+  }
+
+  .easyedu-guide-checklist__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .easyedu-guide-checklist__items {
+    display: grid;
+    gap: 0.42rem;
+  }
+
+  .easyedu-guide-checklist__item {
+    align-items: center;
+    background: #f8fbfe;
+    border: 1px solid #d6e4f0;
+    border-radius: 0.75rem;
+    color: #40566e;
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 2.25rem;
+    padding: 0.35rem 0.55rem;
+    text-align: left;
+
+    &.is-complete {
+      background: #eef8f2;
+      border-color: #bdddc9;
+      color: #245a3f;
+
+      .easyedu-guide-checklist__marker {
+        background: var(--easyedu-accent);
+        color: #fff;
+      }
+    }
+
+    &.is-locked {
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          rgba(126, 145, 164, 0.08) 0,
+          rgba(126, 145, 164, 0.08) 0.38rem,
+          rgba(248, 250, 252, 0.92) 0.38rem,
+          rgba(248, 250, 252, 0.92) 0.78rem
+        ),
+        #f8fafc;
+      border-color: #d7e0e9;
+      color: #697c90;
+      cursor: pointer;
+      opacity: 0.86;
+
+      .easyedu-guide-checklist__marker {
+        background: #eef3f7;
+        color: #7d90a3;
+      }
+    }
+  }
+
+  .easyedu-guide-checklist__requirement {
+    color: #7a5a12;
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 760;
+    line-height: 1.25;
+  }
+
+  .easyedu-guide-checklist__marker {
+    align-items: center;
+    background: #e8f1f8;
+    border-radius: 0.52rem;
+    display: inline-flex;
+    font-size: 0.72rem;
+    font-weight: 780;
+    height: 1.35rem;
+    justify-content: center;
+    width: 1.35rem;
+  }
+
+  .easyedu-guide-checklist__complete {
+    background: #edf8f1;
+    border-radius: 0.75rem;
+    color: #245a3f;
+    display: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.62rem 0.7rem;
+  }
+
+  @media (max-width: 48rem), (max-height: 36rem) {
+    .easyedu-guide-modal {
+      align-items: flex-end;
+      padding:
+        max(0.5rem, env(safe-area-inset-top))
+        max(0.5rem, env(safe-area-inset-right))
+        max(0.5rem, env(safe-area-inset-bottom))
+        max(0.5rem, env(safe-area-inset-left));
+    }
+
+    .easyedu-guide-modal__dialog {
+      border-radius: 1rem 1rem 0 0;
+      height: auto;
+      max-height: calc(100vh - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      max-height: calc(100dvh - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      max-width: none;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .easyedu-guide-modal__header,
+    .easyedu-guide-modal__footer {
+      padding: 0.78rem 0.85rem;
+    }
+
+    .easyedu-guide-modal__header {
+      // Balance the close target with an equal leading slot so the guide title
+      // remains centred in the sheet rather than centred only in the free gap.
+      align-items: center;
+      display: grid;
+      grid-template-columns: 2.35rem minmax(0, 1fr) 2.35rem;
+      justify-content: initial;
+      min-height: 6.25rem;
+    }
+
+    .easyedu-guide-modal__title-wrap {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      grid-column: 2;
+      justify-content: center;
+      min-width: 0;
+      text-align: center;
+
+      > div {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      h2,
+      p {
+        text-align: center;
+      }
+    }
+
+    .easyedu-guide-modal__hero-icon {
+      font-size: 1rem;
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+    .easyedu-guide-modal__close {
+      grid-column: 3;
+      grid-row: 1;
+      flex: 0 0 auto;
+      justify-self: end;
+      margin-inline-start: auto;
+    }
+
+    // K17-69 (Penpot K17-62-69-PRODUCT-VIEWS-2026-10-18): the footer holds its four controls on one
+    // 64px row — icon trigger, counter, Previous, Next, left group and right group kept apart by the
+    // single space-between gap (26px at the 390px board) instead of stacking onto a second line.
+    // Fallback (outside the 390/768/1600 test matrix): if the row ever runs short of space or a
+    // translated label grows, Previous/Next must shrink or wrap together — never leave the trigger
+    // alone on its own line.
+    .easyedu-guide-modal__footer {
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 0;
+      height: 4rem;
+      justify-content: space-between;
+      padding-block: 0;
+      padding-inline: 1rem;
+      text-align: initial;
+    }
+
+    .easyedu-guide-modal__footer-actions {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .easyedu-guide-modal__step-count {
+      flex: 0 0 auto;
+      text-align: start;
+      width: auto;
+    }
+
+    .easyedu-guide-modal__footer-actions .btn {
+      flex: 0 0 auto;
+      min-height: var(--easyedu-touch-target-min);
+    }
+
+    .easyedu-guide-slide {
+      align-items: center;
+      border-left: 0;
+      border-top: 0.45rem solid var(--easyedu-primary);
+      gap: 0.78rem;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+      min-height: 0;
+      padding: 1rem;
+      text-align: center;
+
+      > div {
+        display: grid;
+        justify-items: center;
+        min-width: 0;
+        width: 100%;
+      }
+    }
+
+    .easyedu-guide-slide__header {
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.68rem;
+      justify-content: center;
+      margin-bottom: 0.78rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .easyedu-guide-slide__icon {
+      font-size: 1rem;
+      height: 2.35rem;
+      justify-self: center;
+      width: 2.35rem;
+    }
+
+    .easyedu-guide-slide__content,
+    .easyedu-guide-slide__content p,
+    .easyedu-guide-slide__content li,
+    .easyedu-guide-slide__content span,
+    .easyedu-guide-slide__content strong {
+      text-align: center;
+    }
+
+    .easyedu-guide-slide__show {
+      flex: 1 1 100%;
+      margin-inline-start: 0;
+      width: 100%;
+    }
+
+    .easyedu-guide-slide__locked {
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .easyedu-guide-modal__map-flow {
+      display: none;
+    }
+  }
+}
+
+@mixin guide-rich-navigation {
+  .easyedu-guide-nav-wrap {
+    flex: 0 0 auto;
+    margin-bottom: 0.75rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    // K16-62: clip, not hidden. A hidden box stays programmatically scrollable, so the active pill's
+    // scrollIntoView slid the whole wrapper (and its arrow) to the left. Only the strip scrolls.
+    overflow: clip;
+    // A clipped box is not a scroll container: keep it from growing to all its pills.
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 100%;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 2.5rem;
+      z-index: 2;
+    }
+
+    &::before {
+      background: linear-gradient(90deg, var(--easyedu-surface) 0%, rgba(255, 255, 255, 0) 100%);
+      left: 0;
+    }
+
+    &::after {
+      background: linear-gradient(270deg, var(--easyedu-surface) 0%, rgba(255, 255, 255, 0) 100%);
+      right: 0;
+    }
+  }
+
+  .easyedu-guide-nav {
+    border-bottom: 0;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0 3rem 0.25rem;
+    scroll-padding-inline: 3rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .easyedu-guide-nav-arrow {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #d2e0eb;
+    border-radius: 0.7rem;
+    box-shadow: 0 0.28rem 0.7rem rgba(31, 42, 55, 0.1);
+    color: var(--easyedu-primary);
+    display: inline-flex;
+    height: 2rem;
+    justify-content: center;
+    position: absolute;
+    top: calc(50% - 0.02rem);
+    transform: translateY(-50%);
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease,
+      opacity var(--easyedu-motion-fast) ease,
+      transform var(--easyedu-motion-fast) ease;
+    width: 2rem;
+    z-index: 4;
+
+    &:hover {
+      background: #fff;
+      border-color: #aac9df;
+      outline: 0;
+      transform: translateY(-50%) scale(1.03);
+    }
+
+    &:focus-visible {
+      background: #fff;
+      @include focus.ring($border-color: #aac9df);
+    }
+
+    &:disabled {
+      opacity: 0.32;
+      pointer-events: none;
+    }
+  }
+
+  .easyedu-guide-nav-arrow--prev {
+    left: 0.5rem;
+  }
+
+  .easyedu-guide-nav-arrow--next {
+    right: 0.5rem;
+  }
+
+  .easyedu-guide-nav .easyedu-guide-nav-item {
+    align-items: center;
+    appearance: none;
+    background: #fff;
+    border: 1px solid #d8e4ef;
+    border-radius: 0.82rem;
+    color: #4b6075;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 12.25rem;
+    font-size: 0.78rem;
+    font-weight: 650;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    min-height: 3rem;
+    padding: 0.45rem 0.65rem;
+    scroll-snap-align: center;
+    text-align: left;
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease,
+      color var(--easyedu-motion-fast) ease,
+      transform var(--easyedu-motion-fast) ease;
+
+    // Direct Font Awesome icons are the topic marker. The guided-path marker
+    // is a text badge on the chapter line (K1), never a second pictogram.
+    > .fa,
+    .easyedu-guide-nav-item__icon {
+      align-items: center;
+      background: color-mix(in srgb, var(--easyedu-primary) 8%, #fff 92%);
+      border: 1px solid color-mix(in srgb, var(--easyedu-primary) 16%, #fff 84%);
+      border-radius: 0.62rem;
+      color: var(--easyedu-primary);
+      flex: 0 0 auto;
+      display: inline-flex;
+      height: 1.7rem;
+      justify-content: center;
+      width: 1.7rem;
+
+      .fa {
+        font-size: 0.78rem;
+        line-height: 1;
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: #bfd3e4;
+      color: var(--easyedu-primary-strong);
+      outline: 0;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: #bfd3e4);
+    }
+
+    &.is-active {
+      background: var(--easyedu-primary-soft);
+      border-color: #9fc4e2;
+      color: var(--easyedu-primary-strong);
+      transform: translateY(-0.05rem);
+    }
+
+    &.has-guided-path {
+      background:
+        radial-gradient(circle at 1rem 0.75rem, rgba(41, 114, 77, 0.1), transparent 4rem),
+        #fff;
+      border-color: #c6ded0;
+
+      .easyedu-guide-nav-item__icon {
+        background: #e8f5ed;
+        border-color: #c2dfcf;
+        color: var(--easyedu-accent);
+      }
+    }
+
+    .easyedu-guide-nav-item__requirement {
+      display: none;
+    }
+
+    &.is-locked {
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          rgba(111, 129, 148, 0.04) 0,
+          rgba(111, 129, 148, 0.04) 0.38rem,
+          transparent 0.38rem,
+          transparent 0.76rem
+        ),
+        #f8fafc;
+      border-color: #d7e0e9;
+      color: #697c90;
+      cursor: pointer;
+      opacity: 0.88;
+      transform: none;
+
+      .easyedu-guide-nav-item__icon {
+        background: #eef3f7;
+        border-color: #d7e2ec;
+        color: #7d90a3;
+      }
+
+      .easyedu-guide-nav-item__path {
+        display: none;
+      }
+
+      .easyedu-guide-nav-item__requirement {
+        align-items: center;
+        background: #fff6df;
+        border: 1px solid #ecd49b;
+        border-radius: 999px;
+        color: #7a5a12;
+        display: inline-flex;
+        flex: 0 0 auto;
+        font-size: 0.56rem;
+        font-weight: 820;
+        letter-spacing: 0.035em;
+        line-height: 1.1;
+        margin-left: auto;
+        max-width: 3.65rem;
+        padding: 0.13rem 0.34rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      &:hover,
+      &:focus-visible {
+        border-color: #d7e0e9;
+        color: #697c90;
+      }
+
+      &:focus-visible {
+        @include focus.ring($border-color: #d7e0e9);
+      }
+    }
+
+    // K1 (14/10): the word "Guide" returns as a Kit text badge, right-aligned
+    // on the chapter line so the title keeps the full pill width.
+    .easyedu-guide-nav-item__path {
+      align-items: center;
+      background: var(--easyedu-accent-soft);
+      border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);
+      border-radius: 999px;
+      color: var(--easyedu-accent);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.625rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-inline-start: auto;
+      padding: 0.0625rem 0.375rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+  }
+
+  .easyedu-guide-nav-copy {
+    display: grid;
+    gap: 0.05rem;
+    min-width: 0;
+
+    .easyedu-guide-nav-item__meta {
+      align-items: center;
+      display: flex;
+      gap: 0.375rem;
+      min-height: 0.9375rem;
+      min-width: 0;
+
+      small {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    small {
+      color: #70869c;
+      font-size: 0.64rem;
+      font-weight: 780;
+      letter-spacing: 0.035em;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+  }
+}
+
+@mixin guide-guided-path-card-surface {
+  align-items: center;
+  animation: easyedu-guide-scene-panel-in 520ms var(--easyedu-motion-ease) both;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(41, 114, 77, 0.18), transparent 36%),
+    radial-gradient(circle at 92% 88%, rgba(47, 143, 98, 0.13), transparent 42%),
+    linear-gradient(135deg, rgba(233, 248, 240, 0.98), rgba(248, 253, 250, 0.98));
+  border: 0;
+  border-radius: 0.95rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(41, 114, 77, 0.18),
+    0 0.4rem 1rem rgba(41, 114, 77, 0.1);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  margin: 1.12rem auto 0;
+  max-width: min(100%, 48rem);
+  min-width: 0;
+  padding: 0.8rem;
+  width: 100%;
+}
+
+@mixin guide-visuals {
+  .easyedu-guide-visual {
+    align-items: center;
+    background:
+      radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--easyedu-primary) 10%, transparent 90%), transparent 34%),
+      radial-gradient(circle at 86% 82%, color-mix(in srgb, var(--easyedu-accent) 9%, transparent 91%), transparent 38%),
+      linear-gradient(135deg, #f8fbfd 0%, #fff 100%);
+    border-radius: 1rem;
+    box-shadow: inset 0 0 0 1px rgba(134, 160, 181, 0.18);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.72rem;
+    justify-content: center;
+    margin: 1.08rem auto 0;
+    max-width: min(100%, 48rem);
+    min-height: 7.6rem;
+    overflow: hidden;
+    padding: 0.86rem;
+    position: relative;
+    width: 100%;
+  }
+
+  .easyedu-guide-visual--flow,
+  .easyedu-guide-visual--cards {
+    gap: clamp(0.82rem, 1.6vw, 1.25rem);
+    margin-top: 1.2rem;
+    max-width: min(100%, 52rem);
+    min-height: 9.85rem;
+    padding: clamp(1rem, 1.8vw, 1.32rem);
+  }
+
+  .easyedu-guide-mini-card {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.88);
+    border: 0;
+    border-left: 0.34rem solid var(--easyedu-primary);
+    border-radius: 0.82rem;
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.2),
+      0 0.22rem 0.62rem rgba(31, 42, 55, 0.055);
+    color: var(--easyedu-text);
+    display: grid;
+    gap: 0.08rem;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0.52rem 0.62rem;
+
+    .fa {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    strong {
+      font-size: 0.8rem;
+      line-height: 1.2;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    small {
+      color: var(--easyedu-text-muted);
+      font-size: 0.68rem;
+      font-weight: 700;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      text-transform: uppercase;
+    }
+  }
+
+  .easyedu-guide-mini-card--participant {
+    border-left-color: var(--easyedu-participant);
+  }
+
+  .easyedu-guide-mini-card--group {
+    border-left-color: var(--easyedu-group);
+  }
+
+  .easyedu-guide-mini-card--grouping {
+    border-left-color: var(--easyedu-grouping);
+  }
+
+  .easyedu-guide-mini-card--source {
+    border-left-color: #4873ad;
+  }
+
+  .easyedu-guide-mini-card--layer {
+    border-left-color: #29724d;
+  }
+
+  .easyedu-guide-mini-card--banner {
+    border-left-color: #6a7f98;
+  }
+
+  .easyedu-guide-visual--flow .easyedu-guide-mini-card {
+    align-content: center;
+    justify-items: center;
+    min-height: 4.85rem;
+    min-width: min(100%, 10.9rem);
+    padding: 0.9rem 1.05rem;
+    text-align: center;
+
+    .fa {
+      font-size: 1.26rem;
+    }
+
+    strong {
+      font-size: 0.92rem;
+    }
+  }
+
+  .easyedu-guide-visual--cards .easyedu-guide-visual-card {
+    min-height: 4.4rem;
+  }
+
+  .easyedu-guide-flow-arrow {
+    color: rgba(82, 104, 125, 0.68);
+    font-size: 0.9rem;
+  }
+
+  .easyedu-guide-demo-card {
+    animation: easyedu-pop-in var(--easyedu-motion-slow) var(--easyedu-motion-ease) both;
+  }
+
+  .easyedu-guide-demo-cursor {
+    animation: easyedu-demo-cursor-click 3.2s ease-in-out infinite;
+    color: var(--easyedu-primary);
+    filter: drop-shadow(0 0.25rem 0.35rem rgba(31, 42, 55, 0.16));
+
+    // Minimal: one fixed text shadow instead of a filter layer.
+    @include animations.motion-minimal {
+      filter: none;
+      text-shadow: 0 0.125rem 0.25rem rgba(31, 42, 55, 0.16);
+    }
+  }
+
+  .easyedu-guide-demo-drop {
+    animation: easyedu-guide-drop-overlay 3.6s ease-in-out infinite;
+    background: color-mix(in srgb, var(--easyedu-accent) 8%, #fff 92%);
+    border: 0;
+    border-radius: 0.85rem;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--easyedu-accent) 26%, #fff 74%);
+    color: var(--easyedu-accent);
+    display: grid;
+    font-size: 1.3rem;
+    font-weight: 800;
+    min-height: 3.4rem;
+    place-items: center;
+  }
+
+  .easyedu-guide-visual--cards,
+  .easyedu-guide-visual--steps,
+  .easyedu-guide-visual--keyboard {
+    padding: 0.92rem;
+  }
+
+  .easyedu-guide-visual-card {
+    align-items: center;
+    animation: easyedu-guide-visual-card-in 420ms var(--easyedu-motion-ease) both;
+    background: rgba(255, 255, 255, 0.92);
+    border: 0;
+    border-left: 0.34rem solid var(--easyedu-primary);
+    border-radius: 0.85rem;
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.22),
+      0 0.28rem 0.7rem rgba(31, 42, 55, 0.065);
+    color: var(--easyedu-text);
+    display: grid;
+    gap: 0.12rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    min-width: 10rem;
+    padding: 0.58rem 0.68rem;
+
+    > .fa {
+      align-items: center;
+      background: color-mix(in srgb, var(--easyedu-primary) 10%, #fff 90%);
+      border-radius: 0.62rem;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      grid-row: span 2;
+      height: 1.9rem;
+      justify-content: center;
+      width: 1.9rem;
+    }
+
+    strong {
+      font-size: 0.82rem;
+      line-height: 1.18;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    small {
+      color: var(--easyedu-text-muted);
+      font-size: 0.68rem;
+      font-weight: 680;
+      line-height: 1.18;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .easyedu-guide-visual-card--source,
+  .easyedu-guide-step-pill--source {
+    border-left-color: #4873ad;
+  }
+
+  .easyedu-guide-visual-card--layer,
+  .easyedu-guide-step-pill--layer {
+    border-left-color: #29724d;
+  }
+
+  .easyedu-guide-visual-card--banner,
+  .easyedu-guide-step-pill--banner {
+    border-left-color: #6a7f98;
+  }
+
+  .easyedu-guide-visual-card--participant {
+    border-left-color: var(--easyedu-participant);
+
+    > .fa {
+      background: color-mix(in srgb, var(--easyedu-participant) 10%, #fff 90%);
+      color: var(--easyedu-participant);
+    }
+  }
+
+  .easyedu-guide-visual-card--group {
+    border-left-color: var(--easyedu-group);
+
+    > .fa {
+      background: color-mix(in srgb, var(--easyedu-group) 10%, #fff 90%);
+      color: var(--easyedu-group);
+    }
+  }
+
+  .easyedu-guide-visual-card--grouping {
+    border-left-color: var(--easyedu-grouping);
+
+    > .fa {
+      background: color-mix(in srgb, var(--easyedu-grouping) 10%, #fff 90%);
+      color: var(--easyedu-grouping);
+    }
+  }
+
+  .easyedu-guide-step-pill {
+    align-items: center;
+    animation: easyedu-guide-chip-in 3.5s ease-in-out infinite both;
+    background: rgba(255, 255, 255, 0.92);
+    border: 0;
+    border-left: 0.32rem solid var(--easyedu-primary);
+    border-radius: 999px;
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.2),
+      0 0.22rem 0.58rem rgba(31, 42, 55, 0.06);
+    color: #344b62;
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-weight: 730;
+    gap: 0.38rem;
+    justify-content: center;
+    max-width: 100%;
+    min-height: 2.1rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.35rem 0.72rem;
+    text-align: center;
+    white-space: normal;
+
+    &:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.36s;
+    }
+
+    .fa {
+      color: var(--easyedu-primary);
+    }
+  }
+
+  .easyedu-guide-visual--keyboard {
+    align-items: stretch;
+    flex-direction: column;
+    margin-inline: auto;
+    max-width: 38rem;
+
+    > span {
+      align-items: center;
+      display: grid;
+      gap: 0.65rem;
+      grid-template-columns: 4.25rem minmax(0, 1fr);
+    }
+
+    kbd {
+      background: #fff;
+      border: 0;
+      border-radius: 0.55rem;
+      box-shadow:
+        inset 0 0 0 1px #cbd9e6,
+        inset 0 -0.16rem 0 rgba(82, 104, 125, 0.1),
+        0 0.16rem 0.3rem rgba(31, 42, 55, 0.12);
+      color: #24394d;
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 780;
+      justify-content: center;
+      min-width: 3.1rem;
+      padding: 0.34rem 0.62rem;
+    }
+  }
+
+  .easyedu-guide-visual--card-detail,
+  .easyedu-guide-visual--assignment,
+  .easyedu-guide-visual--filters,
+  .easyedu-guide-visual--paste,
+  .easyedu-guide-visual--context-menu,
+  .easyedu-guide-visual--action-flow,
+  .easyedu-guide-visual--drag-drop,
+  .easyedu-guide-visual--formula {
+    padding: 0.92rem;
+  }
+
+  .easyedu-guide-visual--card-detail {
+    display: grid;
+    // Flex factors >= 1 (same 0.8 : 1.2 ratio): a factor below 1 leaves part
+    // of the row empty once the other track is frozen at its minimum (K23-74).
+    grid-template-columns: minmax(12rem, 1fr) minmax(14rem, 1.5fr);
+  }
+
+  .easyedu-guide-detail-list {
+    display: grid;
+    gap: 0.38rem;
+
+    > span {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.82);
+      border: 0;
+      border-radius: 0.72rem;
+      box-shadow: inset 0 0 0 1px rgba(134, 160, 181, 0.18);
+      color: #40566e;
+      display: flex;
+      font-size: 0.76rem;
+      font-weight: 700;
+      gap: 0.42rem;
+      min-height: 2rem;
+      padding: 0.36rem 0.55rem;
+    }
+
+    .fa {
+      color: var(--easyedu-primary);
+    }
+  }
+
+  .easyedu-guide-visual--assignment {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .easyedu-guide-assignment-row {
+    align-items: center;
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    justify-self: center;
+    max-width: 44rem;
+    width: 100%;
+
+    &:nth-child(2) {
+      margin-top: -0.12rem;
+      transform: translateX(0.6rem);
+    }
+  }
+
+  .easyedu-guide-visual--filters {
+    align-items: stretch;
+
+    > * {
+      animation: easyedu-guide-filter-pop 4s ease-in-out infinite both;
+    }
+
+    > :nth-child(2) {
+      animation-delay: 0.12s;
+    }
+
+    > :nth-child(3) {
+      animation-delay: 0.24s;
+    }
+
+    > :nth-child(4) {
+      animation-delay: 0.36s;
+    }
+  }
+
+  .easyedu-guide-fake-search,
+  .easyedu-guide-fake-button,
+  .easyedu-guide-demo-badge {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 0;
+    border-radius: 0.72rem;
+    box-shadow: inset 0 0 0 1px rgba(134, 160, 181, 0.22);
+    color: #52687d;
+    display: inline-flex;
+    font-size: 0.78rem;
+    font-weight: 680;
+    gap: 0.42rem;
+    min-height: 2.25rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.4rem 0.7rem;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .easyedu-guide-fake-search {
+    flex: 1 1 14rem;
+    justify-content: flex-start;
+
+    .fa {
+      color: var(--easyedu-primary);
+    }
+  }
+
+  .easyedu-guide-fake-button {
+    background: #eef7ff;
+    border-color: #bcd8ed;
+    color: var(--easyedu-primary-strong);
+    justify-content: center;
+  }
+
+  .easyedu-guide-demo-badge {
+    border-radius: 999px;
+    min-height: 1.9rem;
+  }
+
+  .easyedu-guide-demo-badge--participant {
+    background: #eef5ff;
+    border-color: #c7d9ee;
+    color: #365f91;
+  }
+
+  .easyedu-guide-demo-badge--group {
+    background: #eef8f2;
+    border-color: #bfdfcc;
+    color: #246746;
+  }
+
+  .easyedu-guide-visual--paste {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    justify-items: stretch;
+  }
+
+  .easyedu-guide-paste-panel,
+  .easyedu-guide-selection-stack,
+  .easyedu-guide-modal-preview,
+  .easyedu-guide-mouse-demo,
+  .easyedu-guide-demo-menu {
+    animation: easyedu-guide-scene-panel-in 520ms var(--easyedu-motion-ease) both;
+    background: rgba(255, 255, 255, 0.9);
+    border: 0;
+    border-radius: 0.9rem;
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.2),
+      0 0.24rem 0.62rem rgba(31, 42, 55, 0.055);
+    display: grid;
+    gap: 0.48rem;
+    min-width: 0;
+    padding: 0.62rem;
+  }
+
+  .easyedu-guide-visual--paste .easyedu-guide-paste-panel:nth-of-type(2),
+  .easyedu-guide-visual--action-flow .easyedu-guide-modal-preview,
+  .easyedu-guide-visual--context-menu .easyedu-guide-demo-menu {
+    animation-delay: 0.18s;
+  }
+
+  .easyedu-guide-paste-panel > strong {
+    align-items: center;
+    color: #31475b;
+    display: flex;
+    font-size: 0.78rem;
+    gap: 0.38rem;
+
+    .fa {
+      color: var(--easyedu-primary);
+    }
+  }
+
+  .easyedu-guide-fake-input {
+    background: #f8fbfd;
+    border: 0;
+    border-radius: 0.68rem;
+    box-shadow: inset 0 0 0 1px #cfddea;
+    color: #53677c;
+    font-size: 0.76rem;
+    min-height: 2.25rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.48rem 0.58rem;
+  }
+
+  .easyedu-guide-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+
+    > span {
+      animation: easyedu-guide-chip-in 3.5s ease-in-out infinite both;
+      background: #eef8f2;
+      border: 0;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px #bfdfcc;
+      color: #246746;
+      font-size: 0.72rem;
+      font-weight: 720;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      padding: 0.2rem 0.48rem;
+    }
+
+    > span:nth-child(2) {
+      animation-delay: 0.12s;
+    }
+
+    > span:nth-child(3) {
+      animation-delay: 0.24s;
+    }
+  }
+
+  .easyedu-guide-visual--context-menu {
+    display: grid;
+    grid-template-columns: minmax(0, 10rem) minmax(0, 11rem);
+    justify-items: stretch;
+  }
+
+  .easyedu-guide-mouse-demo {
+    min-height: 7.4rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .easyedu-guide-mouse-card {
+    align-items: center;
+    background: #f7fbff;
+    border: 0;
+    border-left: 0.45rem solid var(--easyedu-participant);
+    border-radius: 0.78rem;
+    box-shadow: inset 0 0 0 1px rgba(134, 160, 181, 0.2);
+    color: #2d4054;
+    display: inline-flex;
+    font-size: 0.82rem;
+    gap: 0.42rem;
+    margin-top: 0.55rem;
+    padding: 0.48rem 0.58rem;
+  }
+
+  .easyedu-guide-mouse-pointer {
+    animation: easyedu-guide-context-pointer 3.2s ease-in-out infinite;
+    background: #203244;
+    block-size: 1.1rem;
+    clip-path: polygon(50% 0, 100% 100%, 58% 78%, 40% 100%, 0 100%);
+    inline-size: 0.9rem;
+    left: 4.3rem;
+    position: absolute;
+    top: 4rem;
+    transform: rotate(-28deg);
+    transform-origin: center;
+    width: 0.9rem;
+  }
+
+  .easyedu-guide-mouse-click {
+    animation: easyedu-guide-click-ring 3.2s ease-in-out infinite;
+    border: 2px solid rgba(41, 114, 77, 0.45);
+    border-radius: 999px;
+    height: 1.2rem;
+    left: -0.55rem;
+    position: absolute;
+    top: 0.72rem;
+    width: 1.2rem;
+  }
+
+  .easyedu-guide-demo-menu {
+    animation: easyedu-guide-menu-pop 3.2s ease-in-out infinite;
+    transform-origin: top left;
+
+    > strong,
+    > span {
+      align-items: center;
+      display: flex;
+      font-size: 0.76rem;
+      gap: 0.4rem;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      padding: 0.28rem 0.38rem;
+      white-space: normal;
+    }
+
+    > strong {
+      color: var(--easyedu-primary-strong);
+    }
+  }
+
+  .easyedu-guide-context-note {
+    align-self: center;
+    color: #64798d;
+    display: block;
+    grid-column: 1 / -1;
+    font-size: 0.78rem;
+    line-height: 1.42;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-align: center;
+    white-space: normal;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .easyedu-guide-visual--action-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) auto minmax(0, 1fr);
+    justify-items: stretch;
+  }
+
+  .easyedu-guide-visual--action-flow .easyedu-guide-fake-button {
+    animation: easyedu-guide-action-nudge 3.4s ease-in-out infinite;
+  }
+
+  .easyedu-guide-selection-stack > span,
+  .easyedu-guide-modal-preview > span,
+  .easyedu-guide-demo-selection > span {
+    align-items: center;
+    background: #f7fbff;
+    border: 0;
+    border-radius: 0.68rem;
+    box-shadow: inset 0 0 0 1px #d7e5f0;
+    color: #40566e;
+    display: flex;
+    font-size: 0.78rem;
+    font-weight: 700;
+    gap: 0.38rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.34rem 0.52rem;
+
+    .fa {
+      color: var(--easyedu-primary);
+    }
+  }
+
+  .easyedu-guide-modal-preview > strong {
+    color: #31475b;
+    font-size: 0.82rem;
+  }
+
+  .easyedu-guide-visual--drag-drop {
+    align-items: stretch;
+  }
+
+  .easyedu-guide-drag-lane {
+    align-items: center;
+    display: grid;
+    gap: 0.45rem;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    min-width: min(100%, 20rem);
+    position: relative;
+
+    &::before {
+      background:
+        linear-gradient(90deg, transparent, rgba(104, 128, 149, 0.35), transparent);
+      border-radius: 999px;
+      content: "";
+      height: 0.12rem;
+      left: 22%;
+      opacity: 0.45;
+      pointer-events: none;
+      position: absolute;
+      right: 22%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .easyedu-guide-demo-card,
+  .easyedu-guide-demo-drop {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.92);
+    border: 0;
+    border-left: 0.36rem solid var(--easyedu-primary);
+    border-radius: 0.78rem;
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.2),
+      0 0.22rem 0.58rem rgba(31, 42, 55, 0.06);
+    color: #344b62;
+    display: flex;
+    font-size: 0.78rem;
+    gap: 0.38rem;
+    min-height: 2.7rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.45rem 0.58rem;
+    white-space: normal;
+  }
+
+  .easyedu-guide-demo-card {
+    animation: easyedu-guide-demo-drag 3.6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+  }
+
+  .easyedu-guide-demo-card--participant {
+    border-left-color: var(--easyedu-participant);
+  }
+
+  .easyedu-guide-demo-card--group {
+    border-left-color: var(--easyedu-group);
+  }
+
+  .easyedu-guide-demo-drop {
+    animation: easyedu-guide-drop-overlay 3.6s ease-in-out infinite;
+    background: color-mix(in srgb, var(--easyedu-accent) 7%, #fff 93%);
+    border-left-color: var(--easyedu-accent);
+    color: #246746;
+  }
+
+  .easyedu-guide-demo-selection > span:first-child {
+    animation: easyedu-guide-selection-pulse 3.4s ease-in-out infinite;
+  }
+
+  .easyedu-guide-demo-selection > span:nth-child(2) {
+    animation: easyedu-guide-action-nudge 3.4s ease-in-out infinite;
+    animation-delay: 0.24s;
+  }
+
+  .easyedu-guide-demo-selection {
+    display: grid;
+    gap: 0.35rem;
+    min-width: 11rem;
+  }
+
+  .easyedu-guide-visual--formula {
+    display: grid;
+    grid-template-columns: minmax(0, auto) auto repeat(4, minmax(0, auto));
+    justify-content: center;
+  }
+
+  .easyedu-guide-visual--formula code,
+  .easyedu-guide-formula-result {
+    align-items: center;
+    background: #fff;
+    border: 0;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px #d7e4ef;
+    color: #38546d;
+    display: inline-flex;
+    font-size: 0.78rem;
+    font-weight: 700;
+    min-height: 2rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.28rem 0.62rem;
+  }
+
+  .easyedu-guide-visual--formula code {
+    background: #f7fbff;
+    border-color: #bcd8ed;
+    color: var(--easyedu-primary-strong);
+
+    &::after {
+      animation: easyedu-guide-caret 1.05s steps(1) infinite;
+      background: currentColor;
+      content: "";
+      display: inline-block;
+      height: 1rem;
+      margin-left: 0.18rem;
+      width: 0.08rem;
+    }
+  }
+
+  .easyedu-guide-formula-result {
+    animation: easyedu-guide-chip-in 2.9s ease-in-out infinite both;
+  }
+
+  .easyedu-guide-visual--workflow,
+  .easyedu-guide-visual--status,
+  .easyedu-guide-visual--warning-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  @media (max-width: 48rem) {
+    .easyedu-guide-visual--flow,
+    .easyedu-guide-visual--cards,
+    .easyedu-guide-visual--card-detail,
+    .easyedu-guide-visual--assignment,
+    .easyedu-guide-visual--paste,
+    .easyedu-guide-visual--context-menu,
+    .easyedu-guide-visual--action-flow,
+    .easyedu-guide-visual--drag-drop,
+    .easyedu-guide-visual--formula {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .easyedu-guide-assignment-row,
+    .easyedu-guide-drag-lane {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .easyedu-guide-flow-arrow {
+      align-items: center;
+      display: inline-flex;
+      height: 1.5rem;
+      justify-content: center;
+      transform: rotate(90deg);
+      width: 1.5rem;
+    }
+
+    .easyedu-guide-mini-card,
+    .easyedu-guide-visual-card,
+    .easyedu-guide-step-pill {
+      border-left: 0;
+      border-top: 0.34rem solid var(--easyedu-primary);
+      justify-items: center;
+      text-align: center;
+    }
+
+    .easyedu-guide-mini-card--participant,
+    .easyedu-guide-visual-card--participant,
+    .easyedu-guide-step-pill--participant {
+      border-top-color: var(--easyedu-participant);
+    }
+
+    .easyedu-guide-mini-card--group,
+    .easyedu-guide-visual-card--group,
+    .easyedu-guide-step-pill--group {
+      border-top-color: var(--easyedu-group);
+    }
+
+    .easyedu-guide-mini-card--grouping,
+    .easyedu-guide-visual-card--grouping,
+    .easyedu-guide-step-pill--grouping {
+      border-top-color: var(--easyedu-grouping);
+    }
+
+    .easyedu-guide-mini-card--source,
+    .easyedu-guide-visual-card--source,
+    .easyedu-guide-step-pill--source {
+      border-top-color: #4873ad;
+    }
+
+    .easyedu-guide-mini-card--layer,
+    .easyedu-guide-visual-card--layer,
+    .easyedu-guide-step-pill--layer {
+      border-top-color: #29724d;
+    }
+
+    .easyedu-guide-mini-card--banner,
+    .easyedu-guide-visual-card--banner,
+    .easyedu-guide-step-pill--banner {
+      border-top-color: #6a7f98;
+    }
+
+    .easyedu-guide-guided-card {
+      // Keep the compact path as one full-width vertical flow. Do not restore
+      // grid areas here: they make the icon/content/action read as split cells.
+      align-items: stretch;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      .easyedu-guide-guided-card__icon {
+        align-self: center;
+      }
+
+      .easyedu-guide-guided-card__body {
+        align-self: stretch;
+        justify-items: center;
+        text-align: center;
+        width: 100%;
+      }
+
+      .easyedu-guide-guided-card__steps {
+        justify-content: center;
+      }
+
+      .easyedu-guide-slide__start {
+        border-color: var(--easyedu-primary-strong) !important;
+        border-width: 0.125rem !important;
+        align-self: stretch;
+        width: 100%;
+      }
+    }
+  }
+
+  @include animations.motion-restricted($self: true) {
+    .easyedu-guide-visual *,
+    .easyedu-guide-visual *::before,
+    .easyedu-guide-visual *::after {
+      animation: none !important;
+    }
+  }
+
+  .easyedu-guide-guided-card {
+    @include guide-guided-path-card-surface;
+  }
+
+  .easyedu-guide-guided-card__icon {
+    align-items: center;
+    background: #e9f7ef;
+    border: 0;
+    border-radius: 0.78rem;
+    box-shadow: inset 0 0 0 1px #c8e5d2;
+    color: #29724d;
+    display: inline-flex;
+    height: 2.3rem;
+    justify-content: center;
+    width: 2.3rem;
+  }
+
+  .easyedu-guide-guided-card__body {
+    display: grid;
+    gap: 0.16rem;
+    min-width: 0;
+
+    strong {
+      color: #203348;
+      font-size: 0.9rem;
+      line-height: 1.18;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    > span {
+      color: #536b82;
+      font-size: 0.76rem;
+      line-height: 1.3;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+  }
+
+  .easyedu-guide-guided-card__steps {
+    color: #526a82;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0.28rem 0 0;
+    padding: 0;
+
+    li {
+      background: rgba(255, 255, 255, 0.74);
+      border: 0;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px #d7e8de;
+      font-size: 0.68rem;
+      font-weight: 720;
+      line-height: 1.2;
+      max-width: 100%;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      padding: 0.18rem 0.44rem;
+      white-space: normal;
+    }
+  }
+
+  .easyedu-guide-guided-card .easyedu-guide-slide__start {
+    background: var(--easyedu-primary);
+    background-color: var(--easyedu-primary) !important;
+    border-color: var(--easyedu-primary) !important;
+    color: #fff !important;
+    grid-column: 1 / -1;
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    width: 100%;
+    white-space: normal;
+
+    &:hover,
+    &:focus {
+      background: var(--easyedu-primary-strong);
+      background-color: var(--easyedu-primary-strong) !important;
+      border-color: var(--easyedu-primary-strong) !important;
+      color: #fff !important;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary-strong));
+    }
+  }
+
+  // This must follow the card-surface mixin above. The surface establishes the
+  // desktop icon-and-copy row plus a final action row; this explicit flex stack
+  // prevents a compact viewport from inheriting a split-column composition.
+  @media (max-width: 48rem), (max-height: 36rem) {
+    .easyedu-guide-guided-card {
+      align-items: stretch;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      .easyedu-guide-guided-card__body,
+      .easyedu-guide-slide__start {
+        align-self: stretch;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin guided-panel {
+  .easyedu-guided-panel {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #cfe1ef;
+    border-left: 0.35rem solid #29724d;
+    border-radius: 1rem;
+    bottom: calc(1.45rem + var(--easyedu-guide-bottom-obstruction, 0px));
+    box-shadow: 0 0.75rem 1.8rem rgba(31, 42, 55, 0.14);
+    box-sizing: border-box;
+    display: grid;
+    gap: 0.65rem;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    left: 1.25rem;
+    max-height: calc(100vh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    max-height: calc(100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    inline-size: min(26rem, calc(100vw - 2.5rem));
+    max-inline-size: calc(100vw - 2.5rem);
+    max-width: min(92vw, 28rem);
+    min-width: 0;
+    overflow: hidden;
+    padding: 0.78rem;
+    position: fixed;
+    right: auto;
+    transition: max-width 0.28s var(--easyedu-motion-ease),
+      padding 0.24s ease,
+      gap 0.24s ease,
+      left 0.24s ease,
+      right 0.24s ease,
+      transform 0.24s ease,
+      box-shadow 0.24s ease;
+    width: min(26rem, calc(100vw - 2.5rem));
+    z-index: 1070;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.is-docked-left {
+      left: 1.25rem;
+      right: auto;
+    }
+
+    &.is-docked-right {
+      left: auto;
+      right: 1.25rem;
+    }
+
+    &.is-minimized {
+      // A reduced checklist is one real checklist row, not a second panel.
+      // Its natural height must follow that row on both wide and compact
+      // viewports; only the available inline size varies by viewport.
+      gap: 0.35rem;
+      grid-template-rows: auto;
+      max-width: min(26rem, calc(100vw - 2.5rem));
+      min-width: 0;
+      padding: 0.45rem;
+      width: min(26rem, calc(100vw - 2.5rem));
+
+      .easyedu-guided-panel__header {
+        align-items: start;
+        inset: 0.42rem 0.42rem auto auto;
+        pointer-events: none;
+        position: absolute;
+        z-index: 3;
+      }
+
+      .easyedu-guided-panel__header > div:first-child {
+        display: none;
+      }
+
+      .easyedu-guided-panel__header-actions,
+      .easyedu-guided-panel__minimize {
+        display: flex;
+        pointer-events: auto;
+      }
+
+      .easyedu-guided-panel__close {
+        display: none;
+      }
+
+      .easyedu-guided-panel__steps {
+        display: block;
+        margin: 0;
+        max-height: none;
+        opacity: 1;
+        overflow: hidden;
+        padding: 0 2.95rem 0 0;
+        pointer-events: auto;
+      }
+
+      .easyedu-guided-panel__step {
+        display: none;
+        min-height: 2.6rem;
+      }
+
+      .easyedu-guided-panel__step.is-active {
+        display: grid;
+      }
+
+      .easyedu-guided-panel__message {
+        display: none;
+        margin: 0;
+        max-height: none;
+        min-height: 2.6rem;
+        opacity: 1;
+        padding: 0.5rem 0.6rem;
+        pointer-events: auto;
+      }
+
+      .easyedu-guided-panel__footer {
+        display: none;
+        margin: 0;
+        max-height: none;
+        opacity: 1;
+        overflow: visible;
+        pointer-events: auto;
+      }
+
+      &.is-complete {
+        grid-template-columns: minmax(0, 1fr) auto;
+
+        .easyedu-guided-panel__steps {
+          display: none;
+        }
+
+        .easyedu-guided-panel__message {
+          display: grid;
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        .easyedu-guided-panel__footer {
+          align-self: stretch;
+          display: flex;
+          grid-column: 2;
+          grid-row: 1;
+        }
+
+        .easyedu-guided-panel__return {
+          min-height: 2.6rem;
+        }
+
+        .easyedu-guided-panel__message-compact {
+          display: none !important;
+        }
+
+        &.is-minimized {
+          align-items: center;
+          column-gap: 0.42rem;
+          grid-template-columns: minmax(0, 1fr) auto auto;
+          grid-template-rows: auto;
+          min-height: 0;
+          padding: 0.38rem;
+
+          .easyedu-guided-panel__header {
+            display: contents;
+            inset: auto;
+            position: static;
+          }
+
+          .easyedu-guided-panel__header-actions {
+            grid-column: 3;
+            grid-row: 1;
+            margin-left: 0;
+            max-width: none;
+          }
+
+          .easyedu-guided-panel__minimize {
+            display: none;
+          }
+
+          .easyedu-guided-panel__close {
+            display: grid;
+            place-items: center;
+          }
+
+          .easyedu-guided-panel__message {
+            align-items: center;
+            box-sizing: border-box;
+            box-shadow: none;
+            grid-column: 1;
+            grid-row: 1;
+            height: 2.5rem;
+            min-height: 2.5rem;
+            overflow: hidden;
+            padding: 0.32rem 0.55rem;
+
+            .fa {
+              margin-top: 0;
+            }
+          }
+
+          .easyedu-guided-panel__message [data-easyedu-guide-checklist-message-text] {
+            display: none !important;
+          }
+
+          .easyedu-guided-panel__message-compact {
+            display: block !important;
+            font-weight: 760;
+          }
+
+          .easyedu-guided-panel__footer {
+            align-items: center;
+            grid-column: 2;
+            grid-row: 1;
+          }
+
+          .easyedu-guided-panel__return {
+            min-height: 2.5rem;
+            padding-inline: 0.72rem;
+            width: auto;
+          }
+        }
+      }
+    }
+
+    &.is-complete .easyedu-guided-panel__message {
+      animation: easyedu-success-pulse 1.12s var(--easyedu-motion-ease) both;
+
+      // The pulse animates box-shadow and scale: full level only.
+      @include animations.motion-restricted {
+        animation: none;
+      }
+      background: linear-gradient(135deg, #29724d 0%, #2f8f62 100%);
+      border-color: #29724d;
+      box-shadow:
+        0 0.65rem 1.35rem rgba(41, 114, 77, 0.24),
+        0 0 0 0.24rem rgba(47, 143, 98, 0.16);
+      color: #fff;
+    }
+
+    &.is-unlock-path {
+      border-left-color: #c98917;
+
+      .easyedu-guided-panel__header::before {
+        background: linear-gradient(180deg, #d99a21, #af7410);
+      }
+
+      .easyedu-guided-panel__step {
+        &:hover,
+        &:focus-visible,
+        &.is-active {
+          background: #fff8e8;
+          border-color: #ecd49b;
+          box-shadow: 0 0.3rem 0.7rem rgba(122, 90, 18, 0.1);
+        }
+
+        &:focus-visible {
+          @include focus.ring(
+            $color: var(--easyedu-focus-ring-warning),
+            $border-color: #ecd49b,
+            $base-shadow: 0 0.3rem 0.7rem rgba(122, 90, 18, 0.1)
+          );
+        }
+      }
+    }
+  }
+
+  .easyedu-guided-panel__header {
+    align-items: start;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    min-width: 0;
+    width: 100%;
+
+    > div:first-child {
+      display: grid;
+      gap: 0.08rem;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    strong {
+      color: #203244;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    span {
+      color: #64798d;
+      font-size: 0.72rem;
+      font-weight: 760;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      max-width: 100%;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .easyedu-guided-panel__header-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    gap: 0.35rem;
+    margin-left: auto;
+    max-width: 40%;
+    min-width: 0;
+  }
+
+  .easyedu-guided-panel__close,
+  .easyedu-guided-panel__minimize {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d5e2ed;
+    border-radius: 0.65rem;
+    color: #63788d;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 2.5rem;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    width: 2.5rem;
+
+    .fa {
+      left: 50%;
+      line-height: 1;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover,
+    &:focus {
+      background: #f7fbff;
+      border-color: #bdd4e7;
+      color: #203244;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: #bdd4e7);
+    }
+  }
+
+  .easyedu-guided-panel__steps {
+    align-content: start;
+    box-sizing: border-box;
+    contain: inline-size;
+    display: grid;
+    gap: 0.42rem;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 0;
+    min-width: 0;
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: var(--easyedu-focus-ring-width);
+    transition: max-height 0.34s var(--easyedu-motion-ease), opacity 0.18s ease, margin 0.22s ease;
+    width: 100%;
+  }
+
+  .easyedu-guided-panel__step {
+    align-items: center;
+    appearance: none;
+    background: #f8fbfd;
+    border: 1px solid #dce8f2;
+    border-radius: 0.78rem;
+    box-sizing: border-box;
+    color: #40566e;
+    cursor: pointer;
+    display: grid;
+    font-size: 0.78rem;
+    font-weight: 720;
+    gap: 0.72rem;
+    grid-template-columns: 1.85rem minmax(0, 1fr);
+    inline-size: 100%;
+    justify-self: stretch;
+    max-inline-size: 100%;
+    max-width: 100%;
+    min-height: 2.6rem;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0.42rem 0.55rem;
+    position: relative;
+    text-align: left;
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    width: 100%;
+
+    &:hover,
+    &:focus-visible,
+    &.is-active {
+      background: #f4fbf7;
+      border-color: #c3dfcd;
+      box-shadow: 0 0.3rem 0.7rem rgba(41, 114, 77, 0.1);
+      outline: 0;
+    }
+
+    &:focus-visible {
+      @include focus.ring(
+        $color: var(--easyedu-focus-ring-accent),
+        $border-color: #c3dfcd,
+        $base-shadow: 0 0.3rem 0.7rem rgba(41, 114, 77, 0.1)
+      );
+    }
+
+    &.is-complete {
+      background: var(--easyedu-success-soft);
+      border-color: #bdddc9;
+      color: #245a3f;
+
+      .easyedu-guided-panel__index {
+        background: var(--easyedu-success);
+        border-color: var(--easyedu-success);
+        color: #fff;
+        font-size: 0;
+      }
+    }
+
+    &.is-locked {
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          rgba(126, 145, 164, 0.08) 0,
+          rgba(126, 145, 164, 0.08) 0.38rem,
+          rgba(248, 250, 252, 0.92) 0.38rem,
+          rgba(248, 250, 252, 0.92) 0.78rem
+        ),
+        #f8fafc;
+      border-color: #d7e0e9;
+      color: #697c90;
+      cursor: pointer;
+      opacity: 0.86;
+      overflow: hidden;
+
+      .easyedu-guided-panel__index {
+        background: #eef3f7;
+        border-color: #d7e2ec;
+        color: #7d90a3;
+      }
+
+      &:hover,
+      &:focus-visible {
+        background:
+          repeating-linear-gradient(
+            -45deg,
+            rgba(126, 145, 164, 0.1) 0,
+            rgba(126, 145, 164, 0.1) 0.38rem,
+            rgba(248, 250, 252, 0.95) 0.38rem,
+            rgba(248, 250, 252, 0.95) 0.78rem
+          ),
+          #f8fafc;
+        border-color: #d7e0e9;
+        box-shadow: none;
+      }
+
+      &:focus-visible {
+        @include focus.ring($border-color: #d7e0e9);
+      }
+
+      &[data-easyedu-guide-lock-message]::before {
+        align-items: center;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid #cfe1ef;
+        border-radius: 999px;
+        color: #526a82;
+        content: attr(data-easyedu-guide-lock-message);
+        display: inline-flex;
+        font-size: 0.68rem;
+        font-weight: 780;
+        inset: auto 0.55rem 0.42rem auto;
+        justify-content: center;
+        line-height: 1.2;
+        max-width: calc(100% - 1.1rem);
+        padding: 0.2rem 0.46rem;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        z-index: 2;
+      }
+    }
+
+    &.is-complete .easyedu-guided-panel__index::before {
+      border-bottom: 0.14rem solid currentColor;
+      border-right: 0.14rem solid currentColor;
+      content: "";
+      display: block;
+      height: 0.72rem;
+      transform: rotate(42deg) translate(-0.02rem, -0.08rem);
+      width: 0.36rem;
+    }
+
+    &.is-active::after {
+      background: #29724d;
+      border-radius: 999px;
+      content: "";
+      height: 0.48rem;
+      position: absolute;
+      right: 0.54rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.48rem;
+    }
+
+    > span:last-child {
+      display: grid;
+      gap: 0.08rem;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      padding-right: 0.85rem;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    strong {
+      color: #2c4358;
+      display: block;
+      font-size: 0.78rem;
+      line-height: 1.2;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    small {
+      color: #698095;
+      display: block;
+      font-size: 0.69rem;
+      font-weight: 620;
+      line-height: 1.24;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+  .easyedu-guided-panel__index {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #cfe1ef;
+    border-radius: 0.62rem;
+    color: #29724d;
+    display: inline-flex;
+    font-size: 0.75rem;
+    font-weight: 760;
+    height: 1.65rem;
+    justify-content: center;
+    width: 1.65rem;
+  }
+
+  .easyedu-guided-panel__message-compact {
+    display: none !important;
+  }
+
+  .easyedu-guided-panel__message {
+    align-items: start;
+    background: #f4fbf7;
+    border: 1px solid #cce7d6;
+    border-radius: 0.82rem;
+    color: #365b46;
+    display: grid;
+    font-size: 0.76rem;
+    font-weight: 650;
+    gap: 0.45rem;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    line-height: 1.34;
+    inline-size: 100%;
+    max-width: 100%;
+    max-height: 6rem;
+    min-width: 0;
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+    padding: 0.55rem 0.62rem;
+    transition: max-height 0.3s var(--easyedu-motion-ease), opacity 0.18s ease, margin 0.22s ease,
+      padding 0.22s ease;
+    white-space: normal;
+    width: 100%;
+    word-break: break-word;
+
+    .fa {
+      color: #29724d;
+      flex: 0 0 auto;
+      margin-top: 0.12rem;
+    }
+
+    > * {
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    span:not(.fa) {
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    &.is-complete .fa,
+    .easyedu-guided-panel.is-complete & .fa {
+      color: #fff;
+      font-size: 0.92rem;
+    }
+  }
+
+  .easyedu-guided-panel:not(.has-guided-feedback):not(.is-complete) .easyedu-guided-panel__message {
+    display: none;
+  }
+
+  // K17-68 / K17-70: the footer actions stay inside the frame at every width. They wrap onto a second
+  // row instead of overflowing, with the Kit 0.5 rem gap between them (the same gap as the end box),
+  // and each one may shrink below its content width (the label wraps), so that an icon-only
+  // "Display and animations" button (K17-62) lays out exactly like the labelled one.
+  .easyedu-guided-panel__footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    max-height: 6.5rem;
+    min-width: 0;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.3s var(--easyedu-motion-ease), opacity 0.18s ease, margin 0.22s ease;
+  }
+
+  .easyedu-guided-panel__footer .easyedu-direct-icon {
+    max-width: 100%;
+  }
+
+  .easyedu-guided-panel__return {
+    align-items: center;
+    background: var(--easyedu-primary);
+    background-color: var(--easyedu-primary) !important;
+    border-color: var(--easyedu-primary) !important;
+    border-radius: 0.72rem;
+    color: #fff !important;
+    display: inline-flex;
+    flex-wrap: wrap;
+    font-size: 0.74rem;
+    font-weight: 740;
+    gap: 0.35rem;
+    justify-content: center;
+    line-height: 1.18;
+    max-width: none;
+    min-height: 2.5rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 0.34rem 0.72rem;
+    text-align: center;
+    white-space: normal;
+
+    .fa {
+      color: currentColor;
+      font-size: 0.78rem;
+      line-height: 1;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--easyedu-primary-strong);
+      background-color: var(--easyedu-primary-strong) !important;
+      border-color: var(--easyedu-primary-strong) !important;
+      color: #fff !important;
+      outline: 0;
+    }
+
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-primary-strong));
+    }
+  }
+
+  @media (max-width: 40rem), (max-height: 32rem) {
+    .easyedu-guided-panel,
+    .easyedu-guided-panel.is-docked-left,
+    .easyedu-guided-panel.is-docked-right {
+      bottom: calc(max(0.5rem, env(safe-area-inset-bottom)) + var(--easyedu-guide-bottom-obstruction, 0px));
+      left: max(0.5rem, env(safe-area-inset-left));
+      max-height: calc(100vh - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      max-height: calc(100dvh - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      max-width: none;
+      min-width: 0;
+      right: max(0.5rem, env(safe-area-inset-right));
+      width: auto;
+    }
+
+    .easyedu-guided-panel {
+      border: 0;
+      border-top: 0.35rem solid #29724d;
+      text-align: center;
+    }
+
+    .easyedu-guided-panel__footer {
+      justify-content: center;
+    }
+
+    .easyedu-guided-panel__return {
+      justify-content: center;
+    }
+
+    .easyedu-guided-panel.is-minimized {
+      // Mobile uses the complete available width, but retains the natural
+      // single-row height defined above.
+      max-width: none;
+      width: auto;
+    }
+  }
+}
+
+.easyedu-guide-dialog-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+// A host's stable document gutter reduces even viewport units in Chrome.
+// Release that reservation only while this Guide occupies the native top layer;
+// the host's original rule automatically resumes on exit without inline styles.
+// A class set by the Guide script replaces :has(), which re-evaluated the whole
+// document on every fullscreen change (K17-41).
+html.easyedu-guide-dialog-open.easyedu-guide-is-fullscreen {
+  scrollbar-gutter: auto;
+}
+
+// K17-41: while the Guide owns fullscreen, the host page around it is covered by
+// the top layer. Skip its style/layout work; the script keeps each block's measured
+// size so the page and its scroll position are intact on exit.
+[data-easyedu-guide-parked] {
+  block-size: var(--easyedu-guide-parked-height);
+  box-sizing: border-box;
+  content-visibility: hidden;
+  inline-size: var(--easyedu-guide-parked-width);
+}
+
+.easyedu-guide-highlight {
+  border: 2px solid var(--easyedu-primary);
+  border-radius: 0.9rem;
+  box-shadow:
+    0 0 0 0.35rem rgba(12, 113, 194, 0.14),
+    0 0.8rem 2rem rgba(15, 33, 50, 0.18);
+  pointer-events: none;
+  position: fixed;
+  transition: left 0.2s ease, top 0.2s ease, width 0.2s ease, height 0.2s ease;
+  // Below Moodle fixed navigation (Bootstrap normally uses 1030), while still
+  // staying above ordinary page content. Guided checklist panels keep the
+  // higher layer.
+  z-index: 1020;
+}
+
+.easyedu-guide-highlight--in-dialog {
+  // Body portals do not inherit the Guide root. The controller relays this
+  // public role; the fallback also supports older consumers without tokens.
+  z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
+}
+
+.easyedu-guide[data-easyedu-guide-root][data-easyedu-guide-target-in-dialog] .easyedu-guided-panel {
+  // Explicit root qualification wins over the Discovery default panel layer.
+  // Outside a native dialog the historical checklist/1020 cue layers remain.
+  z-index: calc(var(--easyedu-modal-layer, 1070) + 2);
+}
+
+.easyedu-guide-highlight--pulse-blue {
+  animation: easyedu-guide-highlight-pulse 1.45s ease-in-out infinite;
+  border-color: #0b75d1;
+  box-shadow:
+    0 0 0 0.28rem rgba(11, 117, 209, 0.2),
+    0 0 0 0.65rem rgba(11, 117, 209, 0.08),
+    0 0.85rem 2rem rgba(15, 33, 50, 0.16);
+}
+
+.easyedu-guide-highlight[data-easyedu-motion-policy="disabled"] {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+[dir="rtl"] {
+  .easyedu-guide-nav-arrow .fa,
+  .easyedu-guide-modal__map-arrow,
+  .easyedu-guide-flow-arrow {
+    transform: scaleX(-1);
+  }
+}
+
+@media (forced-colors: active) {
+  .easyedu-guide-modal__dialog,
+  .easyedu-guide-interface-return,
+  .easyedu-guided-panel,
+  .easyedu-guide-highlight {
+    border: 2px solid CanvasText;
+    box-shadow: none;
+    forced-color-adjust: auto;
+  }
+
+  .easyedu-guide-highlight {
+    outline: 3px solid Highlight;
+  }
+}
+
+@include animations.motion-restricted {
+  .easyedu-guide-modal__dialog,
+  .easyedu-guide-slide,
+  .easyedu-guide-checklist__complete,
+  .easyedu-guided-panel,
+  .easyedu-guided-panel *,
+  .easyedu-guide-highlight {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+@keyframes easyedu-guide-demo-drag {
+  0%,
+  28%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.2),
+      0 0.22rem 0.58rem rgba(31, 42, 55, 0.06);
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+
+  54%,
+  68% {
+    box-shadow:
+      inset 0 0 0 1px rgba(134, 160, 181, 0.2),
+      0 0.78rem 1.35rem rgba(31, 42, 55, 0.2);
+    opacity: 1;
+    transform: translateX(1.95rem) translateY(-0.12rem) scale(1.035);
+  }
+
+  80% {
+    transform: translateX(0.55rem) translateY(0) scale(1);
+  }
+}
+
+@keyframes easyedu-guide-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.035rem);
+  }
+}
+
+@keyframes easyedu-guide-scene-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.42rem) scale(0.982);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes easyedu-guide-drop-overlay {
+  0%,
+  34%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--easyedu-accent) 22%, #fff 78%),
+      0 0.22rem 0.58rem rgba(31, 42, 55, 0.04);
+    transform: scale(1);
+  }
+
+  52%,
+  74% {
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--easyedu-accent) 42%, #fff 58%),
+      inset 0 0 0 999px rgba(41, 114, 77, 0.095),
+      0 0.45rem 0.95rem rgba(41, 114, 77, 0.12);
+    transform: scale(1.032);
+  }
+}
+
+@keyframes easyedu-guide-selection-pulse {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 1px #d7e5f0;
+    transform: translateY(0);
+  }
+
+  48%,
+  66% {
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--easyedu-primary) 38%, #fff 62%),
+      0 0.28rem 0.62rem rgba(15, 108, 191, 0.12);
+    transform: translateY(-0.04rem);
+  }
+}
+
+@keyframes easyedu-guide-action-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  44%,
+  58% {
+    transform: translateX(0.24rem) scale(1.025);
+  }
+}
+
+@keyframes easyedu-guide-filter-pop {
+  0%,
+  100% {
+    opacity: 0.92;
+    transform: translateY(0) scale(1);
+  }
+
+  48%,
+  64% {
+    opacity: 1;
+    transform: translateY(-0.04rem) scale(1.012);
+  }
+}
+
+@keyframes easyedu-guide-context-pointer {
+  0%,
+  18% {
+    opacity: 0;
+    transform: translate(-1.45rem, -0.72rem) rotate(-28deg) scale(0.96);
+  }
+
+  34%,
+  58% {
+    opacity: 1;
+    transform: translate(0.15rem, 0.05rem) rotate(-28deg) scale(1);
+  }
+
+  66% {
+    opacity: 1;
+    transform: translate(0.15rem, 0.05rem) rotate(-28deg) scale(0.84);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0.72rem, 0.36rem) rotate(-28deg) scale(1);
+  }
+}
+
+@keyframes easyedu-guide-click-ring {
+  0%,
+  48% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+
+  58% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    transform: scale(2.15);
+  }
+}
+
+@keyframes easyedu-guide-menu-pop {
+  0%,
+  38% {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.92);
+  }
+
+  52%,
+  84% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0.86;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes easyedu-guide-caret {
+  0%,
+  48% {
+    opacity: 1;
+  }
+
+  49%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes easyedu-guide-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes easyedu-guide-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes easyedu-guide-success {
+  0% {
+    transform: scale(0.98);
+  }
+  45% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes easyedu-guide-visual-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes easyedu-guide-chip-in {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(-0.06rem);
+  }
+}
+
+@keyframes easyedu-guide-highlight-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0.25rem rgba(11, 117, 209, 0.16),
+      0 0 0 0.55rem rgba(11, 117, 209, 0.08),
+      0 0.85rem 2rem rgba(15, 33, 50, 0.16);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 0.36rem rgba(11, 117, 209, 0.26),
+      0 0 0 0.88rem rgba(11, 117, 209, 0.12),
+      0 0.9rem 2.25rem rgba(15, 33, 50, 0.18);
+  }
+}

@@ -1,0 +1,86 @@
+// Card titles: identity ink and letter-spacing 0 (Kit card-title) and the Kit
+// title metrics (no underline accent), and card actions neutral at rest,
+// primary on a hovered, focused or selected card. Counters stay 22 px pills.
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-user__name,
+  .local-groupimport-easystud-group__name,
+  .local-groupimport-easystud-grouping__name {
+    @include easyedu.card-title-ink;
+  }
+
+  .local-groupimport-easystud-user__name {
+    @include easyedu.card-title-accent(var(--easyedu-participant));
+  }
+
+  .local-groupimport-easystud-group__name {
+    @include easyedu.card-title-accent(var(--easyedu-group));
+  }
+
+  .local-groupimport-easystud-grouping__name {
+    @include easyedu.card-title-accent(var(--easyedu-grouping));
+  }
+
+  // "Groups without grouping" section: violet accent (14/10 complement).
+  .local-groupimport-easystud-tree__section--ungrouped > .local-groupimport-easystud-tree__toggle > span:last-child {
+    @include easyedu.card-title-accent(#72508c);
+  }
+
+  // Card actions: neutral at rest, primary on an active card.
+  $actions: ".local-groupimport-easystud-user__detail-button, " +
+    ".local-groupimport-easystud-group__header > .btn-link, " +
+    ".local-groupimport-easystud-grouping__header > .btn-link, " +
+    ".local-groupimport-easystud-rename__toggle, " +
+    ".local-groupimport-easystud-card-menu";
+
+  .local-groupimport-easystud-user,
+  .local-groupimport-easystud-group,
+  .local-groupimport-easystud-tree__section {
+    #{$actions} {
+      @include easyedu.card-action-ink;
+    }
+
+    &:hover,
+    &:focus-within,
+    &.is-selected {
+      #{$actions} {
+        @include easyedu.card-action-ink(active);
+      }
+    }
+  }
+
+  // K16-79 (cards too busy): with a mouse, a card's header actions and a member's "−"
+  // appear only while their own card / row is hovered, focused or selected (touch keeps them).
+  // A Guide target or an open menu always stays visible.
+  $quiet: ":not(.is-easyedu-guide-highlight-target):not([aria-expanded=\"true\"])";
+  #{$actions} {
+    transition: color var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
+  }
+
+  // K16-81: with the actions hidden at rest, the count and groupings labels floated
+  // mid-header. They now close the header row, after the actions: right-aligned on every card at
+  // rest, and the actions appear to their left on hover without moving them.
+  .local-groupimport-easystud-group__header > .local-groupimport-easystud-group__groupings {
+    order: 1;
+  }
+
+  .local-groupimport-easystud-group__header > .badge {
+    @include easyedu.card-header-terminal-slot;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    // G1: a card whose More actions menu is open is not at rest, so its trigger and the menu
+    // items cloned from quiet actions (Rename) stay visible after the pointer leaves the card.
+    $rest: ":not(:hover):not(:focus-within):not(.is-selected):not(.is-actions-menu-open)";
+    .local-groupimport-easystud-user#{$rest} .local-groupimport-easystud-user__detail-button#{$quiet},
+    .local-groupimport-easystud-group#{$rest} > .local-groupimport-easystud-group__header > .btn-link#{$quiet},
+    .local-groupimport-easystud-group#{$rest} > .local-groupimport-easystud-group__header > .local-groupimport-easystud-card-menu#{$quiet},
+    .local-groupimport-easystud-group#{$rest} > .local-groupimport-easystud-group__header .local-groupimport-easystud-rename__toggle#{$quiet},
+    .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header > .btn-link#{$quiet},
+    .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header > .local-groupimport-easystud-card-menu#{$quiet},
+    .local-groupimport-easystud-tree__section#{$rest} > .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle#{$quiet} {
+      opacity: 0;
+    }
+  }
+}

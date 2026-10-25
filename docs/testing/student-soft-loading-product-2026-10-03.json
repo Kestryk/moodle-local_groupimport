@@ -1,0 +1,1291 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "before": [
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67a3c797f",
+      "name": "Linked skeleton / Eyebrow",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 144,
+        "y": 4530,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67a4e0042",
+      "name": "Linked skeleton / Product title",
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "bounds": {
+        "x": 144,
+        "y": 4566,
+        "width": 400,
+        "height": 20
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67a621e0f",
+      "name": "Linked skeleton / Introduction",
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "bounds": {
+        "x": 144,
+        "y": 4608,
+        "width": 620,
+        "height": 24
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67aa0a8df",
+      "name": "Linked skeleton / Navigation cue 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 412,
+        "y": 4688,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67ab1d5cf",
+      "name": "Linked skeleton / Navigation cue 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 696,
+        "y": 4688,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67ac63dd0",
+      "name": "Linked skeleton / Navigation cue 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 980,
+        "y": 4688,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b0c81f5",
+      "name": "Linked skeleton card / Upload header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 168,
+        "y": 4790,
+        "width": 516,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b253775",
+      "name": "Linked skeleton stack / Upload fields",
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "bounds": {
+        "x": 168,
+        "y": 4882,
+        "width": 516,
+        "height": 217.27999999999975
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b3ed95a",
+      "name": "Linked skeleton card / Results header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 4790,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b528146",
+      "name": "Linked skeleton card / Result 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 4886,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b65b2f5",
+      "name": "Linked skeleton card / Result 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 4962,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b7e222b",
+      "name": "Linked skeleton card / Result 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 5038,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b96c12e",
+      "name": "Linked skeleton card / Result 4",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 5114,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67bae5cbf",
+      "name": "Linked skeleton card / Result 5",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 5190,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982b9",
+      "name": "Linked skeleton / Eyebrow",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 2296,
+        "y": 5968,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982ba",
+      "name": "Linked skeleton / Product title",
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "bounds": {
+        "x": 2296,
+        "y": 6004,
+        "width": 400,
+        "height": 20
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982bb",
+      "name": "Linked skeleton / Introduction",
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "bounds": {
+        "x": 2296,
+        "y": 6046,
+        "width": 620,
+        "height": 24
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982be",
+      "name": "Linked skeleton / Navigation cue 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 2660,
+        "y": 6118,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c3",
+      "name": "Linked skeleton card / Upload header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6208,
+        "width": 863.9999999999995,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c4",
+      "name": "Linked skeleton stack / Upload fields",
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "bounds": {
+        "x": 2320,
+        "y": 6300,
+        "width": 863.9999999999995,
+        "height": 217.27999999999975
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c5",
+      "name": "Linked skeleton card / Results header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6652,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c6",
+      "name": "Linked skeleton card / Result 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6748,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c7",
+      "name": "Linked skeleton card / Result 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6824,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c8",
+      "name": "Linked skeleton card / Result 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6900,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c9",
+      "name": "Linked skeleton card / Result 4",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6976,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982ca",
+      "name": "Linked skeleton card / Result 5",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 7052,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab44",
+      "name": "Linked skeleton / Eyebrow",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 1168,
+        "y": 8300,
+        "width": 200,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe12",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 1168,
+            "y": 8300,
+            "width": 240,
+            "height": 16
+          }
+        }
+      ]
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab45",
+      "name": "Linked skeleton / Product title",
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "bounds": {
+        "x": 1168,
+        "y": 8336,
+        "width": 300,
+        "height": 20
+      },
+      "effectiveVisible": true,
+      "overflow": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe15",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 1168,
+            "y": 8336,
+            "width": 400,
+            "height": 20
+          }
+        }
+      ]
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab46",
+      "name": "Linked skeleton / Introduction",
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "bounds": {
+        "x": 1168,
+        "y": 8378,
+        "width": 326,
+        "height": 24
+      },
+      "effectiveVisible": true,
+      "overflow": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe18",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 1168,
+            "y": 8378,
+            "width": 620,
+            "height": 24
+          }
+        }
+      ]
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab49",
+      "name": "Linked skeleton / Navigation cue 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 1257,
+        "y": 8448,
+        "width": 180,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe1b",
+          "name": "Cue / source gradient",
+          "bounds": {
+            "x": 1257,
+            "y": 8448,
+            "width": 240,
+            "height": 16
+          }
+        }
+      ]
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab4e",
+      "name": "Linked skeleton card / Upload header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 8530,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab4f",
+      "name": "Linked skeleton stack / Upload fields",
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "bounds": {
+        "x": 1184,
+        "y": 8622,
+        "width": 326,
+        "height": 217.27999999999884
+      },
+      "effectiveVisible": true,
+      "overflow": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe3c",
+          "name": "Static participant row 0",
+          "bounds": {
+            "x": 1184,
+            "y": 8622,
+            "width": 516,
+            "height": 43.52000000000044
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe3f",
+          "name": "Name cue 0",
+          "bounds": {
+            "x": 1236,
+            "y": 8635.759999999998,
+            "width": 290,
+            "height": 16
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe41",
+          "name": "Static participant row 1",
+          "bounds": {
+            "x": 1184,
+            "y": 8679.92,
+            "width": 516,
+            "height": 43.52000000000044
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe44",
+          "name": "Name cue 1",
+          "bounds": {
+            "x": 1236,
+            "y": 8693.68,
+            "width": 290,
+            "height": 16
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe46",
+          "name": "Static participant row 2",
+          "bounds": {
+            "x": 1184,
+            "y": 8737.84,
+            "width": 516,
+            "height": 43.52000000000044
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe49",
+          "name": "Name cue 2",
+          "bounds": {
+            "x": 1236,
+            "y": 8751.599999999999,
+            "width": 290,
+            "height": 16
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe4b",
+          "name": "Static participant row 3",
+          "bounds": {
+            "x": 1184,
+            "y": 8795.76,
+            "width": 516,
+            "height": 43.52000000000044
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe4e",
+          "name": "Name cue 3",
+          "bounds": {
+            "x": 1236,
+            "y": 8809.52,
+            "width": 290,
+            "height": 16
+          }
+        }
+      ]
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab50",
+      "name": "Linked skeleton card / Results header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 8966,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab51",
+      "name": "Linked skeleton card / Result 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9062,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab52",
+      "name": "Linked skeleton card / Result 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9138,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab53",
+      "name": "Linked skeleton card / Result 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9214,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab54",
+      "name": "Linked skeleton card / Result 4",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9290,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab55",
+      "name": "Linked skeleton card / Result 5",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9366,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+      "id": "92c1c225-95fb-802e-8008-aeab97b51753",
+      "name": "Foundation / Loading / Participant card",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 5620,
+        "y": 1654,
+        "width": 540,
+        "height": 58
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    }
+  ],
+  "after": [
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67a3c797f",
+      "name": "Linked skeleton / Eyebrow",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 144,
+        "y": 4530,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67a4e0042",
+      "name": "Linked skeleton / Product title",
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "bounds": {
+        "x": 144,
+        "y": 4566,
+        "width": 400,
+        "height": 20
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67a621e0f",
+      "name": "Linked skeleton / Introduction",
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "bounds": {
+        "x": 144,
+        "y": 4608,
+        "width": 620,
+        "height": 24
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67aa0a8df",
+      "name": "Linked skeleton / Navigation cue 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 412,
+        "y": 4688,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67ab1d5cf",
+      "name": "Linked skeleton / Navigation cue 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 696,
+        "y": 4688,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67ac63dd0",
+      "name": "Linked skeleton / Navigation cue 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 980,
+        "y": 4688,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b0c81f5",
+      "name": "Linked skeleton card / Upload header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 168,
+        "y": 4790,
+        "width": 516,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b253775",
+      "name": "Linked skeleton stack / Upload fields",
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "bounds": {
+        "x": 168,
+        "y": 4882,
+        "width": 516,
+        "height": 217.27999999999975
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b3ed95a",
+      "name": "Linked skeleton card / Results header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 4790,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b528146",
+      "name": "Linked skeleton card / Result 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 4886,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b65b2f5",
+      "name": "Linked skeleton card / Result 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 4962,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b7e222b",
+      "name": "Linked skeleton card / Result 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 5038,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67b96c12e",
+      "name": "Linked skeleton card / Result 4",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 5114,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b2b67bae5cbf",
+      "name": "Linked skeleton card / Result 5",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 756,
+        "y": 5190,
+        "width": 676,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982b9",
+      "name": "Linked skeleton / Eyebrow",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 2296,
+        "y": 5968,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982ba",
+      "name": "Linked skeleton / Product title",
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "bounds": {
+        "x": 2296,
+        "y": 6004,
+        "width": 400,
+        "height": 20
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982bb",
+      "name": "Linked skeleton / Introduction",
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "bounds": {
+        "x": 2296,
+        "y": 6046,
+        "width": 620,
+        "height": 24
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982be",
+      "name": "Linked skeleton / Navigation cue 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 2660,
+        "y": 6118,
+        "width": 240,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c3",
+      "name": "Linked skeleton card / Upload header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6208,
+        "width": 863.9999999999995,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c4",
+      "name": "Linked skeleton stack / Upload fields",
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "bounds": {
+        "x": 2320,
+        "y": 6300,
+        "width": 863.9999999999995,
+        "height": 217.27999999999975
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c5",
+      "name": "Linked skeleton card / Results header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6652,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c6",
+      "name": "Linked skeleton card / Result 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6748,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c7",
+      "name": "Linked skeleton card / Result 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6824,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c8",
+      "name": "Linked skeleton card / Result 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6900,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982c9",
+      "name": "Linked skeleton card / Result 4",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 6976,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982ca",
+      "name": "Linked skeleton card / Result 5",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 2320,
+        "y": 7052,
+        "width": 864.0000000000005,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab44",
+      "name": "Linked skeleton / Eyebrow",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 1168,
+        "y": 8300,
+        "width": 200,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab45",
+      "name": "Linked skeleton / Product title",
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "bounds": {
+        "x": 1168,
+        "y": 8336,
+        "width": 300,
+        "height": 20
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab46",
+      "name": "Linked skeleton / Introduction",
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "bounds": {
+        "x": 1168,
+        "y": 8378,
+        "width": 326,
+        "height": 24
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab49",
+      "name": "Linked skeleton / Navigation cue 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "bounds": {
+        "x": 1257,
+        "y": 8448,
+        "width": 180,
+        "height": 16
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab4e",
+      "name": "Linked skeleton card / Upload header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 8530,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab4f",
+      "name": "Linked skeleton stack / Upload fields",
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "bounds": {
+        "x": 1184,
+        "y": 8622,
+        "width": 326,
+        "height": 217.27999999999884
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab50",
+      "name": "Linked skeleton card / Results header",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 8966,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab51",
+      "name": "Linked skeleton card / Result 1",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9062,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab52",
+      "name": "Linked skeleton card / Result 2",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9138,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab53",
+      "name": "Linked skeleton card / Result 3",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9214,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab54",
+      "name": "Linked skeleton card / Result 4",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9290,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "220f6449-533e-815b-8008-ad9958d032a2",
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab55",
+      "name": "Linked skeleton card / Result 5",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 1184,
+        "y": 9366,
+        "width": 326,
+        "height": 57.600000000000364
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    },
+    {
+      "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+      "id": "92c1c225-95fb-802e-8008-aeab97b51753",
+      "name": "Foundation / Loading / Participant card",
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "bounds": {
+        "x": 5620,
+        "y": 1654,
+        "width": 540,
+        "height": 58
+      },
+      "effectiveVisible": true,
+      "overflow": []
+    }
+  ],
+  "geometryAdjustments": [
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe12",
+      "from": 240,
+      "to": 200
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe15",
+      "from": 400,
+      "to": 300
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe18",
+      "from": 620,
+      "to": 326
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe1b",
+      "from": 240,
+      "to": 180
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe3c",
+      "from": 516,
+      "to": 326
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe3f",
+      "from": 290,
+      "to": 226
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe41",
+      "from": 516,
+      "to": 326
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe44",
+      "from": 290,
+      "to": 226
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe46",
+      "from": 516,
+      "to": 326
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe49",
+      "from": 290,
+      "to": 226
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe4b",
+      "from": 516,
+      "to": 326
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4fe4e",
+      "from": 290,
+      "to": 226
+    }
+  ],
+  "libraryAcknowledged": true,
+  "oldPaletteCount": 0,
+  "existingLinkedSamplesOnly": true,
+  "fullStudentLoadingCompositionPending": true,
+  "humanAccepted": false
+}

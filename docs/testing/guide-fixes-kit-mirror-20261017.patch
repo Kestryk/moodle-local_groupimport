@@ -1,0 +1,320 @@
+diff --git a/guide/amd/src/easyedu_guide.js b/guide/amd/src/easyedu_guide.js
+index d5283282..ce986666 100644
+--- a/guide/amd/src/easyedu_guide.js
++++ b/guide/amd/src/easyedu_guide.js
+@@ -180,7 +180,7 @@ const easeGuideScroll = progress => {
+     1 - Math.pow(-2 * safeProgress + 2, 3) / 2;
+ };
+ 
+-const animateScrollTo = (root, scroller, top, duration = 520) => {
++const animateScrollTo = (root, scroller, top, duration = 520, onComplete = () => {}) => {
+   const reducedMotion = getScrollBehavior(root) === 'auto';
+   const isWindow = scroller === window;
+   const getCurrent = () => isWindow ? window.scrollY : scroller.scrollTop;
+@@ -201,6 +201,7 @@ const animateScrollTo = (root, scroller, top, duration = 520) => {
+ 
+   if (reducedMotion || Math.abs(distance) < 1) {
+     setCurrent(targetTop);
++    onComplete();
+     return;
+   }
+ 
+@@ -226,6 +227,7 @@ const animateScrollTo = (root, scroller, top, duration = 520) => {
+       window.requestAnimationFrame(step);
+     } else {
+       root.easyeduGuideScrollers.delete(scroller);
++      onComplete();
+     }
+   };
+   window.requestAnimationFrame(step);
+@@ -701,17 +703,29 @@ const clearHighlightRefresh = root => {
+   root.easyeduGuideRefreshShouldDock = false;
+ };
+ 
++// Workspace cards may be replaced when a dialog closes or selection clears.
++// Resolve the active step again instead of retaining a detached control.
++const resolveActiveChecklistTarget = root => {
++  const checklist = root.querySelector(SELECTORS.checklist);
++  const config = root.easyeduGuideConfig;
++  if (!checklist || checklist.hidden || checklist.classList.contains('is-complete') || !config) {
++    return null;
++  }
++  const active = checklist.querySelector('[data-easyedu-guide-step-id].is-active:not(.is-complete)');
++  const steps = config.paths[checklist.getAttribute('data-easyedu-guide-path')] || [];
++  const step = active && steps.find(item => item.id === active.getAttribute('data-easyedu-guide-step-id'));
++  return resolveStepHighlightTarget(config, step);
++};
++
+ const observeHighlightedTarget = (root, target) => {
+   if (!window.MutationObserver) {
+     return;
+   }
+   if (!root.easyeduGuideMutationObserver) {
+     root.easyeduGuideMutationObserver = new MutationObserver(() => {
+-      if (!isVisibleElement(root.easyeduGuideCurrentTarget)) {
+-        clearHighlight(root);
+-        return;
+-      }
+-      scheduleHighlightRefresh(root, root.easyeduGuideCurrentTarget, true);
++      const current = isVisibleElement(root.easyeduGuideCurrentTarget) ? root.easyeduGuideCurrentTarget :
++        resolveActiveChecklistTarget(root);
++      scheduleHighlightRefresh(root, current, true);
+     });
+   }
+ 
+@@ -825,8 +839,7 @@ const scheduleHighlightAutoHide = (root, delay) => {
+ 
+ const scheduleHighlightRefresh = (root, target, shouldDock = true) => {
+   if (target && !isVisibleElement(target)) {
+-    clearHighlight(root);
+-    return;
++    target = resolveActiveChecklistTarget(root);
+   }
+   // A targetless viewport refresh must not erase an explicit target queued
+   // by the current step before its first paint (notably after reduced scroll).
+@@ -837,7 +850,8 @@ const scheduleHighlightRefresh = (root, target, shouldDock = true) => {
+   }
+ 
+   root.easyeduGuideRefreshFrame = window.requestAnimationFrame(() => {
+-    const refreshTarget = root.easyeduGuideRefreshTarget || root.easyeduGuideCurrentTarget;
++    const queued = root.easyeduGuideRefreshTarget || root.easyeduGuideCurrentTarget;
++    const refreshTarget = isVisibleElement(queued) ? queued : resolveActiveChecklistTarget(root);
+     root.easyeduGuideRefreshFrame = null;
+     if (!isVisibleElement(refreshTarget)) {
+       clearHighlight(root);
+@@ -856,10 +870,11 @@ const scheduleHighlightRefreshBurst = (root, target, shouldDock = true) => {
+   }
+   const startTime = performance.now();
+   const refresh = now => {
++    // A sheet or dialog may replace the initial cue while scrolling settles.
++    // Keep following the newest requested control rather than restoring the old one.
++    target = root.easyeduGuideRefreshTarget || root.easyeduGuideCurrentTarget || target;
+     if (!isVisibleElement(target)) {
+-      root.easyeduGuideRefreshBurstFrame = null;
+-      clearHighlight(root);
+-      return;
++      target = resolveActiveChecklistTarget(root);
+     }
+     scheduleHighlightRefresh(root, target, shouldDock);
+     if (now - startTime < 800) {
+@@ -1001,6 +1016,9 @@ const dockChecklistAwayFromTarget = (root, target) => {
+   }
+   // A fold made for this same target stays (re-renders must not make it blink).
+   if (checklist.classList.contains(CHECKLIST_AVOIDING_CLASS) && root.easyeduGuideAvoidTarget === target) {
++    // Folding can finish after the first dock measurement. Keep the fold, but
++    // recheck the now smaller panel against a moving sheet or control.
++    dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+     return;
+   }
+   unfoldAvoidingChecklist(root, checklist);
+@@ -1197,8 +1215,13 @@ const isScrollableContainer = element => {
+     element.scrollHeight > element.clientHeight + 2;
+ };
+ 
+-const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0) => {
++const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0, onComplete = () => {}) => {
+   let scrolled = false;
++  let pending = 0;
++  const settled = () => {
++    pending--;
++    if (pending === 0) { onComplete(); }
++  };
+   let parent = target.parentElement;
+ 
+   while (parent && parent !== document.body && parent !== document.documentElement) {
+@@ -1220,7 +1243,8 @@ const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0) =>
+ 
+       nextTop = Math.max(0, Math.min(nextTop, parent.scrollHeight - parent.clientHeight));
+       if (Math.abs(nextTop - parent.scrollTop) > 1) {
+-        animateScrollTo(root, parent, nextTop, 520);
++        pending++;
++        animateScrollTo(root, parent, nextTop, 520, settled);
+         scrolled = true;
+       }
+     }
+@@ -1237,11 +1261,18 @@ const scrollToTarget = (root, target, options = {}) => {
+   }
+ 
+   clearHighlightAutoHideTimer(root);
++  // A new step supersedes its predecessor before scrolling, including instant
++  // reduced/minimal scrolling that finishes before the next highlight frame.
++  root.easyeduGuideRefreshTarget = target;
+   dockChecklistAwayFromTarget(root, target);
+ 
+   const topOffset = getScrollTopOffset();
+   const checklistBottomClearance = getCompactChecklistBottomClearance(root);
+-  const scrolledInnerContainer = scrollScrollableAncestorsToTarget(root, target, checklistBottomClearance);
++  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
++  const bottomOffset = Math.max(
++    Math.min(Math.max(viewportHeight * 0.18, 110), 180),
++    checklistBottomClearance
++  );
+ 
+   const alignWindow = () => {
+     if (!isVisibleElement(target)) {
+@@ -1249,11 +1280,6 @@ const scrollToTarget = (root, target, options = {}) => {
+       return;
+     }
+     const rect = target.getBoundingClientRect();
+-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+-    const bottomOffset = Math.max(
+-      Math.min(Math.max(viewportHeight * 0.18, 110), 180),
+-      checklistBottomClearance
+-    );
+     const usableHeight = Math.max(160, viewportHeight - topOffset - bottomOffset);
+     const needsScroll = rect.top < topOffset ||
+       rect.bottom > viewportHeight - bottomOffset ||
+@@ -1264,9 +1290,14 @@ const scrollToTarget = (root, target, options = {}) => {
+     }
+   };
+ 
+-  if (scrolledInnerContainer) {
+-    setTrackedTimeout(root, alignWindow, getScrollBehavior(root) === 'smooth' ? 280 : 0);
+-  } else {
++  // Measure the outer scroll only after inner scrolling actually finishes.
++  const epoch = root.easyeduGuidePathEpoch || 0;
++  const alignAfterScroll = () => {
++    if (epoch === (root.easyeduGuidePathEpoch || 0) && root.easyeduGuideRefreshTarget === target) {
++      alignWindow();
++    }
++  };
++  if (!scrollScrollableAncestorsToTarget(root, target, bottomOffset, alignAfterScroll)) {
+     alignWindow();
+   }
+ 
+@@ -2142,7 +2173,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
+     const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+     const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+     const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+-    await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
++    let reading = Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
++    // Budget actual reading phases, on the same pausable clock at every Motion
++    // level. Desktop Add has two phases (no confirmation); inspection has five.
++    // Keep the illustrated result on screen, never add a second animation loop.
++    if (kind === 'membership' && mode === 'add' && !compact) {
++      reading += 5000;
++    } else if (kind === 'inspection') {
++      reading = Math.max(minimum - 350, reading - 350);
++    } else if (kind === 'membership' && mode === 'move' && compact) {
++      reading += 250;
++    }
++    await wait(reading);
+   };
+   root.easyeduGuideSceneStop = () => {
+     controller.abort();
+@@ -2528,52 +2570,54 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
+         }));
+         if (controller.signal.aborted) { return; }
+       }
+-    } else if (!compact && !still) {
++    } else if (!compact) {
+       await phase('menu');
+       if (controller.signal.aborted) { return; }
+-      const ghost = person.cloneNode(true);
+-      ghost.removeAttribute('data-guide-person');
+-      ghost.setAttribute('data-guide-ghost', '');
+-      ghost.setAttribute('aria-hidden', 'true');
+-      ghost.querySelectorAll('small').forEach(node => node.remove());
+-      ghost.classList.remove('is-selected');
+-      const badge = document.createElement('span');
+-      badge.className = 'easyedu-guide-scene__drag-badge';
+-      const grip = document.createElement('span');
+-      grip.className = 'fa fa-grip-vertical';
+-      badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
+-      ghost.appendChild(badge);
+-      stage.appendChild(ghost);
+-      const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
+-      ghost.style.left = `${a.left - b.left}px`;
+-      ghost.style.top = `${a.top - b.top}px`;
+-      await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
+-      const destinationNode = stage.querySelector('[data-guide-destination]');
+-      const destination = destinationNode.getBoundingClientRect();
+-      const dx = destination.left - a.left, dy = destination.top - a.top + 32;
+-      const startPoint = {...cursorPoint};
+-      // One displacement, duration and easing for ghost and pointer. Track
+-      // actual animated paint to reveal the destination only while hovering.
+-      const trackDrop = () => {
+-        if (controller.signal.aborted || !ghost.isConnected) { return; }
+-        const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
+-        destinationNode.classList.toggle('is-guide-drop-target',
+-          card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
+-        dropFrame = requestAnimationFrame(trackDrop);
+-      };
+-      trackDrop();
+-      await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
+-        {transform: `translate(${dx}px,${dy}px)`}], 1200),
+-        travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
+-      if (controller.signal.aborted) { return; }
+-      cancelAnimationFrame(dropFrame); dropFrame = null;
+-      member.hidden = false;
+-      await wait(220);
+-      destinationNode.classList.remove('is-guide-drop-target');
+-      await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
+-        {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
+-      await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
+-      ghost.remove();
++      if (!still) {
++        const ghost = person.cloneNode(true);
++        ghost.removeAttribute('data-guide-person');
++        ghost.setAttribute('data-guide-ghost', '');
++        ghost.setAttribute('aria-hidden', 'true');
++        ghost.querySelectorAll('small').forEach(node => node.remove());
++        ghost.classList.remove('is-selected');
++        const badge = document.createElement('span');
++        badge.className = 'easyedu-guide-scene__drag-badge';
++        const grip = document.createElement('span');
++        grip.className = 'fa fa-grip-vertical';
++        badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
++        ghost.appendChild(badge);
++        stage.appendChild(ghost);
++        const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
++        ghost.style.left = `${a.left - b.left}px`;
++        ghost.style.top = `${a.top - b.top}px`;
++        await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
++        const destinationNode = stage.querySelector('[data-guide-destination]');
++        const destination = destinationNode.getBoundingClientRect();
++        const dx = destination.left - a.left, dy = destination.top - a.top + 32;
++        const startPoint = {...cursorPoint};
++        // One displacement, duration and easing for ghost and pointer. Track
++        // actual animated paint to reveal the destination only while hovering.
++        const trackDrop = () => {
++          if (controller.signal.aborted || !ghost.isConnected) { return; }
++          const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
++          destinationNode.classList.toggle('is-guide-drop-target',
++            card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
++          dropFrame = requestAnimationFrame(trackDrop);
++        };
++        trackDrop();
++        await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
++          {transform: `translate(${dx}px,${dy}px)`}], 1200),
++          travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
++        if (controller.signal.aborted) { return; }
++        cancelAnimationFrame(dropFrame); dropFrame = null;
++        member.hidden = false;
++        await wait(220);
++        destinationNode.classList.remove('is-guide-drop-target');
++        await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
++          {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
++        await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
++        ghost.remove();
++      }
+     }
+     if (controller.signal.aborted) { return; }
+     member.hidden = false;
+diff --git a/scss/easyedu/components/_guide-discovery.scss b/scss/easyedu/components/_guide-discovery.scss
+index 0a889b77..17272a05 100644
+--- a/scss/easyedu/components/_guide-discovery.scss
++++ b/scss/easyedu/components/_guide-discovery.scss
+@@ -1256,8 +1256,10 @@
+     // default (right); the docking class set by the controller still wins.
+     padding: 1rem;
+     gap: 0.75rem;
+-    left: auto;
+-    right: 1.25rem;
++    &:not(.is-docked-left):not(.is-docked-right) {
++      left: auto;
++      right: 1.25rem;
++    }
+     text-align: start;
+     .easyedu-guided-panel__header {
+       align-items: center;

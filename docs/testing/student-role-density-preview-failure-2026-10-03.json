@@ -1,0 +1,20 @@
+{
+  "batch": "EED-UI-2026-0073",
+  "runId": "easystud-authenticated-20261003T134332397Z-42960",
+  "consumerRevision": "7bd561fe127080e223cbebf63dc2019770ad9922",
+  "runtimeRevision": "b3fd135cac47a6338473e5b45116c7141b80b770",
+  "specBlob": "f48298179375bb473f888330123eda6df4e6b453",
+  "fixtureBlob": "eb6694c46000ea7691c47f348f8928af70f179ff",
+  "status": "failed",
+  "failure": "The candidate counted all fourteen DOM rows after searching QA:, including two correctly hidden pre-existing roles. It expected twelve matching visible rows.",
+  "sourceEvidence": "Canonical searchable_choices filter toggles button.hidden; it deliberately retains every original option and row.",
+  "repair": "Count the twelve visible matching rows, retain all native selection/filter/geometry assertions and preserve this immutable failed run. Persist detailed cleanup hashes in future fixture manifests.",
+  "fixtureSetupCompleted": true,
+  "fixtureCleanupComplete": true,
+  "preExistingRelationshipsUnchanged": true,
+  "credentialsCleared": true,
+  "fixtureLeaseReleased": true,
+  "outerRuntimeLeaseReleased": true,
+  "ownedChildStopped": true,
+  "humanVisualValidated": false
+}

@@ -1,0 +1,208 @@
+{
+  "publication": {
+    "providers": [
+      {
+        "id": "cf371b29-2e8e-8011-8008-bceae793a87e",
+        "path": "EasyEdu / Forms / Searchable multiple choice / S",
+        "state": "Disabled",
+        "main": "cf371b29-2e8e-8011-8008-bcea8f2c72d6",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+        "path": "EasyEdu / Forms / Searchable multiple choice / Compact touch",
+        "state": "Open",
+        "main": "cf371b29-2e8e-8011-8008-bcea9012992f",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb9f6a93cc2b",
+        "path": "EasyEdu / Forms / Searchable multiple choice / Responsive",
+        "state": "Open",
+        "main": "a301101d-ddc2-807b-8008-bb9f6a614f33",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb9f590d2922",
+        "path": "EasyEdu / Forms / Searchable multiple choice / M",
+        "state": "Closed",
+        "main": "a301101d-ddc2-807b-8008-bb9f58f48c94",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb9f892f1537",
+        "path": "EasyEdu / Forms / Searchable multiple choice / M",
+        "state": "Focus-visible",
+        "main": "a301101d-ddc2-807b-8008-bb9f89178423",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb9f597dfc6f",
+        "path": "EasyEdu / Forms / Searchable multiple choice / M",
+        "state": "No results",
+        "main": "a301101d-ddc2-807b-8008-bb9f595a0a6c",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb9f51fafbcd",
+        "path": "EasyEdu / Forms / Searchable multiple choice / M",
+        "state": "Open",
+        "main": "a301101d-ddc2-807b-8008-bb9f51c3cbdc",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bb9f8a8fdf00",
+        "path": "EasyEdu / Forms / Searchable multiple choice / M",
+        "state": "Disabled",
+        "main": "a301101d-ddc2-807b-8008-bb9f8a7a5689",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "cf371b29-2e8e-8011-8008-bceae78cb8c1",
+        "path": "EasyEdu / Forms / Searchable multiple choice / S",
+        "state": "Focus-visible",
+        "main": "cf371b29-2e8e-8011-8008-bcea8f0ea72e",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+        "path": "EasyEdu / Forms / Searchable multiple choice / S",
+        "state": "Open",
+        "main": "cf371b29-2e8e-8011-8008-bcea1c286b52",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "cf371b29-2e8e-8011-8008-bceae7998c73",
+        "path": "EasyEdu / Forms / Searchable multiple choice / S",
+        "state": "No results",
+        "main": "cf371b29-2e8e-8011-8008-bcea8f4da07f",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      },
+      {
+        "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "path": "EasyEdu / Forms / Searchable multiple choice / S",
+        "state": "Closed",
+        "main": "cf371b29-2e8e-8011-8008-bce9a94167fc",
+        "page": "81455adb-6787-8068-8008-9ce9b711604d"
+      }
+    ],
+    "guides": [
+      {
+        "page": "81455adb-6787-8068-8008-9ce9b711604d",
+        "board": "83ffce63-041b-803e-8008-bf30283568e7",
+        "copies": [
+          {
+            "id": "83ffce63-041b-803e-8008-bf31f276957a",
+            "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+            "width": 359.9999999999999,
+            "height": 32
+          },
+          {
+            "id": "83ffce63-041b-803e-8008-bf31f2999b8d",
+            "component": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+            "width": 360,
+            "height": 194
+          }
+        ],
+        "archived": [
+          "83ffce63-041b-803e-8008-bf3028e3906c",
+          "83ffce63-041b-803e-8008-bf3028f651b6"
+        ]
+      },
+      {
+        "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+        "board": "83ffce63-041b-803e-8008-bf3029a07709",
+        "copies": [
+          {
+            "id": "83ffce63-041b-803e-8008-bf31f481bca0",
+            "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+            "width": 359.9999999999999,
+            "height": 32
+          },
+          {
+            "id": "83ffce63-041b-803e-8008-bf31f49c4a1b",
+            "component": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+            "width": 360,
+            "height": 194
+          }
+        ],
+        "archived": [
+          "83ffce63-041b-803e-8008-bf302a53e5ff",
+          "83ffce63-041b-803e-8008-bf302a684e33"
+        ]
+      }
+    ],
+    "validation": []
+  },
+  "standardReadback": {
+    "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+    "board": "83ffce63-041b-803e-8008-bf3029a07709",
+    "width": 1600,
+    "height": 440,
+    "overflow": [],
+    "texts": [
+      {
+        "id": "83ffce63-041b-803e-8008-bf3029b6d9d6",
+        "name": "Text",
+        "text": "Multiple choices — canonical framed Motion / all densities"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf3029e668b9",
+        "name": "Text",
+        "text": "Framed consumers use the existing shared controller; preserve every native selected value, compact field and clear/search action."
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf302a08fa65",
+        "name": "Text",
+        "text": "Closed / first trigger row stable"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf302a2a00a9",
+        "name": "Text",
+        "text": "Open / paired360ms panel and chevron"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf302a7e09f4",
+        "name": "Text",
+        "text": "Close: outside margin/padding/border collapse together. Hold the last zero-height frame until hidden cleanup; no full-list flash."
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf302aa174d4",
+        "name": "Text",
+        "text": "S/M/L share policy, not fixed widths. Reduced Motion remains static; parent More Filters and actual native values stay authoritative."
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf31f481bca3",
+        "name": "Text",
+        "text": "2 selected"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf31f49c4a1e",
+        "name": "Text",
+        "text": "2 selected"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf31f49c4a25",
+        "name": "Option label 1",
+        "text": "Group A"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf31f49c4a27",
+        "name": "Option label 2",
+        "text": "Workshop B"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf31f49c9246",
+        "name": "Option label 3",
+        "text": "Project team"
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf31f49c9249",
+        "name": "Placeholder / Default",
+        "text": "Search options"
+      }
+    ],
+    "validation": []
+  },
+  "note": "Successor qualifies searchable multiple family instead of generic Multi-select; generic illustrations retained hidden. No source paint/geometry changes. Source and Product remain separate from native/human proof."
+}

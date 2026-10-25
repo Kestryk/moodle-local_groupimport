@@ -1,0 +1,161 @@
+// Generic editable tables and review controls from Foundations, not source
+// hierarchy tables. Business validation and row selection remain consumer-owned.
+@use "components/focus";
+@use "components/animations";
+@use "components/forms";
+@use "components/text-fields";
+@use "components/notices";
+@use "components/tables";
+@use "components/typography" as type;
+@use "foundation-classes" as foundation;
+@use "report-palette-classes" as reports;
+
+@mixin data-classes {
+  .easyedu-ui .easyedu-button--neutral {
+    @include foundation.foundation-button;
+    background: var(--easyedu-surface);
+    border-color: var(--easyedu-deposit-border);
+    color: var(--easyedu-text);
+    &:hover { background: var(--easyedu-primary-soft); }
+  }
+  .easyedu-ui .easyedu-button--icon {
+    @include foundation.foundation-button(true);
+    inline-size: 2rem;
+    min-inline-size: 2rem;
+    block-size: 2rem;
+    padding: 0;
+    .fa { margin: 0; font-size: 0.75rem; line-height: 1; }
+  }
+  .easyedu-ui .easyedu-notice {
+    @include notices.notice;
+  }
+  .easyedu-ui .easyedu-notice--warning {
+    @include notices.notice-warning;
+  }
+  .easyedu-ui .easyedu-choice {
+    @include forms.segmented-choice;
+    & { margin: 0; min-width: 0; }
+    .easyedu-segmented-choice__label,
+    .easyedu-segmented-choice__surface strong { @include type.type-control-label; }
+    .easyedu-segmented-choice__surface small { @include type.type-caption; }
+    .easyedu-segmented-choice__surface { min-height: 4.25rem; }
+  }
+  .easyedu-ui .easyedu-table-toolbar {
+    align-items: center;
+    background: var(--easyedu-surface-soft);
+    border: 0.0625rem solid var(--easyedu-semantic-border-primary);
+    border-radius: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.625rem;
+  }
+  .easyedu-ui .easyedu-search {
+    @include forms.search-field;
+    flex: 0 1 31rem;
+    min-width: 0;
+    margin: 0;
+    input {
+      background: transparent;
+      @include text-fields.field-text;
+      min-height: 2.3rem;
+      width: 100%;
+    }
+  }
+  .easyedu-ui .easyedu-data-table {
+    background: var(--easyedu-surface);
+    border: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--easyedu-secondary-text);
+    font: 400 0.8125rem/1.2 var(--easyedu-font-family-ui);
+    margin: 0;
+    width: 100%;
+    th {
+      background: var(--easyedu-information-surface);
+      color: var(--easyedu-primary-strong);
+      font: 700 0.6875rem/1.2 var(--easyedu-font-family-ui);
+      height: 2.5rem;
+      // Kevin K23-XX: column titles must centre within their header cell,
+      // consistently across every EasyStud table (this is the one shared
+      // Kit data-table component).
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+    td { background: var(--easyedu-surface); height: 4rem; }
+    th, td {
+      border: 0;
+      border-block: 0.0625rem solid var(--easyedu-deposit-border);
+      padding: 0.5rem 0.75rem;
+      vertical-align: middle;
+    }
+    tr + tr td { border-block-start: 0; }
+    th:first-child, td:first-child {
+      border-inline-start: 0.0625rem solid var(--easyedu-deposit-border);
+      border-start-start-radius: 0.75rem;
+      border-end-start-radius: 0.75rem;
+      text-align: center;
+      width: 3rem;
+    }
+    th:last-child, td:last-child {
+      border-inline-end: 0.0625rem solid var(--easyedu-deposit-border);
+      border-start-end-radius: 0.75rem;
+      border-end-end-radius: 0.75rem;
+    }
+    input[type="text"] {
+      background: var(--easyedu-surface);
+      border: 0.0625rem solid var(--easyedu-control-border);
+      border-radius: 0.58rem;
+      color: var(--easyedu-primary-strong);
+      font: inherit;
+      height: 2.5rem;
+      min-width: 10rem;
+      padding: 0.625rem 0.75rem;
+      width: 100%;
+      &:focus { @include focus.ring; }
+
+      // K23-84 pattern (Guide Mass Import demo scene, 25/10/2026): the demo table
+      // reuses this same input with `readonly`, and a host theme that greys every
+      // readonly/disabled field with !important (DVL 4.5 `_forms.scss`, the same
+      // root cause as K23-84/86) otherwise erases the Kit paint entirely, since
+      // this recipe had no readonly/disabled declaration of its own to outrank it.
+      // `.easyedu-data-table` has no consumer outside Mass Import, so this is
+      // always-on, not a new opt-in parameter.
+      &:read-only,
+      &:disabled {
+        background: var(--easyedu-surface) !important;
+        border-color: var(--easyedu-control-border) !important;
+        color: var(--easyedu-primary-strong) !important;
+      }
+    }
+    // Row selection uses the one Kit selection checkbox
+    // (.easyedu-selection-checkbox, foundation classes), never a native repaint (K23-73).
+    .easyedu-selection-checkbox { vertical-align: middle; }
+  }
+  .easyedu-ui .easyedu-data-table tr.is-warning td { background: var(--easyedu-warning-soft); }
+  .easyedu-ui .easyedu-status {
+    @include tables.status-label-layout;
+
+    background: var(--easyedu-accent-soft);
+    border: 0.0625rem solid var(--easyedu-semantic-border-success);
+    border-radius: 62.4375rem;
+    color: var(--easyedu-accent);
+    font: 500 0.6875rem/1.2 var(--easyedu-font-family-ui);
+    min-width: 5.5rem;
+  }
+  .easyedu-ui .easyedu-status--warning {
+    background: var(--easyedu-warning-soft);
+    border-color: var(--easyedu-semantic-border-warning);
+    color: var(--easyedu-warning);
+  }
+  @media (max-width: 40rem) {
+    .easyedu-ui .easyedu-table-toolbar { align-items: stretch; flex-direction: column; }
+    .easyedu-ui .easyedu-search { flex: auto; }
+    .easyedu-ui .easyedu-table-toolbar .easyedu-button,
+    .easyedu-ui .easyedu-table-toolbar .foundation-selection-action { width: 100%; }
+    .easyedu-ui .easyedu-choice .easyedu-segmented-choice__options { grid-template-columns: minmax(0, 1fr); }
+  }
+  @include reports.report-palette-classes;
+}

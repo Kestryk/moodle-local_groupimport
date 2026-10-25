@@ -1,0 +1,197 @@
+{
+  "lot": "R10-27",
+  "status": "passed",
+  "sourceProduct": "bc9946cc6f691a2ff7819f7a39e0f9522790af67",
+  "runtimeHead": "1458226214d61d6318fba176077745ab10365390",
+  "scenario": "participant-overflow-settled-scroll-native.spec.js",
+  "languages": [
+    "en",
+    "fr"
+  ],
+  "widths": [
+    1280
+  ],
+  "cases": 2,
+  "runs": [
+    {
+      "runId": "easystud-authenticated-20261011T114940948Z-49504",
+      "rows": [
+        {
+          "width": 1280,
+          "hidden": 2,
+          "label": "+2",
+          "cycles": [
+            {
+              "cycle": 0,
+              "before": {
+                "y": 0,
+                "expanded": "0",
+                "ancestors": [
+                  2323
+                ]
+              },
+              "afterY": 0,
+              "frames": 22,
+              "ancestorStart": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2323,
+                  "scrollHeight": 3962,
+                  "clientHeight": 640
+                }
+              ],
+              "ancestorEnd": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2322,
+                  "scrollHeight": 3990,
+                  "clientHeight": 640
+                }
+              ],
+              "cardStartHeight": 163.28125,
+              "cardEndHeight": 191.265625
+            },
+            {
+              "cycle": 1,
+              "before": {
+                "y": 0,
+                "expanded": "1",
+                "ancestors": [
+                  2322
+                ]
+              },
+              "afterY": 0,
+              "frames": 12,
+              "ancestorStart": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2322,
+                  "scrollHeight": 3990,
+                  "clientHeight": 640
+                }
+              ],
+              "ancestorEnd": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2322,
+                  "scrollHeight": 3962,
+                  "clientHeight": 640
+                }
+              ],
+              "cardStartHeight": 191.265625,
+              "cardEndHeight": 163.28125
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "blocked": [],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      }
+    },
+    {
+      "runId": "easystud-authenticated-20261011T115423666Z-532",
+      "rows": [
+        {
+          "width": 1280,
+          "hidden": 2,
+          "label": "+2",
+          "cycles": [
+            {
+              "cycle": 0,
+              "before": {
+                "y": 0,
+                "expanded": "0",
+                "ancestors": [
+                  2323
+                ]
+              },
+              "afterY": 0,
+              "frames": 15,
+              "ancestorStart": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2323,
+                  "scrollHeight": 3962,
+                  "clientHeight": 640
+                }
+              ],
+              "ancestorEnd": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2323,
+                  "scrollHeight": 3990,
+                  "clientHeight": 640
+                }
+              ],
+              "cardStartHeight": 163.28125,
+              "cardEndHeight": 191.265625
+            },
+            {
+              "cycle": 1,
+              "before": {
+                "y": 0,
+                "expanded": "1",
+                "ancestors": [
+                  2323
+                ]
+              },
+              "afterY": 0,
+              "frames": 20,
+              "ancestorStart": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2323,
+                  "scrollHeight": 3990,
+                  "clientHeight": 640
+                }
+              ],
+              "ancestorEnd": [
+                {
+                  "tag": "DIV",
+                  "classes": "drawers drag-container local-course-banner-builder-fullwidth-scroll-frame",
+                  "y": 2323,
+                  "scrollHeight": 3962,
+                  "clientHeight": 640
+                }
+              ],
+              "cardStartHeight": 191.265625,
+              "cardEndHeight": 163.28125
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "blocked": [],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      }
+    }
+  ],
+  "businessWrites": false,
+  "acceptedMotionUnchanged": true,
+  "humanAccepted": false,
+  "limitations": [
+    "Desktop lower-card first disclosure only; mobile/full keyboard/reversal remain separate.",
+    "Await real preceding density Motion before starting disclosure under test."
+  ],
+  "diagnosticsPreserved": [
+    "easystud-authenticated-20261011T113837728Z-928",
+    "easystud-authenticated-20261011T114008437Z-49632",
+    "easystud-authenticated-20261011T114156074Z-23636",
+    "easystud-authenticated-20261011T114546176Z-512",
+    "easystud-authenticated-20261011T114754170Z-48004"
+  ]
+}

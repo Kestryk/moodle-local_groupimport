@@ -1,0 +1,13 @@
+// EasyEdu UI kit public entry point.
+//
+// Import this from plugin SCSS with:
+//
+// @use "easyedu" as easyedu;
+//
+// The forwarded API is intentionally Sass-mixin based. The kit does not emit
+// component CSS unless a plugin includes a mixin under its own root selector.
+
+@forward "tokens";
+@forward "scale";
+@forward "tones";
+@forward "components";

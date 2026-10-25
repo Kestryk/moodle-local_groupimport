@@ -1,0 +1,861 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "checkpoint": "student-modal-footers-2026-10-03",
+  "scope": "Right-aligned native modal footer actions with paired density. Destination and entity regular; Message preserves compact density. Labels keep content-dependent widths. Existing commands, options, readonly Participant, body layouts and Motion unchanged.",
+  "status": {
+    "canonicalModulesIdentical": true,
+    "pairedPenpotReadback": true,
+    "agentCapturesInspected": true,
+    "authenticatedRuntimeTested": false,
+    "humanVisualValidated": false,
+    "fullBodyParity": false
+  },
+  "source": {
+    "kitBranch": "work/port4719pg3/eed-ui-2026-0073-kit-phase0-mass-admin",
+    "kitBase": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
+    "consumerBranch": "work/port4719pg3/easystud-foundations-student-management-20260928",
+    "consumerBase": "3c5f9ebda69efd89bc13607d46b9918a381c1e73",
+    "uncommittedCandidate": true,
+    "modules": {
+      "scss/easyedu/_foundation-classes.scss": "90c09595d954c299c3f7273a57eec09bafe80a6d",
+      "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540",
+      "scss/easyedu/adapters/_moodle-message-dialog.scss": "399ce8afd30f8e8f24453b95bbaf9ca789269687"
+    },
+    "generatedCssBlob": "ef489ccc40b8d95e24a0650a3bc5dbef83455c41",
+    "scenarioBlobs": {
+      "student-entity-dialog-chrome.spec.js": "5c5516972b654a02de50494efbb217c21aceb5f0",
+      "student-move-dialog-audit.spec.js": "18ae29b4b300583b35b5d713da424d80a5e4875a",
+      "student-harmonisation-audit.spec.js": "0158281e10690f865d202459c34c37cc40670a57"
+    }
+  },
+  "foundations": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPage": "81455adb-6787-8068-8008-9ce6186bf6ef",
+    "standardPage": "2b150968-5877-802e-8008-97c286173199",
+    "pairs": [
+      {
+        "mainId": "d0b01e4e-5e95-8062-8008-babf575d1e2f",
+        "standardId": "d0b01e4e-5e95-8062-8008-babf8c3d00b6",
+        "providerId": "d0b01e4e-5e95-8062-8008-babf5ad09eeb",
+        "kind": "destination-desktop",
+        "inset": 20,
+        "visibleFingerprintMatch": true,
+        "differingIndices": [],
+        "width": 672,
+        "height": 258,
+        "buttons": [
+          {
+            "id": "d0b01e4e-5e95-8062-8008-babf8c3f5136",
+            "label": "Cancel",
+            "height": 37.59999999999991,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "rightInset": 197.4000000000002,
+            "labelContained": true,
+            "paintCenterDelta": -0.03749942928538985
+          },
+          {
+            "id": "d0b01e4e-5e95-8062-8008-babf8c3f5138",
+            "label": "Confirm selection",
+            "height": 37.600000000000364,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "rightInset": 20,
+            "labelContained": true,
+            "paintCenterDelta": -0.03749942928516248
+          }
+        ]
+      },
+      {
+        "mainId": "d0b01e4e-5e95-8062-8008-babf615327bd",
+        "standardId": "d0b01e4e-5e95-8062-8008-babf8cb7215c",
+        "providerId": "d0b01e4e-5e95-8062-8008-babf63999247",
+        "kind": "destination-narrow",
+        "inset": 20,
+        "visibleFingerprintMatch": true,
+        "differingIndices": [],
+        "width": 354.21875,
+        "height": 280.5,
+        "buttons": [
+          {
+            "id": "d0b01e4e-5e95-8062-8008-babf8cbca7a6",
+            "label": "Cancel",
+            "height": 37.600000000000364,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "rightInset": 197.4000000000001,
+            "labelContained": true,
+            "paintCenterDelta": -0.037499429285617225
+          },
+          {
+            "id": "d0b01e4e-5e95-8062-8008-babf8cbca7a8",
+            "label": "Confirm selection",
+            "height": 37.600000000000364,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "rightInset": 20,
+            "labelContained": true,
+            "paintCenterDelta": -0.037499429285617225
+          }
+        ]
+      },
+      {
+        "mainId": "db59201c-3dd6-8004-8008-bab0e3ca94ea",
+        "standardId": "db59201c-3dd6-8004-8008-bab11fd7aa9a",
+        "providerId": "db59201c-3dd6-8004-8008-bab0f942bdc9",
+        "kind": "message-desktop",
+        "inset": 16,
+        "visibleFingerprintMatch": true,
+        "differingIndices": [],
+        "width": 768.0000000000001,
+        "height": 544,
+        "buttons": [
+          {
+            "id": "db59201c-3dd6-8004-8008-bab11fdae1c9",
+            "label": "Cancel",
+            "height": 26,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "rightInset": 202.19999999999993,
+            "labelContained": true,
+            "paintCenterDelta": -0.40000009536743164
+          },
+          {
+            "id": "db59201c-3dd6-8004-8008-bab11fdae1cb",
+            "label": "Send message to 1 person",
+            "height": 26,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "rightInset": 16,
+            "labelContained": true,
+            "paintCenterDelta": -0.40000009536743164
+          }
+        ]
+      },
+      {
+        "mainId": "db59201c-3dd6-8004-8008-bab0e6bcd242",
+        "standardId": "db59201c-3dd6-8004-8008-bab1205e8920",
+        "providerId": "db59201c-3dd6-8004-8008-bab0fa00d117",
+        "kind": "message-narrow",
+        "inset": 16,
+        "visibleFingerprintMatch": true,
+        "differingIndices": [],
+        "width": 374,
+        "height": 395,
+        "buttons": [
+          {
+            "id": "db59201c-3dd6-8004-8008-bab120609119",
+            "label": "Cancel",
+            "height": 26,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "rightInset": 202.20000000000005,
+            "labelContained": true,
+            "paintCenterDelta": -0.40000009536743164
+          },
+          {
+            "id": "db59201c-3dd6-8004-8008-bab12060911b",
+            "label": "Send message to 1 person",
+            "height": 26,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "rightInset": 16,
+            "labelContained": true,
+            "paintCenterDelta": -0.40000009536743164
+          }
+        ]
+      }
+    ]
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "destination": [
+      {
+        "id": "774bdc38-f33d-8030-8008-bac0450d8eb8",
+        "kind": "participants-desktop",
+        "width": 672,
+        "height": 258,
+        "inset": 20,
+        "actionRightDelta": 1.1368683772161603e-13,
+        "heightSpread": 3.979039320256561e-13,
+        "buttons": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0452a16b6",
+            "label": "Cancel",
+            "width": 81.99999999999989,
+            "height": 37.599999999999966,
+            "x": 392.5999999999999,
+            "y": 203.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928550354,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac0452a16b6",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0452a8aac",
+            "label": "Move selected item",
+            "width": 167,
+            "height": 37.600000000000364,
+            "x": 484.9999999999999,
+            "y": 203.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928573091,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac0452a8aac",
+                "provider": "db59201c-3dd6-8004-8008-babe0d7923f8"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "774bdc38-f33d-8030-8008-bac04aa4f66f",
+        "kind": "groups-desktop",
+        "width": 672,
+        "height": 295,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 3.410605131648481e-13,
+        "buttons": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aa9e771",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.60000000000002,
+            "x": 392.5999999999999,
+            "y": 240.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928556038,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac04aa9e771",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac04aaa3fda",
+            "label": "Move selected item",
+            "width": 167,
+            "height": 37.600000000000364,
+            "x": 485,
+            "y": 240.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928573091,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac04aaa3fda",
+                "provider": "db59201c-3dd6-8004-8008-babe0d7923f8"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "774bdc38-f33d-8030-8008-bac070f23eb9",
+        "kind": "participants-mobile",
+        "width": 354.21875,
+        "height": 280.5,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 3.410605131648481e-13,
+        "buttons": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac07120cf5c",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.60000000000002,
+            "x": 74.81874999999991,
+            "y": 225.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928550354,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac07120cf5c",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac071222c17",
+            "label": "Move selected item",
+            "width": 167,
+            "height": 37.600000000000364,
+            "x": 167.21875,
+            "y": 225.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928573091,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac071222c17",
+                "provider": "db59201c-3dd6-8004-8008-babe0d7923f8"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "774bdc38-f33d-8030-8008-bac076c9960d",
+        "kind": "groups-mobile",
+        "width": 354.21875,
+        "height": 317.5,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 2.2737367544323206e-13,
+        "buttons": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce2177",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.600000000000136,
+            "x": 74.81874999999991,
+            "y": 262.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928573091,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac076ce2177",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac076ce4a40",
+            "label": "Move selected item",
+            "width": 167,
+            "height": 37.600000000000364,
+            "x": 167.21875,
+            "y": 262.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.03749942928573091,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac076ce4a40",
+                "provider": "db59201c-3dd6-8004-8008-babe0d7923f8"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "774bdc38-f33d-8030-8008-bac0d4f43016",
+        "kind": "no-groups",
+        "width": 354.21875,
+        "height": 280.5,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 2.2737367544323206e-13,
+        "buttons": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0d4fa2aba",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.600000000000136,
+            "x": 74.81874999999991,
+            "y": 225.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac0d4fa2aba",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac11c8389bf",
+            "label": "Move selected item",
+            "width": 167,
+            "height": 37.600000000000364,
+            "x": 167.21875,
+            "y": 225.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac11c8389bf",
+                "provider": "724138fb-4a17-80dc-8008-babe2f29f923"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "774bdc38-f33d-8030-8008-bac0db5d4046",
+        "kind": "no-groupings",
+        "width": 354.21875,
+        "height": 280.5,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 2.2737367544323206e-13,
+        "buttons": [
+          {
+            "id": "774bdc38-f33d-8030-8008-bac0db65f99a",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.600000000000136,
+            "x": 74.81874999999991,
+            "y": 225.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac0db65f99a",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "774bdc38-f33d-8030-8008-bac11d43a73c",
+            "label": "Move selected item",
+            "width": 167,
+            "height": 37.600000000000364,
+            "x": 167.21875,
+            "y": 225.9000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "774bdc38-f33d-8030-8008-bac11d43a73c",
+                "provider": "724138fb-4a17-80dc-8008-babe2f29f923"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "message": [
+      {
+        "id": "cef95197-06bc-809e-8008-aeffad54179b",
+        "kind": "message-desktop",
+        "width": 768.0000000000001,
+        "height": 544,
+        "inset": 16,
+        "actionRightDelta": 0,
+        "heightSpread": 0,
+        "buttons": [
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18d36388e",
+            "label": "Cancel",
+            "width": 63.799999999999955,
+            "height": 26,
+            "x": 502.0000000000002,
+            "y": 504.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.40000009536743164,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "db59201c-3dd6-8004-8008-bab18d36388e",
+                "provider": "db59201c-3dd6-8004-8008-baad9e9d12b0"
+              }
+            ]
+          },
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18d36f955",
+            "label": "Send message to 1 person",
+            "width": 175.79999999999995,
+            "height": 26,
+            "x": 576.2000000000002,
+            "y": 504.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.40000009536743164,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "db59201c-3dd6-8004-8008-bab18d36f955",
+                "provider": "db59201c-3dd6-8004-8008-baad74eeb767"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "01e728c3-f1ef-80b3-8008-b400db6681f1",
+        "kind": "message-mobile",
+        "width": 374,
+        "height": 395,
+        "inset": 16,
+        "actionRightDelta": 0,
+        "heightSpread": 0,
+        "buttons": [
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18fbb19eb",
+            "label": "Cancel",
+            "width": 63.80000000000018,
+            "height": 26,
+            "x": 107.99999999999955,
+            "y": 355.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.40000009536743164,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "db59201c-3dd6-8004-8008-bab18fbb19eb",
+                "provider": "db59201c-3dd6-8004-8008-baad9e9d12b0"
+              }
+            ]
+          },
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18fbbf9da",
+            "label": "Send message to 1 person",
+            "width": 175.80000000000018,
+            "height": 26,
+            "x": 182.19999999999982,
+            "y": 355.4000000000001,
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "fontWeight": "700",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.40000009536743164,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "db59201c-3dd6-8004-8008-bab18fbbf9da",
+                "provider": "db59201c-3dd6-8004-8008-baad74eeb767"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "entity": [
+      {
+        "id": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "kind": "participant",
+        "width": 820,
+        "height": 980,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 0,
+        "buttons": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bae5c435dde1",
+            "label": "Open native Moodle profile",
+            "width": 256,
+            "height": 37.59999999999991,
+            "x": 544,
+            "y": 902,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": 10.399999999999864,
+            "iconCenterDelta": 2.2737367544323206e-13,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae5c425edeb",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              },
+              {
+                "id": "253eab0b-b38c-802b-8008-bae5c57b3bd0",
+                "provider": "32eadb6d-165e-803e-8008-9891561ecb68"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "kind": "group",
+        "width": 820,
+        "height": 1180,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 0,
+        "buttons": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bae55cd1cb5a",
+            "label": "Save",
+            "width": 88,
+            "height": 37.600000000000364,
+            "x": 453.20000000000005,
+            "y": 1126,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": 10.399999999999977,
+            "iconCenterDelta": 0,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae55cc0850f",
+                "provider": "db59201c-3dd6-8004-8008-babe0d7923f8"
+              },
+              {
+                "id": "253eab0b-b38c-802b-8008-bae55e53d164",
+                "provider": "32eadb6d-165e-803e-8008-98918f8563f0"
+              }
+            ]
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae56169c902",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.600000000000364,
+            "x": 551.6,
+            "y": 1126,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae5614cb7aa",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae5640b0e09",
+            "label": "Edit in Moodle",
+            "width": 156,
+            "height": 37.600000000000364,
+            "x": 644,
+            "y": 1126,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": 10.399999999999977,
+            "iconCenterDelta": 0,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae563ecb9ca",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              },
+              {
+                "id": "253eab0b-b38c-802b-8008-bae566e014ce",
+                "provider": "32eadb6d-165e-803e-8008-9891561ecb68"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeffae533daf",
+        "kind": "grouping",
+        "width": 820,
+        "height": 800,
+        "inset": 20,
+        "actionRightDelta": 0,
+        "heightSpread": 0,
+        "buttons": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bae58c44724b",
+            "label": "Save",
+            "width": 88,
+            "height": 37.600000000000364,
+            "x": 453.1999999999998,
+            "y": 746,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": 10.400000000000091,
+            "iconCenterDelta": 0,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae58c2a5a9a",
+                "provider": "db59201c-3dd6-8004-8008-babe0d7923f8"
+              },
+              {
+                "id": "253eab0b-b38c-802b-8008-bae58f49b773",
+                "provider": "32eadb6d-165e-803e-8008-98918f8563f0"
+              }
+            ]
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae59343fe7c",
+            "label": "Cancel",
+            "width": 82,
+            "height": 37.600000000000364,
+            "x": 551.5999999999999,
+            "y": 746,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": null,
+            "iconCenterDelta": null,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae5932e3bb3",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              }
+            ]
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae594cd7aa9",
+            "label": "Edit in Moodle",
+            "width": 156,
+            "height": 37.600000000000364,
+            "x": 644,
+            "y": 746,
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "fontWeight": "600",
+            "iconLabelBoxGap": 10.400000000000091,
+            "iconCenterDelta": 0,
+            "paintCenterDelta": -0.037499429285617225,
+            "labelContained": true,
+            "boxContained": true,
+            "linked": [
+              {
+                "id": "253eab0b-b38c-802b-8008-bae594bb9488",
+                "provider": "724138fb-4a17-80dc-8008-babe45e05c1b"
+              },
+              {
+                "id": "253eab0b-b38c-802b-8008-bae5964e2ea5",
+                "provider": "32eadb6d-165e-803e-8008-9891561ecb68"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "previousHeaderEvidence": "docs/testing/student-entity-dialog-chrome-penpot-2026-10-02.json",
+  "previousFooterEvidenceSuperseded": true,
+  "runtime": {
+    "branch": "preview/moodle51/easystud-phase0-mass-admin",
+    "head": "333b7539932749b354b1070350412cc33b6d29bb",
+    "clean": true,
+    "newPromotion": false,
+    "cachePurge": false,
+    "authenticatedTest": false
+  },
+  "captures": {
+    "root": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/penpot/modal-footers-20261003",
+    "kind": "Owned CDP Penpot editor captures; some editor canvas paint is blurred, geometry/containment corroborated by API readback. Not Moodle/runtime or human validation.",
+    "files": [
+      "foundation-destination-standard.png",
+      "foundation-destination-library.png",
+      "foundation-message-library.png",
+      "product-destination-desktop.png",
+      "product-destination-mobile.png",
+      "product-group-footer-detail.png",
+      "product-grouping-footer-detail.png",
+      "product-message-mobile-verified.png"
+    ],
+    "exportAttempt": "Direct shape PNG export did not finish in the bounded wait; orchestrator wait terminated, no export parity claim or retry."
+  }
+}

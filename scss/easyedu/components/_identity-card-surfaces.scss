@@ -1,0 +1,116 @@
+// Source-preserving paints for identity cards. Consumers own DOM predicates,
+// density, dimensions and Motion; this module contains no product selectors.
+// Kinds describe anatomy, not Moodle entities: person, object, container,
+// unassigned. See docs/components/cards.md for the original source checkpoint.
+@use "sass:map";
+@use "cards";
+
+// K16-74 (flat card surfaces): flat surfaces on Kit tokens,
+// entity-tinted hairlines, no lift. K16-53 écart2 (validated 20/10): every `rest` and the open
+// (expanded, not active) container emit `box-shadow: none`, desktop and compact alike; the only
+// hover shadow is the Kit `--easyedu-shadow-soft`, painted by `identity-card-hover` on a real
+// pointer. Selection keeps its own soft shadow; focus, drop and drag previews own their signal.
+$identity-card-paints: (
+  person: (
+    rest: (
+      border-top-color: color-mix(in srgb, var(--easyedu-participant) 20%, #fff),
+      border-right-color: color-mix(in srgb, var(--easyedu-participant) 20%, #fff),
+      border-bottom-color: color-mix(in srgb, var(--easyedu-participant) 20%, #fff),
+      box-shadow: none
+    ),
+    hover: (background: var(--easyedu-surface), border-color: color-mix(in srgb, var(--easyedu-participant) 32%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    selected: (border-color: color-mix(in srgb, var(--easyedu-participant) 55%, #fff), box-shadow: var(--easyedu-shadow-soft))
+  ),
+  object: (
+    rest: (background: var(--easyedu-surface-soft), border: 1px solid color-mix(in srgb, var(--easyedu-group) 18%, #fff), border-radius: var(--easyedu-card-radius), box-shadow: none),
+    hover: (border-color: color-mix(in srgb, var(--easyedu-group) 30%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    selected: (border-color: color-mix(in srgb, var(--easyedu-group) 52%, #fff), box-shadow: var(--easyedu-shadow-soft))
+  ),
+  container: (
+    rest: (background: var(--easyedu-surface), border-color: color-mix(in srgb, var(--easyedu-grouping) 24%, #fff), box-shadow: none),
+    expanded: (background: var(--easyedu-surface), box-shadow: none),
+    hover: (background: linear-gradient(180deg, #fff 0%, #f2f6f9 100%), border-color: #bdcbd7, box-shadow: var(--easyedu-shadow-soft)),
+    selected: (border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    expanded-selected: (background: var(--easyedu-grouping-soft), border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    expanded-focused: (background: linear-gradient(180deg, #fff 0%, #f7fafc 100%)),
+    expanded-selected-focused: (background: #edf2f7),
+    expanded-rail-rest: (background-color: #8ca0b1)
+  ),
+  unassigned: (
+    rest: (background: #fbf6fa, border-color: #e5d4e0, border-radius: var(--easyedu-card-radius), box-shadow: none),
+    expanded: (background: #f8f0f6, border-color: #d7bcd0, box-shadow: none)
+  )
+);
+
+// Paint only: callers retain their identity rail and selected surface tokens.
+// No automatic :focus-within/:has selectors: nested focus must not repaint a
+// parent incorrectly. Use card-focus-context on the native owning predicate.
+@mixin identity-card-paint($kind, $state: rest) {
+  @if not map.has-key($identity-card-paints, $kind, $state) {
+    @error "Unsupported identity-card-paint kind/state: #{$kind}/#{$state}.";
+  }
+  @each $property, $value in map.get($identity-card-paints, $kind, $state) {
+    #{$property}: $value;
+  }
+}
+
+// The one hover of every identity card kind (K16-53 écart2): the kind's hover
+// paint (Kit soft shadow, tinted border) on a real pointer only, never a lift.
+// Include it before the focus/selection/drop states of the same specificity, or
+// pass a `$guard` that excludes them, so it never repaints those signals.
+@mixin identity-card-hover($kind, $guard: "") {
+  @include cards.pointer-hover($guard) {
+    @include identity-card-paint($kind, hover);
+    @content;
+  }
+}
+
+// Resting frame modifiers shared by all identity-card kinds.
+@mixin identity-card-rest-radius {
+  border-radius: var(--easyedu-card-radius-rest);
+}
+
+// Lane token; `none` since K16-53 écart2 so a lane never brings a rest shadow back.
+@mixin identity-card-rest-shadow {
+  box-shadow: var(--easyedu-card-shadow-rest, none);
+}
+
+// Colour-only identity modifiers; owning predicates and rail dimensions stay native.
+@mixin identity-card-rail-ink($color) {
+  border-left-color: $color;
+}
+
+@mixin identity-card-surface-ink($color) {
+  background: $color;
+}
+
+@mixin identity-card-rail-glyph-surface($color: #fff) {
+  background-color: $color;
+}
+
+// Brief native mutation feedback, composed independently of Motion timing.
+@mixin identity-card-mutation-paint($state) {
+  @if $state == created {
+    background-color: var(--easyedu-success-soft);
+    border-color: color-mix(in srgb, var(--easyedu-success) 48%, var(--easyedu-card-border) 52%);
+  } @else if $state == removing {
+    background-color: var(--easyedu-danger-soft);
+    border-color: color-mix(in srgb, var(--easyedu-danger) 48%, var(--easyedu-card-border) 52%);
+  } @else {
+    @error "Unknown identity mutation paint: #{$state}.";
+  }
+}
+
+// Responsive light-card variants; layout predicates remain consumer-owned.
+@mixin identity-card-rest-hairlines {
+  border-block-color: var(--easyedu-card-hairline);
+  border-inline-end-color: var(--easyedu-card-hairline);
+  box-shadow: none;
+}
+
+@mixin identity-card-responsive-inset($object: false) {
+  padding-block: 0.625rem;
+  @if $object {
+    padding-inline-start: 0.75rem;
+  }
+}

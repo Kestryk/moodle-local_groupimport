@@ -1,0 +1,260 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_groupimport/sm/group_card
+
+    One group card of the flat group catalogs (Participants and Structure views), with its
+    member rows. Rendered by the server for every group in the legacy mode
+    (manage.mustache), and by the browser for the current page only in the on-demand mode
+    (SM-RENDU). Both must produce the same markup.
+
+    structureemail: the Structure catalog wraps the e-mail panel actions with a Cancel button.
+    treecard: card of the groupings tree (no catalog class); withingrouping adds the unlink button.
+
+    Example context (json):
+    {
+        "id": 7,
+        "name": "Group A",
+        "rawname": "Group A",
+        "membercount": 2,
+        "membercountlabel": "2 members",
+        "groupingidscsv": "",
+        "hasnogrouping": true,
+        "searchtext": "group a",
+        "members": [
+            {
+                "groupid": 7,
+                "userid": 3,
+                "fullname": "Ada Lovelace",
+                "selectableid": "7:3",
+                "removeuserlabel": "Remove Ada Lovelace from group Group A",
+                "removeuserhelp": "Remove from group"
+            }
+        ],
+        "hasmembers": true,
+        "canselectallmembers": false,
+        "structureemail": false,
+        "renameurl": "/local/groupimport/manage.php?id=2",
+        "renameaction": "renamegroup",
+        "renameidname": "groupid",
+        "sesskey": "example-sesskey",
+        "selectionmodelabel": "Select Group A",
+        "countbadgeclass": "local-groupimport-easystud-count",
+        "addemailstolabel": "Add participants to Group A",
+        "renamelabel": "Rename Group A",
+        "savelabel": "Save",
+        "cancellabel": "Cancel",
+        "selectallmemberslabel": "Select all members",
+        "deselectallmemberslabel": "Deselect all members",
+        "selectallmembersoftemplate": "Select all {count} members",
+        "deselectallmembersoftemplate": "Deselect all {count} members",
+        "selectallmembersoflabel": "Select all members of Group A",
+        "pasteemailsplaceholder": "Paste participant identifiers",
+        "addemailsbutton": "Add participants"
+    }
+}}
+<div
+    class="local-groupimport-easystud-group{{^treecard}} local-groupimport-easystud-group--catalog{{/treecard}}"
+    data-easystud-group-id="{{id}}"
+    data-easystud-user-drop="{{id}}"
+    data-selectable-type="group"
+    data-selectable-id="{{id}}"
+    data-grouping-ids="{{groupingidscsv}}"
+    data-has-no-grouping="{{#hasnogrouping}}1{{/hasnogrouping}}{{^hasnogrouping}}0{{/hasnogrouping}}"
+    data-search-text="{{searchtext}}"
+    data-easystud-advanced-type="group"
+    data-easystud-advanced-name="{{name}}"
+    data-easystud-advanced-description="{{description}}"
+    data-easystud-advanced-raw-description="{{rawdescription}}"
+    data-easystud-advanced-idnumber="{{idnumber}}"
+    data-easystud-advanced-native-url="{{nativeurl}}"
+    data-easystud-advanced-picture="{{picture}}"
+    data-easystud-advanced-enrolment-key="{{enrolmentkey}}"
+    data-easystud-advanced-hide-picture="{{hidepicture}}"
+    data-easystud-advanced-count="{{membercountlabel}}"
+    draggable="true"
+>
+    <label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--group" aria-label="{{selectionmodelabel}}">
+        <input type="checkbox" data-easystud-selector-input="1">
+        <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
+    </label>
+    <div class="local-groupimport-easystud-group__header">
+        <span class="local-groupimport-easystud-group__name">{{name}}</span>
+        {{#groupingtags.0}}
+            <span class="local-groupimport-easystud-group__groupings local-groupimport-easystud-group__groupings--inline">
+                {{#groupingtags}}
+                    <span class="local-groupimport-easystud-token local-groupimport-easystud-token--grouping">{{label}}</span>
+                {{/groupingtags}}
+            </span>
+        {{/groupingtags.0}}
+        <span class="badge {{countbadgeclass}}" aria-label="{{membercountlabel}}" data-easystud-hover-help="{{membercountlabel}}" role="img"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1">{{membercount}}</span></span>
+        <button
+            type="button"
+            class="btn btn-link p-0 local-groupimport-easystud-group__mail-button"
+            data-easystud-toggle-group-email="{{id}}"
+            aria-label="{{addemailstolabel}}"
+            data-easystud-hover-help="{{addemailstolabel}}"
+        >
+            <span class="fa fa-at" aria-hidden="true"></span>
+        </button>
+        <form method="post" action="{{renameurl}}" class="local-groupimport-easystud-rename" data-easystud-rename-form="1">
+            <input type="hidden" name="sesskey" value="{{sesskey}}">
+            <input type="hidden" name="action" value="{{renameaction}}">
+            <input type="hidden" name="{{renameidname}}" value="{{id}}">
+            <button
+                type="button"
+                class="btn btn-link p-0 local-groupimport-easystud-rename__toggle"
+                data-easystud-rename-toggle="1"
+                aria-label="{{renamelabel}}"
+                data-easystud-hover-help="{{renamelabel}}"
+            >
+                <span class="fa fa-pen" aria-hidden="true"></span>
+            </button>
+            <div class="local-groupimport-easystud-rename__edit" hidden>
+                <input
+                    type="text"
+                    name="name"
+                    class="form-control form-control-sm"
+                    value="{{rawname}}"
+                    aria-label="{{renamelabel}}"
+                    autocomplete="off"
+                >
+                <button
+                    type="submit"
+                    class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button local-groupimport-easystud-rename__save"
+                    aria-label="{{savelabel}}"
+                    data-easystud-hover-help="{{savelabel}}"
+                >
+                    <span class="fa fa-save" aria-hidden="true"></span>
+                </button>
+                <button
+                    type="button"
+                    class="btn local-groupimport-easystud-icon-button easyedu-create-icon-button easyedu-create-icon-button--secondary local-groupimport-easystud-rename__cancel"
+                    data-easystud-rename-cancel="1"
+                    aria-label="{{cancellabel}}"
+                    data-easystud-hover-help="{{cancellabel}}"
+                >
+                    <span class="fa fa-times" aria-hidden="true"></span>
+                </button>
+            </div>
+        </form>
+        {{#withingrouping}}
+            <button
+                type="button"
+                class="btn btn-link p-0 local-groupimport-easystud-group__unlink-button"
+                data-easystud-remove-from-grouping="{{id}}"
+                aria-label="{{removefromgroupinglabel}}"
+                data-easystud-hover-help="{{removefromgroupinglabel}}"
+            >
+                <span class="fa fa-unlink" aria-hidden="true"></span>
+            </button>
+        {{/withingrouping}}
+    </div>
+    <ul class="local-groupimport-easystud-group__members" data-easystud-group-members="{{id}}">
+        {{#members}}
+            <li
+                class="local-groupimport-easystud-member easyedu-related-person-row"
+                data-easystud-member-id="{{userid}}"
+                data-member-key="{{selectableid}}"
+                data-selectable-type="member"
+                data-selectable-id="{{selectableid}}"
+            >
+                <label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--member easyedu-related-person-row__selector" aria-label="{{selectionmodelabel}}">
+                    <input type="checkbox" data-easystud-selector-input="1">
+                    <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
+                </label>
+                <span class="local-groupimport-easystud-member__name easyedu-related-person-row__name">{{fullname}}</span>
+                <button
+                    type="button"
+                    class="btn btn-link p-0 local-groupimport-easystud-member__remove easyedu-related-person-row__remove"
+                    data-easystud-remove-member="1"
+                    data-group-id="{{groupid}}"
+                    data-user-id="{{userid}}"
+                    aria-label="{{removeuserlabel}}"
+                    data-easystud-hover-help="{{removeuserhelp}}"
+                >
+                    <span aria-hidden="true">&minus;</span>
+                </button>
+            </li>
+        {{/members}}
+        {{^hasmembers}}
+            <li class="local-groupimport-easystud-tree__empty easyedu-entity-card-empty easyedu-entity-card-empty--group">
+                <span class="easyedu-entity-card-empty__icon" aria-hidden="true"><span class="fa fa-user-plus"></span></span>
+                <span class="easyedu-entity-card-empty__copy"><span>{{nomemberslabel}}</span><small class="easyedu-entity-card-empty__help" data-easystud-empty-help data-drag-text="{{nomembershelplabel}}" data-touch-text="{{nomembershelptouchlabel}}">{{nomembershelplabel}}</small></span>
+            </li>
+        {{/hasmembers}}
+    </ul>
+    <button
+        type="button"
+        class="local-groupimport-easystud-group__members-toggle"
+        data-easystud-group-members-toggle="1"
+        hidden
+    >
+        <span class="fa fa-chevron-down" aria-hidden="true"></span>
+        <span class="local-groupimport-easystud-group__members-toggle-label" data-easystud-group-members-toggle-label="1"></span>
+    </button>
+    {{! R10-05: shown from three members, laid over the right of the members toggle row (no extra height);
+        the button keeps both labels and aria templates for its toggle. }}
+    <div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="{{id}}"{{^canselectallmembers}} hidden{{/canselectallmembers}}>
+        <button
+            type="button"
+            class="btn btn-link p-0 local-groupimport-easystud-group__select-all"
+            data-easystud-group-select-all="{{id}}"
+            data-easystud-select-label="{{selectallmemberslabel}}"
+            data-easystud-deselect-label="{{deselectallmemberslabel}}"
+            data-easystud-select-aria="{{selectallmembersoftemplate}}"
+            data-easystud-deselect-aria="{{deselectallmembersoftemplate}}"
+            aria-label="{{selectallmembersoflabel}}"
+        >{{selectallmemberslabel}}</button>
+    </div>
+    <div class="local-groupimport-easystud-group-email" data-easystud-group-email-panel="{{id}}" hidden>
+        <textarea
+            class="form-control form-control-sm"
+            rows="3"
+            placeholder="{{pasteemailsplaceholder}}"
+            data-easystud-group-email-box="{{id}}"
+        ></textarea>
+        {{#structureemail}}
+        <div class="local-groupimport-easystud-inline-actions">
+            <button
+                type="button"
+                class="btn btn-sm btn-primary"
+                data-easystud-add-group-emails="{{id}}"
+            >
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                <span>{{addemailsbutton}}</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">{{cancellabel}}</button>
+        </div>
+        {{/structureemail}}
+        {{^structureemail}}
+        <button
+            type="button"
+            class="btn btn-sm btn-primary mt-2"
+            data-easystud-add-group-emails="{{id}}"
+        >
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            <span>{{addemailsbutton}}</span>
+        </button>
+        {{/structureemail}}
+        <div
+            class="local-groupimport-easystud-group-email__result"
+            data-easystud-group-email-result="{{id}}"
+            aria-live="polite"
+        ></div>
+    </div>
+</div>

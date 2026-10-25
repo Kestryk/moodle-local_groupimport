@@ -1,0 +1,29 @@
+{
+  "runtimeHead": "f7ee32a9f8b4a9568f39e76bd23f3bbe8da70b22",
+  "spec": "tools/playwright/guide-source-member-review-native.spec.js",
+  "classification": "local-supervised",
+  "runs": [
+    {"runId": "easystud-authenticated-20261010T205813027Z-43852", "language": "fr", "motion": "no-preference", "widths": [1280, 768, 390], "exitCode": 0},
+    {"runId": "easystud-authenticated-20261010T205946025Z-22648", "language": "fr", "motion": "reduce", "widths": [1280, 768, 390], "exitCode": 0}
+  ],
+  "nativeCases": 6,
+  "actualDocumentLanguageAsserted": true,
+  "actualMotionPreferenceAsserted": true,
+  "highlightTolerancePx": 2,
+  "sourceMemberSelected": true,
+  "typedMemberDialog": true,
+  "searchAndDestination": true,
+  "destinationAndConfirmAligned": true,
+  "priorReviewRetainsSelection": true,
+  "reopenAndCancel": true,
+  "confirmationUncompleted": true,
+  "fixtureRequested": false,
+  "courseTransactionConfirmed": false,
+  "errors": [],
+  "blockedWrites": [],
+  "cleanupBothRuns": {"credentialsCleared": true, "ownedChildStopped": true, "leaseReleased": true},
+  "retention": {"mode": "dry-run", "protectedRuns": 2, "candidateCount": 0, "deletedCount": 0},
+  "productionSourceChanged": false,
+  "humanAccepted": false,
+  "scope": "French normal/reduced native review, existing memberships and Cancel only; no confirmed transfer or whole-guide acceptance."
+}
