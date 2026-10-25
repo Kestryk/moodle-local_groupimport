@@ -64,7 +64,10 @@ body:not(.jsenabled) #local-groupimport-easystud [data-easystud-real-content] {
     }
   }
 
-  @include easyedu.action-busy-indicator-bottom-end("data-easystud-action-busy-label");
+  // The responsive live status owns this cue at <=1024px; never paint both.
+  @media (width > 1024px) {
+    @include easyedu.action-busy-indicator-bottom-end("data-easystud-action-busy-label");
+  }
 
   // The panel actions bind with the course manager: until then they keep their exact
   // footprint as skeleton capsules, then fade to their real look.
