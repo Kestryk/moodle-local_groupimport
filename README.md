@@ -95,6 +95,9 @@ for export and deletion of this data.
 
 ## Development
 
+Internal release scripts are indexed by purpose, prerequisites and last documented result in
+[the test suite catalogue](docs/testing/TEST-SUITE-CATALOGUE.md).
+
 - Personal Display and animations (ANIM): `docs/display-preferences-2026-10-17.md`.
 - Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
 
