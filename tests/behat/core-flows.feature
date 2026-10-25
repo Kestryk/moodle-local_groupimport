@@ -71,6 +71,7 @@ Feature: Open and navigate the EasyStud management workspace
     When I navigate to "Participants" in current page administration
     Then ".local-groupimport-easystud--compact-users" "css_element" should exist
     When I click on "[data-easystud-density-toggle]" "css_element"
+    And I wait until ".local-groupimport-easystud--compact-users" "css_element" does not exist
     Then ".local-groupimport-easystud--compact-users" "css_element" should not exist
     When I click on "[data-easystud-user][data-user-id] > .local-groupimport-easystud-selector" "css_element"
     Then "[data-easystud-user].is-selected" "css_element" should exist
