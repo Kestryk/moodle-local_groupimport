@@ -1,3 +1,5 @@
+Card detail commands share the existing entity-specific language keys across context menus, direct ARIA/help and modal headings. Preserve action IDs and handlers; Guide captions must use the same current names. See docs/testing/card-detail-labels-2026-10-25.md.
+
 Foundation selection commands keep the primary Kit palette even with the Bootstrap compatibility class btn-outline-secondary. Preserve explicit destructive, solid, disabled and borderless recovery variants; do not change native secondary buttons outside this component. See docs/testing/selection-action-primary-palette-2026-10-24.md.
 
 Shared floating Guide binding accepts either its navigation root or an ancestor containing it. Keep one binding implementation, preserve inactive state, scroll visibility, native click delegation and pagehide cleanup on both workspaces.

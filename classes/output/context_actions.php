@@ -114,7 +114,7 @@ class context_actions {
             'group-open-advanced-settings' => [
                 'contexts' => 'group',
                 'icon' => 'fa-cog',
-                'label' => get_string('advancedsettings', 'local_groupimport'),
+                'label' => get_string('groupdetails', 'local_groupimport'),
             ],
             'copy-group-name' => [
                 'contexts' => 'group',
@@ -157,7 +157,7 @@ class context_actions {
             'grouping-open-advanced-settings' => [
                 'contexts' => 'grouping',
                 'icon' => 'fa-cog',
-                'label' => get_string('advancedsettings', 'local_groupimport'),
+                'label' => get_string('groupingdetails', 'local_groupimport'),
             ],
             'copy-grouping-name' => [
                 'contexts' => 'grouping',

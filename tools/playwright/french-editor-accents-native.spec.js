@@ -48,8 +48,8 @@ test('T042 French editor labels preserve accented ARIA help and modal copy', asy
                 const direct = item.locator(':scope > .local-groupimport-easystud-group__header > ' +
                     '[data-easystud-open-advanced-settings], :scope > .local-groupimport-easystud-grouping__header > ' +
                     '[data-easystud-open-advanced-settings]');
-                await expect(direct).toHaveAttribute('aria-label', 'Paramètres avancés');
-                await expect(direct).toHaveAttribute('data-easystud-hover-help', 'Paramètres avancés');
+                await expect(direct).toHaveAttribute('aria-label', labels[kind === 'group' ? 'groupdetails' : 'groupingdetails']);
+                await expect(direct).toHaveAttribute('data-easystud-hover-help', labels[kind === 'group' ? 'groupdetails' : 'groupingdetails']);
                 if (await direct.isVisible()) await direct.click();
                 else {
                     await item.locator(':scope > [data-easystud-card-menu]:visible, ' +

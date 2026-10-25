@@ -1227,7 +1227,7 @@ export const ensureAdvancedSettingsButtons = root => {
             'local-groupimport-easystud-group__settings-button',
             'data-easystud-open-advanced-settings',
             group.getAttribute('data-easystud-group-id') || '',
-            labels.advancedsettings || '',
+            labels.groupdetails || '',
             'fa-cog'
         );
         button.setAttribute('data-easystud-advanced-target', 'group');
@@ -1244,7 +1244,7 @@ export const ensureAdvancedSettingsButtons = root => {
             'local-groupimport-easystud-group__settings-button local-groupimport-easystud-grouping__settings-button',
             'data-easystud-open-advanced-settings',
             grouping.getAttribute('data-easystud-grouping-id') || '',
-            labels.advancedsettings || '',
+            labels.groupingdetails || '',
             'fa-cog'
         );
         button.setAttribute('data-easystud-advanced-target', 'grouping');

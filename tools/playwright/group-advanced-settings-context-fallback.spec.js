@@ -24,7 +24,7 @@ const login = async page => {
     return root;
 };
 
-test('responsive Group menu falls back to Advanced settings without duplicating a direct cog', async({page}) => {
+test('responsive Group menu falls back to Group details without duplicating a direct cog', async({page}) => {
     test.setTimeout(120000);
     await page.setViewportSize({width: 390, height: 900});
     const root = await login(page);
