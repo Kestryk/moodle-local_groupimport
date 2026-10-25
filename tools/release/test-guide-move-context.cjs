@@ -11,7 +11,7 @@ const move = read('amd/src/local/cm/move_modal.js');
 assert(move.includes("modal.setAttribute('data-easystud-move-context', type)"));
 assert(move.includes("modal.removeAttribute('data-easystud-move-context')"));
 for (const target of ['participantMoveDestination', 'participantMoveConfirm']) {
-    const php = read('manage.php');
+    const php = read('classes/output/guide_config.php');
     const at = php.indexOf("'" + target + "' =>");
     assert(at >= 0 && php.slice(at, at + 250).includes('data-easystud-move-context="participant"'));
 }
