@@ -747,7 +747,7 @@ const initHistoryModal = root => {
     ));
     const close = () => {
         const dialog = modal.querySelector('.local-groupimport-import-modal__dialog') || modal;
-        Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.2rem'}).then(completed => {
+        return Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.2rem'}).then(completed => {
             if (completed) {
                 modal.hidden = true;
                 restoreFocus();
@@ -825,7 +825,7 @@ const initRollbackModal = root => {
 
     const close = () => {
         const dialog = modal.querySelector('.local-groupimport-import-modal__dialog') || modal;
-        Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.2rem'}).then(completed => {
+        return Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.2rem'}).then(completed => {
             if (!completed) {
                 return;
             }
@@ -1007,13 +1007,13 @@ export const init = (rootId) => {
     window.addEventListener('drop', event => {
         // The native drop target owns its upload/progress lifecycle.
         if (isDepositEvent(event)) {
- hideOverlay(); return;
+ hideOverlay(); return undefined;
 }
         if (routingdrop) {
-            return;
+            return undefined;
         }
         if (!hasFiles(event)) {
-            return;
+            return undefined;
         }
         event.preventDefault();
 
@@ -1021,11 +1021,11 @@ export const init = (rootId) => {
         const file = files && files.length > 0 ? files[0] : null;
         if (!file) {
             hideOverlay();
-            return;
+            return undefined;
         }
 
         routingdrop = true;
-        uploadToMoodleFilePicker(root, file)
+        return uploadToMoodleFilePicker(root, file)
             .then(uploaded => {
                 if (!uploaded) {
                     const assigned = assignDroppedFile(root, file);

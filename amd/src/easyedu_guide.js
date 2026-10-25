@@ -649,6 +649,24 @@ const saveGuideReadingPosition = (config, index) => {
 // Opt-in ID-only context. Product adapters own evidence; the Kit owns its
 // persistence and path-local lifecycle. No context write completes a milestone.
 const normalisePathContext = (config, pathName, data) => {
+    const validateContextFields = () => {
+      for (const field of fields) {
+        if (['__proto__', 'constructor', 'prototype'].includes(field) || !own(data, field)) {
+          return null;
+        }
+        const value = data[field];
+        if (schema[field] === 'id' && isId(value)) {
+          result[field] = value;
+        } else if (schema[field] === 'ids' && Array.isArray(value) && value.length &&
+        value.every(isId) && new Set(value).size === value.length) {
+          result[field] = [...value];
+        } else {
+          return null;
+        }
+      }
+      return result;
+    };
+
   const own = (object, key) => object && Object.prototype.hasOwnProperty.call(object, key);
   if (!own(config.paths, pathName) || !own(config.pathContextFields, pathName)) {
  return null;
@@ -664,21 +682,8 @@ const normalisePathContext = (config, pathName, data) => {
 }
   const result = {};
   const isId = value => typeof value === 'string' && /^[1-9]\d*$/.test(value);
-  for (const field of fields) {
-    if (['__proto__', 'constructor', 'prototype'].includes(field) || !own(data, field)) {
- return null;
-}
-    const value = data[field];
-    if (schema[field] === 'id' && isId(value)) {
-      result[field] = value;
-    } else if (schema[field] === 'ids' && Array.isArray(value) && value.length &&
-        value.every(isId) && new Set(value).size === value.length) {
-      result[field] = [...value];
-    } else {
- return null;
-}
-  }
-  return result;
+
+  return validateContextFields();
 };
 
 /**
@@ -2843,20 +2848,24 @@ y = target.top - frame.top + target.height / 2;
 const playInspectionScene = async ctx => {
   const {scene, stage, result, recap, compact, signal, gate, assertActive, animate, clickFeedback, reveal, restFlash,
     phase, writeLive, markFinished, settleHeader} = ctx;
-  const card = stage.querySelector('[data-guide-inspection-card]');
-  const trigger = stage.querySelector('[data-guide-inspection-trigger]');
-  const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
-  const menu = stage.querySelector('[data-guide-inspection-menu]');
-  const panel = stage.querySelector('[data-guide-inspection-panel]');
-  const input = stage.querySelector('[data-guide-inspection-input]');
-  const chips = stage.querySelector('[data-guide-inspection-chips]');
-  const cancel = panel.querySelector('[data-guide-inspection-cancel]');
-  const cursor = stage.querySelector('[data-guide-inspection-cursor]');
-  const value = input.getAttribute('data-guide-example-value') || '';
-  trigger.hidden = compact;
-  if (compactTrigger) {
- compactTrigger.hidden = !compact;
-}
+    const readInspectionElements = () => {
+      const card = stage.querySelector('[data-guide-inspection-card]');
+      const trigger = stage.querySelector('[data-guide-inspection-trigger]');
+      const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
+      const menu = stage.querySelector('[data-guide-inspection-menu]');
+      const panel = stage.querySelector('[data-guide-inspection-panel]');
+      const input = stage.querySelector('[data-guide-inspection-input]');
+      const chips = stage.querySelector('[data-guide-inspection-chips]');
+      const cancel = panel.querySelector('[data-guide-inspection-cancel]');
+      const cursor = stage.querySelector('[data-guide-inspection-cursor]');
+      const value = input.getAttribute('data-guide-example-value') || '';
+      trigger.hidden = compact;
+      if (compactTrigger) {
+        compactTrigger.hidden = !compact;
+      }
+      return {card, trigger, compactTrigger, menu, panel, input, chips, cancel, cursor, value};
+    };
+  const {card, trigger, compactTrigger, menu, panel, input, chips, cancel, cursor, value} = readInspectionElements();
   const {pointAt, hidePointer} = createInspectionPointer(ctx, stage, cursor);
   // Animate the auto-sized card while keeping the natural field's layout.
   // Same WAAPI set/clock as reading: Pause, Next and departure own both.
@@ -2969,9 +2978,12 @@ const playInspectionScene = async ctx => {
     await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
     recap.style.removeProperty('opacity');
   }
-  if (!signal.aborted) {
- scene.dataset.guideSceneFinished = 'true';
-}
+    const markInspectionSceneFinished = () => {
+      if (!signal.aborted) {
+        scene.dataset.guideSceneFinished = 'true';
+      }
+    };
+markInspectionSceneFinished();
 };
 
 // The membership pointer keeps its original travel/drag clock. It is decorative and must not paint
@@ -3301,6 +3313,46 @@ const DISCOVERY_SCENE_PLAYERS = {
 // the live region's Pause/Next controls.
 const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, applicablePhases, startControl, live, activity,
   pauseControl, nextControl, updateClearance, getHeaderObserver}) => (state, advancing = false) => {
+    const syncPlaybackControls = () => {
+      if (startControl) {
+        const busy = ['playing', 'paused'].includes(state);
+        startControl.disabled = busy;
+        startControl.setAttribute('aria-busy', String(busy));
+        const resolveSceneStartLabel = () => {
+          if (busy) {
+            return startControl.dataset.runningLabel;
+          }
+          if (state === 'finished') {
+            return startControl.dataset.replayLabel;
+          }
+          return startControl.dataset.startLabel;
+        };
+        startControl.querySelector('[data-guide-start-label]').textContent = resolveSceneStartLabel();
+        scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
+      '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
+      '[data-guide-scene-command="clear"]').forEach(button => {
+          button.disabled = busy;
+        });
+      }
+      if (!live) {
+        return;
+      }
+      live.dataset.guidePlaybackState = state;
+      if (activity) {
+        activity.hidden = !['playing', 'paused'].includes(state);
+      }
+      if (pauseControl) {
+        pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
+        pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
+        pauseControl.setAttribute('aria-label',
+          state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
+        pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
+      }
+      if (nextControl) {
+        nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state);
+      }
+    };
+
   if (sceneHeader) {
     sceneHeader.dataset.guidePlaybackState = state;
     // K20-15: the completed comparison uses the same end-card row as every single-mode lesson.
@@ -3343,49 +3395,63 @@ const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, appli
  getHeaderObserver()?.disconnect();
 }
   }
-  if (startControl) {
-    const busy = ['playing', 'paused'].includes(state);
-    startControl.disabled = busy;
-    startControl.setAttribute('aria-busy', String(busy));
-    const resolveSceneStartLabel = () => {
-      if (busy) {
-        return startControl.dataset.runningLabel;
-      }
-      if (state === 'finished') {
-        return startControl.dataset.replayLabel;
-      }
-      return startControl.dataset.startLabel;
-    };
-    startControl.querySelector('[data-guide-start-label]').textContent = resolveSceneStartLabel();
-    scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"], ' +
-      '[data-guide-scene-command="preview"], [data-guide-scene-command="letters"], ' +
-      '[data-guide-scene-command="clear"]').forEach(button => {
-      button.disabled = busy;
-    });
-  }
-  if (!live) {
- return;
-}
-  live.dataset.guidePlaybackState = state;
-  if (activity) {
- activity.hidden = !['playing', 'paused'].includes(state);
-}
-  if (pauseControl) {
-    pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
-    pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
-    pauseControl.setAttribute('aria-label',
-      state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
-    pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
-  }
-  if (nextControl) {
- nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state);
-}
+
+  return syncPlaybackControls();
 };
 
 // Return the scene to its resting illustration: live copy, recap, memberships (moved into the header as the
 // expected outcome while previewing a mode) and the touch/mouse variants of the inspection trigger.
 const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveCopy, liveAnnouncement, sceneHeader,
   startControl, readingBody, compact, requestedMode, start}) => {
+    const restoreMembershipPreview = () => {
+      if (memberships && sceneHeader) {
+        if (preview) {
+          sceneHeader.appendChild(memberships);
+        } else {
+          memberships.easyeduGuideHome.after(memberships);
+        }
+      }
+      if (memberships) {
+        memberships.toggleAttribute('data-guide-membership-preview', preview);
+      }
+      if (membershipTitle) {
+        membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original;
+      }
+      if (preview) {
+        if (origin) {
+          origin.classList.toggle('is-removed', mode === 'move');
+          origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
+        }
+        if (target) {
+          target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added;
+        }
+        if (liveCopy) {
+          liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
+          liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
+          liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
+        }
+        // A phone may not fit title, introduction and the complete ready header at
+        // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
+        // never scroll the Moodle page or leave the expected outcome below the fold.
+        if (readingBody) {
+          const bodyBounds = readingBody.getBoundingClientRect(),
+            headerBounds = sceneHeader.getBoundingClientRect();
+          if (headerBounds.bottom > bodyBounds.bottom - 8) {
+            animateScrollTo(root, readingBody, readingBody.scrollTop + headerBounds.bottom - bodyBounds.bottom + 8);
+          }
+        }
+      }
+      scene.toggleAttribute('data-guide-mobile-actions', compact);
+      if (kind === 'inspection') {
+        stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
+        const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
+        if (compactTrigger) {
+          compactTrigger.hidden = !compact;
+        }
+      }
+      return {recap, origin, target};
+    };
+
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
     if (liveAnnouncement) {
@@ -3446,52 +3512,8 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
  membershipTitle.dataset.original = membershipTitle.textContent;
 }
   const preview = !!sceneHeader && !!startControl && (requestedMode === 'reset' || !start) && kind === 'membership';
-  if (memberships && sceneHeader) {
-    if (preview) {
- sceneHeader.appendChild(memberships);
-} else {
- memberships.easyeduGuideHome.after(memberships);
-}
-  }
-  if (memberships) {
- memberships.toggleAttribute('data-guide-membership-preview', preview);
-}
-  if (membershipTitle) {
-    membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original;
-  }
-  if (preview) {
-    if (origin) {
-      origin.classList.toggle('is-removed', mode === 'move');
-      origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
-    }
-    if (target) {
- target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added;
-}
-    if (liveCopy) {
-      liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
-      liveCopy.dataset.easyeduGuideBubble = liveCopy.textContent;
-      liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
-    }
-    // A phone may not fit title, introduction and the complete ready header at
-    // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
-    // never scroll the Moodle page or leave the expected outcome below the fold.
-    if (readingBody) {
-      const bodyBounds = readingBody.getBoundingClientRect(),
-headerBounds = sceneHeader.getBoundingClientRect();
-      if (headerBounds.bottom > bodyBounds.bottom - 8) {
-        animateScrollTo(root, readingBody, readingBody.scrollTop + headerBounds.bottom - bodyBounds.bottom + 8);
-      }
-    }
-  }
-  scene.toggleAttribute('data-guide-mobile-actions', compact);
-  if (kind === 'inspection') {
-    stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
-    const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
-    if (compactTrigger) {
- compactTrigger.hidden = !compact;
-}
-  }
-  return {recap, origin, target};
+
+  return restoreMembershipPreview();
 };
 
 // Illustrated pointer (mouse travel or touch gestures) and click feedback, on the scene's pausable clock.
@@ -3608,13 +3630,515 @@ const createScenePointerKit = ({root, compact, still, reduced, fadeLevel, gate, 
 };
 
 const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
+    const initializeScenePlayback = () => {
+      if (!scene.easyeduGuideStageOriginal) {
+        scene.easyeduGuideStageOriginal = stage.innerHTML;
+        scene.easyeduGuideResultOriginal = result ? result.textContent : '';
+      }
+      stage.innerHTML = scene.easyeduGuideStageOriginal;
+      delete scene.dataset.guideSceneFinished;
+      if (result) {
+        result.textContent = scene.easyeduGuideResultOriginal;
+      }
+      scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
+      scene.dataset.guideMode = mode;
+      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
+        // E3: the two gestures are native radios; the checked state is the single source of truth.
+        button.checked = button.dataset.guideSceneCommand === mode;
+      });
+      // New compositions own their live region; historical templates keep the
+      // sibling fallback. Never attach playback to another scene's header.
+      const live = scene.querySelector('[data-guide-live]') || scene.parentElement.querySelector('[data-guide-live]');
+      const sceneHeader = scene.querySelector('[data-guide-scene-header]');
+      const phaseCaption = sceneHeader?.querySelector('[data-guide-phase-caption]');
+      // Touch modality (finger pointer, tap wording and flow); re-evaluated on every start and on change.
+      const compact = guideModality().touch;
+      // Count the applicable explanation phases, not animation frames or timers.
+      // J-G4: the simple-creation scene reads its four phases from its root's labels.
+      const labelledPhases = {simplecreate: 4, creation: 3, filters: 4, midrop: 3, mipreview: 4}[kind];
+      const applicablePhases = labelledPhases ?
+        Array.from({length: labelledPhases}, (unused, n) => ({dataset: {guidePhase: String(n + 1)}})) :
+        [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
+          !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
+      const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
+      const liveAnnouncement = live?.querySelector('[data-guide-live-announcement]');
+      const pauseControl = live?.querySelector('[data-guide-playback="pause"]');
+      const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
+      const activity = live?.querySelector('[data-guide-activity]');
+      const startControl = scene.querySelector('[data-guide-scene-command="start"]');
+      // Clearance belongs to this reading surface and this scene's compact header.
+      // Restore the previous inline value at completion/exit; no page scroll owner.
+      const readingBody = scene.closest('.easyedu-guide-modal__body');
+      const originalScrollPadding = readingBody?.style.getPropertyValue('scroll-padding-top') || '';
+      const originalScrollPaddingPriority = readingBody?.style.getPropertyPriority('scroll-padding-top') || '';
+      const restoreClearance = () => {
+        if (!readingBody) {
+          return;
+        }
+        if (originalScrollPadding) {
+          readingBody.style.setProperty('scroll-padding-top', originalScrollPadding, originalScrollPaddingPriority);
+        } else {
+          readingBody.style.removeProperty('scroll-padding-top');
+        }
+      };
+      const updateClearance = () => {
+        if (!sceneHeader || !readingBody) {
+          return;
+        }
+        if (['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState)) {
+          readingBody.style.setProperty('scroll-padding-top', `${sceneHeader.getBoundingClientRect().height + 8}px`);
+        } else {
+          restoreClearance();
+        }
+      };
+      let headerObserver = null;
+      const syncPlayback = createPlaybackSync({scene, kind, mode, sceneHeader, phaseCaption, applicablePhases,
+        startControl, live, activity, pauseControl, nextControl, updateClearance, getHeaderObserver: () => headerObserver});
+      syncPlayback('idle');
+      const {recap, origin, target} = restoreSceneAtRest({root, scene, kind, mode, stage, result, live, liveCopy,
+        liveAnnouncement, sceneHeader, startControl, readingBody, compact, requestedMode, start});
+      if (requestedMode === 'reset' || !start) {
+        return;
+      }
+
+      const controller = new AbortController();
+      const animations = new Set();
+      let timer = null;
+      let resolveWait = null;
+      let waitRemaining = 0;
+      let waitDeadline = 0;
+      let paused = false;
+      let skipping = false;
+      let advancing = false;
+      let finished = false;
+      const gates = new Set();
+      let dropFrame = null;
+      // 'minimal': phases switch instantly and the pointer is placed without travel. 'reduced': opacity fades
+      // of 120 ms at most, the pointer appears at its destination. Reading durations never change.
+      const level = getMotionLevel(root);
+      const reduced = level === 'minimal';
+      const fadeLevel = level === 'reduced';
+      const still = level !== 'full';
+      // Reading, illustration and scroll share one lifecycle. Pause retains the
+      // unread duration; phase advance drains just this phase's presentation work.
+      const assertActive = () => {
+        if (controller.signal.aborted) {
+          throw controller.signal.reason;
+        }
+      };
+      const releaseGates = () => {
+        gates.forEach(resolve => resolve()); gates.clear();
+      };
+      const gate = async() => {
+        if (paused && !skipping && !controller.signal.aborted) {
+          await new Promise(resolve => gates.add(resolve));
+        }
+        assertActive();
+      };
+      const finishWait = () => {
+        if (timer !== null) {
+          window.clearTimeout(timer);
+        }
+        timer = null; waitRemaining = 0;
+        const resolve = resolveWait; resolveWait = null;
+        resolve?.();
+      };
+      const scheduleWait = () => {
+        waitDeadline = performance.now() + waitRemaining;
+        timer = window.setTimeout(finishWait, waitRemaining);
+      };
+      const wait = async duration => {
+        await gate();
+        assertActive();
+        if (skipping) {
+          return;
+        }
+        await new Promise(resolve => {
+          resolveWait = resolve;
+          waitRemaining = duration;
+          scheduleWait();
+        });
+        assertActive();
+      };
+      root.easyeduGuideScenePlayback = {
+        scene,
+        toggle: () => {
+          if (controller.signal.aborted || finished || advancing) {
+            return;
+          }
+          paused = !paused;
+          if (paused) {
+            if (timer !== null) {
+              window.clearTimeout(timer); timer = null;
+              waitRemaining = Math.max(0, waitDeadline - performance.now());
+            }
+            animations.forEach(animation => {
+              if (animation.playState === 'running') {
+                animation.pause();
+              }
+            });
+          } else {
+            if (resolveWait) {
+              scheduleWait();
+            }
+            animations.forEach(animation => {
+              if (animation.playState === 'paused') {
+                animation.play();
+              }
+            });
+            releaseGates();
+          }
+          syncPlayback(paused ? 'paused' : 'playing');
+        },
+        next: () => {
+          if (controller.signal.aborted || finished || advancing || !scene.dataset.guidePhase) {
+            return;
+          }
+          advancing = true; skipping = true;
+          syncPlayback(paused ? 'paused' : 'playing', true);
+          finishWait(); releaseGates();
+          animations.forEach(animation => {
+            if (['running', 'paused'].includes(animation.playState)) {
+              animation.finish();
+            }
+          });
+        }
+      };
+      syncPlayback('playing');
+      if (sceneHeader && typeof ResizeObserver !== 'undefined') {
+        headerObserver = new ResizeObserver(updateClearance);
+        headerObserver.observe(sceneHeader);
+      }
+      let phaseTarget = null;
+      const settleHeader = async() => {
+        assertActive();
+        if (!sceneHeader || reduced) {
+          return;
+        }
+        const transitions = sceneHeader.getAnimations({subtree: true}).filter(animation =>
+          animation.effect?.getComputedTiming().iterations !== Infinity);
+        transitions.forEach(animation => animations.add(animation));
+        await Promise.all(transitions.map(animation => animation.finished.catch(() => { /* Ignore cleanup rejection. */ })));
+        transitions.forEach(animation => animations.delete(animation));
+        assertActive();
+      };
+      const animate = async(element, frames, duration, retain = true) => {
+        await gate();
+        assertActive();
+        if (reduced) {
+          return null;
+        }
+        const shown = fadeLevel ? toFadeFrames(frames) : frames;
+        if (!shown) {
+          return null;
+        }
+        const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
+          easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
+        animations.add(animation);
+        if (skipping) {
+          animation.finish();
+        }
+        try {
+          await animation.finished;
+        } catch (error) { /* Cancelled by departure. */ }
+        if (!retain) {
+          animation.cancel(); animations.delete(animation);
+        }
+        assertActive();
+        return animation;
+      };
+      // K17-28, K17-45: the common return to rest. The stage fades out briefly, every retained transform or
+      // opacity animation inside it is cancelled and the resting (or final) state is applied while it is
+      // invisible, then the stage fades back in. On the same pausable clock as the rest of the demonstration;
+      // 'reduced' keeps one 120 ms fade each way, 'minimal' applies the state at once.
+      const restFlash = async mutate => {
+        await gate();
+        assertActive();
+        const cancelRetained = () => animations.forEach(animation => {
+          const node = animation.effect?.target;
+          if (node && node !== stage && stage.contains(node)) {
+            animation.cancel();
+            animations.delete(animation);
+          }
+        });
+        if (reduced) {
+          cancelRetained();
+          mutate();
+          return;
+        }
+        const out = await animate(stage, [{opacity: 1}, {opacity: 0}], FLASH_OUT_MS);
+        cancelRetained();
+        mutate();
+        const back = await animate(stage, [{opacity: 0}, {opacity: 1}], FLASH_IN_MS);
+        out?.cancel();
+        back?.cancel();
+        if (out) {
+          animations.delete(out);
+        }
+        if (back) {
+          animations.delete(back);
+        }
+      };
+      const {placeCursor, movePointer, touchPointer, clickFeedback} = createScenePointerKit({root, compact, still, reduced,
+        fadeLevel, gate, assertActive, animate});
+      // The modality can change under a running demo (rotation, window resize): it returns to "Ready".
+      const modalityQueries = [GUIDE_NARROW_QUERY, GUIDE_TOUCH_QUERY].map(query => window.matchMedia?.(query)).filter(Boolean);
+      const onModalityChange = () => {
+        if (guideModality().touch !== compact && !controller.signal.aborted) {
+          playDiscoveryScene(root, scene, undefined, !scene.querySelector('[data-guide-scene-command="start"]'));
+        }
+      };
+      modalityQueries.forEach(query => query.addEventListener?.('change', onModalityChange));
+      controller.signal.addEventListener('abort', () => {
+        modalityQueries.forEach(query => query.removeEventListener?.('change', onModalityChange));
+      }, {once: true});
+      // Fade the instruction copy, not the entire teaching scene. Its reading pause
+      // starts only after the new sentence is visible; no business state is changed.
+      const writeLive = async(text, state = 'active', immediate = false) => {
+        assertActive();
+        if (!live) {
+          return;
+        }
+        if (!immediate) {
+          await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false);
+        }
+        if (controller.signal.aborted) {
+          return;
+        }
+        // The phase caption already supplies the visible number. Keep complete
+        // narration for assistive technology and the historical template fallback.
+        if (liveAnnouncement) {
+          liveAnnouncement.textContent = text;
+        }
+        liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
+          text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
+        // K17-33: the end card shows a title and a hint on two lines (the string is "Title · Hint").
+        const split = state === 'finished' ? text.split(/\s*\u00b7\s*/) : [];
+        if (split.length === 2) {
+          liveCopy.textContent = '';
+          ['title', 'hint'].forEach((role, index) => {
+            const line = document.createElement('span');
+            line.className = 'easyedu-guide-scene__finished-' + role;
+            line.textContent = split[index];
+            liveCopy.appendChild(line);
+          });
+        }
+        liveCopy.dataset.easyeduGuideBubble = text;
+        liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
+        live.dataset.guideLiveState = state;
+        const completionIcon = live.querySelector('[data-guide-live-complete]');
+        if (completionIcon) {
+          completionIcon.hidden = state !== 'finished';
+        }
+        if (!immediate) {
+          await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
+            {opacity: 1, transform: 'translateY(0)'}], 260, false);
+        }
+      };
+      // Scroll only the Guide reading surface, never the Moodle page. The same
+      // cancellable animation set owns illustration and scroll, including exit.
+      const reveal = async element => {
+        await gate();
+        assertActive();
+        const body = scene.closest('.easyedu-guide-modal__body');
+        if (!body || element.hidden) {
+          return;
+        }
+        phaseTarget = element;
+        updateClearance();
+        const bounds = body.getBoundingClientRect(),
+          item = element.getBoundingClientRect();
+        const sticky = !sceneHeader || ['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState);
+        const readingTop = bounds.top + (sticky ? ((sceneHeader || live)?.getBoundingClientRect().height || 0) : 0) + 8;
+        const readingBottom = bounds.bottom - 12;
+        if (item.top >= readingTop && item.bottom <= readingBottom) {
+          return;
+        }
+        const offset = item.height > readingBottom - readingTop || item.top < readingTop ?
+          item.top - readingTop : item.bottom - readingBottom;
+        const from = body.scrollTop;
+        const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
+        if (still || skipping || !body.animate) {
+          body.scrollTop = to; return;
+        }
+        // A clock animation supplies a cancellable, eased progress value;
+        // scrolling stays a DOM property rather than an independent smooth-scroll.
+        const clock = body.animate([{opacity: 1}, {opacity: 1}],
+          {duration: 420, easing: 'cubic-bezier(.4,0,.2,1)'});
+        animations.add(clock);
+        await new Promise(resolve => {
+          const tick = () => {
+            if (controller.signal.aborted || clock.playState === 'idle') {
+              resolve(); return;
+            }
+            const progress = clock.effect.getComputedTiming().progress;
+            if (progress !== null) {
+              body.scrollTop = from + (to - from) * progress;
+            }
+            if (clock.playState === 'finished') {
+              body.scrollTop = to;
+              resolve();
+              return;
+            }
+            requestAnimationFrame(tick);
+          };
+          tick();
+        });
+        clock.cancel(); animations.delete(clock);
+        assertActive();
+      };
+      // Reserve the real target's layout before scrolling, without painting it at
+      // its old offscreen position. Keep the existing fade and cancellable clock.
+      const revealPrepared = async(element, prepare = () => { /* Optional hook. */ }) => {
+        assertActive();
+        const visibility = element.style.visibility;
+        const opacity = element.style.opacity;
+        element.style.visibility = 'hidden';
+        element.style.opacity = '0';
+        element.hidden = false;
+        try {
+          prepare();
+          await reveal(element);
+          if (controller.signal.aborted) {
+            return;
+          }
+          element.style.visibility = visibility;
+          await animate(element, [{opacity: 0}, {opacity: 1}], 280);
+        } finally {
+          element.style.visibility = visibility;
+          element.style.opacity = opacity;
+        }
+      };
+      const phase = async(name, prepareTarget) => {
+        assertActive();
+        const jumped = skipping;
+        skipping = false;
+        const item = scene.querySelector(`[data-guide-phase="${name}"]`);
+        scene.querySelectorAll('[data-guide-phase]').forEach(node => node.removeAttribute('aria-current'));
+        if (item) {
+          item.setAttribute('aria-current', 'step');
+          const text = (compact && mode === 'add' && item.dataset.compactAdd) ||
+        (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+          item.textContent = text;
+          await writeLive(text, 'active', paused && jumped);
+          if (controller.signal.aborted) {
+            return;
+          }
+          scene.dataset.guidePhase = name;
+        }
+        advancing = false;
+        syncPlayback(paused ? 'paused' : 'playing');
+        if (prepareTarget) {
+          await prepareTarget();
+        }
+        // New narration can wrap and change the sticky height. Re-reveal the real
+        // phase target after that copy update, not just before the phase begins.
+        const validateTarget = ['membership', 'actions'].includes(kind) && name === 'validate' ?
+          scene.querySelector('[data-guide-confirm]') : null;
+        if (validateTarget || phaseTarget) {
+          await reveal(validateTarget || phaseTarget);
+        }
+        await gate();
+        if (controller.signal.aborted) {
+          return;
+        }
+        // Reduced motion removes movement, never the time needed to read a phase.
+        const resolvePhaseReadingDuration = () => {
+          const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
+          const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+          const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+          const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+          const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+          let reading = Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
+          // Budget actual reading phases, on the same pausable clock at every Motion
+          // level. Desktop Add has two phases (no confirmation); inspection has five.
+          // Keep the illustrated result on screen, never add a second animation loop.
+          if (kind === 'membership' && mode === 'add' && !compact) {
+            reading += 5000;
+          } else if (kind === 'inspection') {
+            reading = Math.max(minimum - 350, reading - 350);
+          } else if (kind === 'membership' && mode === 'move' && compact) {
+            reading += 250;
+          }
+
+          return reading;
+        };
+        await wait(resolvePhaseReadingDuration());
+      };
+      // Same narration and reading clock as phase(), with the copy carried by the specimen stage's labels.
+      const narrate = async number => {
+        assertActive();
+        skipping = false;
+        // A touch variant of the narration, when the root supplies one (GMI-C3 "Tap" wording).
+        const text = (compact && stage.getAttribute(`data-guide-phase-${number}-compact-label`)) ||
+      stage.getAttribute(`data-guide-phase-${number}-label`) || '';
+        await writeLive(text, 'active');
+        if (controller.signal.aborted) {
+          return;
+        }
+        scene.dataset.guidePhase = String(number);
+        advancing = false;
+        syncPlayback(paused ? 'paused' : 'playing');
+        await gate();
+        const words = text.trim().split(/\s+/).filter(Boolean).length;
+        const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+        const maximum = Math.max(minimum,
+          Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+        const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+        const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+        await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
+      };
+      root.easyeduGuideSceneStop = () => {
+        controller.abort();
+        headerObserver?.disconnect();
+        restoreClearance();
+        finishWait(); releaseGates();
+        root.easyeduGuideScenePlayback = null;
+        syncPlayback('idle');
+        if (dropFrame !== null) {
+          cancelAnimationFrame(dropFrame);
+        }
+        animations.forEach(animation => animation.cancel());
+        stage.querySelector('[data-guide-destination]')?.classList.remove('is-guide-drop-target');
+        stage.querySelector('[data-guide-ghost]')?.remove();
+      };
+      // I14: the scene-specific choreography lives in DISCOVERY_SCENE_PLAYERS; this function owns the
+      // shared playback clock and hands it over through one context object.
+      const ctx = {
+        root, scene, kind, mode, stage, result, recap, origin, target, readingBody, sceneHeader,
+        compact, still, reduced, signal: controller.signal, animations,
+        assertActive, gate, wait, animate, restFlash, placeCursor, movePointer, touchPointer, clickFeedback,
+        writeLive, reveal, revealPrepared, phase, narrate, settleHeader,
+        isFinished: () => finished,
+        markFinished: () => {
+          finished = true;
+          advancing = false;
+          syncPlayback('finished');
+        },
+        setDropFrame: frame => {
+          dropFrame = frame;
+        },
+        cancelDropFrame: () => {
+          cancelAnimationFrame(dropFrame);
+          dropFrame = null;
+        }
+      };
+      // A stopped run may reject after its replacement starts. It must never
+      // stop that newer run or write back into its restored illustration.
+      DISCOVERY_SCENE_PLAYERS[kind](ctx).catch(() => {
+        if (!controller.signal.aborted) {
+          stopDiscoveryScene(root);
+        }
+      });
+    };
+
   stopDiscoveryScene(root);
   if (!scene) {
- return;
+ return undefined;
 }
   const kind = scene.getAttribute('data-easyedu-guide-scene');
   if (kind === 'concepts') {
- return;
+ return undefined;
 }
   // K17-36: with a demonstration entry, the plain preview is the resting state of the creation stage.
   const hasStart = !!scene.querySelector('[data-guide-scene-command="start"]');
@@ -3624,17 +4148,17 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       renderDiscoveryNames(root, scene, 'preview');
     }
     if (!hasStart) {
-      return;
+      return undefined;
     }
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
   if (!Object.prototype.hasOwnProperty.call(DISCOVERY_SCENE_PLAYERS, kind)) {
-    return;
+    return undefined;
   }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) {
- return;
+ return undefined;
 }
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
   const mode = requestedMode === 'reset' ? defaultMode : requestedMode || scene.easyeduGuideSceneMode || defaultMode;
@@ -3642,503 +4166,10 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const result = scene.querySelector('[data-guide-result]');
   // J-G4: the simple-creation scene has no result line; every other kind needs one.
   if (!stage || (!result && !['simplecreate', 'creation', 'filters', 'midrop', 'mipreview'].includes(kind))) {
-    return;
+    return undefined;
   }
-  if (!scene.easyeduGuideStageOriginal) {
-    scene.easyeduGuideStageOriginal = stage.innerHTML;
-    scene.easyeduGuideResultOriginal = result ? result.textContent : '';
-  }
-  stage.innerHTML = scene.easyeduGuideStageOriginal;
-  delete scene.dataset.guideSceneFinished;
-  if (result) {
- result.textContent = scene.easyeduGuideResultOriginal;
-}
-  scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
-  scene.dataset.guideMode = mode;
-  scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
-    // E3: the two gestures are native radios; the checked state is the single source of truth.
-    button.checked = button.dataset.guideSceneCommand === mode;
-  });
-  // New compositions own their live region; historical templates keep the
-  // sibling fallback. Never attach playback to another scene's header.
-  const live = scene.querySelector('[data-guide-live]') || scene.parentElement.querySelector('[data-guide-live]');
-  const sceneHeader = scene.querySelector('[data-guide-scene-header]');
-  const phaseCaption = sceneHeader?.querySelector('[data-guide-phase-caption]');
-  // Touch modality (finger pointer, tap wording and flow); re-evaluated on every start and on change.
-  const compact = guideModality().touch;
-  // Count the applicable explanation phases, not animation frames or timers.
-  // J-G4: the simple-creation scene reads its four phases from its root's labels.
-  const labelledPhases = {simplecreate: 4, creation: 3, filters: 4, midrop: 3, mipreview: 4}[kind];
-  const applicablePhases = labelledPhases ?
-    Array.from({length: labelledPhases}, (unused, n) => ({dataset: {guidePhase: String(n + 1)}})) :
-    [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
-    !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
-  const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
-  const liveAnnouncement = live?.querySelector('[data-guide-live-announcement]');
-  const pauseControl = live?.querySelector('[data-guide-playback="pause"]');
-  const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
-  const activity = live?.querySelector('[data-guide-activity]');
-  const startControl = scene.querySelector('[data-guide-scene-command="start"]');
-  // Clearance belongs to this reading surface and this scene's compact header.
-  // Restore the previous inline value at completion/exit; no page scroll owner.
-  const readingBody = scene.closest('.easyedu-guide-modal__body');
-  const originalScrollPadding = readingBody?.style.getPropertyValue('scroll-padding-top') || '';
-  const originalScrollPaddingPriority = readingBody?.style.getPropertyPriority('scroll-padding-top') || '';
-  const restoreClearance = () => {
-    if (!readingBody) {
- return;
-}
-    if (originalScrollPadding) {
-      readingBody.style.setProperty('scroll-padding-top', originalScrollPadding, originalScrollPaddingPriority);
-    } else {
- readingBody.style.removeProperty('scroll-padding-top');
-}
-  };
-  const updateClearance = () => {
-    if (!sceneHeader || !readingBody) {
- return;
-}
-    if (['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState)) {
-      readingBody.style.setProperty('scroll-padding-top', `${sceneHeader.getBoundingClientRect().height + 8}px`);
-    } else {
- restoreClearance();
-}
-  };
-  let headerObserver = null;
-  const syncPlayback = createPlaybackSync({scene, kind, mode, sceneHeader, phaseCaption, applicablePhases,
-    startControl, live, activity, pauseControl, nextControl, updateClearance, getHeaderObserver: () => headerObserver});
-  syncPlayback('idle');
-  const {recap, origin, target} = restoreSceneAtRest({root, scene, kind, mode, stage, result, live, liveCopy,
-    liveAnnouncement, sceneHeader, startControl, readingBody, compact, requestedMode, start});
-  if (requestedMode === 'reset' || !start) {
- return;
-}
 
-  const controller = new AbortController();
-  const animations = new Set();
-  let timer = null;
-  let resolveWait = null;
-  let waitRemaining = 0;
-  let waitDeadline = 0;
-  let paused = false;
-  let skipping = false;
-  let advancing = false;
-  let finished = false;
-  const gates = new Set();
-  let dropFrame = null;
-  // 'minimal': phases switch instantly and the pointer is placed without travel. 'reduced': opacity fades
-  // of 120 ms at most, the pointer appears at its destination. Reading durations never change.
-  const level = getMotionLevel(root);
-  const reduced = level === 'minimal';
-  const fadeLevel = level === 'reduced';
-  const still = level !== 'full';
-  // Reading, illustration and scroll share one lifecycle. Pause retains the
-  // unread duration; phase advance drains just this phase's presentation work.
-  const assertActive = () => {
-    if (controller.signal.aborted) {
- throw controller.signal.reason;
-}
-  };
-  const releaseGates = () => {
- gates.forEach(resolve => resolve()); gates.clear();
-};
-  const gate = async() => {
-    if (paused && !skipping && !controller.signal.aborted) {
-      await new Promise(resolve => gates.add(resolve));
-    }
-    assertActive();
-  };
-  const finishWait = () => {
-    if (timer !== null) {
- window.clearTimeout(timer);
-}
-    timer = null; waitRemaining = 0;
-    const resolve = resolveWait; resolveWait = null;
-    resolve?.();
-  };
-  const scheduleWait = () => {
-    waitDeadline = performance.now() + waitRemaining;
-    timer = window.setTimeout(finishWait, waitRemaining);
-  };
-  const wait = async duration => {
-    await gate();
-    assertActive();
-    if (skipping) {
- return;
-}
-    await new Promise(resolve => {
-      resolveWait = resolve;
-      waitRemaining = duration;
-      scheduleWait();
-    });
-    assertActive();
-  };
-  root.easyeduGuideScenePlayback = {
-    scene,
-    toggle: () => {
-      if (controller.signal.aborted || finished || advancing) {
- return;
-}
-      paused = !paused;
-      if (paused) {
-        if (timer !== null) {
-          window.clearTimeout(timer); timer = null;
-          waitRemaining = Math.max(0, waitDeadline - performance.now());
-        }
-        animations.forEach(animation => {
- if (animation.playState === 'running') {
- animation.pause();
-}
-});
-      } else {
-        if (resolveWait) {
- scheduleWait();
-}
-        animations.forEach(animation => {
- if (animation.playState === 'paused') {
- animation.play();
-}
-});
-        releaseGates();
-      }
-      syncPlayback(paused ? 'paused' : 'playing');
-    },
-    next: () => {
-      if (controller.signal.aborted || finished || advancing || !scene.dataset.guidePhase) {
- return;
-}
-      advancing = true; skipping = true;
-      syncPlayback(paused ? 'paused' : 'playing', true);
-      finishWait(); releaseGates();
-      animations.forEach(animation => {
-        if (['running', 'paused'].includes(animation.playState)) {
- animation.finish();
-}
-      });
-    }
-  };
-  syncPlayback('playing');
-  if (sceneHeader && typeof ResizeObserver !== 'undefined') {
-    headerObserver = new ResizeObserver(updateClearance);
-    headerObserver.observe(sceneHeader);
-  }
-  let phaseTarget = null;
-  const settleHeader = async() => {
-    assertActive();
-    if (!sceneHeader || reduced) {
- return;
-}
-    const transitions = sceneHeader.getAnimations({subtree: true}).filter(animation =>
-      animation.effect?.getComputedTiming().iterations !== Infinity);
-    transitions.forEach(animation => animations.add(animation));
-    await Promise.all(transitions.map(animation => animation.finished.catch(() => { /* Ignore cleanup rejection. */ })));
-    transitions.forEach(animation => animations.delete(animation));
-    assertActive();
-  };
-  const animate = async(element, frames, duration, retain = true) => {
-    await gate();
-    assertActive();
-    if (reduced) {
-      return null;
-    }
-    const shown = fadeLevel ? toFadeFrames(frames) : frames;
-    if (!shown) {
-      return null;
-    }
-    const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
-      easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
-    animations.add(animation);
-    if (skipping) {
- animation.finish();
-}
-    try {
- await animation.finished;
-} catch (error) { /* Cancelled by departure. */ }
-    if (!retain) {
- animation.cancel(); animations.delete(animation);
-}
-    assertActive();
-    return animation;
-  };
-  // K17-28, K17-45: the common return to rest. The stage fades out briefly, every retained transform or
-  // opacity animation inside it is cancelled and the resting (or final) state is applied while it is
-  // invisible, then the stage fades back in. On the same pausable clock as the rest of the demonstration;
-  // 'reduced' keeps one 120 ms fade each way, 'minimal' applies the state at once.
-  const restFlash = async mutate => {
-    await gate();
-    assertActive();
-    const cancelRetained = () => animations.forEach(animation => {
-      const node = animation.effect?.target;
-      if (node && node !== stage && stage.contains(node)) {
-        animation.cancel();
-        animations.delete(animation);
-      }
-    });
-    if (reduced) {
-      cancelRetained();
-      mutate();
-      return;
-    }
-    const out = await animate(stage, [{opacity: 1}, {opacity: 0}], FLASH_OUT_MS);
-    cancelRetained();
-    mutate();
-    const back = await animate(stage, [{opacity: 0}, {opacity: 1}], FLASH_IN_MS);
-    out?.cancel();
-    back?.cancel();
-    if (out) {
-      animations.delete(out);
-    }
-    if (back) {
-      animations.delete(back);
-    }
-  };
-  const {placeCursor, movePointer, touchPointer, clickFeedback} = createScenePointerKit({root, compact, still, reduced,
-    fadeLevel, gate, assertActive, animate});
-  // The modality can change under a running demo (rotation, window resize): it returns to "Ready".
-  const modalityQueries = [GUIDE_NARROW_QUERY, GUIDE_TOUCH_QUERY].map(query => window.matchMedia?.(query)).filter(Boolean);
-  const onModalityChange = () => {
-    if (guideModality().touch !== compact && !controller.signal.aborted) {
-      playDiscoveryScene(root, scene, undefined, !scene.querySelector('[data-guide-scene-command="start"]'));
-    }
-  };
-  modalityQueries.forEach(query => query.addEventListener?.('change', onModalityChange));
-  controller.signal.addEventListener('abort', () => {
-    modalityQueries.forEach(query => query.removeEventListener?.('change', onModalityChange));
-  }, {once: true});
-  // Fade the instruction copy, not the entire teaching scene. Its reading pause
-  // starts only after the new sentence is visible; no business state is changed.
-  const writeLive = async(text, state = 'active', immediate = false) => {
-    assertActive();
-    if (!live) {
- return;
-}
-    if (!immediate) {
- await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false);
-}
-    if (controller.signal.aborted) {
- return;
-}
-    // The phase caption already supplies the visible number. Keep complete
-    // narration for assistive technology and the historical template fallback.
-    if (liveAnnouncement) {
- liveAnnouncement.textContent = text;
-}
-    liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
-      text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
-    // K17-33: the end card shows a title and a hint on two lines (the string is "Title · Hint").
-    const split = state === 'finished' ? text.split(/\s*\u00b7\s*/) : [];
-    if (split.length === 2) {
-      liveCopy.textContent = '';
-      ['title', 'hint'].forEach((role, index) => {
-        const line = document.createElement('span');
-        line.className = 'easyedu-guide-scene__finished-' + role;
-        line.textContent = split[index];
-        liveCopy.appendChild(line);
-      });
-    }
-    liveCopy.dataset.easyeduGuideBubble = text;
-    liveCopy.dataset.easyeduGuideBubbleWhen = 'truncated';
-    live.dataset.guideLiveState = state;
-    const completionIcon = live.querySelector('[data-guide-live-complete]');
-    if (completionIcon) {
- completionIcon.hidden = state !== 'finished';
-}
-    if (!immediate) {
-      await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
-        {opacity: 1, transform: 'translateY(0)'}], 260, false);
-    }
-  };
-  // Scroll only the Guide reading surface, never the Moodle page. The same
-  // cancellable animation set owns illustration and scroll, including exit.
-  const reveal = async element => {
-    await gate();
-    assertActive();
-    const body = scene.closest('.easyedu-guide-modal__body');
-    if (!body || element.hidden) {
- return;
-}
-    phaseTarget = element;
-    updateClearance();
-    const bounds = body.getBoundingClientRect(),
-item = element.getBoundingClientRect();
-    const sticky = !sceneHeader || ['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState);
-    const readingTop = bounds.top + (sticky ? ((sceneHeader || live)?.getBoundingClientRect().height || 0) : 0) + 8;
-    const readingBottom = bounds.bottom - 12;
-    if (item.top >= readingTop && item.bottom <= readingBottom) {
- return;
-}
-    const offset = item.height > readingBottom - readingTop || item.top < readingTop ?
-      item.top - readingTop : item.bottom - readingBottom;
-    const from = body.scrollTop;
-    const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
-    if (still || skipping || !body.animate) {
- body.scrollTop = to; return;
-}
-    // A clock animation supplies a cancellable, eased progress value;
-    // scrolling stays a DOM property rather than an independent smooth-scroll.
-    const clock = body.animate([{opacity: 1}, {opacity: 1}],
-      {duration: 420, easing: 'cubic-bezier(.4,0,.2,1)'});
-    animations.add(clock);
-    await new Promise(resolve => {
-      const tick = () => {
-        if (controller.signal.aborted || clock.playState === 'idle') {
- resolve(); return;
-}
-        const progress = clock.effect.getComputedTiming().progress;
-        if (progress !== null) {
- body.scrollTop = from + (to - from) * progress;
-}
-        if (clock.playState === 'finished') {
- body.scrollTop = to;
- resolve();
- return;
-}
-        requestAnimationFrame(tick);
-      };
-      tick();
-    });
-    clock.cancel(); animations.delete(clock);
-    assertActive();
-  };
-  // Reserve the real target's layout before scrolling, without painting it at
-  // its old offscreen position. Keep the existing fade and cancellable clock.
-  const revealPrepared = async(element, prepare = () => { /* Optional hook. */ }) => {
-    assertActive();
-    const visibility = element.style.visibility;
-    const opacity = element.style.opacity;
-    element.style.visibility = 'hidden';
-    element.style.opacity = '0';
-    element.hidden = false;
-    try {
-      prepare();
-      await reveal(element);
-      if (controller.signal.aborted) {
- return;
-}
-      element.style.visibility = visibility;
-      await animate(element, [{opacity: 0}, {opacity: 1}], 280);
-    } finally {
-      element.style.visibility = visibility;
-      element.style.opacity = opacity;
-    }
-  };
-  const phase = async(name, prepareTarget) => {
-    assertActive();
-    const jumped = skipping;
-    skipping = false;
-    const item = scene.querySelector(`[data-guide-phase="${name}"]`);
-    scene.querySelectorAll('[data-guide-phase]').forEach(node => node.removeAttribute('aria-current'));
-    if (item) {
-      item.setAttribute('aria-current', 'step');
-      const text = (compact && mode === 'add' && item.dataset.compactAdd) ||
-        (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
-      item.textContent = text;
-      await writeLive(text, 'active', paused && jumped);
-      if (controller.signal.aborted) {
- return;
-}
-      scene.dataset.guidePhase = name;
-    }
-    advancing = false;
-    syncPlayback(paused ? 'paused' : 'playing');
-    if (prepareTarget) {
- await prepareTarget();
-}
-    // New narration can wrap and change the sticky height. Re-reveal the real
-    // phase target after that copy update, not just before the phase begins.
-    const validateTarget = ['membership', 'actions'].includes(kind) && name === 'validate' ?
-      scene.querySelector('[data-guide-confirm]') : null;
-    if (validateTarget || phaseTarget) {
- await reveal(validateTarget || phaseTarget);
-}
-    await gate();
-    if (controller.signal.aborted) {
- return;
-}
-    // Reduced motion removes movement, never the time needed to read a phase.
-    const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
-    const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
-    const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
-    const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
-    const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
-    let reading = Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
-    // Budget actual reading phases, on the same pausable clock at every Motion
-    // level. Desktop Add has two phases (no confirmation); inspection has five.
-    // Keep the illustrated result on screen, never add a second animation loop.
-    if (kind === 'membership' && mode === 'add' && !compact) {
-      reading += 5000;
-    } else if (kind === 'inspection') {
-      reading = Math.max(minimum - 350, reading - 350);
-    } else if (kind === 'membership' && mode === 'move' && compact) {
-      reading += 250;
-    }
-    await wait(reading);
-  };
-  // Same narration and reading clock as phase(), with the copy carried by the specimen stage's labels.
-  const narrate = async number => {
-    assertActive();
-    skipping = false;
-    // A touch variant of the narration, when the root supplies one (GMI-C3 "Tap" wording).
-    const text = (compact && stage.getAttribute(`data-guide-phase-${number}-compact-label`)) ||
-      stage.getAttribute(`data-guide-phase-${number}-label`) || '';
-    await writeLive(text, 'active');
-    if (controller.signal.aborted) {
- return;
-}
-    scene.dataset.guidePhase = String(number);
-    advancing = false;
-    syncPlayback(paused ? 'paused' : 'playing');
-    await gate();
-    const words = text.trim().split(/\s+/).filter(Boolean).length;
-    const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
-    const maximum = Math.max(minimum,
-      Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
-    const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
-    const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
-    await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
-  };
-  root.easyeduGuideSceneStop = () => {
-    controller.abort();
-    headerObserver?.disconnect();
-    restoreClearance();
-    finishWait(); releaseGates();
-    root.easyeduGuideScenePlayback = null;
-    syncPlayback('idle');
-    if (dropFrame !== null) {
- cancelAnimationFrame(dropFrame);
-}
-    animations.forEach(animation => animation.cancel());
-    stage.querySelector('[data-guide-destination]')?.classList.remove('is-guide-drop-target');
-    stage.querySelector('[data-guide-ghost]')?.remove();
-  };
-  // I14: the scene-specific choreography lives in DISCOVERY_SCENE_PLAYERS; this function owns the
-  // shared playback clock and hands it over through one context object.
-  const ctx = {
-    root, scene, kind, mode, stage, result, recap, origin, target, readingBody, sceneHeader,
-    compact, still, reduced, signal: controller.signal, animations,
-    assertActive, gate, wait, animate, restFlash, placeCursor, movePointer, touchPointer, clickFeedback,
-    writeLive, reveal, revealPrepared, phase, narrate, settleHeader,
-    isFinished: () => finished,
-    markFinished: () => {
-      finished = true;
-      advancing = false;
-      syncPlayback('finished');
-    },
-    setDropFrame: frame => {
- dropFrame = frame;
-},
-    cancelDropFrame: () => {
-      cancelAnimationFrame(dropFrame);
-      dropFrame = null;
-    }
-  };
-  // A stopped run may reject after its replacement starts. It must never
-  // stop that newer run or write back into its restored illustration.
-  DISCOVERY_SCENE_PLAYERS[kind](ctx).catch(() => {
- if (!controller.signal.aborted) {
- stopDiscoveryScene(root);
-}
-});
+  return initializeScenePlayback();
 };
 
 const stopSlideTransition = root => {
@@ -4661,13 +4692,54 @@ const animateChecklistCompletion = (checklist, fromHeight, message) => {
 };
 
 const renderChecklist = (root, config, pathName) => {
+    const renderChecklistMessage = () => {
+      if (message) {
+        const allComplete = isChecklistComplete(list);
+        const activeStepIndex = firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
+        const activeStep = steps[activeStepIndex] || steps[0] || {};
+        const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
+        const initialText = allComplete ? completeMessage :
+          (getStepText(activeStep, 'feedback') || config.labels.hint || config.labels.complete);
+        const icon = message.querySelector('.fa');
+        const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
+        checklist.classList.toggle('is-complete', allComplete);
+        message.classList.toggle('is-complete', allComplete);
+        if (allComplete) {
+          expandCompleteChecklist(checklist);
+          if (!wasComplete) {
+            animateChecklistCompletion(checklist, fromHeight, message);
+          }
+        }
+        if (icon) {
+          icon.classList.toggle('fa-check-circle', allComplete);
+          icon.classList.toggle('fa-location-arrow', !allComplete);
+        }
+        if (text) {
+          text.textContent = initialText;
+        }
+      }
+
+      saveChecklistProgress(root, config, pathName,
+        firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0);
+      updateChecklistHeader(root, config,
+        firstItem ? steps[Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0)] : (steps[0] || null));
+      syncChecklistMinimizeControl(root);
+      // The initial right dock must not paint over a companion while close/open
+      // actions or highlight scheduling are still pending. The complete content
+      // and active step now exist: resolve and dock synchronously before yielding.
+      const initialTarget = resolveActiveChecklistTarget(root);
+      if (initialTarget) {
+        dockChecklistAwayFromTarget(root, initialTarget, resolveActiveChecklistCompanion(root));
+      }
+    };
+
   const checklist = root.querySelector(SELECTORS.checklist);
   const list = root.querySelector(SELECTORS.checklistItems);
   const message = root.querySelector(SELECTORS.checklistMessage);
   const steps = config.paths[pathName] || [];
 
   if (!checklist || !list || steps.length === 0) {
-    return;
+    return undefined;
   }
 
   const previousItems = Array.from(list.children);
@@ -4773,44 +4845,8 @@ const renderChecklist = (root, config, pathName) => {
     firstItem.setAttribute('aria-current', 'step');
   }
 
-  if (message) {
-    const allComplete = isChecklistComplete(list);
-    const activeStepIndex = firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
-    const activeStep = steps[activeStepIndex] || steps[0] || {};
-    const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
-    const initialText = allComplete ? completeMessage :
-      (getStepText(activeStep, 'feedback') || config.labels.hint || config.labels.complete);
-    const icon = message.querySelector('.fa');
-    const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
-    checklist.classList.toggle('is-complete', allComplete);
-    message.classList.toggle('is-complete', allComplete);
-    if (allComplete) {
-      expandCompleteChecklist(checklist);
-      if (!wasComplete) {
-        animateChecklistCompletion(checklist, fromHeight, message);
-      }
-    }
-    if (icon) {
-      icon.classList.toggle('fa-check-circle', allComplete);
-      icon.classList.toggle('fa-location-arrow', !allComplete);
-    }
-    if (text) {
-      text.textContent = initialText;
-    }
-  }
 
-  saveChecklistProgress(root, config, pathName,
-    firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0);
-  updateChecklistHeader(root, config,
-    firstItem ? steps[Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0)] : (steps[0] || null));
-  syncChecklistMinimizeControl(root);
-  // The initial right dock must not paint over a companion while close/open
-  // actions or highlight scheduling are still pending. The complete content
-  // and active step now exist: resolve and dock synchronously before yielding.
-  const initialTarget = resolveActiveChecklistTarget(root);
-  if (initialTarget) {
-    dockChecklistAwayFromTarget(root, initialTarget, resolveActiveChecklistCompanion(root));
-  }
+  return renderChecklistMessage();
 };
 
 const updateChecklistMessage = (root, config, activeStep) => {
@@ -5336,18 +5372,252 @@ const bindGuide = (root, config) => {
   });
 
   addTrackedListener(root, root, 'click', event => {
+      const handleGuideSceneAndReadingCommands = () => {
+        if (sceneCommand && root.contains(sceneCommand)) {
+          // A radio keeps its native selection and keyboard behaviour: never cancel its click.
+          if (sceneCommand.type !== 'radio') {
+            event.preventDefault();
+          }
+          if (sceneCommand.disabled) {
+            return undefined;
+          }
+          const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
+          if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) {
+            return undefined;
+          }
+          const command = sceneCommand.getAttribute('data-guide-scene-command');
+          if (['preview', 'letters', 'clear'].includes(command)) {
+            renderDiscoveryNames(root, scene, command);
+          } else {
+            const manual = !!scene.querySelector('[data-guide-scene-command="start"]');
+            const mode = ['replay', 'start'].includes(command) ? undefined : command;
+            // Manual mode choices restore a ready illustration; only Start runs it.
+            // Legacy templates keep their existing explicit command behavior.
+            playDiscoveryScene(root, scene, mode, !manual || !['add', 'move'].includes(command));
+          }
+          return undefined;
+        }
+        const activeConfig = root.easyeduGuideConfig || config;
+        const open = event.target.closest(SELECTORS.open);
+
+        return handleGuideReadingNavigation(open, activeConfig);
+      };
+      const handleGuideReadingNavigation = (open, activeConfig) => {
+        if (open && root.contains(open)) {
+          event.preventDefault();
+          openModal(root, activeConfig);
+          return undefined;
+        }
+
+        const navNext = event.target.closest(SELECTORS.navNext);
+        if (navNext && root.contains(navNext)) {
+          event.preventDefault();
+          moveNav(root, 1);
+          return undefined;
+        }
+
+        const navPrevious = event.target.closest(SELECTORS.navPrevious);
+        if (navPrevious && root.contains(navPrevious)) {
+          event.preventDefault();
+          moveNav(root, -1);
+          return undefined;
+        }
+
+        const close = event.target.closest(SELECTORS.close);
+        if (close && root.contains(close)) {
+          event.preventDefault();
+          closeModal(root);
+          return undefined;
+        }
+
+        const next = event.target.closest(SELECTORS.next);
+        if (next && root.contains(next)) {
+          event.preventDefault();
+          setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) + 1,
+            activeConfig, {persistReading: true});
+          return undefined;
+        }
+
+        const previous = event.target.closest(SELECTORS.previous);
+
+        return handleGuidePreviousAndChecklist(previous, activeConfig);
+      };
+      const handleGuidePreviousAndChecklist = (previous, activeConfig) => {
+        if (previous && root.contains(previous)) {
+          event.preventDefault();
+          setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) - 1,
+            activeConfig, {persistReading: true});
+          return undefined;
+        }
+
+        const minimize = event.target.closest(SELECTORS.checklistMinimize);
+        if (minimize && root.contains(minimize)) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          const checklist = root.querySelector(SELECTORS.checklist);
+          if (checklist) {
+            const minimized = !checklist.classList.contains('is-minimized');
+            checklist.classList.toggle('is-minimized', minimized);
+            checklist.classList.remove('is-avoiding');
+            root.easyeduGuideChecklistExpandedTarget = minimized ? null : root.easyeduGuideCurrentTarget;
+            if (isCompactChecklistViewport()) {
+              checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
+            }
+            syncChecklistMinimizeControl(root);
+            // C2-15-01: the new size may now cover the current step's control.
+            if (isVisibleElement(root.easyeduGuideCurrentTarget)) {
+              releaseChecklistTopDock(root);
+              dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget, resolveActiveChecklistCompanion(root));
+            }
+            const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
+              '[data-easyedu-guide-checklist-minimize]');
+            if (isVisibleElement(nextControl)) {
+              nextControl.focus({preventScroll: true});
+            }
+          }
+          return undefined;
+        }
+
+        const navItem = event.target.closest(SELECTORS.navItem);
+        if (navItem && root.contains(navItem)) {
+          event.preventDefault();
+          syncSlideLocks(root, activeConfig);
+          setActiveSlide(root, Number(navItem.getAttribute('data-easyedu-guide-nav-item') || 0), activeConfig, {
+            allowLocked: navItem.classList.contains('is-locked'), persistReading: true
+          });
+          return undefined;
+        }
+
+        // E1 (K2): a recap tile reopens an earlier slide through its own navigation item.
+        // It never starts a path or touches the course; locked slides stay locked.
+        const gotoLink = event.target.closest(SELECTORS.gotoSlide);
+        if (gotoLink && root.contains(gotoLink)) {
+          event.preventDefault();
+          syncSlideLocks(root, activeConfig);
+          const target = Number(gotoLink.getAttribute('data-easyedu-guide-goto'));
+          const item = Number.isInteger(target) ?
+            root.querySelector(`${SELECTORS.navItem}[data-easyedu-guide-nav-item="${target}"]`) : null;
+          if (item) {
+            setActiveSlide(root, target, activeConfig, {allowLocked: false, persistReading: true});
+          }
+          return undefined;
+        }
+
+        const targetButton = event.target.closest(SELECTORS.showTarget);
+
+        return handleGuideTargetAndPathCommands(targetButton, activeConfig);
+      };
+      const handleGuideTargetAndPathCommands = (targetButton, activeConfig) => {
+        if (targetButton && root.contains(targetButton)) {
+          event.preventDefault();
+          return closeModal(root, true, false).then(() => {
+            if (!root.querySelector(SELECTORS.modal).hidden) {
+              return;
+            }
+            notifyInterfaceTransition(root, 'show-target');
+            runShowTargetOpenAction(root, activeConfig, targetButton, () => {
+              const target = resolveTarget(activeConfig, resolveShowTargetKey(targetButton));
+              if (!target) {
+                // A consumer can temporarily remove a target while changing views.
+                // Reopen the guide rather than leaving the visitor without context.
+                openModal(root, activeConfig);
+                return;
+              }
+              scrollToTarget(root, target);
+              focusTarget(target);
+              showInterfaceReturn(root);
+            });
+
+            return;
+          });
+
+        }
+
+        const gotoPath = event.target.closest('[data-easyedu-guide-goto-path]');
+        if (gotoPath && root.contains(gotoPath)) {
+          event.preventDefault();
+          gotoPathCard(root, activeConfig, gotoPath.getAttribute('data-easyedu-guide-goto-path'));
+          return undefined;
+        }
+
+        const startPath = event.target.closest(SELECTORS.startPath);
+        if (startPath && root.contains(startPath)) {
+          event.preventDefault();
+          if (startPath.disabled) {
+            return undefined;
+          }
+          captureChecklistFocus(root, startPath);
+          dismissResume(root);
+          const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
+          // New context sessions invalidate obsolete native callbacks, including
+          // leaving another path and then starting this same path again.
+          if (Object.prototype.hasOwnProperty.call(activeConfig.pathContextFields || {}, requestedPath)) {
+            root.easyeduGuidePathEpoch = (root.easyeduGuidePathEpoch || 0) + 1;
+          }
+          if (isPathComplete(activeConfig, requestedPath)) {
+            resetPathProgress(activeConfig, requestedPath);
+          }
+          syncSlideLocks(root, activeConfig);
+          renderChecklist(root, activeConfig, requestedPath);
+          syncPathInvitation(root, activeConfig);
+          return closeModal(root, false, false).then(() => {
+            if (!root.querySelector(SELECTORS.modal).hidden) {
+              return;
+            }
+            focusChecklist(root);
+            notifyInterfaceTransition(root, 'guided-path');
+            const checklist = root.querySelector(SELECTORS.checklist);
+            const activeItem = checklist ?
+              checklist.querySelector('[data-easyedu-guide-step-index].is-active') :
+              null;
+            const pathName = checklist ? checklist.getAttribute('data-easyedu-guide-path') : '';
+            const steps = activeConfig.paths[pathName] || [];
+            const stepIndex = activeItem ?
+              Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) :
+              0;
+            highlightChecklistStep(root, activeConfig, steps[stepIndex] || null);
+
+            return;
+          });
+
+        }
+
+        const checklistItem = event.target.closest('[data-easyedu-guide-step-index]');
+        if (checklistItem && root.contains(checklistItem)) {
+          event.preventDefault();
+          if (checklistItem.classList.contains('is-locked')) {
+            return undefined;
+          }
+          const checklist = root.querySelector(SELECTORS.checklist);
+          if (checklist) {
+            checklist.getAttribute('data-easyedu-guide-path');
+          }
+          const stepIndex = Number(checklistItem.getAttribute('data-easyedu-guide-step-index') || 0);
+          const step = setActiveChecklistStep(root, activeConfig, stepIndex);
+          highlightChecklistStep(root, activeConfig, step, () => {
+            if (step && (step.completeOnClick || step.completeOn || step.waitForCompletion ||
+            ['action', 'event', 'reload'].includes(step.completionMode))) {
+              updateChecklistMessage(root, activeConfig, step);
+              return;
+            }
+            markChecklistStepComplete(root, activeConfig, step && step.id ? step.id : stepIndex, step);
+          });
+        }
+        return undefined;
+      };
+
     const welcomeDismiss = event.target.closest('[data-easyedu-guide-welcome-dismiss]');
     if (welcomeDismiss && root.contains(welcomeDismiss)) {
       event.preventDefault();
       root.easyeduGuideWelcomeDismissed = true;
       hideWelcome(root);
-      return;
+      return undefined;
     }
     const playback = event.target.closest('[data-guide-playback]');
     if (playback && root.contains(playback)) {
       event.preventDefault();
       if (playback.disabled || event.detail > 1) {
- return;
+ return undefined;
 }
       const active = root.easyeduGuideScenePlayback;
       if (active && playback.closest('[data-easyedu-guide-slide]')?.contains(active.scene)) {
@@ -5357,13 +5627,13 @@ const bindGuide = (root, config) => {
  active.next();
 }
       }
-      return;
+      return undefined;
     }
     const recapToggle = event.target.closest('[data-guide-recap-toggle]');
     if (recapToggle && root.contains(recapToggle)) {
       event.preventDefault();
       toggleRecapDisclosure(recapToggle.closest('[data-guide-recap]'));
-      return;
+      return undefined;
     }
 
     const loupeStart = event.target.closest('[data-guide-loupe-start]');
@@ -5372,227 +5642,11 @@ const bindGuide = (root, config) => {
       if (!loupeStart.disabled) {
         runLoupeDemo(root, loupeStart.closest('[data-guide-loupe]'));
       }
-      return;
+      return undefined;
     }
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
-    if (sceneCommand && root.contains(sceneCommand)) {
-      // A radio keeps its native selection and keyboard behaviour: never cancel its click.
-      if (sceneCommand.type !== 'radio') {
- event.preventDefault();
-}
-      if (sceneCommand.disabled) {
- return;
-}
-      const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
-      if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) {
- return;
-}
-      const command = sceneCommand.getAttribute('data-guide-scene-command');
-      if (['preview', 'letters', 'clear'].includes(command)) {
-        renderDiscoveryNames(root, scene, command);
-      } else {
-        const manual = !!scene.querySelector('[data-guide-scene-command="start"]');
-        const mode = ['replay', 'start'].includes(command) ? undefined : command;
-        // Manual mode choices restore a ready illustration; only Start runs it.
-        // Legacy templates keep their existing explicit command behavior.
-        playDiscoveryScene(root, scene, mode, !manual || !['add', 'move'].includes(command));
-      }
-      return;
-    }
-    const activeConfig = root.easyeduGuideConfig || config;
-    const open = event.target.closest(SELECTORS.open);
-    if (open && root.contains(open)) {
-      event.preventDefault();
-      openModal(root, activeConfig);
-      return;
-    }
 
-    const navNext = event.target.closest(SELECTORS.navNext);
-    if (navNext && root.contains(navNext)) {
-      event.preventDefault();
-      moveNav(root, 1);
-      return;
-    }
-
-    const navPrevious = event.target.closest(SELECTORS.navPrevious);
-    if (navPrevious && root.contains(navPrevious)) {
-      event.preventDefault();
-      moveNav(root, -1);
-      return;
-    }
-
-    const close = event.target.closest(SELECTORS.close);
-    if (close && root.contains(close)) {
-      event.preventDefault();
-      closeModal(root);
-      return;
-    }
-
-    const next = event.target.closest(SELECTORS.next);
-    if (next && root.contains(next)) {
-      event.preventDefault();
-      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) + 1,
-        activeConfig, {persistReading: true});
-      return;
-    }
-
-    const previous = event.target.closest(SELECTORS.previous);
-    if (previous && root.contains(previous)) {
-      event.preventDefault();
-      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) - 1,
-        activeConfig, {persistReading: true});
-      return;
-    }
-
-    const minimize = event.target.closest(SELECTORS.checklistMinimize);
-    if (minimize && root.contains(minimize)) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      const checklist = root.querySelector(SELECTORS.checklist);
-      if (checklist) {
-        const minimized = !checklist.classList.contains('is-minimized');
-        checklist.classList.toggle('is-minimized', minimized);
-        checklist.classList.remove('is-avoiding');
-        root.easyeduGuideChecklistExpandedTarget = minimized ? null : root.easyeduGuideCurrentTarget;
-        if (isCompactChecklistViewport()) {
-          checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
-        }
-        syncChecklistMinimizeControl(root);
-        // C2-15-01: the new size may now cover the current step's control.
-        if (isVisibleElement(root.easyeduGuideCurrentTarget)) {
-          releaseChecklistTopDock(root);
-          dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget, resolveActiveChecklistCompanion(root));
-        }
-        const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
-          '[data-easyedu-guide-checklist-minimize]');
-        if (isVisibleElement(nextControl)) {
- nextControl.focus({preventScroll: true});
-}
-      }
-      return;
-    }
-
-    const navItem = event.target.closest(SELECTORS.navItem);
-    if (navItem && root.contains(navItem)) {
-      event.preventDefault();
-      syncSlideLocks(root, activeConfig);
-      setActiveSlide(root, Number(navItem.getAttribute('data-easyedu-guide-nav-item') || 0), activeConfig, {
-        allowLocked: navItem.classList.contains('is-locked'), persistReading: true
-      });
-      return;
-    }
-
-    // E1 (K2): a recap tile reopens an earlier slide through its own navigation item.
-    // It never starts a path or touches the course; locked slides stay locked.
-    const gotoLink = event.target.closest(SELECTORS.gotoSlide);
-    if (gotoLink && root.contains(gotoLink)) {
-      event.preventDefault();
-      syncSlideLocks(root, activeConfig);
-      const target = Number(gotoLink.getAttribute('data-easyedu-guide-goto'));
-      const item = Number.isInteger(target) ?
-        root.querySelector(`${SELECTORS.navItem}[data-easyedu-guide-nav-item="${target}"]`) : null;
-      if (item) {
-        setActiveSlide(root, target, activeConfig, {allowLocked: false, persistReading: true});
-      }
-      return;
-    }
-
-    const targetButton = event.target.closest(SELECTORS.showTarget);
-    if (targetButton && root.contains(targetButton)) {
-      event.preventDefault();
-      closeModal(root, true, false).then(() => {
-        if (!root.querySelector(SELECTORS.modal).hidden) {
- return;
-}
-        notifyInterfaceTransition(root, 'show-target');
-        runShowTargetOpenAction(root, activeConfig, targetButton, () => {
-          const target = resolveTarget(activeConfig, resolveShowTargetKey(targetButton));
-          if (!target) {
-            // A consumer can temporarily remove a target while changing views.
-            // Reopen the guide rather than leaving the visitor without context.
-            openModal(root, activeConfig);
-            return;
-          }
-          scrollToTarget(root, target);
-          focusTarget(target);
-          showInterfaceReturn(root);
-        });
-
-return;
-});
-      return;
-    }
-
-    const gotoPath = event.target.closest('[data-easyedu-guide-goto-path]');
-    if (gotoPath && root.contains(gotoPath)) {
-      event.preventDefault();
-      gotoPathCard(root, activeConfig, gotoPath.getAttribute('data-easyedu-guide-goto-path'));
-      return;
-    }
-
-    const startPath = event.target.closest(SELECTORS.startPath);
-    if (startPath && root.contains(startPath)) {
-      event.preventDefault();
-      if (startPath.disabled) {
- return;
-}
-      captureChecklistFocus(root, startPath);
-      dismissResume(root);
-      const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
-      // New context sessions invalidate obsolete native callbacks, including
-      // leaving another path and then starting this same path again.
-      if (Object.prototype.hasOwnProperty.call(activeConfig.pathContextFields || {}, requestedPath)) {
-        root.easyeduGuidePathEpoch = (root.easyeduGuidePathEpoch || 0) + 1;
-      }
-      if (isPathComplete(activeConfig, requestedPath)) {
- resetPathProgress(activeConfig, requestedPath);
-}
-      syncSlideLocks(root, activeConfig);
-      renderChecklist(root, activeConfig, requestedPath);
-      syncPathInvitation(root, activeConfig);
-      closeModal(root, false, false).then(() => {
-        if (!root.querySelector(SELECTORS.modal).hidden) {
- return;
-}
-        focusChecklist(root);
-        notifyInterfaceTransition(root, 'guided-path');
-        const checklist = root.querySelector(SELECTORS.checklist);
-        const activeItem = checklist ?
-          checklist.querySelector('[data-easyedu-guide-step-index].is-active') :
-          null;
-        const pathName = checklist ? checklist.getAttribute('data-easyedu-guide-path') : '';
-        const steps = activeConfig.paths[pathName] || [];
-        const stepIndex = activeItem ?
-          Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) :
-          0;
-        highlightChecklistStep(root, activeConfig, steps[stepIndex] || null);
-
-return;
-});
-      return;
-    }
-
-    const checklistItem = event.target.closest('[data-easyedu-guide-step-index]');
-    if (checklistItem && root.contains(checklistItem)) {
-      event.preventDefault();
-      if (checklistItem.classList.contains('is-locked')) {
-        return;
-      }
-      const checklist = root.querySelector(SELECTORS.checklist);
-      if (checklist) {
-        checklist.getAttribute('data-easyedu-guide-path');
-      }
-      const stepIndex = Number(checklistItem.getAttribute('data-easyedu-guide-step-index') || 0);
-      const step = setActiveChecklistStep(root, activeConfig, stepIndex);
-      highlightChecklistStep(root, activeConfig, step, () => {
-        if (step && (step.completeOnClick || step.completeOn || step.waitForCompletion ||
-            ['action', 'event', 'reload'].includes(step.completionMode))) {
-          updateChecklistMessage(root, activeConfig, step);
-          return;
-        }
-        markChecklistStepComplete(root, activeConfig, step && step.id ? step.id : stepIndex, step);
-      });
-    }
+    return handleGuideSceneAndReadingCommands();
   });
 
   root.querySelectorAll('[data-easyedu-guide-reset-path]').forEach(button => {

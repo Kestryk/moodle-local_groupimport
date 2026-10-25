@@ -85,6 +85,48 @@ export const bindParticipantModal = root => {
     };
 
     const renderParticipantDetail = (data, state = 'ready') => {
+        const renderParticipantRelations = () => {
+            const relations = renderRelation(labels.roles || '', data.roles, [], 'role', labels.rolescounttemplate || '', null) +
+            renderRelation(labels.groups || '', data.groups, data.groupids, 'group', labels.groupscounttemplate || '',
+                groupsCsv) +
+            renderRelation(labels.groupings || '', data.groupings, data.groupingids, 'grouping',
+                labels.groupingscounttemplate || '', groupingsCsv);
+            const notice = state === 'error' ? entityErrorNotice(labels.entityloaderror || '', labels.retry || '') : '';
+            // The participant picture is the HTML rendered by Moodle (user_picture).
+            const identity = entityIdentity('participant', data.profileimage || '', data.fullname || '', data.email || '');
+
+            return replaceParticipantDetailBody(notice, identity, relations);
+        };
+        const replaceParticipantDetailBody = (notice, identity, relations) => {
+            body.innerHTML =
+            '<div class="local-groupimport-easystud-entity__content">' +
+                notice + identity +
+                entitySection(labels.entityinformation || '',
+                    '<dl class="local-groupimport-easystud-entity__fields">' + fields + description + '</dl>', 'information') +
+                entitySection(labels.entityrelations || '', relations, 'relations') +
+            '</div>';
+            body.dataset.easystudRenderedUserId = String(data.id);
+            const relationsAfter = Array.from(body.querySelectorAll('[data-easystud-settings-list-section]'));
+            relationsAfter.forEach((details, index) => {
+                if (index < openStates.length) {
+                    details.open = openStates[index];
+                }
+                bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
+                    'data-easystud-settings-list-state');
+            });
+            if (profileLink) {
+                profileLink.hidden = !data.profileurl;
+                profileLink.setAttribute('href', data.profileurl || '#');
+            }
+            setEntityFooterBusy(dialog, loading);
+            if (relationIndex >= 0 && controlIndex >= 0 && !modal.hidden) {
+                const destination = relationsAfter[relationIndex]?.querySelectorAll(controlSelector)[controlIndex];
+                if (destination && !destination.disabled) {
+                    destination.focus({preventScroll: true});
+                }
+            }
+        };
+
         // Deferred fields may arrive while the user is already tabbing through
         // the known relations. Preserve that semantic destination across render,
         // rather than leaving focus on the detached summary/button (then BODY).
@@ -132,41 +174,8 @@ export const bindParticipantModal = root => {
             return '';
         };
         const description = resolveParticipantDescription();
-        const relations = renderRelation(labels.roles || '', data.roles, [], 'role', labels.rolescounttemplate || '', null) +
-            renderRelation(labels.groups || '', data.groups, data.groupids, 'group', labels.groupscounttemplate || '',
-                groupsCsv) +
-            renderRelation(labels.groupings || '', data.groupings, data.groupingids, 'grouping',
-                labels.groupingscounttemplate || '', groupingsCsv);
-        const notice = state === 'error' ? entityErrorNotice(labels.entityloaderror || '', labels.retry || '') : '';
-        // The participant picture is the HTML rendered by Moodle (user_picture).
-        const identity = entityIdentity('participant', data.profileimage || '', data.fullname || '', data.email || '');
-        body.innerHTML =
-            '<div class="local-groupimport-easystud-entity__content">' +
-                notice + identity +
-                entitySection(labels.entityinformation || '',
-                    '<dl class="local-groupimport-easystud-entity__fields">' + fields + description + '</dl>', 'information') +
-                entitySection(labels.entityrelations || '', relations, 'relations') +
-            '</div>';
-        body.dataset.easystudRenderedUserId = String(data.id);
-        const relationsAfter = Array.from(body.querySelectorAll('[data-easystud-settings-list-section]'));
-        relationsAfter.forEach((details, index) => {
-            if (index < openStates.length) {
-                details.open = openStates[index];
-            }
-            bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
-                'data-easystud-settings-list-state');
-        });
-        if (profileLink) {
-            profileLink.hidden = !data.profileurl;
-            profileLink.setAttribute('href', data.profileurl || '#');
-        }
-        setEntityFooterBusy(dialog, loading);
-        if (relationIndex >= 0 && controlIndex >= 0 && !modal.hidden) {
-            const destination = relationsAfter[relationIndex]?.querySelectorAll(controlSelector)[controlIndex];
-            if (destination && !destination.disabled) {
-                destination.focus({preventScroll: true});
-            }
-        }
+
+        return renderParticipantRelations();
     };
 
     let detailRequest = 0;

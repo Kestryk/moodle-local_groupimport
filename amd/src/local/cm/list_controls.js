@@ -168,16 +168,16 @@ export const bindPagination = root => {
     root.addEventListener('click', event => {
         const option = event.target.closest('[data-easystud-list-sort-option]');
         if (!option || !root.contains(option)) {
-            return;
+            return undefined;
         }
         event.preventDefault();
         const pagination = option.closest('[data-easystud-pagination]');
         const list = getListFromPagination(pagination);
         if (!list) {
-            return;
+            return undefined;
         }
         closeSortDropdowns();
-        changeListContent(list, () => {
+        return changeListContent(list, () => {
             list.setAttribute('data-easystud-sort', option.getAttribute('data-easystud-list-sort-option') || 'alpha');
             list.setAttribute('data-easystud-page', '0');
             syncPagination(root);
@@ -185,95 +185,104 @@ export const bindPagination = root => {
     });
 
     root.addEventListener('click', event => {
+        const handleListSelectionOrPage = () => {
+            if (button.matches('[data-easystud-select-results]')) {
+                const ondemand = getOnDemandList(root, list);
+                // On demand, select ids directly instead of building a card per result.
+                const items = ondemand ? [] : getSelectableResultItems(list, config);
+                let type = items[0] ? items[0].getAttribute('data-selectable-type') : '';
+                if (ondemand) {
+                    type = ondemand.ids.length ? ondemand.type : '';
+                }
+                const active = getActiveSelectionType(root);
+                if (!type || (active && active !== type)) {
+                    return undefined;
+                }
+                const deselect = button.getAttribute('data-easystud-deselect-results') === '1';
+                if (deselect && hasActiveListFilters(root, list)) {
+                // A prior unfiltered Select all may leave selected entities
+                // outside the current result set. Deselect results establishes
+                // a clean filtered scope before the next Select results action.
+                    clearSelection(root, type);
+                } else if (ondemand) {
+                    ondemand.select(ondemand.ids, !deselect);
+                } else {
+                    items.forEach(item => setItemSelected(item, !deselect));
+                }
+                if (deselect && type === 'grouping') {
+                    collapseAllGroupings(root);
+                }
+                updateSelectionActions(root);
+                requestGuideHighlightRefresh(root);
+                if (type === 'participant') {
+                    emitFilterPathCompletion(root, deselect ? 'clear-selection' : 'select-results');
+                    if (!deselect) {
+                        emitTryActionsSelection(root);
+                    }
+                }
+                return undefined;
+            }
+
+            return changeListPage();
+        };
+        const changeListPage = () => {
+            const current = parseInt(list.getAttribute('data-easystud-page') || '0', 10) || 0;
+            let nextpage = current;
+            if (button.matches('[data-easystud-page-first]')) {
+                nextpage = 0;
+            } else if (button.matches('[data-easystud-page-last]')) {
+                nextpage = Math.max(Math.ceil(getPaginationTotal(root, list, config) / config.limit) - 1, 0);
+            } else {
+                nextpage = current + (button.matches('[data-easystud-page-next]') ? 1 : -1);
+            }
+            const total = getPaginationTotal(root, list, config);
+            const maxpage = Math.max(Math.ceil(total / config.limit) - 1, 0);
+            nextpage = Math.max(0, Math.min(nextpage, maxpage));
+            const fromBottom = pagination.getAttribute('data-easystud-pagination') === 'bottom';
+            return changeListContent(list, () => {
+                list.setAttribute('data-easystud-page', nextpage);
+                syncPagination(root);
+                scheduleResponsiveUiRefresh(root, {pagination: false});
+            }).then(completed => {
+                if (!completed) {
+                    return;
+                }
+                requestGuideHighlightRefresh(root);
+                if (!fromBottom) {
+                    return;
+                }
+                const topPagination = config.inside ?
+                    list.querySelector(':scope > [data-easystud-pagination="top"]') :
+                    list.previousElementSibling;
+                const scrollTarget = topPagination && topPagination.matches('[data-easystud-pagination]') ?
+                    topPagination : list;
+                Motion.scroll(scrollTarget, {block: 'start', inline: 'nearest'});
+
+                return;
+            });
+        };
+
         const button = event.target.closest(
             '[data-easystud-page-first], [data-easystud-page-prev], [data-easystud-page-next], ' +
             '[data-easystud-page-last], [data-easystud-select-results]');
         if (!button || !root.contains(button)) {
-            return;
+            return undefined;
         }
         event.preventDefault();
         if (button.hidden || button.disabled || button.getAttribute('aria-hidden') === 'true') {
-            return;
+            return undefined;
         }
         const pagination = button.closest('[data-easystud-pagination]');
         const list = getListFromPagination(pagination);
         if (!list) {
-            return;
+            return undefined;
         }
         const config = getConfigFromPagination(root, pagination);
         if (!config) {
-            return;
+            return undefined;
         }
-        if (button.matches('[data-easystud-select-results]')) {
-            const ondemand = getOnDemandList(root, list);
-            // On demand, select ids directly instead of building a card per result.
-            const items = ondemand ? [] : getSelectableResultItems(list, config);
-            let type = items[0] ? items[0].getAttribute('data-selectable-type') : '';
-            if (ondemand) {
-                type = ondemand.ids.length ? ondemand.type : '';
-            }
-            const active = getActiveSelectionType(root);
-            if (!type || (active && active !== type)) {
-                return;
-            }
-            const deselect = button.getAttribute('data-easystud-deselect-results') === '1';
-            if (deselect && hasActiveListFilters(root, list)) {
-                // A prior unfiltered Select all may leave selected entities
-                // outside the current result set. Deselect results establishes
-                // a clean filtered scope before the next Select results action.
-                clearSelection(root, type);
-            } else if (ondemand) {
-                ondemand.select(ondemand.ids, !deselect);
-            } else {
-                items.forEach(item => setItemSelected(item, !deselect));
-            }
-            if (deselect && type === 'grouping') {
-                collapseAllGroupings(root);
-            }
-            updateSelectionActions(root);
-            requestGuideHighlightRefresh(root);
-            if (type === 'participant') {
-                emitFilterPathCompletion(root, deselect ? 'clear-selection' : 'select-results');
-                if (!deselect) {
-                    emitTryActionsSelection(root);
-                }
-            }
-            return;
-        }
-        const current = parseInt(list.getAttribute('data-easystud-page') || '0', 10) || 0;
-        let nextpage = current;
-        if (button.matches('[data-easystud-page-first]')) {
-            nextpage = 0;
-        } else if (button.matches('[data-easystud-page-last]')) {
-            nextpage = Math.max(Math.ceil(getPaginationTotal(root, list, config) / config.limit) - 1, 0);
-        } else {
-            nextpage = current + (button.matches('[data-easystud-page-next]') ? 1 : -1);
-        }
-        const total = getPaginationTotal(root, list, config);
-        const maxpage = Math.max(Math.ceil(total / config.limit) - 1, 0);
-        nextpage = Math.max(0, Math.min(nextpage, maxpage));
-        const fromBottom = pagination.getAttribute('data-easystud-pagination') === 'bottom';
-        changeListContent(list, () => {
-            list.setAttribute('data-easystud-page', nextpage);
-            syncPagination(root);
-            scheduleResponsiveUiRefresh(root, {pagination: false});
-        }).then(completed => {
-            if (!completed) {
-                return;
-            }
-            requestGuideHighlightRefresh(root);
-            if (!fromBottom) {
-                return;
-            }
-            const topPagination = config.inside ?
-                list.querySelector(':scope > [data-easystud-pagination="top"]') :
-                list.previousElementSibling;
-            const scrollTarget = topPagination && topPagination.matches('[data-easystud-pagination]') ?
-                topPagination : list;
-            Motion.scroll(scrollTarget, {block: 'start', inline: 'nearest'});
 
-return;
-});
+        return handleListSelectionOrPage();
     });
 
     document.addEventListener('click', event => {
@@ -370,12 +379,12 @@ export const bindTree = root => {
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-collapse-toggle]');
         if (!toggle || !root.contains(toggle)) {
-            return;
+            return undefined;
         }
         const section = toggle.closest('.local-groupimport-easystud-tree__section');
         const children = section ? section.querySelector('.local-groupimport-easystud-tree__children') : null;
         if (!children) {
-            return;
+            return undefined;
         }
         const expanded = toggle.getAttribute('aria-expanded') !== 'false';
         toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
@@ -393,10 +402,11 @@ export const bindTree = root => {
                 }
             },
         });
+        let searchTransition;
         if (isUngrouped) {
             const panel = section.querySelector('[data-easystud-container-search-panel="ungrouped"]');
             const input = panel ? panel.querySelector('[data-easystud-container-group-search="ungrouped"]') : null;
-            setInlinePanelOpen(panel, !expanded).then(completed => {
+            searchTransition = setInlinePanelOpen(panel, !expanded).then(completed => {
                 if (completed && !expanded && input) {
                     input.focus({preventScroll: true});
                 }
@@ -421,6 +431,7 @@ return;
             icon.classList.toggle('fa-chevron-right', expanded);
             icon.classList.toggle('fa-chevron-down', !expanded);
         }
+        return searchTransition;
     });
 };
 

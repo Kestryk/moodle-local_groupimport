@@ -179,6 +179,51 @@ export const isMetaCollapsed = (model, strings) => {
  * @returns {Object}
  */
 export const buildCardContext = (model, user) => {
+    const buildParticipantDisplayFields = () => {
+        return {
+            id: user.id,
+            fullname: user.fullname,
+            email: user.email,
+            selectionmodelabel: strings.selectionmodelabel || '',
+            profileimage: buildAvatar(user),
+            primarybadge: primary && display[primary.key] ? {
+                label: primary.label,
+                value: display[primary.key],
+                style: '--local-groupimport-participant-badge-bg: ' + primary.bgcolor +
+                '; --local-groupimport-participant-badge-color: ' + primary.textcolor + ';',
+            } : null,
+            usercopyfieldsjson: JSON.stringify(copyfields),
+            searchtext: entry ? entry.text : '',
+            roletext: normalise(roles.join('|')),
+            groupidscsv: (user.groupids || []).join(','),
+            groupingidscsv: groupingids.join(','),
+            rolesmeta,
+            groupsmeta,
+            groupingsmeta,
+            customfieldsmeta,
+            hasmeta: Boolean(rolesmeta || groupsmeta || groupingsmeta || customfieldsmeta.length),
+            viewdetailslabel: strings.viewdetailslabel || '',
+            metacollapsed,
+            // Light detail payload for the participant modal; heavy fields come from get_details.
+            userdetailjson: JSON.stringify({
+                id: user.id,
+                fullname: user.fullname,
+                email: user.email,
+                profileimage: buildAvatar(user),
+                profileurl: M.cfg.wwwroot + '/user/profile.php?id=' + user.id + '&course=' + meta.courseid,
+                username: (user.identifiers || {}).username || '',
+                idnumber: (user.identifiers || {}).idnumber || '',
+                roles,
+                groups,
+                groupids: user.groupids || [],
+                groupings,
+                groupingids,
+                copyfields,
+                detailsdeferred: true,
+            }),
+        };
+    };
+
     const strings = model.strings;
     const meta = model.raw.meta;
     const entry = model.indexById.get(user.id);
@@ -204,48 +249,8 @@ export const buildCardContext = (model, user) => {
             showless))
         .filter(Boolean);
 
-    return {
-        id: user.id,
-        fullname: user.fullname,
-        email: user.email,
-        selectionmodelabel: strings.selectionmodelabel || '',
-        profileimage: buildAvatar(user),
-        primarybadge: primary && display[primary.key] ? {
-            label: primary.label,
-            value: display[primary.key],
-            style: '--local-groupimport-participant-badge-bg: ' + primary.bgcolor +
-                '; --local-groupimport-participant-badge-color: ' + primary.textcolor + ';',
-        } : null,
-        usercopyfieldsjson: JSON.stringify(copyfields),
-        searchtext: entry ? entry.text : '',
-        roletext: normalise(roles.join('|')),
-        groupidscsv: (user.groupids || []).join(','),
-        groupingidscsv: groupingids.join(','),
-        rolesmeta,
-        groupsmeta,
-        groupingsmeta,
-        customfieldsmeta,
-        hasmeta: Boolean(rolesmeta || groupsmeta || groupingsmeta || customfieldsmeta.length),
-        viewdetailslabel: strings.viewdetailslabel || '',
-        metacollapsed,
-        // Light detail payload for the participant modal; heavy fields come from get_details.
-        userdetailjson: JSON.stringify({
-            id: user.id,
-            fullname: user.fullname,
-            email: user.email,
-            profileimage: buildAvatar(user),
-            profileurl: M.cfg.wwwroot + '/user/profile.php?id=' + user.id + '&course=' + meta.courseid,
-            username: (user.identifiers || {}).username || '',
-            idnumber: (user.identifiers || {}).idnumber || '',
-            roles,
-            groups,
-            groupids: user.groupids || [],
-            groupings,
-            groupingids,
-            copyfields,
-            detailsdeferred: true,
-        }),
-    };
+
+    return buildParticipantDisplayFields();
 };
 
 /**

@@ -228,6 +228,53 @@ export const bindGroupMemberActions = (root, courseId) => {
     const knownIdentifiers = lazyKnownUserIdentifiers(root);
 
     root.addEventListener('click', event => {
+        const handleGroupMemberUpdates = () => {
+            if (addButton && root.contains(addButton)) {
+                const groupid = addButton.getAttribute('data-easystud-add-group-emails');
+                const group = addButton.closest('[data-easystud-group-id]');
+                const panel = ensureGroupEmailPanel(group, groupid, labels);
+                const box = panel ? panel.querySelector('[data-easystud-group-email-box="' + groupid + '"]') : null;
+                const result = panel ? panel.querySelector('[data-easystud-group-email-result="' + groupid + '"]') : null;
+                if (!group || !box) {
+                    return undefined;
+                }
+                const resolved = resolveKnownUserTokens(box.value, knownIdentifiers());
+                postAddEmailsInBatches(root, courseId, groupid, resolved.text).then(response => {
+                    appendUsersToGroupCopies(root, groupid, response.users || [], labels);
+                    if (result) {
+                        const missingTokens = (response.missing || []).map(token => resolved.typed.get(String(token)) || token);
+                        const missing = missingTokens.length ? ' - ' + missingTokens.join(', ') : '';
+                        result.textContent = (response.message || '') + missing;
+                        result.classList.toggle('text-danger', !!missing);
+                    }
+                    box.value = '';
+                    clearSelectionState(root);
+                    updateSelectionActions(root);
+                    showNotification(root, response.message || '', 'success');
+
+                    return;
+                }).catch(error => handleActionError(root, error));
+                return undefined;
+            }
+
+            const removeButton = event.target.closest('[data-easystud-remove-member]');
+            if (removeButton && root.contains(removeButton)) {
+                const item = removeButton.closest('[data-easystud-member-id]');
+                const selectedMembers = getSelectedItems(root, 'member');
+                const members = item && item.classList.contains(selectedClass) && selectedMembers.indexOf(item) !== -1 &&
+                selectedMembers.length > 1 ? selectedMembers : [item];
+                removeMembers(root, courseId, members).then(response => {
+                    clearSelectionState(root);
+                    updateSelectionActions(root);
+                    showNotification(root, response.message || '', 'success');
+                    emitGuidedCompletion(root, 1, 'grouping');
+
+                    return;
+                }).catch(error => handleActionError(root, error));
+            }
+            return undefined;
+        };
+
         const toggle = event.target.closest('[data-easystud-toggle-group-email]');
         if (toggle && root.contains(toggle)) {
             const groupid = toggle.getAttribute('data-easystud-toggle-group-email');
@@ -242,7 +289,7 @@ export const bindGroupMemberActions = (root, courseId) => {
                 }
                 const transition = setInlinePanelOpen(panel, open);
                 if (open && box) {
-                    transition.then(completed => {
+                    return transition.then(completed => {
                         if (completed) {
                             box.focus({preventScroll: true});
                         }
@@ -251,7 +298,7 @@ return;
 });
                 }
             }
-            return;
+            return undefined;
         }
 
         const cancelButton = event.target.closest('[data-easystud-cancel-group-email]');
@@ -260,53 +307,12 @@ return;
             if (panel) {
                 setInlinePanelOpen(panel, false);
             }
-            return;
+            return undefined;
         }
 
         const addButton = event.target.closest('[data-easystud-add-group-emails]');
-        if (addButton && root.contains(addButton)) {
-            const groupid = addButton.getAttribute('data-easystud-add-group-emails');
-            const group = addButton.closest('[data-easystud-group-id]');
-            const panel = ensureGroupEmailPanel(group, groupid, labels);
-            const box = panel ? panel.querySelector('[data-easystud-group-email-box="' + groupid + '"]') : null;
-            const result = panel ? panel.querySelector('[data-easystud-group-email-result="' + groupid + '"]') : null;
-            if (!group || !box) {
-                return;
-            }
-            const resolved = resolveKnownUserTokens(box.value, knownIdentifiers());
-            postAddEmailsInBatches(root, courseId, groupid, resolved.text).then(response => {
-                appendUsersToGroupCopies(root, groupid, response.users || [], labels);
-                if (result) {
-                    const missingTokens = (response.missing || []).map(token => resolved.typed.get(String(token)) || token);
-                    const missing = missingTokens.length ? ' - ' + missingTokens.join(', ') : '';
-                    result.textContent = (response.message || '') + missing;
-                    result.classList.toggle('text-danger', !!missing);
-                }
-                box.value = '';
-                clearSelectionState(root);
-                updateSelectionActions(root);
-                showNotification(root, response.message || '', 'success');
 
-return;
-}).catch(error => handleActionError(root, error));
-            return;
-        }
-
-        const removeButton = event.target.closest('[data-easystud-remove-member]');
-        if (removeButton && root.contains(removeButton)) {
-            const item = removeButton.closest('[data-easystud-member-id]');
-            const selectedMembers = getSelectedItems(root, 'member');
-            const members = item && item.classList.contains(selectedClass) && selectedMembers.indexOf(item) !== -1 &&
-                selectedMembers.length > 1 ? selectedMembers : [item];
-            removeMembers(root, courseId, members).then(response => {
-                clearSelectionState(root);
-                updateSelectionActions(root);
-                showNotification(root, response.message || '', 'success');
-                emitGuidedCompletion(root, 1, 'grouping');
-
-return;
-}).catch(error => handleActionError(root, error));
-        }
+        return handleGroupMemberUpdates();
     });
 
     root.addEventListener('input', event => {
@@ -361,7 +367,7 @@ export const bindGroupingGroupActions = (root, courseId) => {
 
 return;
 }).catch(error => handleActionError(root, error));
-            return;
+            return undefined;
         }
 
         const toggle = event.target.closest('[data-easystud-toggle-grouping-groups]');
@@ -377,7 +383,7 @@ return;
                 }
                 const transition = setInlinePanelOpen(panel, open);
                 if (open && box) {
-                    transition.then(completed => {
+                    return transition.then(completed => {
                         if (completed) {
                             box.focus({preventScroll: true});
                         }
@@ -386,7 +392,7 @@ return;
 });
                 }
             }
-            return;
+            return undefined;
         }
 
         const cancelButton = event.target.closest('[data-easystud-cancel-grouping-groups]');
@@ -395,7 +401,7 @@ return;
             if (panel) {
                 setInlinePanelOpen(panel, false);
             }
-            return;
+            return undefined;
         }
 
         const addButton = event.target.closest('[data-easystud-add-grouping-groups]');
@@ -405,7 +411,7 @@ return;
             const box = grouping ? grouping.querySelector('[data-easystud-grouping-groups-box="' + groupingid + '"]') : null;
             const result = grouping ? grouping.querySelector('[data-easystud-grouping-groups-result="' + groupingid + '"]') : null;
             if (!box) {
-                return;
+                return undefined;
             }
 
             postAction({
@@ -437,6 +443,7 @@ return;
 return;
 }).catch(error => handleActionError(root, error));
         }
+        return undefined;
     });
 
     root.addEventListener('input', event => {

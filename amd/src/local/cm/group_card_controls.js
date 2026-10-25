@@ -46,9 +46,45 @@ let groupMemberMotionToken = 0;
 
 export const bindContainerGroupSearch = root => {
     root.addEventListener('click', event => {
+        const openContainerSearchAfterDisclosure = () => {
+            if (shouldOpen && collapseToggle && children && collapseToggle.getAttribute('aria-expanded') === 'false') {
+                collapseToggle.setAttribute('aria-expanded', 'true');
+                section.classList.add('is-expanded');
+                const icon = collapseToggle.querySelector('.fa');
+                if (icon) {
+                    icon.classList.remove('fa-chevron-right');
+                    icon.classList.add('fa-chevron-down');
+                }
+                animateTreeChildren(children, true, {animate: false, prepare: false, syncAfter: false});
+            }
+            if (shouldOpen && section && section.hasAttribute('data-easystud-grouping-id')) {
+                const groupingGroupsToggle = section.querySelector('[data-easystud-grouping-groups-toggle]');
+                if (groupingGroupsToggle) {
+                    groupingGroupsToggle.setAttribute('aria-expanded', 'true');
+                }
+            }
+
+            const transition = setInlinePanelOpen(panel, shouldOpen);
+            toggle.setAttribute('aria-expanded', String(shouldOpen));
+            toggle.classList.toggle('is-active', shouldOpen);
+            if (shouldOpen && panel) {
+                const input = panel.querySelector('[data-easystud-container-group-search]');
+                if (input) {
+                    return transition.then(completed => {
+                        if (completed) {
+                            input.focus({preventScroll: true});
+                        }
+
+                        return;
+                    });
+                }
+            }
+            return undefined;
+        };
+
         const toggle = event.target.closest('[data-easystud-container-search-toggle]');
         if (!toggle || !root.contains(toggle)) {
-            return;
+            return undefined;
         }
         event.preventDefault();
 
@@ -59,38 +95,8 @@ export const bindContainerGroupSearch = root => {
         const children = section ? section.querySelector('.local-groupimport-easystud-tree__children') : null;
         const shouldOpen = !panel || panel.hidden || !panel.classList.contains('is-open');
 
-        if (shouldOpen && collapseToggle && children && collapseToggle.getAttribute('aria-expanded') === 'false') {
-            collapseToggle.setAttribute('aria-expanded', 'true');
-            section.classList.add('is-expanded');
-            const icon = collapseToggle.querySelector('.fa');
-            if (icon) {
-                icon.classList.remove('fa-chevron-right');
-                icon.classList.add('fa-chevron-down');
-            }
-            animateTreeChildren(children, true, {animate: false, prepare: false, syncAfter: false});
-        }
-        if (shouldOpen && section && section.hasAttribute('data-easystud-grouping-id')) {
-            const groupingGroupsToggle = section.querySelector('[data-easystud-grouping-groups-toggle]');
-            if (groupingGroupsToggle) {
-                groupingGroupsToggle.setAttribute('aria-expanded', 'true');
-            }
-        }
 
-        const transition = setInlinePanelOpen(panel, shouldOpen);
-        toggle.setAttribute('aria-expanded', String(shouldOpen));
-        toggle.classList.toggle('is-active', shouldOpen);
-        if (shouldOpen && panel) {
-            const input = panel.querySelector('[data-easystud-container-group-search]');
-            if (input) {
-                transition.then(completed => {
-                    if (completed) {
-                        input.focus({preventScroll: true});
-                    }
-
-return;
-});
-            }
-        }
+        return openContainerSearchAfterDisclosure();
     });
 
     root.addEventListener('click', event => {
@@ -135,7 +141,7 @@ export const bindGroupMemberSearch = root => {
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-member-search-toggle]');
         if (!toggle || !root.contains(toggle)) {
-            return;
+            return undefined;
         }
         event.preventDefault();
 
@@ -155,7 +161,7 @@ export const bindGroupMemberSearch = root => {
         if (shouldOpen && panel) {
             const input = panel.querySelector('[data-easystud-group-member-search]');
             if (input) {
-                transition.then(completed => {
+                return transition.then(completed => {
                     if (completed) {
                         input.focus({preventScroll: true});
                     }
@@ -164,6 +170,7 @@ return;
 });
             }
         }
+        return undefined;
     });
 
     root.addEventListener('click', event => {

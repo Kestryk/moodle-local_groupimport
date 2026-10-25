@@ -241,8 +241,54 @@ throw new Error(failureMessage);
     };
 
     const openModal = (type, members = [], opener = document.activeElement) => {
+        const prepareMoveDestination = () => {
+            if (removeOriginWrap) {
+                const selectedGroups = type === 'group' ? getSelectedItems(root, 'group') : [];
+                removeOriginWrap.hidden = type !== 'member' &&
+                (type !== 'group' || getGroupsWithGroupingMembership(root, selectedGroups).length === 0);
+                if (originLabel) {
+                    originLabel.textContent = type === 'member' ? (labels.movememberskeeporigin || '') :
+                        (labels.movegroupremoveorigin || '');
+                }
+            }
+            if (removeOrigin) {
+                removeOrigin.checked = false;
+            }
+            const hasDestination = buildOptions(type);
+            chooser.refresh(chooserLabels());
+            chooser.host.hidden = !hasDestination;
+            confirmButton.disabled = !hasDestination;
+            // The native select remains the authoritative value/no-JS fallback.
+            destination.hidden = true;
+            label.hidden = !hasDestination;
+
+            return showMoveDestination(hasDestination);
+        };
+        const showMoveDestination = (hasDestination) => {
+            if (emptyState) {
+                emptyState.hidden = hasDestination;
+                emptyState.textContent = type === 'participant' || type === 'member' ?
+                    (labels.nomovegroupsavailable || '') :
+                    (labels.nomovegroupingsavailable || '');
+            }
+            showEasyStudModal(modal);
+            focusMoveModal();
+            if (type === 'participant' && selectedCount > 0 && hasDestination) {
+                emitPracticeCompletion(root, 'open-move');
+            }
+            if (type === 'member' && selectedCount > 0 && hasDestination) {
+                emitMemberPathCompletion(root, 'open-member-move');
+            }
+            if (hasDestination) {
+                emitDestinationSteps();
+                chooser.trigger.focus();
+            } else if (emptyState) {
+                emptyState.focus();
+            }
+        };
+
         if (memberBusy) {
-            return;
+            return undefined;
         }
         if (type === 'member') {
             try {
@@ -251,10 +297,10 @@ throw new Error(failureMessage);
                 // Never fail silently: tell the user the selection could not be used.
                 memberSnapshot = [];
                 showNotification(root, labels.ajaxerror || (error && error.message) || 'Invalid selected membership.', 'danger');
-                return;
+                return undefined;
             }
             if (!memberSnapshot.length) {
-                return;
+                return undefined;
             }
         }
         returnFocus = opener;
@@ -298,45 +344,8 @@ throw new Error(failureMessage);
             return labels.moveconfirmmany || '';
         };
         confirmButton.textContent = resolveMoveConfirmLabel();
-        if (removeOriginWrap) {
-            const selectedGroups = type === 'group' ? getSelectedItems(root, 'group') : [];
-            removeOriginWrap.hidden = type !== 'member' &&
-                (type !== 'group' || getGroupsWithGroupingMembership(root, selectedGroups).length === 0);
-            if (originLabel) {
-                originLabel.textContent = type === 'member' ? (labels.movememberskeeporigin || '') :
-                    (labels.movegroupremoveorigin || '');
-            }
-        }
-        if (removeOrigin) {
-            removeOrigin.checked = false;
-        }
-        const hasDestination = buildOptions(type);
-        chooser.refresh(chooserLabels());
-        chooser.host.hidden = !hasDestination;
-        confirmButton.disabled = !hasDestination;
-        // The native select remains the authoritative value/no-JS fallback.
-        destination.hidden = true;
-        label.hidden = !hasDestination;
-        if (emptyState) {
-            emptyState.hidden = hasDestination;
-            emptyState.textContent = type === 'participant' || type === 'member' ?
-                (labels.nomovegroupsavailable || '') :
-                (labels.nomovegroupingsavailable || '');
-        }
-        showEasyStudModal(modal);
-        focusMoveModal();
-        if (type === 'participant' && selectedCount > 0 && hasDestination) {
-            emitPracticeCompletion(root, 'open-move');
-        }
-        if (type === 'member' && selectedCount > 0 && hasDestination) {
-            emitMemberPathCompletion(root, 'open-member-move');
-        }
-        if (hasDestination) {
-            emitDestinationSteps();
-            chooser.trigger.focus();
-        } else if (emptyState) {
-            emptyState.focus();
-        }
+
+        return prepareMoveDestination();
     };
 
     openParticipants.forEach(button => button.addEventListener('click', () => openModal('participant')));

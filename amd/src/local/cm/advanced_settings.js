@@ -737,6 +737,73 @@ const renderAdvancedImageSection = (labels, picture, inputId) => {
  * @returns {String}
  */
 const renderAdvancedBody = (root, item, state) => {
+    const renderAdvancedInformationFields = () => {
+        const fields = lockKnownInputs(
+            renderAdvancedInput(labels.advancedsettingsname || '', 'name', name) +
+        renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber', getAdvancedValue(item, 'idnumber')) +
+        (isgroup ? renderAdvancedInput(labels.advancedsettingsenrolmentkey || '', 'enrolmentkey', '', 'password',
+            labels.advancedsettingsenrolmentkeyhelp || '') : '')) +
+        (loading ? entitySkeletonField('area', true) :
+            renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
+                getAdvancedValue(item, 'raw-description'))) +
+        (config ? renderAdvancedReadonly(labels.advancedsettingsconfigdata || '', config) : '');
+        const memberSection = isgroup ? renderMemberSection(root, item, memberRows) : '';
+
+        return renderAdvancedRelations(fields, memberSection);
+    };
+    const renderAdvancedRelations = (fields, memberSection) => {
+        const groupingSection = entityRelationSection({
+            title: labels.groupings || '',
+            type: 'groupings',
+            countText: '',
+            content: entityRelationRows(groupGroupingRows, 'grouping', {
+                moreTemplate: labels.entityothergroupingstemplate || '',
+                metaTemplate: labels.memberscounttemplate || '',
+                lessLabel: labels.showless || '',
+                emptyLabel: labels.advancedsettingsnogroupings || '',
+            }),
+            rows: groupGroupingRows,
+            columns: [
+                {key: 'name', label: labels.advancedsettingsgroupingname || ''},
+                {key: 'id', label: labels.advancedsettingsgroupingid || ''},
+            ],
+            exportName: 'easystud-' + safeTitle + '-groupings.csv',
+            exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.groupings || ''),
+        });
+
+        return renderAdvancedGroupRelations(fields, memberSection, groupingSection);
+    };
+    const renderAdvancedGroupRelations = (fields, memberSection, groupingSection) => {
+        const groupSection = entityRelationSection({
+            title: labels.advancedsettingsgroups || '',
+            type: 'groups',
+            countText: '',
+            content: entityRelationRows(groupingGroupRows, 'group', {
+                moreTemplate: labels.entityothergroupstemplate || '',
+                metaTemplate: labels.memberscounttemplate || '',
+                lessLabel: labels.showless || '',
+                emptyLabel: labels.advancedsettingsnogroups || '',
+            }),
+            rows: groupingGroupRows,
+            columns: [
+                {key: 'name', label: labels.advancedsettingsgroupname || ''},
+                {key: 'members', label: labels.advancedsettingsmembers || ''},
+                {key: 'id', label: labels.advancedsettingsgroupid || ''},
+            ],
+            exportName: 'easystud-' + safeTitle + '-groups.csv',
+            exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsgroups || ''),
+        });
+        const imageInputId = 'local-groupimport-easystud-group-image-' + (item.getAttribute('data-easystud-group-id') || 'current');
+        const imageSection = isgroup ? lockKnownInputs(
+            renderAdvancedImageSection(labels, getAdvancedValue(item, 'picture'), escapeHtml(imageInputId))) : '';
+        return identity +
+        entitySection(labels.entityinformation || '',
+            '<div class="local-groupimport-easystud-settings-modal__grid local-groupimport-easystud-entity__fields">' +
+                fields + '</div>', 'information') +
+        entitySection(labels.entityrelations || '', isgroup ? memberSection + groupingSection : groupSection, 'relations') +
+        imageSection;
+    };
+
     const labels = getLabels(root);
     const type = getAdvancedValue(item, 'type');
     const isgroup = type === 'group';
@@ -761,62 +828,8 @@ const renderAdvancedBody = (root, item, state) => {
     // Only the description is deferred. Lock known inputs until the response
     // arrives so rebuilding the form cannot discard an early edit or file choice.
     const lockKnownInputs = html => loading ? html.replace(/<(input|button)(\s)/g, '<$1 disabled$2') : html;
-    const fields = lockKnownInputs(
-        renderAdvancedInput(labels.advancedsettingsname || '', 'name', name) +
-        renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber', getAdvancedValue(item, 'idnumber')) +
-        (isgroup ? renderAdvancedInput(labels.advancedsettingsenrolmentkey || '', 'enrolmentkey', '', 'password',
-            labels.advancedsettingsenrolmentkeyhelp || '') : '')) +
-        (loading ? entitySkeletonField('area', true) :
-            renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
-                getAdvancedValue(item, 'raw-description'))) +
-        (config ? renderAdvancedReadonly(labels.advancedsettingsconfigdata || '', config) : '');
-    const memberSection = isgroup ? renderMemberSection(root, item, memberRows) : '';
-    const groupingSection = entityRelationSection({
-        title: labels.groupings || '',
-        type: 'groupings',
-        countText: '',
-        content: entityRelationRows(groupGroupingRows, 'grouping', {
-            moreTemplate: labels.entityothergroupingstemplate || '',
-            metaTemplate: labels.memberscounttemplate || '',
-            lessLabel: labels.showless || '',
-            emptyLabel: labels.advancedsettingsnogroupings || '',
-        }),
-        rows: groupGroupingRows,
-        columns: [
-            {key: 'name', label: labels.advancedsettingsgroupingname || ''},
-            {key: 'id', label: labels.advancedsettingsgroupingid || ''},
-        ],
-        exportName: 'easystud-' + safeTitle + '-groupings.csv',
-        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.groupings || ''),
-    });
-    const groupSection = entityRelationSection({
-        title: labels.advancedsettingsgroups || '',
-        type: 'groups',
-        countText: '',
-        content: entityRelationRows(groupingGroupRows, 'group', {
-            moreTemplate: labels.entityothergroupstemplate || '',
-            metaTemplate: labels.memberscounttemplate || '',
-            lessLabel: labels.showless || '',
-            emptyLabel: labels.advancedsettingsnogroups || '',
-        }),
-        rows: groupingGroupRows,
-        columns: [
-            {key: 'name', label: labels.advancedsettingsgroupname || ''},
-            {key: 'members', label: labels.advancedsettingsmembers || ''},
-            {key: 'id', label: labels.advancedsettingsgroupid || ''},
-        ],
-        exportName: 'easystud-' + safeTitle + '-groups.csv',
-        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsgroups || ''),
-    });
-    const imageInputId = 'local-groupimport-easystud-group-image-' + (item.getAttribute('data-easystud-group-id') || 'current');
-    const imageSection = isgroup ? lockKnownInputs(
-        renderAdvancedImageSection(labels, getAdvancedValue(item, 'picture'), escapeHtml(imageInputId))) : '';
-    return identity +
-        entitySection(labels.entityinformation || '',
-            '<div class="local-groupimport-easystud-settings-modal__grid local-groupimport-easystud-entity__fields">' +
-                fields + '</div>', 'information') +
-        entitySection(labels.entityrelations || '', isgroup ? memberSection + groupingSection : groupSection, 'relations') +
-        imageSection;
+
+    return renderAdvancedInformationFields();
 };
 
 export const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
@@ -880,28 +893,8 @@ export const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
 };
 
 const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialState = 'ready') => {
-    const labels = getLabels(root);
-    const type = getAdvancedValue(item, 'type');
-    const isgroup = type === 'group';
-    const nativeurl = getAdvancedValue(item, 'native-url');
-    const typeLabel = isgroup ? (labels.groupdetails || '') :
-        (labels.groupingdetails || '');
-    const pluginLabel = labels.pluginname || '';
-    const icon = isgroup ? 'fa-users' : 'fa-sitemap';
-    const titleId = 'local-groupimport-easystud-editor-title-' + type;
-
-    let modal = root.querySelector('[data-easystud-advanced-settings-modal]');
-    if (modal) {
-        modal.remove();
-    }
-    modal = document.createElement('div');
-    modal.className = 'local-groupimport-easystud-modal local-groupimport-easystud-settings-modal easyedu-modal-layer';
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-labelledby', titleId);
-    modal.setAttribute('data-easystud-advanced-settings-modal', '1');
-    modal.setAttribute('data-easystud-editor-context', type);
-    modal.innerHTML =
+    const initializeAdvancedDialog = () => {
+        modal.innerHTML =
         '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog ' +
                 'easyedu-entity-dialog ' +
                 'local-groupimport-easystud-entity local-groupimport-easystud-entity--' + type + ' ' +
@@ -959,92 +952,117 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialSta
             '</form>' +
         '</div>';
 
-    const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog');
-    const body = modal.querySelector('[data-easystud-advanced-settings-body]');
-    let stopLoading = null;
-    let opened = false;
-    const renderEditor = state => {
-        if (stopLoading) {
-            stopLoading();
-            stopLoading = null;
-        }
-        body.innerHTML = renderAdvancedBody(root, item, state);
-        setEntityFooterBusy(dialog, state !== 'ready');
-        if (state === 'loading') {
-            stopLoading = startEntityLoading(body);
-            return;
-        }
-        modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
-            const requested = state === 'ready' && !opened &&
+        const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog');
+        const body = modal.querySelector('[data-easystud-advanced-settings-body]');
+        let stopLoading = null;
+        let opened = false;
+        const renderEditor = state => {
+            if (stopLoading) {
+                stopLoading();
+                stopLoading = null;
+            }
+            body.innerHTML = renderAdvancedBody(root, item, state);
+            setEntityFooterBusy(dialog, state !== 'ready');
+            if (state === 'loading') {
+                stopLoading = startEntityLoading(body);
+                return;
+            }
+            modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
+                const requested = state === 'ready' && !opened &&
                 returnFocus?.getAttribute('data-easystud-long-list-action') === 'all' &&
                 details.classList.contains('local-groupimport-easystud-entity__relation--' +
                     (isgroup ? 'members' : 'groups'));
-            if (requested) {
-                details.open = true;
+                if (requested) {
+                    details.open = true;
+                }
+                bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
+                    'data-easystud-settings-list-state');
+                if (requested) {
+                    details.scrollIntoView({block: 'nearest', behavior: 'auto'});
+                }
+            });
+            if (state === 'ready' && !opened) {
+            // Guide inspection starts once the real fields exist (never on a skeleton).
+                opened = true;
+                emitEditorInspectionCompletion(root, type, 'open-editor');
+                requestGuideHighlightRefresh(root);
             }
-            bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
-                'data-easystud-settings-list-state');
-            if (requested) {
-                details.scrollIntoView({block: 'nearest', behavior: 'auto'});
+        };
+        modal.easystudRenderEditor = renderEditor;
+
+        const closeModal = (completeInspection = true) => hideEasyStudModal(modal, () => {
+            if (stopLoading) {
+                stopLoading();
+                stopLoading = null;
+            }
+            modal.remove();
+            if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
+                returnFocus.focus({preventScroll: true});
+            }
+            if (completeInspection) {
+                emitEditorInspectionCompletion(root, type, 'cancel-editor');
             }
         });
-        if (state === 'ready' && !opened) {
-            // Guide inspection starts once the real fields exist (never on a skeleton).
-            opened = true;
-            emitEditorInspectionCompletion(root, type, 'open-editor');
-            requestGuideHighlightRefresh(root);
+        // Guide review awaits the same native exit, without claiming user Cancel.
+        modal.easystudCloseEditor = () => closeModal(false);
+        // Successful native Save closes through the same exit/focus/completion
+        // callback as Cancel or Escape. Guide review still opts out explicitly.
+        modal.easystudCompleteEditorClose = () => closeModal();
+        modal.addEventListener('focusin', event => {
+            if (event.target.matches('input[name="name"]')) {
+                emitEditorInspectionCompletion(root, type, 'inspect-name');
+            } else if (event.target.matches('textarea[name="description"]')) {
+                emitEditorInspectionCompletion(root, type, 'inspect-description');
+            }
+        });
+        modal.addEventListener('click', event => {
+            if (event.target === modal || event.target.closest('[data-easystud-close-advanced-settings]')) {
+                closeModal();
+                return;
+            }
+            if (event.target.closest('[data-easystud-entity-retry]') && modal.easystudRetryEditor) {
+                modal.easystudRetryEditor();
+                return;
+            }
+            const waiting = event.target.closest('a[data-easystud-entity-await][aria-disabled="true"]');
+            if (waiting) {
+                event.preventDefault();
+            }
+        });
+        bindEntityReveal(dialog);
+        if (isgroup) {
+            bindDialogMembers(root, item, modal);
         }
+        root.appendChild(modal);
+        renderEditor(initialState);
+        const focusModal = bindCardModalKeyboard(modal, closeModal);
+        focusModal();
+        return modal;
     };
-    modal.easystudRenderEditor = renderEditor;
 
-    const closeModal = (completeInspection = true) => hideEasyStudModal(modal, () => {
-        if (stopLoading) {
-            stopLoading();
-            stopLoading = null;
-        }
+    const labels = getLabels(root);
+    const type = getAdvancedValue(item, 'type');
+    const isgroup = type === 'group';
+    const nativeurl = getAdvancedValue(item, 'native-url');
+    const typeLabel = isgroup ? (labels.groupdetails || '') :
+        (labels.groupingdetails || '');
+    const pluginLabel = labels.pluginname || '';
+    const icon = isgroup ? 'fa-users' : 'fa-sitemap';
+    const titleId = 'local-groupimport-easystud-editor-title-' + type;
+
+    let modal = root.querySelector('[data-easystud-advanced-settings-modal]');
+    if (modal) {
         modal.remove();
-        if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
-            returnFocus.focus({preventScroll: true});
-        }
-        if (completeInspection) {
-            emitEditorInspectionCompletion(root, type, 'cancel-editor');
-        }
-    });
-    // Guide review awaits the same native exit, without claiming user Cancel.
-    modal.easystudCloseEditor = () => closeModal(false);
-    // Successful native Save closes through the same exit/focus/completion
-    // callback as Cancel or Escape. Guide review still opts out explicitly.
-    modal.easystudCompleteEditorClose = () => closeModal();
-    modal.addEventListener('focusin', event => {
-        if (event.target.matches('input[name="name"]')) {
-            emitEditorInspectionCompletion(root, type, 'inspect-name');
-        } else if (event.target.matches('textarea[name="description"]')) {
-            emitEditorInspectionCompletion(root, type, 'inspect-description');
-        }
-    });
-    modal.addEventListener('click', event => {
-        if (event.target === modal || event.target.closest('[data-easystud-close-advanced-settings]')) {
-            closeModal();
-            return;
-        }
-        if (event.target.closest('[data-easystud-entity-retry]') && modal.easystudRetryEditor) {
-            modal.easystudRetryEditor();
-            return;
-        }
-        const waiting = event.target.closest('a[data-easystud-entity-await][aria-disabled="true"]');
-        if (waiting) {
-            event.preventDefault();
-        }
-    });
-    bindEntityReveal(dialog);
-    if (isgroup) {
-        bindDialogMembers(root, item, modal);
     }
-    root.appendChild(modal);
-    renderEditor(initialState);
-    const focusModal = bindCardModalKeyboard(modal, closeModal);
-    focusModal();
-    return modal;
+    modal = document.createElement('div');
+    modal.className = 'local-groupimport-easystud-modal local-groupimport-easystud-settings-modal easyedu-modal-layer';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', titleId);
+    modal.setAttribute('data-easystud-advanced-settings-modal', '1');
+    modal.setAttribute('data-easystud-editor-context', type);
+
+    return initializeAdvancedDialog();
 };
 
 const applyAdvancedGroupUpdate = (root, data) => {

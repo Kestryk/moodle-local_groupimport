@@ -80,10 +80,10 @@ export const insertGroupingElementSorted = (container, element) => {
 
 export const animateElementCreated = element => {
     if (!element) {
-        return;
+        return undefined;
     }
     element.classList.add('is-newly-created');
-    Motion.enter(element, {duration: Motion.timing.normal, distance: '-0.45rem'}).then(completed => {
+    return Motion.enter(element, {duration: Motion.timing.normal, distance: '-0.45rem'}).then(completed => {
         if (completed) {
             window.setTimeout(() => element.classList.remove('is-newly-created'), Motion.timing.normal);
         }
@@ -97,7 +97,7 @@ export const animateElementRemoval = (element, onremove) => {
         if (onremove) {
             onremove();
         }
-        return;
+        return undefined;
     }
     const finish = () => {
         if (onremove) {
@@ -107,7 +107,7 @@ export const animateElementRemoval = (element, onremove) => {
         }
     };
     element.classList.add('is-being-removed');
-    Motion.exit(element, {duration: Motion.timing.normal, distance: '0.45rem'}).then(completed => {
+    return Motion.exit(element, {duration: Motion.timing.normal, distance: '0.45rem'}).then(completed => {
         if (completed) {
             finish();
         }

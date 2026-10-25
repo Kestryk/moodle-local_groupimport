@@ -112,13 +112,14 @@ export const bindOptionalTools = root => {
                 scheduleResponsiveUiRefresh(root, {pagination: false});
             };
             if (participantList) {
-                Motion.swap(participantList, applyDensity, {
+                return Motion.swap(participantList, applyDensity, {
                     exitDuration: Motion.timing.fast,
                     enterDuration: Motion.timing.normal,
                 }).then(() => requestGuideHighlightRefresh(root));
             } else {
                 applyDensity();
             }
+            return undefined;
         });
 
         if (mobileMembershipToggle) {

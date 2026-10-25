@@ -199,8 +199,29 @@ const getToggleLabels = group => {
 };
 
 export const syncGroupMembersCollapsible = group => {
+    const updateGroupMembersDisclosure = () => {
+        if (toggleLabel) {
+            const labels = getToggleLabels(group);
+            // Same total as the card's count badge, not only the rows loaded on screen.
+            const text = expanded ? (labels.groupmembersshowless || '') :
+                countLabel(labels.groupmembersshowall || '', getGroupMemberCount(group));
+            toggleLabel.textContent = text;
+            // The label is hidden where the control is icon-only (responsive, long-list header).
+            toggle.setAttribute('aria-label', text);
+        }
+        const footer = windowed ? group.querySelector(':scope > [data-easystud-long-list-footer]') : null;
+        if (footer && cancollapse && !expanded) {
+            footer.hidden = true;
+        }
+        if (windowed) {
+        // The long-list list style lifts the height limit; only keep it once the card is unfolded.
+            list.classList.toggle('local-groupimport-easystud-long-list__members', expanded || !cancollapse);
+        }
+        syncGroupSelectAll(group);
+    };
+
     if (!group) {
-        return;
+        return undefined;
     }
     const windowed = syncMemberWindow(group);
     if (windowed) {
@@ -210,17 +231,17 @@ export const syncGroupMembersCollapsible = group => {
             if (select) {
                 select.hidden = true;
             }
-            return;
+            return undefined;
         }
         if (group.classList.contains('local-groupimport-easystud-long-list__foldable')) {
-            return;
+            return undefined;
         }
         // Long lists only bound how many rows exist: the card keeps its fold-down behaviour (K16-29).
     }
     const list = group.querySelector('[data-easystud-group-members]');
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
     if (!list || !toggle) {
-        return;
+        return undefined;
     }
 
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -261,24 +282,8 @@ export const syncGroupMembersCollapsible = group => {
     toggle.classList.toggle('is-expanded', expanded);
     // The icon-only fold control is named by what it does ("See all 23 members" / "Show less").
     const toggleLabel = toggle.querySelector('[data-easystud-group-members-toggle-label]');
-    if (toggleLabel) {
-        const labels = getToggleLabels(group);
-        // Same total as the card's count badge, not only the rows loaded on screen.
-        const text = expanded ? (labels.groupmembersshowless || '') :
-            countLabel(labels.groupmembersshowall || '', getGroupMemberCount(group));
-        toggleLabel.textContent = text;
-        // The label is hidden where the control is icon-only (responsive, long-list header).
-        toggle.setAttribute('aria-label', text);
-    }
-    const footer = windowed ? group.querySelector(':scope > [data-easystud-long-list-footer]') : null;
-    if (footer && cancollapse && !expanded) {
-        footer.hidden = true;
-    }
-    if (windowed) {
-        // The long-list list style lifts the height limit; only keep it once the card is unfolded.
-        list.classList.toggle('local-groupimport-easystud-long-list__members', expanded || !cancollapse);
-    }
-    syncGroupSelectAll(group);
+
+    return updateGroupMembersDisclosure();
 };
 
 export const syncAllGroupMembersCollapsible = root => {
@@ -903,6 +908,36 @@ const renameEditActions = labels => {
 };
 
 export const createGroupElement = (root, groupdata) => {
+    const initializeGroupControls = () => {
+        if (name) {
+            name.textContent = groupdata.name || '';
+        }
+        if (input) {
+            input.value = groupdata.rawname || groupdata.name || '';
+        }
+        const groupingcontainer = group.querySelector('.local-groupimport-easystud-group__groupings--inline');
+        const groupingnames = Array.isArray(groupdata.groupingtags) ?
+            groupdata.groupingtags.map(tag => tag.label || '').filter(Boolean) : [];
+        renderGroupGroupingTags(groupingcontainer, groupingnames);
+        if (Array.isArray(groupdata.members) && groupdata.members.length) {
+            const list = group.querySelector('[data-easystud-group-members]');
+            if (list) {
+                groupdata.members.forEach(member => {
+                    const userid = String(member.userid || member.id || '');
+                    const fullname = member.fullname || '';
+                    if (!userid || list.querySelector('[data-easystud-member-id="' + userid + '"]')) {
+                        return;
+                    }
+                    const removelabel = (labels.removeuser || '').replace('{name}', fullname);
+                    list.appendChild(createMemberItem(groupdata.id, userid, fullname, removelabel, labels.selectionmode || ''));
+                });
+            }
+        }
+        syncGroupMembersState(group, labels);
+        ensureGroupMemberSearchControls(root, group);
+        return group;
+    };
+
     const labels = getLabels(root);
     const group = document.createElement('div');
     group.className = 'local-groupimport-easystud-group';
@@ -993,33 +1028,8 @@ export const createGroupElement = (root, groupdata) => {
 
     const name = group.querySelector('.local-groupimport-easystud-group__name');
     const input = group.querySelector('input[name="name"]');
-    if (name) {
-        name.textContent = groupdata.name || '';
-    }
-    if (input) {
-        input.value = groupdata.rawname || groupdata.name || '';
-    }
-    const groupingcontainer = group.querySelector('.local-groupimport-easystud-group__groupings--inline');
-    const groupingnames = Array.isArray(groupdata.groupingtags) ?
-        groupdata.groupingtags.map(tag => tag.label || '').filter(Boolean) : [];
-    renderGroupGroupingTags(groupingcontainer, groupingnames);
-    if (Array.isArray(groupdata.members) && groupdata.members.length) {
-        const list = group.querySelector('[data-easystud-group-members]');
-        if (list) {
-            groupdata.members.forEach(member => {
-                const userid = String(member.userid || member.id || '');
-                const fullname = member.fullname || '';
-                if (!userid || list.querySelector('[data-easystud-member-id="' + userid + '"]')) {
-                    return;
-                }
-                const removelabel = (labels.removeuser || '').replace('{name}', fullname);
-                list.appendChild(createMemberItem(groupdata.id, userid, fullname, removelabel, labels.selectionmode || ''));
-            });
-        }
-    }
-    syncGroupMembersState(group, labels);
-    ensureGroupMemberSearchControls(root, group);
-    return group;
+
+    return initializeGroupControls();
 };
 
 export const createParticipantCatalogGroupElement = (root, groupdata) => {
@@ -1036,6 +1046,17 @@ export const createParticipantCatalogGroupElement = (root, groupdata) => {
 };
 
 export const createGroupingElement = (root, groupingdata) => {
+    const initializeGroupingControls = () => {
+        if (name) {
+            name.textContent = groupingdata.name || '';
+        }
+        if (input) {
+            input.value = groupingdata.rawname || groupingdata.name || '';
+        }
+        updateGroupingBadge(section);
+        return section;
+    };
+
     const labels = getLabels(root);
     const section = document.createElement('div');
     section.className = 'local-groupimport-easystud-tree__section';
@@ -1159,14 +1180,8 @@ export const createGroupingElement = (root, groupingdata) => {
 
     const name = section.querySelector('.local-groupimport-easystud-grouping__name');
     const input = section.querySelector('input[name="name"]');
-    if (name) {
-        name.textContent = groupingdata.name || '';
-    }
-    if (input) {
-        input.value = groupingdata.rawname || groupingdata.name || '';
-    }
-    updateGroupingBadge(section);
-    return section;
+
+    return initializeGroupingControls();
 };
 
 export const createIconActionButton = (className, actionAttribute, actionValue, label, icon) => {

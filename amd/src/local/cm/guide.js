@@ -143,6 +143,201 @@ export const bindSharedGuideTargets = root => {
     };
 
     const openTarget = selector => {
+        const openActivityDialogGuideTarget = () => {
+            if (selector === 'tutorial:activity-group-dialog') {
+                const modal = root.querySelector('[data-easystud-move-modal]');
+                if (modal && modal.hidden) {
+                    Array.from(root.querySelectorAll('[data-easystud-move-selected-groups]'))
+                        .find(button => !button.disabled)?.click();
+                }
+                return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'group' ? modal : null;
+            }
+
+            return openFilterAndEditorGuideTarget();
+        };
+        const openFilterAndEditorGuideTarget = () => {
+            if (selector === 'tutorial:participant-filter-workspace' ||
+                selector === 'tutorial:participant-filter-controls') {
+                if (isResponsiveWorkspace()) {
+                    const view = root.querySelector('[data-easystud-mobile-view="participants"]');
+                    if (view && view.getAttribute('aria-pressed') !== 'true') {
+                        view.click();
+                    }
+                } else if (root.easystudDesktopMode !== 'participants') {
+                    root.easystudApplyDesktopMode?.('participants', false);
+                }
+                if (selector === 'tutorial:participant-filter-controls') {
+                    const toggle = root.querySelector('[data-easystud-advanced-filters-toggle="participants"]');
+                    if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+                        toggle.click();
+                    }
+                }
+                return root.querySelector('[data-easystud-search]');
+            }
+            const editorTargets = {
+                'tutorial:group-editor-entry': ['group', false],
+                'tutorial:grouping-editor-entry': ['grouping', false],
+                'tutorial:group-editor-dialog': ['group', true],
+                'tutorial:grouping-editor-dialog': ['grouping', true],
+            };
+            if (editorTargets[selector]) {
+                const [type, dialog] = editorTargets[selector];
+                return dialog ? openEditorDialog(type) : openEditorEntry(type);
+            }
+            if (selector === 'tutorial:close-participant-move-dialog') {
+                const modal = root.querySelector('[data-easystud-move-modal]');
+                if (modal && !modal.hidden) {
+                    modal.querySelector('[data-easystud-close-move-modal]')?.click();
+                }
+                return root;
+            }
+
+            return openParticipantModalGuideTarget();
+        };
+        const openParticipantModalGuideTarget = () => {
+            if (selector === 'tutorial:participant-move-dialog') {
+                const modal = root.querySelector('[data-easystud-move-modal]');
+                if (modal && modal.hidden) {
+                    const action = Array.from(root.querySelectorAll('[data-easystud-move-selected-participants]'))
+                        .find(button => !button.disabled);
+                    action?.click();
+                }
+                return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'participant' ?
+                    modal : null;
+            }
+            if (selector === 'tutorial:participant-details') {
+                const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
+                if (participant) {
+                    participant.focus({preventScroll: true});
+                }
+                scheduleParticipantTagOverflow(root);
+                return participant;
+            }
+            if (selector === 'tutorial:member-move-dialog') {
+                const modal = root.querySelector('[data-easystud-move-modal]');
+                if (modal && modal.hidden) {
+                    const action = Array.from(root.querySelectorAll('[data-easystud-move-selected-members]'))
+                        .find(button => !button.disabled);
+                    action?.click();
+                }
+                return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'member' ?
+                    modal : null;
+            }
+
+            return openGroupCardGuideTarget();
+        };
+        const openGroupCardGuideTarget = () => {
+            if (selector === 'tutorial:source-group-members') {
+                if (isResponsiveWorkspace() || root.easystudDesktopMode !== 'structure') {
+                    ensureWorkspace('groups');
+                }
+                const group = Array.from(root.querySelectorAll(
+                    '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])'
+                )).find(item => item.getClientRects().length &&
+                item.querySelector('[data-easystud-member-id]:not([hidden])'));
+                if (!group) {
+                    return null;
+                }
+                const toggle = group.querySelector('[data-easystud-group-members-toggle]');
+                if (toggle && !toggle.hidden && toggle.getAttribute('aria-expanded') !== 'true') {
+                    toggle.click();
+                }
+                return group.querySelector('[data-easystud-group-members]') || group;
+            }
+            if (selector === 'tutorial:participant-card-actions') {
+                const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
+                if (!participant) {
+                    return null;
+                }
+                if (!isResponsiveWorkspace()) {
+                    participant.focus({preventScroll: true});
+                    return participant;
+                }
+                let menu = participant.querySelector(':scope > [data-easystud-card-menu]') ||
+                participant.querySelector('[data-easystud-card-menu]');
+                if (!menu) {
+                    menu = document.createElement('button');
+                    menu.type = 'button';
+                    normaliseCardMenuButton(menu, root);
+                    participant.appendChild(menu);
+                }
+                menu.focus({preventScroll: true});
+                return menu;
+            }
+
+            return openFirstContainerGuideTarget();
+        };
+        const openFirstContainerGuideTarget = () => {
+            if (selector === 'tutorial:first-group') {
+                const group = root.querySelector('[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])') ||
+                root.querySelector('[data-easystud-group-id]:not([hidden])');
+                if (group) {
+                    group.focus({preventScroll: true});
+                }
+                return group;
+            }
+            if (selector === 'tutorial:first-grouping') {
+                const grouping = root.querySelector('[data-easystud-tree] [data-easystud-grouping-id]:not([hidden])') ||
+                root.querySelector('[data-easystud-grouping-id]:not([hidden])');
+                if (grouping) {
+                    expandGroupingSection(grouping);
+                    grouping.focus({preventScroll: true});
+                }
+                return grouping;
+            }
+            if (selector === 'tutorial:create-group' || selector === 'tutorial:create-grouping') {
+                const workspace = ensureWorkspace(selector === 'tutorial:create-group' ? 'groups' : 'groupings');
+                const fieldName = selector === 'tutorial:create-group' ? 'groupname' : 'groupingname';
+                const input = root.querySelector('.local-groupimport-easystud-create-row input[name="' + fieldName + '"]');
+                if (input) {
+                    input.focus({preventScroll: true});
+                    input.select();
+                }
+                return input || workspace;
+            }
+
+            return openGroupingEditGuideTarget();
+        };
+        const openGroupingEditGuideTarget = () => {
+            if (selector === 'tutorial:first-grouping-add-groups') {
+                const grouping = root.querySelector('[data-easystud-tree] [data-easystud-grouping-id]:not([hidden])') ||
+                root.querySelector('[data-easystud-grouping-id]:not([hidden])');
+                if (!grouping) {
+                    return null;
+                }
+                expandGroupingSection(grouping);
+                const toggle = grouping.querySelector('[data-easystud-toggle-grouping-groups]');
+                let panel = grouping.querySelector('[data-easystud-grouping-groups-panel]');
+                if (toggle && (!panel || panel.hidden || !panel.classList.contains('is-open'))) {
+                    toggle.click();
+                }
+                panel = grouping.querySelector('[data-easystud-grouping-groups-panel]');
+                const box = grouping.querySelector('[data-easystud-grouping-groups-box]');
+                if (box) {
+                    box.focus({preventScroll: true});
+                }
+                return box || panel || grouping;
+            }
+            if (selector === 'tutorial:add-users-text') {
+                const group = root.querySelector('[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])') ||
+                root.querySelector('[data-easystud-group-id]:not([hidden])');
+                if (!group) {
+                    return null;
+                }
+                const groupid = group.getAttribute('data-easystud-group-id');
+                const panel = ensureGroupEmailPanel(group, groupid, getLabels(root));
+                if (panel && (panel.hidden || !panel.classList.contains('is-open'))) {
+                    setInlinePanelOpen(panel, true);
+                }
+                const textarea = group.querySelector('[data-easystud-group-email-box]');
+                if (textarea) {
+                    textarea.focus({preventScroll: true});
+                }
+                return textarea || panel || group;
+            }
+            return null;
+        };
+
         if (!selector) {
             return null;
         }
@@ -184,178 +379,8 @@ export const bindSharedGuideTargets = root => {
             }
             return root.querySelector(workspace === 'groups' ? '[data-easystud-structure-groups]' : '[data-easystud-tree]');
         }
-        if (selector === 'tutorial:activity-group-dialog') {
-            const modal = root.querySelector('[data-easystud-move-modal]');
-            if (modal && modal.hidden) {
-                Array.from(root.querySelectorAll('[data-easystud-move-selected-groups]'))
-                    .find(button => !button.disabled)?.click();
-            }
-            return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'group' ? modal : null;
-        }
-        if (selector === 'tutorial:participant-filter-workspace' ||
-                selector === 'tutorial:participant-filter-controls') {
-            if (isResponsiveWorkspace()) {
-                const view = root.querySelector('[data-easystud-mobile-view="participants"]');
-                if (view && view.getAttribute('aria-pressed') !== 'true') {
-                    view.click();
-                }
-            } else if (root.easystudDesktopMode !== 'participants') {
-                root.easystudApplyDesktopMode?.('participants', false);
-            }
-            if (selector === 'tutorial:participant-filter-controls') {
-                const toggle = root.querySelector('[data-easystud-advanced-filters-toggle="participants"]');
-                if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
-                    toggle.click();
-                }
-            }
-            return root.querySelector('[data-easystud-search]');
-        }
-        const editorTargets = {
-            'tutorial:group-editor-entry': ['group', false],
-            'tutorial:grouping-editor-entry': ['grouping', false],
-            'tutorial:group-editor-dialog': ['group', true],
-            'tutorial:grouping-editor-dialog': ['grouping', true],
-        };
-        if (editorTargets[selector]) {
-            const [type, dialog] = editorTargets[selector];
-            return dialog ? openEditorDialog(type) : openEditorEntry(type);
-        }
-        if (selector === 'tutorial:close-participant-move-dialog') {
-            const modal = root.querySelector('[data-easystud-move-modal]');
-            if (modal && !modal.hidden) {
-                modal.querySelector('[data-easystud-close-move-modal]')?.click();
-            }
-            return root;
-        }
-        if (selector === 'tutorial:participant-move-dialog') {
-            const modal = root.querySelector('[data-easystud-move-modal]');
-            if (modal && modal.hidden) {
-                const action = Array.from(root.querySelectorAll('[data-easystud-move-selected-participants]'))
-                    .find(button => !button.disabled);
-                action?.click();
-            }
-            return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'participant' ?
-                modal : null;
-        }
-        if (selector === 'tutorial:participant-details') {
-            const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
-            if (participant) {
-                participant.focus({preventScroll: true});
-            }
-            scheduleParticipantTagOverflow(root);
-            return participant;
-        }
-        if (selector === 'tutorial:member-move-dialog') {
-            const modal = root.querySelector('[data-easystud-move-modal]');
-            if (modal && modal.hidden) {
-                const action = Array.from(root.querySelectorAll('[data-easystud-move-selected-members]'))
-                    .find(button => !button.disabled);
-                action?.click();
-            }
-            return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'member' ?
-                modal : null;
-        }
-        if (selector === 'tutorial:source-group-members') {
-            if (isResponsiveWorkspace() || root.easystudDesktopMode !== 'structure') {
-                ensureWorkspace('groups');
-            }
-            const group = Array.from(root.querySelectorAll(
-                '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])'
-            )).find(item => item.getClientRects().length &&
-                item.querySelector('[data-easystud-member-id]:not([hidden])'));
-            if (!group) {
-                return null;
-            }
-            const toggle = group.querySelector('[data-easystud-group-members-toggle]');
-            if (toggle && !toggle.hidden && toggle.getAttribute('aria-expanded') !== 'true') {
-                toggle.click();
-            }
-            return group.querySelector('[data-easystud-group-members]') || group;
-        }
-        if (selector === 'tutorial:participant-card-actions') {
-            const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
-            if (!participant) {
-                return null;
-            }
-            if (!isResponsiveWorkspace()) {
-                participant.focus({preventScroll: true});
-                return participant;
-            }
-            let menu = participant.querySelector(':scope > [data-easystud-card-menu]') ||
-                participant.querySelector('[data-easystud-card-menu]');
-            if (!menu) {
-                menu = document.createElement('button');
-                menu.type = 'button';
-                normaliseCardMenuButton(menu, root);
-                participant.appendChild(menu);
-            }
-            menu.focus({preventScroll: true});
-            return menu;
-        }
-        if (selector === 'tutorial:first-group') {
-            const group = root.querySelector('[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])') ||
-                root.querySelector('[data-easystud-group-id]:not([hidden])');
-            if (group) {
-                group.focus({preventScroll: true});
-            }
-            return group;
-        }
-        if (selector === 'tutorial:first-grouping') {
-            const grouping = root.querySelector('[data-easystud-tree] [data-easystud-grouping-id]:not([hidden])') ||
-                root.querySelector('[data-easystud-grouping-id]:not([hidden])');
-            if (grouping) {
-                expandGroupingSection(grouping);
-                grouping.focus({preventScroll: true});
-            }
-            return grouping;
-        }
-        if (selector === 'tutorial:create-group' || selector === 'tutorial:create-grouping') {
-            const workspace = ensureWorkspace(selector === 'tutorial:create-group' ? 'groups' : 'groupings');
-            const fieldName = selector === 'tutorial:create-group' ? 'groupname' : 'groupingname';
-            const input = root.querySelector('.local-groupimport-easystud-create-row input[name="' + fieldName + '"]');
-            if (input) {
-                input.focus({preventScroll: true});
-                input.select();
-            }
-            return input || workspace;
-        }
-        if (selector === 'tutorial:first-grouping-add-groups') {
-            const grouping = root.querySelector('[data-easystud-tree] [data-easystud-grouping-id]:not([hidden])') ||
-                root.querySelector('[data-easystud-grouping-id]:not([hidden])');
-            if (!grouping) {
-                return null;
-            }
-            expandGroupingSection(grouping);
-            const toggle = grouping.querySelector('[data-easystud-toggle-grouping-groups]');
-            let panel = grouping.querySelector('[data-easystud-grouping-groups-panel]');
-            if (toggle && (!panel || panel.hidden || !panel.classList.contains('is-open'))) {
-                toggle.click();
-            }
-            panel = grouping.querySelector('[data-easystud-grouping-groups-panel]');
-            const box = grouping.querySelector('[data-easystud-grouping-groups-box]');
-            if (box) {
-                box.focus({preventScroll: true});
-            }
-            return box || panel || grouping;
-        }
-        if (selector === 'tutorial:add-users-text') {
-            const group = root.querySelector('[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])') ||
-                root.querySelector('[data-easystud-group-id]:not([hidden])');
-            if (!group) {
-                return null;
-            }
-            const groupid = group.getAttribute('data-easystud-group-id');
-            const panel = ensureGroupEmailPanel(group, groupid, getLabels(root));
-            if (panel && (panel.hidden || !panel.classList.contains('is-open'))) {
-                setInlinePanelOpen(panel, true);
-            }
-            const textarea = group.querySelector('[data-easystud-group-email-box]');
-            if (textarea) {
-                textarea.focus({preventScroll: true});
-            }
-            return textarea || panel || group;
-        }
-        return null;
+
+        return openActivityDialogGuideTarget();
     };
 
     document.addEventListener('easyedu:guide-open-target', event => {

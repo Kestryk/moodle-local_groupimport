@@ -323,7 +323,7 @@ export const bindLayoutModeToggle = root => {
             // The view already owns its reveal. A second card arrival translates
             // the last row beyond its auto-sized scroller and briefly adds 6px
             // of scrollable overflow, even when the settled list fits exactly.
-            trackLayoutSwap(root, Motion.swap(layout, () => withoutListArrival(() => {
+            return trackLayoutSwap(root, Motion.swap(layout, () => withoutListArrival(() => {
                 applyModeState(mode);
                 if (root.easystudBeforeLayoutReveal) {
                     root.easystudBeforeLayoutReveal();
@@ -346,9 +346,10 @@ export const bindLayoutModeToggle = root => {
 
     return;
 });
-            return;
+
         }
         applyModeState(mode);
+        return undefined;
     };
 
     buttons.forEach(button => {

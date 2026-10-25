@@ -136,6 +136,66 @@ export const groupingSearchText = (model, grouping) => {
  * @returns {Object}
  */
 export const buildGroupCardContext = (model, group, variant) => {
+    const buildGroupDisplayFields = () => {
+        const buildGroupIdentityFields = () => ({
+            id: group.id,
+            name: group.name,
+            rawname: group.rawname,
+            description: '',
+            rawdescription: '',
+            idnumber: group.idnumber || '',
+            enrolmentkey: group.enrolmentkey ? '1' : '0',
+            picture: group.pictureurl || '',
+            hidepicture: group.hidepicture ? '1' : '0',
+            nativeurl: (strings.groupnativeurl || '') + '&id=' + group.id,
+            membercount: memberids.length,
+            membercountlabel: countLabel(strings.memberscount, memberids.length),
+            countbadgeclass: 'local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--members ' +
+            'local-groupimport-easystud-count-badge--' + (memberids.length ? 'filled' : 'empty'),
+            sesskey: strings.sesskey || '',
+            renameurl: strings.renameurl || '',
+            renameaction: 'renamegroup',
+            renameidname: 'groupid',
+            renamelabel: strings.renamelabel || '',
+            savelabel: strings.savelabel || ''
+        });
+        const buildGroupActionFields = () => ({
+            cancellabel: strings.cancellabel || '',
+            addemailstolabel: strings.addemailstolabel || '',
+            pasteemailsplaceholder: strings.pasteemailsplaceholder || '',
+            addemailsbutton: strings.addemailsbutton || '',
+            withingrouping: !!variant.withingrouping,
+            groupingidscsv: groupingids.join(','),
+            hasnogrouping: groupingids.length === 0,
+            groupingtags: (variant.treecard ? groupingids.filter(groupingid => model.groupings.has(groupingid))
+                .map(groupingid => model.groupings.get(groupingid).name) :
+                (model.groupCatalogNames.get(group.id) || [])).map(label => ({label})),
+            removefromgroupinglabel: strings.removefromgroupinglabel || '',
+            members: variant.memberlimit ? members.slice(0, variant.memberlimit) : members,
+            hasmembers: memberids.length > 0,
+            nomemberslabel: strings.nomemberslabel || '',
+            nomembershelplabel: strings.nomembershelplabel || ''
+        });
+        const buildGroupSelectionFields = () => ({
+            nomembershelptouchlabel: strings.nomembershelptouchlabel || '',
+            canselectallmembers: memberids.length > 2,
+            selectallmemberslabel: strings.selectallmembers || '',
+            deselectallmemberslabel: strings.deselectallmembers || '',
+            selectallmembersoflabel: (strings.selectallmembersof || '').replace('__name__', group.name),
+            selectallmembersoftemplate: strings.selectallmembersof || '',
+            deselectallmembersoftemplate: strings.deselectallmembersof || '',
+            searchtext: (variant.treecard ? model.groupTreeSearch : model.groupSearch).get(group.id) || '',
+            selectionmodelabel: (model.strings || {}).selectionmodelabel || '',
+            structureemail: !!variant.structureemail,
+            treecard: !!variant.treecard
+        });
+        return {
+            ...buildGroupIdentityFields(),
+            ...buildGroupActionFields(),
+            ...buildGroupSelectionFields()
+        };
+    };
+
     const strings = model.groupStrings;
     const memberids = group.memberids || [];
     const groupingids = group.groupingids || [];
@@ -156,58 +216,8 @@ export const buildGroupCardContext = (model, group, variant) => {
             selectableid: group.id + ':' + userid,
         };
     });
-    return {
-        id: group.id,
-        name: group.name,
-        rawname: group.rawname,
-        // Heavy fields stay out of the state; the caller copies them from the rendered group tree.
-        description: '',
-        rawdescription: '',
-        idnumber: group.idnumber || '',
-        enrolmentkey: group.enrolmentkey ? '1' : '0',
-        picture: group.pictureurl || '',
-        hidepicture: group.hidepicture ? '1' : '0',
-        nativeurl: (strings.groupnativeurl || '') + '&id=' + group.id,
-        membercount: memberids.length,
-        membercountlabel: countLabel(strings.memberscount, memberids.length),
-        // K17-52: the Kit count-badge state is rendered with the card, so the label never flashes dark.
-        countbadgeclass: 'local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--members ' +
-            'local-groupimport-easystud-count-badge--' + (memberids.length ? 'filled' : 'empty'),
-        sesskey: strings.sesskey || '',
-        renameurl: strings.renameurl || '',
-        renameaction: 'renamegroup',
-        renameidname: 'groupid',
-        renamelabel: strings.renamelabel || '',
-        savelabel: strings.savelabel || '',
-        cancellabel: strings.cancellabel || '',
-        addemailstolabel: strings.addemailstolabel || '',
-        pasteemailsplaceholder: strings.pasteemailsplaceholder || '',
-        addemailsbutton: strings.addemailsbutton || '',
-        withingrouping: !!variant.withingrouping,
-        groupingidscsv: groupingids.join(','),
-        hasnogrouping: groupingids.length === 0,
-        // Catalog cards list their groupings in grouping order, tree cards in group order.
-        groupingtags: (variant.treecard ? groupingids.filter(groupingid => model.groupings.has(groupingid))
-            .map(groupingid => model.groupings.get(groupingid).name) :
-            (model.groupCatalogNames.get(group.id) || [])).map(label => ({label})),
-        removefromgroupinglabel: strings.removefromgroupinglabel || '',
-        members: variant.memberlimit ? members.slice(0, variant.memberlimit) : members,
-        hasmembers: memberids.length > 0,
-        nomemberslabel: strings.nomemberslabel || '',
-        nomembershelplabel: strings.nomembershelplabel || '',
-        nomembershelptouchlabel: strings.nomembershelptouchlabel || '',
-        // R10-05: member "Select all" from three members (the total, not the rendered rows).
-        canselectallmembers: memberids.length > 2,
-        selectallmemberslabel: strings.selectallmembers || '',
-        deselectallmemberslabel: strings.deselectallmembers || '',
-        selectallmembersoflabel: (strings.selectallmembersof || '').replace('__name__', group.name),
-        selectallmembersoftemplate: strings.selectallmembersof || '',
-        deselectallmembersoftemplate: strings.deselectallmembersof || '',
-        searchtext: (variant.treecard ? model.groupTreeSearch : model.groupSearch).get(group.id) || '',
-        selectionmodelabel: (model.strings || {}).selectionmodelabel || '',
-        structureemail: !!variant.structureemail,
-        treecard: !!variant.treecard,
-    };
+
+    return buildGroupDisplayFields();
 };
 
 /**

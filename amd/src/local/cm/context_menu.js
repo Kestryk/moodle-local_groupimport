@@ -708,12 +708,12 @@ const ensureCardMenuButtons = (root, cards) => {
 // Open an inline paste panel, then focus its field once the panel has finished opening.
 const openPastePanel = (panel, boxSelector) => {
     if (!panel) {
-        return;
+        return undefined;
     }
     const box = panel.querySelector(boxSelector);
     const transition = setInlinePanelOpen(panel, true);
     if (box) {
-        transition.then(completed => {
+        return transition.then(completed => {
             if (completed) {
                 box.focus({preventScroll: true});
             }
@@ -721,6 +721,7 @@ const openPastePanel = (panel, boxSelector) => {
 return;
 });
     }
+    return undefined;
 };
 
 const openGroupEmailPanel = (root, target) => {

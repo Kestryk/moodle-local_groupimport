@@ -50,10 +50,73 @@ const clearCompleteListAlignment = (tree, participantList, bars) => {
 };
 
 const syncCompleteListAlignment = root => {
+    const applyCompleteAlignmentOffsets = () => {
+        const structureBarMargin = alignBars ?
+            (parseFloat(window.getComputedStyle(structureBar).marginBottom) || 0) : 0;
+
+        // Compute: shift the lower column's lead-in so that the bars share one row, then
+        // balance the bar-to-first-entry gap so the first card and the first section also match.
+        let treeShift = 0;
+        let listShift = 0;
+        let participantGap = 0;
+        let structureGap = 0;
+        if (alignBars) {
+            const barDelta = participantBarTop - structureBarTop;
+            treeShift = Math.max(0, barDelta);
+            listShift = Math.max(0, -barDelta);
+            const gapDelta = (participantEntryTop - participantBarTop) - (structureEntryTop - structureBarTop);
+            structureGap = Math.max(0, gapDelta);
+            participantGap = Math.max(0, -gapDelta);
+        } else {
+            const delta = participantEntryTop - structureEntryTop;
+            treeShift = Math.max(0, delta);
+            listShift = Math.max(0, -delta);
+        }
+
+        // Write phase.
+        if (treeShift >= 1) {
+            tree.style.paddingTop = (treePadding + treeShift) + 'px';
+        }
+        if (listShift >= 1) {
+            participantList.style.marginTop = (listMargin + listShift) + 'px';
+        }
+        if (structureGap >= 1) {
+            structureBar.style.marginBottom = (structureBarMargin + structureGap) + 'px';
+        }
+        if (participantGap >= 1) {
+            participantBar.style.marginBottom = (participantBarMargin + participantGap) + 'px';
+        }
+
+        // Margins that collapsed before the offsets existed can leave a small residue: verify once,
+        // fold the bar remainder into the outer offsets and the gap remainder into the bar margins.
+        if (alignBars) {
+            const barResidue = participantBar.getBoundingClientRect().top - structureBar.getBoundingClientRect().top;
+            const entryResidue = participantEntry.getBoundingClientRect().top - structureEntry.getBoundingClientRect().top;
+            const gapResidue = entryResidue - barResidue;
+            if (Math.abs(barResidue) >= 1) {
+                if (barResidue > 0) {
+                    tree.style.paddingTop = (parseFloat(tree.style.paddingTop) || treePadding) + barResidue + 'px';
+                } else {
+                    participantList.style.marginTop =
+                        (parseFloat(participantList.style.marginTop) || listMargin) - barResidue + 'px';
+                }
+            }
+            if (Math.abs(gapResidue) >= 1) {
+                if (gapResidue > 0) {
+                    structureBar.style.marginBottom =
+                    (parseFloat(structureBar.style.marginBottom) || structureBarMargin) + gapResidue + 'px';
+                } else {
+                    participantBar.style.marginBottom =
+                    (parseFloat(participantBar.style.marginBottom) || participantBarMargin) - gapResidue + 'px';
+                }
+            }
+        }
+    };
+
     const tree = root.querySelector('[data-easystud-tree]');
     const participantList = root.querySelector('[data-easystud-participant-list]');
     if (!tree || !participantList) {
-        return;
+        return undefined;
     }
 
     const treeGroupings = tree.querySelector('.local-groupimport-easystud-tree__groupings');
@@ -67,7 +130,7 @@ const syncCompleteListAlignment = root => {
         root.classList.contains(structureFocusClass) ||
         isResponsiveWorkspace()
     ) {
-        return;
+        return undefined;
     }
 
     // Read phase: one layout pass, no writes in between.
@@ -82,7 +145,7 @@ const syncCompleteListAlignment = root => {
             '[data-easystud-empty-state]'
     );
     if (!participantEntry || !structureEntry) {
-        return;
+        return undefined;
     }
 
     const layout = root.querySelector('.local-groupimport-easystud__layout');
@@ -95,64 +158,8 @@ const syncCompleteListAlignment = root => {
     const treePadding = parseFloat(window.getComputedStyle(tree).paddingTop) || 0;
     const listMargin = parseFloat(window.getComputedStyle(participantList).marginTop) || 0;
     const participantBarMargin = alignBars ? (parseFloat(window.getComputedStyle(participantBar).marginBottom) || 0) : 0;
-    const structureBarMargin = alignBars ? (parseFloat(window.getComputedStyle(structureBar).marginBottom) || 0) : 0;
 
-    // Compute: shift the lower column's lead-in so that the bars share one row, then
-    // balance the bar-to-first-entry gap so the first card and the first section also match.
-    let treeShift = 0;
-    let listShift = 0;
-    let participantGap = 0;
-    let structureGap = 0;
-    if (alignBars) {
-        const barDelta = participantBarTop - structureBarTop;
-        treeShift = Math.max(0, barDelta);
-        listShift = Math.max(0, -barDelta);
-        const gapDelta = (participantEntryTop - participantBarTop) - (structureEntryTop - structureBarTop);
-        structureGap = Math.max(0, gapDelta);
-        participantGap = Math.max(0, -gapDelta);
-    } else {
-        const delta = participantEntryTop - structureEntryTop;
-        treeShift = Math.max(0, delta);
-        listShift = Math.max(0, -delta);
-    }
-
-    // Write phase.
-    if (treeShift >= 1) {
-        tree.style.paddingTop = (treePadding + treeShift) + 'px';
-    }
-    if (listShift >= 1) {
-        participantList.style.marginTop = (listMargin + listShift) + 'px';
-    }
-    if (structureGap >= 1) {
-        structureBar.style.marginBottom = (structureBarMargin + structureGap) + 'px';
-    }
-    if (participantGap >= 1) {
-        participantBar.style.marginBottom = (participantBarMargin + participantGap) + 'px';
-    }
-
-    // Margins that collapsed before the offsets existed can leave a small residue: verify once,
-    // fold the bar remainder into the outer offsets and the gap remainder into the bar margins.
-    if (alignBars) {
-        const barResidue = participantBar.getBoundingClientRect().top - structureBar.getBoundingClientRect().top;
-        const entryResidue = participantEntry.getBoundingClientRect().top - structureEntry.getBoundingClientRect().top;
-        const gapResidue = entryResidue - barResidue;
-        if (Math.abs(barResidue) >= 1) {
-            if (barResidue > 0) {
-                tree.style.paddingTop = (parseFloat(tree.style.paddingTop) || treePadding) + barResidue + 'px';
-            } else {
-                participantList.style.marginTop = (parseFloat(participantList.style.marginTop) || listMargin) - barResidue + 'px';
-            }
-        }
-        if (Math.abs(gapResidue) >= 1) {
-            if (gapResidue > 0) {
-                structureBar.style.marginBottom =
-                    (parseFloat(structureBar.style.marginBottom) || structureBarMargin) + gapResidue + 'px';
-            } else {
-                participantBar.style.marginBottom =
-                    (parseFloat(participantBar.style.marginBottom) || participantBarMargin) - gapResidue + 'px';
-            }
-        }
-    }
+    return applyCompleteAlignmentOffsets();
 };
 
 // Re-align on anything that changes the geometry of the lead-in without a dedicated call site:
