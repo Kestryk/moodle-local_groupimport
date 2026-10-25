@@ -11,9 +11,9 @@ const renderer = {module: {exports: {}}};
 vm.runInNewContext(fs.readFileSync(process.argv[3], 'utf8')
     .replace('export default mustache;', 'module.exports = mustache;'), renderer);
 const root = path.resolve(__dirname, '../..');
-const css = fs.readFileSync(process.argv[5] || path.join(root, 'styles.css'), 'utf8');
+const css = (process.argv[5] ? fs.readFileSync(process.argv[5], 'utf8') : require('./fixtures/page_css.cjs')(root));
 const template = fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8');
-const source = fs.readFileSync(path.join(root, 'amd/src/course_manager.js'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'amd/src/local/cm/guide_launcher.js'), 'utf8');
 const start = source.indexOf('    const preserveGuidePortalTheme = () => {');
 const end = source.indexOf('    const syncGuideLauncher', start);
 assert.ok(start >= 0 && end > start, 'Actual bounded product palette copier');
@@ -33,7 +33,7 @@ const data = JSON.parse(execFileSync(process.argv[4],
             await page.setContent('<style>*{box-sizing:border-box}' + css + '</style>' +
                 '<div class="local-groupimport-easystud path-local-groupimport easyedu-ui" id="workspace" style="' +
                 '--easyedu-accent:' + palette.accent + ';--easyedu-accent-soft:' + palette.soft + '">' +
-                renderer.module.exports.render(template, data.templateData) + '</div>');
+                require('./fixtures/mustache_partials.cjs')(renderer.module.exports, root).render(template, data.templateData) + '</div>');
             for (const portalled of [false, true]) {
                 if (portalled) await page.evaluate(copier => {
                     const guideNode = document.querySelector('[data-easyedu-guide-root]');

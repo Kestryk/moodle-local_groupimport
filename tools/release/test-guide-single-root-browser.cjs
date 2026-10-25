@@ -9,7 +9,7 @@ const report={rows:[],errors:[],runtimeAccess:false};
 (async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
 try{for(const lang of ['fr','en']){
  const data=JSON.parse(execFileSync(php,[path.join(root,'tools/release/guide-current-curriculum-fixture.php'),lang],{encoding:'utf8',maxBuffer:8*1024*1024})).templateData;
- const html=renderer.module.exports.render(read('templates/easyedu_guide.mustache'),data,name=>read('templates/'+name.split('/').pop()+'.mustache'));
+ const html=require('./fixtures/mustache_partials.cjs')(renderer.module.exports, root).render(read('templates/easyedu_guide.mustache'),data,name=>read('templates/'+name.split('/').pop()+'.mustache'));
  for(const width of [1280,768,390]){const page=await browser.newPage({viewport:{width,height:1000}});page.on('pageerror',e=>report.errors.push(e.message));await page.route('**/*',route=>route.abort());
  await page.setContent('<body class="path-local-groupimport"><main id="local-groupimport-easystud" class="easyedu-ui local-groupimport-easystud">'+html+'</main></body>');
  await page.addStyleTag({content:'[hidden]{display:none!important}*{animation:none!important;transition:none!important}'});

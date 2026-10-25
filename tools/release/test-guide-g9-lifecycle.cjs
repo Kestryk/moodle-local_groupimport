@@ -24,10 +24,9 @@ const root = path.resolve(__dirname, '../..');
         const boot = async seed => {
             if (seed) await page.evaluate(seed => localStorage.setItem('g9.checklist', JSON.stringify(seed)), seed);
             await page.setContent('<style>*{box-sizing:border-box}[hidden]{display:none!important}' +
-                fs.readFileSync(path.join(root, 'styles.css'), 'utf8') + '</style><div class="local-groupimport-easystud">' +
-                mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data) + '</div>');
-            await page.addScriptTag({content: 'window.define=(deps,factory)=>{window.Guide=factory();};\n' +
-                fs.readFileSync(path.join(root, 'amd/src/easyedu_guide.js'), 'utf8')});
+                require('./fixtures/page_css.cjs')(root) + '</style><div class="local-groupimport-easystud">' +
+                require('./fixtures/mustache_partials.cjs')(mustache, root).render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data) + '</div>');
+            await page.addScriptTag({content: require('./fixtures/guide_amd.cjs')(root, 'source')});
             await page.evaluate(steps => window.Guide.init('[data-easyedu-guide-root]', {
                 storageKey: 'g9', firstVisit: false, paths: {'practice-membership': steps}
             }), data.practicePath);

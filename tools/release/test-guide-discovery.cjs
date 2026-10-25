@@ -21,10 +21,9 @@ const root = path.resolve(__dirname, '../..');
                 slidecount: 4, initialprogress: 25});
             for (const width of [1280, 768, 390]) {
                 await page.setViewportSize({width, height: 900});
-                await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${fs.readFileSync(path.join(root, 'styles.css'), 'utf8')}</style>` +
-                    mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data));
-                await page.addScriptTag({content: 'window.define=(deps,factory)=>{window.Guide=factory();};\n' +
-                    fs.readFileSync(path.join(root, 'amd/src/easyedu_guide.js'), 'utf8')});
+                await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${require('./fixtures/page_css.cjs')(root)}</style>` +
+                    require('./fixtures/mustache_partials.cjs')(mustache, root).render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data));
+                await page.addScriptTag({content: require('./fixtures/guide_amd.cjs')(root, 'source')});
                 await page.evaluate(() => window.Guide.init('[data-easyedu-guide-root]', {storageKey: 'test', firstVisit: true}));
                 const modal = page.locator('[data-easyedu-guide-modal]');
                 if (!await modal.isVisible()) { await page.locator('[data-easyedu-guide-open]').click(); }

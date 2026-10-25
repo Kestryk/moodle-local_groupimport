@@ -11,9 +11,8 @@ const renderer={module:{exports:{}}};
 vm.runInNewContext(fs.readFileSync(process.argv[3],'utf8').replace('export default mustache;','module.exports = mustache;'),renderer);
 const root=path.resolve(__dirname,'../..');
 const template=fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8');
-const css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
-const engine='window.define=(...args)=>{window.Guide=args.at(-1)();};\n'+
-    fs.readFileSync(path.join(root,'amd/build/easyedu_guide.min.js'),'utf8');
+const css=require('./fixtures/page_css.cjs')(root);
+const engine=require('./fixtures/guide_amd.cjs')(root);
 (async()=>{
     const browser=await chromium.launch({headless:true,channel:'chrome'});
     let cases=0;
@@ -27,7 +26,7 @@ const engine='window.define=(...args)=>{window.Guide=args.at(-1)();};\n'+
             const index=raw.readingContract.slideIds.indexOf('read-'+type+'-card');
             assert.ok(index>=0);
             await page.setContent('<style>*{box-sizing:border-box}[hidden]{display:none!important}'+css+'</style>'+
-                renderer.module.exports.render(template,raw.templateData));
+                require('./fixtures/mustache_partials.cjs')(renderer.module.exports, root).render(template,raw.templateData));
             await page.addScriptTag({content:engine});
             await page.evaluate(()=>Guide.init('[data-easyedu-guide-root]',{firstVisit:false,storageKey:'editor-layout-qa'}));
             await page.locator('[data-easyedu-guide-open]:visible').first().click();

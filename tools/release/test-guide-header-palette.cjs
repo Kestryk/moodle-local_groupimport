@@ -5,7 +5,7 @@ const {chromium}=require(process.argv[2]),root=path.resolve(__dirname,'../..');
 const renderer={module:{exports:{}}};
 vm.runInNewContext(fs.readFileSync(process.argv[3],'utf8').replace('export default mustache;','module.exports = mustache;'),renderer);
 const data=JSON.parse(execFileSync(process.argv[4],[path.join(__dirname,'guide-current-curriculum-fixture.php'),'en'],{encoding:'utf8'}));
-const manager=fs.readFileSync(path.join(root,'amd/src/course_manager.js'),'utf8');
+const manager=fs.readFileSync(path.join(root,'amd/src/local/cm/guide_launcher.js'),'utf8');
 const first=manager.indexOf('    const preserveGuidePortalTheme = () => {'),last=manager.indexOf('    const syncGuideLauncher',first);
 assert.ok(first>=0&&last>first);const relay=manager.slice(first,last),audit=process.argv.includes('--audit');
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'}),rows=[];try{
@@ -16,7 +16,7 @@ assert.ok(first>=0&&last>first);const relay=manager.slice(first,last),audit=proc
   {name:'restore',roles:'',primary:'#0f6cbf',chosen:'#0f6cbf',soft:'#e8f4ff'}
  ]){
   const page=await browser.newPage({viewport:{width,height:1000}});
-  await page.setContent('<style>*{box-sizing:border-box}[hidden]{display:none!important}'+fs.readFileSync(path.join(root,'styles.css'),'utf8')+'</style><div id="workspace" class="local-groupimport-easystud easyedu-ui" data-easyedu-dialog-palette="'+palette.roles+'" style="--easyedu-primary:'+palette.primary+';--easyedu-primary-chosen:'+palette.chosen+';--easyedu-primary-soft:'+palette.soft+'">'+renderer.module.exports.render(fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8'),data.templateData)+'</div>');
+  await page.setContent('<style>*{box-sizing:border-box}[hidden]{display:none!important}'+require('./fixtures/page_css.cjs')(root)+'</style><div id="workspace" class="local-groupimport-easystud easyedu-ui" data-easyedu-dialog-palette="'+palette.roles+'" style="--easyedu-primary:'+palette.primary+';--easyedu-primary-chosen:'+palette.chosen+';--easyedu-primary-soft:'+palette.soft+'">'+require('./fixtures/mustache_partials.cjs')(renderer.module.exports, root).render(fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8'),data.templateData)+'</div>');
   await page.locator('[data-easyedu-guide-modal]').evaluate(n=>{n.hidden=false;});
   for(const portalled of [false,true]){
    if(portalled)await page.evaluate(relay=>{const guideNode=document.querySelector('[data-easyedu-guide-root]');Function('guideNode',relay+'\npreserveGuidePortalTheme();')(guideNode);document.body.appendChild(guideNode);},relay);

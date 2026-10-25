@@ -4,7 +4,7 @@ const {chromium}=require(process.argv[2]);
 const root=path.resolve(__dirname,'../..'),output=path.resolve(process.argv[3]);
 const approved=path.resolve(process.env.LOCALAPPDATA,'EasyEdu/artifacts/easystud/isolated');
 if(!output.startsWith(approved+path.sep)||fs.existsSync(output))throw Error('New owned external run required');
-const css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
+const css=require('./fixtures/page_css.cjs')(root);
 (async()=>{fs.mkdirSync(output,{recursive:true});const b=await chromium.launch({channel:'chrome',headless:true}),records=[];
 try{const p=await b.newPage();for(const width of[320,390,768,1024]){await p.setViewportSize({width,height:900});
 await p.emulateMedia({reducedMotion:'reduce'});

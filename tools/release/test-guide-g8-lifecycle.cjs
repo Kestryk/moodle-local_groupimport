@@ -25,11 +25,10 @@ const root = path.resolve(__dirname, '../..');
         const render = async completed => {
             await page.evaluate(completed => localStorage.setItem('g8.checklist', JSON.stringify({path: 'practice-membership',
                 slideIndex: 1, activeIndex: 0, completed: {'practice-membership': completed, other: ['retained']}})), completed);
-            await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${fs.readFileSync(path.join(root, 'styles.css'), 'utf8')}</style>` +
+            await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${require('./fixtures/page_css.cjs')(root)}</style>` +
                 '<div class="local-groupimport-easystud">' +
-                mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data) + '</div>');
-            await page.addScriptTag({content: 'window.define=(deps,factory)=>{window.Guide=factory();};\n' +
-                fs.readFileSync(path.join(root, 'amd/src/easyedu_guide.js'), 'utf8')});
+                require('./fixtures/mustache_partials.cjs')(mustache, root).render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data) + '</div>');
+            await page.addScriptTag({content: require('./fixtures/guide_amd.cjs')(root, 'source')});
             await page.evaluate(steps => window.Guide.init('[data-easyedu-guide-root]', {storageKey: 'g8', firstVisit: false,
                 paths: {'practice-membership': steps}}), data.practicePath);
         };

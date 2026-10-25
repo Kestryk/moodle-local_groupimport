@@ -7,8 +7,8 @@ const renderer = {module:{exports:{}}};
 vm.runInNewContext(fs.readFileSync(process.argv[3],'utf8').replace('export default mustache;', 'module.exports = mustache;'),renderer);
 const root = path.resolve(__dirname,'../..');
 const template = fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8');
-const css = fs.readFileSync(path.join(root,'styles.css'),'utf8');
-const engine = 'window.define=(...args)=>{window.Guide=args.at(-1)();};\n' + fs.readFileSync(path.join(root,'amd/build/easyedu_guide.min.js'),'utf8');
+const css = require('./fixtures/page_css.cjs')(root);
+const engine = require('./fixtures/guide_amd.cjs')(root);
 (async()=>{
     const browser = await chromium.launch({headless:true,channel:'chrome'});
     let cases=0;
@@ -22,7 +22,7 @@ const engine = 'window.define=(...args)=>{window.Guide=args.at(-1)();};\n' + fs.
                 await page.route('**/*',route=>route.fulfill({body:'<html></html>'}));
                 await page.goto('http://guide-slide-title.test');
                 await page.setContent('<style>*{box-sizing:border-box}body{font-family:Arial,sans-serif}[hidden]{display:none!important}'+css+'</style>'+
-                    '<div class="local-groupimport-easystud path-local-groupimport easyedu-ui">'+renderer.module.exports.render(template,data.templateData)+'</div>');
+                    '<div class="local-groupimport-easystud path-local-groupimport easyedu-ui">'+require('./fixtures/mustache_partials.cjs')(renderer.module.exports, root).render(template,data.templateData)+'</div>');
                 await page.addScriptTag({content:engine});
                 await page.evaluate(()=>Guide.init('[data-easyedu-guide-root]',{firstVisit:false,fullscreen:true,storageKey:'slide-title-isolated'}));
                 await page.locator('[data-easyedu-guide-open]:visible').first().click();

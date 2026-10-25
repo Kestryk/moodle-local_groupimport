@@ -4,16 +4,15 @@ const [pw,mustache,php,output]=process.argv.slice(2),root=path.resolve(__dirname
 const {chromium}=require(pw),render={module:{exports:{}}};
 vm.runInNewContext(fs.readFileSync(mustache,'utf8').replace('export default mustache;','module.exports=mustache;'),render);
 assert.ok(output&&!fs.existsSync(output));
-const template=fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8'),css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
-const loader=`window.amd={};window.define=(...a)=>{const name=typeof a[0]==='string'?a.shift():'anonymous',deps=Array.isArray(a[0])?a.shift():[],factory=a[0],exports={};const value=factory(...deps.map(d=>d==='exports'?exports:amd[d]));amd[name]=value||exports;};`;
+const template=fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8'),css=require('./fixtures/page_css.cjs')(root);
+const loader=require('./fixtures/guide_amd.cjs')(root);
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'}),records=[];try{
  for(const language of ['en','fr'])for(const width of [1280,768,390])for(const motion of ['no-preference','reduce']){
   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:motion}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*',r=>r.fulfill({body:'<html></html>'}));await page.goto('http://recap-isolated.test');
   const payload=JSON.parse(execFileSync(php,[path.join(__dirname,'guide-demonstration-entry-fixture.php'),language],{encoding:'utf8'})).templateData;
-  await page.setContent('<style>*{box-sizing:border-box}'+css+'</style><div class="easyedu-ui path-local-groupimport local-groupimport-easystud">'+render.module.exports.render(template,payload)+'</div>');
-  await page.addScriptTag({content:loader});await page.addScriptTag({content:fs.readFileSync(path.join(root,'amd/build/motion.min.js'),'utf8')});
-  await page.addScriptTag({content:fs.readFileSync(path.join(root,'amd/build/easyedu_guide.min.js'),'utf8')});
+  await page.setContent('<style>*{box-sizing:border-box}'+css+'</style><div class="easyedu-ui path-local-groupimport local-groupimport-easystud">'+require('./fixtures/mustache_partials.cjs')(render.module.exports, root).render(template,payload)+'</div>');
+  await page.addScriptTag({content:loader});
   const index=await page.locator('[data-easyedu-guide-slide]').evaluateAll(ns=>ns.find(n=>n.querySelector('[data-easyedu-guide-scene="membership"]')).getAttribute('data-easyedu-guide-slide'));
   await page.evaluate(index=>{const Guide=amd['local_groupimport/easyedu_guide'];if(typeof amd['local_groupimport/motion'].disclosePanel!=='function')throw Error('Missing callable Motion');Guide.init('[data-easyedu-guide-root]',{firstVisit:false,storageKey:'recap.qa'});window.Guide=Guide;},index);
   await page.locator('[data-easyedu-guide-root] > [data-easyedu-guide-open]').click();

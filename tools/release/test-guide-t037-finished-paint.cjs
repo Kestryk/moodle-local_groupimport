@@ -5,12 +5,12 @@ const [pw,mustache,php,output]=process.argv.slice(2),root=path.resolve(__dirname
 const {chromium}=require(pw),render={module:{exports:{}}};
 vm.runInNewContext(fs.readFileSync(mustache,'utf8').replace('export default mustache;','module.exports=mustache;'),render);
 assert.ok(output&&!fs.existsSync(output));
-const template=fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8'),css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
+const template=fs.readFileSync(path.join(root,'templates/easyedu_guide.mustache'),'utf8'),css=require('./fixtures/page_css.cjs')(root);
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'}),records=[];try{
  for(const language of ['en','fr'])for(const width of [1600,1280,768,390])for(const accent of ['#1b7f5a','#8b3470']){
   const page=await browser.newPage({viewport:{width,height:1000}});
   const payload=JSON.parse(execFileSync(php,[path.join(__dirname,'guide-demonstration-entry-fixture.php'),language],{encoding:'utf8'})).templateData;
-  await page.setContent('<style>*{box-sizing:border-box}'+css+'</style><div class="easyedu-ui local-groupimport-easystud">'+render.module.exports.render(template,payload)+'</div>');
+  await page.setContent('<style>*{box-sizing:border-box}'+css+'</style><div class="easyedu-ui local-groupimport-easystud">'+require('./fixtures/mustache_partials.cjs')(render.module.exports, root).render(template,payload)+'</div>');
   const rows=await page.evaluate(accent=>{
    const root=document.querySelector('[data-easyedu-guide-root]');root.style.setProperty('--easyedu-accent',accent);
    const paint=n=>{const s=getComputedStyle(n);return{color:s.color,weight:s.fontWeight,font:s.fontFamily,size:s.fontSize,line:s.lineHeight};};

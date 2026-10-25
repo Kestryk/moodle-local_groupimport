@@ -27,10 +27,9 @@ const root = path.resolve(__dirname, '../..');
                 guideopenlabel: 'Open', guidecloselabel: 'Close', guiderestorelabel: 'Restore', slidecount: 4});
             for (const width of [1280, 768, 390]) {
                 await page.setViewportSize({width, height: 900});
-                await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${fs.readFileSync(path.join(root, 'styles.css'), 'utf8')}</style>` +
-                    '<div id="workspace"></div>' + mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data));
-                await page.addScriptTag({content: 'window.define=(deps,factory)=>{window.Guide=factory();};\n' +
-                    fs.readFileSync(path.join(root, 'amd/src/easyedu_guide.js'), 'utf8') + '\n' + helper + '\nwindow.emitPracticeCompletion=emitPracticeCompletion;'});
+                await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${require('./fixtures/page_css.cjs')(root)}</style>` +
+                    '<div id="workspace"></div>' + require('./fixtures/mustache_partials.cjs')(mustache, root).render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data));
+                await page.addScriptTag({content: require('./fixtures/guide_amd.cjs')(root, 'source')});
                 await page.evaluate(steps => window.Guide.init('[data-easyedu-guide-root]', {firstVisit: true,
                     storageKey: `practice-${Date.now()}`, paths: {'practice-membership': steps}}), data.practicePath);
                 await page.locator('[data-easyedu-guide-nav-item="1"]').click();
