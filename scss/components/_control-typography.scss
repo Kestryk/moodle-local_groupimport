@@ -1,4 +1,5 @@
 @use "../easyedu" as easyedu;
+@use "../easyedu/components/text-fields";
 @use "../easyedu/foundation-classes" as foundations;
 
 // Selector adapter only. Shared treatment lives in the canonical Kit;
@@ -22,6 +23,7 @@
   [data-easystud-container-search-cancel].easyedu-button--secondary,
   [data-easystud-group-member-search-cancel].easyedu-button--secondary {
     @include foundations.foundation-button($secondary: true, $density: compact, $legacy-priority: true);
+    @include text-fields.field-peer-small-action;
   }
 
   // K22-27: rename Save/Cancel are Kit field-peer icon buttons

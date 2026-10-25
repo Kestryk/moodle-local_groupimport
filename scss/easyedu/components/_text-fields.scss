@@ -38,14 +38,37 @@ $-field-block-padding: (
 
 // A paired Small control, not a sixth step or a change to the published S/32px.
 // Shared with its icon-button peer, including the workspace's 1024px boundary.
-@mixin field-peer-small-size {
+@mixin field-peer-small-size($fixed-frame: false) {
   block-size: var(--easyedu-button-height-s);
   min-block-size: var(--easyedu-button-height-s);
+  @if $fixed-frame { max-block-size: var(--easyedu-button-height-s); }
 
   @media (max-width: 1024px) {
     block-size: var(--easyedu-touch-target-min);
     min-block-size: var(--easyedu-touch-target-min);
+    @if $fixed-frame { max-block-size: var(--easyedu-touch-target-min); }
   }
+}
+
+// Small search frame: retain the existing inline geometry, type and paint.
+// The frame (including its border), not its borderless input, owns final height.
+@mixin search-field-peer-small-frame {
+  box-sizing: border-box;
+  padding-block: 0;
+  @include field-peer-small-size($fixed-frame: true);
+  > input {
+    box-sizing: border-box;
+    block-size: 100%;
+    min-block-size: 0;
+    margin-block: 0;
+  }
+}
+
+// A text Cancel beside a Small field shares the same final frame as icon peers.
+@mixin field-peer-small-action {
+  box-sizing: border-box;
+  padding-block: 0;
+  @include field-peer-small-size;
 }
 
 // Native text/search inputs only. Paint, focus and invalid/disabled states stay
@@ -61,6 +84,8 @@ $-field-block-padding: (
 // Composite search: the caption stays outside the measured input frame. The
 // icon shares its grid cell, so a caption cannot enlarge the Small field peer.
 @mixin search-field-peer-small {
+  block-size: auto;
+  max-block-size: none;
   background: transparent;
   border: 0;
   box-shadow: none;

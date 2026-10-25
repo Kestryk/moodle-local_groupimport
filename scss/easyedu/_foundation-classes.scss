@@ -6,6 +6,7 @@
 @use "components/focus";
 @use "components/buttons";
 @use "components/forms";
+@use "components/text-fields";
 @use "components/cards";
 @use "components/color-panel";
 @use "tokens";
@@ -372,6 +373,11 @@
   .easyedu-ui .foundation-selection-action.foundation-selection-action--tray {
     // Match the semantic-role selector specificity; touch density must win.
     @include buttons.selection-action-tray-density;
+  }
+  // Selection command paired with a Small search field; retain its palette/type.
+  .easyedu-ui .foundation-selection-action.easyedu-field-peer-small,
+  .easyedu-ui .easyedu-button.easyedu-field-peer-small {
+    @include text-fields.field-peer-small-action;
   }
   .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {
     @include buttons.selection-recovery-action($natural-icons: true, $legacy-priority: true);

@@ -186,9 +186,9 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     display: flex;
     gap: 0.55rem;
     margin: 0;
-    min-block-size: 2.375rem;
+    @include text-fields.search-field-peer-small-frame;
     min-inline-size: 0;
-    padding: 0 0.8125rem;
+    padding-inline: 0.8125rem;
     transition: border-color var(--easyedu-motion-fast) ease,
       box-shadow var(--easyedu-motion-fast) ease;
 
@@ -212,7 +212,7 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       color: var(--easyedu-field-text);
       flex: 1 1 auto;
       font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
-      block-size: 2.25rem;
+      block-size: 100%;
       inline-size: 100%;
       min-block-size: 0;
       min-inline-size: 0;
@@ -335,16 +335,11 @@ $field-peer-close-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     transition: none;
   }
 
-  // K16-80 / Q17-T44: participant search field, one Kit touch minimum.
-  // The prior 2.65rem bump left the frame under 44 px, and the inner
-  // input kept a fixed 2.25rem block-size regardless of the wrapper.
+  // Search frames own their 1024px touch boundary in field-peer-small-size.
+  // Preserve the historical compact Create icon width adapter independently.
   @media (max-width: 48rem) {
-    .easyedu-ui .easyedu-search-field,
     .easyedu-ui .easyedu-create-icon-button {
       min-block-size: var(--easyedu-touch-target-min);
-    }
-    .easyedu-ui .easyedu-search-field > input {
-      block-size: var(--easyedu-touch-target-min);
     }
     .easyedu-ui .easyedu-create-icon-button {
       block-size: var(--easyedu-touch-target-min);

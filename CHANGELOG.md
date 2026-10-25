@@ -1,3 +1,5 @@
+- 2026-10-25 Align every search field with Small creation actions: 30.4px on desktop and 44px on touch layouts, preserving widths, native placeholders and matching Cancel controls.
+
 - 2026-10-25 Validate Guide live regions and the compact navigation dialog with compatible HTML elements; preserve no-JavaScript recovery in page styles and validate menu/list fragments through their real parents.
 
 - Centre the floating Guide icon before hover, place notifications at the top left beneath the navbar, and keep grouping searches closed until requested. Rebuild the shared Small search-field assets already present in source.
