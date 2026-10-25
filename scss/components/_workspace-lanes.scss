@@ -167,7 +167,7 @@ body.local-groupimport-host-moodle53 #local-groupimport-easystud {
   max-height: none;
 }
 @container easystud-person-card (max-width: 20rem) {
-  #local-groupimport-easystud .local-groupimport-easystud-user {
+  #local-groupimport-easystud .local-groupimport-easystud-user:not(:has(.local-groupimport-easystud-user__meta[hidden])) {
     @include easyedu.person-card-readable-summary(".local-groupimport-easystud-user__headline", ".local-groupimport-easystud-user__headline-main", ".local-groupimport-easystud-user__name", ".local-groupimport-easystud-user__email");
   }
 }

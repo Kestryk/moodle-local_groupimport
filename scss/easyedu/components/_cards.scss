@@ -159,6 +159,7 @@
     gap: 0.45rem;
     grid-template-areas: "identity email action";
     grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: var(--easyedu-person-first-line, auto);
     margin-bottom: 0;
     min-width: 0;
   } @else {

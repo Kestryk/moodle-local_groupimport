@@ -182,7 +182,7 @@
 // Responsive wrapped names own the shared selection/action row; metadata and
 // late hydration cannot change its centre. Desktop cards retain their recipe.
 @media (max-width: 40rem) {
-  #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+  #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user:not(:has(.local-groupimport-easystud-user__meta[hidden])) {
     @include easyedu.person-card-wrapped-name-row(".local-groupimport-easystud-user__name", ".local-groupimport-easystud-selector", ".local-groupimport-easystud-card-menu", ".local-groupimport-easystud-user__primary-badge");
   }
 }
@@ -204,5 +204,14 @@
     > .local-groupimport-easystud-card-menu {
       @include easyedu.card-header-terminal-slot(overflow);
     }
+  }
+}
+
+// Actual disclosure owns the compact row; expanded cards retain their wrapped identity.
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user:has(.local-groupimport-easystud-user__meta[hidden]) {
+  .local-groupimport-easystud-user__headline {
+    @include easyedu.person-card-headline(compact);
+    @include easyedu.person-card-responsive-tracks;
+    @include easyedu.identity-card-action-clearance($person: true);
   }
 }

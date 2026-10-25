@@ -1,4 +1,4 @@
-Participant metadata disclosure follows participantcardcollapsed until a manual desktop density choice overrides it for the current model. Automatic compact layout must not override the admin default. Preserve mobile membership-only policy and Motion timing. See docs/testing/participant-collapse-default-2026-10-25.md.
+Participant visual density and metadata disclosure both initialize from participantcardcollapsed, never participant count. An explicit density choice overrides it on either viewport. Genuinely collapsed cards use one existing compact Kit row; expanded cards retain G7 wrapped names and single-selection disclosure. Preserve Motion timing. See docs/testing/k25-01-participant-collapsed-2026-10-25.md.
 
 All actual search frames and adjacent Cancel actions share the Kit Small field-peer height (30.4px, 44px through 1024px). Keep inline geometry, native placeholders, type and icon containment unchanged; substitute page plus Guide CSS for native A/B checks. See docs/testing/search-field-small-2026-10-25.md.
 

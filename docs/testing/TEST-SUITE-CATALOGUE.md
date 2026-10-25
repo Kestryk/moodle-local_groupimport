@@ -1156,3 +1156,12 @@ Ces fichiers ne sont plus actifs. Leur retrait ne prouve pas que le comportement
 2. Ajouter une ligne dans la catégorie principale appropriée de ce catalogue : nom exact et lien, objectif, fréquence, dernier statut daté et référence de preuve. Si le test n’a pas encore tourné, écrire « non exécuté » explicitement et le compter séparément; ne jamais inventer PASS ou FAIL.
 3. Ajouter toute raison de FAIL ou tout prérequis bloquant dans la section durable correspondante. Distinguer bug produit confirmé, divergence à qualifier et défaut de harnais. Pour un retrait, écrire une décision versionnée avec sa preuve et son Git blob; conserver une ligne « retiré » séparée.
 4. Recalculer le total des fichiers actifs et les sous-totaux par catégorie/statut; vérifier qu’aucun nom actif n’est absent ou dupliqué. Dater le rejeu et le commit testé : un résultat ancien ne certifie pas une nouvelle version. Aucune assertion ni garde de sécurité ne doit être affaiblie pour changer un compteur.
+
+
+## Addition: coherent participant density (2026-10-25)
+
+Historical totals above remain a snapshot.
+
+| Script | Category | Checks | When | Status |
+| --- | --- | --- | --- | --- |
+| `test-participant-density-policy.cjs` | Current behaviour contract | Actual manual override expression and initial mobile density (10 cases); Compact cannot reset to the admin default. | Participant disclosure/density changes; before release. | PASS; see [K25-01](k25-01-participant-collapsed-2026-10-25.md). |

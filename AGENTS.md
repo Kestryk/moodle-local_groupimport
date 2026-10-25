@@ -1,3 +1,5 @@
+Participant Compact/Full paint and metadata must agree with the admin default on initial load. A manual density choice is explicit on desktop and responsive layouts. Keep genuinely collapsed cards on one Kit row, expanded G7 identities readable, per-card selection local and Motion unchanged. See docs/testing/k25-01-participant-collapsed-2026-10-25.md.
+
 # EasyEdu agent contract
 
 Privacy context-list ids may be SQL numeric strings while context objects use
