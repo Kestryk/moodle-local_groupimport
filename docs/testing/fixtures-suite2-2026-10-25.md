@@ -87,3 +87,8 @@ Le cas tactile 24/44 px reste intact et non rejoue. Les prerequis des onze
 scripts bloques sont listes individuellement dans les preuves externes.
 Le rendement diminue: cinq gains sur cette passe; poursuivre par contrats cibles
 et decisions produit plutot que par modification massive des oracles.
+
+
+## Suite ciblée — qualification des sept doutes
+
+Le bilan ci-dessus reste historique. La passe [seven-contracts-2026-10-25.md](seven-contracts-2026-10-25.md) répare quatre des sept contrats, retire T037 finished-preservation après preuve K17-33, et conserve les deux contrats Guide chrome/Review2 en FAIL avec leur blocage de parité précisément identifié. Le catalogue contient le nouveau total daté ; aucun ancien PASS natif n'est réutilisé pour certifier un rejeu isolé.

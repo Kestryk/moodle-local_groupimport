@@ -1,47 +1,20 @@
-// Bounded consumer adoption: only the existing canonical focus opt-in is added.
-const fs = require('node:fs');
-const path = require('node:path');
-const assert = require('node:assert/strict');
-const {execFileSync} = require('node:child_process');
-const {createHash} = require('node:crypto');
-const sass = require(process.argv[2]);
-const root = path.resolve(__dirname, '../..');
-const baseline = '2df6a01a7b267d1c22cf87f5d2340b0b001273c5';
-const normalize = value => value.replace(/\r\n/g, '\n');
-const old = file => normalize(execFileSync('git', ['show', `${baseline}:${file}`], {cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024}));
-const current = file => normalize(fs.readFileSync(path.join(root, file), 'utf8'));
-const exact = (actual, expected, label) => {
-    const digest = value => createHash('sha256').update(value).digest('hex');
-    if (actual !== expected) {
-        let offset = 0;
-        while (offset < Math.min(actual.length, expected.length) && actual[offset] === expected[offset]) offset += 1;
-        console.error(JSON.stringify({label, offset, actualLength: actual.length, expectedLength: expected.length,
-            actualSample: actual.slice(Math.max(0, offset - 100), offset + 180),
-            expectedSample: expected.slice(Math.max(0, offset - 100), offset + 180)}));
-    }
-    assert.equal(digest(actual), digest(expected), label);
-};
-const forms = current('scss/easyedu/components/_forms.scss');
-const start = forms.indexOf('// Opt-in keyboard focus for a borderless catalogue switch.');
-const end = forms.indexOf('// Catalogue controls stay adjacent', start);
-assert.ok(start >= 0 && end > start);
-assert.equal(forms.slice(0, start) + forms.slice(end), old('scss/easyedu/components/_forms.scss'));
-const classLine = '  .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--track-focus { @include forms.filter-toggle-track-focus; }\n';
-assert.equal(current('scss/easyedu/_foundation-classes.scss').replace(classLine, ''), old('scss/easyedu/_foundation-classes.scss'));
-const template = current('templates/manage.mustache');
-assert.equal((template.match(/ easyedu-filter-toggle--track-focus/g) || []).length, 2);
-assert.equal(template.replace(/ easyedu-filter-toggle--track-focus/g, ''), old('templates/manage.mustache'));
-for (const file of ['amd/src/course_manager.js', 'amd/build/course_manager.min.js', 'amd/build/course_manager.min.js.map', 'manage.php']) assert.equal(current(file), old(file), file + ' unchanged');
-let warnings = 0;
-const css = normalize(sass.compile(path.join(root, 'scss/easystud.scss'), {logger: {warn: () => {warnings += 1;}}}).css);
-let added = 0;
-let restored = css.replace(/@media \(forced-colors: active\) \{\n  \.easyedu-ui \.easyedu-filter-toggle\.easyedu-filter-toggle--track-focus[^{}]*\{[^{}]*\}\n\}\n*/g, () => {added += 1; return '';});
-restored = restored.replace(/\.easyedu-ui \.easyedu-filter-toggle\.easyedu-filter-toggle--track-focus[^{}]*\{[^{}]*\}\n*/g, block => {
-    assert.ok(!/\b(?:width|height|padding|margin|font|transition|animation|position|display|gap)\s*:/.test(block));
-    added += 1; return '';
-});
-assert.equal(added, 3);
-exact(restored.trimEnd(), old('styles.css').trimEnd(), 'All unrelated emitted consumer CSS retained');
-exact(current('styles.css').trimEnd(), css.trimEnd(), 'Generated CSS matches the current source');
-console.log('PASS exactly three shared focus rules/two public label opt-ins; complete unrelated CSS, controller, commands and Motion unchanged.');
-console.log(JSON.stringify({compiler: sass.info.split('\n')[0], existingCompilerWarnings: warnings}));
+// Keep the live focus and ordered non-geometry contract after I9 retired styles.css.
+const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
+const root = path.resolve(__dirname, '../..'), sass = require(process.argv[2]);
+const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
+assert.equal((read('templates/manage.mustache').match(/ easyedu-filter-toggle--track-focus/g) || []).length, 2);
+const forms = read('scss/easyedu/components/_forms.scss');
+assert.match(forms, /input:focus-visible:not\(:disabled\) \+ span::before/);
+const result = require('./lib/scss-optin-preservation.cjs')(root, sass, 'forms.filter-toggle-track-focus',
+    '.easyedu-filter-toggle--track-focus');
+assert.equal(result.added.length, 3);
+for (const row of result.added) {
+    assert.ok(row.declarations.every(([prop]) => /^(box-shadow|outline(?:-color|-offset|-style|-width)?|border-color)$/.test(prop)),
+        'The opt-in may paint focus only, never change geometry, typography or Motion');
+}
+const ring = result.added.find(row => row.selector.includes('input:focus-visible:not(:disabled) + span::before') && !row.parents.length);
+assert.ok(ring && ring.declarations.some(([prop, value]) => prop === 'box-shadow' && value.includes('--easyedu-focus')));
+const forced = result.added.find(row => row.parents.some(([name, value]) => name === 'media' && value === '(forced-colors: active)'));
+assert.ok(forced && forced.declarations.some(([prop, value]) => prop === 'outline-color' && value === 'Highlight'));
+console.log(JSON.stringify({passed: true, preservedRules: result.preserved, publicLabels: 2, focusRules: 3,
+    geometryAndMotionUnchanged: true, disabledExcluded: true, forcedColours: true}));

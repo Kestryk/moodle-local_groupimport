@@ -54,3 +54,8 @@ et toutes les assertions de contexte, de disponibilite et de sortie sont conserv
 Aucun cache, changement Motion, droit, metier ou code produit. Aucune modification
 du cas natif tactile 24/44 px. Les FAIL mixtes ne sont pas qualifies de bugs produit
 confirmes sans preuve native. Le CHANGELOG ne change pas: tests/documentation seuls.
+
+
+## Qualification complémentaire du 25/10
+
+Les sept décisions restantes sont détaillées dans [seven-contracts-2026-10-25.md](seven-contracts-2026-10-25.md). Quatre contrats sont réparés. Le contrat T037 finished-preservation est retiré après preuve du remplacement explicite accent/700 par K17-33 (`b86b564883ed91f5a19526f464125e8f543dc5f4`), blob `1ebe1264fe5096d493da7f72b1f42f2bd7b17773`. Les deux gels Guide chrome/Review2 restent FAIL, non retirés : six fichiers SCSS et le moteur du Kit divergent encore du miroir consommateur. Les décisions ci-dessus sont le relevé historique initial ; ce paragraphe et le catalogue portent leur statut courant. Total retiré : 13 ; aucun retrait compté PASS.
