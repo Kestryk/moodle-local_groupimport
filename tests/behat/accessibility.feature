@@ -1,4 +1,4 @@
-@local_groupimport @javascript @accessibility
+@local @local_groupimport @javascript @accessibility
 Feature: EasyStud management accessibility
   In order to manage course structures with assistive technology
   As an editing teacher

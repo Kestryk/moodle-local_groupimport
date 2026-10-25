@@ -1,4 +1,4 @@
-@local_groupimport @javascript
+@local @local_groupimport @javascript
 Feature: Open and navigate the EasyStud management workspace
   In order to organise course participants without leaving Moodle
   As an editing teacher
