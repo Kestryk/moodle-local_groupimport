@@ -7,7 +7,8 @@ const [phase, lang, size, subject, pwModule, secretFile, out, base] = process.ar
 assert(['before', 'after'].includes(phase)); assert(['fr', 'en'].includes(lang));
 assert(['more', 'steps', 'mi-steps', 'specimen'].includes(subject));
 assert(pwModule && secretFile && out && base, 'All candidate arguments are required');
-for (const file of [pwModule, secretFile, out]) assert(path.isAbsolute(file), 'Absolute paths required');
+const credentials = require('./lib/process-credentials.cjs')(secretFile);
+for (const file of [pwModule, out]) assert(path.isAbsolute(file), 'Absolute paths required');
 const target = new URL(base);
 assert(['localhost', '127.0.0.1'].includes(target.hostname) && ['8052', '8054', '8055'].includes(target.port),
     'Use a leased test-pool copy; never the main runtime');
@@ -26,10 +27,10 @@ const measure = e => {
     const browser = await chromium.launch({headless: true, executablePath: process.env.CHROME_EXECUTABLE || 'C:/Program Files/Google/Chrome/Application/chrome.exe'});
     const ctx = await browser.newContext({viewport: {width, height: 1100}, locale: lang === 'fr' ? 'fr-FR' : 'en-GB', hasTouch: width < 800});
     try {
-        const password = fs.readFileSync(secretFile, 'utf8').trim();
+        const password = credentials.password;
         const loginPage = await ctx.request.get(base + '/login/index.php');
         const token = /name="logintoken" value="([^"]+)"/.exec(await loginPage.text())[1];
-        const login = await ctx.request.post(base + '/login/index.php', {form: {username: 'admin', password, logintoken: token}, maxRedirects: 0});
+        const login = await ctx.request.post(base + '/login/index.php', {form: {username: credentials.username, password, logintoken: token}, maxRedirects: 0});
         assert([302, 303].includes(login.status()));
         const page = await ctx.newPage(), errors = [];
         page.setDefaultTimeout(60000);

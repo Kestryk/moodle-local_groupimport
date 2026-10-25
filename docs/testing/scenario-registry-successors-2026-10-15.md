@@ -161,3 +161,12 @@ mouse/focus/touch visibility and browser AX state. Isolated pool lease only;
 no membership writes or admin form submit. Eight native cases PASS; parameter
 wrapper preserved for future CI adaptation, assertion-body hash in artifacts.
 No localhost publication or human/speech-reader acceptance implied.
+
+fixtures-suite2-native.spec.js: local-supervised contract runner, 25 October.
+Requires an owned 8052/8054/8055 lease and process-only credentials supplied by
+the authenticated supervisor. Runs the original Assignment FR/EN four-width
+paint bounds and K21 More-controls FR1600 assertions, using the immutable
+historical before-more baseline. No settings submit or membership mutations.
+PASS receipts stay outside Git. Docker/CI candidate: requires real Moodle,
+course71 data and a separately provisioned historical baseline; not an offline
+unit test or complete visual certification. Missing prerequisites stay BLOCKED.

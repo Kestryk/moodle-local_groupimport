@@ -4,7 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const [pw, base, secretFile, output, phase = 'candidate'] = process.argv.slice(2);
-assert([pw, secretFile, output].every(value => value && path.isAbsolute(value)));
+assert([pw, output].every(value => value && path.isAbsolute(value)));
+const credentials = require('./lib/process-credentials.cjs')(secretFile);
 const url = new URL(base);
 assert(['localhost', '127.0.0.1'].includes(url.hostname));
 assert(['8052', '8054', '8055'].includes(url.port), 'Use the allocated test pool only');
@@ -24,16 +25,19 @@ const save = () => fs.writeFileSync(path.join(output, 'measurements.json'), JSON
         const login = await context.request.get(base + '/login/index.php', {timeout: 120000});
         const token = (await login.text()).match(/name="logintoken" value="([^"]+)"/)[1];
         const response = await context.request.post(base + '/login/index.php', {form: {
-            username: 'admin', password: fs.readFileSync(secretFile, 'utf8').trim(), logintoken: token,
+            username: credentials.username, password: credentials.password, logintoken: token,
         }, maxRedirects: 0, timeout: 120000});
         assert([302, 303].includes(response.status()));
         for (const lang of ['en', 'fr']) {
             await page.setViewportSize({width: 1600, height: 1000});
             await page.goto(base + '/local/groupimport/manage.php?id=71&lang=' + lang,
                 {waitUntil: 'domcontentloaded', timeout: 180000});
+            await page.waitForFunction(() =>
+                document.querySelector('#local-groupimport-easystud')?.dataset.easystudSmReady === '1',
+            null, {timeout: 180000});
+            await page.locator('[data-easyedu-guide-open]:visible').first().click();
             await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-root]')?.easyeduGuideConfig,
                 null, {timeout: 180000});
-            await page.locator('[data-easyedu-guide-open]:visible').first().click();
             const specimen = page.locator('[data-easyedu-guide-specimen="assignment"]');
             const index = await specimen.evaluate(node => node.closest('[data-easyedu-guide-slide]').dataset.easyeduGuideSlide);
             assert.equal(Number(index), 11, 'The current Assignment specimen is slide12');
