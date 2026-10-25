@@ -11,8 +11,14 @@ const inventory = require('./lib/php-function-inventory.cjs');
 const actions = ['renamegroup', 'duplicategroup', 'duplicategrouping', 'deletegroupings'];
 const branches = {};
 for (const action of actions) {
-    const method = inventory(php, path.join(root, 'classes/local/ajax', action + '.php')).handle;
-    assert.ok(method && method.body, `${action} current action handler exists`);
+    const file = path.join(root, 'classes/local/ajax', action + '.php');
+    const source = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+    const marker = 'public static function handle(';
+    const start = source.indexOf(marker) + marker.length;
+    assert.ok(start >= marker.length, `${action} exists`);
+    const method = inventory(php, file).handle;
+    const end = method ? source.indexOf(method.body, start) + method.body.length : -1;
+    assert.ok(end > start, `${action} bounded branch`);
     branches[action] = method.body;
 }
 const manage = fs.readFileSync(path.join(root, 'manage.php'), 'utf8').replace(/\r\n/g, '\n');
