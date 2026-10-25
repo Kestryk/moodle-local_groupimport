@@ -6,6 +6,10 @@ const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '../..');
 const source = fs.readFileSync(path.join(root, 'amd/src/local/cm/optional_tools.js'), 'utf8').replace(/\r\n/g, '\n');
+const participantSource = fs.readFileSync(path.join(root, 'amd/src/local/sm/participants.js'), 'utf8');
+const setter = participantSource.match(/export const setMetaExpandedOverride = [\s\S]*?\n};/);
+assert(setter, 'Actual participant expansion override dependency');
+const setMetaExpandedOverride = vm.runInNewContext(setter[0].replace('export const', 'const') + '\nsetMetaExpandedOverride;');
 const start = source.indexOf('    if (densityToggle) {');
 const end = source.indexOf('    if (modal &&', start);
 assert(start > 0 && end > start);
@@ -65,6 +69,8 @@ for (const mobile of [false, true]) {
                     list.height = naturalHeight();
                 });
             },
+            getOnDemandModel: () => ({index: [{groupids: ['1'], groupingids: []}]}),
+            setMetaExpandedOverride,
             requestGuideHighlightRefresh() {},
             Motion: {timing: {fast: 160, normal: 320}, swap: (scope, mutate, options) => {
                 assert.equal(scope, list);

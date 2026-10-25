@@ -7,7 +7,10 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const rootPath = path.resolve(__dirname, '../..');
 const source = fs.readFileSync(path.join(rootPath, 'amd/src/csv_import.js'), 'utf8').replace(/\r\n/g, '\n')
-    .replace("import * as Motion from './motion';", '').replace('export const init =', 'const init =');
+    .replace("import * as Motion from './motion';", '')
+    .replace("import {isImportFileReady} from './local/import_file_ready';",
+        fs.readFileSync(path.join(rootPath, 'amd/src/local/import_file_ready.js'), 'utf8')
+            .replace('export const isImportFileReady', 'const isImportFileReady')).replace('export const init =', 'const init =');
 const timers = [];
 const attributes = {};
 const observers = [];

@@ -5,11 +5,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '../..');
-const source = fs.readFileSync(path.join(root, 'amd/src/course_manager.js'), 'utf8');
-const start = source.indexOf('const hasActiveListFilters =');
-const end = source.indexOf('const getSortableItemName =', start);
-assert.ok(start >= 0 && end > start);
-const api = vm.runInNewContext(source.slice(start, end) +
+const declarations = require('./lib/js-declarations.cjs');
+const source = declarations(root, 'amd/src/local/cm/filters.js', ['hasActiveListFilters']) + '\n' +
+    declarations(root, 'amd/src/local/cm/pagination.js', ['isItemFilteredOut', 'getSelectableResultItems']) + '\n' +
+    declarations(root, 'amd/src/local/cm/cards.js', ['getOnDemandList']) + '\n' +
+    declarations(root, 'amd/src/local/cm/state.js', ['onDemandParticipants', 'getOnDemandModel']);
+const api = vm.runInNewContext(source +
     '\n({hasActiveListFilters,isItemFilteredOut,getSelectableResultItems});', {
     getSelectedFilterValues: control => control ? control.selectedValues || [] : [],
 });
@@ -27,7 +28,7 @@ for (let mask = 0; mask < 32; mask++) {
                 getAttribute: name => attributes.get(name) ?? null,
                 matches: selector => {assert.equal(selector, '[data-easystud-user]');return validEntity;}};
             assert.equal(api.isItemFilteredOut(item), mask !== 0);
-            const results = api.getSelectableResultItems({children: [item]}, {selector: '[data-easystud-user]'});
+            const results = api.getSelectableResultItems({children: [item], closest: () => null}, {selector: '[data-easystud-user]'});
             assert.equal(results.length, validEntity && mask === 0 && (!hidden || offPage) ? 1 : 0);
             if (results.length) assert.equal(results[0], item);
             exclusionCases++;

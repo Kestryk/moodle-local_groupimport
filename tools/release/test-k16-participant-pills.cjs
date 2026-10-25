@@ -1,11 +1,16 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {chromium}=require(path.join(process.argv[2],'playwright'));
+const declarations=require('./lib/js-declarations.cjs');
+const root=path.resolve(__dirname,'../..');
+const tags=declarations(root,'amd/src/local/cm/long_lists.js',['syncTagWindow','normaliseTagValue'])+'\n'+
+ declarations(root,'amd/src/local/sm/list_windows.js',['listPolicy']);
 (async()=>{
  const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const rows=[];
  try{const page=await browser.newPage();for(const width of [423,280,180]){
   await page.setContent(`<div id="local-groupimport-easystud" class="local-groupimport-easystud easyedu-ui" style="width:${width}px"><div class="local-groupimport-easystud-user"><div class="easyedu-person-card__meta local-groupimport-easystud-user__meta">${[['Student'],['Group A','Group B','Group C','Group D','Group E','Group F'],['Grouping A','Grouping B']].map(values=>`<div class="easyedu-person-card__meta-group"><span class="easyedu-person-card__meta-label">Groups</span><div class="easyedu-person-card__meta-values local-groupimport-easystud-user__meta-tags">${values.map(text=>`<span class="local-groupimport-easystud-token">${text}</span>`).join('')}<button class="local-groupimport-easystud-token local-groupimport-easystud-tags-toggle" data-easystud-toggle-tags="1" data-less-label="Show less">+0</button></div></div>`).join('')}</div></div></div>`);
   await page.addStyleTag({path:path.resolve(__dirname,'../../styles/student-management.css')});
-  await page.evaluate(source=>{const exports={};new Function('define',source)((name,deps,factory)=>factory(...deps.map(d=>d==='exports'?exports:d==='./shared'?{getLabels:()=>({showless:'Show less'})}:{})));window.pills=exports;},fs.readFileSync(path.resolve(__dirname,'../../amd/build/local/cm/cards.min.js'),'utf8'));
+  await page.addScriptTag({content:tags+'\nwindow.fixtureLongLists={syncTagWindow,normaliseTagValue};'});
+  await page.evaluate(source=>{const exports={};new Function('define',source)((name,deps,factory)=>factory(...deps.map(d=>d==='exports'?exports:d==='./shared'?{getLabels:()=>({showless:'Show less'})}:d==='./long_lists'?window.fixtureLongLists:{})));window.pills=exports;},fs.readFileSync(path.resolve(__dirname,'../../amd/build/local/cm/cards.min.js'),'utf8'));
   for(const expanded of [false,true,false]){
    const data=await page.evaluate(expanded=>{const root=document.querySelector('#local-groupimport-easystud');root.querySelectorAll('[data-easystud-toggle-tags]').forEach(n=>n.dataset.expanded=expanded?'1':'0');window.pills.syncParticipantTagOverflow(root);return [...root.querySelectorAll('.local-groupimport-easystud-user__meta-tags')].map(c=>({width:c.clientWidth,tokens:[...c.querySelectorAll('.local-groupimport-easystud-token:not([data-easystud-toggle-tags])')].filter(n=>!n.hidden).map(n=>({text:n.textContent,h:n.getBoundingClientRect().height,clipped:n.scrollWidth>n.clientWidth+1})),toggle:c.querySelector('[data-easystud-toggle-tags]').textContent}));},expanded);
    rows.push({width,expanded,data});for(const g of data){assert(g.tokens.length>0);for(const t of g.tokens){assert.equal(t.h,22);assert(!t.clipped);assert(t.text&&t.text!=='-');}if(expanded)assert.equal(g.toggle,'Show less');}

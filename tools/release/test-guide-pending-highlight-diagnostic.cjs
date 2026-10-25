@@ -3,12 +3,15 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),asse
 const source=fs.readFileSync(path.resolve(__dirname,'../../amd/src/easyedu_guide.js'),'utf8');
 const start=source.indexOf('const scheduleHighlightRefresh ='),end=source.indexOf('const dockChecklistAwayFromTarget =',start);
 assert.ok(start>0&&end>start);
-let id=0;const queue=new Map(),root={},target={visible:true},paint=[];
+let id=0;const queue=new Map(),root={querySelector:()=>null},target={visible:true},paint=[];
 const context={window:{requestAnimationFrame:fn=>{queue.set(++id,fn);return id;},cancelAnimationFrame:key=>queue.delete(key)},
     performance:{now:()=>0},isVisibleElement:node=>!!node?.visible,
     clearHighlight:host=>{queue.delete(host.easyeduGuideRefreshBurstFrame);host.easyeduGuideRefreshTarget=null;paint.push('cleared');},
     dockChecklistAwayFromTarget:()=>{},updateHighlight:(host,node)=>{host.easyeduGuideCurrentTarget=node;paint.push('target');}};
-vm.runInNewContext(source.slice(start,end)+'\nthis.burst=scheduleHighlightRefreshBurst;this.refresh=scheduleHighlightRefresh;',context);
+const companion=source.match(/const resolveActiveChecklistCompanion = [\s\S]*?\n};/);
+assert.ok(companion, 'Actual checklist companion dependency');
+context.SELECTORS={checklist:'[data-easyedu-guide-checklist]'};
+vm.runInNewContext(companion[0]+'\n'+source.slice(start,end)+'\nthis.burst=scheduleHighlightRefreshBurst;this.refresh=scheduleHighlightRefresh;',context);
 context.burst(root,target);
 const first=queue.entries().next().value;queue.delete(first[0]);first[1](16);
 context.refresh(root,null); // Real resize/scroll refresh while the target frame is queued.

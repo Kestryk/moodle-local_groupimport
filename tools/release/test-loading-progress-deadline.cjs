@@ -11,6 +11,7 @@ function simulate({progress=[],frame=null,ready=null,observer=true,reduced=false
     const root={id:'local-groupimport-easystud',classList:{contains:c=>classes.has(c),add:c=>classes.add(c),remove:c=>classes.delete(c)},
         getAttribute:k=>attrs.get(k)??null,setAttribute(k,v){attrs.set(k,v);if(k==='data-easystud-loading-state')states.push({at:now,state:v});
             mutations.filter(o=>o.active&&o.node===root&&o.options.attributeFilter?.includes(k)).forEach(o=>o.fn());},
+        querySelectorAll:()=>[],
         querySelector:s=>s==='[data-easystud-loading-skeleton]'?skeleton:content,getBoundingClientRect:()=>({width:400,height:600})};
     class MutationObserver{constructor(fn){this.fn=fn;mutations.push(this);}observe(node,options){Object.assign(this,{node,options,active:true});}disconnect(){this.active=false;}}
     class PerformanceObserver{constructor(fn){this.fn=fn;resources.push(this);}observe(){this.active=true;}disconnect(){this.active=false;resourceStops.push(now);}}
