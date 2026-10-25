@@ -1,5 +1,5 @@
 /* eslint-env node */
-// Authorized pool only; no settings save. Supply a secret-file path, never a password argument.
+// Authorized pool only; no settings save. Use supervised process-local credentials or a secret-file path; never a password argument.
 // node this-file <Playwright-module> <pool.json> <admin-name> <password-file> <new-output-dir>
 const fs = require('node:fs');
 const path = require('node:path');
@@ -8,7 +8,8 @@ const {chromium} = require(process.argv[2]);
 const lease = JSON.parse(fs.readFileSync(process.argv[3], 'utf8').replace(/^\uFEFF/, ''));
 assert([8052, 8054, 8055].includes(lease.port), 'Only a leased pool copy');
 assert.equal(fs.readFileSync(path.join(lease.lock, 'owner.txt'), 'utf8').replace(/^\uFEFF/, '').trim(), lease.run);
-const password = fs.readFileSync(process.argv[5], 'utf8').replace(/^\uFEFF/, '').trim();
+const password = process.env.EASYEDU_MOODLE_PASSWORD ||
+    fs.readFileSync(process.argv[5], 'utf8').replace(/^\uFEFF/, '').trim();
 const output = path.resolve(process.argv[6]);
 assert(!fs.existsSync(output), 'Keep earlier evidence');
 fs.mkdirSync(output, {recursive: true});
@@ -22,8 +23,8 @@ const rows = [];
         await login.goto(base + '/login/index.php', {waitUntil: 'domcontentloaded', timeout: 180000});
         await login.locator('#username').fill(process.argv[4]);
         await login.locator('#password').fill(password);
-        await Promise.all([login.waitForURL(url => !url.pathname.includes('/login/'), {timeout: 90000}),
-            login.locator('#loginbtn').click()]);
+        await Promise.all([login.waitForURL(url => !url.pathname.includes('/login/'), {timeout: 90000, waitUntil: 'domcontentloaded'}),
+            login.locator('#loginbtn').click({noWaitAfter: true})]);
         for (const lang of ['fr', 'en']) {
             for (const width of [1600, 390]) {
                 const testContext = await browser.newContext({storageState: await context.storageState(),
