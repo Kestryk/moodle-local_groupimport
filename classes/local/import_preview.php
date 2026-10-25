@@ -33,6 +33,12 @@ final class import_preview {
 
     /**
      * Save a bounded preview under an unpredictable, session-owned token.
+     *
+     * @param int $courseid Course owning the preview.
+     * @param array $preview Preview data containing the editable rows.
+     * @param int $maxrows Caller row limit, bounded by the global preview limit.
+     * @return string Unpredictable token identifying this session-owned preview.
+     * @throws \moodle_exception If the preview exceeds the permitted row count.
      */
     public static function store(int $courseid, array $preview, int $maxrows = self::MAX_ROWS): string {
         global $SESSION;
@@ -54,6 +60,11 @@ final class import_preview {
 
     /**
      * Resolve only this user's unexpired preview in this course.
+     *
+     * @param int $courseid Authorised course owning the preview.
+     * @param string $token Session-owned preview token.
+     * @return array Saved preview data.
+     * @throws \moodle_exception If the token is absent, expired or belongs to another course.
      */
     public static function load(int $courseid, string $token): array {
         global $SESSION;
@@ -66,6 +77,9 @@ final class import_preview {
 
     /**
      * Consume only after memberships and history have committed.
+     *
+     * @param string $token Session-owned preview token to discard after a successful commit.
+     * @return void
      */
     public static function consume(string $token): void {
         global $SESSION;
@@ -75,6 +89,12 @@ final class import_preview {
     /**
      * Apply edited cells and excluded indexes to the saved preview.
      * No-JS forms require all three complete cell arrays and an end sentinel.
+     *
+     * @param array $preview Saved session-owned preview to update.
+     * @param string $payload Compact JSON edit payload, or an empty string for the no-JS form.
+     * @param array $fallback Complete no-JS cell arrays and end sentinel.
+     * @return array Preview with validated cell edits and excluded row indexes.
+     * @throws \moodle_exception If the submitted preview is incomplete or invalid.
      */
     public static function confirm(array $preview, string $payload, array $fallback): array {
         $rows = $preview['rows'];

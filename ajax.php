@@ -231,6 +231,9 @@ function local_groupimport_find_user_by_identifier(string $token): ?\stdClass {
 
 /**
  * Resolve a paste in bulk, retaining numeric ID, core priority and custom ambiguity.
+ *
+ * @param array $tokens Pasted identifiers to resolve using the configured matching priority.
+ * @return array Matched user records keyed by identifier.
  */
 function local_groupimport_find_users_by_identifiers(array $tokens): array {
     $pending = array_fill_keys(array_values(array_unique(array_map('trim', $tokens))), null);
@@ -301,6 +304,7 @@ function local_groupimport_find_users_by_identifiers(array $tokens): array {
  * Extract normalised group tokens from pasted text.
  *
  * @param string $text Pasted text.
+ * @param array $coursegroups Known course group records used to recognise names containing spaces.
  * @return array
  */
 function local_groupimport_extract_group_tokens(string $text, array $coursegroups = []): array {

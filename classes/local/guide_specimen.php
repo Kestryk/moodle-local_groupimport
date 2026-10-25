@@ -63,6 +63,9 @@ final class guide_specimen {
 
     /**
      * Strings shared by the illustrated specimens.
+     *
+     * @param string $kind Specimen kind used for its flag and language label.
+     * @return array Shared translated specimen context.
      */
     private static function base(string $kind): array {
         return [

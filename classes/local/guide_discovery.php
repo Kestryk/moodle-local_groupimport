@@ -72,6 +72,10 @@ final class guide_discovery {
 
     /**
      * Move only the introductory lesson, retaining every other lesson and native target.
+     *
+     * @param array $slides Historical slides in the expected source order.
+     * @return array Slides reordered to the introduction-first reading contract.
+     * @throws \LogicException If the source slide ids differ from the historical contract.
      */
     public static function introduction_first(array $slides): array {
         if (array_column($slides, 'id') !== self::historical_slide_ids()) {
@@ -86,6 +90,10 @@ final class guide_discovery {
     }
     /**
      * Card-reading copy uses the existing shared explanation recipe, not a new scene engine.
+     *
+     * @param string $type Card family: participant, group or grouping.
+     * @return array Translated card-reading topics and note.
+     * @throws \InvalidArgumentException If the card family is unknown.
      */
     public static function card_explanation(string $type): array {
         if (!in_array($type, ['participant', 'group', 'grouping'], true)) {
@@ -211,6 +219,10 @@ final class guide_discovery {
 
     /**
      * Modern reading topics reuse the published explanation composition.
+     *
+     * @param string $type Supported Guide action topic used to select its translated copy.
+     * @return array Translated action topics and reading note.
+     * @throws \InvalidArgumentException If the action topic is unsupported.
      */
     public static function action_explanation(string $type): array {
         if (
@@ -237,6 +249,9 @@ final class guide_discovery {
 
     /**
      * Shared introduction data; no slide insertion or persisted-index migration.
+     *
+     * @param bool $specimens Whether to include the illustrated introduction specimens.
+     * @return array Shared introduction topics and note.
      */
     public static function common_introduction(bool $specimens = false): array {
         $topics = [];
@@ -286,6 +301,9 @@ final class guide_discovery {
 
     /**
      * Prepend the four discovery lessons while retaining the reference curriculum.
+     *
+     * @param array $legacy Reference curriculum to retain after the discovery lessons.
+     * @return array Discovery lessons followed by the reference slides.
      */
     public static function prepend(array $legacy): array {
         $definitions = [
@@ -431,6 +449,10 @@ final class guide_discovery {
 
     /**
      * Build thirteen payloads, retaining stable IDs and every visible path invitation.
+     *
+     * @param array $slides Introduction-first slides matching the source reading contract.
+     * @return array Modern curriculum preserving stable slide and path ids.
+     * @throws \LogicException If the source curriculum does not match its contract.
      */
     public static function modern_curriculum(array $slides): array {
         if (array_column($slides, 'id') !== self::reading_contract()['slideIds']) {
@@ -698,6 +720,10 @@ final class guide_discovery {
 
     /**
      * Inspect actual fields and close; Save is allowed but never required.
+     *
+     * @param string $type Editor context: group or grouping.
+     * @return array Guided inspection steps for the requested editor.
+     * @throws \InvalidArgumentException If the editor context is unsupported.
      */
     public static function editor_inspection_path(string $type): array {
         if (!in_array($type, ['group', 'grouping'], true)) {

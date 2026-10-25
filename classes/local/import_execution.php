@@ -29,6 +29,11 @@ final class import_execution {
 
     /**
      * Execute the complete course mutation and history operation atomically.
+     *
+     * @param array $rows Confirmed import rows checked against the synchronous limit.
+     * @param callable $operation Atomic mutation callback returning a positive import history id.
+     * @return int Committed import history id.
+     * @throws \moodle_exception If the row limit is exceeded or the callback returns no history id.
      */
     public static function run(array $rows, callable $operation): int {
         global $DB;

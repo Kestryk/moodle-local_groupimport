@@ -28,6 +28,11 @@ use local_groupimport\local\bulk_action;
 final class deletegroups implements ajax_action {
     /**
      * Handle the deletegroups AJAX action.
+     *
+     * @param \stdClass $course Course record authorised by the AJAX dispatcher.
+     * @param \context_course $context Course context used for capability and membership checks.
+     * @param array $response Initial AJAX response to extend with the action result.
+     * @return array AJAX response containing the action result.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         $groupids = required_param_array('groupids', PARAM_INT);

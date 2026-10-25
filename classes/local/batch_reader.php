@@ -33,6 +33,13 @@ final class batch_reader {
 
     /**
      * Get course-owned records by ID, preserving ordinary Moodle record objects.
+     *
+     * @param string $table Allowed table: user, groups or groupings.
+     * @param array $ids Record ids to retrieve in bounded batches.
+     * @param array $conditions Additional courseid or deleted equality conditions.
+     * @param string $fields Fields to select from each record.
+     * @return array Records keyed by id.
+     * @throws \coding_exception If the table or a condition column is unsupported.
      */
     public static function records(string $table, array $ids, array $conditions = [], string $fields = '*'): array {
         global $DB;
@@ -57,6 +64,13 @@ final class batch_reader {
 
     /**
      * Match enabled core/profile fields; callers retain distinct AJAX/import policies.
+     *
+     * @param array $values Identifier values to match.
+     * @param string $field Core identification field or profile for custom fields.
+     * @param array $shortnames Enabled custom profile field shortnames when matching profile data.
+     * @param null|\context_course $context Optional course context restricting results to enrolled users.
+     * @return array Matching user records grouped by input value.
+     * @throws \coding_exception If the core identification field is unsupported.
      */
     public static function users(array $values, string $field, array $shortnames = [], ?\context_course $context = null): array {
         global $DB;
@@ -96,6 +110,12 @@ final class batch_reader {
 
     /**
      * Match group/grouping names with the same database comparison as native lookups.
+     *
+     * @param string $table Course-owned table: groups or groupings.
+     * @param int $courseid Course owning the requested records.
+     * @param array $names Names to match using the native comparison policy.
+     * @return array Matching records grouped by input name.
+     * @throws \coding_exception If the table is unsupported.
      */
     public static function names(string $table, int $courseid, array $names): array {
         if (!in_array($table, ['groups', 'groupings'], true)) {
@@ -127,6 +147,15 @@ final class batch_reader {
      * parameters plus fixed filters (under SQL Server's 2,100 parameter limit).
      * No LIMIT/order is imposed: duplicate/ambiguous callers can fall back to
      * the historical single-value API where its unspecified first row matters.
+     *
+     * @param array $values Input values to compare in the database.
+     * @param string $table Table selected with the r alias.
+     * @param string $column Qualified column matched against input values.
+     * @param string $joins Additional SQL joins for the lookup.
+     * @param string $conditions SQL predicates restricting the matched records.
+     * @param array $fixedparams Named parameters for the fixed predicates and joins.
+     * @param string $fields Record fields to select.
+     * @return array Matching records grouped by original input value.
      */
     private static function matches(
         array $values,

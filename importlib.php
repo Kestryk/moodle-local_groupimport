@@ -285,6 +285,10 @@ function local_groupimport_find_import_user(string $identifier, array &$errors, 
 
 /**
  * Batch import matching; unlike pasted IDs, import compares every enabled field.
+ *
+ * @param array $identifiers Imported identifiers to match against every enabled user field.
+ * @param context_course $context Authorised course context restricting matches to enrolled users.
+ * @return array User match (or null) and error messages keyed by original identifier.
  */
 function local_groupimport_find_import_users(array $identifiers, context_course $context): array {
     $identifiers = array_values(array_unique($identifiers));

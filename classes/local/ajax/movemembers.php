@@ -26,6 +26,11 @@ namespace local_groupimport\local\ajax;
 final class movemembers implements ajax_action {
     /**
      * Handle the movemembers AJAX action.
+     *
+     * @param \stdClass $course Course record authorised by the AJAX dispatcher.
+     * @param \context_course $context Course context used for capability and membership checks.
+     * @param array $response Initial AJAX response to extend with the action result.
+     * @return array AJAX response containing the action result.
      */
     public static function handle(\stdClass $course, \context_course $context, array $response): array {
         // X3: ajax_security::require_request() already enforced POST for every action
