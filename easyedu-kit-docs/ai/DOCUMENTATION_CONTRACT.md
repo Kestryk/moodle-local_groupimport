@@ -1,3 +1,9 @@
+Retired historical scripts require explicit per-contract decisions and recoverable
+Git blobs. Count RETIRED separately from PASS. Preserve mixed contracts protecting
+keyboard behavior, source-map privacy, Motion or disputed paint. Field-peer Reset
+still exposes the actual 38px variant; a historical file mismatch cannot retire it.
+See docs/testing/contracts-decisions-2026-10-25.md.
+
 Card detail commands share the existing entity-specific language keys across context menus, direct ARIA/help and modal headings. Preserve action IDs and handlers; Guide captions must use the same current names. See docs/testing/card-detail-labels-2026-10-25.md.
 
 Fixture modernization follows actual I3/I4/I6 producers and dependencies, never
