@@ -1,61 +1,15 @@
-- 2026-10-25 Honour the administrator's participant-card collapse default independently of automatic compact density; preserve explicit display choices during pagination.
-
-- 2026-10-25 Add complete European Portuguese and German translations, including the Guide, Mass Import, administration and privacy strings.
-
-- 2026-10-25 Generate release AMD modules and sourcemaps with Moodle's official Grunt pipeline; add an isolated, zero-warning build and byte-parity check without changing product sources.
-
-- 2026-10-25 Align every search field with Small creation actions: 30.4px on desktop and 44px on touch layouts, preserving widths, native placeholders and matching Cancel controls.
-
-- 2026-10-25 Validate Guide live regions and the compact navigation dialog with compatible HTML elements; preserve no-JavaScript recovery in page styles and validate menu/list fragments through their real parents.
-
-- Centre the floating Guide icon before hover, place notifications at the top left beneath the navbar, and keep grouping searches closed until requested. Rebuild the shared Small search-field assets already present in source.
-
-- 2026-10-24 Keep EasyStud's own buttons, view switcher, selection actions, Guide demonstrations, bubbles and administration actions in their EasyStud style on themes that force Bootstrap button, link, bubble or read-only field colours. Show a single keyboard focus ring on every control, including search fields. The administration section actions now use the blue secondary style.
-
-- Give EasyStud its own student-management icon in navigation and the Guide, preserving the platform brand. Slow navigation hover feedback without changing other controls or reduced-animation preferences.
-
-- Keep selection commands in the shared blue palette on import previews and participant toolbars, including buttons with Bootstrap secondary classes.
-
-- Restore the floating Guide launcher on Mass Import when the page passes its navigation root directly. Keep Student Management and the normal Guide controls unchanged.
-
-- 2026-10-24 Add an opt-in Small text/search field matching its icon action (30.4px desktop, 44px through 1024px), preserving the existing field scale.
-
-- 2026-10-24 Restore the file-removal action's secondary blue and use the shared body scale for import summaries, with semibold counts.
-
-- 2026-10-24 Use the same white, lightly outlined Student Management columns on every supported Moodle version.
-- 2026-10-24 Preserve page width when opening the Guide on a page with a document scrollbar, and restore the original padding on close.
-
-- 2026-10-24 Keep narrow grouping names readable by letting the existing More control yield its reserved title space, as on group cards.
-
-- 2026-10-24 Keep captioned Student Management searches compact inside wide columns, retaining their labels, single-row input and touch targets. Restore Groups and Groupings searches in their active mobile views.
-
-- 2026-10-24 Keep the Student Management Guide accessible through a compact floating compass after its navigation scrolls out of view. Restore the normal launcher on return, respecting reduced animation preferences.
-
-- 2026-10-24 Keep Guide navigation pills stationary while pressed so a click selects the intended slide; focused navigation remains revealable without activating a slide.
-
-- 2026-10-24 Keep Group and Grouping names readable in drawer-narrowed columns by wrapping terminal controls after the existing action-menu fallback.
-
-- 2026-10-24 Hide Moodle's native blocks-drawer opener on Student Management and Mass Import while course editing is on, so it can no longer appear above the floating Guide trigger. Give the floating Guide trigger its own z-index above every known native drawer opener, and trim its compass glyph to match the Kit's other small circular-button icons.
-
-## 2026-10-24 — Course block drawer
-
-- Keep real Moodle course blocks out of Student Management and Mass Import so their workspace retains its width. Blocks remain available on native course pages.
-
-## K23-36 / G2 / G3 — 2026-10-24
-
-- Keep group counts and action controls inside drawer-narrowed headers, allow open action menus outside list clipping, and reconcile header actions before a view is revealed.
-
 # Changelog
 
-User-facing changes for the `local_groupimport` plugin (EasyStud, formerly
-Group import CSV). Dates reflect the development history of this beta;
-the plugin has not yet been published on the Moodle Marketplace. The full
-technical/internal history is kept separately for the development team and
-is not part of the public package.
+User-facing changes for the `local_groupimport` plugin (EasyStud, formerly Group import CSV). The
+full technical/internal history is kept separately for the development team and is not part of
+the public package.
 
 ## [English]
 
-### 0.4.2-beta — in development
+### 2.0.0 — 2026-10-25
+
+First stable release of EasyStud. Builds on the beta work below with a full pass of polish,
+accessibility and compatibility fixes across Student Management, Mass Import and the Guide.
 
 **Added**
 
@@ -63,9 +17,11 @@ is not part of the public package.
   participants, groups and groupings from a single responsive view,
   alongside the original Mass Import workflow. An administrator can enable
   or disable it for the whole site, and choose which view (Participants,
-  Groups, Groupings or the combined view) opens first.
+  Groups, Groupings or the combined view) opens first, and whether
+  participant cards are collapsed by default.
 - Search, filters, sorting, multiple selection, context menus and
-  drag-and-drop for participants, groups and groupings.
+  drag-and-drop for participants, groups and groupings. Every search field
+  shares the same size and style as its neighbouring action button.
 - Actions to add, move or copy participants between groups and groupings.
   Copying a participant or a group now adds it without removing the
   existing membership; moving it still works as before, with an explicit
@@ -73,11 +29,12 @@ is not part of the public package.
 - Detail views for participants, groups and groupings, including member
   management with checkbox selection and a removal control that also
   works on touchscreens.
-- A built-in discovery **Guide** with guided activities, available in
-  French and English. Guided paths that require a prerequisite (an
-  enrolled participant, a group, a grouping, or two groups with at least
-  one member) are shown as locked until the course meets it, with an
-  explanation of what is missing and a direct link to complete it.
+- A built-in discovery **Guide** with guided activities and checklists,
+  available in English, French, Portuguese and German. Guided paths that
+  require a prerequisite (an enrolled participant, a group, a grouping, or
+  two groups with at least one member) are shown as locked until the
+  course meets it, with an explanation of what is missing and a direct
+  link to complete it.
 - Larger Mass Import files are handled more gracefully: imports above
   roughly 1,000 rows now run as a resumable background task with progress
   notifications, and bulk group actions (adding members, removing members,
@@ -100,40 +57,46 @@ is not part of the public package.
 
 **Improved**
 
-- Keep participant selection and action menus centred on wrapped names in narrow cards.
-
-- Keep the search icon inside compact Guide filter fields.
-
-- Place the membership demonstration start above its comparison controls.
-
-- Keep the focused Guide tab visible between the navigation arrows.
-
-- Preserve keyboard focus when participant details finish loading.
-
-- Keep complete search and creation labels visible in narrow columns.
-
-- Keep names and email addresses readable in constrained participant cards.
-
-- Reserve the mobile navigation lane beside view headings.
-
-- Identifier examples in the Guide keep their cards contained at tablet widths.
-
-- Guide concept captions wrap within their cards when opened from desktop navigation.
-
+- A single, consistent visual style across every button, field, card and
+  control, even on themes that otherwise force their own colours onto
+  Bootstrap-style elements — including the floating Guide launcher, whose
+  label now expands cleanly on hover without being clipped.
+- A single visible keyboard focus ring on every control, including search
+  fields.
+- The administrator's "collapse participant cards by default" setting now
+  reliably controls the initial state of participant cards, independently
+  of automatic compact-density behaviour; a user's own choice during a
+  session is preserved across pagination.
+- Only one loading indicator is shown per action at a time, matching the
+  current screen width (desktop or mobile), instead of both appearing at
+  once on narrower screens.
+- Participant selection and action menus stay centred on wrapped names in
+  narrow cards; names and e-mail addresses remain readable in constrained
+  cards.
+- Group and grouping names stay readable in narrower, drawer-reduced
+  columns, including their title priority and overflow ("More actions")
+  behaviour, which now also applies consistently to grouping cards.
+- Search fields keep their search icon, full placeholder text and
+  single-row layout in narrow columns, and open closed by default.
+- The Guide keeps its search icon contained in compact filter fields, its
+  focused tab visible between navigation arrows, its concept captions
+  properly wrapped, and starts its demonstrations above the comparison
+  controls they relate to.
+- Keyboard focus is preserved when participant details finish loading.
+- The mobile navigation lane keeps its place beside view headings.
 - Accessibility: keyboard-only focus handling when removing a member or
   using card menus, tooltips that can be dismissed with Escape, and
   additional accessible names for screen readers.
-- French interface: corrected and completed translations across the
-  Student Management interface, notifications and the Guide.
-- Course page navigation adjusted for compatibility with Moodle 5.3.
+- Translations corrected and completed across the interface, notifications
+  and the Guide, and extended to Portuguese and German.
+- Course page navigation adjusted for full compatibility with Moodle 5.3.
 
 **Compatibility**
 
-- Experimental installation support for Moodle 4.5 LTS; full native
-  certification is still pending and will be confirmed before this
-  version is advertised as supporting it.
-- Experimental compatibility work for Moodle 5.3; full native
-  certification is still pending.
+- Supports Moodle 4.5 LTS through 5.3.
+- Release AMD assets are built and verified with Moodle's own official
+  Grunt pipeline, byte-for-byte, to guarantee they match what Moodle's own
+  build tooling would produce.
 
 ### 1.0 — Group import CSV (2026-02-13)
 
@@ -156,7 +119,11 @@ moving data or changing URLs.
 
 ## [Français]
 
-### 0.4.2-beta — en développement
+### 2.0.0 — 25/10/2026
+
+Première version stable d'EasyStud. S'appuie sur le travail de bêta ci-dessous avec une passe
+complète de finition, d'accessibilité et de compatibilité sur la gestion des participants,
+l'Import massif et le Guide.
 
 **Ajouté**
 
@@ -164,10 +131,13 @@ moving data or changing URLs.
   (« Student Management ») permettant de gérer les participants inscrits,
   les groupes et les groupements depuis une seule vue responsive, en plus
   du mode Import massif d'origine. Un administrateur peut l'activer ou la
-  désactiver pour tout le site, et choisir la vue qui s'ouvre en premier
-  (Participants, Groupes, Groupements ou la vue combinée).
+  désactiver pour tout le site, choisir la vue qui s'ouvre en premier
+  (Participants, Groupes, Groupements ou la vue combinée), et décider si
+  les cartes participant sont repliées par défaut.
 - Recherche, filtres, tri, sélection multiple, menus contextuels et
-  glisser-déposer pour les participants, groupes et groupements.
+  glisser-déposer pour les participants, groupes et groupements. Chaque
+  champ de recherche partage la même taille et le même style que le
+  bouton d'action voisin.
 - Actions pour ajouter, déplacer ou copier des participants entre groupes
   et groupements. Copier un participant ou un groupe l'ajoute désormais
   sans retirer son appartenance existante ; déplacer fonctionne comme
@@ -175,12 +145,13 @@ moving data or changing URLs.
 - Des fiches de détail pour les participants, groupes et groupements, avec
   gestion des membres par case à cocher et un contrôle de retrait
   utilisable aussi sur écran tactile.
-- Un **Guide** de découverte intégré proposant des parcours accompagnés,
-  disponible en français et en anglais. Les parcours qui nécessitent un
-  prérequis (un participant inscrit, un groupe, un groupement, ou deux
-  groupes dont un avec un membre) apparaissent verrouillés tant que le
-  cours ne le remplit pas, avec une explication du prérequis manquant et
-  un lien direct pour le compléter.
+- Un **Guide** de découverte intégré proposant des parcours accompagnés et
+  des listes de vérification, disponible en français, anglais, portugais
+  et allemand. Les parcours qui nécessitent un prérequis (un participant
+  inscrit, un groupe, un groupement, ou deux groupes dont un avec un
+  membre) apparaissent verrouillés tant que le cours ne le remplit pas,
+  avec une explication du prérequis manquant et un lien direct pour le
+  compléter.
 - Les fichiers d'Import massif volumineux sont mieux gérés : au-delà
   d'environ 1 000 lignes, l'import s'exécute désormais en tâche de fond
   reprise automatiquement, avec des notifications de progression, et les
@@ -204,42 +175,55 @@ moving data or changing URLs.
 
 **Amélioré**
 
-- Maintien du centrage de la sélection et des actions sur les noms multilignes des cartes étroites.
-
-- La loupe reste dans le champ de recherche du Guide compact.
-
-- Le démarrage de la démonstration précède le comparatif des actions.
-
-- Les onglets du Guide restent visibles quand ils reçoivent le focus.
-
-- Le chargement des détails participant conserve le focus clavier dans la fiche.
-
-- Les champs de recherche et de création gardent leurs libellés complets dans les colonnes étroites.
-
-- Les noms et adresses restent lisibles dans les cartes participant étroites.
-
-- Le titre des vues conserve sa place à côté du bouton de navigation mobile.
-
-- Les cartes d’exemple des identifiants du Guide restent contenues sur tablette.
-
-- Les légendes des repères du Guide restent dans leurs cartes depuis la navigation de bureau.
-
+- Un style visuel unique et cohérent pour chaque bouton, champ, carte et
+  contrôle, même sur les thèmes qui imposent par ailleurs leurs propres
+  couleurs aux éléments de style Bootstrap — y compris le bouton flottant
+  du Guide, dont le libellé se déplie désormais proprement au survol sans
+  être tronqué.
+- Un seul anneau de focus clavier visible sur chaque contrôle, y compris
+  les champs de recherche.
+- Le réglage administrateur « replier les cartes participant par défaut »
+  contrôle désormais fiablement l'état initial des cartes participant,
+  indépendamment du comportement automatique de densité compacte ; le
+  choix de l'utilisateur en session est conservé après pagination.
+- Un seul indicateur de chargement par action est affiché à la fois, selon
+  la largeur d'écran réelle (bureau ou mobile), au lieu des deux à la fois
+  sur les écrans étroits.
+- Maintien du centrage de la sélection et des actions sur les noms
+  multilignes des cartes étroites ; les noms et adresses restent lisibles
+  dans les cartes participant contraintes.
+- Les noms de groupe et de groupement restent lisibles dans les colonnes
+  réduites par le tiroir, y compris la priorité du titre et le
+  comportement de débordement (« More actions »), désormais cohérent
+  aussi sur les cartes de groupement.
+- Les champs de recherche gardent leur loupe, leur texte de substitution
+  complet et une saisie sur une seule ligne dans les colonnes étroites, et
+  s'ouvrent fermés par défaut.
+- Le Guide garde sa loupe contenue dans les champs de filtre compacts, son
+  onglet actif visible entre les flèches de navigation, ses légendes de
+  repère correctement renvoyées à la ligne, et démarre ses démonstrations
+  au-dessus du comparatif auquel elles se rapportent.
+- Le focus clavier est conservé lorsque le chargement des détails
+  participant se termine.
+- La zone de navigation mobile conserve sa place à côté du titre de la
+  vue.
 - Accessibilité : navigation au clavier pour le retrait d'un membre et les
   menus de carte, infobulles refermables avec la touche Échap, et noms
   accessibles complétés pour les lecteurs d'écran.
-- Interface française : traductions corrigées et complétées dans
-  l'interface de gestion des participants, les notifications et le Guide.
-- Navigation des pages de cours ajustée pour la compatibilité avec
-  Moodle 5.3.
+- Traductions corrigées et complétées dans l'interface, les notifications
+  et le Guide, et étendues au portugais et à l'allemand.
+- Navigation des pages de cours ajustée pour une compatibilité complète
+  avec Moodle 5.3.
 
 **Compatibilité**
 
-- Installation expérimentale avec Moodle 4.5 LTS ; la certification
-  native complète reste à confirmer avant d'annoncer cette compatibilité.
-- Travaux de compatibilité expérimentaux avec Moodle 5.3 ; la
-  certification native complète reste à confirmer.
+- Compatible avec Moodle 4.5 LTS jusqu'à 5.3.
+- Les ressources AMD de la version publiée sont construites et vérifiées
+  avec le pipeline Grunt officiel de Moodle, à l'octet près, pour garantir
+  qu'elles correspondent exactement à ce que produirait l'outillage de
+  build de Moodle lui-même.
 
-### 1.0 — Group import CSV (2026-02-13)
+### 1.0 — Group import CSV (13/02/2026)
 
 Version d'origine sur laquelle EasyStud est construit. L'identité
 technique du plugin (`local_groupimport`) reste inchangée, afin que les
@@ -264,5 +248,3 @@ d'URL.
   ultérieurs non liés.
 - Un exemple de fichier Excel mis en forme, avec des instructions et des
   lignes représentatives.
-
-- Keep the first-visit Guide invitation clear of workspace view controls; synchronize Behat density checks with the existing animation completion.
