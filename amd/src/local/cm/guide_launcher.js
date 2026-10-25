@@ -54,6 +54,19 @@ const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
     root.easystudFloatingGuideLauncher = host;
     launcher.addEventListener('click', () => guideLauncher.click());
 
+    // Font metrics are independent of the collapsed flex box and entrance transform.
+    const textMetrics = document.createElement('canvas').getContext('2d');
+    const measureLabel = () => {
+        const label = launcher.querySelector('.easyedu-guide__launcher-label');
+        if (!label) {
+            return;
+        }
+        textMetrics.font = window.getComputedStyle(label).font;
+        const width = Math.ceil(textMetrics.measureText(label.textContent).width);
+        launcher.style.setProperty('--easyedu-guide-floating-label-width', `${width}px`);
+    };
+    measureLabel();
+    document.fonts.ready.then(measureLabel).catch(error => window.console.error(error));
     let frame = 0;
     const headers = Array.from(document.querySelectorAll('.navbar.fixed-top, .navbar.sticky-top'));
     const sync = () => {
@@ -79,6 +92,7 @@ const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
     // Moodle scrolls its page container as well as the document in some layouts.
     document.addEventListener('scroll', schedule, {capture: true, passive: true});
     window.addEventListener('resize', schedule, {passive: true});
+    window.addEventListener('resize', measureLabel, {passive: true});
     const observer = new ResizeObserver(schedule);
     [navigation, ...headers].forEach(element => observer.observe(element));
     window.addEventListener('pagehide', event => {
@@ -87,6 +101,7 @@ const bindFloatingGuideLauncher = (root, guideNode, guideLauncher) => {
         }
         document.removeEventListener('scroll', schedule, true);
         window.removeEventListener('resize', schedule);
+        window.removeEventListener('resize', measureLabel);
         observer.disconnect();
         window.cancelAnimationFrame(frame);
         host.remove();

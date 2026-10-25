@@ -180,8 +180,11 @@
       color: inherit;
       display: inline-flex;
       flex: 0 0 auto;
+      font-family: var(--easyedu-font-family-ui);
       font-size: 0.8125rem;
       font-weight: 700;
+      align-items: center;
+      justify-content: center;
       max-inline-size: 0;
       opacity: 0;
       overflow: hidden;
@@ -219,9 +222,10 @@
 
     &:hover,
     &:focus-visible {
-      gap: 0.45rem;
+      // Match the outer inset so the caption is centred in its lane after the icon.
+      gap: 0.85rem;
       .easyedu-guide__launcher-label {
-        max-inline-size: 6rem;
+        max-inline-size: calc(var(--easyedu-guide-floating-label-width, 6rem) + 0.125rem);
         opacity: 1;
       }
     }

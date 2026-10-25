@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "floatingGuideCaption20261025": {
+      "canonicalCommit": "ea336ac998eebbfaa810e4315bd65286005f478c",
+      "canonicalVersion": "0.4.226",
+      "recipe": "components/guide.guide-shell floating launcher",
+      "property": "--easyedu-guide-floating-label-width",
+      "fullModuleParity": false,
+      "reason": "Exact floating variant parity; preserve unrelated existing Guide differences"
+    },
     "placeholderTypography20261025": {
       "canonicalCommit": "05dc6228cfcf9d5db82fe7fd402929d918c7dffd",
       "canonicalVersion": "0.4.225",
