@@ -1,3 +1,5 @@
+- 2026-10-25 Add complete European Portuguese and German translations, including the Guide, Mass Import, administration and privacy strings.
+
 - 2026-10-25 Generate release AMD modules and sourcemaps with Moodle's official Grunt pipeline; add an isolated, zero-warning build and byte-parity check without changing product sources.
 
 - 2026-10-25 Align every search field with Small creation actions: 30.4px on desktop and 44px on touch layouts, preserving widths, native placeholders and matching Cancel controls.

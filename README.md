@@ -93,6 +93,12 @@ Import history stores the acting user, uploaded filename, summary counters and
 the reversible operation journal. The plugin implements Moodle's Privacy API
 for export and deletion of this data.
 
+## Languages
+
+EasyStud includes English, French, European Portuguese (`pt`) and German (`de`).
+Enable the corresponding Moodle language pack to use it in the interface.
+See the [translation conventions and validation](docs/localisation-pt-de-2026-10-25.md).
+
 ## Development
 
 Internal release scripts are indexed by purpose, prerequisites and last documented result in

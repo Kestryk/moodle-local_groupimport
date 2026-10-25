@@ -58,6 +58,13 @@ Fullscreen parking must preserve parent-relative sibling flow, not only border-b
 
 # EasyEdu documentation contract
 
+English is the canonical language-key inventory. Complete Portuguese (pt,
+European Portuguese) and German (de) translations preserve key order, PHP and
+JavaScript interpolation tokens, HTML markup and technical file-header examples.
+Keep language packs separate from plugin translations and distinguish string
+manager loading proof from browser layout certification. See
+docs/localisation-pt-de-2026-10-25.md.
+
 Release AMD uses Moodle's official Grunt pipeline and lockfile, not handwritten
 wrapper equivalence. Run build-amd-official.cjs and its --check mode after any
 module-specific builder; preserve product sources, lint gates and historical
