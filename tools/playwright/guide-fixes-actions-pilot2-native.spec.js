@@ -1,1 +1,0 @@
-const {test}=require('@playwright/test');const paths=require('./guide-fixes-paths-helper.cjs');test('Guide fixes compact actions pilot2 native',async({page,browser},info)=>paths({page,browser},info,[['fr',390]],['actions'],['full']));

@@ -1,1 +1,0 @@
-const {test}=require('@playwright/test');const demos=require('./guide-fixes-demos-helper.cjs'),paths=require('./guide-fixes-paths-helper.cjs');test('Guide fixes pilot FR390 native',async({page,browser},info)=>{await demos({page,browser},info,[['fr',390]],['full']);await paths({page,browser},info,[['fr',390]],undefined,['full']);});
