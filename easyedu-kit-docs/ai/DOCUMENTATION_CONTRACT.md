@@ -1,3 +1,9 @@
+Mixed historical contracts must retain their live keyboard, Motion and map/privacy
+assertions when retiring whole-monolith reconstruction proofs. Follow actual split
+module maps; do not invert the public Guide sourcesContent guard. A missing old
+producer can conceal a real label change: participant-panel-title stays unresolved.
+See docs/testing/fixtures-suite2-2026-10-25.md.
+
 Retired historical scripts require explicit per-contract decisions and recoverable
 Git blobs. Count RETIRED separately from PASS. Preserve mixed contracts protecting
 keyboard behavior, source-map privacy, Motion or disputed paint. Field-peer Reset
