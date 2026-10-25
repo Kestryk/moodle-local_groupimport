@@ -114,7 +114,8 @@ export const renderIdentifierPreview = (box, results, knownIdentifiers, separato
     tokens.forEach(identifier => {
         const badge = document.createElement('span');
         badge.className = 'local-groupimport-easystud-token ' +
-            (knownIdentifiers.has(identifier) ? 'local-groupimport-easystud-token--valid' : 'local-groupimport-easystud-token--invalid');
+            (knownIdentifiers.has(identifier) ?
+                'local-groupimport-easystud-token--valid' : 'local-groupimport-easystud-token--invalid');
         badge.textContent = knownIdentifiers.get(identifier) || identifier;
         results.appendChild(badge);
     });

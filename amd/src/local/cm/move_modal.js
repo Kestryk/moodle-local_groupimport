@@ -228,7 +228,8 @@ export const bindMoveModal = (root, courseId) => {
         });
 
         if (hasDestination && !isGuidePathOpen('prepare-activity-grouping')) {
-            const ungrouped = root.querySelector('.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__toggle');
+            const ungrouped = root.querySelector(
+                '.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__toggle');
             const ungroupedOption = document.createElement('option');
             ungroupedOption.value = '0';
             ungroupedOption.textContent = ungrouped ? ungrouped.textContent.trim() : (labels.groupswithoutgrouping || '');

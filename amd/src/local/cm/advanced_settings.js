@@ -520,7 +520,8 @@ const getAdvancedGroupingGroupRows = (item) => {
             return {id, name: group.name, members: countLabel(model.groupStrings.memberscount, group.memberids.length)};
         });
     }
-    return Array.from(item.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]')).map(group => {
+    return Array.from(item.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]'))
+        .map(group => {
         return {
             name: getAdvancedValue(group, 'name') || getGroupName(group),
             members: getAdvancedCountLabel(null, group, true),
@@ -899,11 +900,13 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialSta
     modal.setAttribute('data-easystud-advanced-settings-modal', '1');
     modal.setAttribute('data-easystud-editor-context', type);
     modal.innerHTML =
-        '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog easyedu-entity-dialog ' +
+        '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog ' +
+                'easyedu-entity-dialog ' +
                 'local-groupimport-easystud-entity local-groupimport-easystud-entity--' + type + ' ' +
                 (isgroup ? 'local-groupimport-easystud-settings-modal__dialog--group' :
                     'local-groupimport-easystud-settings-modal__dialog--grouping') + '">' +
-            '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header easyedu-entity-dialog__header easyedu-dialog-header-palette--success">' +
+            '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header ' +
+                    'easyedu-entity-dialog__header easyedu-dialog-header-palette--success">' +
                 '<div class="local-groupimport-easystud-settings-modal__heading easyedu-entity-dialog__heading">' +
                     '<span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon ' +
                         'local-groupimport-easystud-entity__tile fa ' + icon + '" aria-hidden="true"></span>' +
@@ -922,7 +925,8 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialSta
             '</div>' +
             '<form class="local-groupimport-easystud-settings-modal__form local-groupimport-easystud-entity__form" ' +
                     'data-easystud-advanced-settings-form="1">' +
-                '<input type="hidden" name="courseid" value="' + escapeHtml(root.getAttribute('data-easystud-course-id') || '') + '">' +
+                '<input type="hidden" name="courseid" value="' +
+                    escapeHtml(root.getAttribute('data-easystud-course-id') || '') + '">' +
                 '<input type="hidden" name="action" value="' +
                     (isgroup ? 'updategroupadvanced' : 'updategroupingadvanced') + '">' +
                 '<input type="hidden" name="' + (isgroup ? 'groupid' : 'groupingid') + '" value="' +
@@ -935,7 +939,8 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialSta
                         'local-groupimport-easystud-entity__footer">' +
                     (nativeurl ?
                         '<a class="local-groupimport-easystud-entity__native" href="' + escapeHtml(nativeurl) + '" ' +
-                                'data-easystud-entity-await="1" aria-label="' + escapeHtml(labels.advancedsettingsnative || '') + '">' +
+                                'data-easystud-entity-await="1" aria-label="' +
+                                    escapeHtml(labels.advancedsettingsnative || '') + '">' +
                             '<span class="local-groupimport-easystud-entity__native-icon" aria-hidden="true">&#8599;</span>' +
                             '<span class="local-groupimport-easystud-entity__native-long">' +
                                 escapeHtml(labels.advancedsettingsnative || '') + '</span>' +

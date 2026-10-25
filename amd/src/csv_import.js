@@ -785,7 +785,8 @@ const initHistoryModal = root => {
             close();
         } else if (event.key === 'Tab') {
             const stops = Array.from(modal.querySelectorAll('button, a[href], input, select, textarea, [tabindex]'))
-                .filter(node => !node.disabled && !node.matches(':disabled') && node.tabIndex >= 0 && node.getClientRects().length &&
+                .filter(node => !node.disabled && !node.matches(':disabled') && node.tabIndex >= 0 &&
+                    node.getClientRects().length &&
                     !node.closest('[hidden], [inert], [aria-hidden="true"]') && getComputedStyle(node).visibility === 'visible');
             const index = stops.indexOf(document.activeElement);
             if (!stops.length || index < 0 || (!event.shiftKey && index === stops.length - 1) ||

@@ -479,7 +479,8 @@ export const bindBulkActions = (root, courseId) => {
             }
 
             const hasgroups = selectedGroupings.some(grouping => {
-                return grouping.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length > 0;
+                return grouping.querySelectorAll(
+                    ':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length > 0;
             });
             const runDelete = () => {
                 postAction({

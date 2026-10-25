@@ -229,7 +229,8 @@ export const moveGroupElementToGrouping = (root, groupid, groupingid) => {
     }
     sourceSections.concat([target]).forEach(section => {
         const badge = section ? section.querySelector(':scope > .local-groupimport-easystud-grouping__header > .badge') : null;
-        const groupcount = section ? section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length : 0;
+        const groupcount = section ?
+            section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length : 0;
         if (badge) {
             writeCountBadge(badge, countLabel(badge.getAttribute('data-count-template') || '__count__', groupcount),
                 groupcount, 'fa-layer-group');
@@ -386,9 +387,11 @@ export const deleteGroupElement = (root, groupid) => {
 export const deleteGroupingElement = (root, groupingid) => {
     const grouping = root.querySelector('[data-easystud-grouping-id="' + groupingid + '"]');
     const removeGrouping = () => {
-        const ungroupedchildren = root.querySelector('.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__children');
+        const ungroupedchildren = root.querySelector(
+            '.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__children');
         if (ungroupedchildren) {
-            grouping.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').forEach(group => {
+            grouping.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]')
+                .forEach(group => {
                 ungroupedchildren.appendChild(group);
                 updateCatalogGroupingTags(root, group.getAttribute('data-easystud-group-id'));
             });
@@ -448,7 +451,8 @@ export const removeMembers = (root, courseId, members) => {
                 user.setAttribute('data-group-ids', current.filter(id => id !== groupid).join(','));
             }
             getGroupElementsById(root, groupid).forEach(groupcopy => {
-                const copyMember = groupcopy.querySelector('[data-member-key="' + groupid + '-' + userid + '"], [data-member-key="' + groupid + ':' + userid + '"]');
+                const copyMember = groupcopy.querySelector(
+                    '[data-member-key="' + groupid + '-' + userid + '"], [data-member-key="' + groupid + ':' + userid + '"]');
                 if (copyMember) {
                     copyMember.remove();
                 }

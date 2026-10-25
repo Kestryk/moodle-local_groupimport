@@ -530,17 +530,23 @@ const getStateKey = config => `${config.storageKey}.checklist`;
 // progress/path data is carried unchanged and loading never writes storage.
 const migrateGuideReadingState = (state, config) => {
   const ids = config.slideIds;
-  if (!Array.isArray(ids) || !ids.length) return state;
+  if (!Array.isArray(ids) || !ids.length) {
+    return state;
+  }
   if (state.presentationKey === config.presentationKey) {
     const index = typeof state.slideId === 'string' ? ids.indexOf(state.slideId) : -1;
     return index >= 0 ? {...state, slideIndex: index} : state;
   }
   const origin = state.presentationKey || 'legacy';
   const map = config.readingIndexMigrations && config.readingIndexMigrations[origin];
-  if (!Array.isArray(map) || !Number.isInteger(state.slideIndex)) return state;
+  if (!Array.isArray(map) || !Number.isInteger(state.slideIndex)) {
+    return state;
+  }
   const index = map[state.slideIndex];
   if (!Number.isInteger(index) || index < 0 || index >= ids.length ||
-      typeof ids[index] !== 'string' || !ids[index]) return state;
+      typeof ids[index] !== 'string' || !ids[index]) {
+    return state;
+  }
   return {...state, slideIndex: index, slideId: ids[index]};
 };
 
@@ -613,10 +619,14 @@ const saveGuideState = (config, state) => {
 // Only an explicit reading-navigation request opts in; initialization, opening
 // and legacy consumers without stable IDs remain read-only.
 const saveGuideReadingPosition = (config, index) => {
-  if (!Array.isArray(config.slideIds) || !Number.isInteger(index) || !config.slideIds[index]) return;
+  if (!Array.isArray(config.slideIds) || !Number.isInteger(index) || !config.slideIds[index]) {
+    return;
+  }
   const state = loadGuideState(config);
   if (state.presentationKey === config.presentationKey && state.slideIndex === index &&
-      state.slideId === config.slideIds[index]) return;
+      state.slideId === config.slideIds[index]) {
+    return;
+  }
   saveGuideState(config, {...state, slideIndex: index});
 };
 
@@ -645,7 +655,12 @@ const normalisePathContext = (config, pathName, data) => {
   return result;
 };
 
-/** Read a validated copy; loading never writes or restores a checklist. */
+/**
+ * Read a validated copy; loading never writes or restores a checklist.
+ *
+ * @param {HTMLElement|null} root Guide root holding the active configuration.
+ * @param {string} pathName Configured guided path key.
+ */
 const getPathContext = (root, pathName) => {
   const config = root?.easyeduGuideConfig;
   if (!config) { return null; }
@@ -653,7 +668,12 @@ const getPathContext = (root, pathName) => {
   return normalisePathContext(config, pathName, state.pathContexts?.[pathName]);
 };
 
-/** Capture before a native asynchronous command, never in its late callback. */
+/**
+ * Capture before a native asynchronous command, never in its late callback.
+ *
+ * @param {HTMLElement} root Guide root holding the active path session.
+ * @param {string} pathName Configured guided path key.
+ */
 const getPathContextToken = (root, pathName) => {
   const config = root?.easyeduGuideConfig;
   if (!config || !Object.prototype.hasOwnProperty.call(config.pathContextFields || {}, pathName)) { return null; }
@@ -663,7 +683,14 @@ const getPathContextToken = (root, pathName) => {
   return {root, config, pathName, epoch: root.easyeduGuidePathEpoch || 0};
 };
 
-/** Store explicit product evidence only while its original path session is active. */
+/**
+ * Store explicit product evidence only while its original path session is active.
+ *
+ * @param {HTMLElement} root Guide root holding the active path session.
+ * @param {string} pathName Configured guided path key.
+ * @param {Object} data Product evidence validated against the path context fields.
+ * @param {Object|null} token Session token captured before the native asynchronous command.
+ */
 const setPathContext = (root, pathName, data, token) => {
   const current = getPathContextToken(root, pathName);
   if (!current || !token || token.root !== root || token.config !== current.config ||
@@ -805,7 +832,12 @@ const gotoPathCard = (root, config, pathName) => {
   window.requestAnimationFrame(() => focusWhenShown());
 };
 
-/** Publish course facts for path prerequisites; safe before or after init. */
+/**
+ * Publish course facts for path prerequisites; safe before or after init.
+ *
+ * @param {HTMLElement|null} root Guide root receiving the prerequisite facts.
+ * @param {Object|null} facts Course facts used by the configured path prerequisites.
+ */
 const setPathFacts = (root, facts) => {
   if (!root) { return; }
   root.easyeduGuidePathFacts = Object.assign({}, facts || {});
@@ -2964,7 +2996,10 @@ const finishMembershipScene = async(ctx, pointer, {cursor, member}) => {
   if (signal.aborted) {
     return;
   }
-  if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
+  if (origin && mode !== 'add') {
+    origin.classList.add('is-removed');
+    origin.querySelector('b').textContent = origin.dataset.removed;
+  }
   if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
   result.textContent = result.getAttribute(`data-${mode}`) || '';
   await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
@@ -3056,7 +3091,8 @@ const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, appli
       const current = applicablePhases.findIndex(item => item.dataset.guidePhase === scene.dataset.guidePhase) + 1;
       phaseCaption.hidden = !labels.stepLabel || state === 'finished';
       phaseCaption.textContent = state === 'idle' ? labels.readyLabel :
-        (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' + Math.max(1, current) + '/' + applicablePhases.length;
+        (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' +
+          Math.max(1, current) + '/' + applicablePhases.length;
       if (modeLabel) { phaseCaption.textContent += ' · ' + modeLabel; }
     }
     updateClearance();
@@ -3081,7 +3117,8 @@ const createPlaybackSync = ({scene, kind, mode, sceneHeader, phaseCaption, appli
   if (pauseControl) {
     pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
     pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
-    pauseControl.setAttribute('aria-label', state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
+    pauseControl.setAttribute('aria-label',
+      state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
     pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
   }
   if (nextControl) { nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state); }
@@ -3140,7 +3177,9 @@ const restoreSceneAtRest = ({root, scene, kind, mode, stage, result, live, liveC
     else { memberships.easyeduGuideHome.after(memberships); }
   }
   if (memberships) { memberships.toggleAttribute('data-guide-membership-preview', preview); }
-  if (membershipTitle) { membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original; }
+  if (membershipTitle) {
+    membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original;
+  }
   if (preview) {
     if (origin) {
       origin.classList.toggle('is-removed', mode === 'move');
@@ -3810,7 +3849,9 @@ const applyActiveSlide = (root, index, config, options = {}) => {
       }
     });
   }
-  if (config && options.persistReading) saveGuideReadingPosition(config, safeIndex);
+  if (config && options.persistReading) {
+    saveGuideReadingPosition(config, safeIndex);
+  }
   syncInterfaceCue(root, slides[safeIndex]);
   stopDiscoveryScene(root);
   const modal = root.querySelector(SELECTORS.modal);
@@ -4027,7 +4068,9 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
   root.easyeduGuideTooltipHide?.();
   if (root.easyeduGuideFullscreen?.ownsFullscreen() || root.easyeduGuideFullscreen?.isHostParked?.()) {
     return root.easyeduGuideFullscreen.exit().then(exited => {
-      if (!exited) return;
+      if (!exited) {
+        return;
+      }
       return closeModal(root, preserveHighlight, restoreFocus, options);
     });
   }
@@ -4129,7 +4172,9 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   if (title) {
     title.textContent = complete ?
       (config.labels.completeTitle || config.labels.complete || config.labels.guidedPath || '') :
-      `${config.labels.guidedPath || ''}${config.labels.guidedPathSeparator || ': '}${getStepText(step, 'title') || getPathLabel(pathName, config)}`;
+      `${config.labels.guidedPath || ''}${config.labels.guidedPathSeparator || ': '}${
+        getStepText(step, 'title') || getPathLabel(pathName, config)
+      }`;
   }
   if (subtitle) {
     subtitle.textContent = `${completeCount} / ${steps.length} ${config.labels.completedSteps || ''}`;
@@ -4308,8 +4353,10 @@ const renderChecklist = (root, config, pathName) => {
     }
   }
 
-  saveChecklistProgress(root, config, pathName, firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0);
-  updateChecklistHeader(root, config, firstItem ? steps[Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0)] : (steps[0] || null));
+  saveChecklistProgress(root, config, pathName,
+    firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0);
+  updateChecklistHeader(root, config,
+    firstItem ? steps[Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0)] : (steps[0] || null));
   syncChecklistMinimizeControl(root);
   // The initial right dock must not paint over a companion while close/open
   // actions or highlight scheduling are still pending. The complete content
@@ -4327,7 +4374,7 @@ const updateChecklistMessage = (root, config, activeStep) => {
     return;
   }
 
-  const items = Array.from(checklist.querySelectorAll('[data-easyedu-guide-step-id]'));
+  Array.from(checklist.querySelectorAll('[data-easyedu-guide-step-id]'));
   const complete = isChecklistComplete(checklist);
   const icon = message.querySelector('.fa');
   const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
@@ -4530,21 +4577,6 @@ const completeStep = (root, config, pathName, stepIdOrIndex) => {
   }
 };
 
-const refreshActiveHighlight = (root, shouldDock = false) => {
-  const highlight = document.querySelector(
-    `${SELECTORS.highlight}[data-easyedu-guide-owner="${root.easyeduGuideId || ''}"]`
-  );
-  if (!highlight || highlight.hidden || !root.easyeduGuideCurrentTarget) {
-    return;
-  }
-
-  if (shouldDock) {
-    dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget, resolveActiveChecklistCompanion(root));
-  }
-
-  updateHighlight(root, root.easyeduGuideCurrentTarget);
-};
-
 // Crossing the compact breakpoint can swap a step's gesture (titleCompact,
 // highlightTargetCompact, ...). Re-render the open checklist in place and move
 // a painted cue to the equivalent control of the new workspace.
@@ -4672,7 +4704,8 @@ const bindHighlightAutoRefresh = root => {
 
 // K17-21 to K17-26 (Guide part): the Guide never shows a native browser bubble. Every
 // element that needs one carries data-easyedu-guide-bubble="text"; this single Kit-styled
-// bubble replaces the native title (no double bubble), through the shared easyedu_bubble controller. data-easyedu-guide-bubble-when="truncated"
+// bubble replaces the native title (no double bubble), through the shared easyedu_bubble controller.
+// data-easyedu-guide-bubble-when="truncated"
 // limits it to copy that is actually clipped. The bubble fades in and out through Motion
 // (instant at the minimal level). The accessible name stays on the control itself.
 const GUIDE_BUBBLE = '[data-easyedu-guide-bubble]';
@@ -4692,7 +4725,9 @@ const bindGuideBubbles = root => {
   const bubble = EasyeduBubble.createBubbleController({Motion, mount: () => modal});
   let refreshFrame = null;
   const hide = (immediate = true) => {
-    if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
+    if (refreshFrame !== null) {
+      window.cancelAnimationFrame(refreshFrame);
+    }
     refreshFrame = null;
     bubble.hide(immediate);
   };
@@ -4709,9 +4744,13 @@ const bindGuideBubbles = root => {
   };
   const bubbleFor = element => element?.closest?.(GUIDE_BUBBLE);
   addTrackedListener(root, modal, 'pointerover', event => {
-    if (event.pointerType !== 'mouse') return;
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
     const element = bubbleFor(event.target);
-    if (element && !element.contains(event.relatedTarget)) show(element);
+    if (element && !element.contains(event.relatedTarget)) {
+      show(element);
+    }
   });
   addTrackedListener(root, modal, 'pointerout', event => {
     const element = bubbleFor(event.target);
@@ -4724,7 +4763,9 @@ const bindGuideBubbles = root => {
   });
   addTrackedListener(root, modal, 'focusin', event => {
     const element = bubbleFor(event.target);
-    if (element?.matches(':focus-visible')) show(element, {immediate: true});
+    if (element?.matches(':focus-visible')) {
+      show(element, {immediate: true});
+    }
   });
   addTrackedListener(root, modal, 'focusout', () => {
     bubble.release();
@@ -4738,7 +4779,9 @@ const bindGuideBubbles = root => {
     }
     // WCAG 1.4.13: dismissing the bubble must not also close the Guide.
     const wasOpen = bubble.isOpen();
-    if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
+    if (refreshFrame !== null) {
+      window.cancelAnimationFrame(refreshFrame);
+    }
     refreshFrame = null;
     bubble.dismiss();
     if (wasOpen) {
@@ -4807,8 +4850,10 @@ const bindGuide = (root, config) => {
       const controller = root.easyeduGuideFullscreen;
       const entered = await controller.toggle();
       const status = root.querySelector('[data-easyedu-guide-fullscreen-status]');
-      if (status) status.textContent = !entered && !controller.ownsFullscreen() ?
+      if (status) {
+        status.textContent = !entered && !controller.ownsFullscreen() ?
         (fullscreenButton.dataset.unavailableLabel || '') : '';
+      }
     });
     // Native requestFullscreen can leave focus on the host document rather
     // than inside the Guide root. Keep Escape available for our owned session
@@ -4918,14 +4963,16 @@ const bindGuide = (root, config) => {
     const next = event.target.closest(SELECTORS.next);
     if (next && root.contains(next)) {
       event.preventDefault();
-      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) + 1, activeConfig, {persistReading: true});
+      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) + 1,
+        activeConfig, {persistReading: true});
       return;
     }
 
     const previous = event.target.closest(SELECTORS.previous);
     if (previous && root.contains(previous)) {
       event.preventDefault();
-      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) - 1, activeConfig, {persistReading: true});
+      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) - 1,
+        activeConfig, {persistReading: true});
       return;
     }
 
@@ -5050,7 +5097,9 @@ const bindGuide = (root, config) => {
         return;
       }
       const checklist = root.querySelector(SELECTORS.checklist);
-      const pathName = checklist ? checklist.getAttribute('data-easyedu-guide-path') : '';
+      if (checklist) {
+        checklist.getAttribute('data-easyedu-guide-path');
+      }
       const stepIndex = Number(checklistItem.getAttribute('data-easyedu-guide-step-index') || 0);
       const step = setActiveChecklistStep(root, activeConfig, stepIndex);
       highlightChecklistStep(root, activeConfig, step, () => {

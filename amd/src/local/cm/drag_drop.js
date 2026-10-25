@@ -262,7 +262,8 @@ export const bindGroupDragDrop = (root, courseId) => {
             return;
         }
         const hasGroupingOrigin = groupsChangingGrouping.some(group => getGroupingDropIdForGroup(group) !== '0');
-        const runChangingMove = removefromorigin => moveGroups(groupsChangingGrouping, dropTarget, removefromorigin).then(message => {
+        const runChangingMove = removefromorigin => moveGroups(groupsChangingGrouping, dropTarget, removefromorigin)
+            .then(message => {
             clearSelectionState(root);
             updateSelectionActions(root);
             showNotification(root, message, 'success');

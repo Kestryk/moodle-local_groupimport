@@ -103,7 +103,8 @@ export const getPagination = (list, inside, position) => {
         pagination.setAttribute('aria-label', paginationNavLabel(labels, position));
         pagination.innerHTML =
             '<span class="local-groupimport-easystud-pagination__selection">' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select" data-easystud-select-results="1">' +
+                '<button type="button" class="btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select" ' +
+                    'data-easystud-select-results="1">' +
                     '<span data-easystud-select-results-label>' +
                         escapeHtml(labels.selectresults || '') +
                     '</span>' +
@@ -121,16 +122,20 @@ export const getPagination = (list, inside, position) => {
                 '<label class="local-groupimport-easystud-pagination__sort">' +
                     '<span>' + escapeHtml(labels.sortitems || '') + '</span>' +
                     '<span class="local-groupimport-easystud-dropdown" data-easystud-list-sort-dropdown>' +
-                        '<button type="button" class="local-groupimport-easystud-dropdown__button" data-easystud-list-sort-toggle aria-expanded="false">' +
+                        '<button type="button" class="local-groupimport-easystud-dropdown__button" ' +
+                            'data-easystud-list-sort-toggle aria-expanded="false">' +
                             '<span data-easystud-list-sort-label>' + escapeHtml(labels.sortalpha || '') + '</span>' +
                             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
                         '</button>' +
                         '<span class="local-groupimport-easystud-dropdown__menu" data-easystud-list-sort-menu hidden>' +
-                            '<button type="button" data-easystud-list-sort-option="alpha">' + escapeHtml(labels.sortalpha || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="alpha">' +
+                                escapeHtml(labels.sortalpha || '') + '</button>' +
                             '<button type="button" data-easystud-list-sort-option="alpha-desc">' +
                                 escapeHtml(labels.sortalphadesc || '') + '</button>' +
-                            '<button type="button" data-easystud-list-sort-option="filled">' + escapeHtml(labels.sortfilledfirst || '') + '</button>' +
-                            '<button type="button" data-easystud-list-sort-option="empty">' + escapeHtml(labels.sortemptyfirst || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="filled">' +
+                                escapeHtml(labels.sortfilledfirst || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="empty">' +
+                                escapeHtml(labels.sortemptyfirst || '') + '</button>' +
                         '</span>' +
                     '</span>' +
                 '</label>' +
@@ -356,7 +361,9 @@ export const syncSinglePageResultSelection = (root, list, config, pages, items) 
 
     const controls = getPagination(list, config.inside, 'top');
     controls.classList.add('is-placeholder');
-    controls.querySelectorAll('[data-easystud-page-first], [data-easystud-page-prev], [data-easystud-page-next], [data-easystud-page-last], [data-easystud-page-label]')
+    controls.querySelectorAll(
+        '[data-easystud-page-first], [data-easystud-page-prev], [data-easystud-page-next], ' +
+        '[data-easystud-page-last], [data-easystud-page-label]')
         .forEach(control => {
             control.hidden = false;
             control.setAttribute('aria-hidden', 'true');

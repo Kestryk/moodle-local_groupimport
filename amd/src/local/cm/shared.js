@@ -166,7 +166,8 @@ export const showNotification = (root, message, type) => {
     showFallback();
 };
 
-export const getSelectionInput = item => item.querySelector(':scope > .local-groupimport-easystud-selector [data-easystud-selector-input]');
+export const getSelectionInput = item =>
+    item.querySelector(':scope > .local-groupimport-easystud-selector [data-easystud-selector-input]');
 
 export const areSelectionTypesCompatible = (activetype, type) => {
     return !activetype || activetype === type;

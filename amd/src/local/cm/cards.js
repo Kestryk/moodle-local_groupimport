@@ -162,7 +162,8 @@ const getGroupingIdsForGroup = (root, groupid) => {
     const ids = [];
     root.querySelectorAll('[data-easystud-grouping-id]').forEach(grouping => {
         const groupingid = grouping.getAttribute('data-easystud-grouping-id');
-        if (grouping.querySelector(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id="' + groupid + '"]')) {
+        if (grouping.querySelector(
+            ':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id="' + groupid + '"]')) {
             ids.push(groupingid);
         }
     });
@@ -593,7 +594,8 @@ export const syncParticipantTagOverflow = scope => {
             });
             known.slice(Math.min(window.limit, window.total)).forEach(token => token.remove());
         }
-        const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty):not([data-easystud-toggle-tags])'));
+        const tokens = Array.from(container.querySelectorAll(
+            '.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty):not([data-easystud-toggle-tags])'));
         container.querySelectorAll('.local-groupimport-easystud-token--empty').forEach(token => {
             token.hidden = true;
         });
@@ -727,7 +729,8 @@ export const syncGroupingChildrenState = (section, labels) => {
 };
 
 export const syncUngroupedState = (root, labels) => {
-    const children = root.querySelector('.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__children');
+    const children = root.querySelector(
+        '.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__children');
     if (!children) {
         return;
     }

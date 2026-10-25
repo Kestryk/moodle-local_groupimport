@@ -369,7 +369,7 @@ const hideMenu = ui => {
     if (ui.menuClosing) {
         return;
     }
-    const {root, menu, backdrop, animator} = ui;
+    const {menu, backdrop, animator} = ui;
     // The menu leaves with its animation, inert meanwhile; everything else closes at once.
     const sheet = menu.classList.contains('is-mobile-sheet');
     const animate = !menu.hidden && (sheet ? animator.canAnimate(menu) : Motion.getLevel(menu) !== 'minimal');

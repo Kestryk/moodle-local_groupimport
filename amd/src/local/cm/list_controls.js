@@ -185,7 +185,9 @@ export const bindPagination = root => {
     });
 
     root.addEventListener('click', event => {
-        const button = event.target.closest('[data-easystud-page-first], [data-easystud-page-prev], [data-easystud-page-next], [data-easystud-page-last], [data-easystud-select-results]');
+        const button = event.target.closest(
+            '[data-easystud-page-first], [data-easystud-page-prev], [data-easystud-page-next], ' +
+            '[data-easystud-page-last], [data-easystud-select-results]');
         if (!button || !root.contains(button)) {
             return;
         }

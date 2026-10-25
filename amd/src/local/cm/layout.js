@@ -145,9 +145,11 @@ const syncCompleteListAlignment = root => {
         }
         if (Math.abs(gapResidue) >= 1) {
             if (gapResidue > 0) {
-                structureBar.style.marginBottom = (parseFloat(structureBar.style.marginBottom) || structureBarMargin) + gapResidue + 'px';
+                structureBar.style.marginBottom =
+                    (parseFloat(structureBar.style.marginBottom) || structureBarMargin) + gapResidue + 'px';
             } else {
-                participantBar.style.marginBottom = (parseFloat(participantBar.style.marginBottom) || participantBarMargin) - gapResidue + 'px';
+                participantBar.style.marginBottom =
+                    (parseFloat(participantBar.style.marginBottom) || participantBarMargin) - gapResidue + 'px';
             }
         }
     }
