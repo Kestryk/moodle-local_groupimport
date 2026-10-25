@@ -1,3 +1,67 @@
+{{!
+    @template local_easyedu_guide/easyedu_guide
+
+    Example context (json):
+    {
+        "rootclass": "easyedu-guide--student",
+        "motionlevel": "full",
+        "motionpolicy": "normal",
+        "guideopenlabel": "Open the Student Management guide",
+        "guidehoverlabel": "Guide",
+        "launchershortlabel": "Guide",
+        "guidetitle": "Student Management guide",
+        "guidemodaltitle": "Manage participants and groups",
+        "guideeyebrow": "EasyStud",
+        "guidesubtitle": "Discover the workspace with a guided example.",
+        "discoverypresentation": true,
+        "guidecloselabel": "Close guide",
+        "guidepreviouslabel": "Previous",
+        "guidenextlabel": "Next",
+        "guidenavigationlabel": "Guide chapters",
+        "guideprogresslabel": "Reading progress",
+        "guidesteplabel": "Step",
+        "guidebadgelabel": "Lesson",
+        "slidecount": 2,
+        "initialprogress": 50,
+        "guideguidedpathlabel": "Guided path",
+        "guiderequiresbadge": "Prerequisite",
+        "guideinterfacecuelabel": "Try this in the workspace",
+        "guideshowinterfacelabel": "Show the interface",
+        "displaypreferenceslabel": "Display and animations",
+        "guidereturnlabel": "Return to the guide",
+        "guidereturndesc": "Continue reading after exploring the workspace.",
+        "guidereturnbutton": "Return",
+        "guidereturndismiss": "Dismiss",
+        "guideresumetitle": "Continue your guided path",
+        "guideresumelabel": "Resume",
+        "guidecancelpathlabel": "Stop this path",
+        "guidechecklisttitle": "Your progress",
+        "guideminimizelabel": "Minimise checklist",
+        "guiderestorelabel": "Restore checklist",
+        "guidechecklistreturnlabel": "Return to the guide",
+        "guidechecklistrestartlabel": "Restart",
+        "slides": [
+            {
+                "index": 0,
+                "title": "Welcome to Student Management",
+                "navtitle": "Welcome",
+                "navicon": "fa-compass",
+                "icon": "fa-compass",
+                "category": "Discover",
+                "content": "<p>Read the cards before selecting participants or creating groups.</p>"
+            },
+            {
+                "index": 1,
+                "title": "Create your first group",
+                "navtitle": "Create a group",
+                "navicon": "fa-plus",
+                "icon": "fa-users",
+                "category": "Practise",
+                "content": "<p>Create a named group, then review its members.</p>"
+            }
+        ]
+    }
+}}
 <div class="easyedu-guide{{#rootclass}} {{rootclass}}{{/rootclass}}" data-easyedu-guide-root{{#motionlevel}} data-easyedu-motion-level="{{motionlevel}}" data-easyedu-motion-policy="{{motionpolicy}}"{{/motionlevel}}>
     <button type="button" class="btn easyedu-guide__launcher" data-easyedu-guide-open="1" aria-label="{{guideopenlabel}}">
         <span class="easyedu-guide__launcher-icon" aria-hidden="true">

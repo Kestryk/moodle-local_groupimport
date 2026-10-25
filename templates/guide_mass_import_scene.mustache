@@ -7,6 +7,72 @@
     below the stage is the static summary of the phases ("Minimal" level and end of demonstration).
     Kit and product components only: file deposit, panels, status pills, data table, search, buttons.
     Context: local_groupimport\local\mass_import_guide.
+
+    Example context (json):
+    {
+        "midrop": true,
+        "mipreview": false,
+        "phase1": "Choose a file",
+        "phase2": "Prepare the preview",
+        "phase2compact": "Preview",
+        "phase3": "Review the rows",
+        "phase4": "Confirm the selection",
+        "uploadtitle": "Import file",
+        "dropready": "The file is ready",
+        "deposittitle": "Drop a file here",
+        "depositsupport": "CSV or Excel, up to 5 MB",
+        "filename": "workshop-participants.csv",
+        "formats": "CSV or XLSX",
+        "formatsdetail": "One participant per row",
+        "previewlabel": "Preview import",
+        "resultstitle": "Import results",
+        "emptylabel": "The preview will appear here",
+        "rowscount": 2,
+        "rowslabel": "rows ready to review",
+        "warningscount": 0,
+        "warningslabel": "rows needing attention",
+        "typedvalue": "alex@example.test",
+        "selectpage": "Select this page",
+        "searchplaceholder": "Search the preview",
+        "headers": [
+            "Include",
+            "Line",
+            "Identifier",
+            "Group",
+            "Grouping",
+            "Status"
+        ],
+        "rows": [
+            {
+                "line": 2,
+                "identifier": "alex@example.test",
+                "group": "Workshop A",
+                "grouping": "Morning workshops",
+                "status": "Ready",
+                "warning": false
+            },
+            {
+                "line": 3,
+                "identifier": "sam@example.test",
+                "group": "Workshop B",
+                "grouping": "Morning workshops",
+                "status": "Ready",
+                "warning": false
+            }
+        ],
+        "recaptitle": "Steps to remember",
+        "recap": [
+            {
+                "text": "Choose a supported file."
+            },
+            {
+                "text": "Review the preview and resolve warnings."
+            },
+            {
+                "text": "Confirm only the rows you intend to import."
+            }
+        ]
+    }
 }}
 {{#midrop}}
 <div class="easyedu-ui easyedu-guide-mi-scene easyedu-guide-mi-scene--drop" data-guide-stage data-guide-mi="drop" aria-hidden="true" inert

@@ -1,3 +1,113 @@
+{{!
+    @template local_groupimport/manage
+
+    Example context (json):
+    {
+        "animationsenabled": true,
+        "compactparticipantsdefault": true,
+        "courseid": 2,
+        "userkey": "example-user",
+        "themestyle": "--easyedu-primary: #0f6cbf;",
+        "themerailroles": "primary",
+        "defaultmobileview": "participants",
+        "defaultlayoutmode": "participants",
+        "motionlevel": "full",
+        "motionpolicy": "normal",
+        "detaillabelsjson": "{}",
+        "mobilecardactions": true,
+        "actioninprogress": "Action in progress",
+        "description": "Manage course participants, groups and groupings.",
+        "drawersubtitle": "Student Management",
+        "selectionmodelabel": "Select",
+        "clearselectionlabel": "Clear selection",
+        "mobileviewlabel": "Workspace view",
+        "mobileviewparticipants": "Participants",
+        "mobileviewgroups": "Groups",
+        "mobileviewgroupings": "Groupings",
+        "participantstitle": "Participants",
+        "participantscountlabel": "2 participants",
+        "searchlabel": "Search participants",
+        "searchplaceholder": "Search participants",
+        "rolesfilterlabel": "Roles",
+        "groupsfilterlabel": "Groups",
+        "groupingsfilterlabel": "Groupings",
+        "resetfilterslabel": "Reset filters",
+        "morefilters": "More filters",
+        "lessfilters": "Fewer filters",
+        "noparticipantsstate": "No participants match these filters.",
+        "groupscolumnlabel": "Groups",
+        "structuregroupscounttemplate": "{count} groups",
+        "structuregroupscountlabel": "No groups",
+        "quickcreateurl": "/local/groupimport/manage.php?id=2",
+        "sesskey": "example-sesskey",
+        "newgroupplaceholder": "New group name",
+        "creategrouplabel": "Create group",
+        "searchgroupslabel": "Search groups",
+        "searchgroupsplaceholder": "Search groups",
+        "onlyshowungroupedlabel": "Only groups without a grouping",
+        "groupstructuretitle": "Groups and groupings",
+        "structuregroupingscounttemplate": "{count} groupings",
+        "structuregroupingscountlabel": "No groupings",
+        "groupingscolumnlabel": "Groupings",
+        "newgroupingplaceholder": "New grouping name",
+        "creategroupinglabel": "Create grouping",
+        "searchgroupingslabel": "Search groupings",
+        "searchgroupingsplaceholder": "Search groupings",
+        "groupingoccupancylabel": "Grouping occupancy",
+        "groupswithoutgrouping": "Groups without grouping",
+        "cancellabel": "Cancel",
+        "nogroupingsavailable": "No groupings exist in this course yet.",
+        "pasteemailsplaceholder": "Paste participant identifiers",
+        "participantdetailstitle": "Participant details",
+        "participantprofilelabel": "View profile",
+        "deleteconfirmationtitle": "Confirm deletion",
+        "confirmlabel": "Confirm",
+        "movedialogtitle": "Move selection",
+        "movedialogparticipants": "Participants",
+        "movedialogmembers": "Members",
+        "movedialoggroups": "Groups",
+        "movedestinationgroup": "Destination group",
+        "movedestinationgrouping": "Destination grouping",
+        "movegroupremoveorigin": "Remove from the original grouping",
+        "moveconfirm": "Move",
+        "mobilecontexttitle": "More actions",
+        "mobilecontextclose": "Close actions",
+        "backtotoplabel": "Back to top",
+        "rolefilterchoices": [
+            {
+                "value": 5,
+                "label": "Student"
+            }
+        ],
+        "roleoptions": [
+            {
+                "value": "",
+                "label": "Any role"
+            },
+            {
+                "value": 5,
+                "label": "Student"
+            }
+        ],
+        "groupoptions": [
+            {
+                "value": "",
+                "label": "Any group"
+            }
+        ],
+        "groupingoptions": [
+            {
+                "value": "",
+                "label": "Any grouping"
+            }
+        ],
+        "groupings": [],
+        "participantactions": [],
+        "groupactions": [],
+        "contextactions": [],
+        "layoutmodetoggles": []
+    }
+}}
 <div
     class="easyedu-ui local-groupimport-easystud local-groupimport-easystud--booting{{#defaultfocusclass}} {{defaultfocusclass}}{{/defaultfocusclass}}{{#compactparticipantsdefault}} local-groupimport-easystud--compact-users{{/compactparticipantsdefault}}{{^animationsenabled}} is-easyedu-motion-off{{/animationsenabled}}"
     id="local-groupimport-easystud"

@@ -4,6 +4,17 @@
     Native admin checkbox setting, presented by the Kit standalone switch.
     Context: id, name, no, value, checked, readonly, label. No visible state text.
     Native checked state is exposed by role=switch; no redundant ARIA state.
+
+    Example context (json):
+    {
+        "id": "id_s_local_groupimport_participantcardcollapsed",
+        "name": "s_local_groupimport_participantcardcollapsed",
+        "no": "0",
+        "value": "1",
+        "checked": true,
+        "readonly": false,
+        "label": "Collapse participants by default"
+    }
 }}
 <div class="form-checkbox defaultsnext easyedu-ui">
     {{^readonly}}<input type="hidden" name="{{name}}" value="{{no}}">{{/readonly}}

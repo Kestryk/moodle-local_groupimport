@@ -8,6 +8,79 @@
     `identitysubtitle` (active view). The desktop rail then starts with the product identity
     (tile + drawertitle / identitysubtitle) and groups the Guide capsule and Display
     preferences at its end, in DOM order. The compact drawer is unchanged.
+
+    Example context (json):
+    {
+        "rootid": "example-easystud-navigation",
+        "panelid": "example-easystud-navigation-panel",
+        "navigationlabel": "EasyStud spaces",
+        "triggerlabel": "Open EasyStud navigation",
+        "triggericon": "fa fa-bars",
+        "closeicon": "fa fa-times",
+        "closelabel": "Close navigation",
+        "drawertitle": "EasyStud",
+        "drawericon": "fa fa-users-gear",
+        "drawersubtitle": "Simplified participant management",
+        "drawersectionslabel": "EasyStud spaces",
+        "identityrail": true,
+        "identityicon": "fa fa-users-gear",
+        "identitysubtitle": "Student Management",
+        "hasitems": true,
+        "hasguide": false,
+        "emptylabel": "No destinations available",
+        "sections": [
+            {
+                "id": "spaces",
+                "label": "EasyStud spaces",
+                "items": [
+                    {
+                        "id": "participants",
+                        "kind": "link",
+                        "islink": true,
+                        "current": true,
+                        "url": "/local/groupimport/manage.php?id=2",
+                        "label": "Student Management",
+                        "icon": "fa fa-users"
+                    },
+                    {
+                        "id": "import",
+                        "kind": "link",
+                        "islink": true,
+                        "current": false,
+                        "url": "/local/groupimport/index.php?id=2",
+                        "label": "Mass Import",
+                        "icon": "fa fa-file-import"
+                    }
+                ]
+            }
+        ],
+        "drawersections": [
+            {
+                "id": "spaces",
+                "label": "EasyStud spaces",
+                "items": [
+                    {
+                        "id": "drawer-participants",
+                        "kind": "link",
+                        "islink": true,
+                        "current": true,
+                        "url": "/local/groupimport/manage.php?id=2",
+                        "label": "Student Management",
+                        "icon": "fa fa-users"
+                    },
+                    {
+                        "id": "drawer-import",
+                        "kind": "link",
+                        "islink": true,
+                        "current": false,
+                        "url": "/local/groupimport/index.php?id=2",
+                        "label": "Mass Import",
+                        "icon": "fa fa-file-import"
+                    }
+                ]
+            }
+        ]
+    }
 }}
 <div
     id="{{rootid}}"

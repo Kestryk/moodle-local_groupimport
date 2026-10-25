@@ -1,3 +1,19 @@
+{{!
+    @template local_groupimport/guide_welcome_reset
+
+    Example context (json):
+    {
+        "inline": false,
+        "motionlevel": "full",
+        "title": "Reset Guide welcome messages",
+        "description": "Show the first-visit Guide message again for users.",
+        "action": "/local/groupimport/guide_welcome.php",
+        "sesskey": "example-sesskey",
+        "cancel": "Cancel",
+        "cancelurl": "/admin/settings.php?section=local_groupimport_settings",
+        "confirm": "Reset welcome messages"
+    }
+}}
 {{! Server confirmation: shared Kit classes only; no inline style or business script.
     inline: rendered closed on the admin settings page and opened there by js/admin_guide_reset.js;
     otherwise the standalone page renders it open. }}
