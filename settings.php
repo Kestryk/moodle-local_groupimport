@@ -380,6 +380,17 @@ if ($hassiteconfig) {
         ));
 
         $settings->add(new \local_groupimport\local\admin_setting_switch(
+            'local_groupimport/simplifiedviewisdefault',
+            get_string('simplifiedviewisdefault', 'local_groupimport'),
+            get_string('simplifiedviewisdefault_desc', 'local_groupimport'),
+            1
+        ));
+        $settings->hide_if(
+            'local_groupimport/simplifiedviewisdefault',
+            'local_groupimport/enablesimplifiedview'
+        );
+
+        $settings->add(new \local_groupimport\local\admin_setting_switch(
             'local_groupimport/showcompleteview',
             get_string('showcompleteview', 'local_groupimport'),
             get_string('showcompleteview_desc', 'local_groupimport'),

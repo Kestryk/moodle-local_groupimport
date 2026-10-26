@@ -169,7 +169,22 @@ const bindParticipantsNavigationSelector = () => {
 };
 
 // Initialise EasyStud navigation integration.
-export const init = (courseId, managerUrl, nativeParticipantsUrl, managerLabel, nativeParticipantsLabel) => {
+export const init = (
+    courseId,
+    managerUrl,
+    nativeParticipantsUrl,
+    managerLabel,
+    nativeParticipantsLabel,
+    isSimplifiedViewDefault = true
+) => {
+    // When Student Management is NOT the default Participants destination, the native
+    // "Participants"/"Enrolled users" link must stay untouched (it already has its own
+    // distinct Student Management sibling entry added server-side). Redirecting the native
+    // page or rewriting the visible tab here would silently override that choice.
+    if (!isSimplifiedViewDefault) {
+        return;
+    }
+
     redirectNativeParticipantsPage(courseId, managerUrl);
 
     const enhance = () => {

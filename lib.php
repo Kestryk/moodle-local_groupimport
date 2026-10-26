@@ -137,6 +137,23 @@ function local_groupimport_is_simplified_view_enabled(): bool {
 }
 
 /**
+ * Whether Student Management should replace the native "Participants" link.
+ *
+ * Only meaningful while {@see local_groupimport_is_simplified_view_enabled()}
+ * returns true. Defaults to enabled so existing sites keep today's behaviour
+ * (the native link rewritten) after upgrading. When disabled, the native
+ * "Participants" link is left untouched and Student Management is exposed as
+ * an additional, sibling navigation entry instead.
+ *
+ * @return bool
+ */
+function local_groupimport_is_simplified_view_default(): bool {
+    $isdefault = get_config('local_groupimport', 'simplifiedviewisdefault');
+
+    return $isdefault === false || (bool)$isdefault;
+}
+
+/**
  * Effective animation level of the current user: their own choice, else the administrator default.
  *
  * The system "reduce motion" media is not followed by default (EasyEdu rule, 15/10/2026).
@@ -637,18 +654,122 @@ function local_groupimport_require_navigation_js(int $courseid): void {
         local_groupimport_get_native_participants_url($courseid)->out(false),
         get_string('easystudmanager', 'local_groupimport'),
         get_string('nativeparticipantsmenu', 'local_groupimport'),
+        local_groupimport_is_simplified_view_default(),
     ]);
 }
 
 /**
- * Configures a participants-style navigation node to point at EasyStud.
+ * Configures a participants-style navigation node for Student Management.
+ *
+ * When Student Management is the default Participants destination (the
+ * historical behaviour), the native node's action is rewritten in place.
+ * Otherwise the native node is left untouched and Student Management is
+ * added as an additional sibling node right after it, so both destinations
+ * remain reachable from the Participants area.
  *
  * @param navigation_node $participantsnode The participants navigation node.
  * @param int $courseid The course id.
  * @return void
  */
 function local_groupimport_configure_participants_node(navigation_node $participantsnode, int $courseid): void {
-    $participantsnode->action = local_groupimport_get_manager_url($courseid);
+    if (local_groupimport_is_simplified_view_default()) {
+        $participantsnode->action = local_groupimport_get_manager_url($courseid);
+        return;
+    }
+
+    local_groupimport_add_participants_sibling_node($participantsnode, $courseid);
+}
+
+/**
+ * Adds a Student Management entry right after the given participants node.
+ *
+ * Leaves the given node (native "Participants"/"Enrolled users") untouched.
+ *
+ * @param navigation_node $participantsnode The native participants navigation node.
+ * @param int $courseid The course id.
+ * @return void
+ */
+function local_groupimport_add_participants_sibling_node(navigation_node $participantsnode, int $courseid): void {
+    $key = 'local_groupimport_easystud_sibling';
+
+    // Prefer adding as a child of the native Participants/Users container when it
+    // already has real children with their own actions (e.g. the settings tree's
+    // "Users" node: Enrolled users, Groups, Permissions, ...): Moodle's secondary/"more"
+    // navigation flattens a populated container's children through its normal
+    // (single-pass) mapping. Adding as a *sibling* under the container's parent instead
+    // goes through Moodle's "leftover custom nodes" merge, which clones the node a
+    // second time into the same "more" dropdown on a course page (confirmed 26/10/2026).
+    //
+    // A container with NO children yet (e.g. the primary navigation tree's "participants"
+    // container, which core populates lazily) must NOT receive a child here: Moodle
+    // resolves such an empty container's own tab action by adopting its first child's
+    // action (see secondary::get_node_with_first_action()), so adding our node as its
+    // only child would silently hijack the native "Participants" tab even though
+    // simplifiedviewisdefault is off (confirmed 26/10/2026). Use the sibling-under-parent
+    // path instead, which leaves the container itself untouched.
+    if ($participantsnode->find($key, navigation_node::TYPE_CUSTOM)) {
+        return;
+    }
+
+    if ($participantsnode->has_children()) {
+        $siblingnode = navigation_node::create(
+            get_string('easystudmanager', 'local_groupimport'),
+            local_groupimport_get_manager_url($courseid),
+            navigation_node::TYPE_CUSTOM,
+            null,
+            $key,
+            new pix_icon('i/groups', '')
+        );
+        $participantsnode->add_node($siblingnode);
+        return;
+    }
+
+    $parent = $participantsnode->parent;
+    if (!$parent) {
+        // No parent to attach a sibling to: keep the native link untouched and stop.
+        return;
+    }
+
+    if ($parent->find($key, navigation_node::TYPE_CUSTOM)) {
+        return;
+    }
+
+    $siblingnode = navigation_node::create(
+        get_string('easystudmanager', 'local_groupimport'),
+        local_groupimport_get_manager_url($courseid),
+        navigation_node::TYPE_CUSTOM,
+        null,
+        $key,
+        new pix_icon('i/groups', '')
+    );
+
+    local_groupimport_insert_sibling_node($parent, $participantsnode->key, $siblingnode);
+}
+
+/**
+ * Inserts a navigation node right after an existing sibling under the same parent.
+ *
+ * Falls back to appending the node at the end when the reference sibling key
+ * cannot be located among the parent's children.
+ *
+ * @param navigation_node $parent The shared parent node.
+ * @param mixed $afterkey Key of the sibling to insert after.
+ * @param navigation_node $newnode The node to insert.
+ * @return void
+ */
+function local_groupimport_insert_sibling_node(navigation_node $parent, $afterkey, navigation_node $newnode): void {
+    $beforekey = null;
+    $found = false;
+    foreach ($parent->children as $child) {
+        if ($found) {
+            $beforekey = $child->key;
+            break;
+        }
+        if ($child->key === $afterkey) {
+            $found = true;
+        }
+    }
+    $parent->add_node($newnode, $beforekey);
 }
 
 /**
