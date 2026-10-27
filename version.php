@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
-$plugin->version = 2026102500;   // 2.0.0: stable release.
+$plugin->version = 2026102701;   // 2.0.0: upgrade safety-net for simplifiedviewisdefault/participantcardcollapsed.
 $plugin->requires = 2024100700;  // Moodle 4.5 installation baseline.
 $plugin->supported = [405, 503]; // Supported release range: Moodle 4.5 to 5.3.
 $plugin->maturity = MATURITY_STABLE;

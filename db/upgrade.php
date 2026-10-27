@@ -248,5 +248,19 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026101801, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026102701) {
+        // K27-04/K27-05: sites that never had these settings explicitly saved must still get
+        // the documented admin defaults (both "Yes"), matching the enablesimplifiedview guard
+        // above, instead of silently ending up unset/0 with no record of why.
+        if (get_config('local_groupimport', 'simplifiedviewisdefault') === false) {
+            set_config('simplifiedviewisdefault', 1, 'local_groupimport');
+        }
+        if (get_config('local_groupimport', 'participantcardcollapsed') === false) {
+            set_config('participantcardcollapsed', 1, 'local_groupimport');
+        }
+
+        upgrade_plugin_savepoint(true, 2026102701, 'local', 'groupimport');
+    }
+
     return true;
 }
