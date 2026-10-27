@@ -389,7 +389,11 @@ $-rail-control-size: 2.5rem;
       min-block-size: $-rail-control-size;
       // Penpot capsule: 116 px, glyph at 18 px, label 10 px after it.
       min-inline-size: 7.25rem;
-      padding: 0 2rem 0 1.125rem;
+      // K27-03 (Kevin 27/10/2026): unequal left/right padding (18px/32px) left the icon +
+      // label cluster visibly off-centre in the expanded capsule. Symmetric padding plus
+      // justify-content:center keeps the pair centred regardless of label width.
+      justify-content: center;
+      padding: 0 1.25rem;
       transform: none;
       transition: box-shadow var(--easyedu-motion-fast, 160ms) ease;
 
@@ -518,13 +522,15 @@ $-rail-control-size: 2.5rem;
       flex: 0 0 auto;
       inline-size: var(--easyedu-rail-item-condensed, var(--easyedu-rail-item-open, var(--easyedu-rail-item-full, auto)));
       overflow: hidden;
+      // K27-01 (Kevin 27/10/2026): the collapsed-rail unfold on hover/focus read as too
+      // abrupt at --easyedu-motion-fast (100ms) — slowed to --easyedu-motion-normal (160ms).
       transition:
-        inline-size var(--easyedu-motion-fast, 160ms) ease,
-        padding var(--easyedu-motion-fast, 160ms) ease,
-        gap var(--easyedu-motion-fast, 160ms) ease,
-        background-color var(--easyedu-motion-fast, 160ms) ease,
+        inline-size var(--easyedu-motion-normal, 160ms) ease,
+        padding var(--easyedu-motion-normal, 160ms) ease,
+        gap var(--easyedu-motion-normal, 160ms) ease,
+        background-color var(--easyedu-motion-normal, 160ms) ease,
         background-position var(--easyedu-motion-slow, 480ms) ease,
-        box-shadow var(--easyedu-motion-fast, 160ms) ease;
+        box-shadow var(--easyedu-motion-normal, 160ms) ease;
     }
 
     .easyedu-navigation--identity [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-rail-collapsed,
@@ -536,19 +542,21 @@ $-rail-control-size: 2.5rem;
       margin-inline: 0;
       min-inline-size: $-rail-control-size;
       overflow: hidden;
+      // K27-01: same slowdown as above, applied to the collapsed state itself so fold
+      // and unfold take the same, now less abrupt, duration.
       transition:
-        inline-size var(--easyedu-motion-fast, 160ms) ease,
-        margin var(--easyedu-motion-fast, 160ms) ease,
-        padding var(--easyedu-motion-fast, 160ms) ease,
-        gap var(--easyedu-motion-fast, 160ms) ease,
-        background-color var(--easyedu-motion-fast, 160ms) ease,
+        inline-size var(--easyedu-motion-normal, 160ms) ease,
+        margin var(--easyedu-motion-normal, 160ms) ease,
+        padding var(--easyedu-motion-normal, 160ms) ease,
+        gap var(--easyedu-motion-normal, 160ms) ease,
+        background-color var(--easyedu-motion-normal, 160ms) ease,
         background-position var(--easyedu-motion-slow, 480ms) ease,
-        box-shadow var(--easyedu-motion-fast, 160ms) ease;
+        box-shadow var(--easyedu-motion-normal, 160ms) ease;
 
       > .easyedu-navigation__item-label,
       .easyedu-guide__launcher-short {
         opacity: 0;
-        transition: opacity var(--easyedu-motion-fast, 160ms) ease;
+        transition: opacity var(--easyedu-motion-normal, 160ms) ease;
       }
 
       &.is-rail-unfolded {
