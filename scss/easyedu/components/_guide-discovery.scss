@@ -430,15 +430,11 @@
     .easyedu-guide-modal__fullscreen { display: none; }
   }
 
-  // K19-02 is specific to Mass Import. Student Management retains the shared
-  // guide-visuals step labels; resetting both Guide roots removed them (K21-04).
-  &.easyedu-guide--mass-import .easyedu-guide-guided-card__steps li {
-    background: none;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-  }
+  // K27-02 (27/10/2026): the K19-02 text-only reset made the Mass Import
+  // "Guided path" steps inconsistent with Student Management's badge/pill
+  // capsule. Kevin asked for the same habillage everywhere, so Mass Import
+  // now keeps the shared guide-visuals step capsule below instead of
+  // resetting it to plain text.
 
   .easyedu-guide-guided-card {
     display: grid;
