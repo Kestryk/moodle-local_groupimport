@@ -75,6 +75,15 @@
     margin-bottom: 0.2rem;
   }
 
+  // K27-08: this field moved from the bespoke .easyedu-search grid (icon/text
+  // sat off-centre; the Kit's canonical .easyedu-search-field never showed
+  // that bug) to .easyedu-search-field, which has no width of its own. Restore
+  // its prior flex-basis inside the .easyedu-table-toolbar row.
+  .local-groupimport-import-preview__search-field {
+    flex: 0 1 31rem;
+    min-inline-size: 0;
+  }
+
 
 
   &__header-actions {
