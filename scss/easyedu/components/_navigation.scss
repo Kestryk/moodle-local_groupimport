@@ -10,8 +10,10 @@
 // Existing button/responsive mixins remain the visual authorities so adopting
 // this component does not fork the established EasyStud/CCB contracts.
 // Consumer supplies the measured resting content edge. Preserve access to edge controls.
+// K26-03: the compact launcher lives on the inline-end (right, in the French LTR product)
+// edge, not the inline-start edge; the reading heading reserves clearance on that same side.
 @mixin navigation-content-clearance($content-edge) {
-  margin-inline-start: max(0px, calc(var(--easyedu-touch-target-min) + 4px - #{$content-edge}));
+  margin-inline-end: max(0px, calc(var(--easyedu-touch-target-min) + 4px - #{$content-edge}));
 }
 
 @mixin navigation-component($compact-breakpoint: 64rem, $phone-trigger-clearance: false) {
@@ -212,9 +214,10 @@
     @include buttons.admin-primary-nav-action(destructive);
   }
 
-  // Rest at the centre of the viewport's left edge. When Moodle renders its
-  // native drawer opener, the consumer controller supplies its bottom edge;
-  // the handle can cover ordinary content but must start below that opener.
+  // K26-03 (Kevin, 26/10/2026): rest at the centre of the viewport's right edge, not the
+  // left one — reported "plaqué à gauche" on mobile widths, screenshot at hand. When Moodle
+  // renders its native drawer opener, the consumer controller supplies its bottom edge; the
+  // handle can cover ordinary content but must start below that opener.
   .easyedu-navigation__trigger-row {
     block-size: 0;
     margin: 0;
@@ -225,7 +228,7 @@
 
     background: color-mix(in srgb, var(--easyedu-card-border) 28%, var(--easyedu-surface) 72%);
     border: 1px solid var(--easyedu-card-border);
-    border-radius: 0 999px 999px 0;
+    border-radius: 999px 0 0 999px;
     box-sizing: border-box;
     box-shadow: 0 0.125rem 0.25rem rgba(35, 53, 72, 0.16);
     color: var(--easyedu-primary-strong);
@@ -247,17 +250,17 @@
       calc(100dvh - var(--easyedu-navigation-trigger-safe-edge))
     );
 
-    inset-inline-start: 0;
+    inset-inline-end: 0;
     min-height: var(--easyedu-touch-target-min);
     min-width: var(--easyedu-touch-target-min);
     overflow: hidden;
-    padding-inline: 0.44rem 0.7rem;
+    padding-inline: 0.7rem 0.44rem;
     position: fixed;
     // Centre the rendered control, rather than assuming its visual block size.
     // The inherited Moodle button sizing can add block padding around the
     // touch-target minimum.
     transform: translateY(-50%);
-    transform-origin: left center;
+    transform-origin: right center;
     // K23-66: Kevin reported the hover expand/collapse of this handle as "too fast" at the Kit's
     // --easyedu-motion-fast (100ms). Move it to --easyedu-motion-slow (220ms), the same pacing
     // already used by the floating Guide launcher's own show/hide transition (K23-43,
@@ -281,7 +284,7 @@
       gap: 0.42rem;
       // K17-76: wide enough for the longest label (the French one is about 10.6 rem long).
       inline-size: min(14.5rem, calc(100vw - var(--easyedu-navigation-trigger-safe-edge)));
-      transform: translate(0.14rem, -50%);
+      transform: translate(-0.14rem, -50%);
     }
 
     &:focus-visible {
@@ -897,12 +900,14 @@
     transform: none;
   }
 
+  // K26-03: the launcher keeps to the same physical (right) edge in both directions — mirror
+  // it explicitly for RTL rather than letting the logical inset auto-flip to the left.
   [dir="rtl"] & .easyedu-navigation__trigger,
   &[dir="rtl"] .easyedu-navigation__trigger {
-    border-radius: 999px 0 0 999px;
-    inset-inline-end: 0;
-    inset-inline-start: auto;
-    padding-inline: 0.7rem 0.44rem;
+    border-radius: 0 999px 999px 0;
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+    padding-inline: 0.44rem 0.7rem;
   }
 
   [dir="rtl"] & .easyedu-navigation__item:hover,
