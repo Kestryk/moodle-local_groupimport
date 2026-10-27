@@ -699,7 +699,7 @@ echo html_writer::tag(
         ]
     ),
     [
-        'class' => 'local-groupimport-import-modal',
+        'class' => 'local-groupimport-import-modal easyedu-modal-layer',
         'data-local-groupimport-history-modal' => '1',
         'hidden' => 'hidden',
     ]
@@ -775,7 +775,7 @@ echo html_writer::tag(
         ]
     ),
     [
-        'class' => 'local-groupimport-import-modal',
+        'class' => 'local-groupimport-import-modal easyedu-modal-layer',
         'data-local-groupimport-rollback-modal' => '1',
         'hidden' => 'hidden',
     ]

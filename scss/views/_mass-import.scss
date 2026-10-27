@@ -419,13 +419,18 @@
     padding: 2rem;
     pointer-events: none;
     position: fixed;
-    z-index: 1080;
+    // K27-audit: derived from the shared layer instead of a standalone number,
+    // same fix family as K27-07/the .easyedu-modal-layer root above.
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 10);
 
     &[hidden] {
       display: none;
     }
   }
 
+  // K27-audit: z-index now comes from the shared .easyedu-modal-layer class
+  // (added on the root in index.php), not a standalone number — same fix
+  // family as K27-07, before a coincidental "1085 > 1070" silently breaks.
   &-modal {
     align-items: center;
     @include easyedu.modal-overlay-paint(0.42);
@@ -434,7 +439,6 @@
     justify-content: center;
     @include easyedu.modal-overlay-inset(1rem);
     position: fixed;
-    z-index: 1085;
 
     &[hidden] {
       display: none;
