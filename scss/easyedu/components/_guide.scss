@@ -295,10 +295,13 @@
       max(1rem, env(safe-area-inset-bottom))
       max(1rem, env(safe-area-inset-left));
     position: fixed;
-    // Consumers may portal the dialog outside a transformed compact drawer.
-    // Keep the global overlay above that drawer without coupling it to a
-    // product-specific stacking number.
-    z-index: calc(var(--easyedu-navigation-layer-panel, 1066) + 1);
+    // K27-07: a real entity dialog (participant/group/grouping details) opts into
+    // the public --easyedu-modal-layer (navigation-layer-panel + 4 = 1070). This
+    // overlay used to sit one above navigation-layer-panel only (1067), so once
+    // the always-visible launcher let Kevin open the Guide while such a dialog
+    // was open, the Guide painted behind it. Compose from the same public modal
+    // layer as the guided-panel fix above, never a product-specific number.
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
 
     &[hidden] {
       display: none;
