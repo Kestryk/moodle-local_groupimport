@@ -385,10 +385,13 @@ if ($hassiteconfig) {
             get_string('simplifiedviewisdefault_desc', 'local_groupimport'),
             1
         ));
-        $settings->hide_if(
-            'local_groupimport/simplifiedviewisdefault',
-            'local_groupimport/enablesimplifiedview'
-        );
+        // Note: deliberately not using $settings->hide_if() here. Moodle's core dependency
+        // watcher never revealed this row for this plugin's admin_setting_switch control in
+        // testing (confirmed on a real site 27/10/2026: stays display:none regardless of the
+        // "Enable simplified participant management" checkbox's actual state) — likely an
+        // incompatibility between the Kit switch markup and core's hide_if JS. The setting's
+        // own description already states it requires the option above, so showing it
+        // unconditionally is clear enough and avoids depending on that broken JS behaviour.
 
         $settings->add(new \local_groupimport\local\admin_setting_switch(
             'local_groupimport/showcompleteview',
