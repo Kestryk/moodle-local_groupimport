@@ -44,7 +44,14 @@ class manage_page {
         global $CFG, $USER;
 
         $alloweduserfields = local_groupimport_get_allowed_user_field_definitions();
-        $compactparticipantsdefault = count($users) > 5;
+        // K26-02: the admin "participantcardcollapsed" setting promises cards "entièrement
+        // dépliées, comme auparavant" (avatar included) when disabled. Before this fix, the
+        // automatic compact-density heuristic (any course over 5 participants) still started
+        // the page in compact-users mode, whose CSS hides the avatar rail outright — so the
+        // photo never painted on first load even though the admin asked for fully expanded
+        // cards, and only reappeared once the user toggled the density control by hand.
+        $cardscollapsedbydefault = get_config('local_groupimport', 'participantcardcollapsed') !== '0';
+        $compactparticipantsdefault = $cardscollapsedbydefault && count($users) > 5;
         $layoutpreferences = local_groupimport_get_workspace_layout_preferences();
         $layoutmodedefinitions = [
             'participants' => [
