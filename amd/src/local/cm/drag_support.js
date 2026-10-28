@@ -64,7 +64,7 @@ export const relayWorkspaceTheme = (workspace, portal) => {
     portal.style.setProperty('--easyedu-drag-font-family', theme.fontFamily);
 };
 
-export const setStackedDragImage = (event, items, type) => {
+export const setStackedDragImage = (event, items, type, root) => {
     if (!event.dataTransfer || !items.length) {
         return null;
     }
@@ -74,7 +74,11 @@ export const setStackedDragImage = (event, items, type) => {
     preview.className = 'local-groupimport-easystud-drag-preview easyedu-drag-preview easyedu-drag-preview--' + type;
     // The fixed preview is portalled to body. Relay the workspace's resolved
     // Kit/theme tokens instead of recreating visual values in plugin code.
-    const workspace = source.closest('#local-groupimport-easystud');
+    // K28-01: `source` (items[0]) can be a cross-page on-demand proxy card
+    // (SM-RENDU) that was never attached to the document, so `.closest()` on
+    // it can never reach the real root — the caller's own root is the only
+    // reliable source, same pattern as messaging.js's relay.
+    const workspace = root || source.closest('#local-groupimport-easystud');
     relayWorkspaceTheme(workspace, preview);
     preview.setAttribute('aria-hidden', 'true');
     preview.setAttribute('inert', '');

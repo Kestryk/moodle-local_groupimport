@@ -198,7 +198,7 @@ export const bindGroupDragDrop = (root, courseId) => {
         root.classList.add('is-dragging-groups');
         event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.setData('text/plain', draggedGroups.map(item => item.getAttribute('data-easystud-group-id')).join(','));
-        dragPreview = setStackedDragImage(event, draggedGroups, 'group');
+        dragPreview = setStackedDragImage(event, draggedGroups, 'group', root);
         const groupsToHide = draggedGroups.slice();
         window.requestAnimationFrame(() => {
             if (draggedGroups.length) {
@@ -337,7 +337,7 @@ export const bindUserDragDrop = (root, courseId) => {
         syncEmptyGroupingDropState(true);
         event.dataTransfer.effectAllowed = 'copy';
         event.dataTransfer.setData('text/plain', draggedUsers.map(item => item.getAttribute('data-user-id')).join(','));
-        dragPreview = setStackedDragImage(event, draggedUsers, 'participant');
+        dragPreview = setStackedDragImage(event, draggedUsers, 'participant', root);
         // Guided path n°10: starting the drag is enough to learn the
         // gesture; nothing is written unless the card is dropped on a group.
         emitTryActionsCompletion(root, 'try-drag', Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions'));
