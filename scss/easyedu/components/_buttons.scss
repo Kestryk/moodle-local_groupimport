@@ -268,7 +268,12 @@
   border-radius: var(--easyedu-control-radius);
   box-shadow: none $p;
   box-sizing: border-box;
-  color: var(--easyedu-text) $p;
+  // K29-01: every white-surface button carries its label in the secondary ink
+  // by default now (Kevin, 29/10 — absolute rule, reflected in Foundations
+  // too). `--secondary-accent` used to be the opt-in for this ink and
+  // `--easyedu-text` the default; both classes now resolve to the same ink,
+  // so the modifier stays a harmless no-op for its existing consumers.
+  color: var(--easyedu-secondary-text) $p;
   display: inline-flex;
   font: 600 0.88rem/normal var(--easyedu-font-family-ui);
   justify-content: center;
@@ -279,7 +284,6 @@
   width: auto;
   @include control-state-transition;
 
-  // Opt-in secondary ink, without changing Cancel or the action geometry (K21-03).
   &.easyedu-button--secondary-accent:not(:disabled):not([aria-disabled="true"]) {
     color: var(--easyedu-secondary-text) $p;
   }
