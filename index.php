@@ -58,13 +58,13 @@ $PAGE->requires->css('/local/groupimport/styles/mass-import.css');
 // K22, Kevin 22/10, option 2 of RAPPORT-I9-X6-X7-20261022.md: manage.php requests it too now).
 $PAGE->requires->css('/local/groupimport/styles/guide.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
-$PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation', 'init', [
+$PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation-lazy', 'init', [
     '#local-groupimport-import-navigation',
 ]);
-$PAGE->requires->js_call_amd('local_groupimport/guide_bootstrap', 'init', ['mass-import-guide-config']);
+$PAGE->requires->js_call_amd('local_groupimport/guide_bootstrap-lazy', 'init', ['mass-import-guide-config']);
 // Mass Import Guide adapter: compact launcher, interface openers and guided path milestones (GMI-C4).
-$PAGE->requires->js_call_amd('local_groupimport/local/mi/guide', 'init', ['local-groupimport-import']);
-$PAGE->requires->js_call_amd('local_groupimport/csv_import', 'init', [
+$PAGE->requires->js_call_amd('local_groupimport/local/mi/guide-lazy', 'init', ['local-groupimport-import']);
+$PAGE->requires->js_call_amd('local_groupimport/csv_import-lazy', 'init', [
     'local-groupimport-import',
     [
         'dropready' => get_string('csvdropready', 'local_groupimport'),
@@ -495,14 +495,14 @@ if ($backgroundjobid) {
     foreach (['queued', 'running', 'retry', 'completed', 'cancelled', 'unavailable'] as $state) {
         $progresslabels[$state] = get_string('importjob' . $state, 'local_groupimport');
     }
-    $PAGE->requires->js_call_amd('local_groupimport/import_progress', 'init', [$progresslabels]);
+    $PAGE->requires->js_call_amd('local_groupimport/import_progress-lazy', 'init', [$progresslabels]);
 }
 
 $hasreport = ($preview === null) && !(empty($success) && empty($errors));
 if ($hasreport) {
     // K18-16: the outcome is also announced with the Kit V3 notification.
     $notificationtype = empty($errors) ? 'success' : 'error';
-    $PAGE->requires->js_call_amd('local_groupimport/easyedu_notification', 'show', [[
+    $PAGE->requires->js_call_amd('local_groupimport/easyedu_notification-lazy', 'show', [[
         'type' => $notificationtype,
         'eyebrow' => get_string('pluginname', 'local_groupimport'),
         'title' => get_string('notification' . $notificationtype . 'title', 'local_groupimport'),

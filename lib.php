@@ -648,7 +648,7 @@ function local_groupimport_get_native_participants_url(int $courseid): moodle_ur
 function local_groupimport_require_navigation_js(int $courseid): void {
     global $PAGE;
 
-    $PAGE->requires->js_call_amd('local_groupimport/navigation', 'init', [
+    $PAGE->requires->js_call_amd('local_groupimport/navigation-lazy', 'init', [
         $courseid,
         local_groupimport_get_manager_url($courseid)->out(false),
         local_groupimport_get_native_participants_url($courseid)->out(false),

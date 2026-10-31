@@ -233,7 +233,7 @@ if ($hassiteconfig) {
         $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
         $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
         $PAGE->requires->js('/local/groupimport/js/admin_guide_reset.js');
-        $PAGE->requires->js_call_amd('local_groupimport/admin_choices', 'init', [[
+        $PAGE->requires->js_call_amd('local_groupimport/admin_choices-lazy', 'init', [[
             'search' => get_string('searchfilteroptions', 'local_groupimport'),
             'empty' => get_string('nofilteroptions', 'local_groupimport'),
             'none' => get_string('none'),

@@ -36,7 +36,7 @@ $PAGE->set_heading(get_string('guidewelcomereset', 'local_groupimport'));
 $PAGE->requires->css('/local/groupimport/styles/administration.css');
 // Animation level (user choice, else administrator default) for the Kit CSS and Motion.
 $motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
-$PAGE->requires->js_call_amd('local_groupimport/easyedu_confirmation', 'init', ['#easyedu-welcome-reset']);
+$PAGE->requires->js_call_amd('local_groupimport/easyedu_confirmation-lazy', 'init', ['#easyedu-welcome-reset']);
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     require_sesskey();

@@ -111,7 +111,7 @@ final class motion {
      */
     public static function apply_to_page(\moodle_page $page): string {
         $level = self::level();
-        $page->requires->js_call_amd('local_groupimport/display_preferences', 'init', [
+        $page->requires->js_call_amd('local_groupimport/display_preferences-lazy', 'init', [
             self::default_level(),
             get_user_preferences(self::PREFERENCE, self::DEFAULT),
         ]);

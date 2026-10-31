@@ -63,7 +63,7 @@ $PAGE->requires->css('/local/groupimport/styles/student-management.css');
 // 22/10, option 2 of RAPPORT-I9-X6-X7-20261022.md): same mechanism index.php already uses.
 $PAGE->requires->css('/local/groupimport/styles/guide.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
-$PAGE->requires->js_call_amd('local_groupimport/guide_welcome', 'init', [
+$PAGE->requires->js_call_amd('local_groupimport/guide_welcome-lazy', 'init', [
     '[data-easyedu-guide-root]', [
         'eligible' => \local_groupimport\local\guide_welcome::should_offer(),
         'generation' => \local_groupimport\local\guide_welcome::generation(),
@@ -131,7 +131,7 @@ $managerinitargs = [
         ],
     ],
 ];
-$PAGE->requires->js_call_amd('local_groupimport/page_bootstrap', 'init', ['easystud-page-config']);
+$PAGE->requires->js_call_amd('local_groupimport/page_bootstrap-lazy', 'init', ['easystud-page-config']);
 $action = optional_param('action', '', PARAM_ALPHA);
 // Create/rename write course data: only accept them from the plugin's POST forms, and fail loudly on a bad session key.
 if ($action && data_submitted()) {
