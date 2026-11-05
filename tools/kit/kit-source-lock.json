@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "revision": "2d91d19bef4d1353c77730026cc8dab8b88d8d9b",
+  "engine": "1.0.1",
+  "files": [
+    {
+      "target": "easyedu-guide-kit/amd/src/easyedu_guide_fullscreen.js",
+      "source": "guide/amd/src/easyedu_guide_fullscreen.js",
+      "sha256": "ee3a4b5bf487f2c4f0aba8a36ee2d26ff2f8ccf0c7c0751c83435b2b173afd17"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_specimen_group.mustache",
+      "source": "guide/templates/guide_specimen_group.mustache",
+      "sha256": "397cb560fea030d633931e5ed44a5646cccff9d4afe3eacf99fb24091a6886e2"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_specimen_grouping.mustache",
+      "source": "guide/templates/guide_specimen_grouping.mustache",
+      "sha256": "f49f9c88e6e295120fd8dd82a1324e09aeb3295e8c8665c99908a583bf6b6a26"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_specimen_participant.mustache",
+      "source": "guide/templates/guide_specimen_participant.mustache",
+      "sha256": "183162e7ea07056ab46f4c7d312fbd265516ef3668ef552a2e27425ea12ae6d2"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_specimen.mustache",
+      "source": "guide/templates/guide_specimen.mustache",
+      "sha256": "207131626943f0706081ac162974d05964f5195fc9c2272cdd1fd488657d0bc5"
+    },
+    {
+      "target": "scss/easyedu/_components.scss",
+      "source": "scss/easyedu/_components.scss",
+      "sha256": "44e305457049703d21aadd744cc5aa4b2bff9e5cd2ace3fe27cc7ee800e93c84"
+    },
+    {
+      "target": "scss/easyedu/_dialog-classes.scss",
+      "source": "scss/easyedu/_dialog-classes.scss",
+      "sha256": "35c9b99a6954ff72b237c66bf541137f9730826515417328375bf5378ec1ff6c"
+    },
+    {
+      "target": "scss/easyedu/_dialog-palette-classes.scss",
+      "source": "scss/easyedu/_dialog-palette-classes.scss",
+      "sha256": "6e5a7eec9721bf6e8b38c7e145d4517e4fe08bf80af3f1942617449990031fe8"
+    },
+    {
+      "target": "scss/easyedu/_index.scss",
+      "source": "scss/easyedu/_index.scss",
+      "sha256": "2486684341593a7c872532fe29752bb73d413999d5b6652a7f24f8cbc53b18e0"
+    },
+    {
+      "target": "scss/easyedu/_report-palette-classes.scss",
+      "source": "scss/easyedu/_report-palette-classes.scss",
+      "sha256": "38d1e48f05f9239ffc0847f63b53fae8cef96a1a7986bee9356fa29409273ab8"
+    },
+    {
+      "target": "scss/easyedu/_scale.scss",
+      "source": "scss/easyedu/_scale.scss",
+      "sha256": "f1bc7d1dc1a7a2ff53f4a33e7eef321002f2f6795a0a92cd8080d9675efcd259"
+    },
+    {
+      "target": "scss/easyedu/_theme-overrides.example.scss",
+      "source": "scss/easyedu/_theme-overrides.example.scss",
+      "sha256": "359d638b29efb9740f54adb484bcf79f04f3cb187659b6255bec7fbe908de221"
+    },
+    {
+      "target": "scss/easyedu/_tones.scss",
+      "source": "scss/easyedu/_tones.scss",
+      "sha256": "da6328d90b4a8470987f6e1a49dcf27ef79d040f42e7e85e9515375abef5b2d0"
+    },
+    {
+      "target": "scss/easyedu/_workspace-classes.scss",
+      "source": "scss/easyedu/_workspace-classes.scss",
+      "sha256": "103ab15716e859b1cd7c6e7fd46f3127898705cd7fd5b70e37d3c511dc0350f8"
+    },
+    {
+      "target": "scss/easyedu/adapters/_moodle-message-dialog.scss",
+      "source": "scss/easyedu/adapters/_moodle-message-dialog.scss",
+      "sha256": "899dcc0ccdf806a2345c49cdd7af14dc60dcf695f4ccc9c0b75242782b5476c8"
+    },
+    {
+      "target": "scss/easyedu/components/_accessibility.scss",
+      "source": "scss/easyedu/components/_accessibility.scss",
+      "sha256": "04e37b0317ca89b498130c4661f33acc0c04787cbe9c8d4e4e9a7d8cbbb14401"
+    },
+    {
+      "target": "scss/easyedu/components/_card-metadata.scss",
+      "source": "scss/easyedu/components/_card-metadata.scss",
+      "sha256": "e98d117973c4032923fc474b3710e0f0f694727b3e8ab7c14f4048f15968a574"
+    },
+    {
+      "target": "scss/easyedu/components/_card-responsive.scss",
+      "source": "scss/easyedu/components/_card-responsive.scss",
+      "sha256": "ffcf1643223481ddf3dc5d8c632e6287e12cbce81bc962f6c93bc87993b9dc2a"
+    },
+    {
+      "target": "scss/easyedu/components/_control-treatment.scss",
+      "source": "scss/easyedu/components/_control-treatment.scss",
+      "sha256": "0b60d9d3e473ae83707d100fa9b2289eca8ee65d39e8e2e4d5cd20e20118c421"
+    },
+    {
+      "target": "scss/easyedu/components/_course_banner_builder.scss",
+      "source": "scss/easyedu/components/_course_banner_builder.scss",
+      "sha256": "c41240c202d1b8e7b2c6fb393c2d886b96c244b0945a18569d7291178302e3cf"
+    },
+    {
+      "target": "scss/easyedu/components/_entity-fields.scss",
+      "source": "scss/easyedu/components/_entity-fields.scss",
+      "sha256": "75ab496f61b660fde5c1c54185049bd5c8e69a822e0ad90d4e510b6eea138129"
+    },
+    {
+      "target": "scss/easyedu/components/_entity-metadata.scss",
+      "source": "scss/easyedu/components/_entity-metadata.scss",
+      "sha256": "72b8a91bc448d7019b81721ca11c97f920e9539e56152f268d9041478e490838"
+    },
+    {
+      "target": "scss/easyedu/components/_loading.scss",
+      "source": "scss/easyedu/components/_loading.scss",
+      "sha256": "ec0f07ecce389b17a38400689d579e9da8032253b5921be5b5dd6268b1e3d65f"
+    },
+    {
+      "target": "scss/easyedu/components/_menus.scss",
+      "source": "scss/easyedu/components/_menus.scss",
+      "sha256": "e393eaa661193711df3afd98c924deebb616b4ecce76ce60b20656bc762443a0"
+    },
+    {
+      "target": "scss/easyedu/components/_navigation-skeleton.scss",
+      "source": "scss/easyedu/components/_navigation-skeleton.scss",
+      "sha256": "6b9818dc6f92d70a367eae4729b2e2d4f2e5d9972d38d4046f8eef6d8a8dce29"
+    },
+    {
+      "target": "scss/easyedu/components/_notices.scss",
+      "source": "scss/easyedu/components/_notices.scss",
+      "sha256": "d9878a738d70bfff3e5b38702e0244682332cff1e868a13d43d1f26f4225e5fe"
+    },
+    {
+      "target": "scss/easyedu/components/_overlays.scss",
+      "source": "scss/easyedu/components/_overlays.scss",
+      "sha256": "c18312dd2a1461d7541cea527d8f8d5059ac25f4d5ddb603763b58629ef49ae1"
+    },
+    {
+      "target": "scss/easyedu/components/_pagination-responsive.scss",
+      "source": "scss/easyedu/components/_pagination-responsive.scss",
+      "sha256": "eb32f9e65d6695b20135487b4979af04cf92fd532162e21d900e91d945848ba9"
+    },
+    {
+      "target": "scss/easyedu/components/_reports.scss",
+      "source": "scss/easyedu/components/_reports.scss",
+      "sha256": "66d394475f8dfd0c666d95b0acf9fab7b95f953138af85b62cc32b3cc89cf0ba"
+    },
+    {
+      "target": "scss/easyedu/components/_responsive.scss",
+      "source": "scss/easyedu/components/_responsive.scss",
+      "sha256": "e2c10f439f90db1ec0f4a2cf808b6bd3f4cc990b43e99afb4391986ffbb9d6b0"
+    },
+    {
+      "target": "scss/easyedu/components/_searchable-choices.scss",
+      "source": "scss/easyedu/components/_searchable-choices.scss",
+      "sha256": "e43757b7776d44ebf334f773feaa2a01b3892be678730fae31a7d858a6c0af4b"
+    },
+    {
+      "target": "scss/easyedu/components/_textareas.scss",
+      "source": "scss/easyedu/components/_textareas.scss",
+      "sha256": "36267eb34cf82dd4e83d6d2594aeb6569636df4e294d8aee6c18bc96981acd5b"
+    },
+    {
+      "target": "scss/easyedu/components/_typography.scss",
+      "source": "scss/easyedu/components/_typography.scss",
+      "sha256": "eb0cbc6db19eca212b49556895f58dbf33ba9d0a6205717ed7ab6b315e302feb"
+    },
+    {
+      "target": "scss/easyedu/components/_v3-banner.scss",
+      "source": "scss/easyedu/components/_v3-banner.scss",
+      "sha256": "25cd1a2feb7cb852558365732c2d4222f15f6299637bd4e44a045c702128ff3b"
+    }
+  ],
+  "unverified": [
+    {
+      "target": "easyedu-guide-kit/amd/src/easyedu_bubble.js",
+      "source": "guide/amd/src/easyedu_bubble.js",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "easyedu-guide-kit/amd/src/easyedu_guide.js",
+      "source": "guide/amd/src/easyedu_guide.js",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/easyedu_guide.mustache",
+      "source": "guide/templates/easyedu_guide.mustache",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_anatomy.mustache",
+      "source": "guide/templates/guide_anatomy.mustache",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_mass_import_scene.mustache",
+      "source": "guide/templates/guide_mass_import_scene.mustache",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "easyedu-guide-kit/templates/guide_simplecreate.mustache",
+      "source": "guide/templates/guide_simplecreate.mustache",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "easyedu-motion-kit/amd/src/easyedu_motion.js",
+      "source": "motion/amd/src/easyedu_motion.js",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/_data-classes.scss",
+      "source": "scss/easyedu/_data-classes.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/_foundation-classes.scss",
+      "source": "scss/easyedu/_foundation-classes.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/_preferences-classes.scss",
+      "source": "scss/easyedu/_preferences-classes.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/_tokens.scss",
+      "source": "scss/easyedu/_tokens.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/_workspace-control-classes.scss",
+      "source": "scss/easyedu/_workspace-control-classes.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/adapters/_moodle-file-deposit.scss",
+      "source": "scss/easyedu/adapters/_moodle-file-deposit.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_animations.scss",
+      "source": "scss/easyedu/components/_animations.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_buttons.scss",
+      "source": "scss/easyedu/components/_buttons.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_card-actions.scss",
+      "source": "scss/easyedu/components/_card-actions.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_cards.scss",
+      "source": "scss/easyedu/components/_cards.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_color-panel.scss",
+      "source": "scss/easyedu/components/_color-panel.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_feedback.scss",
+      "source": "scss/easyedu/components/_feedback.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_field-paint.scss",
+      "source": "scss/easyedu/components/_field-paint.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_focus.scss",
+      "source": "scss/easyedu/components/_focus.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_forms.scss",
+      "source": "scss/easyedu/components/_forms.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_guide-discovery.scss",
+      "source": "scss/easyedu/components/_guide-discovery.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_guide-mass-import.scss",
+      "source": "scss/easyedu/components/_guide-mass-import.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_guide-specimen.scss",
+      "source": "scss/easyedu/components/_guide-specimen.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_guide.scss",
+      "source": "scss/easyedu/components/_guide.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_identity-card-surfaces.scss",
+      "source": "scss/easyedu/components/_identity-card-surfaces.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_modals.scss",
+      "source": "scss/easyedu/components/_modals.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_navigation.scss",
+      "source": "scss/easyedu/components/_navigation.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_pagination.scss",
+      "source": "scss/easyedu/components/_pagination.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_panels.scss",
+      "source": "scss/easyedu/components/_panels.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_rail-anchor.scss",
+      "source": "scss/easyedu/components/_rail-anchor.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_tables.scss",
+      "source": "scss/easyedu/components/_tables.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_text-fields.scss",
+      "source": "scss/easyedu/components/_text-fields.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "scss/easyedu/components/_tooltips.scss",
+      "source": "scss/easyedu/components/_tooltips.scss",
+      "reason": "consumer differs from declared canonical revision"
+    },
+    {
+      "target": "amd/src/easyedu_navigation-lazy.js",
+      "source": "navigation/amd/src/easyedu_navigation.js",
+      "reason": "adapted module differs from canonical source"
+    },
+    {
+      "target": "amd/src/easyedu_guide-lazy.js",
+      "source": "guide/amd/src/easyedu_guide.js",
+      "reason": "adapted module differs from canonical source"
+    },
+    {
+      "target": "amd/src/easyedu_bubble-lazy.js",
+      "source": "guide/amd/src/easyedu_bubble.js",
+      "reason": "adapted module differs from canonical source"
+    },
+    {
+      "target": "amd/src/display_preferences-lazy.js",
+      "source": "navigation/amd/src/display_preferences.js",
+      "reason": "canonical module unavailable"
+    },
+    {
+      "target": "templates/easyedu_navigation.mustache",
+      "source": "navigation/templates/easyedu_navigation.mustache",
+      "reason": "template differs from canonical source"
+    },
+    {
+      "target": "templates/easyedu_navigation_items.mustache",
+      "source": "navigation/templates/easyedu_navigation_items.mustache",
+      "reason": "template differs from canonical source"
+    },
+    {
+      "target": "templates/display_preferences.mustache",
+      "source": "guide/templates/display_preferences.mustache",
+      "reason": "template differs from canonical source"
+    }
+  ]
+}
