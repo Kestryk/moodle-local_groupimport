@@ -345,12 +345,12 @@
     @include responsive.mobile-primary-nav-panel(var(--easyedu-navigation-layer-panel));
 
     background: var(--easyedu-navigation-drawer-surface);
-    block-size: 100dvh;
+    block-size: calc(100dvh - var(--easyedu-overlay-block-start, 0px));
     border: 0;
     border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border);
     box-shadow: var(--easyedu-navigation-drawer-shadow);
     gap: 0;
-    max-block-size: 100dvh;
+    max-block-size: calc(100dvh - var(--easyedu-overlay-block-start, 0px));
     max-width: var(--easyedu-navigation-panel-max-width);
     min-block-size: 0;
     overflow: hidden;
@@ -895,7 +895,7 @@
 
   [dir="rtl"] & .easyedu-navigation__panel,
   &[dir="rtl"] .easyedu-navigation__panel {
-    inset: 0 0 0 auto;
+    inset: var(--easyedu-overlay-block-start, 0px) 0 0 auto;
     border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border);
     transform: none;
   }

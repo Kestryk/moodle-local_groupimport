@@ -235,7 +235,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  inset: 0 auto 0 0;
+  inset: var(--easyedu-overlay-block-start, 0px) auto 0 0;
   max-width: min(22rem, calc(100vw - 3rem));
   overflow-y: auto;
   padding: calc(0.8rem + env(safe-area-inset-top)) 0.8rem calc(0.8rem + env(safe-area-inset-bottom));
@@ -408,25 +408,34 @@
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-dropdown-border);
   border-radius: 1rem 1rem 0 0;
-  bottom: 0;
+  bottom: var(--easyedu-context-sheet-block-end, 0px);
   box-shadow: 0 -1rem 2.5rem rgba(31, 42, 55, 0.2);
   box-sizing: border-box;
   display: grid;
   gap: 0;
   left: 0;
-  max-height: min(70dvh, 36rem);
+  max-height: min(70dvh, 36rem, calc(100dvh - var(--easyedu-overlay-block-start, 0px)));
   min-width: 0;
   overflow: hidden;
   padding: 0;
   position: fixed;
   right: 0;
-  top: auto;
+  top: var(--easyedu-overlay-block-start, auto);
   width: 100%;
   z-index: $z-index;
 
   &[hidden] {
     display: none;
   }
+}
+
+// Consumers opt in below their host header; other overlays retain their placement.
+@mixin responsive-overlay-origin($top) {
+  --easyedu-overlay-block-start: #{$top};
+  --easyedu-overlay-alignment: flex-start;
+  --easyedu-context-sheet-block-end: auto;
+  --easyedu-overlay-dialog-margin: 0;
+  --easyedu-overlay-dialog-block-end: auto;
 }
 
 @mixin mobile-context-sheet-header {

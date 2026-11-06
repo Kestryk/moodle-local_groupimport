@@ -7,6 +7,7 @@
 @use "focus";
 @use "typography";
 @use "animations";
+@use "modals";
 
 @mixin guide-launcher-button {
   align-items: center;
@@ -127,6 +128,7 @@
 
   // Library / Guide launcher / Desktop / Default; flow launchers stay unchanged.
   .easyedu-guide__launcher.easyedu-guide__launcher--floating {
+    @include modals.modal-yield-control;
     background: var(--local-groupimport-easystud-guide-launcher-gradient);
     border: 0;
     // K23-67: half of the 48px resting frame, so the circle at rest is unchanged while the box

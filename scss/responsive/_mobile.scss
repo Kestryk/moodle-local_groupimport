@@ -678,7 +678,7 @@
       @include easyedu.context-sheet-top-radius;
       left: 0 !important;
       right: 0;
-      top: auto !important;
+      top: var(--easyedu-overlay-block-start, auto) !important;
       width: 100%;
     }
   }

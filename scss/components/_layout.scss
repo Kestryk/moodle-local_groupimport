@@ -1,6 +1,14 @@
 // Layout, navigation, panels and filters.
 @use "../easyedu" as easyedu;
 
+@media (max-width: 64rem) {
+  .local-groupimport-easystud,
+  .local-groupimport-import {
+    // Moodle 5.3's navbar height excludes its spacing-offset border.
+    @include easyedu.responsive-overlay-origin(calc(var(--navbar-height, 0px) + var(--mds-spacing-offset, 0px)));
+  }
+}
+
 // Fail open without Moodle's early JavaScript bootstrap (formerly body noscript/style).
 body:not(.jsenabled) #local-groupimport-easystud [data-easystud-real-content] {
   position: relative !important;

@@ -14,14 +14,17 @@
     box-sizing: border-box;
     position: fixed;
     inset: 0;
+    inset-block-start: var(--easyedu-overlay-block-start, 0px);
+    inset-block-end: var(--easyedu-overlay-dialog-block-end, 0px);
     inline-size: min(35rem, calc(100vw - 2rem));
     max-inline-size: calc(100vw - 2rem);
-    max-block-size: calc(100dvh - 2rem);
+    max-block-size: calc(100dvh - var(--easyedu-overlay-block-start, 0px) - 2rem);
     margin: auto;
+    margin-block: var(--easyedu-overlay-dialog-margin, auto);
     padding: 0;
     color: var(--easyedu-text);
     &::backdrop { background: color-mix(in srgb, var(--easyedu-text) 35%, transparent); }
-    > form { display: flex; flex-direction: column; max-block-size: calc(100dvh - 2rem); margin: 0; }
+    > form { display: flex; flex-direction: column; max-block-size: calc(100dvh - var(--easyedu-overlay-block-start, 0px) - 2rem); margin: 0; }
     &:not([open]) { display: none; }
   }
   .easyedu-ui .easyedu-preferences-dialog__body {
