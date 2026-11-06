@@ -19,7 +19,8 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 // viewport. Existing hidden/ARIA lifecycle is authoritative; closed dialogs
 // must never suppress ordinary navigation. No new controller or Motion policy.
 @mixin modal-yield-control {
-  body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal="true"]:not([hidden]):not([aria-hidden="true"])) & {
+  body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal="true"]:not([hidden]):not([aria-hidden="true"])) &,
+  body:has(.is-mobile-sheet[role="menu"]:not([hidden])) & {
     visibility: hidden;
     pointer-events: none;
   }
@@ -30,7 +31,8 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 // escalation or navigation state. Hidden dialogs restore native controls.
 @mixin moodle-guide-drawer-yield {
   html.easyedu-guide-dialog-open .drawer-toggler,
-  body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal="true"]:not([hidden]):not([aria-hidden="true"])) .drawer-toggler {
+  body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal="true"]:not([hidden]):not([aria-hidden="true"])) .drawer-toggler,
+  body:has(.is-mobile-sheet[role="menu"]:not([hidden])) .drawer-toggler {
     visibility: hidden;
     pointer-events: none;
   }
@@ -757,7 +759,7 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 
 // Accepted blocking-dialog frame; placement and Motion lifecycle stay with the host.
 @mixin modal-overlay($padding: 1rem) {
-  align-items: center;
+  align-items: var(--easyedu-overlay-alignment, center);
   @include modal-overlay-paint;
   bottom: 0;
   display: flex;
@@ -766,7 +768,7 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
   padding: $padding;
   position: fixed;
   right: 0;
-  top: 0;
+  top: var(--easyedu-overlay-block-start, 0px);
   z-index: 1050;
 }
 
@@ -792,7 +794,7 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 
 @mixin modal-surface-compact {
   border-radius: 0.85rem;
-  max-height: calc(100vh - 1.3rem);
+  max-height: calc(100dvh - var(--easyedu-overlay-block-start, 0px) - 1.3rem);
   width: 100%;
 }
 
@@ -938,11 +940,11 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
 }
 
 @mixin dialog-sheet {
-  block-size: 100dvh;
+  block-size: calc(100dvh - var(--easyedu-overlay-block-start, 0px));
   border: 0;
   border-radius: 0;
   inline-size: 100%;
-  max-block-size: 100dvh;
+  max-block-size: calc(100dvh - var(--easyedu-overlay-block-start, 0px));
   max-inline-size: 100%;
 }
 
