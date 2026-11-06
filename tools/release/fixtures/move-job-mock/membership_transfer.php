@@ -16,17 +16,20 @@
 
 namespace local_groupimport\service;
 
-// phpcs:disable Generic.Classes.DuplicateClassName.Found -- Isolated worker mock of the native class.
-
-
 /**
  * Controlled native boundary used only by this standalone worker test.
+ *
+ * The double has its own class name and is aliased to the product FQCN by the
+ * test runner (see tools/release/test-move-job.php), following the fixtures/doubles
+ * convention. It must never declare the product class name itself: the plugin
+ * code checker scans this file and classes/service/membership_transfer.php in
+ * the same run, and a second declaration is reported whatever the file order.
  *
  * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-final class membership_transfer {
+final class fixture_move_job_membership_transfer {
     /** @var int|null First user of a batch to reject. */
     public static ?int $failat = 501;
     /**

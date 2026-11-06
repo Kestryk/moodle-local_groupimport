@@ -30,6 +30,7 @@ namespace {
 
 namespace local_groupimport\service {
     require_once(__DIR__ . '/fixtures/move-job-mock/membership_transfer.php');
+    class_alias(fixture_move_job_membership_transfer::class, membership_transfer::class);
 }
 
 namespace core\lock {
@@ -103,6 +104,11 @@ namespace {
         }
     }
 
+    $transfer = new ReflectionClass(\local_groupimport\service\membership_transfer::class);
+    move_job_test_assert(
+        $transfer->getName() === \local_groupimport\service\fixture_move_job_membership_transfer::class,
+        'The worker test must run against the isolated transfer double, never the product class.'
+    );
     $CFG = (object)['dirroot' => __DIR__ . '/fixtures/move-job-mock'];
     $DB = new move_job_test_db();
     $denied = false;
