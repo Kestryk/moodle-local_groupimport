@@ -70,7 +70,8 @@ function(Templates, UserRepository, Notification, Motion, Bubble) {
             if (!root) {
                 throw new Error('EasyStud display preference root is missing.');
             }
-            const {html, js} = await Templates.renderForPromise('local_groupimport/display_preferences-lazy', {});
+            // Template names are not AMD module names: the "-lazy" suffix belongs to this module only.
+            const {html, js} = await Templates.renderForPromise('local_groupimport/display_preferences', {});
             Templates.appendNodeContents(root, html, js);
             const dialog = root.querySelector('[data-easyedu-display-dialog]');
             const form = dialog.querySelector('form');

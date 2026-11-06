@@ -4,7 +4,9 @@
 
 Inventaire actualisé le **25 octobre 2026** sur la base intégrée `11f472f1766089811840e72c114beb51787c9e02`, puis rebasé sur `dd8bff741d3bad950f0d1a75003834857d1cdbea`. Ce catalogue couvre exclusivement `tools/release/test-*.cjs`, sans remplacer PHPUnit/Behat ni la recette native avant production.
 
-**216 actifs : 90 PASS, 112 FAIL, 14 bloqués, 0 timeout. 13 retirés, hors total actif et jamais comptés PASS.**
+**217 actifs : 91 PASS, 112 FAIL, 14 bloqués, 0 timeout. 13 retirés, hors total actif et jamais comptés PASS.**
+
+Ajout du 06/11/2026 (gate CI de base) : `test-template-references.cjs`, PASS sur la branche de correctif, FAIL attendu sur f50625a4 (7 échecs, dont le Pending `core/templates:doRender`). Les 216 autres statuts gardent leur révision d’origine ; aucun rejeu global n’est revendiqué.
 
 Bilan consolidé : rejeu complet sur 11f472f1, puis 110 contrats du périmètre d’impact réévalués sur dd8bff74 : 102 exécutés et 8 bloqués (dont le nouveau contrat de repli des participants). Les autres résultats gardent leur révision d’exécution d’origine ; aucun second rejeu intégral après rebase n’est revendiqué.
 
@@ -14,7 +16,7 @@ Le bilan antérieur (216 actifs : 93 PASS / 112 FAIL / 11 bloqués) regroupait l
 
 | Catégorie principale exclusive | Scripts actifs |
 |---|---:|
-| Contrat actuel — sécurité/comportement | 106 |
+| Contrat actuel — sécurité/comportement | 107 |
 | Contrat actuel — navigateur isolé | 60 |
 | Préservation historique | 27 |
 | Recette native Moodle | 14 |
@@ -43,6 +45,7 @@ Les recettes natives exigent une copie autorisée/verrouillée (pool 8052/8054/8
 
 | Script | Ce qu’il vérifie | Quand le lancer | Dernier statut documenté |
 |---|---|---|---|
+| [test-template-references.cjs](../../tools/release/test-template-references.cjs) | Chaque gabarit demandé (AMD source et build, PHP, partiels Mustache) existe sous `templates/`, chaque module AMD demandé existe sous `amd/src/` ; le vrai préchargement des préférences d’affichage demande un gabarit existant, ajoute la boîte et ne laisse aucun Pending `core/templates:doRender` (contrat Moodle 4.5), avec contrôle négatif sur l’ancien nom `-lazy`. | À chaque renommage de module AMD ou de gabarit, et à chaque lot touchant les préférences d’affichage. | PASS — 06/11, branche work/claude/easystud-gate-ci-base-20261106 |
 | [test-participant-collapse-default.cjs](../../tools/release/test-participant-collapse-default.cjs) | Contrôle le défaut admin, la densité automatique indépendante et le choix manuel de session (24 cas). | À chaque changement de densité/repli des participants. | PASS — 25/10, source dd8bff74 |
 | [test-filter-track-focus-consumer-preservation.cjs](../../tools/release/test-filter-track-focus-consumer-preservation.cjs) | Vérifie les deux labels track-focus, les états clavier/disabled/forced-colors et l’absence de changement géométrique hors opt-in. | À chaque lot touchant sélection, filtres ou accessibilité ; contrat actuel. | PASS — 25/10, source dd8bff74 |
 | [test-filter-reset-field-peer-consumer-preservation.cjs](../../tools/release/test-filter-reset-field-peer-consumer-preservation.cjs) | Vérifie la variante Kit 38/44px, les quatre commandes Reset actuelles et la préservation ordonnée hors opt-in. | À chaque lot touchant sélection, filtres ou accessibilité ; contrat actuel. | PASS — 25/10, source dd8bff74 |
