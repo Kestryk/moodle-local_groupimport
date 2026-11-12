@@ -1,0 +1,25 @@
+name: Shared component guard (report)
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  kit-guard-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.11.0'
+      - name: Install isolated parser dependencies
+        run: npm install --prefix "$RUNNER_TEMP/kit-guard-tools" --no-audit --no-fund postcss@8.5.6 postcss-scss@4.0.9
+      - name: Report component debt without blocking on existing findings
+        run: node tools/kit/check-kit-calls.cjs --root "$GITHUB_WORKSPACE" --modules "$RUNNER_TEMP/kit-guard-tools/node_modules" --mode report --json "$RUNNER_TEMP/kit-calls.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kit-calls-local_groupimport
+          path: ${{ runner.temp }}/kit-calls.json
+          if-no-files-found: error
